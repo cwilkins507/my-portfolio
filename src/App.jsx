@@ -10,14 +10,16 @@ const portfolioData = {
   github: "https://github.com/cwilkins507",
   email: "wilkins507@gmail.com",
   resume: "/Collin-Wilkins-Resume.pdf",
-  skills: [
-    "Python", "Java", "Kotlin", "JavaScript", "SQL",
-    "AWS", "Azure", "GCP", "PCF",
-    "Kafka", "GCP Pub/Sub", "Kubernetes", "Serverless", "SQS/SNS",
-    "Terraform", "Jenkins", "IAM", "OAuth", "Zero Trust",
-    "Grafana", "Splunk", "Prometheus", "CloudTrail",
-    "MySQL", "PostgreSQL", "MongoDB", "Redis", "Firestore"
-    ],
+  skills: {
+    Cloud: ["AWS", "Azure", "GCP"],
+    "Infrastructure as Code": ["Terraform", "CloudFormation"],
+    "CI/CD": ["CodePipeline", "Jenkins", "GitHub Actions"],
+    Languages: ["Java", "Kotlin", "Javascript", "Python", "TypeScript"],
+    Containers: ["Docker", "ECS", "EKS", "Kubernetes"],
+    Databases: ["SQL (Postgres, SQL Server)", "NoSQL (DynamoDB, MongoDB)", "Redis"],
+    Frameworks: ["Spring Boot", "React", "Angular"],
+    Architecture: ["Microservices", "Serverless", "Event-Driven", "REST", "GraphQL"]
+  },
   experiences: [
     {
       role: "Lead Engineer",
@@ -145,9 +147,16 @@ const App = () => {
             {/* Technical Skills */}
             <div className="lg:col-span-2 bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700">
               <h3 className="text-2xl font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Technical Skills</h3>
-              <div className="flex flex-wrap gap-3">
-                {portfolioData.skills.map(skill => (
-                  <span key={skill} className="bg-gray-700 text-teal-300 text-sm font-medium px-4 py-2 rounded-full transition duration-200 hover:bg-teal-700 hover:text-white transform hover:scale-105 shadow-md">{skill}</span>
+              <div className="space-y-6">
+                {Object.entries(portfolioData.skills).map(([category, skills]) => (
+                  <div key={category}>
+                    <h4 className="text-lg font-semibold text-teal-400 mb-3">{category}</h4>
+                    <div className="flex flex-wrap gap-3">
+                      {skills.map(skill => (
+                        <span key={skill} className="bg-gray-700 text-teal-300 text-sm font-medium px-4 py-2 rounded-full transition duration-200 hover:bg-teal-700 hover:text-white transform hover:scale-105 shadow-md">{skill}</span>
+                      ))}
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
