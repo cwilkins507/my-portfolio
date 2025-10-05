@@ -5,7 +5,7 @@ const portfolioData = {
   headline: "Innovative Software Engineer | Cloud & Distributed Systems Specialist",
   summary: "Innovative Software Engineer with over 5 years of experience designing highly distributed, reliable cloud platforms across AWS, Azure, and GCP. Skilled in building messaging pipelines with Kafka and GCP Pub/Sub to support IoT telemetry, event-driven microservices, and real-time application messaging. Adept at improving service reliability, operational efficiency, and scalability in fast-paced, high-impact environments.",
   linkedin: "https://www.linkedin.com/in/collin-wilkins-1020215a/",
-  github: "https://github.com/your-username", // replace with real GitHub
+  github: "https://github.com/cwilkins507",
   email: "wilkins507@gmail.com",
   resume: "/Collin-Wilkins-Resume.pdf",
   skills: [
