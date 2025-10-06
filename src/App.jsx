@@ -4,8 +4,9 @@ import { Linkedin, Github, Mail, FileText, ArrowRight } from 'lucide-react';
 // Define the portfolio data structure
 const portfolioData = {
   name: "Collin Wilkins",
-  headline: "Full Stack Software Engineer | Cloud & Distributed Systems Specialist",
-  summary: "Innovative Software Engineer with over 5 years of experience designing highly distributed, reliable cloud platforms across AWS, Azure, and GCP. Skilled in building messaging pipelines with Kafka and GCP Pub/Sub to support IoT telemetry, event-driven microservices, and real-time application messaging. Adept at improving service reliability, operational efficiency, and scalability in fast-paced, high-impact environments.",
+  headline: "Lead Software Engineer | Cloud & Distributed Systems Specialist",
+  summary: "Lead Engineer with cross-functional roots in Sales, Operations, Risk, and Management. 5+ years of experience designing highly distributed, reliable cloud platforms across AWS, Azure, and GCP. Skilled in building messaging pipelines with AWS SQS, Kafka and GCP Pub/Sub to support IoT telemetry, event-driven microservices, and real-time application messaging. Adept at improving service reliability, operational efficiency, and scalability in fast-paced, high-impact environments.",
+  aboutMe: "I build relationships, systems, and ideas; I’ve designed connected-vehicle networks, enterprise cloud platforms, and a BRMS on AWS, Azure, and GCP. I lead by building alongside others—communicating clearly, aligning teams, enabling sales, shaping go-to-market, and hitting targets. I’m seeking Engineering Management or Sales/Solutions Engineering roles. Let’s talk shop or explore fit, click one of the icons below",
   linkedin: "https://www.linkedin.com/in/collin-wilkins-1020215a/",
   github: "https://github.com/cwilkins507",
   email: "wilkins507@gmail.com",
@@ -20,12 +21,39 @@ const portfolioData = {
     Frameworks: ["Spring Boot", "React", "Angular"],
     Architecture: ["Microservices", "Serverless", "Event-Driven", "REST", "GraphQL"]
   },
+    projects: [
+    {
+      title: "Remote Dealership Inventory Audit Platform",
+      description: "Redesigned cloud-based inventory auditing; processed vehicle-to-cloud events for 450,000+ vehicles and delivered $5M+ annual savings.",
+      technologies: ["Event-Driven Architecture", "Cloud Messaging", "IoT Telemetry"],
+    },
+    {
+      title: "Stolen Vehicle Services for 2024 Ford F-150",
+      description: "Built theft anticipation and recovery features using cloud-integrated telemetry and real-time messaging.",
+      technologies: ["GCP Pub/Sub", "Kafka", "Real-Time Messaging", "Telemetry"],
+    },
+    {
+      title: "Event-Driven Compliance Engine (AWS)",
+      description: "Redesigned a compliance engine to event-driven architecture, improving throughput and reducing latency by 35%.",
+      technologies: ["AWS SQS", "AWS Lambda", "Distributed Queues", "Event-Driven Architecture", "BRMS"],
+    },
+    {
+      title: "Terraform-Backed CI/CD Acceleration",
+      description: "Implemented CI/CD pipelines with Terraform, increasing deployment frequency by 40%.",
+      technologies: ["Terraform", "CI/CD", "CodePipeline"],
+    },
+    {
+      title: "Identity Modernization to ADFS + SSO (Zero Trust)",
+      description: "Migrated identity systems to Microsoft ADFS and SSO, streamlining authentication and aligning with Zero Trust.",
+      technologies: ["Microsoft ADFS", "SSO", "Zero Trust"],
+    }
+  ],
   experiences: [
     {
       role: "Lead Engineer",
       company: "Morningstar, Inc. — Detroit, MI",
       period: "Apr 2024 – Present",
-      description: "Architected and deployed secure, cloud-native services for regulated financial clients, onboarding 23+ enterprise recordkeepers with Zero Trust models. Modernized compliance engine with AWS SQS & Lambda, improving throughput and reducing latency by 35%. Designed monitoring/alerting solutions with Grafana & Splunk to maintain 99.99% uptime."
+      description: "Architected and deployed secure, cloud-native services for regulated financial clients, onboarding 23 recordkeepers. Modernized compliance engine with AWS SQS & Lambda, improving throughput and reducing latency by 35%. Designed monitoring/alerting solutions with Grafana & Splunk to maintain 99.99% uptime."
     },
     {
       role: "Full Stack Software Engineer – Connected Vehicle",
@@ -46,20 +74,6 @@ const portfolioData = {
       description: "Served as technical sales advisor for digital onboarding and financial planning tools across 13 dealer accounts ($75M AUM). Deployed tailored technical sales engagements, capturing $10M in revenue."
     }
   ],
-  projects: [
-    {
-      title: "IoT Telemetry Messaging Platform",
-      description: "Designed event-driven microservices using Kafka and GCP Pub/Sub to process real-time telemetry from millions of devices.",
-      technologies: ["Kafka", "GCP Pub/Sub", "Kubernetes", "Serverless"],
-      link: "#"
-    },
-    {
-      title: "Cloud-Based Compliance Engine",
-      description: "Modernized a compliance engine with AWS Lambda and SQS, improving throughput by 35% for financial clients.",
-      technologies: ["AWS Lambda", "SQS", "Python", "Terraform"],
-      link: "#"
-    }
-  ],
   education: [
     {
       degree: "MBA",
@@ -76,7 +90,9 @@ const portfolioData = {
     "AWS Cloud Practitioner (2025)",
     "Microsoft Azure Fundamentals (AZ-900) (2024)",
     "Architecting with Google Kubernetes Engine (2024)",
-    "Google Foundations of Cybersecurity (2024)"
+    "Google Foundations of Cybersecurity (2024)",
+    "Richardson Next Level Sales Training Certified (2017)",
+    "Six Sigma Black Belt CSSBB (2016)"
   ]
 };
 
@@ -130,7 +146,7 @@ const App = () => {
             {/* Summary */}
             <div className="lg:col-span-1 bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700">
               <h3 className="text-2xl font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Who I Am</h3>
-              <p className="text-gray-400 mb-4 leading-relaxed">{portfolioData.summary}</p>
+              <p className="text-gray-400 mb-4 leading-relaxed">{portfolioData.aboutMe}</p>
               <div className="flex space-x-4 mt-6">
                 <a href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-teal-400 transition">
                   <Linkedin className="w-6 h-6" />
@@ -195,10 +211,7 @@ const App = () => {
                     <span key={tech} className="bg-gray-700 text-xs text-teal-300 font-medium px-3 py-1 rounded-full">{tech}</span>
                   ))}
                 </div>
-                <a href={project.link} target="_blank" rel="noopener noreferrer"
-                   className="text-teal-400 hover:text-teal-300 font-semibold flex items-center transition">
-                  View Project <ArrowRight className="w-4 h-4 ml-2" />
-                </a>
+
               </div>
             ))}
           </div>
