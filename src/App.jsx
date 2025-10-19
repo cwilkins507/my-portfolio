@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Linkedin, Github, Mail, FileText, ArrowRight } from 'lucide-react';
+import { Linkedin, Github, Mail, FileText, ArrowRight, ChevronDown } from 'lucide-react';
 import Writing from './components/Writing';
+import ResourcesDropdown from './components/ResourcesDropdown';
 
 // Define the portfolio data structure
 const portfolioData = {
@@ -278,7 +279,7 @@ const Layout = ({ children }) => {
                 <a href="#about" onClick={(e) => handleNavClick(e, 'about')} className="hover:text-teal-400 transition">About</a>
                 <a href="#experience" onClick={(e) => handleNavClick(e, 'experience')} className="hover:text-teal-400 transition">Experience</a>
                 <a href="#projects" onClick={(e) => handleNavClick(e, 'projects')} className="hover:text-teal-400 transition">Projects</a>
-                <Link to="/writing" className="hover:text-teal-400 transition">Writing</Link>
+                <ResourcesDropdown />
                 <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="hover:text-teal-400 transition">Contact</a>
               </>
             ) : (
@@ -287,7 +288,7 @@ const Layout = ({ children }) => {
                 <Link to="/#about" className="hover:text-teal-400 transition">About</Link>
                 <Link to="/#experience" className="hover:text-teal-400 transition">Experience</Link>
                 <Link to="/#projects" className="hover:text-teal-400 transition">Projects</Link>
-                <Link to="/writing" className="hover:text-teal-400 transition">Writing</Link>
+                <ResourcesDropdown />
                 <Link to="/#contact" className="hover:text-teal-400 transition">Contact</Link>
               </>
             )}
