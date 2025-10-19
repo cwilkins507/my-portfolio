@@ -26,7 +26,7 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
   safelist: [
     'bg-teal-400',
     'bg-teal-500',

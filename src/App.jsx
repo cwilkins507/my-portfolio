@@ -1,5 +1,7 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { Linkedin, Github, Mail, FileText, ArrowRight } from 'lucide-react';
+import Writing from './components/Writing';
 
 // Define the portfolio data structure
 const portfolioData = {
@@ -96,156 +98,207 @@ const portfolioData = {
   ]
 };
 
-const App = () => {
+// --- HOME PAGE CONTENT (The parts that change on the '/' route) ---
+const HomeContent = () => (
+  <>
+    {/* Hero Section */}
+    <header className="bg-gray-900">
+      <div className="container mx-auto text-center py-20 md:py-32 px-4">
+        <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-snug tracking-tighter">
+          {portfolioData.headline}
+        </h1>
+        <p className="text-lg md:text-xl text-gray-400 mt-6 max-w-4xl mx-auto">
+          {portfolioData.summary}
+        </p>
+        <div className="mt-10 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+          <a href={portfolioData.resume} target="_blank" rel="noopener noreferrer"
+             className="flex items-center justify-center bg-teal-600 hover:bg-teal-500 text-white font-semibold py-3 px-8 rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-lg shadow-teal-500/30">
+            <FileText className="w-5 h-5 mr-2" /> View My Resume
+          </a>
+          <a href={`mailto:${portfolioData.email}`}
+             className="flex items-center justify-center bg-gray-700 hover:bg-gray-600 text-teal-300 font-semibold py-3 px-8 rounded-full transition duration-300 ease-in-out transform hover:scale-105 border border-gray-600">
+            <Mail className="w-5 h-5 mr-2" /> Email Me
+          </a>
+        </div>
+      </div>
+    </header>
+
+    {/* Main Content Sections */}
+    <main className="container mx-auto p-4 md:p-8">
+
+      {/* About / Skills */}
+      <section id="about" className="py-20">
+        <h2 className="text-4xl font-bold text-center text-white mb-16">About Me</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          
+          {/* Summary */}
+          <div className="lg:col-span-1 bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700">
+            <h3 className="text-2xl font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Who I Am</h3>
+            <p className="text-gray-400 mb-4 leading-relaxed">{portfolioData.aboutMe}</p>
+            <div className="flex space-x-4 mt-6">
+              <a href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-teal-400 transition">
+                <Linkedin className="w-6 h-6" />
+              </a>
+              <a href={portfolioData.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-teal-400 transition">
+                <Github className="w-6 h-6" />
+              </a>
+              <a href={`mailto:${portfolioData.email}`} className="text-gray-400 hover:text-teal-400 transition">
+                <Mail className="w-6 h-6" />
+              </a>
+            </div>
+          </div>
+
+          {/* Technical Skills */}
+          <div className="lg:col-span-2 bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700">
+            <h3 className="text-2xl font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Technical Skills</h3>
+            <div className="space-y-6">
+              {Object.entries(portfolioData.skills).map(([category, skills]) => (
+                <div key={category}>
+                  <h4 className="text-lg font-semibold text-teal-400 mb-3">{category}</h4>
+                  <div className="flex flex-wrap gap-3">
+                    {skills.map(skill => (
+                      <span key={skill} className="bg-gray-700 text-teal-300 text-sm font-medium px-4 py-2 rounded-full transition duration-200 hover:bg-teal-700 hover:text-white transform hover:scale-105 shadow-md">{skill}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Experience */}
+      <section id="experience" className="py-20">
+        <h2 className="text-4xl font-bold text-center text-white mb-16">Professional Experience</h2>
+        <div className="relative border-l-4 border-teal-500/50 ml-4 md:ml-20">
+          {portfolioData.experiences.map((exp, idx) => (
+            <div key={idx} className="mb-12 pl-10 md:pl-16 relative">
+              {/* Timeline Dot */}
+              <div className="absolute w-4 h-4 bg-teal-500 rounded-full -left-[10px] top-2 border-4 border-gray-900"></div>
+              
+              <p className="text-sm text-gray-500 mb-1">{exp.period}</p>
+              <h3 className="text-2xl font-bold text-teal-400">{exp.role}</h3>
+              <h4 className="text-lg font-semibold text-gray-300 mb-3">{exp.company}</h4>
+              <p className="mt-2 text-gray-400 leading-relaxed">{exp.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Projects */}
+      <section id="projects" className="py-20">
+        <h2 className="text-4xl font-bold text-center text-white mb-16">Key Projects</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {portfolioData.projects.map((project, idx) => (
+            <div key={idx} className="bg-gray-800 rounded-xl p-8 hover:shadow-2xl hover:shadow-teal-500/20 transition-all duration-500 border border-gray-700">
+              <h3 className="text-2xl font-bold text-teal-400 mb-3">{project.title}</h3>
+              <p className="text-gray-400 mb-6">{project.description}</p>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {project.technologies.map(tech => (
+                  <span key={tech} className="bg-gray-700 text-xs text-teal-300 font-medium px-3 py-1 rounded-full">{tech}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Education & Certifications */}
+      <section id="education" className="py-20">
+        <h2 className="text-4xl font-bold text-center text-white mb-16">Education & Certifications</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+          <div className="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700">
+            <h3 className="text-2xl font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Education</h3>
+            {portfolioData.education.map((edu, idx) => (
+              <div key={idx} className="mb-4">
+                <p className="text-lg font-semibold text-gray-300">{edu.degree}</p>
+                <p className="text-gray-400 text-sm">{edu.school} ({edu.year})</p>
+              </div>
+            ))}
+          </div>
+          <div className="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700">
+            <h3 className="text-2xl font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Certifications</h3>
+            <ul className="space-y-3">
+            {portfolioData.certifications.map((cert, idx) => (
+              <li key={idx} className="text-gray-400 flex items-center">
+                <span className="text-teal-500 mr-2">&#9679;</span> {cert}
+              </li>
+            ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </>
+);
+
+// --- LAYOUT COMPONENT (Static elements: Nav, Contact CTA, Footer) ---
+const Layout = ({ children }) => {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
+  // Helper function to handle navigation
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Handle navigation clicks
+  const handleNavClick = (e, sectionId) => {
+    e.preventDefault();
+    if (isHomePage) {
+      scrollToSection(sectionId);
+    }
+  };
+
+  // Handle scroll to section after navigation to home page
+  React.useEffect(() => {
+    if (isHomePage && location.hash) {
+      const sectionId = location.hash.slice(1); // Remove the # from the hash
+      setTimeout(() => {
+        scrollToSection(sectionId);
+      }, 0);
+    }
+  }, [location, isHomePage]);
+
   return (
     <div className="min-h-screen bg-gray-900 text-gray-200 font-sans leading-normal tracking-wider">
-      
       {/* Navigation */}
       <nav className="bg-gray-800 p-4 sticky top-0 z-10 shadow-lg">
         <div className="container mx-auto flex flex-wrap justify-between items-center px-4">
-          <a href="#" className="text-white text-2xl font-bold hover:text-teal-400 transition">{portfolioData.name}</a>
+          <Link to="/" className="text-white text-2xl font-bold hover:text-teal-400 transition">{portfolioData.name}</Link>
           <div className="flex space-x-4 pt-2 md:pt-0">
-            <a href="#about" className="hover:text-teal-400 transition">About</a>
-            <a href="#experience" className="hover:text-teal-400 transition">Experience</a>
-            <a href="#projects" className="hover:text-teal-400 transition">Projects</a>
-            <a href="#contact" className="hover:text-teal-400 transition">Contact</a>
+            {isHomePage ? (
+              // If on home page, use anchor tags with smooth scroll
+              <>
+                <a href="#about" onClick={(e) => handleNavClick(e, 'about')} className="hover:text-teal-400 transition">About</a>
+                <a href="#experience" onClick={(e) => handleNavClick(e, 'experience')} className="hover:text-teal-400 transition">Experience</a>
+                <a href="#projects" onClick={(e) => handleNavClick(e, 'projects')} className="hover:text-teal-400 transition">Projects</a>
+                <Link to="/writing" className="hover:text-teal-400 transition">Writing</Link>
+                <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="hover:text-teal-400 transition">Contact</a>
+              </>
+            ) : (
+              // If not on home page, use Links to navigate back to home with hash
+              <>
+                <Link to="/#about" className="hover:text-teal-400 transition">About</Link>
+                <Link to="/#experience" className="hover:text-teal-400 transition">Experience</Link>
+                <Link to="/#projects" className="hover:text-teal-400 transition">Projects</Link>
+                <Link to="/writing" className="hover:text-teal-400 transition">Writing</Link>
+                <Link to="/#contact" className="hover:text-teal-400 transition">Contact</Link>
+              </>
+            )}
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <header className="bg-gray-900">
-        <div className="container mx-auto text-center py-20 md:py-32 px-4">
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-snug tracking-tighter">
-            {portfolioData.headline}
-          </h1>
-          <p className="text-lg md:text-xl text-gray-400 mt-6 max-w-4xl mx-auto">
-            {portfolioData.summary}
-          </p>
-          <div className="mt-10 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-            <a href={portfolioData.resume} target="_blank" rel="noopener noreferrer"
-               className="flex items-center justify-center bg-teal-600 hover:bg-teal-500 text-white font-semibold py-3 px-8 rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-lg shadow-teal-500/30">
-              <FileText className="w-5 h-5 mr-2" /> View My Resume
-            </a>
-            <a href={`mailto:${portfolioData.email}`}
-               className="flex items-center justify-center bg-gray-700 hover:bg-gray-600 text-teal-300 font-semibold py-3 px-8 rounded-full transition duration-300 ease-in-out transform hover:scale-105 border border-gray-600">
-              <Mail className="w-5 h-5 mr-2" /> Email Me
-            </a>
-          </div>
-        </div>
-      </header>
+      {/* Dynamic Content (Routes render here) */}
+      {children}
 
-      {/* Main Content Sections */}
-      <main className="container mx-auto p-4 md:p-8">
-
-        {/* About / Skills */}
-        <section id="about" className="py-20">
-          <h2 className="text-4xl font-bold text-center text-white mb-16">About Me</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            
-            {/* Summary */}
-            <div className="lg:col-span-1 bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700">
-              <h3 className="text-2xl font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Who I Am</h3>
-              <p className="text-gray-400 mb-4 leading-relaxed">{portfolioData.aboutMe}</p>
-              <div className="flex space-x-4 mt-6">
-                <a href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-teal-400 transition">
-                  <Linkedin className="w-6 h-6" />
-                </a>
-                <a href={portfolioData.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-teal-400 transition">
-                  <Github className="w-6 h-6" />
-                </a>
-                <a href={`mailto:${portfolioData.email}`} className="text-gray-400 hover:text-teal-400 transition">
-                  <Mail className="w-6 h-6" />
-                </a>
-              </div>
-            </div>
-
-            {/* Technical Skills */}
-            <div className="lg:col-span-2 bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700">
-              <h3 className="text-2xl font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Technical Skills</h3>
-              <div className="space-y-6">
-                {Object.entries(portfolioData.skills).map(([category, skills]) => (
-                  <div key={category}>
-                    <h4 className="text-lg font-semibold text-teal-400 mb-3">{category}</h4>
-                    <div className="flex flex-wrap gap-3">
-                      {skills.map(skill => (
-                        <span key={skill} className="bg-gray-700 text-teal-300 text-sm font-medium px-4 py-2 rounded-full transition duration-200 hover:bg-teal-700 hover:text-white transform hover:scale-105 shadow-md">{skill}</span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        {/* Experience */}
-        <section id="experience" className="py-20">
-          <h2 className="text-4xl font-bold text-center text-white mb-16">Professional Experience</h2>
-          <div className="relative border-l-4 border-teal-500/50 ml-4 md:ml-20">
-            {portfolioData.experiences.map((exp, idx) => (
-              <div key={idx} className="mb-12 pl-10 md:pl-16 relative">
-                {/* Timeline Dot */}
-                <div className="absolute w-4 h-4 bg-teal-500 rounded-full -left-[10px] top-2 border-4 border-gray-900"></div>
-                
-                <p className="text-sm text-gray-500 mb-1">{exp.period}</p>
-                <h3 className="text-2xl font-bold text-teal-400">{exp.role}</h3>
-                <h4 className="text-lg font-semibold text-gray-300 mb-3">{exp.company}</h4>
-                <p className="mt-2 text-gray-400 leading-relaxed">{exp.description}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Projects */}
-        <section id="projects" className="py-20">
-          <h2 className="text-4xl font-bold text-center text-white mb-16">Key Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {portfolioData.projects.map((project, idx) => (
-              <div key={idx} className="bg-gray-800 rounded-xl p-8 hover:shadow-2xl hover:shadow-teal-500/20 transition-all duration-500 border border-gray-700">
-                <h3 className="text-2xl font-bold text-teal-400 mb-3">{project.title}</h3>
-                <p className="text-gray-400 mb-6">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.technologies.map(tech => (
-                    <span key={tech} className="bg-gray-700 text-xs text-teal-300 font-medium px-3 py-1 rounded-full">{tech}</span>
-                  ))}
-                </div>
-
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Education & Certifications */}
-        <section id="education" className="py-20">
-          <h2 className="text-4xl font-bold text-center text-white mb-16">Education & Certifications</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-            <div className="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700">
-              <h3 className="text-2xl font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Education</h3>
-              {portfolioData.education.map((edu, idx) => (
-                <div key={idx} className="mb-4">
-                  <p className="text-lg font-semibold text-gray-300">{edu.degree}</p>
-                  <p className="text-gray-400 text-sm">{edu.school} ({edu.year})</p>
-                </div>
-              ))}
-            </div>
-            <div className="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700">
-              <h3 className="text-2xl font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Certifications</h3>
-              <ul className="space-y-3">
-              {portfolioData.certifications.map((cert, idx) => (
-                <li key={idx} className="text-gray-400 flex items-center">
-                  <span className="text-teal-500 mr-2">&#9679;</span> {cert}
-                </li>
-              ))}
-              </ul>
-            </div>
-          </div>
-        </section>
-
-      </main>
-
-      {/* Contact */}
+      {/* Contact (CTA - always visible) */}
       <section id="contact" className="bg-gray-800 py-20 border-t border-gray-700">
         <div className="container mx-auto text-center px-4">
           <h2 className="text-4xl font-bold text-white mb-6">Let's Connect</h2>
@@ -274,6 +327,27 @@ const App = () => {
         </div>
       </footer>
     </div>
+  );
+};
+
+
+// --- MAIN APP COMPONENT ---
+const App = () => {
+  return (
+    <Router>
+      <Layout>
+        <Routes>
+          {/* The main portfolio page */}
+          <Route path="/" element={<HomeContent />} /> 
+          
+          {/* The writing resources page */}
+          <Route path="/writing" element={<Writing />} />
+          
+          {/* Individual article routes */}
+          <Route path="/articles/:slug" element={<Writing />} />
+        </Routes>
+      </Layout>
+    </Router>
   );
 };
 
