@@ -102,10 +102,6 @@ This demo was created using the free, single-user version of Miro so please excu
 
 ---
 
-![Miro diagram example](../assets/Miro-example.png)
-
-
----
 
 As you can see **diagramming tools like Miro, Gliffy, or Visio** offer richer visual polish and an intuitive drag-and-drop experience, they tend to drift out of sync with the code they describe. **Architecture-as-Code approaches**—using PlantUML or Mermaid—sacrifice some design flair for **precision, version control, and automation**. There’s a learning curve, but the payoff is creating diagrams that are maintainable over time, plus you get to leverage your AI buddy to help generate them.
 
