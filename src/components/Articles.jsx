@@ -57,7 +57,23 @@ const ArticleContent = ({ articles }) => {
           ))}
         </div>
         <div className="prose prose-invert prose-teal max-w-none">
-          <ReactMarkdown>{article.content}</ReactMarkdown>
+          <ReactMarkdown
+            components={{
+              img: ({ node, ...props }) => {
+                // Remove the leading slash if it exists
+                const src = props.src.startsWith('/src/') ? props.src.substring(4) : props.src;
+                try {
+                  const imageUrl = new URL(`../assets/${src.split('/assets/')[1]}`, import.meta.url).href;
+                  return <img {...props} src={imageUrl} className="my-8" />;
+                } catch (error) {
+                  console.error('Error loading image:', error);
+                  return <img {...props} />;
+                }
+              }
+            }}
+          >
+            {article.content}
+          </ReactMarkdown>
         </div>
       </div>
     </div>
