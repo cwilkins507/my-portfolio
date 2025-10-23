@@ -4,18 +4,20 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  assetsInclude: ['**/*.md'],
-  base: './',
+  assetsInclude: ['**/*.md', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg'],
+  base: '/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
     emptyOutDir: true,
     rollupOptions: {
       output: {
-        entryFileNames: `assets/[name].js`,
-        chunkFileNames: `assets/[name].js`,
-        assetFileNames: `assets/[name].[ext]`
+        entryFileNames: `assets/[name].[hash].js`,
+        chunkFileNames: `assets/[name].[hash].js`,
+        assetFileNames: `assets/[name].[hash].[ext]`
       }
-    }
+    },
+    // Ensure assets are copied to the build directory
+    copyPublicDir: true
   }
 })
