@@ -72,7 +72,7 @@ Diagram with User (API call) to console (front-end) which calls back-end service
 ### PlantUML ###
 
 
-![PlantUML diagram example](/src/assets/PlantUML-example.png)
+![PlantUML diagram example](/images/PlantUML-example.png)
 
 You can copy this code into any [PlantUML viewer](//www.plantuml.com/plantuml/png/VLLDKzim4BthL-o40p0j4EB2a1uwXDW6EXJIE1aklSYs22gsv6fbQEZqltVb3pSkq0nZxDst-_QzbPDJjDpOCi-ObJOJC9qlVPWKHIOJRgLMC379lRGYiQKHi7EXqOeKNFmsscLi6yup7VCCqAupgLOC7wGgkE4vn3nvM1bTgdIgCsrWAwm-6mX3NRbQ4Uil1d3s0dyIZiE9osYJ2jD4Hzuez0AAXbhP9dPOVPfO99y577wWftdTp2XXu738VczGyyHgymPjE1uFXttQDjgZVNA-zBgctFAOetYhSNWK7BtUkDScqNcXbL3szJx1IJWCWt_xUDxnyNHAVLYjROcacYEKz9-nlrOFQ74mpNIP3boQFs7r05lKr0l75INzRHI4XYGBbS9KAzIP-APsve98u02YsMItQdFNODhfgZQmeMHmAs8uC_g9ngagulgUO3HoZyy9TgqYOHvbukYYmj3P8htQaLxhLEn_HvZCBcjoTzB-orqTwdaGBLnDBRkGBNEtj87Vt16ZCsdkHyJchnNFjNzMKwLnjyV-qAxWKjqPZjQKrSlIsbj5QRO97TlHozacEN_M2Y8FtjLhgUnseYstCW7tnf7ucXwz5-N46qn7S41ND-uLp-EKKpafxTUwejAAD_ZxOgc-DQDTGwE_YLRcaNtR9DeAmnFtNO7C7JROs_lKRXS-maoOEsroX6e9ZvB3yfArQGT5Zr1NcgSahvQCqWeYGs6nXwIb4JGIYg0NYyMC_FzH2hG8E-V1uZtCRY9tNTB53ww2HR3BN0cLjkAfFFWf4hf3Y4kKIY12fbSowP1fJA2ve74ERerqGES4et0t0gLfmGhXQodCcfwmp2ow3dtj7UvpT7DDmo9vZgAlgQoHliGYusk4iY2BHLePxUprHP7fTUvMPKJ6dSqaD-LuJw3C2G2o5sHro79U56xVh7iTz_SRWxilRjQ-BPJQi6LUAgIiqqc9Ri-K-S8LNr5fl6Rib0hTRyKV) or or .puml file.
 
@@ -80,7 +80,7 @@ Also here's a link to the [documentation](https://crashedmind.github.io/PlantUML
 
 ### Mermaid ###
 
-![Mermaid diagram example](/src/assets/Mermaid-example.png)
+![Mermaid diagram example](/images/Mermaid-example.png)
 
 
 You can render this directly in:
@@ -97,7 +97,7 @@ To learn more, visit the [documentation](https://mermaid.js.org/intro/)
 
 This demo was created using the free, single-user version of Miro so please excuse the lack of visual detail. Updating the diagram is cumbersome: any change requires reopening Miro, manually editing the content, and potentially granting other users access. Unlike text-based diagrams, there's no version-controlled, automated way to propagate updates.
 
-![Miro diagram example](/src/assets/Miro-example.png)
+![Miro diagram example](/images/Miro-example.png)
 
 
 ---

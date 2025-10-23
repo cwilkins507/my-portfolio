@@ -60,15 +60,11 @@ const ArticleContent = ({ articles }) => {
           <ReactMarkdown
             components={{
               img: ({ node, ...props }) => {
-                // Remove the leading slash if it exists
-                const src = props.src.startsWith('/src/') ? props.src.substring(4) : props.src;
-                try {
-                  const imageUrl = new URL(`../assets/${src.split('/assets/')[1]}`, import.meta.url).href;
-                  return <img {...props} src={imageUrl} className="my-8" />;
-                } catch (error) {
-                  console.error('Error loading image:', error);
-                  return <img {...props} />;
-                }
+                // Convert the src to use the public images folder
+                const src = props.src.includes('/images/') 
+                  ? props.src 
+                  : `/images/${props.src.split('/').pop()}`;
+                return <img {...props} src={src} className="my-8" />;
               }
             }}
           >
