@@ -153,7 +153,7 @@ const Writing = () => {
   return (
     <div className="container mx-auto px-4 py-16">
       <h1 className="text-4xl font-bold text-white mb-2">From the Desk</h1>
-      <p className="text-xl text-gray-400 mb-8">Thoughts on cloud architecture and distributed systems</p>
+      <p className="text-xl text-gray-400 mb-8">Cloud, Code, and Enterprise Insights</p>
       
       <div className="mb-8 flex flex-col sm:flex-row gap-4">
         <input
