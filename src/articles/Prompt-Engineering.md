@@ -27,12 +27,12 @@ One [github link](https://github.com/snarktank/ai-dev-tasks) that I've found hel
 11. Learn JSON, XML, CSV
 12. Key prompt structure - Context, Instructions, output format, rules, example
 13. Use AI to generate examples for AI!
-14. Use the right model for the task (tokens are fairly cheap just use the smarter mode el unless it’s a super high utilization job) think ROI
-15. Use ask a few times before agent
+14. Use the right model for the task (tokens are fairly cheap just use the smarter model unless it’s a super high utilization job) think ROI
+15. Use 'ask' mode a few times before 'agent' mode in your CLI or Copilot
 
 ### Bonus
 
-16. Remember, give it a role (who), give it a goal (what), give it all context, be clear on output format, ask it to help you (before you provide a response.. ask any questions you feel could help craft a better response or just continue)
+16. Remember, give it a role (who), give it a goal (what), give it all context, be clear on output format, ask it to help you (before you provide a response... ask any questions you feel could help craft a better response or just continue)
 
 ## Before and After: One Example Applying Every Tip
 Scenario: You want a concise technical design plan for a Signup service with rate limiting, grounded in given context, returned as JSON for downstream automation.
