@@ -10,6 +10,8 @@ Prompt engineering is interface design for probabilistic systems. It turns vague
 
 This guide distills durable practices that hold across models and vendors. It favors unambiguous language, explicit schemas, and iterative evaluation. It also includes a single, full “before and after” prompt that demonstrates every tip in action.
 
+One [github link](https://github.com/snarktank/ai-dev-tasks) that I've found helpful will help you think about this if you are using a CLI or similar tool such as Claude to format your requests into a PRD then create tasks/subtasks to break down the requirements
+
 ## 15 Durable Principles You Can Standardize
 
 1. Use workbench/playground models like platform.openai.com/playground…
