@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, Routes, Route } from 'react-router-dom';
 import matter from 'gray-matter';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const ArticleList = ({ articles }) => (
   <div className="container mx-auto px-4 py-16">
@@ -58,6 +59,7 @@ const ArticleContent = ({ articles }) => {
         </div>
         <div className="prose prose-invert prose-teal max-w-none">
           <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
             components={{
               img: ({ node, ...props }) => {
                 // Convert the src to use the public images folder
@@ -65,7 +67,13 @@ const ArticleContent = ({ articles }) => {
                   ? props.src 
                   : `/images/${props.src.split('/').pop()}`;
                 return <img {...props} src={src} className="my-8" />;
-              }
+              },
+              table: ({ children }) => <div className="overflow-x-auto my-8"><table className="min-w-full text-left text-sm">{children}</table></div>,
+              thead: ({ children }) => <thead className="bg-gray-800 text-gray-200">{children}</thead>,
+              tbody: ({ children }) => <tbody className="divide-y divide-gray-700">{children}</tbody>,
+              tr: ({ children }) => <tr className="hover:bg-gray-700/50 transition-colors">{children}</tr>,
+              th: ({ children }) => <th className="px-4 py-3 font-semibold">{children}</th>,
+              td: ({ children }) => <td className="px-4 py-3 text-gray-300">{children}</td>,
             }}
           >
             {article.content}

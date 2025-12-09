@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const Writing = () => {
   const [articles, setArticles] = useState([]);
@@ -131,6 +132,7 @@ const Writing = () => {
           </div>
           <div className="prose prose-invert max-w-none prose-p:mb-4 prose-headings:mt-8 prose-headings:mb-4 prose-li:mb-2">
             <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
               components={{
                 p: ({ children }) => <p className="mb-4">{children}</p>,
                 h1: ({ children }) => <h1 className="text-3xl font-bold mt-8 mb-4">{children}</h1>,
@@ -139,6 +141,12 @@ const Writing = () => {
                 ul: ({ children }) => <ul className="list-disc pl-6 mb-4">{children}</ul>,
                 li: ({ children }) => <li className="mb-2">{children}</li>,
                 strong: ({ children }) => <strong className="font-bold text-teal-400">{children}</strong>,
+                table: ({ children }) => <div className="overflow-x-auto my-8"><table className="min-w-full text-left text-sm">{children}</table></div>,
+                thead: ({ children }) => <thead className="bg-gray-800 text-gray-200">{children}</thead>,
+                tbody: ({ children }) => <tbody className="divide-y divide-gray-700">{children}</tbody>,
+                tr: ({ children }) => <tr className="hover:bg-gray-700/50 transition-colors">{children}</tr>,
+                th: ({ children }) => <th className="px-4 py-3 font-semibold">{children}</th>,
+                td: ({ children }) => <td className="px-4 py-3 text-gray-300">{children}</td>,
               }}
             >
               {articleContent}
