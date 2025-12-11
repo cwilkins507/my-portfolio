@@ -9,7 +9,15 @@ const portfolioData = {
   name: "Collin Wilkins",
   headline: "Lead Software Engineer | Cloud & Distributed Systems Specialist",
   summary: "Lead Engineer with cross-functional roots in Sales, Operations, Risk, and Management. 5+ years of experience designing highly distributed, reliable cloud platforms across AWS, Azure, and GCP. Skilled in building messaging pipelines with AWS SQS, Kafka and GCP Pub/Sub to support IoT telemetry, event-driven microservices, and real-time application messaging. Adept at improving service reliability, operational efficiency, and scalability in fast-paced, high-impact environments.",
-  aboutMe: "I build relationships, systems, and ideas; I’ve designed connected-vehicle networks, enterprise cloud platforms, and a BRMS on AWS, Azure, and GCP. I lead by building alongside others—communicating clearly, aligning teams, enabling sales, shaping go-to-market, and hitting targets. I’m seeking Engineering Management or Sales/Solutions Engineering roles. Let’s talk shop or explore fit, click one of the icons below",
+  aboutMe: `I build relationships, systems, and ideas. 
+  
+  I have deep technical roots—having designed connected-vehicle networks, enterprise cloud platforms, and BRMS solutions across AWS, Azure, and GCP. However, I distinguish myself by looking beyond the architecture diagrams. 
+  
+  I operate with the conviction that engineering exists to build for the customer and provide tangible business solutions. This mindset drives how I lead. 
+  
+  I don’t just manage technical execution; I align teams around the "why," enable sales to articulate value, and shape go-to-market strategies that hit targets. I am comfortable diving into code, but I am at my best when I am translating technical complexity into commercial success. 
+  
+  I’m seeking Engineering Management or Sales/Solutions Engineering roles where I can apply this mix of technical strategy and customer focus. Let’s talk shop—click one of the icons below.`,
   linkedin: "https://www.linkedin.com/in/collin-wilkins-1020215a/",
   github: "https://github.com/cwilkins507",
   email: "wilkins507@gmail.com",
@@ -135,7 +143,7 @@ const HomeContent = () => (
           {/* Summary */}
           <div className="lg:col-span-1 bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700">
             <h3 className="text-2xl font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Who I Am</h3>
-            <p className="text-gray-400 mb-4 leading-relaxed">{portfolioData.aboutMe}</p>
+            <p className="text-gray-400 mb-4 leading-relaxed whitespace-pre-line">{portfolioData.aboutMe}</p>
             <div className="flex space-x-4 mt-6">
               <a href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-teal-400 transition">
                 <Linkedin className="w-6 h-6" />
