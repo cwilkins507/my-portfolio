@@ -1,6 +1,6 @@
 ---
 title: "Lessons Learned in 2025"
-date: "2025-12-6"
+date: "2025-12-11"
 tags: ["Lessons Learned", "Software Engineering", "Mindset"]
 excerpt: "Sharing lessons learned as a Senior Software Developer."
 ---
@@ -68,3 +68,70 @@ Same with engineering:
 
 **Translation:**\
 Great engineering cultures eliminate chaos so teams can innovate.
+
+**5\. "Life starts once you're out of survival mode."**
+
+Same with engineering:
+
+-   You only become *creative* once you aren't fighting fires.
+-   Tech debt, bad process, unclear product direction keep teams in survival mode.
+
+**Translation:**\
+Great engineering cultures eliminate chaos so teams can innovate.
+
+**6\. "Never allow yourself to only talk about work."**
+
+Creativity in software depends on cross-pollination:
+
+-   UX inspiration from travel
+-   Domain modeling from hobbies
+-   Product ideas from life experiences
+
+**Translation:**\
+Broader interests → better engineering creativity.
+
+**7\. "The people you associate with shape you."**
+
+On engineering teams:
+
+-   High-performing teammates pull you up.
+-   Complacent environments flatten your growth.
+
+**Translation:**\
+Choose teams with high standards---the environment is more powerful than motivation.
+
+**8\. "You can tell seriousness from the questions they ask."**
+
+Great engineers ask:
+
+-   "Why are we doing this?"
+-   "What's the constraint?"
+-   "What's the SLA?"
+
+Mediocre engineers ask:
+
+-   "What's the exact line of code?"
+
+**Translation:**\
+Good judgement shows through questions.
+
+**9\. "Learn social skills, marketing, sales."**
+
+Critical in engineering:
+
+-   Selling your design proposal
+-   Promoting a new internal tool
+-   Getting buy-in for refactoring
+
+**Translation:**\
+Influence is a differentiator for senior & staff engineers.
+
+**10\. "Save life-changing material."**
+
+In software:
+
+-   Save engineering blogs, architecture diagrams, PRs you learned from.
+-   Build your own internal knowledge library.
+
+**Translation:**\
+Personal documentation = accelerated growth.
