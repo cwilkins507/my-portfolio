@@ -135,3 +135,58 @@ In software:
 
 **Translation:**\
 Personal documentation = accelerated growth.
+
+**11\. "How you approach small problems becomes how you approach big ones."**
+
+In engineering:
+
+-   Sloppy quick fixes become systemic failures.
+-   Clean code on small modules → scalable codebases.
+
+**Translation:**\
+Micro craftsmanship → macro architecture.
+
+**12\. "20s are about balancing multiple things."**
+
+In software:
+
+-   Coding
+-   DevOps
+-   Architecture
+-   Product thinking
+-   Leadership
+
+**Translation:**\
+Full-stack thinking early diversifies your leverage later.
+
+**13\. "Learning never stops."**
+
+Software evolves nonstop:
+
+-   AI agents
+-   Serverless frameworks
+-   New cloud primitives
+
+**Translation:**\
+Perpetual learners dominate tech.
+
+**14\. "Luck can be engineered."**
+
+Software example:
+
+-   Contribute to open source
+-   Post on GitHub
+-   Write on LinkedIn
+
+**Translation:**\
+Visibility creates opportunities.
+
+**15\. "Connections matter."**
+
+In tech:
+
+-   Referrals are 10x more powerful than resumes.
+-   People hire people they've seen ship.
+
+**Translation:**\
+Build relationships with engineers you admire.
