@@ -1,6 +1,6 @@
 ---
 title: "Lessons Learned in 2025"
-date: "2025-12-11"
+date: "2025-12-19"
 tags: ["Lessons Learned", "Software Engineering", "Mindset"]
 excerpt: "Sharing lessons learned as a Senior Software Developer."
 ---
