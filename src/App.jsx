@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { Linkedin, Github, Mail, FileText, ArrowRight, ChevronDown } from 'lucide-react';
 import Writing from './components/Writing';
+import Downloads from './components/Downloads';
+import AgentsDoc from './components/AgentsDoc';
 import ResourcesDropdown from './components/ResourcesDropdown';
 
 // Define the portfolio data structure
@@ -351,6 +353,12 @@ const App = () => {
           
           {/* The writing resources page */}
           <Route path="/writing" element={<Writing />} />
+          
+          {/* The downloads page */}
+          <Route path="/downloads" element={<Downloads />} />
+          
+          {/* AGENTS.md documentation page */}
+          <Route path="/agents" element={<AgentsDoc />} />
           
           {/* Individual article routes */}
           <Route path="/articles/:slug" element={<Writing />} />

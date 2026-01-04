@@ -39,7 +39,13 @@ const ResourcesDropdown = () => {
           >
             Written
           </Link>
-          {/* Add more resource links here as needed */}
+          <Link
+            to="/downloads"
+            className="block px-4 py-2 text-sm hover:bg-gray-700 hover:text-teal-400 transition"
+            onClick={() => setIsOpen(false)}
+          >
+            Download
+          </Link>
         </div>
       )}
     </div>
