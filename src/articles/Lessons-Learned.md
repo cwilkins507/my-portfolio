@@ -1,6 +1,6 @@
 ---
 title: "Lessons Learned in 2025"
-date: "2025-12-19"
+date: "2025-12-31"
 tags: ["Lessons Learned", "Software Engineering", "Mindset"]
 excerpt: "Sharing lessons learned as a Senior Software Developer."
 ---
@@ -190,3 +190,36 @@ In tech:
 
 **Translation:**\
 Build relationships with engineers you admire.
+
+**16\. "Learn to ask questions."**
+
+In engineering:
+
+-   Problem understanding beats code writing.
+-   Good questions prevent months of rework.
+
+**Translation:**\
+Quality questions > quantity of output.
+
+**17\. "Writing things down changes your life."**
+
+In tech:
+
+-   Write design docs
+-   Write hypotheses
+-   Write decision logs
+
+**Translation:**\
+Writing = thinking.
+
+**18\. "Learn how to sell yourself."**
+
+Think:
+
+-   Portfolio
+-   GitHub highlights
+-   Resume storytelling
+-   Talking about outcomes
+
+**Translation:**\
+Engineers with strong personal narratives advance faster.
