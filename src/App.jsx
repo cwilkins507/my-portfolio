@@ -10,16 +10,18 @@ import ResourcesDropdown from './components/ResourcesDropdown';
 const portfolioData = {
   name: "Collin Wilkins",
   headline: "Lead Software Engineer | Cloud & Distributed Systems Specialist",
-  summary: "Lead Engineer with cross-functional roots in Sales, Operations, Risk, and Management. 5+ years of experience designing highly distributed, reliable cloud platforms across AWS, Azure, and GCP. Skilled in building messaging pipelines with AWS SQS, Kafka and GCP Pub/Sub to support IoT telemetry, event-driven microservices, and real-time application messaging. Adept at improving service reliability, operational efficiency, and scalability in fast-paced, high-impact environments.",
-  aboutMe: `I build relationships, systems, and ideas. 
-  
-  I have deep technical roots—having designed connected-vehicle networks, enterprise cloud platforms, and BRMS solutions across AWS, Azure, and GCP. However, I distinguish myself by looking beyond the architecture diagrams. 
-  
-  I operate with the conviction that engineering exists to build for the customer and provide tangible business solutions. This mindset drives how I lead. 
-  
-  I don’t just manage technical execution; I align teams around the "why," enable sales to articulate value, and shape go-to-market strategies that hit targets. I am comfortable diving into code, but I am at my best when I am translating technical complexity into commercial success. 
-  
-  I’m seeking Engineering Management or Sales/Solutions Engineering roles where I can apply this mix of technical strategy and customer focus. Let’s talk shop—click one of the icons below.`,
+  summary: "Engineering leader with cross-functional roots in Sales, Operations, and Management. 5+ years designing distributed, cloud-native platforms across AWS, Azure, and GCP. I build messaging pipelines (Kafka, SQS, Pub/Sub), event-driven microservices, and real-time systems that scale. Currently exploring AI-powered automation and agentic workflows. I ship reliable systems—and I help teams do the same.",
+  aboutMe: `I build relationships, systems, and ideas.
+
+  I have deep technical roots—connected-vehicle networks, enterprise cloud platforms, compliance engines across AWS, Azure, and GCP. But I distinguish myself by looking past the architecture diagrams.
+
+  I operate with the conviction that engineering exists to solve business problems. This mindset drives how I lead: I align teams around the "why," enable sales to articulate value, and shape technical strategy that hits targets.
+
+  I don't just manage execution. I translate technical complexity into commercial outcomes. I'm comfortable in the code, but I'm at my best when I'm bridging engineering and business.
+
+  Right now, I'm building AI-powered automation workflows—client onboarding systems, document pipelines, agentic task orchestration—because I believe the next wave of leverage lives there.
+
+  I'm seeking Engineering Management or Solutions Engineering roles where I can apply this mix of technical depth and customer focus. Let's talk.`,
   linkedin: "https://www.linkedin.com/in/collin-wilkins-1020215a/",
   github: "https://github.com/cwilkins507",
   email: "wilkins507@gmail.com",
