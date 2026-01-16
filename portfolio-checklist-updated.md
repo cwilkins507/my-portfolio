@@ -155,7 +155,7 @@ function ArticlePage({ article }) {
 - [ ] Sitemap submitted
 - [ ] Pages showing as "Indexed" (not "Discovered - currently not indexed")
 
-**Your Status:** ⚠️ **NEEDS SETUP** (or re-check after SSR fix)
+**Your Status:** ✅ **PASS** — Site verified & sitemap submitted
 
 **Fix:**
 1. Go to https://search.google.com/search-console
@@ -267,13 +267,13 @@ function ArticlePage({ article }) {
 ### 🟢 3.1 Typography
 
 **Pass Criteria:**
-- [ ] Body text 16-18px
-- [ ] Line height 1.5-1.75
-- [ ] Line length 60-75 characters
-- [ ] Clear heading hierarchy
-- [ ] Not using default Tailwind fonts
+- [x] Body text 16-18px
+- [x] Line height 1.5-1.75
+- [x] Line length 60-75 characters
+- [x] Clear heading hierarchy
+- [x] Not using default Tailwind fonts
 
-**Your Status:** ⚠️ **UNKNOWN** — Can't see rendered site
+**Your Status:** ✅ **PASS** — Uses system fonts (performance optimized), 16px base scaling to 18-20px, line-height 1.5-1.75, max-w-3xl (768px) for articles
 
 **Recommendation:** Since you're using Tailwind, you're likely on system fonts or Inter. Consider:
 
@@ -295,7 +295,7 @@ Add to your HTML head:
 
 ### 🟢 3.2 Color Palette
 
-**Your Status:** ⚠️ **UNKNOWN** — Can't see current colors
+**Your Status:** ✅ **PASS** — Professional dark theme (gray-900 background) with teal accent. Consistent palette, no purple/neon/generic tech blue.
 
 **Recommendation based on your positioning (enterprise/consulting):**
 
@@ -328,10 +328,12 @@ Avoid: purple gradients, neon colors, generic "tech blue"
 ### 🟢 3.3 Homepage Structure
 
 **Pass Criteria:**
-- [ ] Clear value proposition above fold
-- [ ] Shows what you do in <5 seconds
-- [ ] Has clear primary CTA
-- [ ] Shows proof (work, testimonials)
+- [x] Clear value proposition above fold
+- [x] Shows what you do in <5 seconds
+- [x] Has clear primary CTA
+- [x] Shows proof (work, testimonials)
+
+**Your Status:** ✅ **PASS** — Added hero section with "$2M problems" headline, dual CTAs, and 3 case study cards with metrics (Ford $5M, Morningstar 90%, F-150 2024)
 
 **Recommendation:**
 
@@ -435,8 +437,9 @@ I consult on automation architecture and Python implementations.
 | **Article quality** | ✅ PASS | — |
 | **Article titles** | ⚠️ Needs work | 🟢 Optimize |
 | **Case studies** | ✅ PASS | — |
-| **Typography** | ⚠️ Unknown | 🟢 Review |
-| **Colors** | ⚠️ Unknown | 🟢 Review |
+| **Typography** | ✅ PASS | — |
+| **Colors** | ✅ PASS | — |
+| **Homepage Structure** | ✅ PASS | — |
 | **Contact CTA** | ⚠️ Partial | 🟡 Add to articles |
 | **Schema markup** | ⚠️ Missing | 🟢 Add |
 

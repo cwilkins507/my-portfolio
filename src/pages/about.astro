@@ -1,8 +1,33 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import About from '../components/About';
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Collin Wilkins",
+  "jobTitle": "Lead Software Engineer",
+  "description": "Lead Software Engineer with 8+ years experience in Python automation, AI integration, and AWS serverless architecture. Ex-Ford, Morningstar.",
+  "url": "https://collinwilkins.com",
+  "sameAs": [
+    "https://www.linkedin.com/in/collin-wilkins-1020215a/",
+    "https://github.com/cwilkins507"
+  ],
+  "knowsAbout": [
+    "Python",
+    "AWS",
+    "Serverless Architecture",
+    "AI Integration",
+    "Automation",
+    "Event-Driven Systems"
+  ]
+};
 ---
 
-<Layout title="About Collin Wilkins | AI & Automation Expert">
+<Layout
+  title="About Collin Wilkins | AI & Automation Expert"
+  description="Lead Software Engineer with 8+ years experience in Python automation, AI integration, and AWS serverless architecture. Ex-Ford, Morningstar."
+  schema={personSchema}
+>
 	<About client:load />
 </Layout>

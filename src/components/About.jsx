@@ -221,14 +221,14 @@ const testimonials = [
     role: "Director of Product",
     initials: "SC",
     text: "Rare combination of deep technical skills and clear communication. Collin translates complex architectures into outcomes stakeholders understand.",
-    color: "bg-blue-600"
+    color: "bg-teal-500"
   },
   {
     name: "Alex Thompson",
     role: "Principal Architect",
     initials: "AT",
     text: "Reliable, thoughtful, and results-driven. Collin brings both engineering rigor and strategic thinking to every project.",
-    color: "bg-purple-600"
+    color: "bg-teal-700"
   }
 ];
 

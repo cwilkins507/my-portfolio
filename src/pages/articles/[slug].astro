@@ -11,9 +11,42 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props;
 const { Content, frontmatter } = article;
+const slug = Astro.params.slug;
+
+// Use SEO-specific frontmatter if available, fallback to defaults
+const pageTitle = frontmatter.seo_title || frontmatter.title;
+const pageDescription = frontmatter.meta_description || frontmatter.excerpt;
+
+// Article structured data for SEO
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": frontmatter.title,
+  "description": pageDescription,
+  "datePublished": frontmatter.date,
+  "author": {
+    "@type": "Person",
+    "name": "Collin Wilkins",
+    "url": "https://collinwilkins.com/about"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Collin Wilkins"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://collinwilkins.com/articles/${slug}/`
+  }
+};
 ---
 
-<Layout title={`${frontmatter.title} | Collin Wilkins`} description={frontmatter.excerpt}>
+<Layout
+  title={`${pageTitle} | Collin Wilkins`}
+  description={pageDescription}
+  type="article"
+  publishedTime={frontmatter.date}
+  schema={articleSchema}
+>
   <div class="container mx-auto px-4 py-16">
     <div class="max-w-3xl mx-auto">
       <a href="/" class="text-teal-400 hover:text-teal-300 mb-8 inline-block">

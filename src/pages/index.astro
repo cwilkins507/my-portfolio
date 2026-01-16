@@ -7,8 +7,76 @@ const articles = articlesRaw.map(article => ({
   slug: article.file.split('/').pop().replace('.md', ''),
   ...article.frontmatter,
 })).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Collin Wilkins",
+  "url": "https://collinwilkins.com",
+  "description": "Technical articles on Python automation, AWS serverless architecture, AI integration, and building systems that deliver measurable business value.",
+  "author": {
+    "@type": "Person",
+    "name": "Collin Wilkins",
+    "url": "https://collinwilkins.com/about"
+  }
+};
 ---
 
-<Layout title="Articles on AI & Automation | Collin Wilkins">
-	<ArticleList articles={articles} client:load />
+<Layout
+  title="Collin Wilkins | Lead Engineer & AI Automation Consultant"
+  description="I build automations that turn $2M problems into solved problems. Lead Engineer with 8+ years in Python, AWS, and AI integration. Ex-Ford, Morningstar."
+  schema={websiteSchema}
+>
+	<!-- Hero Section -->
+	<section class="py-20 md:py-32 text-center">
+		<div class="max-w-4xl mx-auto px-4">
+			<h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
+				I build automations that turn $2M problems into solved problems.
+			</h1>
+			<p class="text-xl md:text-2xl text-gray-300 mb-8">
+				Lead Engineer | 8+ Years | Python, Java, AWS, AI Integration<br/>
+				<span class="text-gray-400">Ex-Ford, Morningstar</span>
+			</p>
+			<div class="flex flex-col sm:flex-row gap-4 justify-center">
+				<a href="#work" class="bg-teal-600 hover:bg-teal-500 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+					See My Work
+				</a>
+				<a href="#articles" class="border border-gray-600 hover:border-teal-400 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+					Read Articles
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Case Studies Section -->
+	<section id="work" class="py-16 bg-gray-800/50">
+		<div class="max-w-6xl mx-auto px-4">
+			<h2 class="text-2xl font-bold text-white mb-8">Recent Work</h2>
+			<div class="grid md:grid-cols-3 gap-6">
+				<div class="bg-gray-800 border border-gray-700 rounded-lg p-6 hover:border-teal-400 transition-colors">
+					<h3 class="text-lg font-semibold text-white mb-2">Remote Dealership Inventory Audit</h3>
+					<p class="text-teal-400 text-2xl font-bold mb-2">$5M saved</p>
+					<p class="text-gray-400 text-sm">IoT telemetry for 450K+ vehicles at Ford Credit</p>
+				</div>
+				<div class="bg-gray-800 border border-gray-700 rounded-lg p-6 hover:border-teal-400 transition-colors">
+					<h3 class="text-lg font-semibold text-white mb-2">Compliance Engine Modernization</h3>
+					<p class="text-teal-400 text-2xl font-bold mb-2">90% reduction</p>
+					<p class="text-gray-400 text-sm">Event-driven architecture at Morningstar</p>
+				</div>
+				<div class="bg-gray-800 border border-gray-700 rounded-lg p-6 hover:border-teal-400 transition-colors">
+					<h3 class="text-lg font-semibold text-white mb-2">Stolen Vehicle Services</h3>
+					<p class="text-teal-400 text-2xl font-bold mb-2">2024 Launch</p>
+					<p class="text-gray-400 text-sm">Real-time theft recovery for Ford F-150</p>
+				</div>
+			</div>
+			<div class="mt-6 text-center">
+				<a href="/about" class="text-teal-400 hover:text-teal-300 transition-colors">View full case studies →</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Articles Section -->
+	<section id="articles">
+		<ArticleList articles={articles} client:load />
+	</section>
 </Layout>

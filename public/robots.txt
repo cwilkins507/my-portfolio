@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cwilkins507.github.io/my-portfolio/sitemap-index.xml
+Sitemap: https://collinwilkins.com/sitemap-index.xml
