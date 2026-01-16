@@ -33,7 +33,7 @@ const AgentsDoc = () => {
         {/* Back Button and Download Button */}
         <div className="flex justify-between items-center mb-8">
           <a
-            href="/my-portfolio/resources"
+            href="/resources"
             className="inline-flex items-center text-teal-400 hover:text-teal-300 transition"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />

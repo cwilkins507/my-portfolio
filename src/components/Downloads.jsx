@@ -18,7 +18,7 @@ const Downloads = () => {
 
         {/* Featured Download: Agentic Workflows Guide */}
         <a
-          href="/my-portfolio/Agentic-Workflows-Guide.pdf"
+          href="/Agentic-Workflows-Guide.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="block bg-gray-800 p-8 rounded-xl shadow-xl border border-gray-700 mb-8 hover:border-teal-400 transition duration-300 ease-in-out group"
@@ -41,7 +41,7 @@ const Downloads = () => {
 
             <div className="order-1 md:order-2">
               <img
-                src="/my-portfolio/images/thumbnail.png"
+                src="/images/thumbnail.png"
                 alt="Agentic Workflows Guide preview"
                 className="w-full rounded-lg border border-gray-700"
                 loading="lazy"
@@ -54,7 +54,7 @@ const Downloads = () => {
         <div className="grid grid-cols-1 gap-6">
           {/* Example AGENTS.md */}
           <a
-            href="/my-portfolio/agents"
+            href="/agents"
             className="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-teal-400 transition duration-300 ease-in-out transform hover:scale-105 group"
           >
             <div className="flex items-start space-x-4">

@@ -54,7 +54,7 @@ const ArticleList = ({ articles = [] }) => {
                 </span>
               </div>
               <a
-                href={`/my-portfolio/articles/${featuredArticle.slug}`}
+                href={`/articles/${featuredArticle.slug}`}
                 className="inline-flex items-center bg-teal-600 hover:bg-teal-500 text-white font-bold text-lg py-4 px-10 rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-xl shadow-teal-500/40"
               >
                 Read Article <ArrowRight className="w-6 h-6 ml-2" />
@@ -86,7 +86,7 @@ const ArticleList = ({ articles = [] }) => {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {filteredArticles.map((article) => (
             <a
-              href={`/my-portfolio/articles/${article.slug}`}
+              href={`/articles/${article.slug}`}
               key={article.slug}
               className="bg-gray-800 rounded-xl p-8 hover:bg-gray-700 transition duration-300 border border-gray-700 hover:border-teal-400 group"
             >

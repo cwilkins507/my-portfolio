@@ -5,8 +5,8 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://cwilkins507.github.io',
-    base: '/my-portfolio',
+    site: 'https://collinwilkins.com',
+    base: '/',
     integrations: [
         react(),
         tailwind({
@@ -20,4 +20,15 @@ export default defineConfig({
             wrap: true,
         },
     },
+    vite: {
+        assetsInclude: ['**/*.md', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg'],
+        define: {
+            'global': 'globalThis',
+        },
+        resolve: {
+            alias: {
+                buffer: 'buffer'
+            }
+        }
+    }
 });

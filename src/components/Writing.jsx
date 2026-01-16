@@ -63,7 +63,7 @@ const Writing = ({ articlesInitial = [] }) => {
               ))}
             </div>
             <p className="text-gray-300 mb-4">{article.excerpt}</p>
-            <a href={`/my-portfolio/articles/${article.slug}`} className="text-teal-400 hover:text-teal-300">
+            <a href={`/articles/${article.slug}`} className="text-teal-400 hover:text-teal-300">
               Read more →
             </a>
           </div>
