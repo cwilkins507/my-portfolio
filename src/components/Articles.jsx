@@ -22,6 +22,15 @@ const getCategoryForArticle = (tags) => {
   return 'Engineering';
 };
 
+const formatDate = (dateString) => {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC'
+  });
+};
+
 const ArticleList = ({ articles = [] }) => {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
@@ -47,7 +56,7 @@ const ArticleList = ({ articles = [] }) => {
                 {featuredArticle.excerpt}
               </p>
               <div className="flex items-center gap-4 mb-8">
-                <span className="text-gray-400">{new Date(featuredArticle.date).toLocaleDateString()}</span>
+                <span className="text-gray-400">{formatDate(featuredArticle.date)}</span>
                 <span className="text-gray-600">•</span>
                 <span className="bg-teal-600/20 text-teal-300 text-sm px-3 py-1 rounded-full">
                   {getCategoryForArticle(featuredArticle.tags)}
@@ -97,7 +106,7 @@ const ArticleList = ({ articles = [] }) => {
                 {article.title}
               </h2>
               <div className="text-gray-500 text-sm mb-4">
-                {new Date(article.date).toLocaleDateString()}
+                {formatDate(article.date)}
               </div>
               <p className="text-gray-300 mb-4">{article.excerpt}</p>
               <div className="flex gap-2 flex-wrap">
