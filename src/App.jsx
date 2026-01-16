@@ -1,282 +1,23 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Linkedin, Github, Mail, FileText, ArrowRight, ChevronDown } from 'lucide-react';
-import Writing from './components/Writing';
+import { Linkedin, Github, Mail, BadgeDollarSign } from 'lucide-react';
+import Articles from './components/Articles';
+import About from './components/About';
 import Downloads from './components/Downloads';
 import AgentsDoc from './components/AgentsDoc';
-import ResourcesDropdown from './components/ResourcesDropdown';
+import Services from './components/Services';
 
-// Define the portfolio data structure
+// Minimal portfolio data for Layout component (name and email)
 const portfolioData = {
   name: "Collin Wilkins",
-  headline: "Lead Software Engineer | Cloud & Distributed Systems Specialist",
-  summary: "Engineering leader with cross-functional roots in Sales, Operations, and Management. 5+ years designing distributed, cloud-native platforms across AWS, Azure, and GCP. I build messaging pipelines (Kafka, SQS, Pub/Sub), event-driven microservices, and real-time systems that scale. Currently exploring AI-powered automation and agentic workflows. I ship reliable systems—and I help teams do the same.",
-  aboutMe: `I build relationships, systems, and ideas.
-
-  I have deep technical roots—connected-vehicle networks, enterprise cloud platforms, compliance engines across AWS, Azure, and GCP. But I distinguish myself by looking past the architecture diagrams.
-
-  I operate with the conviction that engineering exists to solve business problems. This mindset drives how I lead: I align teams around the "why," enable sales to articulate value, and shape technical strategy that hits targets.
-
-  I don't just manage execution. I translate technical complexity into commercial outcomes. I'm comfortable in the code, but I'm at my best when I'm bridging engineering and business.
-
-  Right now, I'm building AI-powered automation workflows—client onboarding systems, document pipelines, agentic task orchestration—because I believe the next wave of leverage lives there.
-
-  I'm seeking Engineering Management or Solutions Engineering roles where I can apply this mix of technical depth and customer focus. Let's talk.`,
-  linkedin: "https://www.linkedin.com/in/collin-wilkins-1020215a/",
-  github: "https://github.com/cwilkins507",
   email: "wilkins507@gmail.com",
-  resume: "/Collin-Wilkins-Resume.pdf",
-  skills: {
-    Cloud: ["AWS", "Azure", "GCP"],
-    "Infrastructure as Code": ["Terraform", "CloudFormation"],
-    "CI/CD": ["CodePipeline", "Jenkins", "GitHub Actions"],
-    Languages: ["Java", "Kotlin", "Javascript", "Python", "TypeScript"],
-    Containers: ["Docker", "ECS", "EKS", "Kubernetes"],
-    Databases: ["SQL (Postgres, SQL Server)", "NoSQL (DynamoDB, MongoDB)", "Redis"],
-    Frameworks: ["Spring Boot", "React", "Angular"],
-    Architecture: ["Microservices", "Serverless", "Event-Driven", "REST", "GraphQL"]
-  },
-    projects: [
-    {
-      title: "Remote Dealership Inventory Audit Platform",
-      description: "Redesigned cloud-based inventory auditing; processed vehicle-to-cloud events for 450,000+ vehicles and delivered $5M+ annual savings.",
-      technologies: ["Event-Driven Architecture", "Cloud Messaging", "IoT Telemetry"],
-    },
-    {
-      title: "Stolen Vehicle Services for 2024 Ford F-150",
-      description: "Built theft anticipation and recovery features using cloud-integrated telemetry and real-time messaging.",
-      technologies: ["GCP Pub/Sub", "Kafka", "Real-Time Messaging", "Telemetry"],
-    },
-    {
-      title: "Event-Driven Compliance Engine (AWS)",
-      description: "Redesigned a compliance engine to event-driven architecture, improving throughput and reducing latency by 35%.",
-      technologies: ["AWS SQS", "AWS Lambda", "Distributed Queues", "Event-Driven Architecture", "BRMS"],
-    },
-    {
-      title: "Terraform-Backed CI/CD Acceleration",
-      description: "Implemented CI/CD pipelines with Terraform, increasing deployment frequency by 40%.",
-      technologies: ["Terraform", "CI/CD", "CodePipeline"],
-    },
-    {
-      title: "Identity Modernization to ADFS + SSO (Zero Trust)",
-      description: "Migrated identity systems to Microsoft ADFS and SSO, streamlining authentication and aligning with Zero Trust.",
-      technologies: ["Microsoft ADFS", "SSO", "Zero Trust"],
-    }
-  ],
-  experiences: [
-    {
-      role: "Lead Engineer",
-      company: "Morningstar, Inc. — Detroit, MI",
-      period: "Apr 2024 – Present",
-      description: "Architected and deployed secure, cloud-native services for regulated financial clients, onboarding 23 recordkeepers. Modernized compliance engine with AWS SQS & Lambda, improving throughput and reducing latency by 35%. Designed monitoring/alerting solutions with Grafana & Splunk to maintain 99.99% uptime."
-    },
-    {
-      role: "Full Stack Software Engineer – Connected Vehicle",
-      company: "Ford Motor Company — Dearborn, MI",
-      period: "Feb 2021 – Apr 2024",
-      description: "Built and maintained IoT microservices on Azure and GCP for real-time telemetry and OTA updates. Implemented Kafka listeners processing 600k+ vehicle events daily. Developed theft anticipation/recovery features for 2024 F-150. Migrated identity systems to ADFS & SSO, enhancing Zero Trust security. Redesigned cloud-based inventory auditing app handling 450k vehicles, saving $5M annually."
-    },
-    {
-      role: "Market Area Sales Manager (Pricing & Strategy)",
-      company: "Ford Motor Company",
-      period: "Jul 2019 – Jan 2021",
-      description: "Designed digital pricing tools delivering $2.2M in annual savings. Collaborated with leadership on technology roadmaps and pricing models for North America."
-    },
-    {
-      role: "Business Development Manager",
-      company: "Ford Motor Company",
-      period: "Mar 2017 – Jun 2019",
-      description: "Served as technical sales advisor for digital onboarding and financial planning tools across 13 dealer accounts ($75M AUM). Deployed tailored technical sales engagements, capturing $10M in revenue."
-    }
-  ],
-  education: [
-    {
-      degree: "MBA",
-      school: "Lipscomb University – Nashville, TN",
-      year: "2016"
-    },
-    {
-      degree: "BS, Business Administration (Finance & Accounting)",
-      school: "University of Colorado Boulder",
-      year: "2013"
-    }
-  ],
-  certifications: [
-    "AWS Cloud Practitioner (2025)",
-    "Microsoft Azure Fundamentals (AZ-900) (2024)",
-    "Architecting with Google Kubernetes Engine (2024)",
-    "Google Foundations of Cybersecurity (2024)",
-    "Richardson Next Level Sales Training Certified (2017)",
-    "Six Sigma Black Belt CSSBB (2016)"
-  ]
+  linkedin: "https://www.linkedin.com/in/collin-wilkins-1020215a/",
+  upwork: "https://www.upwork.com/freelancers/~014ffbc17b83da9407",
+  github: "https://github.com/cwilkins507"
 };
-
-// --- HOME PAGE CONTENT (The parts that change on the '/' route) ---
-const HomeContent = () => (
-  <>
-    {/* Hero Section */}
-    <header className="bg-gray-900">
-      <div className="container mx-auto text-center py-20 md:py-32 px-4">
-        <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-snug tracking-tighter">
-          {portfolioData.headline}
-        </h1>
-        <p className="text-lg md:text-xl text-gray-400 mt-6 max-w-4xl mx-auto">
-          {portfolioData.summary}
-        </p>
-        <div className="mt-10 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-          <a href={portfolioData.resume} target="_blank" rel="noopener noreferrer"
-             className="flex items-center justify-center bg-teal-600 hover:bg-teal-500 text-white font-semibold py-3 px-8 rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-lg shadow-teal-500/30">
-            <FileText className="w-5 h-5 mr-2" /> View My Resume
-          </a>
-          <a href={`mailto:${portfolioData.email}`}
-             className="flex items-center justify-center bg-gray-700 hover:bg-gray-600 text-teal-300 font-semibold py-3 px-8 rounded-full transition duration-300 ease-in-out transform hover:scale-105 border border-gray-600">
-            <Mail className="w-5 h-5 mr-2" /> Email Me
-          </a>
-        </div>
-      </div>
-    </header>
-
-    {/* Main Content Sections */}
-    <main className="container mx-auto p-4 md:p-8">
-
-      {/* About / Skills */}
-      <section id="about" className="py-20">
-        <h2 className="text-4xl font-bold text-center text-white mb-16">About Me</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          
-          {/* Summary */}
-          <div className="lg:col-span-1 bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700">
-            <h3 className="text-2xl font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Who I Am</h3>
-            <p className="text-gray-400 mb-4 leading-relaxed whitespace-pre-line">{portfolioData.aboutMe}</p>
-            <div className="flex space-x-4 mt-6">
-              <a href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-teal-400 transition">
-                <Linkedin className="w-6 h-6" />
-              </a>
-              <a href={portfolioData.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-teal-400 transition">
-                <Github className="w-6 h-6" />
-              </a>
-              <a href={`mailto:${portfolioData.email}`} className="text-gray-400 hover:text-teal-400 transition">
-                <Mail className="w-6 h-6" />
-              </a>
-            </div>
-          </div>
-
-          {/* Technical Skills */}
-          <div className="lg:col-span-2 bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700">
-            <h3 className="text-2xl font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Technical Skills</h3>
-            <div className="space-y-6">
-              {Object.entries(portfolioData.skills).map(([category, skills]) => (
-                <div key={category}>
-                  <h4 className="text-lg font-semibold text-teal-400 mb-3">{category}</h4>
-                  <div className="flex flex-wrap gap-3">
-                    {skills.map(skill => (
-                      <span key={skill} className="bg-gray-700 text-teal-300 text-sm font-medium px-4 py-2 rounded-full transition duration-200 hover:bg-teal-700 hover:text-white transform hover:scale-105 shadow-md">{skill}</span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* Experience */}
-      <section id="experience" className="py-20">
-        <h2 className="text-4xl font-bold text-center text-white mb-16">Professional Experience</h2>
-        <div className="relative border-l-4 border-teal-500/50 ml-4 md:ml-20">
-          {portfolioData.experiences.map((exp, idx) => (
-            <div key={idx} className="mb-12 pl-10 md:pl-16 relative">
-              {/* Timeline Dot */}
-              <div className="absolute w-4 h-4 bg-teal-500 rounded-full -left-[10px] top-2 border-4 border-gray-900"></div>
-              
-              <p className="text-sm text-gray-500 mb-1">{exp.period}</p>
-              <h3 className="text-2xl font-bold text-teal-400">{exp.role}</h3>
-              <h4 className="text-lg font-semibold text-gray-300 mb-3">{exp.company}</h4>
-              <p className="mt-2 text-gray-400 leading-relaxed">{exp.description}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Projects */}
-      <section id="projects" className="py-20">
-        <h2 className="text-4xl font-bold text-center text-white mb-16">Key Projects</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {portfolioData.projects.map((project, idx) => (
-            <div key={idx} className="bg-gray-800 rounded-xl p-8 hover:shadow-2xl hover:shadow-teal-500/20 transition-all duration-500 border border-gray-700">
-              <h3 className="text-2xl font-bold text-teal-400 mb-3">{project.title}</h3>
-              <p className="text-gray-400 mb-6">{project.description}</p>
-              <div className="flex flex-wrap gap-2 mb-6">
-                {project.technologies.map(tech => (
-                  <span key={tech} className="bg-gray-700 text-xs text-teal-300 font-medium px-3 py-1 rounded-full">{tech}</span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Education & Certifications */}
-      <section id="education" className="py-20">
-        <h2 className="text-4xl font-bold text-center text-white mb-16">Education & Certifications</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-          <div className="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700">
-            <h3 className="text-2xl font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Education</h3>
-            {portfolioData.education.map((edu, idx) => (
-              <div key={idx} className="mb-4">
-                <p className="text-lg font-semibold text-gray-300">{edu.degree}</p>
-                <p className="text-gray-400 text-sm">{edu.school} ({edu.year})</p>
-              </div>
-            ))}
-          </div>
-          <div className="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700">
-            <h3 className="text-2xl font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Certifications</h3>
-            <ul className="space-y-3">
-            {portfolioData.certifications.map((cert, idx) => (
-              <li key={idx} className="text-gray-400 flex items-center">
-                <span className="text-teal-500 mr-2">&#9679;</span> {cert}
-              </li>
-            ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-    </main>
-  </>
-);
 
 // --- LAYOUT COMPONENT (Static elements: Nav, Contact CTA, Footer) ---
 const Layout = ({ children }) => {
-  const location = useLocation();
-  const isHomePage = location.pathname === '/';
-
-  // Helper function to handle navigation
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  // Handle navigation clicks
-  const handleNavClick = (e, sectionId) => {
-    e.preventDefault();
-    if (isHomePage) {
-      scrollToSection(sectionId);
-    }
-  };
-
-  // Handle scroll to section after navigation to home page
-  React.useEffect(() => {
-    if (isHomePage && location.hash) {
-      const sectionId = location.hash.slice(1); // Remove the # from the hash
-      setTimeout(() => {
-        scrollToSection(sectionId);
-      }, 0);
-    }
-  }, [location, isHomePage]);
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-200 font-sans leading-normal tracking-wider">
@@ -284,26 +25,11 @@ const Layout = ({ children }) => {
       <nav className="bg-gray-800 p-4 sticky top-0 z-10 shadow-lg">
         <div className="container mx-auto flex flex-wrap justify-between items-center px-4">
           <Link to="/" className="text-white text-2xl font-bold hover:text-teal-400 transition">{portfolioData.name}</Link>
-          <div className="flex space-x-4 pt-2 md:pt-0">
-            {isHomePage ? (
-              // If on home page, use anchor tags with smooth scroll
-              <>
-                <a href="#about" onClick={(e) => handleNavClick(e, 'about')} className="hover:text-teal-400 transition">About</a>
-                <a href="#experience" onClick={(e) => handleNavClick(e, 'experience')} className="hover:text-teal-400 transition">Experience</a>
-                <a href="#projects" onClick={(e) => handleNavClick(e, 'projects')} className="hover:text-teal-400 transition">Projects</a>
-                <ResourcesDropdown />
-                <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="hover:text-teal-400 transition">Contact</a>
-              </>
-            ) : (
-              // If not on home page, use Links to navigate back to home with hash
-              <>
-                <Link to="/#about" className="hover:text-teal-400 transition">About</Link>
-                <Link to="/#experience" className="hover:text-teal-400 transition">Experience</Link>
-                <Link to="/#projects" className="hover:text-teal-400 transition">Projects</Link>
-                <ResourcesDropdown />
-                <Link to="/#contact" className="hover:text-teal-400 transition">Contact</Link>
-              </>
-            )}
+          <div className="flex space-x-6 pt-2 md:pt-0">
+            <Link to="/" className="hover:text-teal-400 transition font-medium">Read</Link>
+            <Link to="/resources" className="hover:text-teal-400 transition font-medium">Resources</Link>
+            <Link to="/services" className="hover:text-teal-400 transition font-medium">Services</Link>
+            <Link to="/about" className="hover:text-teal-400 transition font-medium">About</Link>
           </div>
         </div>
       </nav>
@@ -316,10 +42,10 @@ const Layout = ({ children }) => {
         <div className="container mx-auto text-center px-4">
           <h2 className="text-4xl font-bold text-white mb-6">Let's Connect</h2>
           <p className="text-gray-400 mb-10 max-w-xl mx-auto text-lg">
-            I'm currently looking for new opportunities in cloud architecture and distributed systems. Feel free to reach out if you have a project or a role in mind!
+            I'm currently taking on <strong>automation consulting</strong> and <strong>AI integration</strong> projects. Feel free to reach out if you have a technical challenge that needs a business-minded engineer!
           </p>
           <a href={`mailto:${portfolioData.email}`}
-             className="flex items-center justify-center w-fit mx-auto bg-teal-600 hover:bg-teal-500 text-white font-bold py-3 px-10 rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-xl shadow-teal-500/30 text-lg">
+            className="flex items-center justify-center w-fit mx-auto bg-teal-600 hover:bg-teal-500 text-white font-bold py-3 px-10 rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-xl shadow-teal-500/30 text-lg">
             <Mail className="w-5 h-5 mr-3" /> Say Hello
           </a>
         </div>
@@ -332,6 +58,9 @@ const Layout = ({ children }) => {
           <div className="flex justify-center space-x-6 mt-3 text-lg">
             <a href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition" aria-label="LinkedIn">
               <Linkedin className="w-6 h-6" />
+            </a>
+            <a href={portfolioData.upwork} target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition" aria-label="Upwork Profile">
+              <BadgeDollarSign className="w-6 h-6" />
             </a>
             <a href={portfolioData.github} target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition" aria-label="GitHub">
               <Github className="w-6 h-6" />
@@ -350,20 +79,23 @@ const App = () => {
     <Router>
       <Layout>
         <Routes>
-          {/* The main portfolio page */}
-          <Route path="/" element={<HomeContent />} /> 
-          
-          {/* The writing resources page */}
-          <Route path="/writing" element={<Writing />} />
-          
-          {/* The downloads page */}
-          <Route path="/downloads" element={<Downloads />} />
-          
+          {/* Home page is now the article listing */}
+          <Route path="/" element={<Articles />} />
+
+          {/* Individual article routes */}
+          <Route path="/articles/:slug" element={<Articles />} />
+
+          {/* About page with bio, experience, projects */}
+          <Route path="/about" element={<About />} />
+
+          {/* Resources page */}
+          <Route path="/resources" element={<Downloads />} />
+
+          {/* Services page */}
+          <Route path="/services" element={<Services />} />
+
           {/* AGENTS.md documentation page */}
           <Route path="/agents" element={<AgentsDoc />} />
-          
-          {/* Individual article routes */}
-          <Route path="/articles/:slug" element={<Writing />} />
         </Routes>
       </Layout>
     </Router>

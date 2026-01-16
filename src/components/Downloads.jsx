@@ -8,6 +8,7 @@ const Downloads = () => {
   // Scroll to top when component mounts or route changes
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.title = "Resources & Case Studies | Collin Wilkins";
   }, [location.pathname]);
 
   return (
@@ -55,7 +56,7 @@ const Downloads = () => {
         {/* Download Cards */}
         <div className="grid grid-cols-1 gap-6">
           {/* Example AGENTS.md */}
-          <Link 
+          <Link
             to="/agents"
             className="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-teal-400 transition duration-300 ease-in-out transform hover:scale-105 group"
           >

@@ -6,6 +6,14 @@ export default defineConfig({
   plugins: [react()],
   assetsInclude: ['**/*.md', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg'],
   base: '/',
+  define: {
+    'global': 'globalThis',
+  },
+  resolve: {
+    alias: {
+      buffer: 'buffer'
+    }
+  },
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

@@ -11,6 +11,7 @@ const AgentsDoc = () => {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.title = "Example AGENTS.md | AI Project Documentation";
   }, [location.pathname]);
 
   // Load the AGENTS.md content
@@ -24,7 +25,7 @@ const AgentsDoc = () => {
         console.error('Failed to load AGENTS.md:', error);
       }
     };
-    
+
     loadContent();
   }, []);
 
@@ -33,14 +34,14 @@ const AgentsDoc = () => {
       <div className="container mx-auto px-4 md:px-8 max-w-4xl">
         {/* Back Button and Download Button */}
         <div className="flex justify-between items-center mb-8">
-          <Link 
-            to="/downloads" 
+          <Link
+            to="/downloads"
             className="inline-flex items-center text-teal-400 hover:text-teal-300 transition"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Downloads
           </Link>
-          
+
           <a
             href="/example-AGENTS.md"
             download="example-AGENTS.md"
