@@ -1,14 +1,11 @@
 ---
-SEO Title: Best Practices for System Design: Real-World Lessons
-
-Meta Description: A practical guide to system design best practices—scalability, resilience, consistency, and observability—backed by case studies from Amazon, Google, Netflix.
-
-Target Keywords: system design best practices, cloud-native architecture, scalability, resilience engineering, microservices, data consistency, observability, API design
-
 title: "Best Practices for System Design: Lessons from Real-World Applications"
 date: "2026-01-11"
 tags: ["Software Architecture", "System Design", "Cloud-Native", "Microservices", "Reliability Engineering", "Observability", "Scalability", "Data Consistency"]
 excerpt: "Cloud-native system design that scales and fails well. Learn durable patterns—consistency, resilience, observability—with lessons from Amazon, Google, Netflix, LinkedIn, and Stripe."
+seo_title: "Best Practices for System Design: Real-World Lessons"
+meta_description: "A practical guide to system design best practices—scalability, resilience, consistency, and observability—backed by case studies from Amazon, Google, Netflix."
+target_keywords: "system design best practices, cloud-native architecture, scalability, resilience engineering, microservices, data consistency, observability, API design"
 ---
 
 # Best Practices for System Design: Lessons from Real-World Applications

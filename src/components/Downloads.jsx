@@ -1,15 +1,12 @@
 import React, { useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
 import { FileDown } from 'lucide-react';
 
 const Downloads = () => {
-  const location = useLocation();
-
-  // Scroll to top when component mounts or route changes
+  // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = "Resources & Case Studies | Collin Wilkins";
-  }, [location.pathname]);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-900 py-20">
@@ -21,7 +18,7 @@ const Downloads = () => {
 
         {/* Featured Download: Agentic Workflows Guide */}
         <a
-          href="/Agentic-Workflows-Guide.pdf"
+          href="/my-portfolio/Agentic-Workflows-Guide.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="block bg-gray-800 p-8 rounded-xl shadow-xl border border-gray-700 mb-8 hover:border-teal-400 transition duration-300 ease-in-out group"
@@ -44,7 +41,7 @@ const Downloads = () => {
 
             <div className="order-1 md:order-2">
               <img
-                src="/images/thumbnail.png"
+                src="/my-portfolio/images/thumbnail.png"
                 alt="Agentic Workflows Guide preview"
                 className="w-full rounded-lg border border-gray-700"
                 loading="lazy"
@@ -56,8 +53,8 @@ const Downloads = () => {
         {/* Download Cards */}
         <div className="grid grid-cols-1 gap-6">
           {/* Example AGENTS.md */}
-          <Link
-            to="/agents"
+          <a
+            href="/my-portfolio/agents"
             className="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-teal-400 transition duration-300 ease-in-out transform hover:scale-105 group"
           >
             <div className="flex items-start space-x-4">
@@ -71,7 +68,7 @@ const Downloads = () => {
                 </p>
               </div>
             </div>
-          </Link>
+          </a>
         </div>
       </div>
     </div>

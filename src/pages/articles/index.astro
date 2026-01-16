@@ -1,0 +1,14 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ArticleList from '../../components/Articles';
+
+const articlesRaw = await Astro.glob('../../articles/*.md');
+const articles = articlesRaw.map(article => ({
+  slug: article.file.split('/').pop().replace('.md', ''),
+  ...article.frontmatter,
+})).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+---
+
+<Layout title="Articles | Collin Wilkins">
+	<ArticleList articles={articles} client:load />
+</Layout>

@@ -1,67 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
-const Writing = () => {
-  const [articles, setArticles] = useState([]);
+const Writing = ({ articlesInitial = [] }) => {
+  const [articles, setArticles] = useState(articlesInitial);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTag, setSelectedTag] = useState("");
-  const [articleContent, setArticleContent] = useState("");
-  const { slug } = useParams();
-  const location = useLocation();
 
-  // Scroll to top when component mounts or route changes
+  // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [location.pathname]);
-
-  useEffect(() => {
-    const importArticles = async () => {
-      try {
-        const modules = import.meta.glob('../articles/*.md', { 
-          as: 'raw',
-          eager: true 
-        });
-        
-        const loadedArticles = Object.entries(modules).map(([path, content]) => {
-          // Simple frontmatter parser
-          const [, frontmatter = '', ...contentParts] = content.split('---');
-          const parsedFrontmatter = {};
-          
-          frontmatter.split('\n').forEach(line => {
-            const [key, ...valueParts] = line.split(':');
-            if (key && valueParts.length) {
-              let value = valueParts.join(':').trim();
-              // Handle quoted strings
-              if (value.startsWith('"') && value.endsWith('"')) {
-                value = value.slice(1, -1);
-              }
-              // Handle arrays
-              if (value.startsWith('[') && value.endsWith(']')) {
-                value = value.slice(1, -1).split(',').map(v => 
-                  v.trim().replace(/["']/g, '')
-                );
-              }
-              parsedFrontmatter[key.trim()] = value;
-            }
-          });
-
-          const slug = path.split('/').pop().replace('.md', '');
-          return {
-            ...parsedFrontmatter,
-            slug,
-            link: `/articles/${slug}`
-          };
-        });
-
-        setArticles(loadedArticles.sort((a, b) => new Date(b.date) - new Date(a.date)));
-      } catch (error) {
-        console.error('Failed to load articles:', error);
-      }
-    };
-
-    importArticles();
   }, []);
 
   const filteredWritings = articles.filter(article => {
@@ -72,97 +20,12 @@ const Writing = () => {
 
   const allTags = [...new Set(articles.flatMap(article => article.tags || []))];
 
-  // Find the current article if we're on an article page
-  const currentArticle = slug ? articles.find(a => a.slug === slug) : null;
-
-  useEffect(() => {
-    if (currentArticle) {
-      // Load the article content
-      const loadArticleContent = async () => {
-        try {
-          const modules = import.meta.glob('../articles/*.md', { 
-            as: 'raw',
-            eager: true 
-          });
-          
-          const articlePath = `../articles/${currentArticle.slug}.md`;
-          const content = modules[articlePath];
-          const [, , ...contentParts] = content.split('---');
-          setArticleContent(contentParts.join('---').trim());
-        } catch (error) {
-          console.error('Failed to load article content:', error);
-        }
-      };
-      
-      loadArticleContent();
-    }
-  }, [currentArticle]);
-
-  // If we're viewing a single article
-  if (slug) {
-    if (!currentArticle) {
-      return (
-        <div className="container mx-auto px-4 py-16">
-          <div className="max-w-3xl mx-auto">
-            <Link to="/writing" className="text-teal-400 hover:text-teal-300 mb-8 inline-block">
-              ← Back to Writing
-            </Link>
-            <h1 className="text-4xl font-bold text-white mb-4">Article not found</h1>
-          </div>
-        </div>
-      );
-    }
-
-    return (
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-3xl mx-auto">
-          <Link to="/writing" className="text-teal-400 hover:text-teal-300 mb-8 inline-block">
-            ← Back to Writing
-          </Link>
-          <h1 className="text-4xl font-bold text-white mb-4">{currentArticle.title}</h1>
-          <div className="text-gray-400 mb-4">
-            {new Date(currentArticle.date).toLocaleDateString()}
-          </div>
-          <div className="flex gap-2 mb-6">
-            {currentArticle.tags?.map(tag => (
-              <span key={tag} className="bg-gray-700 text-teal-300 text-sm px-3 py-1 rounded-full">
-                {tag}
-              </span>
-            ))}
-          </div>
-          <div className="prose prose-invert max-w-none prose-p:mb-4 prose-headings:mt-8 prose-headings:mb-4 prose-li:mb-2">
-            <ReactMarkdown
-              remarkPlugins={[remarkGfm]}
-              components={{
-                p: ({ children }) => <p className="mb-4">{children}</p>,
-                h1: ({ children }) => <h1 className="text-3xl font-bold mt-8 mb-4">{children}</h1>,
-                h2: ({ children }) => <h2 className="text-2xl font-bold mt-8 mb-4">{children}</h2>,
-                h3: ({ children }) => <h3 className="text-xl font-bold mt-6 mb-3">{children}</h3>,
-                ul: ({ children }) => <ul className="list-disc pl-6 mb-4">{children}</ul>,
-                li: ({ children }) => <li className="mb-2">{children}</li>,
-                strong: ({ children }) => <strong className="font-bold text-teal-400">{children}</strong>,
-                table: ({ children }) => <div className="overflow-x-auto my-8"><table className="min-w-full text-left text-sm">{children}</table></div>,
-                thead: ({ children }) => <thead className="bg-gray-800 text-gray-200">{children}</thead>,
-                tbody: ({ children }) => <tbody className="divide-y divide-gray-700">{children}</tbody>,
-                tr: ({ children }) => <tr className="hover:bg-gray-700/50 transition-colors">{children}</tr>,
-                th: ({ children }) => <th className="px-4 py-3 font-semibold">{children}</th>,
-                td: ({ children }) => <td className="px-4 py-3 text-gray-300">{children}</td>,
-              }}
-            >
-              {articleContent}
-            </ReactMarkdown>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   // Article list view
   return (
     <div className="container mx-auto px-4 py-16">
       <h1 className="text-4xl font-bold text-white mb-2">From the Desk</h1>
       <p className="text-xl text-gray-400 mb-8">Cloud, Code, and Enterprise Insights</p>
-      
+
       <div className="mb-8 flex flex-col sm:flex-row gap-4">
         <input
           type="text"
@@ -190,8 +53,8 @@ const Writing = () => {
             <div className="text-gray-400 mb-2">{new Date(article.date).toLocaleDateString()}</div>
             <div className="flex gap-2 mb-4">
               {article.tags && article.tags.map(tag => (
-                <span 
-                  key={tag} 
+                <span
+                  key={tag}
                   className="bg-gray-700 text-teal-300 text-sm px-3 py-1 rounded-full cursor-pointer hover:bg-gray-600"
                   onClick={() => setSelectedTag(tag)}
                 >
@@ -200,9 +63,9 @@ const Writing = () => {
               ))}
             </div>
             <p className="text-gray-300 mb-4">{article.excerpt}</p>
-            <Link to={article.link} className="text-teal-400 hover:text-teal-300">
+            <a href={`/my-portfolio/articles/${article.slug}`} className="text-teal-400 hover:text-teal-300">
               Read more →
-            </Link>
+            </a>
           </div>
         ))}
       </div>

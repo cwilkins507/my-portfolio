@@ -1,14 +1,11 @@
 ---
-SEO Title: AI Coding Assistants: Trends, Limits, What’s Next
-
-Meta Description: Explore how AI coding assistants evolved, where they help and hurt, and how to adopt them safely with guardrails, metrics, and habits that compound.
-
-Target Keywords: AI coding assistants, developer productivity, code generation, LLM coding tools, secure AI adoption, software engineering best practices, pair programming AI, code review automation
-
 title: "AI Coding Assistants: Trends, Limits, and What’s Next"
 date: "2026-01-10"
 tags: ["Software Engineering", "AI Coding Assistants", "LLM tools", "Developer Productivity", "Secure AI Adoption", "Agent Integration", "Observability"]
 excerpt: "A practical guide to AI coding assistants: what they do well, where they fail, and how to adopt them safely with guardrails, metrics, and habits that scale."
+seo_title: "AI Coding Assistants: Trends, Limits, What’s Next"
+meta_description: "Explore how AI coding assistants evolved, where they help and hurt, and how to adopt them safely with guardrails, metrics, and habits that compound."
+target_keywords: "AI coding assistants, developer productivity, code generation, LLM coding tools, secure AI adoption, software engineering best practices, pair programming AI, code review automation"
 ---
 
 # AI Coding Assistants: Current Trends and Future Implications

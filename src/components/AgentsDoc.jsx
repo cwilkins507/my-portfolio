@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { ArrowLeft, Download } from 'lucide-react';
 
 const AgentsDoc = () => {
   const [content, setContent] = useState("");
-  const location = useLocation();
 
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = "Example AGENTS.md | AI Project Documentation";
-  }, [location.pathname]);
+  }, []);
 
   // Load the AGENTS.md content
   useEffect(() => {
@@ -34,13 +32,13 @@ const AgentsDoc = () => {
       <div className="container mx-auto px-4 md:px-8 max-w-4xl">
         {/* Back Button and Download Button */}
         <div className="flex justify-between items-center mb-8">
-          <Link
-            to="/downloads"
+          <a
+            href="/my-portfolio/resources"
             className="inline-flex items-center text-teal-400 hover:text-teal-300 transition"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Downloads
-          </Link>
+          </a>
 
           <a
             href="/example-AGENTS.md"

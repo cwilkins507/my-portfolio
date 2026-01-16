@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WritingComponent from '../components/Writing';
+
+const articlesRaw = await Astro.glob('../articles/*.md');
+const articles = articlesRaw.map(article => ({
+  slug: article.file.split('/').pop().replace('.md', ''),
+  ...article.frontmatter,
+})).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+---
+
+<Layout title="Writing & Insights | Collin Wilkins">
+	<WritingComponent articlesInitial={articles} client:load />
+</Layout>

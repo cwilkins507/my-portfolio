@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
 
 const ResourcesDropdown = () => {
@@ -29,23 +28,23 @@ const ResourcesDropdown = () => {
         Resources
         <ChevronDown className={`ml-1 w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
-      
+
       {isOpen && (
         <div className="absolute top-full left-0 mt-2 py-2 w-48 bg-gray-800 rounded-md shadow-xl border border-gray-700">
-          <Link
-            to="/writing"
+          <a
+            href="/my-portfolio/writing"
             className="block px-4 py-2 text-sm hover:bg-gray-700 hover:text-teal-400 transition"
             onClick={() => setIsOpen(false)}
           >
             Written
-          </Link>
-          <Link
-            to="/downloads"
+          </a>
+          <a
+            href="/my-portfolio/resources"
             className="block px-4 py-2 text-sm hover:bg-gray-700 hover:text-teal-400 transition"
             onClick={() => setIsOpen(false)}
           >
             Download
-          </Link>
+          </a>
         </div>
       )}
     </div>

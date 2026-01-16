@@ -1,0 +1,94 @@
+---
+import { Linkedin, Github, Mail, BadgeDollarSign } from 'lucide-react';
+import '../index.css';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Lead Software Engineer specializing in Python Automation, AI Integration, and AWS Serverless Architecture." } = Astro.props;
+
+const portfolioData = {
+  name: "Collin Wilkins",
+  email: "wilkins507@gmail.com",
+  linkedin: "https://www.linkedin.com/in/collin-wilkins-1020215a/",
+  upwork: "https://www.upwork.com/freelancers/~014ffbc17b83da9407",
+  github: "https://github.com/cwilkins507"
+};
+
+const currentYear = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+
+		<link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+	</head>
+	<body class="min-h-screen bg-gray-900 text-gray-200 font-sans leading-normal tracking-wider">
+		<nav class="bg-gray-800 p-4 sticky top-0 z-10 shadow-lg">
+			<div class="container mx-auto flex flex-wrap justify-between items-center px-4">
+				<a href="/my-portfolio/" class="text-white text-2xl font-bold hover:text-teal-400 transition">{portfolioData.name}</a>
+				<div class="flex space-x-6 pt-2 md:pt-0">
+					<a href="/my-portfolio/" class="hover:text-teal-400 transition font-medium">Read</a>
+					<a href="/my-portfolio/resources" class="hover:text-teal-400 transition font-medium">Resources</a>
+					<a href="/my-portfolio/services" class="hover:text-teal-400 transition font-medium">Services</a>
+					<a href="/my-portfolio/about" class="hover:text-teal-400 transition font-medium">About</a>
+				</div>
+			</div>
+		</nav>
+
+		<main>
+			<slot />
+		</main>
+
+		<!-- Contact (CTA - always visible) -->
+		<section id="contact" class="bg-gray-800 py-20 border-t border-gray-700">
+			<div class="container mx-auto text-center px-4">
+				<h2 class="text-4xl font-bold text-white mb-6">Let's Connect</h2>
+				<p class="text-gray-400 mb-10 max-w-xl mx-auto text-lg">
+					I'm currently taking on <strong>automation consulting</strong> and <strong>AI integration</strong> projects. Feel free to reach out if you have a technical challenge that needs a business-minded engineer!
+				</p>
+				<a href={`mailto:${portfolioData.email}`}
+					class="flex items-center justify-center w-fit mx-auto bg-teal-600 hover:bg-teal-500 text-white font-bold py-3 px-10 rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-xl shadow-teal-500/30 text-lg">
+					<Mail className="w-5 h-5 mr-3" /> Say Hello
+				</a>
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<footer class="bg-gray-900 p-6 border-t border-gray-800">
+			<div class="container mx-auto text-center text-gray-500 px-4">
+				<p class="text-sm">&copy; {currentYear} {portfolioData.name}. All Rights Reserved.</p>
+				<div class="flex justify-center space-x-6 mt-3 text-lg">
+					<a href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-teal-400 transition" aria-label="LinkedIn">
+						<Linkedin className="w-6 h-6" />
+					</a>
+					<a href={portfolioData.upwork} target="_blank" rel="noopener noreferrer" class="hover:text-teal-400 transition" aria-label="Upwork Profile">
+						<BadgeDollarSign className="w-6 h-6" />
+					</a>
+					<a href={portfolioData.github} target="_blank" rel="noopener noreferrer" class="hover:text-teal-400 transition" aria-label="GitHub">
+						<Github className="w-6 h-6" />
+					</a>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>
