@@ -3,6 +3,7 @@ import { Bot, Code, Cloud, Mail, BadgeDollarSign, Linkedin, ArrowRight, CheckCir
 
 const services = [
     {
+        id: 'ai-automation',
         title: "AI & Automation Consulting",
         icon: <Bot className="w-12 h-12 text-teal-400" />,
         description: "I help businesses leverage Large Language Models and automation to streamline operations, reduce manual overhead, and build intelligent workflows.",
@@ -15,6 +16,7 @@ const services = [
         idealFor: "Teams looking to move beyond basic chatbots into production AI systems."
     },
     {
+        id: 'python-scripting',
         title: "Python Scripting & API Integration",
         icon: <Code className="w-12 h-12 text-teal-400" />,
         description: "Robust, production-grade glue code to connect your tech stack. I specialize in complex data normalization and resilient system integration.",
@@ -27,6 +29,7 @@ const services = [
         idealFor: "Companies with 'messy data' or disconnected tools that need to talk to each other."
     },
     {
+        id: 'aws-serverless',
         title: "AWS & Serverless Architecture",
         icon: <Cloud className="w-12 h-12 text-teal-400" />,
         description: "Cloud-native solutions designed for scalability, observability, and cost-efficiency. Everything is built as code (Terraform).",
@@ -88,7 +91,7 @@ const Services = () => {
                                     <span className="font-semibold text-gray-400">Ideal if:</span> {service.idealFor}
                                 </p>
                                 <a
-                                    href="mailto:wilkins507@gmail.com"
+                                    href={`?modal=contact&service=${service.id}`}
                                     className="inline-flex items-center text-teal-400 font-semibold hover:text-teal-300 transition"
                                 >
                                     Inquire about this <ArrowRight className="w-4 h-4 ml-2" />
@@ -106,9 +109,9 @@ const Services = () => {
                         Let's discuss how we can streamline your operations or build your next big idea.
                     </p>
                     <div className="flex flex-col md:flex-row justify-center items-center gap-4">
-                        <a href="mailto:wilkins507@gmail.com"
+                        <a href="?modal=contact"
                             className="flex items-center justify-center w-full md:w-auto bg-teal-600 hover:bg-teal-500 text-white font-bold py-3 px-10 rounded-full transition duration-300 shadow-xl shadow-teal-500/30">
-                            <Mail className="w-5 h-5 mr-3" /> Email Me
+                            <Mail className="w-5 h-5 mr-3" /> Contact Me
                         </a>
                         <a href="https://www.linkedin.com/in/collin-wilkins-1020215a/" target="_blank" rel="noopener noreferrer"
                             className="flex items-center justify-center w-full md:w-auto bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-10 rounded-full transition duration-300 border border-gray-600">
