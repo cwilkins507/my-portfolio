@@ -40,7 +40,7 @@ My Precision Stack:
       title: "The Special Sauce: From the Field to the Terminal",
       content: `I spent the first half of my career in Sales and Business Development (moving through 7 states and 13 territories for Ford). I’ve been the "Field Rep" and I’ve been the "Lead Engineer."
 
-This is my mote.
+This is my moat.
 
 Most developers look at a Jira ticket. Don't see the forest for the trees. 
 
