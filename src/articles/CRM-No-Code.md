@@ -158,19 +158,19 @@ This is the shape you’ll see in most tools:
 ```
 Keep payloads small. Add fields over time. That makes debugging easier.
 ## CRM notes: Salesforce, Advyzon, and HubSpot
-### Salesforce (common in complex pipelines)
+### Salesforce
 Salesforce can model almost anything. That flexibility creates choice overload for beginners. Start with standard objects and only add custom fields you can maintain.
 Beginner best practices:
 - Use Leads and Contacts intentionally, not both randomly.
 - Store external IDs for safe syncing.
 - Lock down permissions for automation accounts.
-### Advyzon (common in wealth management operations)
+### Advyzon
 Advyzon is often connected to onboarding, reporting, and client service workflows. The practical integration need is consistent client data across tools.
 Beginner best practices:
 - Decide which system owns household and account fields.
 - Track client status changes with clear stages.
 - Keep compliance in mind for notes and attachments.
-### HubSpot (common across marketing and services)
+### HubSpot
 HubSpot is popular because it connects easily to forms and email. The risk is unstructured properties and duplicated companies.
 Beginner best practices:
 - Define required properties for lifecycle stages.
@@ -217,7 +217,7 @@ This quote captures the reporting gap:
 “It’s easy to push data to CRM, but hard to pull data back into dashboards.” 
 
 Solve it with scheduled exports and “sync status” fields. Then build your dashboard on stable identifiers.
-## How to handle the six common pain points (in plain steps)
+## How to handle the common pain points
 ### Duplicate data: pick one match key, then enforce it
 - Pick email or phone as the primary key.
 - Use “find or create” on every run.
@@ -279,16 +279,14 @@ Small subflows are easier to test and easier to own.
 - Add an error alert and a manual review process.
 - Document what the automation changes.
 That checklist prevents silent failures.
-## Getting started today (simple steps)
+## Getting started today
 1) Pick one workflow you do every day. Start small. 
 Good candidates are lead routing or onboarding tasks.
-2) Pick one CRM to start with. 
-Salesforce, Advyzon, or HubSpot are solid anchors.
-3) Build a “find or create contact” flow in your automation tool. 
+2) Build a “find or create contact” flow in your automation tool. 
 Add field normalization and required fields next.
-4) Add one write-back field for the CRM record ID. 
+3) Add one write-back field for the CRM record ID. 
 This reduces duplicates and supports future reporting.
-5) Turn it on for a limited segment first. 
+4) Turn it on for a limited segment first. 
 Use one team, one region, or one lead source.
 If you’re exploring automating manual processes and you’re not sure where to start, [contact me](https://collinwilkins.com/?modal=contact). 
 
