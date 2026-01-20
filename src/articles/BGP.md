@@ -15,24 +15,20 @@ BGP is the system those networks use to talk to each other and decide the best p
 
 Without BGP, your data would be like a letter with no postal system.
 
-Border Gateway Protocol (BGP) moves reachability information across autonomous systems and lets operators turn policy into paths. That policy flexibility is why the Internet scales—and why it occasionally misbehaves. BGP anomalies are the moments where the control plane diverges from intent. Some last seconds. Others settle into a stable but wrong state for days. 
+Border Gateway Protocol (BGP) moves reachability information across autonomous systems and lets operators turn policy into paths. That flexibility is why the Internet scales, but it's also why things break in weird ways. BGP anomalies happen when the control plane does something you didn't intend. Some last a few seconds. Others? They settle into a stable but completely wrong state and stay there for days until someone notices the traffic patterns look off.
 
-Both hurt.
-
-This guide breaks down what “anomaly” means in BGP, how to spot the early signals, and how to design networks that contain the blast radius. It’s written for network engineers who live in routing policy and for system architects who need to reason about risk at the edge of their platforms.
+This guide breaks down what "anomaly" actually means in BGP context, how to spot problems early (sometimes before your users do), and how to design networks that limit damage when things go sideways. I'm writing this for network engineers who spend their days in routing policy and for architects who need to think about edge risk without getting lost in protocol minutiae.
 
 ## What Counts as a BGP Anomaly?
 
-A BGP anomaly is any unexpected condition that affects reachability, path selection, or propagation scope. It might be accidental, benign, or malicious.
+A BGP anomaly is any unexpected condition that affects reachability, path selection, or propagation scope. Could be accidental (most common), benign (sometimes), or malicious (rare but memorable).
 
-What matters is impact.
+What actually matters here is user impact. You can have technically "correct" BGP behavior that still makes your application slow or unreachable. I think about this in two layers:
 
-Think in two planes:
+- Control plane: routes appear, disappear, or change attributes in ways you didn't configure
+- Data plane: packets drop, take weird hairpin paths, or suddenly route through three extra hops because the control plane made a bad decision
 
-- Control plane: routes appear, disappear, or change attributes in ways you didn’t intend.
-- Data plane: packets drop, hairpin, or take longer paths because the control plane drifted.
-
-You’ll see anomalies as one or more of these symptoms:
+In practice, you'll usually see anomalies show up as one or more of these:
 
 - Unexpected origin AS for a prefix (origin hijack or misorigin).
 - Customer routes learned from peers or upstreams (route leak).
@@ -41,32 +37,32 @@ You’ll see anomalies as one or more of these symptoms:
 - New, more-specific prefixes that blackhole or bypass the intended aggregate.
 - Stable but unintended policy state (the classic “BGP wedgie,” see RFC 4264).
 
-Some of this is normal variance. The line between “anomaly” and “expected churn” is a function of your policy and error budget.
+Here's the tricky part: some of this is just normal Internet variance. Where you draw the line between "that's an anomaly" and "that's just BGP being BGP" depends entirely on your policies and how much churn you've budgeted for. I've seen networks where 1000 updates/second is Tuesday, and others where 50 updates triggers an incident.
 
 ## A Practical Taxonomy of BGP Anomalies
 
-You don’t need every category, but a shared vocabulary helps triage. Use a simple schema when you classify incidents: type, symptom, scope, detection signal, and first move.
+You don't need to memorize every category (I certainly haven't), but having shared vocabulary makes triage calls way less painful. When something breaks at 2am, use a simple schema: type, symptom, scope, how you detected it, and what to do first.
 
 ### Route Hijack (Origin Hijack)
 
-- What: An AS originates a prefix it doesn’t own or shouldn’t announce.
-- Symptoms: New origin AS in the path; multiple-origin AS (MOAS) for the same prefix; subprefix that attracts traffic.
-- Detection: RPKI origin validation (RFC 6811), ROA mismatch; MOAS alerts from external collectors.
-- First move: Prefer your valid origin with more-specifics (if safe), contact the announcing AS/upstreams, and apply filtering. Don’t over-deaggregate unless you must.
+- What: An AS originates a prefix it doesn't own or shouldn't announce
+- Symptoms: Suddenly there's a new origin AS in the path, or you've got multiple-origin AS (MOAS) for the same prefix, or someone announced a subprefix that's pulling your traffic
+- Detection: RPKI origin validation (RFC 6811), ROA mismatch alerts, MOAS alerts from external collectors like RouteViews
+- First move: If you can safely announce a more-specific to prefer your valid origin, do that. Contact the announcing AS and their upstreams. Apply filtering. Don't over-deaggregate unless you're actively bleeding traffic (then do what you need to do).
 
 ### Route Leak (RFC 7908)
 
-- What: An AS that shouldn’t provide transit does so anyway. Often a policy mistake across customer/peer/upstream boundaries.
-- Symptoms: Customer routes appear from a peer or provider; unexpected wide propagation of peer-learned paths.
-- Detection: “Valley” paths (customer-to-peer-to-provider), sudden increase in received prefixes from one neighbor, community tags stripped or missing.
-- First move: Apply strict import policies (type-based), request neighbors to tag and honor NO_EXPORT/NOPEER (RFC 1997, RFC 3765), and if needed, lower local preference or shut the session while coordinating.
+- What: An AS that shouldn't provide transit does so anyway. Usually this is a policy configuration mistake across customer/peer/upstream boundaries. Someone changed a filter and forgot one line.
+- Symptoms: Your customer routes are showing up from a peer or provider (big red flag), or peer-learned paths are propagating way further than they should
+- Detection: Look for "valley" paths like customer-to-peer-to-provider topology, sudden spike in prefixes from one neighbor, missing or stripped community tags
+- First move: Apply strict import policies based on neighbor type. Ask neighbors to tag correctly and honor NO_EXPORT/NOPEER (RFC 1997, RFC 3765). If it's bad, lower local preference on those routes or shut down the session while you coordinate the fix. That last option is nuclear but sometimes necessary.
 
 ### Misconfiguration and Leaks of Default/Private Space
 
-- What: Announcing default to peers, leaking RFC 1918/4193 space, or failing to remove private ASNs (RFC 6996).
-- Symptoms: Bogon prefixes, private ASNs in eBGP, default route from a peer, next-hop anomalies.
-- Detection: Bogon filters, as-path policy checks, next-hop validation, BMP feeds.
-- First move: Deny on import; clean private ASNs on egress; fix templates so it doesn’t repeat.
+- What: Someone announces default route to peers (never do this), leaks RFC 1918 or RFC 4193 space to the public Internet, or forgets to strip private ASNs (RFC 6996) before eBGP
+- Symptoms: Bogon prefixes in your table, private ASNs showing up on eBGP sessions, default route from a peer, next-hop pointing somewhere strange
+- Detection: Bogon filters (you should have these), as-path policy checks, next-hop validation, BMP feeds if you're running them
+- First move: Deny it on import immediately. Clean private ASNs on egress. Then fix your templates so this doesn't happen again next Tuesday.
 
 ### Path Oscillations, Flapping, and MED Games
 
@@ -91,18 +87,21 @@ You don’t need every category, but a shared vocabulary helps triage. Use a sim
 
 ## Why BGP Anomalies Happen
 
-- Human error in neighbor type, policy, or filter scope.
-- Inconsistent templates across edges and route reflectors.
-- Stale or conflicting data in IRRs; missing or mis-signed ROAs.
-- Automation without guardrails or validation.
-- Policy interactions across vendors or ASes (the Internet is a multi-party system).
-- Assumptions that “the peer will filter” (they won’t, or not fast enough).
+Mostly? Human error. Wrong neighbor type, copy-paste policy mistakes, filter scope that made sense at the time but doesn't anymore.
 
-Assume mistakes will propagate. Design so the default failure mode is “deny.”
+But also:
+
+- Templates that diverged between your edges and route reflectors (and nobody noticed for six months)
+- Stale IRR data, missing ROAs, ROAs signed with the wrong origin
+- Automation scripts with no validation. They run fast and break things efficiently.
+- Policy interactions across different vendors or ASes. The Internet is a multi-party system where everyone's running slightly different configs.
+- The classic assumption that "the peer will filter bad routes." They won't. Or they will, but three hours after you needed them to.
+
+Here's the key insight: assume mistakes will propagate. Design your network so the default failure mode is "deny" not "accept and forward to everyone."
 
 ## Detection: Build an Observability Stack
 
-Good operators see anomalies before users feel them. That means multiple vantage points and clear signals.
+The best operators I've worked with see anomalies before their users notice anything's wrong. That requires multiple vantage points and clear, non-noisy signals. It also requires someone actually looking at those signals, but that's a staffing conversation.
 
 ### External Vantage Points
 
@@ -111,7 +110,7 @@ Good operators see anomalies before users feel them. That means multiple vantage
 - MOAS and subprefix watch: alert on new origins and more-specifics.
 - Path change budgets: flag sudden path length increases or new upstreams.
 
-External views tell you “others see a problem.” They also help confirm scope.
+External views answer the question "is it just me, or is everyone seeing this?" They also help you figure out how widespread the problem is (just one peer? half the Internet? your entire AS?).
 
 ### Internal Control-Plane Visibility
 
@@ -128,11 +127,11 @@ You want to correlate “border saw X” with “world sees Y.”
 - Active probing: traceroute and synthetic reachability to customer prefixes and key destinations.
 - Error budgets: define allowable churn; alert on exceeded budgets, not on every single update.
 
-Marry control-plane and data-plane signals. A valid-looking route that sinks traffic is still an anomaly.
+You need both control-plane and data-plane signals. I've seen plenty of situations where the routing table looked perfectly fine, but traffic was getting blackholed anyway. A valid-looking route that sinks packets is absolutely still an anomaly.
 
 ## Prevention and Mitigation Patterns
 
-You can’t stop every anomaly. You can stop most from hurting you.
+Let's be realistic: you can't prevent every BGP anomaly. The Internet is too complex and humans make mistakes. But you can stop most anomalies from actually hurting your users, which is what matters.
 
 ### Guardrails at the Edge
 
@@ -152,32 +151,37 @@ Build three default policies and inherit from them:
 - Peer: accept only their space; never give transit to third parties; limit export scope.
 - Provider: accept broadly but with strict safety checks; export only your and your customers’ routes.
 
-This single pattern prevents a large class of leaks.
+This three-way split alone has prevented more route leaks in my experience than any other single policy decision. It's almost boring how effective it is.
 
 ### Limiting Blast Radius During Incidents
 
-- Lower local preference for suspect paths to steer around them.
-- Announce a more-specific temporarily to pull traffic back (use sparingly; withdraw after fix).
-- Apply NO_EXPORT on outbound to halt further spread.
-- Use remote-triggered blackholing where scoped and agreed.
-- Temporarily disable a session if it’s the source; coordinate fast with the neighbor.
+When something's actively breaking:
+
+- Lower local preference for suspect paths to steer traffic around them
+- Announce a more-specific temporarily to pull traffic back. Use this sparingly because it creates its own problems. Withdraw it as soon as the underlying issue is fixed.
+- Apply NO_EXPORT on outbound to stop the bad routes from spreading further
+- Use remote-triggered blackholing if you've set that up with your upstream and the situation calls for it
+- If a session is the source, shut it down temporarily. Yes, this will cause an outage on that link, but sometimes that's better than the alternative. Coordinate fast with the neighbor's NOC.
 
 ### Operational Hygiene
 
-- Two-person review for policy changes; change windows with GRACEFUL_SHUTDOWN (RFC 8326).
-- BFD (RFC 5880) for fast liveness; pair carefully with BGP Graceful Restart (RFC 4724) to avoid hiding blackholes.
-- Golden templates and a single source of truth for prefix lists, ROAs, and communities.
-- Pre-deployment “what-if” simulation of BGP policies to catch wedgies and leaks.
-- Document intended communities and share them with peers and customers.
+The boring stuff that actually prevents fires:
+
+- Two-person review for policy changes. Use maintenance windows. Send GRACEFUL_SHUTDOWN (RFC 8326) before taking things down.
+- Run BFD (RFC 5880) for fast failure detection, but be careful pairing it with BGP Graceful Restart (RFC 4724). That combination can hide blackholes if you configure it wrong.
+- Keep golden templates. One source of truth for prefix lists, ROAs, communities. Not three slightly different versions in different repos.
+- Simulate BGP policy changes before deploying them. You can catch wedgies and leaks in a test environment instead of production at 3am.
+- Document your community values and actually share that documentation with peers and customers. I know, documentation is painful, but this prevents so many confused support calls.
 
 ### Standards and Emerging Tools
 
-- BGPsec (RFC 8205) provides path validation. Deployment is still limited. Start with RPKI-ROV and strong filtering; plan for path validation where it adds value.
-- MANRS guidelines capture baseline routing security norms. Align your policies to them.
+BGPsec (RFC 8205) provides path validation, which sounds great in theory. In practice, deployment is still pretty limited as of 2026. I'd start with RPKI-ROV and strong filtering, then think about path validation if you're in a position where it actually adds value beyond what you're already doing.
+
+MANRS guidelines are basically the industry's baseline for routing security. Worth aligning your policies to them, especially if you ever need to explain your security posture to someone.
 
 ## Architecting for Resilience
 
-System architects control the blast radius before operations ever touches a router.
+As a system architect, you control the blast radius before your operations team ever logs into a router. The decisions you make in the design phase matter more than most people realize.
 
 - Separate planes: isolate backbone, customer, and peering policies. Different route reflectors; different failure domains.
 - Diverse upstreams and geographies: don’t let a single provider or IX define your reachability.
@@ -189,7 +193,7 @@ System architects control the blast radius before operations ever touches a rout
 
 ## Signals and KPIs That Matter
 
-Pick metrics that point to user impact and policy drift:
+Not all metrics are useful. Pick the ones that actually tell you about user impact and policy drift. Here's what I watch:
 
 - Count of prefixes by RPKI state (Valid/Invalid/NotFound) for your space and received.
 - MOAS and subprefix alerts per day; mean time to acknowledge.
@@ -198,32 +202,29 @@ Pick metrics that point to user impact and policy drift:
 - Paths with private ASNs, bogon space, or unusual attributes.
 - Data-plane loss or latency correlated with control-plane changes.
 
-Make thresholds explicit. Budget churn. Alert on thresholds, not on noise.
+Set explicit thresholds based on your actual traffic patterns. Budget for a certain amount of normal churn. Then alert only when you exceed those thresholds. Alerting on every single update is how you train your team to ignore alerts.
 
 ## A Short Runbook Example
 
-You see a spike of prefixes from a peer. Your external view shows your customer’s /19 now also originates from an unfamiliar AS; some collectors prefer that path.
+It's Tuesday morning. Coffee hasn't kicked in yet. You see a spike of prefixes from a peer. You check your external monitoring and notice your customer's /19 is now also originating from an unfamiliar AS. Worse, some route collectors are preferring that path over yours.
 
-- Classify: likely a route leak from the peer’s customer, possibly with accidental export.
-- Confirm: RPKI marks the peer-learned route as Invalid; MOAS alert fired; flows show traffic shift.
-- Contain: drop Invalid on import; lower local preference for that neighbor; apply NO_EXPORT to outbound just in case.
-- Communicate: contact the peer’s NOC with evidence (prefix, timestamps, paths, ROA details). Request they filter their customer and tag routes correctly.
-- Backstop: if user impact remains, advertise a more-specific /20 to attract traffic back; withdraw once the leak is fixed.
-- Postmortem: add a peer-locking filter so you never accept customer space via peers; tighten max-prefix; add a unit test to your policy simulator.
+- Classify: This looks like a route leak from the peer's customer. Probably someone changed an export policy and didn't test it.
+- Confirm: RPKI marks the peer-learned route as Invalid. Your MOAS alert fired. Flow data shows traffic is actually shifting to the leaked path.
+- Contain: Drop Invalid routes on import (you should already have this configured, but verify). Lower local preference for routes from that neighbor. Apply NO_EXPORT to your outbound announcements just to be safe.
+- Communicate: Open a ticket with the peer's NOC. Give them evidence: prefix, exact timestamps, AS paths, ROA details. Ask them to filter their customer and fix the route tagging. Be specific because vague tickets go nowhere.
+- Backstop: If users are still having problems, announce a more-specific /20 to pull traffic back to your network. This is temporary. Withdraw it once the leak is actually fixed.
+- Postmortem: Add a peer-locking filter so you'll never accept customer prefixes via peers again. Tighten max-prefix limits on that session. If you have a policy simulator, add this scenario as a test case so it doesn't happen again.
 
-It’s mundane. 
-
-That’s the point. 
-
-Most BGP anomalies are policy problems with repeatable fixes.
+Pretty mundane, right? That's kind of the point. Most BGP anomalies aren't exotic attacks or mysterious protocol bugs. They're policy configuration problems with known, repeatable fixes. The hard part isn't the fix—it's seeing the problem fast enough and having the process to execute cleanly under pressure.
 
 ## The Bottom Line
 
-BGP anomalies are part of daily Internet physics. Your job is not to chase every flap—it’s to set guardrails, see early, and act with minimal collateral damage. Start with strong import and export discipline, deploy RPKI-ROV, and put eyes on the signals. 
+BGP anomalies are part of daily Internet physics. Your job isn't to prevent every route flap (impossible). It's to set guardrails, catch problems early, and respond in ways that don't create more problems than you're solving. Start with strong import and export discipline, get RPKI-ROV running, and actually monitor the signals you're collecting.
 
-Take 60 minutes this week to do three things:
-- Enable and verify RPKI-ROV on one edge.
-- Add a MOAS and subprefix alert for your top prefixes.
-- Write a one-page route-leak runbook and run a tabletop.
+If you want to do something useful this week, pick three things:
 
-Small, repeatable steps beat firefighting.
+1. Enable and verify RPKI-ROV on one edge router. Just one. See how it goes.
+2. Set up MOAS and subprefix alerts for your most important prefixes. Start with five prefixes if you're overwhelmed.
+3. Write a one-page route-leak runbook. Then run a tabletop exercise with your team. The first time you use a runbook shouldn't be during an actual incident.
+
+Small, tested steps work better than heroic firefighting. Plus they scale, and firefighting doesn't.

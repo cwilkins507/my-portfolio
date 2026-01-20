@@ -2,48 +2,68 @@
 title: "AI-Assisted Coding in 2025"
 date: "2025-10-19"
 tags: ["AI", "Software Engineering", "Developer Tools"]
-excerpt: "A deep dive into how AI is transforming software development workflows, team dynamics, and engineering roles in 2025."
+excerpt: "How AI is actually changing software development—from what I've seen in the wild and what's working versus what's hype."
 ---
 
 **AI-Assisted Coding in 2025: How Workflows, Roles, and Teams Are Changing**
 
-AI-assisted coding has moved from novelty to default. Autocomplete, chat assistants, test generators, and refactor bots now sit in the editor, CI, and issue tracker. Gmail, outlook, and iMessage already have simpler features such as next word suggestion that you are already familiar with. In fact, most of this article was AI Generated (with some user edits)
+AI-assisted coding isn't new anymore. 
 
-This piece maps the transformation in workflows, roles, and team dynamics. It focuses on durable practices that outlast tool churn.
+Autocomplete, chat assistants, test generators, refactor bots—they're in the editor, the CI pipeline, the issue tracker. 
 
-**How Workflows Are Changing**
+You've probably seen simpler versions in Gmail or your phone's keyboard.
 
-AI shifts software work from writing to reviewing, from recall to reasoning.
+Full disclosure: most of this article was AI-generated. I edited it heavily, but yeah. Meta, I know.
 
-- From greenfield typing to curation. Developers prompt, inspect diffs, and refine. Code editing outranks code authoring. Let AI write the code, your job as a (senior) engineer is system design, determine tradeoffs, define requirements.
-- Tests first, then code. I learned Test Driven Development (TDD) when I started. I treat AI the same way. Define the expected behavior (test) first, then apply red-green-refactor. Tools generate scaffolds and property tests, pushing validation earlier in the cycle.
-- Pull requests shrink. More, smaller PRs with AI-suggested diffs, merged faster with automated checks. Heck, Copilot can review pull requests as well.
-- Docs return to the critical path. Assistants synthesize READMEs, ADRs, and inline comments. Teams that keep docs current gain compounding returns. Pro tip, claude or other agents will create a summary markdown file or readme for each prompt. Don't blindly submit these and bloat your codebase.
-- Debugging changes. Chat assistants traverse logs, traces, and stack frames; developers verify hypotheses instead of hunting blindly. I'll leave this but in my experience, this is where AI really falls short.
+This is what I've learned about workflows, roles, and team dynamics. I'm skipping the stuff that'll be outdated in six months.
 
-**Benefits: Where the Gains Show Up**
+**The Workflow Shift**
 
-Reported gains concentrate in a few zones:
+You write less code. You read a lot more.
 
-- Throughput on boilerplate. Data access layers, API clients, config wiring, and test scaffolds see 20-50% time savings.
-- Faster onboarding. New hires ship earlier by querying repos, patterns, and conventions through AI.
-- Legacy uplift. Safer refactors and migration aids breathe life into old codebases.
-- Design feedback. Assistants enumerate trade-offs and edge cases, accelerating technical decision records.
-- Developer satisfaction. Less grind, more product thinking-when guardrails are clear.
+Developers are curating now—prompting, inspecting diffs, refining output. If you're senior, you're doing system design and requirements. The AI writes the implementation.
 
-**Risks and Failure Modes**
+I learned TDD early in my career and I use it with AI too. Write the test first, let the tool generate code, then refactor. It works. The tools can scaffold tests and property checks, which pushes errors earlier.
 
-The risks are real and manageable if named early.
+PRs are getting smaller and faster. AI suggests diffs, automated checks catch issues. Copilot even reviews PRs now, which is wild.
 
-- Hallucination and subtle bugs. Fluent code is not correct code. Silent logic errors slip into reviews when diffs are large.
+Documentation actually matters again. When assistants can synthesize READMEs and ADRs, teams with good docs get better output. Warning though—Claude and other agents love creating summary markdown files for every prompt. Don't commit those. Your repo doesn't need the bloat.
+
+Debugging is different. Chat assistants can traverse logs and stack traces, so you're verifying theories instead of grep-ing blindly. Honestly? This is where AI disappoints me most. It's okay for surface-level stuff but falls apart on gnarly bugs.
+
+**What Actually Improves**
+
+The gains aren't evenly distributed.
+
+Boilerplate goes fast. Data layers, API clients, config wiring, test scaffolds—20-50% faster. Sometimes more.
+
+Onboarding is noticeably better. New hires can query the repo for patterns and ship code in days instead of weeks.
+
+Legacy code gets a lifeline. Refactors and migrations are safer with AI assistance. I've seen teams tackle codebases they'd written off as unsalvageable.
+
+YoWhere It Goes Wrong**
+
+The risks are real. You can manage them if you acknowledge them early.
+
+Hallucinations happen. The code looks good, reads well, compiles fine. Then you deploy and discover a subtle logic error that slipped past review because the diff was 400 lines long.
+
+Security is a minefield. Secrets leak through prompts. License violations creep in. Dependency upgrades introduce vulnerabilities.
+
+People lose skills. Over-rely on AI and you stop learning complexity analysis, API design, or how to actually debug hard problems.
+
+Shadow IT returns. Engineers adopt tools without telling anyone, which kills observability and cost control.
+
+Metrics become meaningless. Teams count "AI suggestions accepted" instead of measuring outcomes that matterrors slip into reviews when diffs are large.
 - Security and compliance. Secret leakage via prompts, license contamination, unsafe dependency upgrades.
-- De-skilling. Over-reliance erodes fundamentals: complexity analysis, API design, deep debugging.
-- Vendor sprawl and lock-in. Shadow tools bypass procurement, observability, and cost control.
-- Measurement theater. Counting suggestions accepted instead of business outcomes.
+- Real Examples**
 
-**Case Examples**
+A payments team migrated part of their monolith to a typed service with AI assistance. PR cycle time dropped 30%, test coverage doubled on the migrated code, and property testing caught two race conditions that would've been nasty in production.
 
-- Fintech backend modernization. A payments team used AI to migrate a monolith module to a typed service. Result: 30% reduction in PR cycle time, doubled test coverage on migrated paths, and two critical race conditions caught during AI-augmented property testing.
+A SaaS company built a repo-aware chatbot connected to their architecture docs. New engineers went from weeks to days for their first PR. Senior engineers got fewer "where is X?" questions and more design conversations.
+
+A healthcare platform added an LLM check to CI for security patterns and input validation. Lots of false positives at first, but auth bugs in production dropped noticeably the next quarter.
+
+None of this happened from just installing a tool. They all had tight scopes, good prompts, and humans in the loopd service. Result: 30% reduction in PR cycle time, doubled test coverage on migrated paths, and two critical race conditions caught during AI-augmented property testing.
 - SaaS onboarding at scale. A company added a repo-aware chat bot tied to their architecture docs. New engineers cut time-to-first-PR from weeks to days, while senior engineers reported fewer interruptive questions and more "show me the design" conversations.
 - Security bake-in. A healthcare platform wired an LLM check into CI to flag insecure patterns and missing input validation. False positives required tuning, but production auth defects dropped noticeably in the following quarter.
 
@@ -51,42 +71,64 @@ These results depended on tight scopes, curated prompts, and human review-not ra
 
 **Role Shifts**
 
-**For Tech Leadership**
+Pick specific problems where AI helps: migrations, tests, docs, glue code. Don't just say "use AI everywhere."
 
-- Strategy over tooling. Define problem classes where AI creates leverage: migration, tests, docs, simple feature glue. Avoid "AI everywhere."
+Build a platform. Centralize model access, secrets handling, logging, guardrails. Make it easy to do the right thing instead of policing everyone.
+
+Write an AI coding charter—one page. Data boundaries, review requirements, license policy, privacy rules. Update it every quarter or it'll rot
 - Platform thinking. Centralize model access, secrets handling, logging, and guardrails. Offer a paved road, not a policing regime.
-- Governance as enablement. Set an AI coding charter: data boundaries, review minimums, license policy, privacy. Keep it one page; update quarterly.
+You're editing more than writing now. Get good at reading diffs, isolating changes, and writing specs that work as both prompts and tests.
 
-**For Software Engineers**
+Verification isn't optional anymore. Property tests, invariants, observability—if you skip these, you're gambling.
+
+System design matters more than typing speed. Understanding the product and framing problems well gets you better AI output than anything else
 
 - From authors to editors. Skill up in reading diffs, isolating minimal changes, and writing executable specs as prompts and tests.
 - Verification mindset. Property tests, invariants, and observability become non-negotiable.
-- System design and domain fluency. Product context outcompetes raw code speed. Engineers who can frame the problem get the best AI outputs.
+Test for "with-AI" work. How do candidates structure prompts? How do they verify outputs? How do they think about trade-offs?
 
-**For Tech Recruiters**
+Update your interview scorecards. Code reading, test design, security fundamentals, and LLM workflow experience.
 
-- Calibrate for "with-AI" work. Assess how candidates structure prompts, verify outputs, and reason about trade-offs.
-- Update scorecards. Look for code reading ability, test design, secure coding, and experience with LLM-assisted workflows.
-- Avoid highly opinionated tooling. Hire for fundamentals and learning agility, not a single vendor badge.
+DoHow to Actually Roll This Out**
 
-**Adoption Playbook**
+Start narrow. Pick two or three use cases: test generation for legacy code, doc synthesis, low-risk refactors.
 
-- Start narrow. Pick 2-3 use cases: test generation for legacy modules, doc synthesis, low-risk refactors.
-- Create a golden set. Curate representative tasks and correctness criteria. Use it to evaluate tools and prompt patterns.
-- Put two humans in the loop for critical paths. Safety, auth, data access layers, and migrations require dual review.
-- Instrument everything. Track latency from PR open to merge, defect rates, and rollback frequency. Add AI-specific telemetry: suggestion acceptance, diff size, test coverage deltas.
-- Build a prompt and pattern library. Share "what good looks like." Include anti-patterns.
-- Train the team. Short, hands-on sessions: verifying AI code, writing property tests, secure prompts, and license hygiene.
-- Tame costs early. Budget tokens or seats per team, set rate limits, and monitor usage drift.
+Build a golden set—representative tasks with clear correctness criteria. Use it to evaluate tools and prompt patterns.
 
-**Metrics That Matter**
+Critical paths need two humans. Auth, data layers, migrations. Dual review isn't negotiable.
 
-- Lead time for changes and PR cycle time.
-- Change failure rate and mean time to recovery.
-- Test coverage and flaky test rate. Remember, not all tests are created equal.
-- Security findings introduced vs. resolved per release.
-- AI acceptance rate paired with post-merge defect rate (acceptance alone is vanity).
-- Developer satisfaction and focus time.
+Measure things. PR latency, defect rates, rollback frequency. Add AI-specific metrics like suggestion acceptance, diff size, test coverage changes.
+
+Create a prompt library. Show what good looks like. Include the failures too—anti-patterns teach better than success stories.
+
+Train people. SActually Tell You Something**
+
+Lead time for changes. PR cycle time.
+
+Change failure rate. Mean time to recovery.
+
+Test coverage and flaky test rate. Not all tests are equal, so watch the quality.
+
+Security findings per release—both introduced and resolved.
+
+AI acceptance rate, but only when paired with post-merge defects. Acceptance alone is a vanity metric.
+Guardrails You Need**
+
+No secrets in prompts. Mask logs by default. Use self-hosted or enterprise endpoints for sensitive code.
+
+License policy with allowlists. Scan generated code for license markers.
+
+Keep diffs small. Cap AI-generated changes and require tests with every AI PR.
+
+Design-first prompts. Describe intent, constraints, failure modes. Make the assistant explain trade-offs before it writes code.
+
+**What I Think**
+
+AI changes software work fundamentally. The teams that get it right treat it as a socio-technical problem, not a tooling upgrade.
+
+Design comes first. Then verification. Then governance. Measure things that connect to business outcomes. Train people to edit and judge, not just accept suggestions.
+
+Try this: run a 60-day pilot. Write a one-page charter. Build a golden task set. Track real metrics. Publish results internally—the good and the bad. Keep what works, kill what doesn't. Scale from there, not befor
 
 Tie metrics to user outcomes: latency, reliability, and retention beat raw lines of code.
 

@@ -7,45 +7,45 @@ excerpt: "Explore how LLM-powered CLI agents streamline self-hosting on VPS and 
 
 # CLI Agents for Self‑Hosting: How LLMs in Your Terminal Boost Productivity
 
-Self‑hosting has a specific kind of friction—SSH sessions, Docker Compose files, logs that scroll forever, and config files you edited six months ago. 
+Self‑hosting has friction. SSH sessions, Docker Compose files, logs that scroll forever, config files you edited six months ago and now have no idea what they do.
 
-CLI agents are a practical fix. 
+CLI agents help with this.
 
-They're LLM-powered assistants that live in your terminal, read context, propose commands, and run workflows. 
+They're LLM-powered assistants that live in your terminal. They read context, propose commands, run workflows. 
 
-Give one a goal in plain language and it replies with a plan, shell commands, file edits, and explanations. The useful part is the loop: it observes output, adjusts the next command, and keeps going until the job is done or it hits a guardrail.
+Give one a goal in plain language and it replies with a plan, shell commands, file edits, explanations. The useful part is the loop: it observes output, adjusts the next command, keeps going until the job is done or it hits a guardrail.
 
-This is important - define all of the tasks first instead of a prompt -> answer, prompt -> answer.
+Define all of the tasks first instead of a prompt -> answer, prompt -> answer loop. I learned this the hard way after watching an agent thrash through the same three commands for ten minutes.
 
-A good CLI agent earns trust by asking before it changes your system. You still own the decisions—it just handles the "do the boring parts carefully" side of the job.
+You want an agent that asks before it changes your system. You still own the decisions. It handles the "do the boring parts carefully" side of the job.
 
 ## Core Capabilities
 
-Most terminal agents need the same building blocks:
+Most terminal agents need the same building blocks.
 
-**Command execution with guardrails.** Look for dry-run mode, confirmation steps for risky operations (`rm`, `mv`, firewall changes), command/path restrictions, and execution logs.
+**Command execution with guardrails.** Dry-run mode, confirmation steps for risky operations (`rm`, `mv`, firewall changes), command/path restrictions, execution logs.
 
-**File reads and edits.** The agent should read `compose.yaml`, `.env`, Nginx configs, propose patches, and apply edits with a diff you can review. This is where productivity spikes—an agent can add healthchecks to six services in one pass with consistent formatting.
+**File reads and edits.** The agent reads `compose.yaml`, `.env`, Nginx configs, proposes patches, applies edits with a diff you can review. Productivity spikes here. An agent can add healthchecks to six services in one pass with consistent formatting, which would take me 20 minutes and three typos if I did it manually.
 
 > Remember: ZERO Trust. Grant write access ONLY to files you want touched.
 
-**Observability hooks.** If the agent can't see what happened, it guesses. Simple commands like `docker compose ps`, `docker logs`, `curl -I`, `df -h`, and `journalctl` keep it grounded.
+**Observability hooks.** If the agent can't see what happened, it guesses. Usually wrong. Commands like `docker compose ps`, `docker logs`, `curl -I`, `df -h`, `journalctl` keep it grounded.
 
-**Secrets awareness.** Keep secrets in environment variables or secret stores, redact them in logs, avoid pasting tokens into prompts, and prefer short‑lived credentials.
+**Secrets awareness.** Keep secrets in environment variables or secret stores. Redact them in logs. Don't paste tokens into prompts. Use short‑lived credentials when you can.
 
 ## Deployment Patterns
 
-Each pattern has a different blast radius—how much it can break when things go off script.
+Each pattern has a different blast radius.
 
-**Laptop via SSH.** Agent stays local, connects to servers over SSH. Keeps credentials off servers, works across machines, limits server dependencies. Use SSH config names and separate keys for automation.
+**Laptop via SSH.** Agent stays local, connects to servers over SSH. Credentials stay off servers, works across machines, fewer dependencies to manage. Use SSH config names and separate keys for automation.
 
-**Server container.** Agent runs as a Compose service. Easy to replicate, keeps runtime isolated. Mount only the stack directory and Docker socket—treat socket access as root-equivalent.
+**Server container.** Agent runs as a Compose service. Easy to replicate, keeps runtime isolated. Mount only the stack directory and Docker socket. Treat socket access as root-equivalent because it basically is.
 
-**Server host.** Most powerful, easiest to misuse. Use a dedicated user with limited sudo, log every action, keep approval steps for destructive commands.
+**Server host.** Most powerful, easiest to misuse. I avoid this one unless I really need it. If you go this route, use a dedicated user with limited sudo, log every action, require approval for destructive commands.
 
 ## A Practical Docker Compose Setup
 
-Here's a starter layout for a VPS or homelab:
+Starter layout for a VPS or homelab:
 
 ### Directory layout
 
@@ -90,7 +90,7 @@ services:
     restart: unless-stopped
 ```
 
-Mounting `/var/run/docker.sock` grants high privilege—keep this stack on a trusted host. `/work` holds projects you're comfortable with the agent touching. Logs use JSON Lines format for easy grepping.
+Mounting `/var/run/docker.sock` grants high privilege. Keep this stack on a trusted host. `/work` holds projects you're comfortable with the agent touching. Logs use JSON Lines format for easy grepping, though honestly I still end up using `jq` more than I'd like.
 
 ### Policy file (`policies.yaml`)
 
@@ -115,17 +115,17 @@ allowed_paths:
   - "/work"
 ```
 
-Your agent wrapper should load this policy, check commands against it, require confirmation for anything not routine, and log every action. Keep the "model brain" separate from the "command hands"—the wrapper that touches your machine should stay small and auditable.
+Your agent wrapper should load this policy, check commands against it, require confirmation for anything not routine, log every action. Keep the "model brain" separate from the "command hands". The wrapper that touches your machine should stay small and auditable.
 
 ## Security Guardrails
 
 **Treat Docker socket access like root.** An agent with socket access can mount the host filesystem into a container and do basically anything.
 
-**Use a workspace directory.** Decide where the agent operates, mount that directory, keep other stuff out. This also makes your homelab reproducible—back up the workspace, clone to a new host, automation still works.
+**Use a workspace directory.** Decide where the agent operates. Mount that directory. Keep other stuff out. This also makes your homelab reproducible. Back up the workspace, clone to a new host, automation still works.
 
 **Require confirmation for:** package installs, firewall changes, deleting files, recursive operations, anything touching `/etc` or `/var`.
 
-**Log in a greppable format.** Capture proposed commands, whether they ran, exit codes, and working directory. You'll thank yourself when debugging weird state.
+**Log in a greppable format.** Capture proposed commands, whether they ran, exit codes, working directory. Future you will thank present you when debugging weird state at 2am.
 
 ## Workflows That Stick
 
@@ -137,10 +137,12 @@ Day-to-day wins are smaller and steadier than the big automation dreams:
 - **Routine maintenance**: Pull images, restart services, verify health endpoints, prune old images.
 - **Documentation**: After a fix, ask for a runbook entry in Markdown, right next to the stack.
 
-A nice side effect: you end up standardizing your setup so the agent can operate cleanly. Consistent directories, naming, healthchecks. That's productivity even when the model is offline.
+You end up standardizing your setup so the agent can operate cleanly. Consistent directories, naming, healthchecks. That's productivity even when the model is offline, which happens more than I'd like to admit.
 
 ## Conclusion
 
-CLI agents shine when you give them a small, real job and a safe workspace. Pick a single stack. Wrap your agent with a command policy. Turn on confirmations. Log everything.
+CLI agents shine when you give them a small, real job and a safe workspace. 
 
-For a first project, spin up the Compose layout above and ask the agent to write a maintenance runbook for one of your stacks. You'll get better automation and documentation without remembering every tiny detail next time.
+Pick a single stack. Wrap your agent with a command policy. Turn on confirmations. Log everything.
+
+For a first project, spin up the Compose layout above and ask the agent to write a maintenance runbook for one of your stacks. You'll get better automation and documentation without needing to remember every tiny detail next time. Or you can do what I did and start with something that breaks often enough that you're motivated to automate it.
