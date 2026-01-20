@@ -6,50 +6,56 @@ excerpt: "A pragmatic guide to prompt engineering for tech leaders and engineers
 ---
 
 # Prompt Engineering That Scales: A Pragmatic Guide for Tech Leaders
-Prompt engineering is interface design for probabilistic systems. It turns vague intent into reproducible behavior. Treat prompts like code: specify contracts, test for regressions, and optimize for ROI. The goal is consistent outputs under constraints.
+Prompt engineering is just interface design for systems that don't always do what you want. You're trying to turn "make this work" into something that actually works the same way twice.
 
-This guide distills durable practices that hold across models and vendors. It favors unambiguous language, explicit schemas, and iterative evaluation. It also includes a single, full “before and after” prompt that demonstrates every tip in action.
+I've wasted hours on prompts that seemed great until they didn't. 
+
+Here's what actually stuck across different models and vendors: 
+Unambiguous language, explicit schemas, testing your assumptions. 
+
+There's a full before/after example later that shows all of this in one shot.
 
 One [github link](https://github.com/snarktank/ai-dev-tasks) that I've found helpful will help you think about this if you are using a CLI or similar tool such as Claude to format your requests into a PRD then create tasks/subtasks to break down the requirements
 
-## 15 Durable Principles You Can Standardize
+## 15 Things That Keep Working
 
-1. Use workbench/playground models like platform.openai.com/playground…
-2. Model performance decreases with prompt length (250-500) but include context examples still
+1. Use workbench/playground models like platform.openai.com/playground… way easier to iterate
+2. Shorter prompts work better (250-500 tokens sweet spot) but don't skip examples
 3. Understand the different prompt types (system - who am I, user - tell the model what to do/instructions, assistant - model feedback/template for future outputs)
-4. Use one- or few-shot prompting (which is simply how many examples you provide in prompt)
-5. Conversational vs knowledge engines
-6. Use unambiguous language
-7. “Use “spartan” in tone of voice”
-8. Iterate prompts with data
+4. Use one- or few-shot prompting. This just refers to the number of examples provided to the LLM in your prompt
+5. Conversational vs knowledge engines - pick one
+6. Say exactly what you mean
+7. Define tone of voice: For example, “Use “spartan” in tone of voice”
+8. Test your prompts with real data, not made-up scenarios
 9. Define the output format explicitly
-10. Remove conflicting instructions (such as detailed summary)
-11. Learn JSON, XML, CSV
-12. Key prompt structure - Context, Instructions, output format, rules, example
-13. Use AI to generate examples for AI!
-14. Use the right model for the task (tokens are fairly cheap just use the smarter model unless it’s a super high utilization job) think ROI
+10. Remove conflicting instructions ("detailed summary" makes no sense)
+11. Learn JSON, XML, CSV - you'll need them
+12. Context, Instructions, output format, rules, example. In that order.
+13. Use AI to generate examples for AI
+14. Tokens are cheap. Use the smarter model unless you're running millions of requests.
 15. Use 'ask' mode a few times before 'agent' mode in your CLI or Copilot
 
 ### Bonus
 
-16. Remember, give it a role (who), give it a goal (what), give it all context, be clear on output format, ask it to help you (before you provide a response... ask any questions you feel could help craft a better response or just continue)
+16. Give it a role (who), give it a goal (what), give it all context, be clear on output format. And let it ask questions first if it needs to.
 
-## Before and After: One Example Applying Every Tip
-Scenario: You want a concise technical design plan for a Signup service with rate limiting, grounded in given context, returned as JSON for downstream automation.
-### BEFORE Prompt (what not to do)
+## Before and After Example
+Scenario: You want a technical design plan for a Signup service with rate limiting, returned as JSON.
+
+I've done this wrong so many times. Here's what failure looks like:
+### BEFORE Prompt
 ```
 Hey! Write a super detailed but also short doc about building a signup thing with rate limits. Explain all the best practices, include tables and code, and make it fun but professional. You can add anything you think is cool. Maybe talk about databases. We might be in AWS or GCP, not sure. Output however you want. Thanks!!
 ```
-Why this fails:
-- No role or target audience
-- Conflicting asks (super detailed but also short)
-- No format contract
-- No grounding context
-- No few-shot
-- Ambiguous scope and platform
-- No tone, no rules, no evaluation plan
-### AFTER Prompt (concise, structured, and testable)
-Place this in your model playground. Keep core instructions compact. Use a high-reasoning model for best ROI during design. Then downshift for scale.
+This is terrible:
+- No role
+- "Super detailed but also short" - pick one
+- No format
+- No context
+- Ambiguous everything
+- You'll get a different answer every time
+### AFTER Prompt
+Put this in your model playground. Start with a smart model while you're designing. You can use cheaper ones later when you scale.
 ```
 SYSTEM
 You are a senior backend architect. You design with crisp trade-offs and minimal prose.
@@ -89,40 +95,32 @@ Assistant template (style anchor)
 ASSISTANT
 (If needed) {"questions":["List user attributes stored at signup?","Should email verification be synchronous or async?"]}
 ```
-How this applies every tip:
-- Playground-first: designed for a workbench.
-- Concise core text with one compact few-shot.
-- Clear roles: system, user, assistant.
-- Few-shot examples anchor structure.
-- Explicit mode: knowledge engine.
-- Unambiguous language and rules.
-- Tone enforced: spartan.
-- Iteration hook: questions, then JSON.
-- Output contract: defined JSON schema.
-- No conflicts or mixed asks.
-- Uses JSON; schema is inline.
-- Canonical structure: context, instructions, format, rules, example.
-- Instructs the AI to leverage examples.
-- Model choice guidance lives outside the prompt for ROI.
-- “Ask before agent”: questions precede orchestration.
-- Role, goal, context, format, and permission to ask are all explicit.
+What changed:
+- Built for the playground
+- Compact examples
+- Clear roles
+- Specific output format (JSON schema)
+- No contradictions
+- Spartan tone
+- It can ask questions before answering
+- Everything is explicit
 
-## Implementation Patterns That Stick
-- Treat prompts as code
-- Keep them in version control. Code-review with architects. Add inline comments sparingly.
-- Build an evaluation harness
-- Fixed test cases. Parse outputs. Assert schema validity. Diff changes by metric, not vibes.
-- Log and analyze
-- Capture prompts, responses, token counts, latencies, errors. Feed misses back into prompt revisions.
-- Control context
-- Curate retrieval sources. Cap chunk sizes. Prefer precise snippets over broad dumps.
-- Plan for fallback paths
-- For high-volume endpoints, use cheaper models with stricter prompts. Backstop with deterministic code.
-- Budget tokens like compute
-- Shorten instructions, not necessary context. Compress examples. Remove redundancy.
+## What Actually Works in Production
+**Treat prompts like code.** Version control, code review, the works. I skip inline comments unless something is genuinely weird.
 
-## Conclusion
-Prompts are product surface, not strings. Define contracts, measure behavior, and iterate with data. Start by refactoring your top three prompts using the “After” pattern above. Ship evals. Then scale.
+**Test everything.** Fixed test cases. Parse the outputs. Check schema validity. Track metrics, not your gut feeling about whether it's "better."
 
-## Call to Action
-Copy the After prompt, adapt the Context to your domain, and run it in a playground with an eval harness. Version changes, parse outputs, and measure pass rates before you scale.
+**Log everything.** Prompts, responses, token counts, latencies, errors. When something breaks, you want to know why.
+
+**Control your context.** Don't dump everything. Curate what you feed in. Precise snippets beat wall-of-text context.
+
+**Have a fallback.** For high-volume stuff, use cheaper models with tighter prompts. Back it up with deterministic code when the model fails.
+
+**Watch your token budget.** Shorten instructions if you need to, but keep the context examples. Those matter.
+
+## What to Do Next
+Take your three most important prompts. Rewrite them using the pattern above. Test them with real cases. Measure what changes.
+
+Then scale.
+
+Copy the After prompt, swap in your own context, and run it in a playground. Version your changes. Track what works.
