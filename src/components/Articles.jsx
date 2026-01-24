@@ -42,22 +42,22 @@ const ArticleList = ({ articles = [] }) => {
     : remainingArticles.filter(article => getCategoryForArticle(article.tags) === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-black">
       {/* Featured Article Hero */}
       {featuredArticle && (
-        <div className="bg-gradient-to-br from-gray-800 to-gray-900 border-b border-gray-700">
+        <div className="bg-zinc-950 border-b border-zinc-800">
           <div className="container mx-auto px-4 py-24 md:py-32">
             <div className="max-w-4xl mx-auto">
               <span className="text-teal-400 text-sm font-bold uppercase tracking-wider">Latest Article</span>
-              <h1 className="text-5xl md:text-7xl font-black text-white mt-4 mb-6 leading-tight tracking-tight">
+              <h1 className="text-5xl md:text-7xl font-serif font-black text-white mt-4 mb-6 leading-tight tracking-tight">
                 {featuredArticle.title}
               </h1>
-              <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed font-light">
+              <p className="text-xl md:text-2xl text-zinc-400 mb-8 leading-relaxed font-light">
                 {featuredArticle.excerpt}
               </p>
               <div className="flex items-center gap-4 mb-8">
-                <span className="text-gray-400">{formatDate(featuredArticle.date)}</span>
-                <span className="text-gray-600">•</span>
+                <span className="text-zinc-400">{formatDate(featuredArticle.date)}</span>
+                <span className="text-zinc-800">•</span>
                 <span className="bg-teal-600/20 text-teal-300 text-sm px-3 py-1 rounded-full">
                   {getCategoryForArticle(featuredArticle.tags)}
                 </span>
@@ -83,7 +83,7 @@ const ArticleList = ({ articles = [] }) => {
               onClick={() => setSelectedCategory(category)}
               className={`px-8 py-3 rounded-full font-bold text-base transition duration-300 ${selectedCategory === category
                 ? 'bg-teal-600 text-white shadow-lg shadow-teal-500/30 scale-105'
-                : 'bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-teal-300'
+                : 'bg-zinc-950 text-zinc-400 hover:bg-zinc-900 hover:text-teal-300 border border-zinc-800'
                 }`}
             >
               {category}
@@ -97,21 +97,21 @@ const ArticleList = ({ articles = [] }) => {
             <a
               href={`/articles/${article.slug}`}
               key={article.slug}
-              className="bg-gray-800 rounded-xl p-8 hover:bg-gray-700 transition duration-300 border border-gray-700 hover:border-teal-400 group"
+              className="bg-zinc-950 rounded-xl p-8 hover:bg-zinc-900 transition duration-300 border border-zinc-800 hover:border-teal-400 group"
             >
               <span className="text-teal-400 text-xs font-bold uppercase tracking-wider">
                 {getCategoryForArticle(article.tags)}
               </span>
-              <h2 className="text-2xl font-bold text-white mb-3 mt-3 group-hover:text-teal-400 transition leading-tight">
+              <h2 className="text-2xl font-serif font-bold text-white mb-3 mt-3 group-hover:text-teal-400 transition leading-tight">
                 {article.title}
               </h2>
-              <div className="text-gray-500 text-sm mb-4">
+              <div className="text-zinc-500 text-sm mb-4">
                 {formatDate(article.date)}
               </div>
-              <p className="text-gray-300 mb-4">{article.excerpt}</p>
+              <p className="text-zinc-400 mb-4">{article.excerpt}</p>
               <div className="flex gap-2 flex-wrap">
                 {article.tags?.slice(0, 3).map(tag => (
-                  <span key={tag} className="bg-gray-700 text-teal-300 text-xs px-3 py-1 rounded-full">
+                  <span key={tag} className="bg-zinc-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-zinc-800">
                     {tag}
                   </span>
                 ))}

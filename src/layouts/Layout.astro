@@ -62,13 +62,18 @@ const currentYear = new Date().getFullYear();
 
 		<link rel="canonical" href={canonicalURL} />
 
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+
 		<!-- JSON-LD Structured Data -->
 		{schema && (
 			<script type="application/ld+json" set:html={JSON.stringify(schema)} />
 		)}
 	</head>
-	<body class="min-h-screen bg-gray-900 text-gray-200 font-sans leading-normal tracking-wider">
-		<nav class="bg-gray-800 p-4 sticky top-0 z-10 shadow-lg">
+	<body class="min-h-screen bg-black text-gray-200 font-sans leading-normal tracking-wider">
+		<nav class="bg-black border-b border-zinc-800 p-4 sticky top-0 z-10">
 			<div class="container mx-auto flex flex-wrap justify-between items-center px-4">
 				<a href="/" class="text-white text-2xl font-bold hover:text-teal-400 transition">{portfolioData.name}</a>
 				<div class="flex space-x-6 pt-2 md:pt-0">
@@ -86,7 +91,7 @@ const currentYear = new Date().getFullYear();
 		</main>
 
 		<!-- Footer -->
-		<footer class="bg-gray-900 p-6 border-t border-gray-800">
+		<footer class="bg-black p-6 border-t border-zinc-800">
 			<div class="container mx-auto text-center text-gray-500 px-4">
 				<p class="text-sm">&copy; {currentYear} {portfolioData.name}. All Rights Reserved.</p>
 				<div class="flex justify-center space-x-6 mt-3 text-lg">

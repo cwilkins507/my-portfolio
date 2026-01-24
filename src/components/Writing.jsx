@@ -23,19 +23,19 @@ const Writing = ({ articlesInitial = [] }) => {
   // Article list view
   return (
     <div className="container mx-auto px-4 py-16">
-      <h1 className="text-4xl font-bold text-white mb-2">From the Desk</h1>
-      <p className="text-xl text-gray-400 mb-8">Cloud, Code, and Enterprise Insights</p>
+      <h1 className="text-4xl font-serif font-bold text-white mb-2">From the Desk</h1>
+      <p className="text-xl text-zinc-400 mb-8">Cloud, Code, and Enterprise Insights</p>
 
       <div className="mb-8 flex flex-col sm:flex-row gap-4">
         <input
           type="text"
           placeholder="Search articles..."
-          className="bg-gray-800 text-gray-200 px-4 py-2 rounded-md w-full sm:w-64"
+          className="bg-zinc-950 text-gray-200 px-4 py-2 rounded-md w-full sm:w-64 border border-zinc-800"
           onChange={(e) => setSearchTerm(e.target.value)}
           value={searchTerm}
         />
         <select
-          className="bg-gray-800 text-gray-200 px-4 py-2 rounded-md"
+          className="bg-zinc-950 text-gray-200 px-4 py-2 rounded-md border border-zinc-800"
           onChange={(e) => setSelectedTag(e.target.value)}
           value={selectedTag}
         >
@@ -46,27 +46,30 @@ const Writing = ({ articlesInitial = [] }) => {
         </select>
       </div>
 
-      <div className="grid gap-6">
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {filteredWritings.map(article => (
-          <div key={article.slug} className="bg-gray-800 p-6 rounded-xl hover:bg-gray-700 transition duration-300">
-            <h2 className="text-2xl font-bold text-teal-400 mb-2">{article.title}</h2>
-            <div className="text-gray-400 mb-2">{new Date(article.date).toLocaleDateString()}</div>
-            <div className="flex gap-2 mb-4">
-              {article.tags && article.tags.map(tag => (
+          <a 
+            key={article.slug} 
+            href={`/articles/${article.slug}`}
+            className="bg-zinc-950 p-6 rounded-xl hover:bg-zinc-900 transition duration-300 border border-zinc-800 hover:border-teal-400 group"
+          >
+            <h2 className="text-2xl font-serif font-bold text-white mb-2 group-hover:text-teal-400 transition">{article.title}</h2>
+            <div className="text-zinc-500 text-sm mb-2">{new Date(article.date).toLocaleDateString()}</div>
+            <div className="flex gap-2 mb-4 flex-wrap">
+              {article.tags && article.tags.slice(0, 3).map(tag => (
                 <span
                   key={tag}
-                  className="bg-gray-700 text-teal-300 text-sm px-3 py-1 rounded-full cursor-pointer hover:bg-gray-600"
-                  onClick={() => setSelectedTag(tag)}
+                  className="bg-zinc-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-zinc-800"
                 >
                   {tag}
                 </span>
               ))}
             </div>
-            <p className="text-gray-300 mb-4">{article.excerpt}</p>
-            <a href={`/articles/${article.slug}`} className="text-teal-400 hover:text-teal-300">
+            <p className="text-zinc-400 mb-4">{article.excerpt}</p>
+            <span className="text-teal-400 hover:text-teal-300">
               Read more →
-            </a>
-          </div>
+            </span>
+          </a>
         ))}
       </div>
     </div>

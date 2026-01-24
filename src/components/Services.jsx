@@ -49,15 +49,15 @@ const Services = () => {
     }, []);
 
     return (
-        <div className="min-h-screen bg-gray-900 py-20">
+        <div className="min-h-screen bg-black py-20">
             <div className="container mx-auto px-4 md:px-8 max-w-6xl">
 
                 {/* Hero Section */}
                 <section className="mb-24 text-center">
-                    <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6">
+                    <h1 className="text-5xl md:text-6xl font-serif font-extrabold text-white mb-6">
                         How I Can Help
                     </h1>
-                    <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-xl text-zinc-400 max-w-3xl mx-auto leading-relaxed">
                         I bridge the gap between complex business problems and technical solutions.
                         Whether you need to automate a tedious manual process, integrate AI into your product,
                         or scale your cloud infrastructure, I build systems that deliver measurable business value.
@@ -67,10 +67,10 @@ const Services = () => {
                 {/* Services Grid */}
                 <section className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24">
                     {services.map((service, idx) => (
-                        <div key={idx} className="bg-gray-800 rounded-2xl p-8 border border-gray-700 flex flex-col hover:shadow-2xl hover:shadow-teal-500/10 transition-all duration-300">
+                        <div key={idx} className="bg-zinc-950 rounded-2xl p-8 border border-zinc-800 flex flex-col hover:shadow-2xl hover:shadow-teal-500/10 transition-all duration-300">
                             <div className="mb-6">{service.icon}</div>
-                            <h2 className="text-2xl font-bold text-white mb-4">{service.title}</h2>
-                            <p className="text-gray-400 mb-6 flex-grow">{service.description}</p>
+                            <h2 className="text-2xl font-serif font-bold text-white mb-4">{service.title}</h2>
+                            <p className="text-zinc-400 mb-6 flex-grow">{service.description}</p>
 
                             <div className="mb-6">
                                 <h3 className="text-sm font-semibold text-teal-400 uppercase tracking-wider mb-4 flex items-center">
@@ -78,7 +78,7 @@ const Services = () => {
                                 </h3>
                                 <ul className="space-y-3">
                                     {service.deliverables.map((item, iIdx) => (
-                                        <li key={iIdx} className="text-gray-300 text-sm flex items-start">
+                                        <li key={iIdx} className="text-zinc-400 text-sm flex items-start">
                                             <span className="text-teal-500 mr-2">•</span>
                                             {item}
                                         </li>
@@ -86,9 +86,9 @@ const Services = () => {
                                 </ul>
                             </div>
 
-                            <div className="pt-6 border-t border-gray-700">
-                                <p className="text-xs text-gray-500 italic mb-4">
-                                    <span className="font-semibold text-gray-400">Ideal if:</span> {service.idealFor}
+                            <div className="pt-6 border-t border-zinc-800">
+                                <p className="text-xs text-zinc-500 italic mb-4">
+                                    <span className="font-semibold text-zinc-400">Ideal if:</span> {service.idealFor}
                                 </p>
                                 <a
                                     href={`?modal=contact&service=${service.id}`}
@@ -101,10 +101,24 @@ const Services = () => {
                     ))}
                 </section>
 
+                {/* Quiz CTA */}
+                <section className="mb-24 bg-zinc-950 p-8 md:p-12 rounded-3xl border border-zinc-800 text-center">
+                    <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">Not sure which service fits?</h2>
+                    <p className="text-zinc-400 mb-8 max-w-2xl mx-auto text-lg">
+                        Take our 2-minute quiz to get a personalized AI action plan delivered to your inbox.
+                    </p>
+                    <a
+                        href="/quiz"
+                        className="inline-block bg-white text-black hover:bg-zinc-200 px-10 py-4 rounded-full font-bold text-lg shadow-xl transition-all transform hover:scale-105"
+                    >
+                        Take the Quiz →
+                    </a>
+                </section>
+
                 {/* CTA Section */}
-                <section className="bg-gradient-to-br from-teal-900/20 to-gray-800 p-8 md:p-12 rounded-3xl border border-teal-500/20 text-center shadow-2xl">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to start a project?</h2>
-                    <p className="text-gray-400 mb-10 max-w-2xl mx-auto text-lg">
+                <section className="bg-zinc-950 p-8 md:p-12 rounded-3xl border border-zinc-800 text-center shadow-2xl">
+                    <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-6">Ready to start a project?</h2>
+                    <p className="text-zinc-400 mb-10 max-w-2xl mx-auto text-lg">
                         I'm currently taking on new consulting engagements and project work.
                         Let's discuss how we can streamline your operations or build your next big idea.
                     </p>
@@ -114,11 +128,11 @@ const Services = () => {
                             <Mail className="w-5 h-5 mr-3" /> Contact Me
                         </a>
                         <a href="https://www.linkedin.com/in/collin-wilkins-1020215a/" target="_blank" rel="noopener noreferrer"
-                            className="flex items-center justify-center w-full md:w-auto bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-10 rounded-full transition duration-300 border border-gray-600">
+                            className="flex items-center justify-center w-full md:w-auto bg-zinc-900 hover:bg-zinc-800 text-white font-bold py-3 px-10 rounded-full transition duration-300 border border-zinc-800">
                             <Linkedin className="w-5 h-5 mr-3" /> LinkedIn
                         </a>
                         <a href="https://www.upwork.com/freelancers/~014ffbc17b83da9407" target="_blank" rel="noopener noreferrer"
-                            className="flex items-center justify-center w-full md:w-auto bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-10 rounded-full transition duration-300 border border-gray-600">
+                            className="flex items-center justify-center w-full md:w-auto bg-zinc-900 hover:bg-zinc-800 text-white font-bold py-3 px-10 rounded-full transition duration-300 border border-zinc-800">
                             <BadgeDollarSign className="w-5 h-5 mr-3" /> Upwork
                         </a>
                     </div>

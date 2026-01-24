@@ -238,21 +238,21 @@ const About = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-900 py-20">
+    <div className="min-h-screen bg-black py-20">
       <div className="container mx-auto px-4 md:px-8 max-w-7xl">
 
         {/* Header / Bio Section */}
         <section className="mb-24 max-w-5xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-8 text-center">
+          <h1 className="text-5xl md:text-6xl font-serif font-extrabold text-white mb-8 text-center">
             {portfolioData.headline}
           </h1>
-          <div className="text-lg md:text-xl text-gray-300 leading-relaxed space-y-6 text-left">
+          <div className="text-lg md:text-xl text-zinc-400 leading-relaxed space-y-6 text-left">
             {portfolioData.aboutMe.map((section, idx) => (
               <div key={idx} className="mb-12">
-                <h2 className="text-3xl font-bold text-teal-400 mb-6 border-b border-teal-500/20 pb-2">
+                <h2 className="text-3xl font-serif font-bold text-teal-400 mb-6 border-b border-teal-500/20 pb-2">
                   {section.title}
                 </h2>
-                <div className="text-lg md:text-xl text-gray-300 leading-relaxed space-y-6 text-left">
+                <div className="text-lg md:text-xl text-zinc-400 leading-relaxed space-y-6 text-left">
                   {section.content.split('\n\n').map((paragraph, pIdx) => (
                     <p key={pIdx} className="leading-relaxed whitespace-pre-line">
                       {paragraph.trim()}
@@ -263,16 +263,16 @@ const About = () => {
             ))}
           </div>
           <div className="flex justify-center space-x-6 mt-10">
-            <a href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-teal-400 transition">
+            <a href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-teal-400 transition">
               <Linkedin className="w-8 h-8" />
             </a>
-            <a href={portfolioData.upwork} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-teal-400 transition">
+            <a href={portfolioData.upwork} target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-teal-400 transition">
               <BadgeDollarSign className="w-8 h-8" />
             </a>
-            <a href={portfolioData.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-teal-400 transition">
+            <a href={portfolioData.github} target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-teal-400 transition">
               <Github className="w-8 h-8" />
             </a>
-            <a href={`mailto:${portfolioData.email}`} className="text-gray-400 hover:text-teal-400 transition">
+            <a href={`mailto:${portfolioData.email}`} className="text-zinc-400 hover:text-teal-400 transition">
               <Mail className="w-8 h-8" />
             </a>
           </div>
@@ -280,20 +280,20 @@ const About = () => {
 
         {/* Testimonials */}
         <section className="mb-24">
-          <h2 className="text-4xl font-bold text-center text-white mb-12">What People Say</h2>
+          <h2 className="text-4xl font-serif font-bold text-center text-white mb-12">What People Say</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {testimonials.map((testimonial, idx) => (
-              <div key={idx} className="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700">
+              <div key={idx} className="bg-zinc-950 p-6 rounded-xl shadow-xl border border-zinc-800">
                 <div className="flex items-center mb-4">
                   <div className={`${testimonial.color} w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4 flex-shrink-0`}>
                     {testimonial.initials}
                   </div>
                   <div>
                     <h3 className="text-white font-semibold">{testimonial.name}</h3>
-                    <p className="text-gray-400 text-sm">{testimonial.role}</p>
+                    <p className="text-zinc-500 text-sm">{testimonial.role}</p>
                   </div>
                 </div>
-                <p className="text-gray-300 italic leading-relaxed">"{testimonial.text}"</p>
+                <p className="text-zinc-400 italic leading-relaxed">"{testimonial.text}"</p>
               </div>
             ))}
           </div>
@@ -301,15 +301,15 @@ const About = () => {
 
         {/* Technical Skills */}
         <section className="mb-24">
-          <h2 className="text-4xl font-bold text-center text-white mb-12">Technical Skills</h2>
-          <div className="bg-gray-800 p-8 rounded-xl shadow-xl border border-gray-700 max-w-5xl mx-auto">
+          <h2 className="text-4xl font-serif font-bold text-center text-white mb-12">Technical Skills</h2>
+          <div className="bg-zinc-950 p-8 rounded-xl shadow-xl border border-zinc-800 max-w-5xl mx-auto">
             <div className="space-y-8">
               {Object.entries(portfolioData.skills).map(([category, skills]) => (
                 <div key={category}>
                   <h3 className="text-xl font-semibold text-teal-400 mb-4">{category}</h3>
                   <div className="flex flex-wrap gap-3">
                     {skills.map(skill => (
-                      <span key={skill} className="bg-gray-700 text-teal-300 text-sm font-medium px-4 py-2 rounded-full transition duration-200 hover:bg-teal-700 hover:text-white transform hover:scale-105 shadow-md">
+                      <span key={skill} className="bg-zinc-900 text-teal-300 text-sm font-medium px-4 py-2 rounded-full transition duration-200 hover:bg-teal-700 hover:text-white transform hover:scale-105 shadow-md border border-zinc-800">
                         {skill}
                       </span>
                     ))}
@@ -322,17 +322,17 @@ const About = () => {
 
         {/* Experience */}
         <section className="mb-24">
-          <h2 className="text-4xl font-bold text-center text-white mb-16">Professional Experience</h2>
+          <h2 className="text-4xl font-serif font-bold text-center text-white mb-16">Professional Experience</h2>
           <div className="relative border-l-4 border-teal-500/50 ml-4 md:ml-20 max-w-4xl mx-auto">
             {portfolioData.experiences.map((exp, idx) => (
               <div key={idx} className="mb-16 pl-10 md:pl-16 relative">
                 {/* Timeline Dot */}
-                <div className="absolute w-4 h-4 bg-teal-500 rounded-full -left-[10px] top-2 border-4 border-gray-900"></div>
+                <div className="absolute w-4 h-4 bg-teal-500 rounded-full -left-[10px] top-2 border-4 border-black"></div>
 
-                <p className="text-sm text-gray-500 mb-2">{exp.period}</p>
-                <h3 className="text-2xl font-bold text-teal-400">{exp.role}</h3>
-                <h4 className="text-lg font-semibold text-gray-300 mb-4">{exp.company}</h4>
-                <p className="text-gray-400 leading-relaxed">{exp.description}</p>
+                <p className="text-sm text-zinc-500 mb-2">{exp.period}</p>
+                <h3 className="text-2xl font-serif font-bold text-teal-400">{exp.role}</h3>
+                <h4 className="text-lg font-semibold text-zinc-400 mb-4">{exp.company}</h4>
+                <p className="text-zinc-400 leading-relaxed">{exp.description}</p>
               </div>
             ))}
           </div>
@@ -340,15 +340,15 @@ const About = () => {
 
         {/* Projects */}
         <section className="mb-24">
-          <h2 className="text-4xl font-bold text-center text-white mb-16">Key Projects</h2>
+          <h2 className="text-4xl font-serif font-bold text-center text-white mb-16">Key Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {portfolioData.projects.map((project, idx) => (
-              <div key={idx} className="bg-gray-800 rounded-xl p-8 hover:shadow-2xl hover:shadow-teal-500/20 transition-all duration-500 border border-gray-700">
-                <h3 className="text-2xl font-bold text-teal-400 mb-4">{project.title}</h3>
-                <p className="text-gray-400 mb-6 leading-relaxed">{project.description}</p>
+              <div key={idx} className="bg-zinc-950 rounded-xl p-8 hover:shadow-2xl hover:shadow-teal-500/20 transition-all duration-500 border border-zinc-800">
+                <h3 className="text-2xl font-serif font-bold text-teal-400 mb-4">{project.title}</h3>
+                <p className="text-zinc-400 mb-6 leading-relaxed">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map(tech => (
-                    <span key={tech} className="bg-gray-700 text-xs text-teal-300 font-medium px-3 py-1 rounded-full">
+                    <span key={tech} className="bg-zinc-900 text-xs text-teal-300 font-medium px-3 py-1 rounded-full border border-zinc-800">
                       {tech}
                     </span>
                   ))}
@@ -360,22 +360,22 @@ const About = () => {
 
         {/* Education & Certifications */}
         <section>
-          <h2 className="text-4xl font-bold text-center text-white mb-16">Education & Certifications</h2>
+          <h2 className="text-4xl font-serif font-bold text-center text-white mb-16">Education & Certifications</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-            <div className="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700">
-              <h3 className="text-2xl font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Education</h3>
+            <div className="bg-zinc-950 p-6 rounded-xl shadow-xl border border-zinc-800">
+              <h3 className="text-2xl font-serif font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Education</h3>
               {portfolioData.education.map((edu, idx) => (
                 <div key={idx} className="mb-4">
-                  <p className="text-lg font-semibold text-gray-300">{edu.degree}</p>
-                  <p className="text-gray-400 text-sm">{edu.school} ({edu.year})</p>
+                  <p className="text-lg font-semibold text-zinc-400">{edu.degree}</p>
+                  <p className="text-zinc-500 text-sm">{edu.school} ({edu.year})</p>
                 </div>
               ))}
             </div>
-            <div className="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700">
-              <h3 className="text-2xl font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Certifications</h3>
+            <div className="bg-zinc-950 p-6 rounded-xl shadow-xl border border-zinc-800">
+              <h3 className="text-2xl font-serif font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Certifications</h3>
               <ul className="space-y-3">
                 {portfolioData.certifications.map((cert, idx) => (
-                  <li key={idx} className="text-gray-400 flex items-center">
+                  <li key={idx} className="text-zinc-400 flex items-center">
                     <span className="text-teal-500 mr-2">&#9679;</span> {cert}
                   </li>
                 ))}

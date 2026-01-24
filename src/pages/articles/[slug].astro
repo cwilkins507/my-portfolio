@@ -52,34 +52,40 @@ const articleSchema = {
       <a href="/" class="text-teal-400 hover:text-teal-300 mb-8 inline-block">
         ← Back to Articles
       </a>
-      <h1 class="text-4xl font-bold text-white mb-4">{frontmatter.title}</h1>
-      <article class="text-gray-400 mb-4">
+      <h1 class="text-4xl font-serif font-bold text-white mb-4">{frontmatter.title}</h1>
+      <article class="text-zinc-400 mb-4">
         {new Date(frontmatter.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
       </article>
       <div class="flex flex-wrap gap-2 mb-8">
         {frontmatter.tags?.map(tag => (
-          <span class="bg-gray-700 text-teal-300 text-sm px-3 py-1 rounded-full">
+          <span class="bg-zinc-950 text-teal-300 text-sm px-3 py-1 rounded-full border border-zinc-800">
             {tag}
           </span>
         ))}
       </div>
       
-      <div class="prose prose-invert prose-teal max-w-none">
+      <div class="prose prose-invert max-w-none prose-headings:font-serif prose-headings:text-white prose-p:text-zinc-400 prose-a:text-teal-400 prose-strong:text-white prose-code:text-teal-300 prose-pre:bg-zinc-950 prose-pre:border prose-pre:border-zinc-800">
         <Content />
       </div>
 
       {/* Article Footer CTA */}
-      <div class="mt-20 p-8 md:p-12 bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl border border-gray-700 shadow-2xl relative overflow-hidden group">
+      <div class="mt-20 p-8 md:p-12 bg-zinc-950 rounded-2xl border border-zinc-800 shadow-2xl relative overflow-hidden group">
         <div class="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full -mr-16 -mt-16 blur-2xl group-hover:bg-teal-500/20 transition-colors duration-500"></div>
         <div class="relative z-10">
-          <h3 class="text-3xl font-bold text-white mb-4">Wrestling with a technical challenge?</h3>
-          <p class="text-xl text-gray-300 mb-8 max-w-2xl leading-relaxed">
+          <h3 class="text-3xl font-serif font-bold text-white mb-4">Wrestling with a technical challenge?</h3>
+          <p class="text-xl text-zinc-400 mb-8 max-w-2xl leading-relaxed">
             I help companies automate complex workflows, integrate AI into their stacks, and build scalable cloud architectures.
           </p>
           <div class="flex flex-col sm:flex-row gap-4">
             <a
+              href="/quiz"
+              class="inline-flex items-center justify-center bg-white text-black hover:bg-zinc-200 font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-xl"
+            >
+              Get Your AI Plan
+            </a>
+            <a
               href="/services"
-              class="inline-flex items-center justify-center bg-teal-600 hover:bg-teal-500 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105"
+              class="inline-flex items-center justify-center bg-teal-600 hover:bg-teal-500 text-white font-bold py-3 px-8 rounded-full transition duration-300"
             >
               View My Services
             </a>
@@ -87,7 +93,7 @@ const articleSchema = {
               href="https://www.linkedin.com/in/collin-wilkins-1020215a/"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center justify-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 border border-gray-600"
+              class="inline-flex items-center justify-center bg-zinc-950 hover:bg-zinc-900 text-white font-bold py-3 px-8 rounded-full transition duration-300 border border-zinc-800"
             >
               Connect on LinkedIn
             </a>

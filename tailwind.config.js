@@ -23,6 +23,15 @@ export default {
           800: '#1f2937',
           900: '#111827',
         },
+        zinc: {
+          400: '#a1a1aa',
+          800: '#27272a',
+          950: '#09090b',
+        },
+      },
+      fontFamily: {
+        serif: ['Playfair Display', 'serif'],
+        sans: ['Inter', 'sans-serif'],
       },
     },
   },
