@@ -3,6 +3,9 @@ title: "Lessons Learned in 2025"
 date: "2025-12-31"
 tags: ["Lessons Learned", "Software Engineering", "Mindset"]
 excerpt: "Sharing lessons learned as a Senior Software Developer."
+seo_title: "Lessons Learned in 2025: A Senior Developer's Reflections"
+meta_description: "Weekly lessons from a Senior Software Developer covering engineering leadership, team management, and hard-won insights from building production systems."
+target_keywords: "software engineering lessons, developer lessons learned, engineering leadership, senior developer reflections"
 ---
 Dear reader,
 

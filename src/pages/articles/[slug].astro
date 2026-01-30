@@ -1,6 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
+const allArticles = await Astro.glob('../../articles/*.md');
+
 export async function getStaticPaths() {
   const articles = await Astro.glob('../../articles/*.md');
   return articles.map(article => ({
@@ -12,6 +14,28 @@ export async function getStaticPaths() {
 const { article } = Astro.props;
 const { Content, frontmatter } = article;
 const slug = Astro.params.slug;
+
+// Find related articles by shared tags
+const currentTags = frontmatter.tags || [];
+const relatedArticles = allArticles
+  .filter(a => {
+    const aSlug = a.file.split('/').pop().replace('.md', '');
+    return aSlug !== slug;
+  })
+  .map(a => {
+    const aTags = a.frontmatter.tags || [];
+    const sharedTags = currentTags.filter(tag => aTags.includes(tag));
+    return {
+      slug: a.file.split('/').pop().replace('.md', ''),
+      title: a.frontmatter.title,
+      excerpt: a.frontmatter.excerpt,
+      date: a.frontmatter.date,
+      sharedCount: sharedTags.length,
+    };
+  })
+  .filter(a => a.sharedCount > 0)
+  .sort((a, b) => b.sharedCount - a.sharedCount || new Date(b.date).getTime() - new Date(a.date).getTime())
+  .slice(0, 3);
 
 // Use SEO-specific frontmatter if available, fallback to defaults
 const pageTitle = frontmatter.seo_title || frontmatter.title;
@@ -67,6 +91,29 @@ const articleSchema = {
       <div class="prose prose-invert max-w-none prose-headings:font-serif prose-headings:text-white prose-p:text-zinc-400 prose-a:text-teal-400 prose-strong:text-white prose-code:text-teal-300 prose-pre:bg-zinc-950 prose-pre:border prose-pre:border-zinc-800">
         <Content />
       </div>
+
+      {/* Related Articles */}
+      {relatedArticles.length > 0 && (
+        <div class="mt-16 border-t border-zinc-800 pt-12">
+          <h2 class="text-2xl font-serif font-bold text-white mb-8">Related Articles</h2>
+          <div class="grid gap-6 md:grid-cols-3">
+            {relatedArticles.map(related => (
+              <a
+                href={`/articles/${related.slug}`}
+                class="bg-zinc-950 rounded-xl p-6 hover:bg-zinc-900 transition duration-300 border border-zinc-800 hover:border-teal-400 group"
+              >
+                <h3 class="text-lg font-serif font-bold text-white mb-2 group-hover:text-teal-400 transition leading-tight">
+                  {related.title}
+                </h3>
+                <p class="text-zinc-500 text-sm mb-3">
+                  {new Date(related.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}
+                </p>
+                <p class="text-zinc-400 text-sm line-clamp-2">{related.excerpt}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Article Footer CTA */}
       <div class="mt-20 p-8 md:p-12 bg-zinc-950 rounded-2xl border border-zinc-800 shadow-2xl relative overflow-hidden group">

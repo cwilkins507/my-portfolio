@@ -2,7 +2,10 @@
 title: "JPA/Hibernate: Pragmatic Data Access That Scales"
 date: "2025-11-22"
 tags: ["Software Engineering", "JPA", "Hibernate", "Data Access", "ORM", "SQL", "Performance"]
-excerpt: A pragmatic guide to JPA/Hibernate for tech leaders and engineers. Learn hidden tradeoffs, when to use native SQL, and patterns to ship fast, safe data access."
+excerpt: "A pragmatic guide to JPA/Hibernate for tech leaders and engineers. Learn hidden tradeoffs, when to use native SQL, and patterns to ship fast, safe data access."
+seo_title: "JPA and Hibernate Best Practices: Data Access That Scales"
+meta_description: "Pragmatic JPA/Hibernate guide covering N+1 queries, lazy loading pitfalls, native SQL fallbacks, and Spring Data patterns for production Java applications."
+target_keywords: "JPA best practices, Hibernate performance, Spring Data JPA, ORM optimization, Java data access patterns"
 ---
 # JPA/Hibernate: Pragmatic Data Access That Scales
 If your dev team is like mine, Java is the opinionated back-end language. We've recently refactored how the teams access data in order to become more consistent and leverage ORM. Below are some lessons learned.

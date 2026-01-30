@@ -3,6 +3,9 @@ title: "Postgres SQL Optimization with DBeaver"
 date: "2025-12-04"
 tags: ["Software Engineering", "Postgres", "SQL Optimization", "DBeaver", "Query Performance", "Database Indexing", "AI for Developers"]
 excerpt: "Use DBeaver to run EXPLAIN/ANALYZE, find index gaps, apply VACUUM wisely, and enlist AI to build a safe, testable Postgres tuning plan."
+seo_title: "Postgres SQL Optimization: EXPLAIN, Indexing, and VACUUM Guide"
+meta_description: "Optimize Postgres queries using DBeaver. Learn EXPLAIN ANALYZE, index strategies, VACUUM tuning, and AI-assisted query optimization for production databases."
+target_keywords: "Postgres optimization, SQL EXPLAIN ANALYZE, DBeaver query tuning, PostgreSQL indexing, database performance optimization"
 ---
 # Postgres/SQL Optimization in Local Tools like DBeaver
 

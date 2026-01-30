@@ -3,6 +3,9 @@ title: "Prompt Engineering Tips for Tech Leaders"
 date: "2025-10-30"
 tags: ["Software Engineering", "Developer Tools", "Prompt engineering", "LLM prompts", "Few-shot prompting"]
 excerpt: "A pragmatic guide to prompt engineering for tech leaders and engineers. Learn durable patterns, ROI-focused choices, and a full before/after example."
+seo_title: "Prompt Engineering Guide for Tech Leaders and Engineers"
+meta_description: "Practical prompt engineering patterns that scale. Learn few-shot prompting, chain-of-thought, ROI-focused prompt design, and before/after production examples."
+target_keywords: "prompt engineering tips, prompt engineering guide, few-shot prompting, LLM prompt patterns, prompt engineering best practices"
 ---
 
 # Prompt Engineering That Scales: A Pragmatic Guide for Tech Leaders

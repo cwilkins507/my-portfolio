@@ -3,6 +3,9 @@ title: "Terraform and IaC: Practical Guide for Tech Teams"
 date: "2025-11-07"
 tags: ["Software Engineering", "Infrastructure as Code", "Terraform", "DevOps", "Platform Engineering", "Cloud Security", "AWS", "GitOps"]
 excerpt: "Why IaC matters, how to run Terraform at team scale, and a step-by-step EC2 example to get started."
+seo_title: "Terraform and Infrastructure as Code: Practical Team Guide"
+meta_description: "Get started with Terraform and IaC. Covers why infrastructure as code matters, team-scale workflows, state management, and a step-by-step AWS EC2 example."
+target_keywords: "Terraform tutorial, infrastructure as code, Terraform AWS example, IaC best practices, Terraform team workflow"
 ---
 # Terraform and IaC: The Operating System of Your Cloud
 

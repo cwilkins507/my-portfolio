@@ -3,6 +3,9 @@ title: "Modern Design Patterns: Beyond the Bookmarks"
 date: "2026-01-24"
 tags: ["Software Engineering", "Architecture", "Design Patterns", "Maintainability", "Refactoring", "TypeScript", "Clean Code"]
 excerpt: "Classic design patterns still solve modern problems, but only if you use them to fix real friction. Here is how I use them to build maintainable systems without the architecture astronaut fluff."
+seo_title: "Modern Design Patterns: Practical Guide for Software Engineers"
+meta_description: "Classic design patterns applied to modern codebases. Learn when to use Strategy, Observer, Builder, and more with real examples and refactoring tips."
+target_keywords: "design patterns, software design patterns, clean code, refactoring patterns, modern design patterns"
 ---
 
 # Modern Design Patterns: Beyond the Bookmarks

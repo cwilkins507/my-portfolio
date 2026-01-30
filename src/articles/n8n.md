@@ -3,6 +3,9 @@ title: "n8n: Automation Patterns "
 date: "2025-11-04"
 tags: ["Software Engineering", "n8n", "Workflow Automation", "Open Source", "Low-code", "Integrations", "Marketing Automation", "Engineering Productivity"]
 excerpt: "Learn n8n: what it is, why it matters, and how to ship secure, observable automations with a free RSS-to-Slack example. Start building value fast."
+seo_title: "n8n Automation Guide: Open-Source Workflow Patterns"
+meta_description: "Learn n8n workflow automation with practical patterns. Covers self-hosting, API integrations, marketing automation, and a free RSS-to-Slack example to get started."
+target_keywords: "n8n automation, n8n workflow, open source automation, n8n tutorial, workflow automation tool"
 ---
 # n8n: Open Automation Engineers and Teams Can Trust
 

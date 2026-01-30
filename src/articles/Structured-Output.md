@@ -3,6 +3,9 @@ title: "Structured Outputs in LLMs: Reliable Data for Real Pipelines"
 date: "2026-01-17"
 tags: ["Software Engineering", "LLMs", "Structured Outputs", "Data Engineering", "AI", "JSON Schema", "Observability"]
 excerpt: "Structured outputs turn LLM text into dependable, validated data. Learn schemas, validation loops, and practical patterns for extraction, routing, and ETL."
+seo_title: "LLM Structured Outputs: Schema Validation for Real Pipelines"
+meta_description: "Turn LLM text into validated, structured data with JSON Schema. Learn structured output patterns for extraction, routing, ETL, and production AI pipelines."
+target_keywords: "LLM structured output, structured outputs AI, JSON schema LLM, AI data pipeline, structured data extraction"
 ---
 # Structured Outputs in LLMs: Reliable Data for Real Pipelines
 LLMs speak fluent text. Data systems don’t. 

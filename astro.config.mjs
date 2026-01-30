@@ -12,7 +12,15 @@ export default defineConfig({
         tailwind({
             applyBaseStyles: false,
         }),
-        sitemap(),
+        sitemap({
+            serialize(item) {
+                // Add lastmod to all sitemap entries
+                if (!item.lastmod) {
+                    item.lastmod = new Date().toISOString();
+                }
+                return item;
+            },
+        }),
     ],
     markdown: {
         shikiConfig: {

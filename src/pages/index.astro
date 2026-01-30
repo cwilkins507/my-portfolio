@@ -93,5 +93,21 @@ const websiteSchema = {
 	<!-- Articles Section -->
 	<section id="articles">
 		<ArticleList articles={articles} client:load />
+		<!-- Server-rendered article links for SEO crawlers -->
+		<noscript>
+			<div class="container mx-auto px-4 py-16">
+				<h2 class="text-2xl font-serif font-bold text-white mb-8">All Articles</h2>
+				<ul class="space-y-4">
+					{articles.map(article => (
+						<li>
+							<a href={`/articles/${article.slug}`} class="text-teal-400 hover:text-teal-300 text-lg">
+								{article.title}
+							</a>
+							<p class="text-zinc-500 text-sm">{article.date}</p>
+						</li>
+					))}
+				</ul>
+			</div>
+		</noscript>
 	</section>
 </Layout>
