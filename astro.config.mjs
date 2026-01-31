@@ -7,6 +7,10 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
     site: 'https://collinwilkins.com',
     base: '/',
+    trailingSlash: 'never',
+    build: {
+        format: 'file',
+    },
     integrations: [
         react(),
         tailwind({
