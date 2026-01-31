@@ -1,14 +1,15 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import WritingComponent from '../components/Writing';
-
-const articlesRaw = await Astro.glob('../articles/*.md');
-const articles = articlesRaw.map(article => ({
-  slug: article.file.split('/').pop().replace('.md', ''),
-  ...article.frontmatter,
-})).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 ---
 
-<Layout title="Writing & Insights | Collin Wilkins">
-	<WritingComponent articlesInitial={articles} client:load />
-</Layout>
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="refresh" content="0;url=/" />
+		<link rel="canonical" href="https://collinwilkins.com" />
+		<title>Redirecting...</title>
+	</head>
+	<body>
+		<p>Redirecting to <a href="/">homepage</a>...</p>
+	</body>
+</html>

@@ -9,6 +9,6 @@ const articles = articlesRaw.map(article => ({
 })).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 ---
 
-<Layout title="Articles | Collin Wilkins">
+<Layout title="Technical Articles on AI, AWS & Software Architecture | Collin Wilkins" description="In-depth technical articles on Python automation, AWS serverless patterns, AI integration, system design, and software engineering best practices.">
 	<ArticleList articles={articles} client:load />
 </Layout>
