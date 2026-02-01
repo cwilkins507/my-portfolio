@@ -11,6 +11,29 @@ export default defineConfig({
     build: {
         format: 'file',
     },
+    redirects: {
+        // Old uppercase URLs → new lowercase (from pre-rename filenames)
+        '/articles/AI-Assisted-Coding-pt2': '/articles/ai-assisted-coding-pt2',
+        '/articles/AI-Assisted-Coding': '/articles/ai-assisted-coding',
+        '/articles/Architecture-as-Code': '/articles/architecture-as-code',
+        '/articles/AWS-Lambda-Practices': '/articles/aws-lambda-practices',
+        '/articles/BGP': '/articles/bgp',
+        '/articles/Changing-landscape': '/articles/changing-landscape',
+        '/articles/CLI-Agents': '/articles/cli-agents',
+        '/articles/CRM-No-Code': '/articles/crm-no-code',
+        '/articles/Design-Patterns': '/articles/design-patterns',
+        '/articles/JPA': '/articles/jpa',
+        '/articles/Lessons-Learned': '/articles/lessons-learned',
+        '/articles/MCP': '/articles/mcp',
+        '/articles/Microservice-Redesign': '/articles/microservice-redesign',
+        '/articles/N8n': '/articles/n8n',
+        '/articles/No-Code': '/articles/no-code',
+        '/articles/Prompt-Engineering': '/articles/prompt-engineering',
+        '/articles/SQL-Optimization': '/articles/sql-optimization',
+        '/articles/Structured-Output': '/articles/structured-output',
+        '/articles/System-Design-Best-Practices': '/articles/system-design-best-practices',
+        '/articles/Terraform': '/articles/terraform',
+    },
     integrations: [
         react(),
         tailwind({
