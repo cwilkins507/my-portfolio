@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520">
+  <defs>
+    <linearGradient id="automationGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="workflowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6d28d9;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="agentGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="520" fill="#f8fafc"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" fill="#1e293b">Three Paradigms: Choosing Your Approach</text>
+
+  <!-- Spectrum Arrow -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+  </defs>
+  <line x1="50" y1="490" x2="850" y2="490" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="50" y="510" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b">Predictable</text>
+  <text x="850" y="510" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b">Autonomous</text>
+  <text x="450" y="510" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b" font-style="italic">Increasing complexity and AI involvement →</text>
+
+  <!-- Automation Card -->
+  <g filter="url(#shadow)">
+    <rect x="30" y="60" width="270" height="400" rx="12" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+    <rect x="30" y="60" width="270" height="50" rx="12" fill="url(#automationGrad)"/>
+    <rect x="30" y="98" width="270" height="12" fill="url(#automationGrad)"/>
+  </g>
+
+  <!-- Automation Icon -->
+  <circle cx="60" cy="85" r="15" fill="rgba(255,255,255,0.2)"/>
+  <path d="M52 85 L58 85 L58 79 L68 85 L58 91 L58 85" fill="white"/>
+  <path d="M60 78 L60 72 M60 98 L60 92 M72 85 L78 85 M42 85 L48 85" stroke="white" stroke-width="2" stroke-linecap="round"/>
+
+  <text x="165" y="92" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600" fill="white">AUTOMATION</text>
+
+  <!-- Automation Content -->
+  <text x="45" y="135" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748b">DEFINITION</text>
+  <text x="45" y="152" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">Rule-based systems with</text>
+  <text x="45" y="167" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">predefined logic. No learning.</text>
+
+  <text x="45" y="195" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748b">FOUNDATION</text>
+  <text x="45" y="212" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">If-then logic, triggers,</text>
+  <text x="45" y="227" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">deterministic workflows</text>
+
+  <text x="45" y="255" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748b">BEST FOR</text>
+  <text x="45" y="272" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">Data entry, file organization,</text>
+  <text x="45" y="287" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">scheduled reports, API calls</text>
+
+  <text x="45" y="315" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#22c55e">✓ STRENGTHS</text>
+  <text x="45" y="332" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">100% predictable, fast,</text>
+  <text x="45" y="347" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">cheap, zero hallucination</text>
+
+  <text x="45" y="375" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#ef4444">✗ WEAKNESSES</text>
+  <text x="45" y="392" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">Brittle, can't handle edge</text>
+  <text x="45" y="407" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">cases or ambiguity</text>
+
+  <text x="45" y="435" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748b">EXAMPLE</text>
+  <text x="45" y="452" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#334155" font-style="italic">Zapier moves attachments</text>
+  <text x="45" y="465" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#334155" font-style="italic">to Google Drive folders</text>
+
+  <!-- AI Workflow Card -->
+  <g filter="url(#shadow)">
+    <rect x="315" y="60" width="270" height="400" rx="12" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+    <rect x="315" y="60" width="270" height="50" rx="12" fill="url(#workflowGrad)"/>
+    <rect x="315" y="98" width="270" height="12" fill="url(#workflowGrad)"/>
+  </g>
+
+  <!-- Workflow Icon -->
+  <circle cx="345" cy="85" r="15" fill="rgba(255,255,255,0.2)"/>
+  <circle cx="340" cy="85" r="5" fill="none" stroke="white" stroke-width="2"/>
+  <circle cx="355" cy="85" r="5" fill="none" stroke="white" stroke-width="2"/>
+  <line x1="345" y1="85" x2="350" y2="85" stroke="white" stroke-width="2"/>
+
+  <text x="450" y="92" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600" fill="white">AI WORKFLOW</text>
+
+  <!-- Workflow Content -->
+  <text x="330" y="135" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748b">DEFINITION</text>
+  <text x="330" y="152" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">Human-orchestrated pipelines.</text>
+  <text x="330" y="167" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">AI assists, human decides.</text>
+
+  <text x="330" y="195" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748b">FOUNDATION</text>
+  <text x="330" y="212" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">LLM calls in structured flows,</text>
+  <text x="330" y="227" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">human-in-the-loop validation</text>
+
+  <text x="330" y="255" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748b">BEST FOR</text>
+  <text x="330" y="272" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">Content drafting, code review,</text>
+  <text x="330" y="287" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">RAG Q&amp;A, translation</text>
+
+  <text x="330" y="315" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#22c55e">✓ STRENGTHS</text>
+  <text x="330" y="332" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">Balanced oversight, controllable,</text>
+  <text x="330" y="347" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">good for high-stakes tasks</text>
+
+  <text x="330" y="375" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#ef4444">✗ WEAKNESSES</text>
+  <text x="330" y="392" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">Human bottleneck, slower,</text>
+  <text x="330" y="407" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">doesn't scale autonomously</text>
+
+  <text x="330" y="435" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748b">EXAMPLE</text>
+  <text x="330" y="452" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#334155" font-style="italic">Dev uses Claude to generate</text>
+  <text x="330" y="465" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#334155" font-style="italic">code, reviews, then commits</text>
+
+  <!-- AI Agent Card -->
+  <g filter="url(#shadow)">
+    <rect x="600" y="60" width="270" height="400" rx="12" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+    <rect x="600" y="60" width="270" height="50" rx="12" fill="url(#agentGrad)"/>
+    <rect x="600" y="98" width="270" height="12" fill="url(#agentGrad)"/>
+  </g>
+
+  <!-- Agent Icon -->
+  <circle cx="630" cy="85" r="15" fill="rgba(255,255,255,0.2)"/>
+  <circle cx="630" cy="82" r="6" fill="none" stroke="white" stroke-width="2"/>
+  <path d="M622 94 Q630 88 638 94" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"/>
+
+  <text x="735" y="92" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600" fill="white">AI AGENT</text>
+
+  <!-- Agent Content -->
+  <text x="615" y="135" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748b">DEFINITION</text>
+  <text x="615" y="152" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">Autonomous systems that plan,</text>
+  <text x="615" y="167" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">execute, and adapt independently.</text>
+
+  <text x="615" y="195" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748b">FOUNDATION</text>
+  <text x="615" y="212" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">Tool use, memory, planning</text>
+  <text x="615" y="227" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">loops, self-correction</text>
+
+  <text x="615" y="255" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748b">BEST FOR</text>
+  <text x="615" y="272" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">Multi-step research, autonomous</text>
+  <text x="615" y="287" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">coding, complex analysis</text>
+
+  <text x="615" y="315" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#22c55e">✓ STRENGTHS</text>
+  <text x="615" y="332" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">Handles complexity, scales</text>
+  <text x="615" y="347" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">without linear human effort</text>
+
+  <text x="615" y="375" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#ef4444">✗ WEAKNESSES</text>
+  <text x="615" y="392" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">Less predictable, higher cost,</text>
+  <text x="615" y="407" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#334155">risk of compounding errors</text>
+
+  <text x="615" y="435" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748b">EXAMPLE</text>
+  <text x="615" y="452" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#334155" font-style="italic">Claude Code investigates bug,</text>
+  <text x="615" y="465" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#334155" font-style="italic">writes fix, runs tests, commits</text>
+</svg>

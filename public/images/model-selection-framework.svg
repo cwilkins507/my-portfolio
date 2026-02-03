@@ -1,0 +1,181 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 680">
+  <defs>
+    <linearGradient id="step1Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2563eb;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="step2Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="step3Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ec4899;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#db2777;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="step4Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="step5Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.1"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="6" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 L3,6 Z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="680" fill="#f8fafc"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" fill="#1e293b">Model Selection Framework</text>
+  <text x="450" y="55" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#64748b">Five steps to match the right model to your task</text>
+
+  <!-- Step 1 -->
+  <g filter="url(#shadow)">
+    <rect x="50" y="80" width="800" height="95" rx="12" fill="white"/>
+    <rect x="50" y="80" width="60" height="95" rx="12" fill="url(#step1Grad)"/>
+    <rect x="98" y="80" width="12" height="95" fill="url(#step1Grad)"/>
+  </g>
+  <text x="80" y="135" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="700" fill="white">1</text>
+  <text x="130" y="108" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="600" fill="#1e293b">Define the Task</text>
+  <text x="130" y="130" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">Get specific about what you're building before choosing tools.</text>
+
+  <g transform="translate(130, 145)">
+    <rect x="0" y="0" width="155" height="22" rx="4" fill="#eff6ff"/>
+    <text x="10" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#3b82f6">What are the inputs?</text>
+  </g>
+  <g transform="translate(295, 145)">
+    <rect x="0" y="0" width="180" height="22" rx="4" fill="#eff6ff"/>
+    <text x="10" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#3b82f6">What are acceptable outputs?</text>
+  </g>
+  <g transform="translate(485, 145)">
+    <rect x="0" y="0" width="165" height="22" rx="4" fill="#eff6ff"/>
+    <text x="10" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#3b82f6">What does failure look like?</text>
+  </g>
+  <g transform="translate(660, 145)">
+    <rect x="0" y="0" width="170" height="22" rx="4" fill="#eff6ff"/>
+    <text x="10" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#3b82f6">How will you measure success?</text>
+  </g>
+
+  <!-- Arrow 1-2 -->
+  <line x1="450" y1="175" x2="450" y2="195" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 2 -->
+  <g filter="url(#shadow)">
+    <rect x="50" y="200" width="800" height="95" rx="12" fill="white"/>
+    <rect x="50" y="200" width="60" height="95" rx="12" fill="url(#step2Grad)"/>
+    <rect x="98" y="200" width="12" height="95" fill="url(#step2Grad)"/>
+  </g>
+  <text x="80" y="255" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="700" fill="white">2</text>
+  <text x="130" y="228" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="600" fill="#1e293b">Assess Complexity</text>
+  <text x="130" y="250" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">Determine where your task falls on the complexity spectrum.</text>
+
+  <g transform="translate(130, 265)">
+    <rect x="0" y="0" width="220" height="22" rx="4" fill="#f5f3ff"/>
+    <text x="10" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#7c3aed">Deterministic or ambiguous?</text>
+  </g>
+  <g transform="translate(360, 265)">
+    <rect x="0" y="0" width="200" height="22" rx="4" fill="#f5f3ff"/>
+    <text x="10" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#7c3aed">Single-step or multi-step?</text>
+  </g>
+  <g transform="translate(570, 265)">
+    <rect x="0" y="0" width="260" height="22" rx="4" fill="#f5f3ff"/>
+    <text x="10" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#7c3aed">Requires judgment, creativity, or execution?</text>
+  </g>
+
+  <!-- Arrow 2-3 -->
+  <line x1="450" y1="295" x2="450" y2="315" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 3 -->
+  <g filter="url(#shadow)">
+    <rect x="50" y="320" width="800" height="95" rx="12" fill="white"/>
+    <rect x="50" y="320" width="60" height="95" rx="12" fill="url(#step3Grad)"/>
+    <rect x="98" y="320" width="12" height="95" fill="url(#step3Grad)"/>
+  </g>
+  <text x="80" y="375" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="700" fill="white">3</text>
+  <text x="130" y="348" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="600" fill="#1e293b">Choose the Paradigm</text>
+  <text x="130" y="370" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">Match your task to the right level of AI involvement.</text>
+
+  <g transform="translate(130, 385)">
+    <rect x="0" y="0" width="200" height="22" rx="4" fill="#fdf2f8"/>
+    <text x="10" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#db2777">🔧 Automation: Rules cover all cases?</text>
+  </g>
+  <g transform="translate(340, 385)">
+    <rect x="0" y="0" width="230" height="22" rx="4" fill="#fdf2f8"/>
+    <text x="10" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#db2777">🤝 Workflow: Need human oversight?</text>
+  </g>
+  <g transform="translate(580, 385)">
+    <rect x="0" y="0" width="250" height="22" rx="4" fill="#fdf2f8"/>
+    <text x="10" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#db2777">🤖 Agent: Can run with checkpoints only?</text>
+  </g>
+
+  <!-- Arrow 3-4 -->
+  <line x1="450" y1="415" x2="450" y2="435" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 4 -->
+  <g filter="url(#shadow)">
+    <rect x="50" y="440" width="800" height="95" rx="12" fill="white"/>
+    <rect x="50" y="440" width="60" height="95" rx="12" fill="url(#step4Grad)"/>
+    <rect x="98" y="440" width="12" height="95" fill="url(#step4Grad)"/>
+  </g>
+  <text x="80" y="495" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="700" fill="white">4</text>
+  <text x="130" y="468" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="600" fill="#1e293b">Select Candidate Models</text>
+  <text x="130" y="490" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">Use benchmarks to filter, not decide. Pick 2-3 models worth testing.</text>
+
+  <g transform="translate(130, 505)">
+    <rect x="0" y="0" width="170" height="22" rx="4" fill="#fffbeb"/>
+    <text x="10" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#d97706">Check SWE-bench for coding</text>
+  </g>
+  <g transform="translate(310, 505)">
+    <rect x="0" y="0" width="190" height="22" rx="4" fill="#fffbeb"/>
+    <text x="10" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#d97706">Check Vellum for general tasks</text>
+  </g>
+  <g transform="translate(510, 505)">
+    <rect x="0" y="0" width="160" height="22" rx="4" fill="#fffbeb"/>
+    <text x="10" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#d97706">Consider cost and latency</text>
+  </g>
+  <g transform="translate(680, 505)">
+    <rect x="0" y="0" width="150" height="22" rx="4" fill="#fffbeb"/>
+    <text x="10" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#d97706">Match task type to model</text>
+  </g>
+
+  <!-- Arrow 4-5 -->
+  <line x1="450" y1="535" x2="450" y2="555" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 5 -->
+  <g filter="url(#shadow)">
+    <rect x="50" y="560" width="800" height="95" rx="12" fill="white"/>
+    <rect x="50" y="560" width="60" height="95" rx="12" fill="url(#step5Grad)"/>
+    <rect x="98" y="560" width="12" height="95" fill="url(#step5Grad)"/>
+  </g>
+  <text x="80" y="615" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="700" fill="white">5</text>
+  <text x="130" y="588" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="600" fill="#1e293b">Test and Iterate</text>
+  <text x="130" y="610" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">Run real examples. Find the minimum viable model that meets your quality bar.</text>
+
+  <g transform="translate(130, 625)">
+    <rect x="0" y="0" width="190" height="22" rx="4" fill="#ecfdf5"/>
+    <text x="10" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#059669">Run 50 real examples per model</text>
+  </g>
+  <g transform="translate(330, 625)">
+    <rect x="0" y="0" width="190" height="22" rx="4" fill="#ecfdf5"/>
+    <text x="10" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#059669">Measure quality, cost, latency</text>
+  </g>
+  <g transform="translate(530, 625)">
+    <rect x="0" y="0" width="140" height="22" rx="4" fill="#ecfdf5"/>
+    <text x="10" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#059669">Adjust prompts, re-test</text>
+  </g>
+  <g transform="translate(680, 625)">
+    <rect x="0" y="0" width="150" height="22" rx="4" fill="#ecfdf5"/>
+    <text x="10" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#059669">Try tier up or down if needed</text>
+  </g>
+
+  <!-- Feedback loop arrow -->
+  <path d="M860 610 Q880 610 880 500 Q880 390 880 280 Q880 170 860 170" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6,4"/>
+  <polygon points="860,174 850,170 860,166" fill="#94a3b8"/>
+  <text x="888" y="390" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#94a3b8" transform="rotate(90, 888, 390)">Iterate as needed</text>
+</svg>
