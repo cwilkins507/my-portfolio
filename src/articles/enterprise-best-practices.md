@@ -435,6 +435,8 @@ It's like adding more engineers to the team, except they work at token speed and
 
 For teams building more sophisticated agent pipelines, the Directive-Orchestration-Execution (DOE) framework gives you a clean separation of concerns.
 
+> **Want the complete implementation guide?** Download my free [Agentic Workflows Guide](/guides/agentic-workflows) for detailed patterns, case studies, and production deployment strategies for the DOE framework.
+
 ### Layer 1: Directive (Intent and Rules)
 
 Define what should be done in plain language. Store these as SOPs in Markdown under `directives/`. Include goals, inputs, tools to use, expected outputs, edge cases. Write them like you'd write instructions for a mid-level engineer. Clear, scoped, actionable.

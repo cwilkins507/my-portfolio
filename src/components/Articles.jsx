@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 // Category mapping
 const CATEGORIES = {
@@ -33,6 +35,8 @@ const formatDate = (dateString) => {
 
 const ArticleList = ({ articles = [] }) => {
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const gridRef = useRef(null);
+  const isInView = useInView(gridRef, { once: true, margin: '-100px' });
 
   const featuredArticle = articles?.length > 0 ? articles[0] : null;
   const remainingArticles = articles?.slice(1) || [];
@@ -40,6 +44,29 @@ const ArticleList = ({ articles = [] }) => {
   const filteredArticles = selectedCategory === 'All'
     ? remainingArticles
     : remainingArticles.filter(article => getCategoryForArticle(article.tags) === selectedCategory);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: 'easeOut',
+      },
+    },
+  };
 
   return (
     <div className="min-h-screen bg-black">
@@ -91,13 +118,22 @@ const ArticleList = ({ articles = [] }) => {
           ))}
         </div>
 
-        {/* Article Grid */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {/* Article Grid with Stagger Animation */}
+        <motion.div
+          ref={gridRef}
+          className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+        >
           {filteredArticles.map((article) => (
-            <a
+            <motion.a
               href={`/articles/${article.slug}`}
               key={article.slug}
               className="bg-zinc-950 rounded-xl p-8 hover:bg-zinc-900 transition duration-300 border border-zinc-800 hover:border-teal-400 group"
+              variants={itemVariants}
+              whileHover={{ scale: 1.02, y: -4 }}
+              transition={{ duration: 0.2 }}
             >
               <span className="text-teal-400 text-xs font-bold uppercase tracking-wider">
                 {getCategoryForArticle(article.tags)}
@@ -116,9 +152,9 @@ const ArticleList = ({ articles = [] }) => {
                   </span>
                 ))}
               </div>
-            </a>
+            </motion.a>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

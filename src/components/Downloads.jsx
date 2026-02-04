@@ -27,9 +27,7 @@ const Downloads = () => {
             Featured Resource
           </h2>
           <a
-            href="/Agentic-Workflows-Guide.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/guides/agentic-workflows"
             className="block bg-zinc-950 p-8 md:p-12 rounded-2xl border border-zinc-800 hover:border-teal-400/50 transition-all duration-500 group shadow-2xl relative overflow-hidden"
           >
             {/* Subtle Gradient Glow */}
@@ -46,9 +44,12 @@ const Downloads = () => {
                 </p>
 
                 <div className="inline-flex items-center gap-3 px-6 py-3 bg-white text-black rounded-full font-bold group-hover:bg-teal-400 transition-all duration-300">
-                  <FileDown className="w-5 h-5" />
-                  <span>Download Free Guide (PDF)</span>
+                  <span>Read Guide →</span>
                 </div>
+
+                <p className="text-sm text-zinc-500 mt-4 font-light">
+                  28 pages · Free · No email required
+                </p>
               </div>
 
               <div className="order-1 md:order-2">

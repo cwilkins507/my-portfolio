@@ -144,8 +144,10 @@ You end up standardizing your setup so the agent can operate cleanly. Consistent
 
 ## Conclusion
 
-CLI agents shine when you give them a small, real job and a safe workspace. 
+CLI agents shine when you give them a small, real job and a safe workspace.
 
 Pick a single stack. Wrap your agent with a command policy. Turn on confirmations. Log everything.
 
 For a first project, spin up the Compose layout above and ask the agent to write a maintenance runbook for one of your stacks. You'll get better automation and documentation without needing to remember every tiny detail next time. Or you can do what I did and start with something that breaks often enough that you're motivated to automate it.
+
+Want to build production-grade agentic systems that scale reliably? Check out my [Agentic Workflows Guide](/guides/agentic-workflows) for a comprehensive framework on engineering autonomous agents with the DOE (Directive-Orchestration-Execution) architecture.

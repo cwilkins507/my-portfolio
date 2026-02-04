@@ -73,3 +73,5 @@ Pick two or three low-risk processes to automate. Set up a governed platform wit
 Measure cycle time, defect rate, and adoption over 90 days. We use JIRA labels like 'Claude' to track which work was assisted by AI tooling.
 
 The backlog won't shrink on its own. Someone has to drive this.
+
+Looking to move beyond visual automation tools? My [Agentic Workflows Guide](/guides/agentic-workflows) shows how to architect reliable AI-powered systems using the DOE Framework—perfect for when your automation needs outgrow low-code platforms.

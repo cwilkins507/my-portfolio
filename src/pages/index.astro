@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ArticleList from '../components/Articles';
+import AnimatedHero from '../components/AnimatedHero';
+import CaseStudyCard from '../components/CaseStudyCard';
 
 const articlesRaw = await Astro.glob('../articles/*.md');
 const articles = articlesRaw.map(article => ({
@@ -28,49 +30,59 @@ const websiteSchema = {
   schema={websiteSchema}
 >
 	<!-- Hero Section -->
-	<section class="py-20 md:py-32 text-center">
-		<div class="max-w-4xl mx-auto px-4">
-			<h1 class="text-4xl md:text-6xl font-serif font-extrabold text-white mb-6 leading-tight">
-				I build automations that turn $2M problems into solved problems.
-			</h1>
-			<p class="text-xl md:text-2xl text-zinc-400 mb-8">
-				Lead Engineer | 8+ Years | Python, Java, AWS, AI Integration<br/>
-				<span class="text-zinc-500">Ex-Ford, Morningstar</span>
-			</p>
-			<div class="flex flex-col sm:flex-row gap-4 justify-center">
-				<a href="/quiz" class="bg-white text-black hover:bg-zinc-200 px-8 py-4 rounded-full font-bold shadow-xl transition-all transform hover:scale-105">
-					Get Your AI Plan
-				</a>
-				<a href="#work" class="bg-teal-600 hover:bg-teal-500 text-white px-8 py-4 rounded-full font-bold shadow-xl transition-all">
-					See My Work
-				</a>
-			</div>
-		</div>
-	</section>
+	<AnimatedHero
+		headline="I build automations that turn $2M problems into solved problems."
+		subheadline="Lead Engineer | 8+ Years | Python, Java, AWS, AI Integration"
+		subtext="Ex-Ford, Morningstar"
+		ctas={[
+			{ href: '/quiz', text: 'Get Your AI Plan', variant: 'primary' },
+			{ href: '#work', text: 'See My Work', variant: 'secondary' }
+		]}
+		client:load
+	/>
 
 	<!-- Case Studies Section -->
 	<section id="work" class="py-16 bg-zinc-950/50">
 		<div class="max-w-6xl mx-auto px-4">
-			<h2 class="text-2xl font-serif font-bold text-white mb-8">Recent Work</h2>
-			<div class="grid md:grid-cols-3 gap-6">
-				<div class="bg-zinc-950 border border-zinc-800 rounded-lg p-6 hover:border-teal-400 transition-colors">
-					<h3 class="text-lg font-serif font-semibold text-white mb-2">Remote Dealership Inventory Audit</h3>
-					<p class="text-teal-400 text-2xl font-bold mb-2">$5M saved</p>
-					<p class="text-zinc-400 text-sm">IoT telemetry for 450K+ vehicles at Ford Credit</p>
-				</div>
-				<div class="bg-zinc-950 border border-zinc-800 rounded-lg p-6 hover:border-teal-400 transition-colors">
-					<h3 class="text-lg font-serif font-semibold text-white mb-2">Compliance Engine Modernization</h3>
-					<p class="text-teal-400 text-2xl font-bold mb-2">90% reduction</p>
-					<p class="text-zinc-400 text-sm">Event-driven architecture at Morningstar</p>
-				</div>
-				<div class="bg-zinc-950 border border-zinc-800 rounded-lg p-6 hover:border-teal-400 transition-colors">
-					<h3 class="text-lg font-serif font-semibold text-white mb-2">Stolen Vehicle Services</h3>
-					<p class="text-teal-400 text-2xl font-bold mb-2">2024 Launch</p>
-					<p class="text-zinc-400 text-sm">Real-time theft recovery for Ford F-150</p>
-				</div>
+			<h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-8">Recent Work</h2>
+			<div class="grid md:grid-cols-2 gap-6">
+				<CaseStudyCard
+					title="Remote Dealership Inventory Audit"
+					metric={{
+						type: 'counter',
+						value: 5,
+						prefix: '$',
+						suffix: 'M saved'
+					}}
+					description="IoT telemetry for 450K+ vehicles at Ford Credit"
+					featured={true}
+					client:load
+				/>
+				<CaseStudyCard
+					title="Compliance Engine Modernization"
+					metric={{
+						type: 'counter',
+						value: 90,
+						prefix: '',
+						suffix: '% reduction'
+					}}
+					description="Event-driven architecture at Morningstar"
+					client:load
+				/>
+				<CaseStudyCard
+					title="Stolen Vehicle Services"
+					metric={{
+						type: 'text',
+						value: '2024',
+						prefix: '',
+						suffix: ' Launch'
+					}}
+					description="Real-time theft recovery for Ford F-150"
+					client:load
+				/>
 			</div>
 			<div class="mt-6 text-center">
-				<a href="/about" class="text-teal-400 hover:text-teal-300 transition-colors">View full case studies →</a>
+				<a href="/about" class="text-teal-400 hover:text-teal-300 transition-colors font-medium">View full case studies →</a>
 			</div>
 		</div>
 	</section>

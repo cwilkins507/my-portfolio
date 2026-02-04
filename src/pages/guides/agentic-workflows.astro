@@ -1,0 +1,462 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { FileDown, CheckCircle, ArrowRight } from 'lucide-react';
+
+const guideSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "DigitalDocument",
+      "name": "Agentic Workflows Guide: Engineering Reliable AI Systems",
+      "description": "Learn the DOE Framework to restore 100% reliability to autonomous agents. Stop building chatbots that collapse under real-world complexity.",
+      "author": {
+        "@type": "Person",
+        "name": "Collin Wilkins",
+        "url": "https://collinwilkins.com/about"
+      },
+      "datePublished": "2026-01-07",
+      "fileFormat": "application/pdf",
+      "contentUrl": "https://collinwilkins.com/Agentic-Workflows-Guide.pdf",
+      "url": "https://collinwilkins.com/guides/agentic-workflows",
+      "numberOfPages": 28,
+      "keywords": "agentic workflows, AI automation, DOE framework, AI reliability, autonomous agents, LLM orchestration"
+    },
+    {
+      "@type": "Article",
+      "headline": "Stop Building Chatbots. Start Engineering Systems.",
+      "description": "Most AI workflows collapse under real-world complexity. Learn the DOE Framework to restore 100% reliability to autonomous agents.",
+      "author": {
+        "@type": "Person",
+        "name": "Collin Wilkins",
+        "url": "https://collinwilkins.com/about"
+      },
+      "datePublished": "2026-01-07",
+      "dateModified": "2026-01-07",
+      "publisher": {
+        "@type": "Person",
+        "name": "Collin Wilkins"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://collinwilkins.com/guides/agentic-workflows"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://collinwilkins.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Resources",
+          "item": "https://collinwilkins.com/resources"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Agentic Workflows Guide",
+          "item": "https://collinwilkins.com/guides/agentic-workflows"
+        }
+      ]
+    }
+  ]
+};
+---
+
+<Layout
+  title="Agentic Workflows Guide: DOE Framework for Reliable AI Systems | Collin Wilkins"
+  description="Free 28-page guide: Learn the DOE Framework to fix compounding AI errors. Stop building chatbots that collapse under complexity. Start engineering reliable autonomous agents."
+  type="article"
+  publishedTime="2026-01-07"
+  schema={guideSchema}
+>
+  <div class="min-h-screen bg-black">
+    <!-- Hero Section -->
+    <div class="container mx-auto px-4 py-20 md:py-28">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <a href="/resources" class="text-teal-400 hover:text-teal-300 mb-8 inline-block text-sm">
+            ← Back to Resources
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <!-- Left Column: Content -->
+          <div>
+            <h1 class="text-5xl md:text-6xl font-serif font-extrabold text-white leading-tight mb-6">
+              Stop Building Chatbots. <br />
+              <span class="italic text-zinc-400">Start Engineering Systems.</span>
+            </h1>
+
+            <p class="text-xl text-zinc-400 leading-relaxed mb-8">
+              Most AI workflows collapse under real-world complexity. Learn the DOE Framework to restore <span class="text-white font-semibold">100% reliability</span> to your autonomous agents.
+            </p>
+
+            <div class="mb-8">
+              <a
+                href="/Agentic-Workflows-Guide.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                onclick="if (window.plausible) { window.plausible('PDF Download', { props: { resource: 'Agentic Workflows Guide', location: 'hero' } }); }"
+                class="inline-flex items-center gap-3 px-8 py-4 bg-white text-black rounded-full font-bold hover:bg-teal-400 hover:text-black transition-all duration-300 transform hover:scale-105 shadow-2xl"
+              >
+                <FileDown className="w-5 h-5" />
+                <span>Download Free Guide (PDF)</span>
+              </a>
+            </div>
+
+            <p class="text-sm text-zinc-500">
+              1.2MB · 28 pages · No email required
+            </p>
+          </div>
+
+          <!-- Right Column: Thumbnail -->
+          <div class="order-first lg:order-last">
+            <div class="relative group/image">
+              <div class="absolute -inset-1 bg-gradient-to-r from-teal-500/20 to-zinc-500/20 rounded-xl blur opacity-25 group-hover/image:opacity-40 transition duration-1000"></div>
+              <img
+                src="/images/thumbnail.png"
+                alt="Agentic Workflows Guide preview showing DOE Framework"
+                class="relative w-full rounded-lg border border-zinc-800 shadow-2xl transform transition duration-500 group-hover/image:scale-[1.02]"
+                loading="eager"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- What You'll Learn Section -->
+    <div class="bg-zinc-950 border-t border-zinc-800">
+      <div class="container mx-auto px-4 py-16">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-4xl font-serif font-bold text-white mb-12 text-center">
+            What You'll Learn
+          </h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-black p-8 rounded-xl border border-zinc-800 hover:border-teal-400/50 transition-all duration-300">
+              <div class="flex items-start gap-4">
+                <CheckCircle className="w-6 h-6 text-teal-400 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 class="text-xl font-serif font-bold text-white mb-3">Close the Capability Overhang</h3>
+                  <p class="text-zinc-400 leading-relaxed">
+                    Bridge the gap between what AI can do and how it's actually deployed. Stop copy-pasting into chat UIs and start building production systems.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-black p-8 rounded-xl border border-zinc-800 hover:border-teal-400/50 transition-all duration-300">
+              <div class="flex items-start gap-4">
+                <CheckCircle className="w-6 h-6 text-teal-400 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 class="text-xl font-serif font-bold text-white mb-3">The DOE Framework</h3>
+                  <p class="text-zinc-400 leading-relaxed">
+                    Directive, Orchestration, Execution: a builder-first architecture for production-grade agents that scales reliably.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-black p-8 rounded-xl border border-zinc-800 hover:border-teal-400/50 transition-all duration-300">
+              <div class="flex items-start gap-4">
+                <CheckCircle className="w-6 h-6 text-teal-400 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 class="text-xl font-serif font-bold text-white mb-3">Fix the Math of Failure</h3>
+                  <p class="text-zinc-400 leading-relaxed">
+                    Understand why chained AI steps compound errors exponentially (0.9<sup>5</sup> = 59% success rate) and how to architect around it.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-black p-8 rounded-xl border border-zinc-800 hover:border-teal-400/50 transition-all duration-300">
+              <div class="flex items-start gap-4">
+                <CheckCircle className="w-6 h-6 text-teal-400 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 class="text-xl font-serif font-bold text-white mb-3">Self-Annealing Workflows</h3>
+                  <p class="text-zinc-400 leading-relaxed">
+                    Build systems that diagnose their own failures and apply fixes automatically. Turn errors into inputs, not endpoints.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-black p-8 rounded-xl border border-zinc-800 hover:border-teal-400/50 transition-all duration-300">
+              <div class="flex items-start gap-4">
+                <CheckCircle className="w-6 h-6 text-teal-400 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 class="text-xl font-serif font-bold text-white mb-3">Cloud Deployment Patterns</h3>
+                  <p class="text-zinc-400 leading-relaxed">
+                    Move from IDE prototypes to production webhooks with proper observability, logging, and error handling.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Insight / Pull Quote -->
+    <div class="border-t border-zinc-800">
+      <div class="container mx-auto px-4 py-16">
+        <div class="max-w-4xl mx-auto">
+          <blockquote class="relative">
+            <div class="absolute -left-4 top-0 text-8xl text-teal-400/20 font-serif leading-none">"</div>
+            <p class="text-2xl md:text-3xl font-serif text-white leading-relaxed pl-12 pr-8 italic">
+              If each step succeeds 90% of the time, a five-step workflow has a success rate of 0.9<sup>5</sup> ≈ 59%. In business terms, that looks like incorrect invoices, missed leads, and corrupted CRM data. Waiting for 'smarter models' does not solve this. <span class="text-teal-400 font-bold not-italic">The solution is architectural.</span>
+            </p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table of Contents Preview -->
+    <div class="bg-zinc-950 border-t border-zinc-800">
+      <div class="container mx-auto px-4 py-16">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-serif font-bold text-white mb-8 text-center">
+            Inside the Guide
+          </h2>
+
+          <div class="bg-black rounded-xl border border-zinc-800 p-8 md:p-12">
+            <ul class="space-y-4 text-zinc-400">
+              <li class="flex items-start gap-3">
+                <ArrowRight className="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" />
+                <span><strong class="text-white">Executive Summary:</strong> Riding the Wave</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <ArrowRight className="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" />
+                <span><strong class="text-white">The Architectural Shift:</strong> Graph-Based vs Agentic Workflows</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <ArrowRight className="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" />
+                <span><strong class="text-white">The Mathematics of Failure:</strong> Why Chains Break</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <ArrowRight className="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" />
+                <span><strong class="text-white">The DOE Framework:</strong> Directives, Orchestration, Execution</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <ArrowRight className="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" />
+                <span><strong class="text-white">Case Study:</strong> The ClickUp CRM Manager</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <ArrowRight className="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" />
+                <span><strong class="text-white">Scaling via Context Isolation</strong> & Sub-Agents</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <ArrowRight className="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" />
+                <span><strong class="text-white">Self-Annealing Workflows:</strong> Systems That Heal Themselves</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <ArrowRight className="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" />
+                <span><strong class="text-white">Cloud Deployment:</strong> Architect vs Resident</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <ArrowRight className="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" />
+                <span><strong class="text-white">Technical Appendix:</strong> Workspace Standards & Folder Structure</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="border-t border-zinc-800">
+      <div class="container mx-auto px-4 py-20">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-4xl font-serif font-bold text-white mb-12">
+            Why Agentic Workflows Fail (And How to Fix Them)
+          </h2>
+
+          <div class="prose prose-invert max-w-none prose-headings:font-serif prose-headings:text-white prose-p:text-zinc-400 prose-p:leading-relaxed prose-p:text-lg prose-a:text-teal-400 prose-strong:text-white prose-h3:text-2xl prose-h3:mt-12 prose-h3:mb-6">
+            <p>
+              Most organizations are experiencing a <strong>capability overhang</strong>: a widening gap between what frontier AI models can do and how they're actually deployed. Teams copy-paste into chat UIs or wire together brittle automations that collapse when an API response changes shape.
+            </p>
+
+            <p>
+              These systems fail not because the models are weak, but because <strong>the architecture is wrong</strong>.
+            </p>
+
+            <h3>The Problem with Traditional Automation</h3>
+
+            <p>
+              Traditional platforms like Zapier, n8n, and Make are graph-based. Each node represents a fixed step: an API call, a filter, a conditional branch. This works for simple workflows, but complexity compounds faster than value. An automation that "onboards a client" quickly grows from three steps to thirty. Every edge case adds branches. Every API change adds maintenance debt.
+            </p>
+
+            <h3>The Math of Compounding Failure</h3>
+
+            <p>
+              LLMs are probabilistic systems. When you chain multiple AI-driven steps together, error rates compound exponentially. If each step succeeds 90% of the time, a five-step workflow has a success rate of only 59%. In production, this manifests as incorrect invoices, missed leads, corrupted CRM data, and quiet operational decay.
+            </p>
+
+            <p>
+              Waiting for "smarter models" doesn't solve this. <strong>The solution is architectural.</strong>
+            </p>
+
+            <h3>Enter the DOE Framework</h3>
+
+            <p>
+              The <strong>Directive-Orchestration-Execution (DOE) Framework</strong> inverts the traditional automation model. Instead of procedural graphs, DOE workflows are declarative. You define the goal (the Directive), the tools (Execution scripts), and delegate path-finding to a reasoning model acting as the Orchestrator.
+            </p>
+
+            <p><strong>Three Layers, Zero Complexity:</strong></p>
+
+            <ul class="space-y-4 my-8">
+              <li>
+                <strong class="text-white">Directives (Layer 1)</strong> — Standard Operating Procedures written in Markdown. They contain zero code, just business intent: the mission, expected inputs, allowed tools, and success criteria.
+              </li>
+              <li>
+                <strong class="text-white">Orchestration (Layer 2)</strong> — The LLM itself, typically operating inside an IDE like VS Code or Cursor. It reads the Directive, evaluates state, and selects which Execution script to run next. This layer handles the unforeseen: API failures, partial data, ambiguous outcomes.
+              </li>
+              <li>
+                <strong class="text-white">Execution (Layer 3)</strong> — Modular, deterministic code (Python or TypeScript). A script like <code>send_email.py</code> doesn't reason—it accepts inputs and performs a single action with 100% reliability.
+              </li>
+            </ul>
+
+            <p>
+              By isolating reasoning from execution, the DOE Framework restores determinism where it matters while still leveraging intelligence where it creates leverage.
+            </p>
+
+            <h3>Real-World Application: The ClickUp CRM Manager</h3>
+
+            <p>
+              Consider a lead that enters onboarding but never books a kickoff call. A legacy automation sends a single reminder and stops. A DOE-based CRM Manager responds with context:
+            </p>
+
+            <ol class="space-y-2 my-8">
+              <li>Builder prompts: "Check for cold leads in the Onboarding list"</li>
+              <li>Orchestrator reads <code>directives/onboard_client.md</code></li>
+              <li>Execution runs <code>check_clickup_status.py</code>, returns: <code>{"{ \"status\": \"Awaiting Call\", \"days_since_onboarding\": 4 }"}</code></li>
+              <li>Reasoning determines a 3-day nudge threshold was exceeded</li>
+              <li>Execution runs <code>send_email.py</code> with personalized template</li>
+              <li>On failure: log error, tag ClickUp task, request human intervention</li>
+            </ol>
+
+            <p>
+              Failures are captured, surfaced, and repaired—not silently ignored.
+            </p>
+
+            <h3>The Path Forward</h3>
+
+            <p>
+              The future is cloud-native agents: natural-language queries to URLs that trigger reliable, observable workflows. The DOE Framework provides the architectural foundation to build systems that actually work in production.
+            </p>
+
+            <p class="text-xl font-semibold text-white mt-12">
+              Download the complete guide to learn the implementation details, folder structures, cloud deployment patterns, and advanced techniques like self-annealing workflows and sub-agent orchestration.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Author Bio -->
+    <div class="bg-zinc-950 border-t border-zinc-800">
+      <div class="container mx-auto px-4 py-16">
+        <div class="max-w-4xl mx-auto text-center">
+          <h3 class="text-2xl font-serif font-bold text-white mb-4">About the Author</h3>
+          <p class="text-lg text-zinc-400 leading-relaxed mb-6">
+            By <strong class="text-white">Collin Wilkins</strong>, Lead Engineer with 8+ years automating systems at Ford and Morningstar. Specializing in Python automation, AI integration, and AWS serverless architecture.
+          </p>
+          <a href="/about" class="text-teal-400 hover:text-teal-300 font-semibold">
+            Learn more about my work →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Download CTA -->
+    <div class="border-t border-zinc-800">
+      <div class="container mx-auto px-4 py-20">
+        <div class="max-w-4xl mx-auto">
+          <div class="bg-zinc-950 p-12 md:p-16 rounded-2xl border border-zinc-800 shadow-2xl relative overflow-hidden group text-center">
+            <div class="absolute -inset-x-20 -top-20 h-40 bg-teal-500/5 blur-[100px] pointer-events-none group-hover:bg-teal-500/10 transition-all duration-500"></div>
+
+            <div class="relative z-10">
+              <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-6">
+                Ready to Build Reliable AI Systems?
+              </h2>
+              <p class="text-xl text-zinc-400 mb-10 max-w-2xl mx-auto">
+                Join developers and engineering leaders who've downloaded this guide. No email required.
+              </p>
+
+              <a
+                href="/Agentic-Workflows-Guide.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                onclick="if (window.plausible) { window.plausible('PDF Download', { props: { resource: 'Agentic Workflows Guide', location: 'bottom_cta' } }); }"
+                class="inline-flex items-center gap-3 px-10 py-5 bg-white text-black rounded-full font-bold text-lg hover:bg-teal-400 hover:text-black transition-all duration-300 transform hover:scale-105 shadow-2xl"
+              >
+                <FileDown className="w-6 h-6" />
+                <span>Download Free Guide (PDF)</span>
+              </a>
+
+              <p class="text-sm text-zinc-500 mt-6">
+                1.2MB · 28 pages · No email required
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Resources -->
+    <div class="bg-zinc-950 border-t border-zinc-800">
+      <div class="container mx-auto px-4 py-16">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-3xl font-serif font-bold text-white mb-12 text-center">
+            Related Resources
+          </h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <a
+              href="/articles/cli-agents"
+              class="bg-black p-8 rounded-xl border border-zinc-800 hover:border-teal-400 transition-all duration-300 group"
+            >
+              <h3 class="text-xl font-serif font-bold text-white mb-3 group-hover:text-teal-400 transition-colors">
+                CLI Agents: The Future of Development
+              </h3>
+              <p class="text-zinc-400 text-sm leading-relaxed">
+                Explore how CLI-based AI agents are revolutionizing software development and workflow automation.
+              </p>
+            </a>
+
+            <a
+              href="/agents"
+              class="bg-black p-8 rounded-xl border border-zinc-800 hover:border-teal-400 transition-all duration-300 group"
+            >
+              <h3 class="text-xl font-serif font-bold text-white mb-3 group-hover:text-teal-400 transition-colors">
+                AGENTS.md Template
+              </h3>
+              <p class="text-zinc-400 text-sm leading-relaxed">
+                Download the template I use to document and specify AI agent behaviors and safety protocols.
+              </p>
+            </a>
+
+            <a
+              href="/quiz"
+              class="bg-black p-8 rounded-xl border border-zinc-800 hover:border-teal-400 transition-all duration-300 group"
+            >
+              <h3 class="text-xl font-serif font-bold text-white mb-3 group-hover:text-teal-400 transition-colors">
+                Get Your AI Implementation Plan
+              </h3>
+              <p class="text-zinc-400 text-sm leading-relaxed">
+                Take the 5-minute quiz to receive a custom roadmap for implementing AI in your organization.
+              </p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
