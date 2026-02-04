@@ -18,101 +18,103 @@ I did the math: if the Fed hiked rates after each meeting, that 30-day lag could
 
 I proposed an automated fix. The response? "We don't have the technical resources or skills to do that."
 
-So, I built what I could myself (with the skills I had at the time). I cut that 30-day lead time down to 7 days.
+So I built what I could myself. Cut that 30-day lead time down to 7 days.
 
-That was my inflection point.
+That's when it clicked for me.
 
-I realized that code is a high-leverage business tool. Another tool in the generalist's toolkit. 
-
-I focus on building systems that solve expensive problems and reclaim thousands of wasted human hours.`
+Code isn't just for engineers. It's a business tool. I build systems that solve expensive problems and give people their time back.`
     },
     {
       title: "Philosophy: Engineering as a Profit Center",
-      content: `I am a Tech Optimist and a Problem-Spotter. I believe the biggest lifts in a company don't come from "Big AI" magic wands, but from removing the friction points that compound over time. I focus on solving the "death by a thousand cuts" issues—the small manual tasks that compound into massive time sinks.
+      content: `I'm a tech optimist and a problem-spotter. The biggest wins don't come from "Big AI" magic wands. They come from fixing the friction points that compound over time. The "death by a thousand cuts" issues. Small manual tasks that add up to massive time sinks.
 
-If your team is spending 20% of their week clicking "Run" on a Postman collection or manually importing contacts, you aren't just losing time—you're losing the opportunity to innovate.
+If your team spends 20% of their week clicking "Run" on a Postman collection or manually importing contacts, you're not just losing time. You're losing the chance to innovate.
 
-I use Infrastructure as Code (Terraform) because I've inherited too many systems where the only documentation was "Steve's memory"—and Steve quit. Everything I build is self-documenting through code. If I leave, the logic remains.
+I use Infrastructure as Code (Terraform) because I've inherited too many systems where the only documentation was "Steve's memory." And Steve quit. Everything I build is self-documenting through code. If I leave, the logic stays behind.
 
-I choose robustness over trendiness. I use AWS Lambda and distributed queues (SQS) not because they're fashionable, but because they scale to millions of requests without infrastructure headaches—and you only pay for what you use. No expensive servers sitting idle at 3 AM.`
+I pick robustness over trendiness. AWS Lambda and distributed queues (SQS) aren't fashionable, but they scale to millions of requests without the headaches. You only pay for what you use. No expensive servers sitting idle at 3 AM.`
     },
     {
       title: "The Special Sauce: From the Field to the Terminal",
-      content: `I spent the first half of my career in Sales and Business Development (moving through 7 states and 13 territories for Ford). I’ve been the "Field Rep" and I’ve been the "Lead Engineer."
+      content: `I spent the first half of my career in Sales and Business Development, moving through 7 states and 13 territories for Ford. I've been the "Field Rep" and I've been the "Lead Engineer."
 
 This is my moat.
 
-Most developers look at a Jira ticket and don't see the forest for the trees. 
+Most developers look at a Jira ticket and miss the bigger picture. There's a joke I've seen play out more times than I'd like:
 
-There's a common joke (and in my experience it exists for a reason) 
+An engineer designs a beautiful deck that meets all structural and safety codes. Except it has no stairs and isn't attached to the house.
 
-An engineer designs a beautiful deck that meets all structural and safety codes—except it has no stairs and isn’t attached to the house. 
+When asked why, the engineer replies: "Well, that wasn't in the requirements."
 
-When asked why, the engineer replies: "Well, that wasn’t in the requirements."
-
-I look at a business process. Because I’ve lived the "shared pain" of operations and manual data entry, I can tie technical architecture directly to business value. I speak Finance, I speak Sales, and I speak Python.`
+I look at business processes differently. I've lived the pain of operations and manual data entry. I can tie technical architecture directly to business value. I speak Finance, I speak Sales, and I speak Python.`
     },
     {
       title: "Core Specialization: Python & Agentic Workflows",
-      content: `I specialize in Python automation and AI/LLM systems. I build production-ready agentic workflows using LLMs—not just chat demos, but systems that run reliably at scale. 
-      
-      One of my recent scripts pulled GitHub PRs, Bitbucket requests, and Asana milestones across an entire enterprise squad—generating a comprehensive summary of business impact and shipping it to leadership every Friday at 4 PM on the dot.
+      content: `I specialize in Python automation and AI/LLM systems. I build production-ready agentic workflows using LLMs. Not just chat demos, but systems that run reliably at scale.
 
-It didn't just save time—it gave leadership real-time insight into what 12 engineering teams were shipping, without scheduling a single status meeting.
+One of my recent scripts pulled GitHub PRs, Bitbucket requests, and Asana milestones across an entire enterprise squad. Generated a summary of business impact and shipped it to leadership every Friday at 4 PM sharp.
+
+It didn't just save time. It gave leadership real-time insight into what 12 engineering teams were shipping, without scheduling a single status meeting.
 
 Key Tools:
-- Data Pipelines: requests, beautifulsoup, pandas.
-- Backend Services: Java, Spring Boot, Postgres.
-- Cloud Infrastructure: AWS (Lambda, SQS, Fargate), Azure, GCP.`
+- Data Pipelines: requests, beautifulsoup, pandas
+- Backend Services: Java, Spring Boot, Postgres
+- Cloud Infrastructure: AWS (Lambda, SQS, Fargate), Azure, GCP`
     },
     {
       title: "Case Study: Remote Dealership Inventory Audit (IoT & Cloud)",
-      content: `**The Pain**: Ford Credit was losing millions to slow, manual vehicle audits. Auditors drove hundreds of miles to physically count cars at dealerships, discovering discrepancies weeks after the financial impact. In a rising interest rate environment, this lag was costly.
+      content: `The problem: Ford Credit was spending millions on slow, manual vehicle audits. Auditors drove hundreds of miles to physically count cars at dealerships, discovering discrepancies weeks after the financial impact. In a rising interest rate environment, this lag was expensive.
 
-**The Result**: I built an IoT telemetry platform that automated verification for 450,000+ vehicles, saving approximately $5 million annually in operational costs and interest rate carry. What used to take weeks now happens in real-time.
+What we built: An IoT telemetry platform that automated verification for 450,000+ vehicles, saving around $5 million annually in operational costs and interest rate carry. What used to take weeks now happens in real-time.
 
-**How**: I led the architecture of a high-scale event-driven system using Kafka, Google Cloud Pub/Sub, and Azure IoT Hub. The system ingests 600,000+ vehicle events daily with state management to ensure data integrity in a distributed environment—handling out-of-order events through Kafka partitioning by vehicle_id and stateful buffering.`
+How it works: I led the architecture of a high-scale event-driven system using Kafka, Google Cloud Pub/Sub, and Azure IoT Hub. The system ingests 600,000+ vehicle events daily with state management to ensure data integrity in a distributed environment. Handles out-of-order events through Kafka partitioning by vehicle_id and stateful buffering.`
     },
     {
       title: "Case Study: Modernizing Compliance at Morningstar",
-      content: `**The Pain**: Every morning started the same way: an engineer clicking through 80 Postman requests to trigger compliance checks—one by one, like a human cron job. This consumed 20% of our team's weekly bandwidth. When someone got sick for a week, compliance checks just... stopped. That's when we knew we had to automate.
+      content: `The problem: Every morning started the same way. An engineer clicking through 80 Postman requests to trigger compliance checks. One by one, like a human cron job. This ate up 20% of our team's weekly bandwidth. When someone got sick for a week, compliance checks just... stopped. That's when we knew we had to automate.
 
-**The Result**: I transformed the architecture to fully event-driven, reducing daily compliance runs by 90% and reclaiming 10 engineering hours every week. This allowed us to onboard 7 new enterprise recordkeepers with zero added overhead while improving throughput and reducing latency by 35%.
+What we built: I transformed the architecture to fully event-driven, reducing daily compliance runs by 90% and freeing up 10 engineering hours every week. This let us onboard 7 new enterprise recordkeepers with zero added overhead while improving throughput and reducing latency by 35%.
 
-**How**: I implemented load-aware scheduling that monitors database capacity before kicking off new jobs via AWS SQS and ephemeral Fargate tasks. Instead of blindly running all checks daily, the system uses database diffing to detect meaningful changes and only publishes events when a delta is detected—smart resource utilization that scales.`
+How it works: I implemented load-aware scheduling that monitors database capacity before kicking off new jobs via AWS SQS and ephemeral Fargate tasks. Instead of blindly running all checks daily, the system uses database diffing to detect meaningful changes and only publishes events when there's actually a delta. Smart resource utilization that scales.`
     },
     {
       title: "Case Study: Stolen Vehicle Services for 2024 Ford F-150",
-      content: `**The Pain**: The Ford F-150 is America's best-selling truck—and its most stolen. Owners needed real-time protection, but tracking vehicles raises serious privacy concerns. We had to balance theft recovery capability with strict data privacy compliance.
+      content: `The problem: The Ford F-150 is America's best-selling truck. Also its most stolen. Owners needed real-time protection, but tracking vehicles raises serious privacy concerns. We had to balance theft recovery capability with strict data privacy compliance.
 
-**The Result**: I built a privacy-first telemetry system now deployed in thousands of 2024 F-150s, providing owners with cloud-backed theft recovery. When a theft is reported, the system automatically increases tracking frequency to help police recover the vehicle faster.
+What we built: A privacy-first telemetry system now deployed in thousands of 2024 F-150s, providing owners with cloud-backed theft recovery. When a theft is reported, the system automatically increases tracking frequency to help police recover the vehicle faster.
 
-**How**: I architected a Zero Trust ingestion layer using GCP Pub/Sub and Kafka where all telemetry is anonymized at entry, with PII encrypted in a secure vault accessible only via ephemeral tokens during active recovery. The adaptive recovery mode transitions the vehicle's modem to high-frequency reporting when theft is detected, balancing recovery speed with cellular costs and battery drain.`
+How it works: I architected a Zero Trust ingestion layer using GCP Pub/Sub and Kafka where all telemetry is anonymized at entry, with PII encrypted in a secure vault accessible only via ephemeral tokens during active recovery. The adaptive recovery mode transitions the vehicle's modem to high-frequency reporting when theft is detected, balancing recovery speed with cellular costs and battery drain.`
     },
     {
       title: "Behind the Code: Discipline and Context",
-      content: `I’m an INTJ with a relentless focus on continuous learning.
+      content: `I'm an INTJ with a focus on continuous learning.
 
-- Consistency: I track my nutrition and hit the gym 3-5 times a week. I apply that same "incremental gains" mindset to my codebases.
-- Adaptability: I've lived in Dallas, Atlanta, Denver, Boston, and now Detroit. I am a generalist by choice—meaning I can drop into any legacy system, identify the bottleneck, and ship the fix.
-- The Soundtrack: I work to a mix of country music and 2000s rock. Creed and Nickelback are ok by me.`
+Consistency: I track my nutrition and hit the gym 3-5 times a week. I apply that same "incremental gains" mindset to my codebases.
+
+Adaptability: I've lived in Dallas, Atlanta, Denver, Boston, and now Detroit. I'm a generalist by choice. I can drop into any legacy system, identify the bottleneck, and ship the fix.
+
+The Soundtrack: I work to a mix of country music and 2000s rock. Creed and Nickelback are fine by me.`
     },
     {
       title: "How to Work With Me",
       content: `I help companies eliminate expensive manual processes through custom automation. If your team is wasting hours on work a script could handle, I can help.
 
-**How It Works:**
-1. **Discovery Call** (30 minutes, free): We discuss your biggest workflow bottlenecks
-2. **Automation Audit** (1 week): I analyze your processes and identify savings opportunities
-3. **Implementation** (timeline varies): I build and deploy the solution
-4. **Handoff**: Complete documentation and support to ensure your team can own the system
+How it works:
 
-**What I Build:**
-- **AI/LLM Integration**: Custom agents that handle repetitive analysis and decision-making tasks, freeing your team for high-value work. I build production-ready agentic workflows, not just demos.
-- **Automation Strategy**: I audit your workflows, identify the highest-ROI automation opportunities, and implement Python scripts or low-code solutions that reclaim thousands of hours annually.
-- **Backend Engineering**: Scalable API design, serverless architecture (AWS Lambda), and database optimization for systems that handle real production load.
+1. Discovery Call (30 minutes, free): We discuss your biggest workflow bottlenecks
+2. Automation Audit (1 week): I analyze your processes and identify savings opportunities
+3. Implementation (timeline varies): I build and deploy the solution
+4. Handoff: Complete documentation and support to ensure your team can own the system
 
-**Guarantee**: If I don't identify significant automation savings during the audit, it's free.
+What I build:
+
+AI/LLM Integration: Custom agents that handle repetitive analysis and decision-making tasks, freeing your team for high-value work. I build production-ready agentic workflows, not just demos.
+
+Automation Strategy: I audit your workflows, identify the highest-ROI automation opportunities, and implement Python scripts or low-code solutions that save thousands of hours annually.
+
+Backend Engineering: Scalable API design, serverless architecture (AWS Lambda), and database optimization for systems that handle real production load.
+
+Guarantee: If I don't identify significant automation savings during the audit, it's free.
 
 Currently accepting new projects. Email me at wilkins507@gmail.com with the manual process that's draining your team's time, and I'll respond within 24-48 hours with next steps.`
     }
