@@ -67,7 +67,7 @@ At Morningstar, I inherited a compliance system that was effectively "running on
 ## 6. Behind the Code: Discipline and Context
 I’m an **INTJ** with a relentless focus on continuous learning. 
 
-*   **Consistency:** I’ve tracked my nutrition and hit the gym 3-5 times a week for the last 8 years. I apply that same "incremental gains" mindset to my codebases.
+*   **Consistency:** I track my nutrition and hit the gym 3-5 times a week. I apply that same "incremental gains" mindset to my codebases.
 *   **Adaptability:** I’ve lived in Dallas, Atlanta, Denver, Boston, and now Detroit. I am a generalist by choice—meaning I can drop into any legacy system, find the value, and fix the leak.
 *   **The Soundtrack:** I work to a mix of country music and 2000s rock. Creed and Nickelback are ok by me.
 

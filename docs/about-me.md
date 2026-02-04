@@ -128,7 +128,7 @@ Our job would run overnight during off hours to avoid any of the peak utilizatio
 Who am I 
 -optimist - I try to imagine the positive outlook on every situation
 -generalist - I am interested in lots of things, shiny objects, continuous learning/curious, wide skill set
--fitness enthusiast - I track my nutrition most of the time, enjoy gym 3-5 times a week for 8+ years now, general health is important to me , dicey family history
+-fitness enthusiast - I track my nutrition most of the time, enjoy gym 3-5 times a week, general health is important to me , dicey family history
 
 
 

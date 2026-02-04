@@ -60,6 +60,17 @@ export default function CaseStudyCard({ title, metric, description, featured = f
             `${metric.prefix}${metric.value}${metric.suffix}`
           )}
         </span>
+        <noscript>
+          <span
+            className="bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent"
+            style={{
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
+          >
+            {metric.prefix}{metric.value}{metric.suffix}
+          </span>
+        </noscript>
       </p>
 
       <p className="text-zinc-400 text-sm">{description}</p>

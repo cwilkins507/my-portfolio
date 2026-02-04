@@ -51,8 +51,15 @@ export default function AnimatedCounter({
   };
 
   return (
-    <span ref={ref} className={className}>
-      {prefix}{formatValue(displayValue)}{suffix}
-    </span>
+    <>
+      <span ref={ref} className={className}>
+        {prefix}{formatValue(displayValue)}{suffix}
+      </span>
+      <noscript>
+        <span className={className}>
+          {prefix}{formatValue(value)}{suffix}
+        </span>
+      </noscript>
+    </>
   );
 }

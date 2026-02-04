@@ -6,7 +6,7 @@ const services = [
         id: 'ai-automation',
         title: "AI & Automation Consulting",
         icon: <Bot className="w-12 h-12 text-teal-400" />,
-        description: "I help businesses leverage Large Language Models and automation to streamline operations, reduce manual overhead, and build intelligent workflows.",
+        description: "I help businesses use Large Language Models to automate manual work. Most clients see 60-80% reduction in repetitive tasks within 6 weeks.",
         deliverables: [
             "Custom Agentic Workflows (GitHub/Asana/Slack integrations)",
             "Prompt Engineering & Context Design (CLEAR framework)",
@@ -19,7 +19,7 @@ const services = [
         id: 'python-scripting',
         title: "Python Scripting & API Integration",
         icon: <Code className="w-12 h-12 text-teal-400" />,
-        description: "Robust, production-grade glue code to connect your tech stack. I specialize in complex data normalization and resilient system integration.",
+        description: "Production-grade glue code to connect your tech stack. I specialize in messy data normalization and system integrations that don't break when APIs change.",
         deliverables: [
             "Custom API Wrappers and Integrations",
             "Data Normalization & Cleaning Pipelines (Pandas/Pydantic)",
@@ -32,7 +32,7 @@ const services = [
         id: 'aws-serverless',
         title: "AWS & Serverless Architecture",
         icon: <Cloud className="w-12 h-12 text-teal-400" />,
-        description: "Cloud-native solutions designed for scalability, observability, and cost-efficiency. Everything is built as code (Terraform).",
+        description: "Serverless architectures that scale automatically and cost 40-70% less than traditional infrastructure. I build everything in Terraform so you can see exactly what you're paying for.",
         deliverables: [
             "AWS Lambda & Event-Driven Workflows",
             "Infrastructure as Code (Terraform/CloudFormation)",
@@ -55,12 +55,18 @@ const Services = () => {
                 {/* Hero Section */}
                 <section className="mb-24 text-center">
                     <h1 className="text-5xl md:text-6xl font-serif font-extrabold text-white mb-6">
-                        How I Can Help
+                        Services
                     </h1>
+                    <p className="text-xl text-zinc-400 max-w-3xl mx-auto leading-relaxed mb-4">
+                        I automate expensive problems. At Ford, I helped eliminate $5M+ in manual overhead with IoT-based inventory audits.
+                    </p>
+                    <p className="text-xl text-zinc-400 max-w-3xl mx-auto leading-relaxed mb-4">
+                        You're here because something in your business is costing too much time, money, or both.
+                        Manual data entry eating 40 hours a week. API integrations that break every month.
+                        Cloud costs spiraling out of control.
+                    </p>
                     <p className="text-xl text-zinc-400 max-w-3xl mx-auto leading-relaxed">
-                        I bridge the gap between complex business problems and technical solutions.
-                        Whether you need to automate a tedious manual process, integrate AI into your product,
-                        or scale your cloud infrastructure, I build systems that deliver measurable business value.
+                        I fix those. Python automation, AI workflows, serverless architecture—whatever solves the problem fastest.
                     </p>
                 </section>
 
@@ -101,6 +107,58 @@ const Services = () => {
                     ))}
                 </section>
 
+                {/* How It Works Section */}
+                <section className="mb-24 bg-zinc-950 p-8 md:p-12 rounded-3xl border border-zinc-800">
+                    <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-6 border-b border-teal-500/20 pb-4">
+                        How It Works
+                    </h2>
+                    <div className="text-lg text-zinc-400 leading-relaxed space-y-8">
+                        <div>
+                            <h3 className="text-xl font-bold text-teal-400 mb-2">
+                                1. Discovery Call (30 minutes, free)
+                            </h3>
+                            <p>
+                                We discuss your biggest workflow bottlenecks. I ask about manual processes,
+                                data quality issues, and systems that don't talk to each other.
+                                By the end, you'll know if automation can help—and roughly how much it'll cost.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 className="text-xl font-bold text-teal-400 mb-2">
+                                2. Automation Audit (1-2 weeks)
+                            </h3>
+                            <p>
+                                I analyze your processes and identify savings opportunities.
+                                This includes API research, data mapping, and architecture design.
+                                You get a detailed proposal with estimated ROI, timeline, and implementation approach.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 className="text-xl font-bold text-teal-400 mb-2">
+                                3. Implementation (4-12 weeks, depending on scope)
+                            </h3>
+                            <p>
+                                I build and deploy the solution. Weekly check-ins keep you informed.
+                                All code is production-grade: error handling, logging, monitoring, tests.
+                                No prototypes, no "we'll fix that later."
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 className="text-xl font-bold text-teal-400 mb-2">
+                                4. Handoff & Support
+                            </h3>
+                            <p>
+                                Complete documentation, runbooks, and training so your team can own the system.
+                                I include 30 days of support for bugs or adjustments.
+                                After that, you can hire me for maintenance or handle it in-house.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
                 {/* Quiz CTA */}
                 <section className="mb-24 bg-zinc-950 p-8 md:p-12 rounded-3xl border border-zinc-800 text-center">
                     <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">Not sure which service fits?</h2>
@@ -119,8 +177,8 @@ const Services = () => {
                 <section className="bg-zinc-950 p-8 md:p-12 rounded-3xl border border-zinc-800 text-center shadow-2xl">
                     <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-6">Ready to start a project?</h2>
                     <p className="text-zinc-400 mb-10 max-w-2xl mx-auto text-lg">
-                        I'm currently taking on new consulting engagements and project work.
-                        Let's discuss how we can streamline your operations or build your next big idea.
+                        I'm taking on 2-3 new clients per quarter.
+                        If you have a $50K+ automation problem, let's talk.
                     </p>
                     <div className="flex flex-col md:flex-row justify-center items-center gap-4">
                         <a href="?modal=contact"
