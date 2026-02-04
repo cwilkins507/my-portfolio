@@ -91,7 +91,7 @@ How it works: I architected a Zero Trust ingestion layer using GCP Pub/Sub and K
 
 Consistency: I track my nutrition and hit the gym 3-5 times a week. I apply that same "incremental gains" mindset to my codebases.
 
-Adaptability: I've lived in Dallas, Atlanta, Denver, Boston, and now Detroit. I'm a generalist by choice. I can drop into any legacy system, identify the bottleneck, and ship the fix.
+Adaptability: I've lived in Dallas, Atlanta, Denver, Nashville, Boston, Tampa, and now Detroit. I'm a generalist by choice. I can drop into any legacy system, identify the bottleneck, and ship the fix.
 
 The Soundtrack: I work to a mix of country music and 2000s rock. Creed and Nickelback are fine by me.`
     },
@@ -312,6 +312,46 @@ const About = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* What I'm Building Section */}
+        <section className="mb-16">
+          <h2 className="text-4xl font-serif font-bold text-center text-white mb-16">
+            What I'm Building
+          </h2>
+
+          <div className="bg-zinc-950 rounded-xl p-8 border border-zinc-800">
+            <h3 className="text-2xl font-serif font-bold text-white mb-4">
+              <span className="text-teal-400">FiNimbus</span> — AI-powered CFO for small businesses.
+            </h3>
+
+            <div className="space-y-4 text-zinc-400 leading-relaxed">
+              <p>
+                At Ford Credit, I analyzed hundreds of financial statements from dealerships on our floor plan and small businesses applying for lines of credit. You start to see patterns. The best-performing dealerships weren't tracking more metrics—they were focused on fewer, and they understood exactly what those numbers meant for their next move. Meanwhile, I watched lenders approve or deny credit based on the same handful of drivers, over and over.
+              </p>
+
+              <p>
+                Most small business owners have financial statements they don't understand. They see numbers but don't know what those numbers are telling them to <em>do</em>. So they either ignore the reports, pay someone to translate, or fly blind until a lender or accountant delivers bad news.
+              </p>
+
+              <p>
+                FiNimbus fixes that. It takes your financials and translates them into the key drivers that actually matter—the same ones I watched separate thriving businesses from struggling ones, the same ones lenders use to evaluate your creditworthiness. Not another dashboard. Not forecasts. Just clear, plain-language answers: here's what's happening, here's why, here's what to do about it.
+              </p>
+
+              <p className="font-medium">
+                Financial clarity, instantly.
+              </p>
+            </div>
+
+            <a
+              href="https://finimbus.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-teal-400 hover:text-teal-300 transition-colors font-medium inline-block mt-6"
+            >
+              → finimbus.com
+            </a>
           </div>
         </section>
 

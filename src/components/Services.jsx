@@ -178,7 +178,7 @@ const Services = () => {
                     <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-6">Ready to start a project?</h2>
                     <p className="text-zinc-400 mb-10 max-w-2xl mx-auto text-lg">
                         I'm taking on 2-3 new clients per quarter.
-                        If you have a $50K+ automation problem, let's talk.
+                        If you're looking to find $50K+ in automation savings, let's talk.
                     </p>
                     <div className="flex flex-col md:flex-row justify-center items-center gap-4">
                         <a href="?modal=contact"
