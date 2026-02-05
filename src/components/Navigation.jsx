@@ -1,54 +1,97 @@
-import { useEffect, useState } from 'react';
-import { Linkedin, Github, BadgeDollarSign } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Linkedin, Github, Search } from 'lucide-react';
 
-/**
- * Navigation - Sticky navigation with scroll-triggered blur backdrop
- */
-export default function Navigation({ portfolioData }) {
-  const [isScrolled, setIsScrolled] = useState(false);
+const Navigation = ({ portfolioData, onSearchClick }) => {
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Global keyboard shortcut for search
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      // Only trigger if not typing in an input
+      if (e.key === 's' && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+        e.preventDefault();
+        onSearchClick?.();
+      }
+    };
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [onSearchClick]);
+
   return (
     <nav
-      className={`p-4 sticky top-0 z-40 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-black/80 backdrop-blur-md border-b border-zinc-800 shadow-lg'
-          : 'bg-black border-b border-zinc-800'
-      }`}
+      className="fixed top-0 left-0 right-0 z-40 transition-all duration-300"
+      style={{
+        background: 'rgba(10, 10, 11, 0.8)',
+        backdropFilter: 'blur(20px)',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
+      }}
     >
-      <div className="container mx-auto flex flex-wrap justify-between items-center px-4">
-        <a
-          href="/"
-          className="text-white text-2xl font-bold hover:text-teal-400 transition font-display"
-        >
-          {portfolioData.name}
+      <div className="max-w-[960px] mx-auto px-6 h-14 flex items-center justify-between">
+        {/* Logo */}
+        <a href="/" className="font-serif text-lg font-medium text-moonlight-text-primary hover:text-teal-400 transition">
+          {portfolioData?.name || 'Collin Wilkins'}
         </a>
-        <div className="flex space-x-6 pt-2 md:pt-0">
-          <a href="/" className="hover:text-teal-400 transition font-medium">
-            Read
+
+        {/* Right Side: Links + Search */}
+        <div className="flex items-center gap-6">
+          <a href="/articles" className="text-[13px] text-moonlight-text-muted hover:text-moonlight-text-primary transition">
+            Articles
           </a>
-          <a href="/resources" className="hover:text-teal-400 transition font-medium">
+          <a href="/resources" className="text-[13px] text-moonlight-text-muted hover:text-moonlight-text-primary transition">
             Resources
           </a>
-          <a href="/services" className="hover:text-teal-400 transition font-medium">
+          <a href="/services" className="text-[13px] text-moonlight-text-muted hover:text-moonlight-text-primary transition">
             Services
           </a>
-          <a href="/about" className="hover:text-teal-400 transition font-medium">
+          <a href="/about" className="text-[13px] text-moonlight-text-muted hover:text-moonlight-text-primary transition">
             About
           </a>
-          <a href="?modal=contact" className="hover:text-teal-400 transition font-medium">
+          <a href="?modal=contact" className="text-[13px] text-moonlight-text-muted hover:text-moonlight-text-primary transition">
             Contact
           </a>
+
+          {/* Search Button */}
+          {onSearchClick && (
+            <button
+              onClick={onSearchClick}
+              className="flex items-center gap-2 px-3 py-1.5 border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.12)] rounded-md transition group"
+            >
+              <Search className="w-4 h-4 text-moonlight-text-muted group-hover:text-teal-400" />
+              <span className="text-xs bg-[rgba(255,255,255,0.1)] px-1.5 py-0.5 rounded text-moonlight-text-faint">
+                S
+              </span>
+            </button>
+          )}
+
+          {/* Social Icons */}
+          <div className="hidden md:flex items-center gap-3 ml-2">
+            <a
+              href={portfolioData?.linkedin || "https://linkedin.com/in/collin-wilkins"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-moonlight-text-muted hover:text-teal-400 transition"
+            >
+              <Linkedin className="w-4 h-4" />
+            </a>
+            <a
+              href={portfolioData?.github || "https://github.com/collinwilk"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-moonlight-text-muted hover:text-teal-400 transition"
+            >
+              <Github className="w-4 h-4" />
+            </a>
+          </div>
         </div>
       </div>
     </nav>
   );
-}
+};
+
+export default Navigation;

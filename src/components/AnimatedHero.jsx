@@ -7,14 +7,19 @@ import MagneticButton from './MagneticButton';
  *
  * @param {string} headline - Main headline text
  * @param {string} subheadline - Subheadline text (optional)
+ * @param {string} supportingStat - Supporting statistic or proof point (optional)
+ * @param {string} sourceUrl - URL for the supporting stat citation (optional)
  * @param {string} subtext - Additional subtext (optional)
  * @param {Array} ctas - Array of CTA objects with { href, text, variant }
  */
-export default function AnimatedHero({ headline, subheadline, subtext, ctas = [] }) {
+export default function AnimatedHero({ headline, subheadline, supportingStat, sourceUrl, subtext, ctas = [] }) {
   const prefersReducedMotion = useReducedMotion();
 
   // Split headline into words for stagger animation
   const words = headline.split(' ');
+
+  // Words to emphasize in teal italic
+  const emphasizeWords = ['$2M', 'Manual'];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -91,21 +96,24 @@ export default function AnimatedHero({ headline, subheadline, subtext, ctas = []
           initial={prefersReducedMotion ? false : "hidden"}
           animate={prefersReducedMotion ? false : "visible"}
         >
-          {words.map((word, index) => (
-            <motion.span
-              key={`${word}-${index}`}
-              variants={prefersReducedMotion ? {} : wordVariants}
-              className="inline-block mr-3 md:mr-4"
-            >
-              {word}
-            </motion.span>
-          ))}
+          {words.map((word, index) => {
+            const shouldEmphasize = emphasizeWords.includes(word);
+            return (
+              <motion.span
+                key={`${word}-${index}`}
+                variants={prefersReducedMotion ? {} : wordVariants}
+                className={`inline-block mr-3 md:mr-4 ${shouldEmphasize ? 'text-teal-400 font-semibold italic' : ''}`}
+              >
+                {word}
+              </motion.span>
+            );
+          })}
         </motion.h1>
 
         {/* Subheadline with fade-in */}
         {subheadline && (
           <motion.p
-            className="text-xl md:text-2xl text-zinc-400 mb-2"
+            className="text-xl md:text-2xl text-moonlight-text-secondary mb-2"
             variants={subheadlineVariants}
             initial="hidden"
             animate="visible"
@@ -114,10 +122,34 @@ export default function AnimatedHero({ headline, subheadline, subtext, ctas = []
           </motion.p>
         )}
 
+        {/* Supporting Stat */}
+        {supportingStat && (
+          <motion.div
+            className="mb-4"
+            variants={subheadlineVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <p className="text-sm text-moonlight-text-muted italic">
+              {supportingStat}
+            </p>
+            {sourceUrl && (
+              <a
+                href={sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-moonlight-text-faint hover:text-teal-400 transition-colors underline decoration-dotted"
+              >
+                [Source]
+              </a>
+            )}
+          </motion.div>
+        )}
+
         {/* Subtext */}
         {subtext && (
           <motion.p
-            className="text-lg md:text-xl text-zinc-500 mb-8"
+            className="text-lg md:text-xl text-moonlight-text-muted mb-8"
             variants={subheadlineVariants}
             initial="hidden"
             animate="visible"

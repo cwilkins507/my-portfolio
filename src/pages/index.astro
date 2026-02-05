@@ -2,13 +2,43 @@
 import Layout from '../layouts/Layout.astro';
 import ArticleList from '../components/Articles';
 import AnimatedHero from '../components/AnimatedHero';
-import CaseStudyCard from '../components/CaseStudyCard';
+import GlowDivider from '../components/GlowDivider';
+import NavigationWrapper from '../components/NavigationWrapper';
 
 const articlesRaw = await Astro.glob('../articles/*.md');
 const articles = articlesRaw.map(article => ({
   slug: article.file.split('/').pop().replace('.md', ''),
   ...article.frontmatter,
 })).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+// Helper function for category mapping
+const CATEGORIES = {
+  'AI & Agents': ['AI', 'LLM Tools', 'CLI Agents', 'MCP', 'Workflow Automation', 'Prompt Engineering'],
+  'Cloud & DevOps': ['AWS', 'Terraform', 'Infrastructure as Code', 'DevOps', 'Serverless', 'Azure', 'GCP'],
+  'Architecture': ['Software Architecture', 'System Design', 'Microservices', 'Distributed Systems'],
+  'Engineering': ['Software Engineering', 'Best Practices', 'Low-code', 'Database Optimization']
+};
+
+const getCategoryForArticle = (tags) => {
+  if (!tags || tags.length === 0) return 'Engineering';
+  for (const [category, categoryTags] of Object.entries(CATEGORIES)) {
+    for (const tag of tags) {
+      if (categoryTags.some(catTag => catTag.toLowerCase() === tag.toLowerCase())) {
+        return category;
+      }
+    }
+  }
+  return 'Engineering';
+};
+
+const formatDate = (dateString) => {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC'
+  });
+};
 
 const websiteSchema = {
   "@context": "https://schema.org",
@@ -22,17 +52,55 @@ const websiteSchema = {
     "url": "https://collinwilkins.com/about"
   }
 };
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Collin Wilkins",
+  "jobTitle": "Lead Software Engineer & AI Automation Consultant",
+  "description": "Lead Engineer with 12 years of experience in automation, Python, AWS, and AI integration. Ex-Ford, Morningstar.",
+  "url": "https://collinwilkins.com",
+  "sameAs": [
+    "https://www.linkedin.com/in/collin-wilkins-1020215a/",
+    "https://github.com/cwilkins507",
+    "https://www.upwork.com/freelancers/~014ffbc17b83da9407"
+  ],
+  "knowsAbout": [
+    "Python",
+    "AWS",
+    "AI Automation",
+    "Serverless Architecture",
+    "Software Engineering",
+    "IoT",
+    "AI Agents"
+  ],
+  "alumniOf": [
+    {
+      "@type": "Organization",
+      "name": "Ford Motor Company"
+    },
+    {
+      "@type": "Organization",
+      "name": "Morningstar"
+    }
+  ]
+};
 ---
 
 <Layout
   title="Collin Wilkins | Lead Engineer & AI Automation Consultant"
   description="I build automations that turn $2M problems into solved problems. Lead Engineer with 12 years of experience in automation, Python, AWS, and AI integration. Ex-Ford, Morningstar."
-  schema={websiteSchema}
+  schema={[websiteSchema, personSchema]}
 >
-	<!-- Hero Section -->
+	<!-- Override Navigation to include SearchOverlay -->
+	<NavigationWrapper articles={articles} client:load />
+
+	<!-- 1. Hero Section -->
 	<AnimatedHero
 		headline="Stop Losing $2M Annually to Manual Workflows"
 		subheadline="I build Python automations and AI agents that eliminate repetitive work—so your team can focus on building products, not clicking through Postman."
+		supportingStat="Research: Companies could save 30% of employee time through automation (McKinsey)"
+		sourceUrl="https://www.mckinsey.com/featured-insights/future-of-work/jobs-lost-jobs-gained-what-the-future-of-work-will-mean-for-jobs-skills-and-wages"
 		subtext="Ex-Ford, Morningstar | $5M+ saved in automation projects"
 		ctas={[
 			{ href: '/quiz', text: 'Get Your Free Automation Audit', variant: 'primary' },
@@ -41,97 +109,118 @@ const websiteSchema = {
 		client:load
 	/>
 
-	<!-- Case Studies Section -->
-	<section id="work" class="py-16 bg-zinc-950/50">
-		<div class="max-w-6xl mx-auto px-4">
-			<h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-8">Recent Work</h2>
-			<div class="grid md:grid-cols-2 gap-6">
-				<CaseStudyCard
-					title="Remote Dealership Inventory Audit"
-					metric={{
-						type: 'counter',
-						value: 5,
-						prefix: '$',
-						suffix: 'M saved'
-					}}
-					description="IoT telemetry for 450K+ vehicles at Ford Credit"
-					featured={true}
-					client:load
-				/>
-				<CaseStudyCard
-					title="Compliance Engine Modernization"
-					metric={{
-						type: 'counter',
-						value: 90,
-						prefix: '',
-						suffix: '% reduction'
-					}}
-					description="Event-driven architecture at Morningstar"
-					client:load
-				/>
-				<CaseStudyCard
-					title="Stolen Vehicle Services"
-					metric={{
-						type: 'text',
-						value: '2024',
-						prefix: '',
-						suffix: ' Launch'
-					}}
-					description="Real-time theft recovery for Ford F-150"
-					client:load
-				/>
-			</div>
-			<div class="mt-6 text-center">
-				<a href="/about" class="text-teal-400 hover:text-teal-300 transition-colors font-medium">View full case studies →</a>
-			</div>
-		</div>
-	</section>
+	<!-- 2. Glow Divider -->
+	<GlowDivider />
 
-	<!-- Currently Building Section -->
-	<section class="py-16 bg-zinc-950/50">
-		<div class="max-w-4xl mx-auto px-4">
-			<div class="bg-zinc-950 border border-zinc-800 hover:border-teal-400 rounded-xl p-8 text-center transition-colors">
-				<h2 class="text-3xl md:text-4xl font-serif font-bold text-white mb-4">
-					Currently Building
-				</h2>
-
-				<h3 class="text-xl font-serif font-semibold text-white mb-4">
-					<span class="text-teal-400">FiNimbus</span> — AI-powered CFO for small businesses.
-				</h3>
-
-				<p class="text-zinc-400 text-lg leading-relaxed mb-6 max-w-2xl mx-auto">
-					Translates your financial statements into the key drivers that actually matter—the same ones I watched separate thriving dealerships from struggling ones at Ford Credit. Financial clarity, instantly.
-				</p>
-
+	<!-- 3. Featured Articles Section -->
+	<section class="py-16 max-w-6xl mx-auto px-4">
+		<h2 class="text-3xl font-serif font-semibold text-moonlight-text-primary mb-8">Featured Articles</h2>
+		<div class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 scrollbar-hide">
+			{articles.slice(0, 3).map(article => (
 				<a
-					href="https://finimbus.com"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="text-teal-400 hover:text-teal-300 transition-colors font-medium inline-block"
+					href={`/articles/${article.slug}`}
+					class="group flex-shrink-0 w-[300px] md:w-[400px] snap-start rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 border"
+					style="background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.06);"
 				>
-					→ finimbus.com
+					<span class="text-xs uppercase tracking-wider text-moonlight-text-faint font-medium">
+						{getCategoryForArticle(article.tags)}
+					</span>
+					<h3 class="text-xl font-serif text-moonlight-text-primary mt-3 mb-2 group-hover:text-teal-400 transition leading-snug">
+						{article.title}
+					</h3>
+					<p class="text-sm text-moonlight-text-secondary line-clamp-2">
+						{article.excerpt}
+					</p>
+					<div class="text-xs text-moonlight-text-faint mt-4">
+						{formatDate(article.date)}
+					</div>
 				</a>
-			</div>
+			))}
 		</div>
 	</section>
 
-	<!-- Quiz CTA Section -->
-	<section class="py-20 bg-black">
-		<div class="max-w-4xl mx-auto px-4 text-center">
-			<h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-6">
-				Not sure which automation fits your business?
-			</h2>
-			<p class="text-xl text-zinc-400 mb-8">
-				Take our 2-minute quiz and get a personalized AI action plan delivered to your inbox.
-			</p>
-			<a href="/quiz" class="inline-block bg-white text-black hover:bg-zinc-200 px-10 py-5 rounded-full font-bold text-lg shadow-xl transition-all transform hover:scale-105">
-				Take the Quiz →
+	<!-- 4. Background/Proof Section (Testimonial Cards) -->
+	<section id="work" class="py-16 max-w-6xl mx-auto px-4">
+		<h2 class="text-sm uppercase tracking-widest text-moonlight-text-faint mb-8">Background</h2>
+		<div class="grid md:grid-cols-3 gap-6">
+			<!-- Card 1: Ford Credit -->
+			<div
+				class="rounded-2xl p-8 border transition-colors hover:border-teal-400/50"
+				style="background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.06);"
+			>
+				<div class="text-sm font-medium text-moonlight-text-muted mb-3">Remote Dealership Inventory Audit</div>
+				<div class="text-3xl font-bold text-teal-400 mb-2">$5M saved</div>
+				<p class="text-moonlight-text-secondary mb-6 leading-relaxed">
+					IoT telemetry for 450K+ vehicles at Ford Credit
+				</p>
+				<div class="text-moonlight-text-primary font-medium">Ford Motor Company</div>
+				<div class="text-moonlight-text-muted text-sm">Lead Engineer</div>
+			</div>
+
+			<!-- Card 2: Morningstar -->
+			<div
+				class="rounded-2xl p-8 border transition-colors hover:border-teal-400/50"
+				style="background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.06);"
+			>
+				<div class="text-sm font-medium text-moonlight-text-muted mb-3">Compliance Engine Modernization</div>
+				<div class="text-3xl font-bold text-teal-400 mb-2">90% reduction</div>
+				<p class="text-moonlight-text-secondary mb-6 leading-relaxed">
+					Event-driven architecture at Morningstar
+				</p>
+				<div class="text-moonlight-text-primary font-medium">Morningstar</div>
+				<div class="text-moonlight-text-muted text-sm">Senior Engineer</div>
+			</div>
+
+			<!-- Card 3: F-150 Launch -->
+			<div
+				class="rounded-2xl p-8 border transition-colors hover:border-teal-400/50"
+				style="background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.06);"
+			>
+				<div class="text-sm font-medium text-moonlight-text-muted mb-3">Stolen Vehicle Services</div>
+				<div class="text-3xl font-bold text-teal-400 mb-2">2024 Launch</div>
+				<p class="text-moonlight-text-secondary mb-6 leading-relaxed">
+					Real-time theft recovery for Ford F-150
+				</p>
+				<div class="text-moonlight-text-primary font-medium">Ford Motor Company</div>
+				<div class="text-moonlight-text-muted text-sm">Lead Engineer</div>
+			</div>
+		</div>
+		<div class="mt-8 text-center">
+			<a href="/about" class="text-teal-400 hover:text-teal-300 transition-colors font-medium text-sm">
+				View full case studies →
 			</a>
 		</div>
 	</section>
 
-	<!-- Articles Section -->
-	<section id="articles">
+	<!-- 5. Glow Divider -->
+	<GlowDivider />
+
+	<!-- 6. Currently Building Section (FiNimbus) -->
+	<section class="py-16 max-w-4xl mx-auto px-4">
+		<div
+			class="rounded-2xl p-8 md:p-12 text-center border transition-colors hover:border-teal-400/50"
+			style="background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.06);"
+		>
+			<div class="text-xs uppercase tracking-widest text-moonlight-text-faint mb-4">Currently Building</div>
+			<h3 class="text-2xl md:text-3xl font-serif font-semibold text-moonlight-text-primary mb-3">
+				<span class="text-teal-400">FiNimbus</span> — AI-powered CFO for small businesses.
+			</h3>
+			<p class="text-moonlight-text-secondary text-base leading-relaxed mb-6 max-w-2xl mx-auto">
+				Translates your financial statements into the key drivers that actually matter—the same ones I watched separate thriving dealerships from struggling ones at Ford Credit. Financial clarity, instantly.
+			</p>
+			<a
+				href="https://finimbus.com"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="text-teal-400 hover:text-teal-300 transition-colors font-medium inline-flex items-center gap-2"
+			>
+				→ finimbus.com
+			</a>
+		</div>
+	</section>
+
+	<!-- 7. All Articles Section -->
+	<section id="articles" class="py-16">
 		<ArticleList articles={articles} client:load />
 		<!-- Server-rendered article links for SEO crawlers -->
 		<noscript>
@@ -150,4 +239,35 @@ const websiteSchema = {
 			</div>
 		</noscript>
 	</section>
+
+	<!-- 8. Quiz CTA Section -->
+	<section class="py-20 bg-[#0a0a0b]">
+		<div class="max-w-4xl mx-auto px-4 text-center">
+			<h2 class="text-4xl md:text-5xl font-serif font-semibold text-moonlight-text-primary mb-6 leading-tight">
+				Not sure where to start?
+			</h2>
+			<p class="text-xl text-moonlight-text-secondary mb-8">
+				Take my 2-minute quiz and get a personalized AI action plan.
+			</p>
+			<div>
+				<a
+					href="/quiz"
+					class="inline-block bg-gradient-to-r from-teal-500 to-teal-400 text-white hover:shadow-glow px-10 py-5 rounded-full font-semibold text-lg transition-all transform hover:scale-105"
+				>
+					Take the Quiz →
+				</a>
+				<p class="text-sm text-moonlight-text-muted mt-4">2 minutes • Instant results • No email required</p>
+			</div>
+		</div>
+	</section>
 </Layout>
+
+<style>
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+</style>

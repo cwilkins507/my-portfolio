@@ -161,7 +161,7 @@ const ContactForm = ({ email, initialService = '', onSuccess }) => {
       <button
         type="submit"
         disabled={status === 'submitting'}
-        className="w-full bg-teal-600 hover:bg-teal-500 disabled:bg-teal-600/50 disabled:cursor-not-allowed text-white font-bold py-3 px-10 rounded-full transition duration-300 ease-in-out transform hover:scale-105 disabled:hover:scale-100 shadow-xl shadow-teal-500/30 flex items-center justify-center"
+        className="w-full bg-purple-600 hover:bg-teal-500 disabled:bg-purple-600/50 disabled:cursor-not-allowed text-white font-bold py-3 px-10 rounded-full transition duration-300 ease-in-out transform hover:scale-105 disabled:hover:scale-100 shadow-xl shadow-teal-500/30 flex items-center justify-center"
       >
         {status === 'submitting' ? (
           <>

@@ -104,38 +104,38 @@ const articleSchema = {
         ← Back to Articles
       </a>
       <h1 class="text-4xl font-serif font-bold text-white mb-4">{frontmatter.title}</h1>
-      <article class="text-zinc-400 mb-4">
+      <article class="text-moonlight-text-secondary mb-4">
         {new Date(frontmatter.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
       </article>
       <div class="flex flex-wrap gap-2 mb-8">
         {frontmatter.tags?.map(tag => (
-          <span class="bg-zinc-950 text-teal-300 text-sm px-3 py-1 rounded-full border border-zinc-800">
+          <span class="bg-[rgba(255,255,255,0.03)] text-teal-300 text-sm px-3 py-1 rounded-full border border-[rgba(255,255,255,0.06)]">
             {tag}
           </span>
         ))}
       </div>
       
-      <div class="prose prose-invert max-w-none prose-headings:font-serif prose-headings:text-white prose-p:text-zinc-400 prose-a:text-teal-400 prose-strong:text-white prose-code:text-teal-300 prose-pre:bg-zinc-950 prose-pre:border prose-pre:border-zinc-800">
+      <div class="prose prose-invert max-w-none prose-headings:font-serif prose-headings:text-white prose-p:text-moonlight-text-secondary prose-a:text-teal-400 prose-strong:text-white prose-code:text-teal-300 prose-pre:bg-[rgba(255,255,255,0.03)] prose-pre:border prose-pre:border-[rgba(255,255,255,0.06)]">
         <Content />
       </div>
 
       {/* Related Articles */}
       {relatedArticles.length > 0 && (
-        <div class="mt-16 border-t border-zinc-800 pt-12">
+        <div class="mt-16 border-t border-[rgba(255,255,255,0.06)] pt-12">
           <h2 class="text-2xl font-serif font-bold text-white mb-8">Related Articles</h2>
           <div class="grid gap-6 md:grid-cols-3">
             {relatedArticles.map(related => (
               <a
                 href={`/articles/${related.slug}`}
-                class="bg-zinc-950 rounded-xl p-6 hover:bg-zinc-900 transition duration-300 border border-zinc-800 hover:border-teal-400 group"
+                class="bg-[rgba(255,255,255,0.03)] rounded-xl p-6 hover:bg-zinc-900 transition duration-300 border border-[rgba(255,255,255,0.06)] hover:border-teal-400 group"
               >
                 <h3 class="text-lg font-serif font-bold text-white mb-2 group-hover:text-teal-400 transition leading-tight">
                   {related.title}
                 </h3>
-                <p class="text-zinc-500 text-sm mb-3">
+                <p class="text-moonlight-text-muted text-sm mb-3">
                   {new Date(related.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}
                 </p>
-                <p class="text-zinc-400 text-sm line-clamp-2">{related.excerpt}</p>
+                <p class="text-moonlight-text-secondary text-sm line-clamp-2">{related.excerpt}</p>
               </a>
             ))}
           </div>
@@ -143,11 +143,11 @@ const articleSchema = {
       )}
 
       {/* Article Footer CTA */}
-      <div class="mt-20 p-8 md:p-12 bg-zinc-950 rounded-2xl border border-zinc-800 shadow-2xl relative overflow-hidden group">
+      <div class="mt-20 p-8 md:p-12 bg-[rgba(255,255,255,0.03)] rounded-2xl border border-[rgba(255,255,255,0.06)] shadow-2xl relative overflow-hidden group">
         <div class="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full -mr-16 -mt-16 blur-2xl group-hover:bg-teal-500/20 transition-colors duration-500"></div>
         <div class="relative z-10">
           <h3 class="text-3xl font-serif font-bold text-white mb-4">Wrestling with a technical challenge?</h3>
-          <p class="text-xl text-zinc-400 mb-8 max-w-2xl leading-relaxed">
+          <p class="text-xl text-moonlight-text-secondary mb-8 max-w-2xl leading-relaxed">
             I help companies automate complex workflows, integrate AI into their stacks, and build scalable cloud architectures.
           </p>
           <div class="flex flex-col sm:flex-row gap-4">
@@ -159,7 +159,7 @@ const articleSchema = {
             </a>
             <a
               href="/services"
-              class="inline-flex items-center justify-center bg-teal-600 hover:bg-teal-500 text-white font-bold py-3 px-8 rounded-full transition duration-300"
+              class="inline-flex items-center justify-center bg-purple-600 hover:bg-teal-500 text-white font-bold py-3 px-8 rounded-full transition duration-300"
             >
               View My Services
             </a>
@@ -167,7 +167,7 @@ const articleSchema = {
               href="https://www.linkedin.com/in/collin-wilkins-1020215a/"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center justify-center bg-zinc-950 hover:bg-zinc-900 text-white font-bold py-3 px-8 rounded-full transition duration-300 border border-zinc-800"
+              class="inline-flex items-center justify-center bg-[rgba(255,255,255,0.03)] hover:bg-zinc-900 text-white font-bold py-3 px-8 rounded-full transition duration-300 border border-[rgba(255,255,255,0.06)]"
             >
               Connect on LinkedIn
             </a>

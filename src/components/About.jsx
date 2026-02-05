@@ -223,13 +223,13 @@ const About = () => {
           <h1 className="text-5xl md:text-6xl font-serif font-extrabold text-white mb-8 text-center">
             {portfolioData.headline}
           </h1>
-          <div className="text-lg md:text-xl text-zinc-400 leading-relaxed space-y-6 text-left">
+          <div className="text-lg md:text-xl text-moonlight-text-secondary leading-relaxed space-y-6 text-left">
             {portfolioData.aboutMe.map((section, idx) => (
               <div key={idx} className="mb-12">
-                <h2 className="text-3xl font-serif font-bold text-teal-400 mb-6 border-b border-teal-500/20 pb-2">
+                <h2 className="text-3xl font-serif font-bold text-teal-400 mb-6 border-b border-purple-500/20 pb-2">
                   {section.title}
                 </h2>
-                <div className="text-lg md:text-xl text-zinc-400 leading-relaxed space-y-6 text-left">
+                <div className="text-lg md:text-xl text-moonlight-text-secondary leading-relaxed space-y-6 text-left">
                   {section.content.split('\n\n').map((paragraph, pIdx) => (
                     <p key={pIdx} className="leading-relaxed whitespace-pre-line">
                       {paragraph.trim()}
@@ -240,16 +240,16 @@ const About = () => {
             ))}
           </div>
           <div className="flex justify-center space-x-6 mt-10">
-            <a href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-teal-400 transition">
+            <a href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer" className="text-moonlight-text-secondary hover:text-teal-400 transition">
               <Linkedin className="w-8 h-8" />
             </a>
-            <a href={portfolioData.upwork} target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-teal-400 transition">
+            <a href={portfolioData.upwork} target="_blank" rel="noopener noreferrer" className="text-moonlight-text-secondary hover:text-teal-400 transition">
               <BadgeDollarSign className="w-8 h-8" />
             </a>
-            <a href={portfolioData.github} target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-teal-400 transition">
+            <a href={portfolioData.github} target="_blank" rel="noopener noreferrer" className="text-moonlight-text-secondary hover:text-teal-400 transition">
               <Github className="w-8 h-8" />
             </a>
-            <a href={`mailto:${portfolioData.email}`} className="text-zinc-400 hover:text-teal-400 transition">
+            <a href={`mailto:${portfolioData.email}`} className="text-moonlight-text-secondary hover:text-teal-400 transition">
               <Mail className="w-8 h-8" />
             </a>
           </div>
@@ -259,14 +259,14 @@ const About = () => {
         {/* Technical Skills */}
         <section className="mb-24">
           <h2 className="text-4xl font-serif font-bold text-center text-white mb-12">Technical Skills</h2>
-          <div className="bg-zinc-950 p-8 rounded-xl shadow-xl border border-zinc-800 max-w-5xl mx-auto">
+          <div className="bg-[rgba(255,255,255,0.03)] p-8 rounded-xl shadow-xl border border-[rgba(255,255,255,0.06)] max-w-5xl mx-auto">
             <div className="space-y-8">
               {Object.entries(portfolioData.skills).map(([category, skills]) => (
                 <div key={category}>
                   <h3 className="text-xl font-semibold text-teal-400 mb-4">{category}</h3>
                   <div className="flex flex-wrap gap-3">
                     {skills.map(skill => (
-                      <span key={skill} className="bg-zinc-900 text-teal-300 text-sm font-medium px-4 py-2 rounded-full transition duration-200 hover:bg-teal-700 hover:text-white transform hover:scale-105 shadow-md border border-zinc-800">
+                      <span key={skill} className="bg-zinc-900 text-teal-300 text-sm font-medium px-4 py-2 rounded-full transition duration-200 hover:bg-teal-700 hover:text-white transform hover:scale-105 shadow-md border border-[rgba(255,255,255,0.06)]">
                         {skill}
                       </span>
                     ))}
@@ -280,16 +280,16 @@ const About = () => {
         {/* Experience */}
         <section className="mb-24">
           <h2 className="text-4xl font-serif font-bold text-center text-white mb-16">Professional Experience</h2>
-          <div className="relative border-l-4 border-teal-500/50 ml-4 md:ml-20 max-w-4xl mx-auto">
+          <div className="relative border-l-4 border-purple-500/50 ml-4 md:ml-20 max-w-4xl mx-auto">
             {portfolioData.experiences.map((exp, idx) => (
               <div key={idx} className="mb-16 pl-10 md:pl-16 relative">
                 {/* Timeline Dot */}
                 <div className="absolute w-4 h-4 bg-teal-500 rounded-full -left-[10px] top-2 border-4 border-black"></div>
 
-                <p className="text-sm text-zinc-500 mb-2">{exp.period}</p>
+                <p className="text-sm text-moonlight-text-muted mb-2">{exp.period}</p>
                 <h3 className="text-2xl font-serif font-bold text-teal-400">{exp.role}</h3>
-                <h4 className="text-lg font-semibold text-zinc-400 mb-4">{exp.company}</h4>
-                <p className="text-zinc-400 leading-relaxed">{exp.description}</p>
+                <h4 className="text-lg font-semibold text-moonlight-text-secondary mb-4">{exp.company}</h4>
+                <p className="text-moonlight-text-secondary leading-relaxed">{exp.description}</p>
               </div>
             ))}
           </div>
@@ -300,12 +300,12 @@ const About = () => {
           <h2 className="text-4xl font-serif font-bold text-center text-white mb-16">Key Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {portfolioData.projects.map((project, idx) => (
-              <div key={idx} className="bg-zinc-950 rounded-xl p-8 hover:shadow-2xl hover:shadow-teal-500/20 transition-all duration-500 border border-zinc-800">
+              <div key={idx} className="bg-[rgba(255,255,255,0.03)] rounded-xl p-8 hover:shadow-2xl hover:shadow-teal-500/20 transition-all duration-500 border border-[rgba(255,255,255,0.06)]">
                 <h3 className="text-2xl font-serif font-bold text-teal-400 mb-4">{project.title}</h3>
-                <p className="text-zinc-400 mb-6 leading-relaxed">{project.description}</p>
+                <p className="text-moonlight-text-secondary mb-6 leading-relaxed">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map(tech => (
-                    <span key={tech} className="bg-zinc-900 text-xs text-teal-300 font-medium px-3 py-1 rounded-full border border-zinc-800">
+                    <span key={tech} className="bg-zinc-900 text-xs text-teal-300 font-medium px-3 py-1 rounded-full border border-[rgba(255,255,255,0.06)]">
                       {tech}
                     </span>
                   ))}
@@ -321,12 +321,12 @@ const About = () => {
             What I'm Building
           </h2>
 
-          <div className="bg-zinc-950 rounded-xl p-8 border border-zinc-800">
+          <div className="bg-[rgba(255,255,255,0.03)] rounded-xl p-8 border border-[rgba(255,255,255,0.06)]">
             <h3 className="text-2xl font-serif font-bold text-white mb-4">
               <span className="text-teal-400">FiNimbus</span> — AI-powered CFO for small businesses.
             </h3>
 
-            <div className="space-y-4 text-zinc-400 leading-relaxed">
+            <div className="space-y-4 text-moonlight-text-secondary leading-relaxed">
               <p>
                 At Ford Credit, I analyzed hundreds of financial statements from dealerships on our floor plan and small businesses applying for lines of credit. You start to see patterns. The best-performing dealerships weren't tracking more metrics—they were focused on fewer, and they understood exactly what those numbers meant for their next move. Meanwhile, I watched lenders approve or deny credit based on the same handful of drivers, over and over.
               </p>
@@ -359,20 +359,20 @@ const About = () => {
         <section>
           <h2 className="text-4xl font-serif font-bold text-center text-white mb-16">Education & Certifications</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-            <div className="bg-zinc-950 p-6 rounded-xl shadow-xl border border-zinc-800">
+            <div className="bg-[rgba(255,255,255,0.03)] p-6 rounded-xl shadow-xl border border-[rgba(255,255,255,0.06)]">
               <h3 className="text-2xl font-serif font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Education</h3>
               {portfolioData.education.map((edu, idx) => (
                 <div key={idx} className="mb-4">
-                  <p className="text-lg font-semibold text-zinc-400">{edu.degree}</p>
-                  <p className="text-zinc-500 text-sm">{edu.school} ({edu.year})</p>
+                  <p className="text-lg font-semibold text-moonlight-text-secondary">{edu.degree}</p>
+                  <p className="text-moonlight-text-muted text-sm">{edu.school} ({edu.year})</p>
                 </div>
               ))}
             </div>
-            <div className="bg-zinc-950 p-6 rounded-xl shadow-xl border border-zinc-800">
+            <div className="bg-[rgba(255,255,255,0.03)] p-6 rounded-xl shadow-xl border border-[rgba(255,255,255,0.06)]">
               <h3 className="text-2xl font-serif font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Certifications</h3>
               <ul className="space-y-3">
                 {portfolioData.certifications.map((cert, idx) => (
-                  <li key={idx} className="text-zinc-400 flex items-center">
+                  <li key={idx} className="text-moonlight-text-secondary flex items-center">
                     <span className="text-teal-500 mr-2">&#9679;</span> {cert}
                   </li>
                 ))}

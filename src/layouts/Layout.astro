@@ -10,7 +10,7 @@ interface Props {
 	image?: string;
 	type?: 'website' | 'article';
 	publishedTime?: string;
-	schema?: object;
+	schema?: object | object[];
 }
 
 const {
@@ -68,17 +68,23 @@ const currentYear = new Date().getFullYear();
 		<!-- Google Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
 		<!-- JSON-LD Structured Data -->
 		{schema && (
-			<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+			Array.isArray(schema) ? (
+				schema.map((s) => (
+					<script type="application/ld+json" set:html={JSON.stringify(s)} />
+				))
+			) : (
+				<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+			)
 		)}
 
 		<!-- Plausible Analytics -->
 		<script defer data-domain="collinwilkins.com" src="https://plausible.io/js/script.js"></script>
 	</head>
-	<body class="min-h-screen bg-black text-gray-200 font-sans leading-normal tracking-wider">
+	<body class="min-h-screen bg-[#0a0a0b] text-[#e4e4e7] font-sans leading-normal tracking-wider">
 		<!-- Navigation with Scroll-Triggered Blur -->
 		<Navigation portfolioData={portfolioData} client:load />
 
@@ -87,8 +93,8 @@ const currentYear = new Date().getFullYear();
 		</main>
 
 		<!-- Footer -->
-		<footer class="bg-black p-6 border-t border-zinc-800">
-			<div class="container mx-auto text-center text-gray-500 px-4">
+		<footer class="bg-[#0a0a0b] p-6 border-t border-[rgba(255,255,255,0.06)]">
+			<div class="container mx-auto text-center text-moonlight-text-muted px-4">
 				<p class="text-sm">&copy; {currentYear} {portfolioData.name}. All Rights Reserved.</p>
 				<div class="flex justify-center space-x-6 mt-3 text-lg">
 					<a href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-teal-400 transition" aria-label="LinkedIn">

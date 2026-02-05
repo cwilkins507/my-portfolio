@@ -149,7 +149,7 @@ Quiz Results:
         <h1 className="text-4xl md:text-6xl font-serif font-bold leading-tight">
           Get Your Free AI Action Plan
         </h1>
-        <p className="text-zinc-400 text-lg md:text-xl font-light">
+        <p className="text-moonlight-text-secondary text-lg md:text-xl font-light">
           Choose the answer you agree with most
         </p>
       </div>
@@ -201,14 +201,14 @@ Quiz Results:
                   </div>
 
                   <div className="pt-12 flex flex-col items-center space-y-8">
-                    <span className="text-zinc-500 text-lg font-mono">
+                    <span className="text-moonlight-text-muted text-lg font-mono">
                       {currentStep + 1} / {totalQuestions}
                     </span>
 
                     {currentStep > 0 && (
                       <button
                         onClick={handleBack}
-                        className="flex items-center text-zinc-500 hover:text-white transition-colors"
+                        className="flex items-center text-moonlight-text-muted hover:text-white transition-colors"
                       >
                         <ChevronLeft className="w-5 h-5 mr-1" />
                         Back
@@ -230,7 +230,7 @@ Quiz Results:
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <label className="text-sm font-medium text-zinc-500 uppercase tracking-wider">First Name</label>
+                        <label className="text-sm font-medium text-moonlight-text-muted uppercase tracking-wider">First Name</label>
                         <input
                           required
                           type="text"
@@ -241,7 +241,7 @@ Quiz Results:
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-sm font-medium text-zinc-500 uppercase tracking-wider">Last Name</label>
+                        <label className="text-sm font-medium text-moonlight-text-muted uppercase tracking-wider">Last Name</label>
                         <input
                           required
                           type="text"
@@ -254,7 +254,7 @@ Quiz Results:
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-sm font-medium text-zinc-500 uppercase tracking-wider">Email</label>
+                      <label className="text-sm font-medium text-moonlight-text-muted uppercase tracking-wider">Email</label>
                       <input
                         required
                         type="email"
@@ -282,8 +282,8 @@ Quiz Results:
 
       {/* Footer Branding */}
       <footer className="p-6 flex justify-end items-center">
-        <div className="bg-zinc-900 px-4 py-2 rounded flex items-center space-x-2 text-sm border border-zinc-800">
-          <span className="text-zinc-400">Powered by</span>
+        <div className="bg-zinc-900 px-4 py-2 rounded flex items-center space-x-2 text-sm border border-[rgba(255,255,255,0.06)]">
+          <span className="text-moonlight-text-secondary">Powered by</span>
           <div className="flex items-center space-x-1">
             <div className="w-2 h-2 rounded-full bg-white opacity-50" />
             <span className="font-bold text-white">interact</span>

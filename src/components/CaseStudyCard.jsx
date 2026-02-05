@@ -31,9 +31,19 @@ export default function CaseStudyCard({ title, metric, description, featured = f
   return (
     <motion.div
       data-card-type="case-study"
-      className={`bg-zinc-950 border border-zinc-800 rounded-lg p-6 hover:border-teal-400 transition-colors ${
+      className={`rounded-lg p-6 transition-colors border ${
         featured ? 'md:col-span-2' : ''
       }`}
+      style={{
+        background: 'rgba(255,255,255,0.03)',
+        borderColor: 'rgba(255,255,255,0.06)',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = 'rgba(45,212,191,0.5)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)';
+      }}
       variants={cardVariants}
       initial="rest"
       whileHover="hover"
