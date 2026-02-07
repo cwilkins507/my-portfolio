@@ -1,5 +1,5 @@
 import React from 'react';
-import { Linkedin, Github, Mail, BadgeDollarSign } from 'lucide-react';
+import { Linkedin, Github, Mail, BadgeDollarSign, ArrowRight } from 'lucide-react';
 
 // Portfolio data
 const portfolioData = {
@@ -46,79 +46,59 @@ An engineer designs a beautiful deck that meets all structural and safety codes.
 
 When asked why, the engineer replies: "Well, that wasn't in the requirements."
 
-I look at business processes differently. I've lived the pain of operations and manual data entry. I can tie technical architecture directly to business value. I speak Finance, I speak Sales, and I speak Python.`
-    },
-    {
-      title: "Core Specialization: Python & Agentic Workflows",
-      content: `I specialize in Python automation and AI/LLM systems. I build production-ready agentic workflows using LLMs. Not just chat demos, but systems that run reliably at scale.
+I look at business processes differently. I've lived the pain of operations and manual data entry. I can tie technical architecture directly to business value. I speak Finance, I speak Sales, and I speak Python.
 
-One of my recent scripts pulled GitHub PRs, Bitbucket requests, and Asana milestones across an entire enterprise squad. Generated a summary of business impact and shipped it to leadership every Friday at 4 PM sharp.
-
-It didn't just save time. It gave leadership real-time insight into what 12 engineering teams were shipping, without scheduling a single status meeting.
-
-Key Tools:
-- Data Pipelines: requests, beautifulsoup, pandas
-- Backend Services: Java, Spring Boot, Postgres
-- Cloud Infrastructure: AWS (Lambda, SQS, Fargate), Azure, GCP`
-    },
-    {
-      title: "Case Study: Remote Dealership Inventory Audit (IoT & Cloud)",
-      content: `The problem: Ford Credit was spending millions on slow, manual vehicle audits. Auditors drove hundreds of miles to physically count cars at dealerships, discovering discrepancies weeks after the financial impact. In a rising interest rate environment, this lag was expensive.
-
-What we built: An IoT telemetry platform that automated verification for 450,000+ vehicles, saving around $5 million annually in operational costs and interest rate carry. What used to take weeks now happens in real-time.
-
-How it works: I led the architecture of a high-scale event-driven system using Kafka, Google Cloud Pub/Sub, and Azure IoT Hub. The system ingests 600,000+ vehicle events daily with state management to ensure data integrity in a distributed environment. Handles out-of-order events through Kafka partitioning by vehicle_id and stateful buffering.`
-    },
-    {
-      title: "Case Study: Modernizing Compliance at Morningstar",
-      content: `The problem: Every morning started the same way. An engineer clicking through 80 Postman requests to trigger compliance checks. One by one, like a human cron job. This ate up 20% of our team's weekly bandwidth. When someone got sick for a week, compliance checks just... stopped. That's when we knew we had to automate.
-
-What we built: I transformed the architecture to fully event-driven, reducing daily compliance runs by 90% and freeing up 10 engineering hours every week. This let us onboard 7 new enterprise recordkeepers with zero added overhead while improving throughput and reducing latency by 35%.
-
-How it works: I implemented load-aware scheduling that monitors database capacity before kicking off new jobs via AWS SQS and ephemeral Fargate tasks. Instead of blindly running all checks daily, the system uses database diffing to detect meaningful changes and only publishes events when there's actually a delta. Smart resource utilization that scales.`
-    },
-    {
-      title: "Case Study: Stolen Vehicle Services for 2024 Ford F-150",
-      content: `The problem: The Ford F-150 is America's best-selling truck. Also its most stolen. Owners needed real-time protection, but tracking vehicles raises serious privacy concerns. We had to balance theft recovery capability with strict data privacy compliance.
-
-What we built: A privacy-first telemetry system now deployed in thousands of 2024 F-150s, providing owners with cloud-backed theft recovery. When a theft is reported, the system automatically increases tracking frequency to help police recover the vehicle faster.
-
-How it works: I architected a Zero Trust ingestion layer using GCP Pub/Sub and Kafka where all telemetry is anonymized at entry, with PII encrypted in a secure vault accessible only via ephemeral tokens during active recovery. The adaptive recovery mode transitions the vehicle's modem to high-frequency reporting when theft is detected, balancing recovery speed with cellular costs and battery drain.`
-    },
-    {
-      title: "Behind the Code: Discipline and Context",
-      content: `I'm an INTJ with a focus on continuous learning.
-
-Consistency: I track my nutrition and hit the gym 3-5 times a week. I apply that same "incremental gains" mindset to my codebases.
-
-Adaptability: I've lived in Dallas, Atlanta, Denver, Nashville, Boston, Tampa, and now Detroit. I'm a generalist by choice. I can drop into any legacy system, identify the bottleneck, and ship the fix.
-
-The Soundtrack: I work to a mix of country music and 2000s rock. Creed and Nickelback are fine by me.`
-    },
-    {
-      title: "How to Work With Me",
-      content: `I help companies eliminate expensive manual processes through custom automation. If your team is wasting hours on work a script could handle, I can help.
-
-How it works:
-
-1. Discovery Call (30 minutes, free): We discuss your biggest workflow bottlenecks
-2. Automation Audit (1 week): I analyze your processes and identify savings opportunities
-3. Implementation (timeline varies): I build and deploy the solution
-4. Handoff: Complete documentation and support to ensure your team can own the system
-
-What I build:
-
-AI/LLM Integration: Custom agents that handle repetitive analysis and decision-making tasks, freeing your team for high-value work. I build production-ready agentic workflows, not just demos.
-
-Automation Strategy: I audit your workflows, identify the highest-ROI automation opportunities, and implement Python scripts or low-code solutions that save thousands of hours annually.
-
-Backend Engineering: Scalable API design, serverless architecture (AWS Lambda), and database optimization for systems that handle real production load.
-
-Guarantee: If I don't identify significant automation savings during the audit, it's free.
-
-Currently accepting new projects. Email me at wilkins507@gmail.com with the manual process that's draining your team's time, and I'll respond within 24-48 hours with next steps.`
+I've lived in Dallas, Atlanta, Denver, Nashville, Boston, Tampa, and now Detroit. I'm a generalist by choice. I can drop into any legacy system, identify the bottleneck, and ship the fix. The soundtrack? Creed and Nickelback are fine by me.`
     }
   ],
+  howToWork: {
+    title: "How to Work With Me",
+    intro: "I help companies eliminate expensive manual processes through custom automation. If your team is wasting hours on work a script could handle, I can help.",
+    steps: [
+      "Discovery Call (30 minutes, free): We discuss your biggest workflow bottlenecks",
+      "Automation Audit (1 week): I analyze your processes and identify savings opportunities",
+      "Implementation (timeline varies): I build and deploy the solution",
+      "Handoff: Complete documentation and support to ensure your team can own the system"
+    ],
+    services: [
+      {
+        name: "AI/LLM Integration",
+        description: "Custom agents that handle repetitive analysis and decision-making tasks, freeing your team for high-value work. I build production-ready agentic workflows, not just demos."
+      },
+      {
+        name: "Automation Strategy",
+        description: "I audit your workflows, identify the highest-ROI automation opportunities, and implement Python scripts or low-code solutions that save thousands of hours annually."
+      },
+      {
+        name: "Backend Engineering",
+        description: "Scalable API design, serverless architecture (AWS Lambda), and database optimization for systems that handle real production load."
+      }
+    ],
+    guarantee: "If I don't identify significant automation savings during the audit, it's free."
+  },
+  proofPoints: [
+    {
+      metric: "$5M saved",
+      problem: "A team was driving hundreds of miles to manually count cars at dealerships. We automated it with IoT telemetry for 450K+ vehicles."
+    },
+    {
+      metric: "90% reduction",
+      problem: "An engineer was burning 20% of their week clicking through 80 Postman requests for compliance checks. We made it event-driven."
+    },
+    {
+      metric: "2024 Launch",
+      problem: "America's most stolen truck needed theft recovery without sacrificing owner privacy. We built Zero Trust telemetry."
+    }
+  ],
+  finimbus: {
+    title: "Understanding the Business Behind the Code",
+    content: [
+      `At Ford Credit, I analyzed hundreds of financial statements from dealerships and small businesses applying for credit. You start to see patterns. The best-performing dealerships weren't tracking more metrics — they were focused on fewer, and they understood exactly what those numbers meant for their next move.`,
+      `Most small business owners have financial statements they don't understand. They see numbers but don't know what those numbers are telling them to do. So they either ignore the reports, pay someone to translate, or fly blind until a lender or accountant delivers bad news.`,
+      `FiNimbus fixes that. It takes your financials and translates them into the key drivers that actually matter — the same ones I watched separate thriving businesses from struggling ones, the same ones lenders use to evaluate your creditworthiness. Not another dashboard. Just clear, plain-language answers.`,
+      `This is what I do: spot the manual bottleneck, understand the domain, automate the solution.`
+    ]
+  },
   linkedin: "https://www.linkedin.com/in/collin-wilkins-1020215a/",
   upwork: "https://www.upwork.com/freelancers/~014ffbc17b83da9407",
   github: "https://github.com/cwilkins507",
@@ -133,33 +113,6 @@ Currently accepting new projects. Email me at wilkins507@gmail.com with the manu
     Frameworks: ["Spring Boot", "React", "Angular"],
     Architecture: ["Microservices", "Serverless", "Event-Driven", "REST", "GraphQL"]
   },
-  projects: [
-    {
-      title: "Remote Dealership Inventory Audit Platform",
-      description: "Redesigned cloud-based inventory auditing; processed vehicle-to-cloud events for 450,000+ vehicles and delivered $5M+ annual savings.",
-      technologies: ["Event-Driven Architecture", "Cloud Messaging", "IoT Telemetry"],
-    },
-    {
-      title: "Stolen Vehicle Services for 2024 Ford F-150",
-      description: "Built theft anticipation and recovery features using cloud-integrated telemetry and real-time messaging.",
-      technologies: ["GCP Pub/Sub", "Kafka", "Real-Time Messaging", "Telemetry"],
-    },
-    {
-      title: "Event-Driven Compliance Engine (AWS)",
-      description: "Redesigned a compliance engine to event-driven architecture, improving throughput and reducing latency by 35%.",
-      technologies: ["AWS SQS", "AWS Lambda", "Distributed Queues", "Event-Driven Architecture", "BRMS"],
-    },
-    {
-      title: "Terraform-Backed CI/CD Acceleration",
-      description: "Implemented CI/CD pipelines with Terraform, increasing deployment frequency by 40%.",
-      technologies: ["Terraform", "CI/CD", "CodePipeline"],
-    },
-    {
-      title: "Identity Modernization to ADFS + SSO (Zero Trust)",
-      description: "Migrated identity systems to Microsoft ADFS and SSO, streamlining authentication and aligning with Zero Trust.",
-      technologies: ["Microsoft ADFS", "SSO", "Zero Trust"],
-    }
-  ],
   experiences: [
     {
       role: "Lead Engineer",
@@ -223,6 +176,8 @@ const About = () => {
           <h1 className="text-5xl md:text-6xl font-serif font-extrabold text-white mb-8 text-center">
             {portfolioData.headline}
           </h1>
+
+          {/* 1. Origin Story, 2. Philosophy, 3. The Moat */}
           <div className="text-lg md:text-xl text-moonlight-text-secondary leading-relaxed space-y-6 text-left">
             {portfolioData.aboutMe.map((section, idx) => (
               <div key={idx} className="mb-12">
@@ -239,6 +194,7 @@ const About = () => {
               </div>
             ))}
           </div>
+
           <div className="flex justify-center space-x-6 mt-10">
             <a href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer" className="text-moonlight-text-secondary hover:text-teal-400 transition">
               <Linkedin className="w-8 h-8" />
@@ -255,8 +211,111 @@ const About = () => {
           </div>
         </section>
 
+        {/* 4. Proof Points */}
+        <section className="mb-24">
+          <h2 className="text-4xl font-serif font-bold text-center text-white mb-16">Proof Points</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {portfolioData.proofPoints.map((point, idx) => (
+              <div key={idx} className="bg-[rgba(255,255,255,0.03)] rounded-xl p-6 border border-[rgba(255,255,255,0.06)] hover:border-teal-400/50 transition-colors">
+                <div className="text-3xl font-bold text-teal-400 mb-3">{point.metric}</div>
+                <p className="text-moonlight-text-secondary mb-4 leading-relaxed">
+                  {point.problem}
+                </p>
+                <a href="/case-studies" className="text-teal-400 text-sm hover:text-teal-300 transition inline-flex items-center">
+                  Read full case study <ArrowRight className="w-4 h-4 ml-1" />
+                </a>
+              </div>
+            ))}
+          </div>
+        </section>
 
-        {/* Technical Skills */}
+        {/* 5. FiNimbus — Domain Expertise */}
+        <section className="mb-24">
+          <h2 className="text-4xl font-serif font-bold text-center text-white mb-16">
+            {portfolioData.finimbus.title}
+          </h2>
+          <div className="bg-[rgba(255,255,255,0.03)] rounded-xl p-8 border border-[rgba(255,255,255,0.06)] max-w-4xl mx-auto">
+            <h3 className="text-2xl font-serif font-bold text-white mb-4">
+              <span className="text-teal-400">FiNimbus</span> — AI-powered CFO for small businesses
+            </h3>
+            <div className="space-y-4 text-moonlight-text-secondary leading-relaxed">
+              {portfolioData.finimbus.content.map((paragraph, idx) => (
+                <p key={idx} className={idx === portfolioData.finimbus.content.length - 1 ? "font-medium text-moonlight-text-primary" : ""}>
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+            <a
+              href="https://finimbus.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-teal-400 hover:text-teal-300 transition-colors font-medium inline-block mt-6"
+            >
+              → finimbus.com
+            </a>
+          </div>
+        </section>
+
+        {/* 6. How to Work With Me */}
+        <section className="mb-24">
+          <h2 className="text-4xl font-serif font-bold text-center text-white mb-16">
+            {portfolioData.howToWork.title}
+          </h2>
+          <div className="bg-[rgba(255,255,255,0.03)] p-8 rounded-xl border border-[rgba(255,255,255,0.06)] max-w-4xl mx-auto">
+            <p className="text-lg text-moonlight-text-secondary leading-relaxed mb-8">
+              {portfolioData.howToWork.intro}
+            </p>
+
+            {/* 4-Step Process */}
+            <div className="mb-8">
+              <h3 className="text-xl font-serif font-bold text-teal-400 mb-4">How it works:</h3>
+              <ol className="space-y-3 text-moonlight-text-secondary">
+                {portfolioData.howToWork.steps.map((step, idx) => (
+                  <li key={idx} className="flex items-start">
+                    <span className="text-teal-400 font-bold mr-3 flex-shrink-0">{idx + 1}.</span>
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+
+            {/* What I Build */}
+            <div className="mb-8">
+              <h3 className="text-xl font-serif font-bold text-teal-400 mb-4">What I build:</h3>
+              <div className="space-y-4 text-moonlight-text-secondary">
+                {portfolioData.howToWork.services.map((service, idx) => (
+                  <p key={idx}>
+                    <span className="font-semibold text-moonlight-text-primary">{service.name}:</span>{' '}
+                    {service.description}
+                  </p>
+                ))}
+              </div>
+            </div>
+
+            {/* Guarantee */}
+            <div className="bg-[rgba(20,184,166,0.08)] border-l-4 border-teal-400 p-6 rounded-r-lg mb-8">
+              <p className="text-moonlight-text-secondary font-medium">
+                <span className="text-teal-400 font-bold">Guarantee:</span> {portfolioData.howToWork.guarantee}
+              </p>
+            </div>
+
+            {/* CTA */}
+            <div className="text-center">
+              <p className="text-moonlight-text-secondary mb-6">
+                Currently accepting new projects. Tell me about the manual process that's draining your team's time, and I'll respond within 24-48 hours with next steps.
+              </p>
+              <a
+                href="?modal=contact"
+                className="inline-flex items-center justify-center bg-purple-600 hover:bg-teal-500 text-white font-bold py-3 px-10 rounded-full transition duration-300 shadow-xl shadow-purple-500/20 hover:shadow-teal-500/20"
+              >
+                <Mail className="w-5 h-5 mr-3" />
+                Start a Conversation
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* 7. Technical Skills */}
         <section className="mb-24">
           <h2 className="text-4xl font-serif font-bold text-center text-white mb-12">Technical Skills</h2>
           <div className="bg-[rgba(255,255,255,0.03)] p-8 rounded-xl shadow-xl border border-[rgba(255,255,255,0.06)] max-w-5xl mx-auto">
@@ -277,7 +336,7 @@ const About = () => {
           </div>
         </section>
 
-        {/* Experience */}
+        {/* 8. Experience */}
         <section className="mb-24">
           <h2 className="text-4xl font-serif font-bold text-center text-white mb-16">Professional Experience</h2>
           <div className="relative border-l-4 border-purple-500/50 ml-4 md:ml-20 max-w-4xl mx-auto">
@@ -295,67 +354,7 @@ const About = () => {
           </div>
         </section>
 
-        {/* Projects */}
-        <section className="mb-24">
-          <h2 className="text-4xl font-serif font-bold text-center text-white mb-16">Key Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {portfolioData.projects.map((project, idx) => (
-              <div key={idx} className="bg-[rgba(255,255,255,0.03)] rounded-xl p-8 hover:shadow-2xl hover:shadow-teal-500/20 transition-all duration-500 border border-[rgba(255,255,255,0.06)]">
-                <h3 className="text-2xl font-serif font-bold text-teal-400 mb-4">{project.title}</h3>
-                <p className="text-moonlight-text-secondary mb-6 leading-relaxed">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map(tech => (
-                    <span key={tech} className="bg-zinc-900 text-xs text-teal-300 font-medium px-3 py-1 rounded-full border border-[rgba(255,255,255,0.06)]">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* What I'm Building Section */}
-        <section className="mb-16">
-          <h2 className="text-4xl font-serif font-bold text-center text-white mb-16">
-            What I'm Building
-          </h2>
-
-          <div className="bg-[rgba(255,255,255,0.03)] rounded-xl p-8 border border-[rgba(255,255,255,0.06)]">
-            <h3 className="text-2xl font-serif font-bold text-white mb-4">
-              <span className="text-teal-400">FiNimbus</span> — AI-powered CFO for small businesses.
-            </h3>
-
-            <div className="space-y-4 text-moonlight-text-secondary leading-relaxed">
-              <p>
-                At Ford Credit, I analyzed hundreds of financial statements from dealerships on our floor plan and small businesses applying for lines of credit. You start to see patterns. The best-performing dealerships weren't tracking more metrics—they were focused on fewer, and they understood exactly what those numbers meant for their next move. Meanwhile, I watched lenders approve or deny credit based on the same handful of drivers, over and over.
-              </p>
-
-              <p>
-                Most small business owners have financial statements they don't understand. They see numbers but don't know what those numbers are telling them to <em>do</em>. So they either ignore the reports, pay someone to translate, or fly blind until a lender or accountant delivers bad news.
-              </p>
-
-              <p>
-                FiNimbus fixes that. It takes your financials and translates them into the key drivers that actually matter—the same ones I watched separate thriving businesses from struggling ones, the same ones lenders use to evaluate your creditworthiness. Not another dashboard. Not forecasts. Just clear, plain-language answers: here's what's happening, here's why, here's what to do about it.
-              </p>
-
-              <p className="font-medium">
-                Financial clarity, instantly.
-              </p>
-            </div>
-
-            <a
-              href="https://finimbus.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-teal-400 hover:text-teal-300 transition-colors font-medium inline-block mt-6"
-            >
-              → finimbus.com
-            </a>
-          </div>
-        </section>
-
-        {/* Education & Certifications */}
+        {/* 9. Education & Certifications */}
         <section>
           <h2 className="text-4xl font-serif font-bold text-center text-white mb-16">Education & Certifications</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">

@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CaseStudies from '../components/CaseStudies';
+
+const caseStudiesSchema = {
+	"@context": "https://schema.org",
+	"@type": "CollectionPage",
+	"name": "Case Studies | Collin Wilkins",
+	"description": "Real-world automation case studies: eliminating $5M in manual overhead, cutting compliance bandwidth by 90%, and protecting America's most stolen vehicle.",
+	"url": "https://collinwilkins.com/case-studies",
+	"author": {
+		"@type": "Person",
+		"name": "Collin Wilkins"
+	}
+};
+---
+
+<Layout
+	title="Case Studies | AI Automation & Engineering Results"
+	description="Real-world automation case studies: eliminating $5M in manual overhead, cutting compliance bandwidth by 90%, and protecting America's most stolen vehicle."
+	schema={caseStudiesSchema}
+>
+	<CaseStudies client:load />
+	<noscript>
+		<div class="container mx-auto px-4 py-16 max-w-4xl">
+			<h1 class="text-4xl font-serif font-bold text-white mb-6">Case Studies</h1>
+			<p class="text-xl text-zinc-400 mb-8">Real problems. Measurable results. Automation case studies from Ford Motor Company and Morningstar.</p>
+			<h2 class="text-2xl font-serif font-bold text-white mb-4">Eliminating a 30-Day Manual Process</h2>
+			<p class="text-zinc-400 mb-6">IoT telemetry platform automating verification for 450,000+ vehicles, saving $5M annually.</p>
+			<h2 class="text-2xl font-serif font-bold text-white mb-4">Cutting 20% of Weekly Engineering Bandwidth</h2>
+			<p class="text-zinc-400 mb-6">Event-driven compliance engine reducing daily runs by 90% and freeing 10 engineering hours weekly.</p>
+			<h2 class="text-2xl font-serif font-bold text-white mb-4">Protecting America's Most Stolen Vehicle</h2>
+			<p class="text-zinc-400 mb-6">Privacy-first telemetry system deployed in thousands of 2024 Ford F-150s for theft recovery.</p>
+		</div>
+	</noscript>
+</Layout>
