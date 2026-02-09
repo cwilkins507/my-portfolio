@@ -4,10 +4,10 @@ import { Linkedin, Github, Mail, BadgeDollarSign, ArrowRight } from 'lucide-reac
 // Portfolio data
 const portfolioData = {
   name: "Collin Wilkins",
-  headline: "I Build Automation Systems That Eliminate Manual Work and Save Companies Millions",
+  headline: "I automate the boring stuff so your team stops losing hours to spreadsheets",
   aboutMe: [
     {
-      title: "The $2 Million Aha Moment: Why I Code for ROI",
+      title: "How I Got Here: A $2 Million Mistake",
       content: `Most engineers start their story with a "Hello World" script. Mine starts with a $2 million liability.
 
 In 2019, while working in Finance at Ford Motor Company, I noticed a costly flaw in our process. We had interest rate spreads that needed daily updates across dozens of regions and thousands of contracts. This was during the end of the zero interest rate era, and we held our breaths each time the Fed announced a meeting.
@@ -25,20 +25,20 @@ That's when it clicked for me.
 Code isn't just for engineers. It's a business tool. I build systems that solve expensive problems and give people their time back.`
     },
     {
-      title: "Philosophy: Engineering as a Profit Center",
+      title: "Why I Think About Money Before Code",
       content: `I'm a tech optimist and a problem-spotter. The biggest wins don't come from "Big AI" magic wands. They come from fixing the friction points that compound over time. The "death by a thousand cuts" issues. Small manual tasks that add up to massive time sinks.
 
-If your team spends 20% of their week clicking "Run" on a Postman collection or manually importing contacts, you're not just losing time. You're losing the chance to innovate.
+If your team spends 20% of their week on repetitive clicks or manually importing contacts, you're not just losing time. You're losing the chance to focus on what actually matters.
 
-I use Infrastructure as Code (Terraform) because I've inherited too many systems where the only documentation was "Steve's memory." And Steve quit. Everything I build is self-documenting through code. If I leave, the logic stays behind.
+I've inherited too many systems where the only documentation was "Steve's memory." And Steve quit. Everything I build is documented in the code itself. If I leave, the logic stays behind.
 
-I pick robustness over trendiness. AWS Lambda and distributed queues (SQS) aren't fashionable, but they scale to millions of requests without the headaches. You only pay for what you use. No expensive servers sitting idle at 3 AM.`
+I pick robustness over trendiness. The tools I use aren't flashy, but they scale without the headaches. You only pay for what you use. No expensive servers sitting idle at 3 AM.`
     },
     {
-      title: "The Special Sauce: From the Field to the Terminal",
+      title: "Sales Background, Engineering Toolkit",
       content: `I spent the first half of my career in Sales and Business Development, moving through 7 states and 13 territories for Ford. I've been the "Field Rep" and I've been the "Lead Engineer."
 
-This is my moat.
+That's the difference.
 
 Most developers look at a Jira ticket and miss the bigger picture. There's a joke I've seen play out more times than I'd like:
 
@@ -53,7 +53,7 @@ I've lived in Dallas, Atlanta, Denver, Nashville, Boston, Tampa, and now Detroit
   ],
   howToWork: {
     title: "How to Work With Me",
-    intro: "I help companies eliminate expensive manual processes through custom automation. If your team is wasting hours on work a script could handle, I can help.",
+    intro: "If your team is wasting hours on work a script could handle, I fix that. Most of my projects have been with large companies, but the problems are the same at any size—just smaller numbers.",
     steps: [
       "Discovery Call (30 minutes, free): We discuss your biggest workflow bottlenecks",
       "Automation Audit (1 week): I analyze your processes and identify savings opportunities",
@@ -63,31 +63,31 @@ I've lived in Dallas, Atlanta, Denver, Nashville, Boston, Tampa, and now Detroit
     services: [
       {
         name: "AI/LLM Integration",
-        description: "Custom agents that handle repetitive analysis and decision-making tasks, freeing your team for high-value work. I build production-ready agentic workflows, not just demos."
+        description: "AI that actually runs in production, not a ChatGPT wrapper that breaks after a week. I've shipped agents that handle real decisions, not just demos."
       },
       {
         name: "Automation Strategy",
-        description: "I audit your workflows, identify the highest-ROI automation opportunities, and implement Python scripts or low-code solutions that save thousands of hours annually."
+        description: "I find the manual work that's eating your week and kill it. Usually Python scripts, sometimes Zapier. Whatever's simplest."
       },
       {
         name: "Backend Engineering",
-        description: "Scalable API design, serverless architecture (AWS Lambda), and database optimization for systems that handle real production load."
+        description: "APIs and infrastructure that don't fall over when traffic spikes. I use AWS Lambda because you shouldn't pay for servers sitting idle."
       }
     ],
     guarantee: "If I don't identify significant automation savings during the audit, it's free."
   },
   proofPoints: [
     {
-      metric: "$5M saved",
-      problem: "A team was driving hundreds of miles to manually count cars at dealerships. We automated it with IoT telemetry for 450K+ vehicles."
+      metric: "Hundreds of hours saved",
+      problem: "A team was driving to locations to manually count inventory. We automated it so the data updates itself."
     },
     {
-      metric: "90% reduction",
-      problem: "An engineer was burning 20% of their week clicking through 80 Postman requests for compliance checks. We made it event-driven."
+      metric: "90% less busywork",
+      problem: "Someone was spending a full day each week running the same compliance checks by hand. Now it runs automatically."
     },
     {
-      metric: "2024 Launch",
-      problem: "America's most stolen truck needed theft recovery without sacrificing owner privacy. We built Zero Trust telemetry."
+      metric: "2024 Product Launch",
+      problem: "Built a privacy-first tracking system for vehicle theft recovery. Security without surveillance."
     }
   ],
   finimbus: {
@@ -115,7 +115,7 @@ I've lived in Dallas, Atlanta, Denver, Nashville, Boston, Tampa, and now Detroit
   },
   experiences: [
     {
-      role: "Lead Engineer",
+      role: "Lead Software Engineer",
       company: "Morningstar, Inc. — Detroit, MI",
       period: "Apr 2024 – Present",
       description: "Architected and deployed secure, cloud-native services for regulated financial clients, onboarding 23 recordkeepers. Modernized compliance engine with AWS SQS & Lambda, improving throughput and reducing latency by 35%. Designed monitoring/alerting solutions with Grafana & Splunk to maintain 99.99% uptime."
@@ -315,7 +315,7 @@ const About = () => {
               </p>
               <a
                 href="?modal=contact"
-                className="inline-flex items-center justify-center bg-purple-600 hover:bg-teal-500 text-white font-bold py-3 px-10 rounded-full transition duration-300 shadow-xl shadow-purple-500/20 hover:shadow-teal-500/20"
+                className="inline-flex items-center justify-center bg-teal-500 hover:bg-teal-400 text-white font-bold py-3 px-10 rounded-full transition-all duration-300 shadow-xl transform hover:scale-105"
               >
                 <Mail className="w-5 h-5 mr-3" />
                 Start a Conversation

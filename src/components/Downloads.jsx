@@ -43,7 +43,7 @@ const Downloads = () => {
                   Most AI workflows collapse under real-world complexity. Learn the DOE Framework to restore 100% reliability to your autonomous agents.
                 </p>
 
-                <div className="inline-flex items-center gap-3 px-6 py-3 bg-white text-black rounded-full font-bold group-hover:bg-teal-400 transition-all duration-300">
+                <div className="inline-flex items-center gap-3 px-6 py-3 bg-teal-500 text-white rounded-full font-bold group-hover:bg-teal-400 transition-all duration-300">
                   <span>Read Guide →</span>
                 </div>
 

@@ -254,7 +254,7 @@ const Services = () => {
                     </p>
                     <a
                         href="/quiz"
-                        className="inline-block bg-white text-black hover:bg-zinc-200 px-10 py-4 rounded-full font-bold text-lg shadow-xl transition-all transform hover:scale-105"
+                        className="inline-block bg-teal-500 text-white hover:bg-teal-400 px-10 py-4 rounded-full font-bold text-lg shadow-xl transition-all duration-300 transform hover:scale-105"
                     >
                         Take the Quiz →
                     </a>
@@ -269,15 +269,15 @@ const Services = () => {
                     </p>
                     <div className="flex flex-col md:flex-row justify-center items-center gap-4">
                         <a href="?modal=contact"
-                            className="flex items-center justify-center w-full md:w-auto bg-purple-600 hover:bg-teal-500 text-white font-bold py-3 px-10 rounded-full transition duration-300 shadow-xl shadow-teal-500/30">
+                            className="flex items-center justify-center w-full md:w-auto bg-teal-500 hover:bg-teal-400 text-white font-bold py-3 px-10 rounded-full transition-all duration-300 shadow-xl transform hover:scale-105">
                             <Mail className="w-5 h-5 mr-3" /> Contact Me
                         </a>
                         <a href="https://www.linkedin.com/in/collin-wilkins-1020215a/" target="_blank" rel="noopener noreferrer"
-                            className="flex items-center justify-center w-full md:w-auto bg-zinc-900 hover:bg-zinc-800 text-white font-bold py-3 px-10 rounded-full transition duration-300 border border-[rgba(255,255,255,0.06)]">
+                            className="flex items-center justify-center w-full md:w-auto bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(255,255,255,0.05)] text-white font-bold py-3 px-10 rounded-full transition-all duration-300 border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.12)]">
                             <Linkedin className="w-5 h-5 mr-3" /> LinkedIn
                         </a>
                         <a href="https://www.upwork.com/freelancers/~014ffbc17b83da9407" target="_blank" rel="noopener noreferrer"
-                            className="flex items-center justify-center w-full md:w-auto bg-zinc-900 hover:bg-zinc-800 text-white font-bold py-3 px-10 rounded-full transition duration-300 border border-[rgba(255,255,255,0.06)]">
+                            className="flex items-center justify-center w-full md:w-auto bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(255,255,255,0.05)] text-white font-bold py-3 px-10 rounded-full transition-all duration-300 border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.12)]">
                             <BadgeDollarSign className="w-5 h-5 mr-3" /> Upwork
                         </a>
                     </div>

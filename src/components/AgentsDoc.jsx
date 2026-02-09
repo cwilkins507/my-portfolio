@@ -43,7 +43,7 @@ const AgentsDoc = () => {
           <a
             href="/example-AGENTS.md"
             download="example-AGENTS.md"
-            className="inline-flex items-center bg-teal-600 hover:bg-teal-500 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg"
+            className="inline-flex items-center bg-teal-500 hover:bg-teal-400 text-white font-bold py-2 px-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl"
           >
             <Download className="w-4 h-4 mr-2" />
             Download File

@@ -131,7 +131,7 @@ const ArticleList = ({ articles = [] }) => {
               </div>
               <a
                 href={`/articles/${featuredArticle.slug}`}
-                className="inline-flex items-center bg-teal-400 hover:bg-teal-500 text-white font-bold text-lg py-4 px-10 rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-glow-sm"
+                className="inline-flex items-center bg-teal-500 hover:bg-teal-400 text-white font-bold text-lg py-4 px-10 rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl"
               >
                 Read Article <ArrowRight className="w-6 h-6 ml-2" />
               </a>

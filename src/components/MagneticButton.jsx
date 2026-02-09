@@ -53,8 +53,8 @@ export default function MagneticButton({
 
   const baseClasses =
     variant === 'primary'
-      ? 'bg-white text-black hover:bg-zinc-200'
-      : 'bg-teal-400 hover:bg-teal-500 hover:shadow-glow-sm hover:shadow-[0_0_20px_rgba(45,212,191,0.2)] text-white';
+      ? 'bg-teal-500 text-white hover:bg-teal-400'
+      : 'bg-[rgba(255,255,255,0.03)] text-white border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)]';
 
   return (
     <motion.a

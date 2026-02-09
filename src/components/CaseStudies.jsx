@@ -150,7 +150,7 @@ const CaseStudies = () => {
           </p>
           <a
             href="?modal=contact"
-            className="inline-flex items-center justify-center bg-purple-600 hover:bg-teal-500 text-white font-bold py-3 px-10 rounded-full transition duration-300 shadow-xl shadow-purple-500/20 hover:shadow-teal-500/20"
+            className="inline-flex items-center justify-center bg-teal-500 hover:bg-teal-400 text-white font-bold py-3 px-10 rounded-full transition-all duration-300 shadow-xl transform hover:scale-105"
           >
             <Mail className="w-5 h-5 mr-3" />
             Start a Conversation

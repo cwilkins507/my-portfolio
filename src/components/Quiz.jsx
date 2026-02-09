@@ -116,7 +116,7 @@ Quiz Results:
               reset();
               window.location.href = '/';
             }}
-            className="bg-white text-black hover:bg-zinc-200 px-8 py-3 rounded-full font-bold transition"
+            className="bg-[rgba(255,255,255,0.03)] text-white border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] px-8 py-3 rounded-full font-bold transition-all duration-300"
           >
             Return Home
           </button>
