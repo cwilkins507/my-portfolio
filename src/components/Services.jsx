@@ -50,31 +50,42 @@ const Services = () => {
     }, []);
 
     return (
-        <div className="min-h-screen bg-black py-20">
+        <div className="min-h-screen bg-black py-16 md:py-24">
             <div className="container mx-auto px-4 md:px-8 max-w-6xl">
 
                 {/* Hero Section */}
-                <section className="mb-24 text-center">
-                    <h1 className="text-5xl md:text-6xl font-serif font-extrabold text-white mb-6">
-                        Services
-                    </h1>
-                    <p className="text-xl text-moonlight-text-secondary max-w-3xl mx-auto leading-relaxed mb-4">
-                        I automate expensive problems. At Ford, I helped eliminate $5M+ in manual overhead with IoT-based inventory audits.
-                    </p>
-                    <p className="text-xl text-moonlight-text-secondary max-w-3xl mx-auto leading-relaxed mb-4">
-                        You're here because something in your business is costing too much time, money, or both.
-                        Manual data entry eating 40 hours a week. API integrations that break every month.
-                        Cloud costs spiraling out of control.
-                    </p>
-                    <p className="text-xl text-moonlight-text-secondary max-w-3xl mx-auto leading-relaxed">
-                        I fix those. Python automation, AI workflows, serverless architecture—whatever solves the problem fastest.
-                    </p>
+                <section className="mb-24 text-center relative overflow-hidden">
+                    {/* Atmospheric blur depth effect */}
+                    <div
+                        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[480px] z-0 hidden md:block"
+                        style={{
+                            background: 'linear-gradient(135deg, rgba(20,184,166,0.15), rgba(139,92,246,0.08), transparent)',
+                            filter: 'blur(80px)',
+                        }}
+                        aria-hidden="true"
+                    />
+                    <div className="relative z-10">
+                        <h1 className="text-5xl md:text-6xl font-serif font-extrabold text-white mb-6">
+                            Services
+                        </h1>
+                        <p className="text-xl text-moonlight-text-secondary max-w-3xl mx-auto leading-relaxed mb-4">
+                            I automate expensive problems. At Ford, I helped eliminate $5M+ in manual overhead with IoT-based inventory audits.
+                        </p>
+                        <p className="text-xl text-moonlight-text-secondary max-w-3xl mx-auto leading-relaxed mb-4">
+                            You're here because something in your business is costing too much time, money, or both.
+                            Manual data entry eating 40 hours a week. API integrations that break every month.
+                            Cloud costs spiraling out of control.
+                        </p>
+                        <p className="text-xl text-moonlight-text-secondary max-w-3xl mx-auto leading-relaxed">
+                            I fix those. Python automation, AI workflows, serverless architecture—whatever solves the problem fastest.
+                        </p>
+                    </div>
                 </section>
 
                 {/* Services Grid */}
                 <section className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24">
                     {services.map((service, idx) => (
-                        <div key={idx} className="bg-[rgba(255,255,255,0.03)] rounded-2xl p-8 border border-[rgba(255,255,255,0.06)] flex flex-col hover:shadow-2xl hover:shadow-teal-500/10 transition-all duration-300">
+                        <div key={idx} className="bg-[rgba(255,255,255,0.03)] rounded-2xl p-8 border border-[rgba(255,255,255,0.06)] flex flex-col hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] hover:shadow-[0_8px_32px_rgba(20,184,166,0.1)] hover:-translate-y-0.5 hover:scale-[1.01] will-change-transform transition-all duration-300">
                             <div className="mb-6">{service.icon}</div>
                             <h2 className="text-2xl font-serif font-bold text-white mb-4">{service.title}</h2>
                             <div className="mb-6 flex-grow">
@@ -92,7 +103,7 @@ const Services = () => {
                             </div>
 
                             <div className="mb-6">
-                                <h3 className="text-sm font-semibold text-teal-400 uppercase tracking-wider mb-4 flex items-center">
+                                <h3 className="text-sm font-semibold text-teal-400 uppercase tracking-[0.08em] mb-4 flex items-center">
                                     <CheckCircle2 className="w-4 h-4 mr-2" /> Key Deliverables
                                 </h3>
                                 <ul className="space-y-3">
@@ -121,7 +132,7 @@ const Services = () => {
                 </section>
 
                 {/* How It Works Section */}
-                <section className="mb-24 bg-[rgba(255,255,255,0.03)] p-8 md:p-12 rounded-3xl border border-[rgba(255,255,255,0.06)]">
+                <section className="mb-24 bg-[rgba(255,255,255,0.03)] p-8 md:p-12 rounded-3xl border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] transition-all duration-300">
                     <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-6 border-b border-purple-500/20 pb-4">
                         How It Works
                     </h2>
@@ -173,7 +184,7 @@ const Services = () => {
                 </section>
 
                 {/* Quiz CTA */}
-                <section className="mb-24 bg-[rgba(255,255,255,0.03)] p-8 md:p-12 rounded-3xl border border-[rgba(255,255,255,0.06)] text-center">
+                <section className="mb-24 bg-[rgba(255,255,255,0.03)] p-8 md:p-12 rounded-3xl border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] transition-all duration-300 text-center">
                     <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">Not sure which service fits?</h2>
                     <p className="text-moonlight-text-secondary mb-8 max-w-2xl mx-auto text-lg">
                         Take our 2-minute quiz to get a personalized AI action plan delivered to your inbox.
@@ -187,7 +198,7 @@ const Services = () => {
                 </section>
 
                 {/* CTA Section */}
-                <section className="bg-[rgba(255,255,255,0.03)] p-8 md:p-12 rounded-3xl border border-[rgba(255,255,255,0.06)] text-center shadow-2xl">
+                <section className="bg-[rgba(255,255,255,0.03)] p-8 md:p-12 rounded-3xl border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] transition-all duration-300 text-center shadow-2xl">
                     <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-6">Ready to start a project?</h2>
                     <p className="text-moonlight-text-secondary mb-10 max-w-2xl mx-auto text-lg">
                         I'm taking on 2-3 new clients per quarter.

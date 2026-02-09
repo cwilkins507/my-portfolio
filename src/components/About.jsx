@@ -168,12 +168,21 @@ const About = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black py-20">
+    <div className="min-h-screen bg-black py-16 md:py-24">
       <div className="container mx-auto px-4 md:px-8 max-w-7xl">
 
         {/* Header / Bio Section */}
-        <section className="mb-24 max-w-5xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-serif font-extrabold text-white mb-8 text-center">
+        <section className="mb-24 max-w-5xl mx-auto relative overflow-hidden">
+          {/* Atmospheric blur depth effect */}
+          <div
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[480px] z-0 hidden md:block"
+            style={{
+              background: 'linear-gradient(135deg, rgba(20,184,166,0.15), rgba(139,92,246,0.08), transparent)',
+              filter: 'blur(80px)',
+            }}
+            aria-hidden="true"
+          />
+          <h1 className="text-5xl md:text-6xl font-serif font-extrabold text-white mb-8 text-center relative z-10">
             {portfolioData.headline}
           </h1>
 
@@ -216,7 +225,7 @@ const About = () => {
           <h2 className="text-4xl font-serif font-bold text-center text-white mb-16">Proof Points</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {portfolioData.proofPoints.map((point, idx) => (
-              <div key={idx} className="bg-[rgba(255,255,255,0.03)] rounded-xl p-6 border border-[rgba(255,255,255,0.06)] hover:border-teal-400/50 transition-colors">
+              <div key={idx} className="bg-[rgba(255,255,255,0.03)] rounded-xl p-6 border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] hover:shadow-[0_8px_32px_rgba(20,184,166,0.1)] hover:-translate-y-0.5 will-change-transform transition-all duration-300">
                 <div className="text-3xl font-bold text-teal-400 mb-3">{point.metric}</div>
                 <p className="text-moonlight-text-secondary mb-4 leading-relaxed">
                   {point.problem}
@@ -234,7 +243,7 @@ const About = () => {
           <h2 className="text-4xl font-serif font-bold text-center text-white mb-16">
             {portfolioData.finimbus.title}
           </h2>
-          <div className="bg-[rgba(255,255,255,0.03)] rounded-xl p-8 border border-[rgba(255,255,255,0.06)] max-w-4xl mx-auto">
+          <div className="bg-[rgba(255,255,255,0.03)] rounded-xl p-8 border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] transition-all duration-300 max-w-4xl mx-auto">
             <h3 className="text-2xl font-serif font-bold text-white mb-4">
               <span className="text-teal-400">FiNimbus</span> — AI-powered CFO for small businesses
             </h3>
@@ -261,7 +270,7 @@ const About = () => {
           <h2 className="text-4xl font-serif font-bold text-center text-white mb-16">
             {portfolioData.howToWork.title}
           </h2>
-          <div className="bg-[rgba(255,255,255,0.03)] p-8 rounded-xl border border-[rgba(255,255,255,0.06)] max-w-4xl mx-auto">
+          <div className="bg-[rgba(255,255,255,0.03)] p-8 rounded-xl border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] transition-all duration-300 max-w-4xl mx-auto">
             <p className="text-lg text-moonlight-text-secondary leading-relaxed mb-8">
               {portfolioData.howToWork.intro}
             </p>
@@ -318,7 +327,7 @@ const About = () => {
         {/* 7. Technical Skills */}
         <section className="mb-24">
           <h2 className="text-4xl font-serif font-bold text-center text-white mb-12">Technical Skills</h2>
-          <div className="bg-[rgba(255,255,255,0.03)] p-8 rounded-xl shadow-xl border border-[rgba(255,255,255,0.06)] max-w-5xl mx-auto">
+          <div className="bg-[rgba(255,255,255,0.03)] p-8 rounded-xl shadow-xl border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] transition-all duration-300 max-w-5xl mx-auto">
             <div className="space-y-8">
               {Object.entries(portfolioData.skills).map(([category, skills]) => (
                 <div key={category}>
@@ -358,7 +367,7 @@ const About = () => {
         <section>
           <h2 className="text-4xl font-serif font-bold text-center text-white mb-16">Education & Certifications</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-            <div className="bg-[rgba(255,255,255,0.03)] p-6 rounded-xl shadow-xl border border-[rgba(255,255,255,0.06)]">
+            <div className="bg-[rgba(255,255,255,0.03)] p-6 rounded-xl shadow-xl border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] transition-all duration-300">
               <h3 className="text-2xl font-serif font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Education</h3>
               {portfolioData.education.map((edu, idx) => (
                 <div key={idx} className="mb-4">
@@ -367,7 +376,7 @@ const About = () => {
                 </div>
               ))}
             </div>
-            <div className="bg-[rgba(255,255,255,0.03)] p-6 rounded-xl shadow-xl border border-[rgba(255,255,255,0.06)]">
+            <div className="bg-[rgba(255,255,255,0.03)] p-6 rounded-xl shadow-xl border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] transition-all duration-300">
               <h3 className="text-2xl font-serif font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Certifications</h3>
               <ul className="space-y-3">
                 {portfolioData.certifications.map((cert, idx) => (

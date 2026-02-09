@@ -113,16 +113,16 @@ const personSchema = {
 	<GlowDivider />
 
 	<!-- 3. Featured Articles Section -->
-	<section class="py-16 max-w-6xl mx-auto px-4">
+	<section class="py-16 md:py-24 max-w-6xl mx-auto px-4">
 		<h2 class="text-3xl font-serif font-semibold text-moonlight-text-primary mb-8">Featured Articles</h2>
 		<div class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 scrollbar-hide">
 			{articles.slice(0, 3).map(article => (
 				<a
 					href={`/articles/${article.slug}`}
-					class="group flex-shrink-0 w-[300px] md:w-[400px] snap-start rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 border"
+					class="group flex-shrink-0 w-[300px] md:w-[400px] snap-start rounded-2xl p-8 transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.01] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] hover:shadow-[0_8px_32px_rgba(20,184,166,0.1)] will-change-transform border"
 					style="background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.06);"
 				>
-					<span class="text-xs uppercase tracking-wider text-moonlight-text-faint font-medium">
+					<span class="text-xs uppercase tracking-[0.08em] text-moonlight-text-faint font-medium">
 						{getCategoryForArticle(article.tags)}
 					</span>
 					<h3 class="text-xl font-serif text-moonlight-text-primary mt-3 mb-2 group-hover:text-teal-400 transition leading-snug">
@@ -140,12 +140,12 @@ const personSchema = {
 	</section>
 
 	<!-- 4. Background/Proof Section (Testimonial Cards) -->
-	<section id="work" class="py-16 max-w-6xl mx-auto px-4">
+	<section id="work" class="py-16 md:py-24 max-w-6xl mx-auto px-4">
 		<h2 class="text-sm uppercase tracking-widest text-moonlight-text-faint mb-8">Background</h2>
 		<div class="grid md:grid-cols-3 gap-6">
 			<!-- Card 1: Ford Credit -->
 			<div
-				class="rounded-2xl p-8 border transition-colors hover:border-teal-400/50"
+				class="rounded-2xl p-8 border transition-all duration-300 hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] hover:shadow-[0_8px_32px_rgba(20,184,166,0.1)] hover:-translate-y-0.5 will-change-transform"
 				style="background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.06);"
 			>
 				<div class="text-sm font-medium text-moonlight-text-muted mb-3">Remote Dealership Inventory Audit</div>
@@ -159,7 +159,7 @@ const personSchema = {
 
 			<!-- Card 2: Morningstar -->
 			<div
-				class="rounded-2xl p-8 border transition-colors hover:border-teal-400/50"
+				class="rounded-2xl p-8 border transition-all duration-300 hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] hover:shadow-[0_8px_32px_rgba(20,184,166,0.1)] hover:-translate-y-0.5 will-change-transform"
 				style="background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.06);"
 			>
 				<div class="text-sm font-medium text-moonlight-text-muted mb-3">Compliance Engine Modernization</div>
@@ -173,7 +173,7 @@ const personSchema = {
 
 			<!-- Card 3: F-150 Launch -->
 			<div
-				class="rounded-2xl p-8 border transition-colors hover:border-teal-400/50"
+				class="rounded-2xl p-8 border transition-all duration-300 hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] hover:shadow-[0_8px_32px_rgba(20,184,166,0.1)] hover:-translate-y-0.5 will-change-transform"
 				style="background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.06);"
 			>
 				<div class="text-sm font-medium text-moonlight-text-muted mb-3">Stolen Vehicle Services</div>
@@ -196,9 +196,9 @@ const personSchema = {
 	<GlowDivider />
 
 	<!-- 6. Currently Building Section (FiNimbus) -->
-	<section class="py-16 max-w-4xl mx-auto px-4">
+	<section class="py-16 md:py-24 max-w-4xl mx-auto px-4">
 		<div
-			class="rounded-2xl p-8 md:p-12 text-center border transition-colors hover:border-teal-400/50"
+			class="rounded-2xl p-8 md:p-12 text-center border transition-all duration-300 hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] hover:shadow-[0_8px_32px_rgba(20,184,166,0.1)] will-change-transform"
 			style="background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.06);"
 		>
 			<div class="text-xs uppercase tracking-widest text-moonlight-text-faint mb-4">Currently Building</div>
@@ -241,7 +241,7 @@ const personSchema = {
 	</section>
 
 	<!-- 8. Quiz CTA Section -->
-	<section class="py-20 bg-[#0a0a0b]">
+	<section class="py-16 md:py-24 bg-[#0a0a0b]">
 		<div class="max-w-4xl mx-auto px-4 text-center">
 			<h2 class="text-4xl md:text-5xl font-serif font-semibold text-moonlight-text-primary mb-6 leading-tight">
 				Not sure where to start?

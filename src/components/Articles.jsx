@@ -96,10 +96,19 @@ const ArticleList = ({ articles = [] }) => {
     <div className="min-h-screen bg-[#0a0a0b]">
       {/* Featured Article Hero */}
       {featuredArticle && (
-        <div className="border-b" style={{ background: 'rgba(255,255,255,0.03)', borderColor: 'rgba(255,255,255,0.06)' }}>
-          <div className="container mx-auto px-4 py-24 md:py-32">
+        <div className="border-b relative overflow-hidden" style={{ background: 'rgba(255,255,255,0.03)', borderColor: 'rgba(255,255,255,0.06)' }}>
+          {/* Atmospheric blur depth effect */}
+          <div
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[480px] z-0 hidden md:block"
+            style={{
+              background: 'linear-gradient(135deg, rgba(20,184,166,0.15), rgba(139,92,246,0.08), transparent)',
+              filter: 'blur(80px)',
+            }}
+            aria-hidden="true"
+          />
+          <div className="container mx-auto px-4 py-24 md:py-32 relative z-10">
             <div className="max-w-4xl mx-auto">
-              <span className="text-teal-400 text-sm font-bold uppercase tracking-wider">Latest Article</span>
+              <span className="text-teal-400 text-sm font-bold uppercase tracking-[0.08em]">Latest Article</span>
               <h1 className="text-5xl md:text-7xl font-serif font-black text-moonlight-text-primary mt-4 mb-6 leading-tight tracking-tight">
                 {featuredArticle.title}
               </h1>
@@ -132,7 +141,7 @@ const ArticleList = ({ articles = [] }) => {
       )}
 
       {/* Category Tabs & Article List */}
-      <div className="container mx-auto px-4 py-20">
+      <div className="container mx-auto px-4 py-16 md:py-24">
         {/* Category Navigation */}
         <div className="flex items-center justify-between mb-12">
           <h2 className="text-3xl font-serif font-semibold text-moonlight-text-primary">All Articles</h2>
@@ -173,7 +182,7 @@ const ArticleList = ({ articles = [] }) => {
               <motion.a
                 href={`/articles/${article.slug}`}
                 key={article.slug}
-                className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 py-6 border-b hover:bg-[rgba(255,255,255,0.02)] transition-all duration-300 group px-4"
+                className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 py-6 border-b hover:bg-[rgba(255,255,255,0.05)] transition-all duration-300 group px-4"
                 style={{ borderColor: 'rgba(255,255,255,0.04)' }}
                 variants={itemVariants}
               >

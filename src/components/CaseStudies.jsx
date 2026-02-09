@@ -53,13 +53,24 @@ const CaseStudies = () => {
       <div className="container mx-auto px-4 md:px-8 max-w-5xl">
 
         {/* Hero */}
-        <section className="mb-20 text-center">
-          <h1 className="text-5xl md:text-6xl font-serif font-extrabold text-white mb-6">
-            Case Studies
-          </h1>
-          <p className="text-lg md:text-xl text-moonlight-text-secondary max-w-3xl mx-auto leading-relaxed">
-            Real problems. Measurable results. Here's what happens when you stop tolerating manual processes and start automating them.
-          </p>
+        <section className="mb-20 text-center relative overflow-hidden">
+          {/* Atmospheric blur depth effect */}
+          <div
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[480px] z-0 hidden md:block"
+            style={{
+              background: 'linear-gradient(135deg, rgba(20,184,166,0.15), rgba(139,92,246,0.08), transparent)',
+              filter: 'blur(80px)',
+            }}
+            aria-hidden="true"
+          />
+          <div className="relative z-10">
+            <h1 className="text-5xl md:text-6xl font-serif font-extrabold text-white mb-6">
+              Case Studies
+            </h1>
+            <p className="text-lg md:text-xl text-moonlight-text-secondary max-w-3xl mx-auto leading-relaxed">
+              Real problems. Measurable results. Here's what happens when you stop tolerating manual processes and start automating them.
+            </p>
+          </div>
         </section>
 
         {/* Case Studies */}

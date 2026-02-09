@@ -67,6 +67,14 @@ export default {
         mono: ['JetBrains Mono', 'monospace'],
         display: ['DM Sans', 'Inter', 'sans-serif'], // Keep for compatibility
       },
+      letterSpacing: {
+        'tight-headline': '-0.01em',
+        'wide-label': '0.08em',
+      },
+      lineHeight: {
+        'headline': '1.2',
+        'body': '1.6',
+      },
       boxShadow: {
         'glow': '0 12px 40px rgba(45, 212, 191, 0.3)',
         'glow-sm': '0 8px 24px rgba(45, 212, 191, 0.2)',

@@ -54,13 +54,13 @@ export default function MagneticButton({
   const baseClasses =
     variant === 'primary'
       ? 'bg-white text-black hover:bg-zinc-200'
-      : 'bg-teal-400 hover:bg-teal-500 hover:shadow-glow-sm text-white';
+      : 'bg-teal-400 hover:bg-teal-500 hover:shadow-glow-sm hover:shadow-[0_0_20px_rgba(45,212,191,0.2)] text-white';
 
   return (
     <motion.a
       ref={ref}
       href={href}
-      className={`${baseClasses} px-8 py-4 rounded-full font-bold shadow-xl transition-colors inline-block ${className}`}
+      className={`${baseClasses} px-8 py-4 rounded-full font-bold shadow-xl transition-all duration-300 will-change-transform inline-block ${className}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       animate={

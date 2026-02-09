@@ -74,7 +74,17 @@ export default function AnimatedHero({ headline, subheadline, supportingStat, so
   };
 
   return (
-    <section className="py-20 md:py-32 text-center relative overflow-hidden">
+    <section className="py-16 md:py-24 text-center relative overflow-hidden">
+      {/* Atmospheric blur depth effect */}
+      <div
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[480px] z-0 hidden md:block"
+        style={{
+          background: 'linear-gradient(135deg, rgba(20,184,166,0.15), rgba(139,92,246,0.08), transparent)',
+          filter: 'blur(80px)',
+        }}
+        aria-hidden="true"
+      />
+
       {/* Background grid pattern + gradient */}
       <div
         className="absolute inset-0 opacity-50"
@@ -91,7 +101,7 @@ export default function AnimatedHero({ headline, subheadline, supportingStat, so
       <div className="max-w-4xl mx-auto px-4 relative z-10">
         {/* Animated headline with stagger effect */}
         <motion.h1
-          className="text-4xl md:text-7xl lg:text-8xl font-serif font-extrabold text-white mb-6 leading-tight"
+          className="text-4xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 leading-[1.2]"
           variants={prefersReducedMotion ? {} : containerVariants}
           initial={prefersReducedMotion ? false : "hidden"}
           animate={prefersReducedMotion ? false : "visible"}

@@ -15,12 +15,12 @@ export default function CaseStudyCard({ title, metric, description, featured = f
     rest: {
       scale: 1,
       y: 0,
-      boxShadow: '0 0 0 rgba(45,212,191,0)',
+      boxShadow: '0 0 0 rgba(20,184,166,0)',
     },
     hover: {
-      scale: 1.03,
-      y: -8,
-      boxShadow: '0 20px 40px rgba(45,212,191,0.2)',
+      scale: 1.01,
+      y: -2,
+      boxShadow: '0 8px 32px rgba(20,184,166,0.1)',
       transition: {
         duration: 0.3,
         ease: 'easeOut',
@@ -31,15 +31,15 @@ export default function CaseStudyCard({ title, metric, description, featured = f
   return (
     <motion.div
       data-card-type="case-study"
-      className={`rounded-lg p-6 transition-colors border ${
+      className={`rounded-lg p-6 transition-all duration-300 border will-change-transform ${
         featured ? 'md:col-span-2' : ''
-      }`}
+      } hover:bg-[rgba(255,255,255,0.05)]`}
       style={{
         background: 'rgba(255,255,255,0.03)',
         borderColor: 'rgba(255,255,255,0.06)',
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = 'rgba(45,212,191,0.5)';
+        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)';
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)';

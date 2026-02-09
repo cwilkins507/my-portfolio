@@ -40,19 +40,19 @@ const Navigation = ({ portfolioData, onSearchClick }) => {
 
         {/* Right Side: Links + Search */}
         <div className="flex items-center gap-6">
-          <a href="/articles" className="text-[13px] text-moonlight-text-muted hover:text-moonlight-text-primary transition">
+          <a href="/articles" className="text-[13px] text-moonlight-text-muted hover:text-moonlight-text-primary underline decoration-transparent hover:decoration-teal-400 underline-offset-4 transition-all duration-300">
             Articles
           </a>
-          <a href="/resources" className="text-[13px] text-moonlight-text-muted hover:text-moonlight-text-primary transition">
+          <a href="/resources" className="text-[13px] text-moonlight-text-muted hover:text-moonlight-text-primary underline decoration-transparent hover:decoration-teal-400 underline-offset-4 transition-all duration-300">
             Resources
           </a>
-          <a href="/services" className="text-[13px] text-moonlight-text-muted hover:text-moonlight-text-primary transition">
+          <a href="/services" className="text-[13px] text-moonlight-text-muted hover:text-moonlight-text-primary underline decoration-transparent hover:decoration-teal-400 underline-offset-4 transition-all duration-300">
             Services
           </a>
-          <a href="/about" className="text-[13px] text-moonlight-text-muted hover:text-moonlight-text-primary transition">
+          <a href="/about" className="text-[13px] text-moonlight-text-muted hover:text-moonlight-text-primary underline decoration-transparent hover:decoration-teal-400 underline-offset-4 transition-all duration-300">
             About
           </a>
-          <a href="?modal=contact" className="text-[13px] text-moonlight-text-muted hover:text-moonlight-text-primary transition">
+          <a href="?modal=contact" className="text-[13px] text-moonlight-text-muted hover:text-moonlight-text-primary underline decoration-transparent hover:decoration-teal-400 underline-offset-4 transition-all duration-300">
             Contact
           </a>
 
