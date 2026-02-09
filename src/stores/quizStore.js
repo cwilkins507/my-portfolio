@@ -4,53 +4,57 @@ import { persist } from 'zustand/middleware';
 const quizQuestions = [
   {
     id: 1,
-    question: "Are you regularly using AI tools in your business?",
+    question: "How big is your team?",
     options: [
-      "Yes - I'm using AI tools like ChatGPT or Claude at least a few times per week.",
-      "No - I've played around with AI but it hasn't become part of my routine yet."
+      "Just me (solopreneur)",
+      "2-5 people",
+      "6-20 people",
+      "20+ people"
     ]
   },
   {
     id: 2,
-    question: "What's your current work situation?",
+    question: "How many hours per week does your team spend on repetitive tasks?",
     options: [
-      "I'm a solopreneur (no employees)",
-      "I run a small business (1-10 employees)",
-      "I run a big business (10+ employees)",
-      "I'm a full-time employee (no business of my own)"
+      "Less than 5 hours",
+      "5-10 hours",
+      "10-20 hours",
+      "More than 20 hours"
     ]
   },
   {
     id: 3,
-    question: "What's your #1 AI challenge right now?",
+    question: "What's eating up the most time?",
     options: [
-      "I'm excited about AI but overwhelmed by where to start",
-      "I'm behind my competitors who are using AI more effectively",
-      "I don't have time to learn where AI can fit into my business"
+      "Data entry and copying between systems",
+      "Email and follow-ups",
+      "Reporting and spreadsheets",
+      "Client onboarding and fulfillment"
     ]
   },
   {
     id: 4,
-    question: "What's the #1 outcome you're hoping AI can help you achieve?",
+    question: "Have you tried to automate this before?",
     options: [
-      "Make more money - I want to increase revenue or cut costs",
-      "Save time - I want to automate tasks and free up my schedule",
-      "Improve quality - I want better products, fewer errors, or happier customers"
+      "No — not sure where to start",
+      "Yes — with Zapier/Make but hit limits",
+      "Yes — hired a developer but it didn't work out",
+      "Yes — built something ourselves but it's fragile"
     ]
   },
   {
     id: 5,
-    question: "Which area of your business eats up the most of your time?",
+    question: "What's your budget for automation help?",
     options: [
-      "Admin work (emails, scheduling, data entry)",
-      "Marketing and content creation",
-      "Sales and lead follow-up",
-      "Client delivery and fulfillment"
+      "Under $2K (I need something small)",
+      "$2K-$5K (willing to invest in the right solution)",
+      "$5K-$15K (this is a priority)",
+      "$15K+ (ready for a bigger project)"
     ]
   },
   {
     id: 6,
-    question: "Your personalized AI action plan is ready.",
+    question: "Your results are ready.",
     isContactForm: true
   }
 ];

@@ -3,17 +3,17 @@ import { Bot, Code, Cloud, Mail, BadgeDollarSign, Linkedin, ArrowRight, CheckCir
 
 const services = [
     {
-        id: 'ai-automation',
-        title: "AI & Automation Consulting",
+        id: 'ai-consulting',
+        title: "AI Strategy for Small Teams",
         icon: <Bot className="w-12 h-12 text-teal-400" />,
-        description: "I help businesses use Large Language Models to automate manual work. Typical engagements achieve 60-80% reduction in repetitive tasks within 6 weeks.",
+        description: "Not sure if AI fits your business? I'll tell you which 3 tasks AI can actually help with—no hype, no $100K enterprise pilots. Most assessments take 30 minutes.",
         deliverables: [
-            "Custom Agentic Workflows (GitHub/Asana/Slack integrations)",
-            "Prompt Engineering & Context Design (CLEAR framework)",
-            "RAG Pipeline Architecture",
-            "AI Strategy Audits & Roadmaps"
+            "AI Readiness Assessment (free, 30 min)",
+            "Custom AI workflows for your specific tools",
+            "Team training on prompt engineering",
+            "Production-ready agents, not demos"
         ],
-        idealFor: "Teams looking to move beyond basic chatbots into production AI systems."
+        idealFor: "Small teams curious about AI but unsure where to start."
     },
     {
         id: 'python-scripting',
@@ -69,15 +69,14 @@ const Services = () => {
                             Services
                         </h1>
                         <p className="text-xl text-moonlight-text-secondary max-w-3xl mx-auto leading-relaxed mb-4">
-                            I automate expensive problems. At Ford, I helped eliminate $5M+ in manual overhead with IoT-based inventory audits.
+                            I help small businesses figure out where AI and automation actually make sense—without the enterprise price tag.
                         </p>
                         <p className="text-xl text-moonlight-text-secondary max-w-3xl mx-auto leading-relaxed mb-4">
-                            You're here because something in your business is costing too much time, money, or both.
-                            Manual data entry eating 40 hours a week. API integrations that break every month.
-                            Cloud costs spiraling out of control.
+                            You're here because something in your business is costing too much time.
+                            Manual data entry eating 10 hours a week. Copying between systems. Following up with leads by hand.
                         </p>
                         <p className="text-xl text-moonlight-text-secondary max-w-3xl mx-auto leading-relaxed">
-                            I fix those. Python automation, AI workflows, serverless architecture—whatever solves the problem fastest.
+                            I fix those. The same patterns I used at Ford and Morningstar work for small teams too—just scaled appropriately.
                         </p>
                     </div>
                 </section>
@@ -183,6 +182,70 @@ const Services = () => {
                     </div>
                 </section>
 
+                {/* Pricing Section */}
+                <section className="mb-24">
+                    <h2 className="text-3xl font-serif font-bold text-white mb-8 text-center">
+                        What Does This Cost?
+                    </h2>
+                    <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                        <div className="bg-[rgba(255,255,255,0.03)] rounded-xl p-6 border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] transition-all duration-300">
+                            <div className="text-2xl font-bold text-teal-400 mb-2">$2K - $5K</div>
+                            <div className="text-moonlight-text-primary font-medium mb-2">Quick Wins</div>
+                            <p className="text-moonlight-text-secondary text-sm">
+                                Single workflow automation. Zapier/Make replacement.
+                                API integration. 1-2 week delivery.
+                            </p>
+                        </div>
+                        <div className="bg-[rgba(255,255,255,0.03)] rounded-xl p-6 border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] transition-all duration-300">
+                            <div className="text-2xl font-bold text-teal-400 mb-2">$5K - $15K</div>
+                            <div className="text-moonlight-text-primary font-medium mb-2">Full Systems</div>
+                            <p className="text-moonlight-text-secondary text-sm">
+                                Multi-step automations. Custom AI agents.
+                                Data pipelines. 4-8 week delivery.
+                            </p>
+                        </div>
+                        <div className="bg-[rgba(255,255,255,0.03)] rounded-xl p-6 border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] transition-all duration-300">
+                            <div className="text-2xl font-bold text-teal-400 mb-2">$15K+</div>
+                            <div className="text-moonlight-text-primary font-medium mb-2">Enterprise</div>
+                            <p className="text-moonlight-text-secondary text-sm">
+                                Large-scale systems. Cloud architecture.
+                                Ongoing support. 2-4 month engagements.
+                            </p>
+                        </div>
+                    </div>
+                    <p className="text-center text-moonlight-text-muted text-sm mt-6">
+                        Discovery call is always free. I'll tell you if automation makes sense before you spend anything.
+                    </p>
+
+                    {/* Guarantee Badge */}
+                    <div className="mt-8 text-center">
+                        <div className="inline-flex items-center gap-2 bg-teal-500/10 border border-teal-500/20 rounded-full px-6 py-3">
+                            <span className="text-teal-400 font-medium">
+                                ✓ If it doesn't work as promised, you don't pay. Simple as that.
+                            </span>
+                        </div>
+                    </div>
+
+                    {/* Portfolio Builder Promo */}
+                    <div className="mt-12 bg-gradient-to-r from-purple-500/10 to-teal-500/10 rounded-2xl p-8 border border-purple-500/20">
+                        <h3 className="text-xl font-bold text-white mb-2">
+                            Building My Small Business Portfolio — 3 Spots
+                        </h3>
+                        <p className="text-moonlight-text-secondary mb-4">
+                            I've built automation for Ford and Morningstar. Now I need small business stories to point to.
+                            I'll do your first project <span className="text-teal-400 font-semibold">free</span>—you just agree
+                            to a testimonial afterward (written, video, or case study, your call). You get working automation,
+                            I get something to show future clients.
+                        </p>
+                        <a
+                            href="?modal=contact&promo=portfolio"
+                            className="inline-flex items-center text-teal-400 font-semibold hover:text-teal-300 transition"
+                        >
+                            Claim a spot →
+                        </a>
+                    </div>
+                </section>
+
                 {/* Quiz CTA */}
                 <section className="mb-24 bg-[rgba(255,255,255,0.03)] p-8 md:p-12 rounded-3xl border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] transition-all duration-300 text-center">
                     <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">Not sure which service fits?</h2>
@@ -202,7 +265,7 @@ const Services = () => {
                     <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-6">Ready to start a project?</h2>
                     <p className="text-moonlight-text-secondary mb-10 max-w-2xl mx-auto text-lg">
                         I'm taking on 2-3 new clients per quarter.
-                        If you're looking to find $50K+ in automation savings, let's talk.
+                        If your team is losing 5+ hours a week to manual work, let's talk.
                     </p>
                     <div className="flex flex-col md:flex-row justify-center items-center gap-4">
                         <a href="?modal=contact"

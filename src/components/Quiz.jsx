@@ -63,11 +63,11 @@ const Quiz = () => {
     const formattedMessage = `
 Quiz Results:
 
-1. AI Tool Usage: ${answers[1] || 'Not answered'}
-2. Work Situation: ${answers[2] || 'Not answered'}
-3. AI Challenge: ${answers[3] || 'Not answered'}
-4. Desired Outcome: ${answers[4] || 'Not answered'}
-5. Time-Consuming Area: ${answers[5] || 'Not answered'}
+1. Team Size: ${answers[1] || 'Not answered'}
+2. Hours on Repetitive Tasks: ${answers[2] || 'Not answered'}
+3. Biggest Time Sink: ${answers[3] || 'Not answered'}
+4. Past Automation Attempts: ${answers[4] || 'Not answered'}
+5. Budget Range: ${answers[5] || 'Not answered'}
     `.trim();
 
     const formData = {
@@ -105,11 +105,11 @@ Quiz Results:
     return (
       <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-6 font-sans">
         <div className="max-w-2xl w-full text-center space-y-6">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold">Success!</h1>
-          <p className="text-xl text-zinc-300">Your custom AI Action Plan is being generated and sent to {email}.</p>
+          <h1 className="text-4xl md:text-5xl font-serif font-bold">Got it!</h1>
+          <p className="text-xl text-zinc-300">I'll review your answers and send a quick analysis to {email}.</p>
           <div className="bg-white/10 p-8 rounded-2xl border border-white/20">
             <Check className="w-16 h-16 text-green-400 mx-auto mb-4" />
-            <p>Check your inbox in the next 5 minutes.</p>
+            <p>If automation makes sense for your situation, I'll include rough pricing and next steps.</p>
           </div>
           <button
             onClick={() => {
@@ -147,10 +147,10 @@ Quiz Results:
       {/* Header Section */}
       <div className="pt-12 pb-8 px-6 text-center space-y-4">
         <h1 className="text-4xl md:text-6xl font-serif font-bold leading-tight">
-          Get Your Free AI Action Plan
+          See If Automation Fits Your Business
         </h1>
         <p className="text-moonlight-text-secondary text-lg md:text-xl font-light">
-          Choose the answer you agree with most
+          5 quick questions to see where you're losing hours to manual work
         </p>
       </div>
 
@@ -220,10 +220,10 @@ Quiz Results:
                 <div className="max-w-2xl mx-auto bg-white rounded-2xl p-8 md:p-12 text-black shadow-2xl">
                   <div className="text-center space-y-4 mb-8">
                     <h2 className="text-3xl font-light leading-tight">
-                      Your personalized AI action plan is ready.
+                      Based on your answers, automation could help.
                     </h2>
                     <p className="text-zinc-600 text-lg">
-                      We'll send your results + a few quick wins to get you started.
+                      I'll send you a quick analysis of where you're losing time—and what it might cost to fix.
                     </p>
                   </div>
 
@@ -270,7 +270,7 @@ Quiz Results:
                       disabled={isSubmitting || !firstName || !lastName || !email}
                       className="w-full bg-black text-white text-xl py-4 rounded font-medium hover:bg-zinc-800 transition-colors shadow-lg active:scale-[0.98] transform disabled:opacity-50"
                     >
-                      {isSubmitting ? 'Sending...' : 'Get My Action Plan'}
+                      {isSubmitting ? 'Sending...' : 'Get My Results'}
                     </button>
                   </form>
                 </div>
