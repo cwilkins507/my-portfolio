@@ -67,6 +67,8 @@ export default defineConfig({
                     '/articles/terraform': '2025-11-07',
                     '/articles/changing-landscape': '2026-01-27',
                     '/articles/ai-model-selection': '2026-02-03',
+                    '/articles/enterprise-best-practices': '2026-02-01',
+                    '/articles/context-engineering-ai-coding-tools': '2026-02-05',
                 };
                 const path = new URL(item.url).pathname;
                 if (articleDates[path]) {
