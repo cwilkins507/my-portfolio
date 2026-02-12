@@ -80,7 +80,7 @@ const Navigation = ({ portfolioData, onSearchClick }) => {
               <Linkedin className="w-4 h-4" />
             </a>
             <a
-              href={portfolioData?.github || "https://github.com/collinwilk"}
+              href={portfolioData?.github || "https://github.com/cwilkins507"}
               target="_blank"
               rel="noopener noreferrer"
               className="text-moonlight-text-muted hover:text-teal-400 transition"
