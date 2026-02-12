@@ -28,7 +28,7 @@ export default function AnimatedHero({ headline, subheadline, supportingStat, so
       opacity: 1,
       transition: {
         staggerChildren: 0.08,
-        delayChildren: 0.1,
+        delayChildren: 0.3,
       },
     },
   };
@@ -100,6 +100,20 @@ export default function AnimatedHero({ headline, subheadline, supportingStat, so
       />
 
       <div className="max-w-4xl mx-auto px-4 relative z-10">
+        {/* Profile photo */}
+        <motion.div
+          className="mb-8"
+          initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.8 }}
+          animate={prefersReducedMotion ? false : { opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <img
+            src="/images/profile_photo.png"
+            alt="Collin Wilkins"
+            className="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover mx-auto border-2 border-[rgba(255,255,255,0.1)] shadow-[0_0_40px_rgba(20,184,166,0.15)]"
+          />
+        </motion.div>
+
         {/* Animated headline with stagger effect */}
         <motion.h1
           className="text-4xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 leading-[1.2]"
