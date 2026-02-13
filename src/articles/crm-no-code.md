@@ -28,13 +28,13 @@ Most beginners assume the tool is the problem. The failures usually come from da
 
 - **Trigger limitations**: “Zapier limits aren’t enough — we need events like ‘deal moved to stage X’ with real logic.”
 
-- **Lack of two-way integrations**: “It’s easy to push data to CRM, but hard to pull data back into dashboards.” 
+- Two-way sync gaps — "It's easy to push data to CRM, but hard to pull data back into dashboards." 
 
 - **Security and compliance**: “We need tools that meet FINRA/SEC standards.” 
 
-- **Complex workflows**: “We need multi-step underwriting/data enrichment before CRM update.” 
+- Complex workflows — "We need multi-step underwriting/data enrichment before CRM update." 
 
-You can design around all six. The key is to treat it around any other process. Define inputs, outputs, ownership, and add a feedback loop (monitoring).
+You can design around all six. Treat it like any other process. Define inputs, outputs, ownership, and add a feedback loop (monitoring).
 
 ## The “nearly any CRM” rule: plan for four connection types
 Every CRM integration falls into one of these buckets:
@@ -71,11 +71,11 @@ Across small and mid-size teams, these patterns show up repeatedly:
 - **n8n** for self-hosting, custom connectors, and strict data handling.
 Most teams start with Zapier. They move complex flows to Make or n8n later. That migration path is normal.
 
-## A repeatable  method to integrate with any CRM
+## A repeatable method to integrate with any CRM
 ### 1) Map the workflow in plain language
 Write one sentence per step. Avoid tool names at first.
 Example:
-- When a lead submits the website form > Create or update the contact in CRM > > Create an onboarding task for the team > Send a welcome email > Notify the advisor or agent 
+- When a lead submits the website form > Create or update the contact in CRM > Create an onboarding task for the team > Send a welcome email > Notify the advisor or agent 
 
 ![Alt Text](/images/crm-workflow.png)
 
@@ -92,7 +92,7 @@ Common identifiers:
 *Note*: If you can, store the CRM record ID in the other system. That makes two-way sync much safer.
 
 ### 3) Normalize your inputs before they hit the CRM
-CRMs accept messy data. That does not mean you should send it.
+CRMs accept messy data. That doesn't mean you should send it.
 
 Normalize:
 - Phone numbers to E.164 format (A U.S. number (216) 208-0460 becomes +12162080460)
@@ -164,19 +164,19 @@ Keep payloads small. Add fields over time. That makes debugging easier.
 ## CRM notes: Salesforce, Advyzon, and HubSpot
 ### Salesforce
 Salesforce can model almost anything. That flexibility creates choice overload for beginners. Start with standard objects and only add custom fields you can maintain.
-Beginner best practices:
+What works:
 - Use Leads and Contacts intentionally, not both randomly.
 - Store external IDs for safe syncing.
 - Lock down permissions for automation accounts.
 ### Advyzon
 Advyzon is often connected to onboarding, reporting, and client service workflows. The practical integration need is consistent client data across tools.
-Beginner best practices:
+Start here:
 - Decide which system owns household and account fields.
 - Track client status changes with clear stages.
 - Keep compliance in mind for notes and attachments.
 ### HubSpot
 HubSpot is popular because it connects easily to forms and email. The risk is unstructured properties and duplicated companies.
-Beginner best practices:
+Good habits:
 - Define required properties for lifecycle stages.
 - Create clear pipelines for each service line.
 - Enforce domain-based company matching when possible.
@@ -298,4 +298,4 @@ Share your CRM, your top three tools, and one broken workflow. You’ll get a cl
 
 ## Conclusion
 
-You can integrate with nearly any CRM using the same core moves. Start with a clear workflow, enforce identifiers, and decide field ownership. Then add observability and security so the automation stays trustworthy. Build one reliable flow today, and your next five get easier.
+Build one reliable flow today. Your next five get easier. The CRM will change. The connector tools will change. The method won't.

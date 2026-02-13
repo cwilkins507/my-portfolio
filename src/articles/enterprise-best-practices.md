@@ -82,23 +82,13 @@ State lives in code and docs, not in the model.
 
 ### Context Windows
 
-The context window is the agent's RAM.
-
-- Everything the agent can "see" must fit here
-- When it fills up, old information silently drops
-- The agent won't warn you when memory is lost
+The context window is the agent's RAM. Everything it can "see" must fit inside it, and when it fills up, old information silently drops. The agent won't warn you when context is lost.
 
 If it's not in the window, it doesn't exist.
 
 ### Tokens
 
-Tokens are the budget you spend to think.
-
-- Prompts, files, and outputs all consume tokens
-- Code is expensive. Repetition wastes budget.
-- Overspending pushes out important context
-
-Long prompts compete directly with correctness.
+Tokens are the budget you spend to think. Prompts, files, and outputs all consume them. Code is token-expensive, and repetition wastes what you have. Overspend on input and you push out the context that actually matters.
 
 
 ## PTMRO: How All Agents Work
@@ -122,7 +112,7 @@ When an agent produces bad output, the issue is almost always in Planning (uncle
 
 ### Know Your Agent
 
-GitHub Copilot supports multiple AI models with different strengths. Which model you pick affects response quality, code relevance, and performance. Check the [model comparison docs](https://docs.github.com/en/enterprise-cloud@latest/copilot/reference/ai-models/model-comparison) before assuming one size fits all.
+GitHub Copilot lets you choose between AI models with different strengths. Which model you pick affects response quality, code relevance, and performance. Check the [model comparison docs](https://docs.github.com/en/enterprise-cloud@latest/copilot/reference/ai-models/model-comparison) before assuming one size fits all.
 
 ### Write Better Prompts
 
@@ -130,11 +120,11 @@ Good prompts are specific, scoped, and anchored to actual source files.
 
 ## Core Foundations
 
-**Be Clear & Specific** — Define your goal, desired output format, and length upfront. Ambiguity produces ambiguous results.
+Start with clarity. Define your goal, the output format you want, and length constraints upfront. Ambiguity in, ambiguity out.
 
-**Use Structure** — XML tags and formatting help the model parse complex instructions and organize its response.
+XML tags and structured formatting help the model parse instructions and organize its response. Use them.
 
-**Iterate** — Prompts are rarely perfect on the first try. Version, test, and refine.
+And iterate. Prompts are rarely right on the first try. Version them, test them, refine.
 
 ## Power Techniques
 
@@ -209,9 +199,9 @@ Once aligned, generate code, add tests, update config or migrations. All AI-gene
 
 Long workflows should never be "fire and forget." I watch mine run for a few reasons:
 
-- You spot misinterpretations early
-- You learn how the agent decomposes tasks
-- You can interrupt and redirect before things go sideways
+- Misinterpretations surface early
+- You learn how the agent breaks down tasks
+- If something's going sideways, you can interrupt and redirect
 
 Most agent tools expose their plans, reasoning, and execution steps. Use them. They'll show you where your prompts are weak and where the model's assumptions don't match yours.
 
@@ -433,7 +423,7 @@ It's like adding more engineers to the team, except they work at token speed and
 
 ## Appendix: The DOE Framework for Agentic Workflows
 
-For teams building more sophisticated agent pipelines, the Directive-Orchestration-Execution (DOE) framework gives you a clean separation of concerns.
+For teams building more complex agent pipelines, the Directive-Orchestration-Execution (DOE) framework gives you a clean separation of concerns.
 
 > **Want the complete implementation guide?** Download my free [Agentic Workflows Guide](/guides/agentic-workflows) for detailed patterns, case studies, and production deployment strategies for the DOE framework.
 
