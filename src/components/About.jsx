@@ -32,7 +32,7 @@ If your team spends 20% of their week on repetitive clicks or manually importing
 
 I've inherited too many systems where the only documentation was "Steve's memory." And Steve quit. Everything I build is documented in the code itself. If I leave, the logic stays behind.
 
-I pick robustness over trendiness. The tools I use aren't flashy, but they scale without the headaches. You only pay for what you use. No expensive servers sitting idle at 3 AM.`
+I pick reliability over trendiness. The tools I use aren't flashy, but they scale without the headaches. You only pay for what you use. No expensive servers sitting idle at 3 AM.`
     },
     {
       title: "Sales Background, Engineering Toolkit",
@@ -124,7 +124,7 @@ I've lived in Dallas, Atlanta, Denver, Nashville, Boston, Tampa, and now Detroit
       role: "Full Stack Software Engineer – Connected Vehicle",
       company: "Ford Motor Company — Dearborn, MI",
       period: "Feb 2021 – Apr 2024",
-      description: "Built and maintained IoT microservices on Azure and GCP for real-time telemetry and OTA updates. Implemented Kafka listeners processing 600k+ vehicle events daily. Developed theft anticipation/recovery features for 2024 F-150. Migrated identity systems to ADFS & SSO, enhancing Zero Trust security. Redesigned cloud-based inventory auditing app handling 450k vehicles, saving $5M annually."
+      description: "Built and maintained IoT microservices on Azure and GCP for real-time telemetry and OTA updates. Implemented Kafka listeners processing 600k+ vehicle events daily. Developed theft anticipation/recovery features for 2024 F-150. Migrated identity systems to ADFS & SSO and strengthened Zero Trust security. Redesigned cloud-based inventory auditing app handling 450k vehicles. Saved $5M annually."
     },
     {
       role: "Market Area Sales Manager (Pricing & Strategy)",
@@ -136,7 +136,7 @@ I've lived in Dallas, Atlanta, Denver, Nashville, Boston, Tampa, and now Detroit
       role: "Business Development Manager",
       company: "Ford Motor Company",
       period: "Mar 2017 – Jun 2019",
-      description: "Served as technical sales advisor for digital onboarding and financial planning tools across 13 dealer accounts ($75M AUM). Deployed tailored technical sales engagements, capturing $10M in revenue."
+      description: "Served as technical sales advisor for digital onboarding and financial planning tools across 13 dealer accounts ($75M AUM). Deployed tailored technical sales engagements and captured $10M in revenue."
     }
   ],
   education: [

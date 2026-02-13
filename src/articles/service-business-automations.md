@@ -92,7 +92,7 @@ One client: 30-45 minutes. Eight clients: a full day. Every week. Forever.
 
 I call this **The Reporting Trap**, and it's the automation I'm most opinionated about.
 
-The trap persists because the work feels productive. You're looking at data. You're writing insights. You're "serving the client." But 80% of reporting is mechanical assembly.
+The trap sticks because the work feels productive. You're looking at data. You're writing insights. You're "serving the client." But 80% of reporting is mechanical assembly.
 
 In manufacturing, they call that a non-value-add activity. Any step the customer wouldn't pay extra for. Your clients don't pay for the screenshot. They pay for the insight.
 

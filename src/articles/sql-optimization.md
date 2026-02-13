@@ -19,9 +19,7 @@ QA environments make this worse because they run on smaller instances. Your quer
 
 This is why I debug performance in DBeaver first, not CloudWatch.
 
-DBeaver (or TablePlus, DataGrip, whatever) gives you the plan view. You can see which nodes take the most time. You can test index changes without deploying anything. You can run EXPLAIN on production-shaped data locally.
-
-Here's what actually works.
+DBeaver (or TablePlus, DataGrip, whatever) gives you the plan view. It shows which nodes take the most time. Test index changes without deploying anything. Run EXPLAIN on production-shaped data locally.
 
 ## Profile first: EXPLAIN and EXPLAIN ANALYZE
 

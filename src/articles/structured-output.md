@@ -23,19 +23,19 @@ You usually want all four.
 ### Common structured formats
 Teams pick formats based on where the data lands.
 - **JSON** for APIs, pipelines, and document stores
-- **JSONL** for event streams and batch processing
-- **CSV** for compatibility with legacy tools
+- JSONL for event streams and batch processing
+- CSV when you need compatibility with legacy tools
 - **YAML** for configuration-like artifacts
-- **XML** in enterprise integration pockets
+- XML still shows up in enterprise integration pockets
 For LLMs, JSON wins most days. It maps cleanly to objects, arrays, and strings. It also fits schema tooling across languages.
 ## Why structured outputs improve data handling
 Structured outputs help because they reduce ambiguity at boundaries. 
 They turn “model said something” into “system received a record.”
-### 1) You can validate before you trust
+### 1) Validate before you trust
 Validation gives you a hard gate. 
 If the output fails schema checks, it doesn’t enter downstream systems.
-That changes the failure mode from “silent corruption” to “handled error.”
-### 2) You can measure quality with real signals
+The failure mode shifts from "silent corruption" to "handled error."
+### 2) Measure quality with real signals
 Text-only evaluation often relies on fuzzy heuristics. 
 Structured outputs give you measurable signals:
 - Missing required fields
@@ -44,16 +44,14 @@ Structured outputs give you measurable signals:
 - Out-of-range numbers
 - Null rates per field
 Those signals become dashboards and alerts.
-### 3) You can build stable interfaces across teams
+### 3) Stable interfaces across teams
 Schemas become contracts between:
 - Prompt authors and application developers
 - Model providers and platform teams
 - Data producers and analytics consumers
 A schema also makes code review easier. People can reason about fields, not prose.
-### 4) You can store and replay for debugging
-A structured record is easy to persist as an event. 
-You can replay the same inputs through new prompts. You can diff outputs across model changes.
-That’s how you debug real systems.
+### 4) Store and replay for debugging
+A structured record is easy to persist as an event. Replay the same inputs through new prompts, diff outputs across model changes, and trace exactly where a pipeline broke.
 ## The core building blocks: schema, constraints, and intent
 A good structured output starts before prompting. 
 You design the shape you want, then you teach the model to fill it.
@@ -99,19 +97,18 @@ You provide a schema-like signature, and the model fills arguments.
 This often yields cleaner JSON. 
 You still validate the result, since bad values still happen.
 ### 3) Constrained decoding and grammar-based generation
-Some stacks enforce a JSON grammar during decoding. 
-That prevents syntax errors by construction.
+Some stacks enforce a JSON grammar during decoding, which prevents syntax errors by construction.
 You still need semantic validation. 
 A valid JSON string can still violate your domain rules.
 ### 4) Validate, repair, retry
 This is the workhorse pattern. 
 You validate output, then ask the model to fix errors using the validation message.
-That loop looks like:
+The loop looks like:
 1. Generate candidate JSON
 2. Validate against schema
 3. If invalid, send errors and retry
 4. Cap retries, then fail safely
-This pattern turns occasional model drift into controlled behavior.
+One or two repair passes catch most drift without burning through your token budget.
 ## A practical example: schema-first extraction in Python
 Here’s a schema-first workflow using Pydantic. 
 It’s readable, strict, and easy to extend.
@@ -184,19 +181,16 @@ Once validated, store the structured record with metadata:
 - Model identifier
 - Validation outcome
 - Latency and token counts if available
-That gives you traceability when outputs look odd later.
+This gives you traceability when outputs look odd later.
 ## Where structured outputs shine: high-impact applications
 Structured outputs become most valuable when they connect systems. 
-These are the patterns that hold up across domains.
+Here's where they pay off.
 ### Information extraction for analytics and search
 Extract entities and attributes into stable columns:
 - Company names, job titles, locations
 - Product SKUs and order IDs
 - Contract terms and renewal dates
-You can then:
-- Build dashboards from extracted fields
-- Index structured facets for search filters
-- Join across sources using extracted IDs
+From there, build dashboards from extracted fields, index structured facets for search filters, and join across sources using extracted IDs.
 ### Classification and routing in operational systems
 Teams use LLMs to decide "where does this go."
 Examples:
@@ -209,15 +203,14 @@ A structured routing record usually includes:
 - `confidence` (bounded float)
 - `reasons` (short list)
 - `requires_human_review` (boolean)
-That last field is a work saver. It sets expectations.
+The `requires_human_review` field pays for itself. Sets expectations before anyone opens the ticket.
 ### Data cleaning and normalization
 LLMs can normalize messy fields:
 - Address components
 - Product names into canonical forms
 - Free-text units into numeric values
 - Dates into ISO 8601 strings
-You get better joins and fewer duplicates. 
-You also get a place to capture uncertainty, like `normalized_value` plus `confidence`.
+Better joins, fewer duplicates. You also get a place to capture uncertainty, like `normalized_value` plus `confidence`.
 ### RAG metadata and citations that you can trust
 RAG systems rely on metadata:
 - Which documents were used
@@ -227,7 +220,7 @@ A structured output can carry:
 - `answer`
 - `citations`: list of `{doc_id, chunk_id, quote}`
 - `missing_info`: list of gaps to fetch next
-That makes the generation step auditable. It also makes follow-up retrieval easier.
+The generation step becomes auditable, and follow-up retrieval gets easier because you know exactly which gaps to fill.
 ### Programmatic evaluation and regression testing
 Text outputs are hard to diff. 
 Structured outputs are easy to assert on.
@@ -241,13 +234,11 @@ These tests become your regression suite for prompts.
 Structured outputs don’t remove uncertainty. They make uncertainty visible.
 
 ### Syntax failures
-Examples:
-- Trailing commas
-- Single quotes
-- Markdown code fences
-Mitigations:
+Common culprits: trailing commas, single quotes, markdown code fences wrapping the JSON.
+
+How to handle them:
 - Grammar-constrained decoding when available
-- Strict “JSON only” instructions
+- Strict "JSON only" instructions
 - Lightweight JSON cleaning as a last resort
 - Retry with a repair prompt
 ### Schema drift and extra keys
@@ -255,24 +246,17 @@ Models sometimes add helpful fields.
 
 Downstream systems usually hate that.
 
-Mitigations:
-- Reject unknown keys in validation
-- Echo “Do not add extra keys” in repair prompts
-- Version your schema and keep old parsers
+Lock it down: reject unknown keys in validation, echo "Do not add extra keys" in repair prompts, and version your schema so old parsers still work.
 ### Semantic errors
 These pass JSON validation but fail reality:
 - Wrong order ID
 - Evidence that isn’t a quote
 - Confidence always at 0.99
-Mitigations:
-- Add semantic validators in code
-- Ask for evidence spans or quotes
-- Clamp confidence usage in business logic
-- Track distributions per field in monitoring
+Harder to catch because the JSON is technically valid. Add semantic validators in code, ask for evidence spans or quotes, clamp confidence usage in business logic, and track distributions per field in monitoring.
 ### Prompt injection inside user content
 If the user message contains instructions, the model may follow them. 
 This shows up as schema-breaking output or manipulated fields.
-Mitigations:
+Defend against it:
 - Keep system instructions separate from user text
 - Quote the user input and label it clearly
 - Validate strictly and reject anomalies
@@ -287,9 +271,7 @@ Boring schemas scale.
 Use stable names like `intent`, `priority`, `evidence`.
 Avoid nested complexity unless it buys you real value.
 ### Build a “validator-first” runtime path
-Your app should treat unvalidated output as untrusted. 
-
-That includes tool outputs.
+Your app should treat unvalidated output as untrusted, including tool outputs.
 
 A typical flow:
 - Generate
@@ -308,7 +290,7 @@ If you store structured events, you can answer them.
 ### Version your schema and your prompt together
 A schema change should be explicit. 
 Record a `schema_version` and `prompt_version` in logs.
-That makes rollbacks possible. It also makes audits sane.
+Rollbacks become possible. Audits stay sane.
 ## A simple adoption plan for teams
 You can adopt structured outputs without rewriting everything. 
 Start with one high-impact workflow.

@@ -48,15 +48,17 @@ The HCL syntax takes getting used to. I still look up the for_each syntax every 
 
 **Use remote state with locking.** We started with local state files and someone overwrote production state from their laptop. Not fun. S3 + DynamoDB for state and locking solved that. Encrypt it and restrict who can read it—state files contain secrets.
 
-**Keep stacks small.** Our first Terraform repo was one giant file that managed the entire AWS account. Every change risked breaking something unrelated and plan took 3 minutes. We split it into networking, databases, apps, and monitoring. Much faster, clearer ownership.
+Keep stacks small. Our first Terraform repo was one giant file that managed the entire AWS account. Every change risked breaking something unrelated and plan took 3 minutes. We split it into networking, databases, apps, and monitoring. Much faster, clearer ownership.
 
 **Write modules for repeated patterns.** If you're creating the same resources with slight variations, make a module. Document the inputs and outputs. Version it. We have modules for web services, cron jobs, and databases that teams can use without reinventing security groups.
 
-**Review infrastructure changes like code.** One PR per change. Require someone else to review. Paste the plan output into the PR description. Saved us multiple times from accidentally deleting things.
+Review infrastructure changes like code. One PR per change. Require someone else to review. Paste the plan output into the PR description. Saved us multiple times from accidentally deleting things.
 
-**Run Terraform in CI.** Format check, validation, and plan on every PR. We auto-approve formatting fixes but require human approval for resource changes. Catches typos before they hit AWS.
+Run Terraform in CI. Format check, validation, and plan on every PR. We auto-approve formatting fixes but require human approval for resource changes. Catches typos before they hit AWS.
 
-**Don't commit secrets.** Ever. Use AWS Secrets Manager or similar. Learned this the hard way when an API key ended up in git history. Had to rotate everything and rewrite history.
+Don't commit secrets. Ever.
+
+Use AWS Secrets Manager or similar. Learned this the hard way when an API key ended up in git history. Had to rotate everything and rewrite history.
 
 **Separate state per environment.** One state file for dev, one for staging, one for prod. Never mix them. Workspaces seem convenient but make it too easy to accidentally run apply against the wrong environment.
 
@@ -64,13 +66,13 @@ The HCL syntax takes getting used to. I still look up the for_each syntax every 
 
 **Letting people click in the console.** Someone "temporarily" modified a security group in production to fix an issue. Forgot to update Terraform. Next deploy reverted their fix and broke the app. Now Terraform owns the resource or we don't manage it at all.
 
-**One massive Terraform stack.** Our first attempt put networking, databases, and applications in one state file. Every tiny change required planning 200+ resources. Took forever and meant higher risk. Splitting into focused stacks (one for VPC, one for RDS, one per application) made deploys faster and safer.
+One massive Terraform stack. Our first attempt put networking, databases, and applications in one state file. Every tiny change required planning 200+ resources. Took forever and meant higher risk. Splitting into focused stacks (one for VPC, one for RDS, one per application) made deploys faster and safer.
 
-**Getting fancy with loops and conditionals.** I spent two days trying to dynamically generate resources with count and locals. The code was clever but impossible to understand three months later. Explicit resources are boring but readable.
+I also spent two days getting fancy with loops and conditionals, trying to dynamically generate resources with count and locals. The code was clever but impossible to understand three months later. Explicit resources are boring but readable.
 
 **Not pinning provider versions.** Updated Terraform, it pulled a new AWS provider, and suddenly the plan wanted to recreate our production database because of a schema change. Always pin versions with ~> 4.0 or similar.
 
-**Too-broad IAM permissions.** Gave Terraform admin access initially because it was easier. Bad idea. Someone accidentally ran apply against the wrong state file and had permissions to delete everything. Narrow the permissions. Make it possible but annoying to do destructive things.
+Too-broad IAM permissions. Gave Terraform admin access initially because it was easier. Bad idea. Someone accidentally ran apply against the wrong state file and had permissions to delete everything. Narrow the permissions. Make it possible but annoying to do destructive things.
 
 ## Step-by-Step: Launch an Amazon EC2 Instance with Terraform
 
@@ -216,13 +218,13 @@ You need to standardize a few things upfront or every team will solve the same p
 
 **Build reference modules.** VPC setup, standard security groups, logging configuration, required tags. Package them as modules so teams don't start from scratch. Document the inputs and include examples.
 
-**Centralize state management.** Pick one S3 bucket and DynamoDB table for state. Set up access controls. Back it up. Don't let teams use local state files.
+Centralize state management. Pick one S3 bucket and DynamoDB table for state. Set up access controls. Back it up. Don't let teams use local state files.
 
-**Establish a change process.** We require PRs for all infrastructure changes, plus paste the plan output in the PR description. Auto-merge formatting changes but require approval for resource modifications. Has a weekly infrastructure deploy window for non-urgent changes.
+**Establish a change process.** We require PRs for all infrastructure changes, plus paste the plan output in the PR description. Auto-merge formatting changes but require approval for resource modifications. We have a weekly infrastructure deploy window for non-urgent changes.
 
-**Add policy guardrails.** Use something like Conftest or Terraform Sentinel to enforce rules—no public S3 buckets, all resources must have owner tags, databases must have backups enabled. Catches mistakes automatically.
+Add policy guardrails with something like Conftest or Terraform Sentinel to enforce rules—no public S3 buckets, all resources must have owner tags, databases must have backups enabled. Catches mistakes automatically.
 
-**Help people learn.** Short examples, office hours once a week, a Slack channel for questions. Track adoption by measuring how many resources are managed by Terraform vs created manually. You'll never hit 100%, but you can get close.
+And help people learn. Short examples, office hours once a week, a Slack channel for questions. Track adoption by measuring how many resources are managed by Terraform vs created manually. You'll never hit 100%, but you can get close.
 
 ## Just Start
 

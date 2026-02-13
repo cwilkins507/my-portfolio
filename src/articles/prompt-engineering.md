@@ -18,7 +18,7 @@ Unambiguous language, explicit schemas, testing your assumptions.
 
 There's a full before/after example later that shows all of this in one shot.
 
-One [github link](https://github.com/snarktank/ai-dev-tasks) that I've found helpful will help you think about this if you are using a CLI or similar tool such as Claude to format your requests into a PRD then create tasks/subtasks to break down the requirements
+This [github link](https://github.com/snarktank/ai-dev-tasks) is helpful if you're using a CLI tool like Claude to turn requests into PRDs and break them into tasks.
 
 ## 15 Things That Keep Working
 
@@ -111,15 +111,11 @@ What changed:
 ## What Actually Works in Production
 **Treat prompts like code.** Version control, code review, the works. I skip inline comments unless something is genuinely weird.
 
-**Test everything.** Fixed test cases. Parse the outputs. Check schema validity. Track metrics, not your gut feeling about whether it's "better."
+**Test and log everything.** Fixed test cases. Parse the outputs. Check schema validity. Track metrics, not your gut feeling about whether it's "better." Log your prompts, responses, token counts, latencies, and errors. When something breaks, you want to know why.
 
-**Log everything.** Prompts, responses, token counts, latencies, errors. When something breaks, you want to know why.
+Don't dump your whole codebase into the context window. Pick what you feed in. Precise snippets beat wall-of-text context.
 
-**Control your context.** Don't dump everything. Curate what you feed in. Precise snippets beat wall-of-text context.
-
-**Have a fallback.** For high-volume stuff, use cheaper models with tighter prompts. Back it up with deterministic code when the model fails.
-
-**Watch your token budget.** Shorten instructions if you need to, but keep the context examples. Those matter.
+**Have a fallback.** For high-volume stuff, use cheaper models with tighter prompts. Back it up with deterministic code when the model fails. Watch your token budget — shorten instructions if you need to, but keep the context examples. Those matter.
 
 ## What to Do Next
 Take your three most important prompts. Rewrite them using the pattern above. Test them with real cases. Measure what changes.
