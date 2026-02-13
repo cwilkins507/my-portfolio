@@ -1,7 +1,7 @@
 ---
 title: "Architecture as Code: Why Tech Leaders and Engineers Should Adopt Diagrams‑as‑Code Now"
 date: "2025-10-23"
-tags: ["Architecture as Code", "Software Engineering", "Developer Tools", "Diagrams", "System Design", "Digital Transformation"]
+tags: ["Architecture as Code", "Software Engineering", "Developer Tools", "Diagrams", "System Design"]
 excerpt: "AI now writes a large share of new code. Stand out with Architecture as Code—pros, cons, tools, and a simple adoption plan for leaders, engineers, and recruiters."
 seo_title: "Architecture as Code: Diagrams-as-Code Adoption Guide"
 meta_description: "Adopt architecture as code with diagrams-as-code tools. Learn the pros, cons, and tools for version-controlled architecture diagrams that keep up with your codebase."
@@ -9,67 +9,67 @@ target_keywords: "architecture as code, diagrams as code, architecture documenta
 ---
 
 # Architecture as Code: The Senior Engineer's Edge in an AI Era #
-We live in a world of AI. There's a new model update every two weeks and the countdown until the death of the software engineer creeps ever closer. So you can stop reading here.
+We live in a world of AI. New model update every two weeks, the countdown until the death of the software engineer creeping ever closer. So you can stop reading here.
 
 ## Why It Matters for Tech Leadership, Engineers, and Recruiters ##
-AI trend: At large enterprises, AI pair programmers now author a material share of net‑new code. GitHub (Microsoft) reports developers accept roughly 30-40% of Copilot suggestions on average, with some languages and teams exceeding 50%. AWS customers using CodeWhisperer report significantly faster task completion in controlled benchmarks (often cited at ~57% faster). Net: double‑digit percentages of new production code at big companies are already machine‑generated-and that share is rising-especially in boilerplate‑heavy stacks. such as AWS, Microsoft, others.
+AI trend: At large enterprises, AI pair programmers now author a material share of net‑new code. GitHub (Microsoft) reports developers accept roughly 30-40% of Copilot suggestions on average, with some languages and teams exceeding 50%. AWS customers using CodeWhisperer report ~57% faster task completion in controlled benchmarks. Net: double‑digit percentages of new production code at big companies are already machine‑generated—and that share is rising—especially in boilerplate‑heavy stacks such as AWS, Microsoft, others.
 
-However, writing code is just a small part of software, and arguably the portion that least differentiates engineers. Yes, people will argue about what is clean code, what variables should be named, what languages are best but generally speaking, if you can master one of the primary enterprise back-end languages (Java/Kotlin, C++, Go, Ruby) a front end language (JavaScript or TypeScript) and SQL then you have the basic tools you need to be considered full-stack. And well, LLMs are pretty good at generating text, code is a language, and the exact type of content purposed for AI. Now what?
+But writing code is just a small part of software, and the portion that least differentiates engineers. Yes, people will argue about clean code, variable naming, which languages are best. If you can master one of the primary enterprise back-end languages (Java/Kotlin, C++, Go, Ruby), a front end language (JavaScript or TypeScript), and SQL then you have the basic tools you need to be considered full-stack. LLMs are pretty good at generating text, code is a language, and it's the exact type of content purposed for AI. Now what?
 
-The job of a senior level software engineer (or manager) is to raise the gaze beyond the microservice or JIRA ticket you are currently working on. How should an application flow, what do users expect (requirements), what is the impact on other portions of the business if you make certain decisions? In summary, tradeoffs.
+The job of a senior level software engineer (or manager) is to raise the gaze beyond the microservice or JIRA ticket you are currently working on. How should an application flow, what do users expect (requirements), what is the impact on other portions of the business if you make certain decisions? Tradeoffs.
 
-This isn't a new concept, but it becomes more important - Architecture diagrams as code.
+This isn't a new concept, but it becomes more important — Architecture diagrams as code.
 
-I had a conversation with our principal architect last week and our teams are primarily moving away from visual diagrams such as Gliffy, Miro, or Visio towards text based diagrams such as PlantUML or Mermaid. Each has their place. IF you are presenting to key decision makers or non-technical folks then the visual based diagram is probably going to be a better fit for your audience. But for technical documents and flow diagrams, text-based proves superior. You can easily embed these in wikis or commit to code in GitHub/BitBucket.
+I had a conversation with our principal architect last week and our teams are moving away from visual diagrams such as Gliffy, Miro, or Visio towards text based diagrams such as PlantUML or Mermaid. Each has their place. If you're presenting to key decision makers or non-technical folks, the visual based diagram is going to be a better fit for your audience. But for technical documents and flow diagrams, text-based proves superior. You can easily embed these in wikis or commit to code in GitHub/BitBucket.
 
 ## Pros and Cons of Diagrams‑as‑Code ##
 Pros
 
-- Plain text that diffs cleanly; easy to review in pull requests.
+- Plain text that diffs cleanly, which makes pull request reviews straightforward.
 
-- First‑class version control/change management; history, blame, and rollback apply.
+- Full version control and change management out of the box — history, blame, and rollback all just work.
 
-- Can be modified, generated, or interpreted by LLMs and scripts; fits "docs‑as‑code."
+- LLMs and scripts can modify, generate, or interpret them. Fits naturally into "docs‑as‑code."
 
-- Not locked into a vendor/license; PlantUML, Mermaid, Graphviz, and C4 model are portable.
+- No vendor lock-in. PlantUML, Mermaid, Graphviz, and the C4 model are all portable and open.
 
-- Reproducible outputs in CI/CD; auto‑render PNG/SVG/PDF on commit for wikis and runbooks.
+- CI/CD can auto‑render PNG/SVG/PDF on commit, so your wikis and runbooks stay current without manual effort.
 
-- Co‑located with code; diagrams evolve with the system, reducing diagram rot.
+- Co‑located with code, which means diagrams evolve alongside the system (less diagram rot).
 
-- Searchable and greppable; refactors find their way into diagrams.
+- Searchable and greppable. When you refactor a service name, you can find it in your diagrams too.
 
-- Enables linting and validation (naming, boundaries, C4 levels) to enforce standards.
+- You can lint and validate them — enforce naming conventions, boundary rules, and C4 levels programmatically.
 
-- Improves governance and audits; changes are traceable to tickets and ADRs.
+- Every change is traceable to a ticket or ADR, which simplifies governance and audits.
 
-- Clear hiring signal; recruiters and managers can inspect design artifacts alongside code.
+- A clear hiring signal: recruiters and managers can inspect design artifacts right alongside the code.
 
 Cons
 
-- Less pretty out of the box; theming and spacing take work.
+- The default output isn't pretty. Theming and spacing take real effort to get right.
 
-- Learning curve for syntax and conventions (PlantUML/Mermaid/C4).
+- There's a learning curve (PlantUML, Mermaid, and C4 each have their own syntax quirks).
 
-- Harder for non‑technical audiences; executives often prefer polished visuals.
+- Non‑technical audiences often prefer polished visuals, so these won't replace your executive slide decks.
 
-- Toolchain friction; local vs CI renderers, fonts, and Graphviz versions can drift.
+- Toolchain friction is real — local renderers, CI renderers, fonts, and Graphviz versions can all drift apart.
 
-- Large diagrams become unreadable; requires discipline to modularize views.
+- Large diagrams get unreadable fast. You need discipline to modularize into separate views.
 
-- Real‑time collaboration isn't as fluid as whiteboards or Miro for ideation.
+- Real‑time collaboration doesn't match whiteboards or Miro for early-stage ideation.
 
-- Risk of drift if not wired into the dev workflow; stale diagrams mislead.
+- Without wiring diagrams into the dev workflow, they go stale and start misleading people.
 
-- Potential exposure of internal topology if repos or artifacts leak; treat as code.
+- Internal topology could leak if repos or artifacts are exposed. Treat diagram source like you treat code.
 
-- Accessibility can suffer (color/contrast) without explicit attention.
+- Accessibility (color, contrast) suffers unless you pay explicit attention to it.
 
 ## Examples and Workflow ##
 
 a CRUD case for example
 
-Diagram with User (API call) to console (front-end) which calls back-end service connected to DB. Hosted on AWS, chosen just because its 30% of the market. 
+Diagram with User (API call) to console (front-end) which calls back-end service connected to DB. Hosted on AWS, chosen just because its 30% of the market.
 
 
 ### PlantUML ###
@@ -77,7 +77,7 @@ Diagram with User (API call) to console (front-end) which calls back-end service
 
 ![PlantUML diagram example](/images/PlantUML-example.png)
 
-You can copy this code into any [PlantUML viewer](//www.plantuml.com/plantuml/png/VLLDKzim4BthL-o40p0j4EB2a1uwXDW6EXJIE1aklSYs22gsv6fbQEZqltVb3pSkq0nZxDst-_QzbPDJjDpOCi-ObJOJC9qlVPWKHIOJRgLMC379lRGYiQKHi7EXqOeKNFmsscLi6yup7VCCqAupgLOC7wGgkE4vn3nvM1bTgdIgCsrWAwm-6mX3NRbQ4Uil1d3s0dyIZiE9osYJ2jD4Hzuez0AAXbhP9dPOVPfO99y577wWftdTp2XXu738VczGyyHgymPjE1uFXttQDjgZVNA-zBgctFAOetYhSNWK7BtUkDScqNcXbL3szJx1IJWCWt_xUDxnyNHAVLYjROcacYEKz9-nlrOFQ74mpNIP3boQFs7r05lKr0l75INzRHI4XYGBbS9KAzIP-APsve98u02YsMItQdFNODhfgZQmeMHmAs8uC_g9ngagulgUO3HoZyy9TgqYOHvbukYYmj3P8htQaLxhLEn_HvZCBcjoTzB-orqTwdaGBLnDBRkGBNEtj87Vt16ZCsdkHyJchnNFjNzMKwLnjyV-qAxWKjqPZjQKrSlIsbj5QRO97TlHozacEN_M2Y8FtjLhgUnseYstCW7tnf7ucXwz5-N46qn7S41ND-uLp-EKKpafxTUwejAAD_ZxOgc-DQDTGwE_YLRcaNtR9DeAmnFtNO7C7JROs_lKRXS-maoOEsroX6e9ZvB3yfArQGT5Zr1NcgSahvQCqWeYGs6nXwIb4JGIYg0NYyMC_FzH2hG8E-V1uZtCRY9tNTB53ww2HR3BN0cLjkAfFFWf4hf3Y4kKIY12fbSowP1fJA2ve74ERerqGES4et0t0gLfmGhXQodCcfwmp2ow3dtj7UvpT7DDmo9vZgAlgQoHliGYusk4iY2BHLePxUprHP7fTUvMPKJ6dSqaD-LuJw3C2G2o5sHro79U56xVh7iTz_SRWxilRjQ-BPJQi6LUAgIiqqc9Ri-K-S8LNr5fl6Rib0hTRyKV) or or .puml file.
+You can copy this code into any [PlantUML viewer](//www.plantuml.com/plantuml/png/VLLDKzim4BthL-o40p0j4EB2a1uwXDW6EXJIE1aklSYs22gsv6fbQEZqltVb3pSkq0nZxDst-_QzbPDJjDpOCi-ObJOJC9qlVPWKHIOJRgLMC379lRGYiQKHi7EXqOeKNFmsscLi6yup7VCCqAupgLOC7wGgkE4vn3nvM1bTgdIgCsrWAwm-6mX3NRbQ4Uil1d3s0dyIZiE9osYJ2jD4Hzuez0AAXbhP9dPOVPfO99y577wWftdTp2XXu738VczGyyHgymPjE1uFXttQDjgZVNA-zBgctFAOetYhSNWK7BtUkDScqNcXbL3szJx1IJWCWt_xUDxnyNHAVLYjROcacYEKz9-nlrOFQ74mpNIP3boQFs7r05lKr0l75INzRHI4XYGBbS9KAzIP-APsve98u02YsMItQdFNODhfgZQmeMHmAs8uC_g9ngagulgUO3HoZyy9TgqYOHvbukYYmj3P8htQaLxhLEn_HvZCBcjoTzB-orqTwdaGBLnDBRkGBNEtj87Vt16ZCsdkHyJchnNFjNzMKwLnjyV-qAxWKjqPZjQKrSlIsbj5QRO97TlHozacEN_M2Y8FtjLhgUnseYstCW7tnf7ucXwz5-N46qn7S41ND-uLp-EKKpafxTUwejAAD_ZxOgc-DQDTGwE_YLRcaNtR9DeAmnFtNO7C7JROs_lKRXS-maoOEsroX6e9ZvB3yfArQGT5Zr1NcgSahvQCqWeYGs6nXwIb4JGIYg0NYyMC_FzH2hG8E-V1uZtCRY9tNTB53ww2HR3BN0cLjkAfFFWf4hf3Y4kKIY12fbSowP1fJA2ve74ERerqGES4et0t0gLfmGhXQodCcfwmp2ow3dtj7UvpT7DDmo9vZgAlgQoHliGYusk4iY2BHLePxUprHP7fTUvMPKJ6dSqaD-LuJw3C2G2o5sHro79U56xVh7iTz_SRWxilRjQ-BPJQi6LUAgIiqqc9Ri-K-S8LNr5fl6Rib0hTRyKV) or .puml file.
 
 Also here's a link to the [documentation](https://crashedmind.github.io/PlantUMLHitchhikersGuide/)
 
@@ -106,14 +106,14 @@ This demo was created using the free, single-user version of Miro so please excu
 ---
 
 
-As you can see **diagramming tools like Miro, Gliffy, or Visio** offer richer visual polish and an intuitive drag-and-drop experience, they tend to drift out of sync with the code they describe. **Architecture-as-Code approaches**—using PlantUML or Mermaid—sacrifice some design flair for **precision, version control, and automation**. There’s a learning curve, but the payoff is creating diagrams that are maintainable over time, plus you get to leverage your AI buddy to help generate them.
+**Diagramming tools like Miro, Gliffy, or Visio** give you richer visual polish and an intuitive drag-and-drop experience, but they drift out of sync with the code they describe. **Architecture-as-Code approaches** — PlantUML or Mermaid — sacrifice some design flair for **precision, version control, and automation**. There's a learning curve, but the payoff is diagrams that stay maintainable over time. And you get to use your AI buddy to help generate them.
 
-Invest a little time now, and you’ll gain an architecture that evolves with your system—not apart from it.
+The last diagram you hand-drew on a whiteboard six months ago? Nobody updated it. Text-based diagrams wired into CI don't have that problem.
 
 
 ## How to Adopt It This Quarter ##
 
-Just before year end is the perfect time to implement new practices ahead of Q1 next year. Add a brief adoption playbook:
+Just before year end is the perfect time to implement new practices ahead of Q1 next year.
 
 - Pick one area to diagram (System context, service boundaries, data flow, deployment topology).
 
@@ -125,6 +125,4 @@ Just before year end is the perfect time to implement new practices ahead of Q1 
 
 - Review in sprint demos with engineering and product.
 
-- Closing call to action:
-
-- Start this week. Convert one architecture diagram to code. Put renders in CI. Review it in your next PR. If it reduces drift and speeds decisions, standardize it. The future of architecture is text-make it a habit.
+Start this week. Convert one architecture diagram to code, put the renders in CI, and review it in your next PR. If it reduces drift and speeds up decisions, standardize it across the org. The future of architecture is text — make it a habit.

@@ -2,22 +2,22 @@
 title: "AWS Lambda Practices: Messaging & Compute Best Practices"
 date: "2025-12-09"
 tags: ["AWS", "Lambda", "SQS", "Serverless", "Distributed Systems", "DevOps", "SNS"]
-excerpt: "A deep dive into production-ready AWS Lambda and SQS configurations, covering visibility timeouts, batch sizes, failure handling, and idempotency strategies."
+excerpt: "A breakdown of production-ready AWS Lambda and SQS configurations, covering visibility timeouts, batch sizes, failure handling, and idempotency strategies."
 seo_title: "AWS Lambda and SQS Best Practices for Production Systems"
 meta_description: "Production-ready AWS Lambda and SQS patterns. Learn visibility timeouts, batch processing, dead letter queues, idempotency, and SNS fan-out configurations."
 target_keywords: "AWS Lambda best practices, SQS configuration, Lambda SQS integration, serverless best practices, AWS messaging patterns"
 ---
-# AWS Messaging & Compute: SNS, SQS, Lambda Best Practices
+# AWS Messaging & Compute: SNS, SQS, Lambda Production Patterns
 
 Congrats! You just finished a phase 1 for an Event-driven Architecture refactor you are leading. Your team set up SQS for events, lambdas for serverless functions, and SNS for notifications. You run your first full runthrough in UAT and **POOF** 
 
 Your service feels sluggish, you gained a cold start problem, you invoked triple the lambdas, a growing DLQ, and a forecasted AWS bill for the month above what you projected after promising the leadership team the exact opposite. Now what...?
 
-Modern serverless pipelines don’t magically hum along just because you wired SNS → SQS → Lambda in the “right” order. Dialing in the settings for timeouts, DLQs, re-tries, and concurrency is imperative. 
+Modern serverless pipelines don’t magically hum along just because you wired SNS → SQS → Lambda in the “right” order. Dialing in timeouts, DLQs, retries, and concurrency is where the real work starts. 
 
 _Note: This specifically applies to **Messaging.** Keep an eye out for a future write-up for API Gateway Triggered AWS Services_
 
-## Configuration Deep Dive for Production
+## Configuring for Production
 
 Agenda:
 - **SQS Visibility Timeout** — the 6× rule
@@ -26,7 +26,7 @@ Agenda:
 - **Queue configuration** — long polling, retention, delays
 - **Failure handling** — partial batches and poison pills
 - **Performance testing** — load test setup
-- **Key takeaways**
+- **Takeaways**
 
 ## Lambda Timeout Constraints
 
@@ -72,7 +72,7 @@ What happens if V = Tλ?
 
 ## Concurrency, Visibility, and Batch Sizing
 
-**Key**: A long visibility timeout does not block other messages; it isolates retry chains.
+**Key**: A long visibility timeout doesn't block other messages; it isolates retry chains.
 
 ### Batch Size Calculation
 
@@ -187,7 +187,7 @@ return {
 
 Config: set function_response_types = ["ReportBatchItemFailures"] in ESM.  
 
-_Important: only failed messages return to the queue; they are not mixed into new batches._
+_Important: only failed messages return to the queue; they aren't mixed into new batches._
 
 ### 2(b). RBF Retry Behavior
 
@@ -387,7 +387,7 @@ def lambda_handler(event, context):
 ```
 Docs: https://docs.powertools.aws.dev/lambda/python/latest/utilities/idempotency/
 
-## Idempotency Best Practices
+## Idempotency Rules
 
 | Strategy | Benefit |
 | --- | --- |
@@ -414,7 +414,7 @@ Idempotency key sources (preference order):
 | Unbounded Lambda concurrency | maximum_concurrency cap |
 | No idempotency | Idempotency keys/checks (DynamoDB or DB constraints) |
 
-## Key Takeaways
+## Takeaways
 
 - Visibility timeout = 6× Lambda timeout to avoid duplicate pickup
 - Batch size formula: (Tλ × 0.8) / Tm; use p95 message time
@@ -468,4 +468,10 @@ Constraints:
 
 ## Conclusion
 
-Production-grade messaging on AWS rewards careful math and disciplined guardrails. Tune timeouts, cap concurrency, and measure with percentiles. Prove behavior under load before deploying. Run the checklist today and harden one pipeline end-to-end—then scale the pattern across your stack.
+Production-grade messaging on AWS rewards careful math and tight guardrails. 
+
+Tune timeouts, cap concurrency, and measure with percentiles. 
+
+Prove behavior under load before deploying. 
+
+Run the checklist today and harden one pipeline end-to-end—then scale the pattern across your stack.
