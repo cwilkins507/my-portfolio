@@ -8,7 +8,7 @@ meta_description: "Pragmatic JPA/Hibernate guide covering N+1 queries, lazy load
 target_keywords: "JPA best practices, Hibernate performance, Spring Data JPA, ORM optimization, Java data access patterns"
 ---
 # JPA/Hibernate: Pragmatic Data Access That Scales
-If your dev team is like mine, Java is the opinionated back-end language. We've recently refactored how the teams access data in order to become more consistent and leverage ORM. Below are some lessons learned.
+If your dev team is like mine, Java is the opinionated back-end language. We've recently refactored how the teams access data to become more consistent and use ORM. Below are some lessons learned.
 
 JPA/Hibernate through Spring gives you productive data access. It maps objects to tables, tracks changes, and writes SQL. This saves time. It also hides costs that show up in production.
 
@@ -97,7 +97,14 @@ After any bulk operation, clear the persistence context or do the bulk work in i
 
 If the database work is the actual feature, write SQL directly. Don't try to bend JPA to do it.
 
-Native queries make sense for analytics (window functions, CTEs, rollups), database-specific stuff (Postgres arrays, JSONB, PostGIS), locking strategies JPA can't express, read paths where you need precise projections and indexes, pagination over gnarly joins, and maintenance jobs like backfills.
+Native queries make sense for:
+
+- Analytics (window functions, CTEs, rollups)
+- Database-specific features (Postgres arrays, JSONB, PostGIS)
+- Locking strategies JPA can't express
+- Read paths where you need precise projections and indexes
+- Pagination over gnarly joins
+- Maintenance jobs like backfills
 
 Example: read-only projection with a window function.
 
