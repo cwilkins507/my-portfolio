@@ -16,7 +16,7 @@ A developer opens Cursor, types a comment describing a function, and waits for a
 
 I've been all three of those developers. The pattern is always the same: we have AI tools that can reason about code, but we keep using them through interfaces that strip away the context they need. We feed them fragments and expect systems in return.
 
-Claude Code changed that for me. It's not a sidebar. It's not autocomplete. It's an agent running in your terminal with direct access to your file system, your shell, and your full project. That single difference rewired how I work with AI.
+Claude Code changed that for me. It isn't a sidebar or autocomplete — it's an agent running in your terminal with direct access to your file system, your shell, and your full project. That single difference rewired how I work with AI.
 
 ## Why This Matters Now
 
@@ -26,9 +26,9 @@ Autocomplete and chat assistants are still useful. But they represent a ceiling.
 
 Agentic tools can. Claude Code, Cursor's agent mode, Windsurf, OpenAI's Codex CLI, Aider, and a growing list of others now operate *inside* your environment. They read files, write files, run commands, and iterate on results. The model becomes a collaborator with tool access, not a text generator behind a chat window.
 
-The field is crowded. That's a good sign. Copilot added agent mode to VS Code. Cursor and Windsurf offer agentic capabilities inside the editor. Cline and Roo Code bring agent behavior to VS Code as extensions. Codex CLI and Aider take the terminal-native approach. JetBrains ships its own AI assistant. Amazon has Q Developer. The tooling matters less than the workflow patterns you build around it, but choosing a primary tool still matters. I'll explain why I landed on Claude Code after spending real time with several of these.
+The field is crowded. That's a good sign. Copilot added agent mode to VS Code. Cursor and Windsurf offer agentic capabilities inside the editor. Cline and Roo Code bring agent behavior to VS Code as extensions. Codex CLI and Aider take the terminal-native approach. JetBrains ships its own AI assistant. Amazon has Q Developer. The tooling matters less than the workflow patterns you build around it, but choosing a primary tool still matters. I'll explain why I landed on Claude Code after spending real time with most of them.
 
-Some people call this shift "vibe coding." I think the term undersells it. What separates developers getting results from those getting frustrated isn't vibes. It's *context engineering*: deliberately shaping what the agent knows before it starts working.
+Some people call this shift "vibe coding." I think the term undersells it. The difference isn't vibes. It's *context engineering*: deliberately shaping what the agent knows before it starts working.
 
 That's the skill this article is about. Not any one tool. The system behind the tools.
 
@@ -36,7 +36,7 @@ That's the skill this article is about. Not any one tool. The system behind the 
 
 Claude Code is a CLI tool from Anthropic. Install it globally with npm, run `claude` in any project directory, and start an interactive session. From there, Claude can read your files, edit them, run shell commands, search your codebase, and access external services through MCP connectors.
 
-The difference from IDE-based assistants: Claude Code operates in your actual environment. It doesn't work from a snapshot or a partial view. It navigates your project the way you would. Runs `grep` to find usages. Reads test files to understand expected behavior. Executes your test suite to verify its own changes.
+The difference from IDE-based assistants: Claude Code operates in your actual environment. It doesn't work from a snapshot or a partial view. It moves through your project the way you would. Runs `grep` to find usages. Reads test files to understand expected behavior. Executes your test suite to verify its own changes.
 
 You stop being the typist and start being the architect.
 
@@ -75,7 +75,7 @@ Every tool on this table has real strengths. Cursor's inline diff review is exce
 
 Your mileage will depend on how you work.
 
-But here's the thing about all of these tools: none of them are magic. They're only as good as the context you give them. Which brings us to the skill that actually matters.
+None of these tools are magic, though. They're only as good as the context you give them.
 
 ## Context Engineering: The Foundation
 
@@ -83,7 +83,7 @@ Most developers try an agentic tool, get mediocre results, and blame the model.
 
 Wrong target. The problem is almost always context.
 
-Context engineering is the practice of shaping what an AI agent knows when it starts working. Every serious tool has a version of this. Claude Code uses `CLAUDE.md`. Cursor uses `.cursorrules`. Codex CLI uses `AGENTS.md`. Aider uses conventions files. The filename differs. The principle is identical: tell the agent how your project works before it starts working.
+**Context engineering** is the practice of shaping what an AI agent knows when it starts working. Every serious tool has a version of this. Claude Code loads `CLAUDE.md`. Cursor reads `.cursorrules`. Codex CLI checks `AGENTS.md`, and Aider pulls from its own conventions files. The filename differs. The principle is identical: tell the agent how your project works before it starts working.
 
 I think of it as a stack, five layers that build on each other. I call it **The Context Engineering Stack**. The foundation is that context file. I'll use `CLAUDE.md` as the example because it's what I use daily, but everything here applies regardless of tool.
 
@@ -138,7 +138,7 @@ Notice the "Why" section. Most context files I see list rules without reasons. W
 
 That's the difference between a rule and a principle. Rules need to be enumerated. Principles scale.
 
-Beyond the context file, you need to manage your conversation scope. Here's something most people miss: context quality degrades at 20-40% of the window, not at 100%. You don't wait for the model to forget things. You proactively scope one conversation per feature or task.
+Beyond the context file, you need to manage your conversation scope. Context quality degrades at 20-40% of the window, not at 100%. You don't wait for the model to forget things. You proactively scope one conversation per feature or task.
 
 When context gets bloated, I use **The Copy-Paste Reset**: copy the important context (current plan, key decisions, file paths), run `/clear`, and paste back only what matters. Fresh window. Critical information preserved.
 
@@ -160,13 +160,13 @@ That foundation is only half the equation, though. You also need a way to make t
 
 ## Plan Mode: Five Minutes That Save Five Hours
 
-Most developers jump straight to "build this feature" and let AI start coding immediately.
+The temptation is to jump straight to "build this feature" and let AI start coding immediately.
 
 This is the equivalent of writing code without reading the requirements. It works for trivial tasks. It falls apart for anything with more than one moving part.
 
 Plan mode (Shift+Tab twice in Claude Code) tells the agent to research and think before acting. It reads relevant files, maps dependencies, identifies edge cases, and presents an implementation plan. You review the plan, adjust it, and only then let it execute. Cursor and Windsurf have similar planning workflows. The shortcuts differ. The pattern transfers everywhere: force the agent to research before coding.
 
-I've tested this across refactoring, feature work, bug fixes, and infrastructure changes. Plan mode consistently produces better output than jumping straight to implementation. 5 minutes reviewing a plan eliminates the 2 hours debugging a half-baked implementation.
+I've used plan mode for refactoring, feature work, bug fixes, and infrastructure changes. It beats jumping straight to implementation every time. Five minutes reviewing a plan saves two hours of debugging. That tradeoff never gets old.
 
 A workflow that compounds this: use your most capable model for planning and a faster one for execution. In Claude Code, that means Opus for planning and Sonnet for implementation (switch with Shift+Tab). The stronger model handles architectural reasoning. The faster one handles straightforward implementation at lower cost. Your context file ensures both operate under the same project constraints.
 
@@ -183,8 +183,6 @@ Then the last line:
 That's the kind of thing I'd catch during code review, not during implementation. Plan mode caught it before a single line was written. I approved the plan. Ten minutes later: six files updated, tests passing, OAuth flow working.
 
 I spent my time reviewing diffs instead of writing boilerplate.
-
-Plan mode gives you the architecture check. But what about the tasks you repeat every week?
 
 ## Skills and Subagents: Teaching the Agent Your Workflow
 
@@ -230,11 +228,11 @@ When asked to review a PR:
 
 The built-in subagents cover common patterns: Explore for read-only codebase analysis, Plan for research, general-purpose for multi-step tasks. You can build custom ones too. A code review pipeline might run style checking, security scanning, and test coverage analysis in parallel across separate subagents.
 
-Here's the compound effect: skills encode how you work. Subagents handle the grunt work. MCP connectors let the agent access GitHub, Slack, and databases without leaving your terminal. Every skill you add, every connector you wire up stays available for every future task.
+Skills encode how you work. Subagents take the grunt work off your hands. And MCP connectors let the agent reach GitHub, Slack, and databases without leaving your terminal. Every skill you add, every connector you wire up, compounds. It's all available for the next task and every one after.
 
 The system gets better every session. That's not a feature of the tool. It's a feature of the investment.
 
-But skills and subagents are still interactive. What if you want the agent to work without you?
+Skills and subagents are still interactive, though.
 
 ## Building Systems, Not Just Using Tools
 
@@ -272,7 +270,7 @@ graph LR
     D --> A
 ```
 
-Every correction makes the system smarter. Every session builds on the last.
+Every correction makes the system smarter. Sessions build on each other.
 
 The engineers getting the most from these tools aren't treating them as a one-off productivity boost. They're investing in a system the same way they'd invest in CI/CD or monitoring. The returns compound.
 
@@ -284,15 +282,15 @@ No honest assessment skips this part.
 
 **Cost adds up fast.** A heavy Opus planning session can run $2-5 in API credits. A full day of agentic development might cost $20-40. For solo developers and side projects, that's real money. The model tiering strategy (Haiku for simple tasks, Sonnet for implementation, Opus for architecture) isn't a nice-to-have. It's survival. I burned through $15 on a Saturday experimenting with Opus on tasks Sonnet could've handled. Don't repeat my mistake.
 
-**Latency kills small tasks.** 5-15 seconds to respond to a simple request. Need to rename a variable or fix a typo? Your editor's find-and-replace is faster. Agentic tools shine on multi-file, multi-step work. For single-line fixes, they add overhead.
+Then there's latency. 5-15 seconds to respond to a simple request. Need to rename a variable or fix a typo? Your editor's find-and-replace is faster. Agentic tools shine on multi-file, multi-step work. For single-line fixes, they add overhead.
 
-**The learning curve hits up front.** Your first week will feel slower, not faster. You're writing context files, learning plan mode, figuring out conversation scoping. The returns are real, but they take 2-3 weeks of consistent use to show up. Most developers who abandon ship after two days never reach the inflection point.
+The learning curve hits up front, too. Your first week will feel slower, not faster. You're writing context files, learning plan mode, figuring out conversation scoping. The returns are real, but they take 2-3 weeks of consistent use to show up. Most developers who abandon ship after two days never reach the inflection point.
 
-**It doesn't replace understanding.** The agent can implement a feature you've designed. It can't design a system you don't understand. If you can't review the output critically, you'll ship bugs with more confidence, which is worse than shipping bugs with doubt.
+It also doesn't replace understanding. The agent can implement a feature you've designed. It can't design a system you don't understand. If you can't review the output critically, you'll ship bugs with more confidence, which is worse than shipping bugs with doubt.
 
 **Context windows have hard limits.** Even with conversation scoping and The Copy-Paste Reset, complex tasks hit the ceiling. A massive refactor across 50+ files requires breaking work into phases. The agent won't tell you when it's lost context. The output just gets subtly worse. You develop the instinct for when to stop and reset, or you ship garbage.
 
-These are real tradeoffs. But the biggest gap in the agentic coding conversation isn't about the tools. It's about the skill nobody teaches.
+These are real tradeoffs. The biggest gap in the agentic coding conversation, though, has nothing to do with the tools.
 
 ## Reviewing AI-Generated Code: The Skill Nobody Teaches
 
@@ -304,15 +302,15 @@ When you review AI-generated diffs, here's what to watch for:
 
 **Hallucinated imports.** The agent references a module or type that doesn't exist in your codebase. It looks plausible. It fails at build time. I catch these about once a week.
 
-**Confident logic errors.** The code reads correctly. It passes basic tests. But it handles an edge case wrong: off-by-one, incorrect null handling, swapped conditionals. AI-generated code tends to be *confidently wrong* rather than obviously broken. That's what makes it dangerous.
+Confident logic errors are sneakier. The code reads correctly. It passes basic tests. But it handles an edge case wrong: off-by-one, incorrect null handling, swapped conditionals. AI-generated code tends to be *confidently wrong* rather than obviously broken. That's what makes it dangerous.
 
-**Unnecessary abstraction.** The agent adds helper functions, configuration options, or patterns you didn't ask for. More code means more surface area for bugs. You asked for a feature. You should get the feature, not a framework.
+Then there's unnecessary abstraction — the agent adds helper functions, configuration options, or patterns you didn't ask for. More code means more surface area for bugs. You asked for a feature. You should get the feature, not a framework.
 
-**Silent behavior changes.** The agent modifies a function signature, changes a default value, or reorders operations in a way that affects callers it didn't examine. This is the scariest category because the diff looks clean.
+**Silent behavior changes** are the scariest category. The agent modifies a function signature, changes a default value, or reorders operations in a way that affects callers it didn't examine. The diff looks clean. The breakage is invisible.
 
-**Stale context artifacts.** The agent references decisions from earlier in the conversation that you've since revised. This is your signal: context window is degrading. Time for The Copy-Paste Reset.
+Last: stale context artifacts. The agent references decisions from earlier in the conversation that you've since revised. This is your signal that the context window is degrading. Time for The Copy-Paste Reset.
 
-Here's the instinct to develop: if a diff *looks* right but you can't explain *why* it's right, that's a red flag. Slow down. Read line by line. The speed benefit of agentic coding comes from delegation, not from skipping review.
+The instinct to develop: if a diff *looks* right but you can't explain *why* it's right, that's a red flag. Slow down. Read line by line. The speed benefit of agentic coding comes from delegation, not from skipping review.
 
 ## The Playbook
 
@@ -342,6 +340,6 @@ Write a context file for your current project. `CLAUDE.md`, `.cursorrules`, `AGE
 
 If you're already using an agentic tool, try plan mode on your next feature. Force the agent to research before building. Review the plan. Adjust it. Then let it execute. Count the back-and-forth corrections compared to your normal workflow.
 
-The developers building real productivity advantages with AI aren't using better models. They're building better systems around the models they have.
+The model matters less than the system around it.
 
-The tool is your choice. Context engineering is the skill. 30 minutes to set up. Compounds from day one.
+Pick whatever tool fits your workflow. Context engineering is what makes it work — 30 minutes to set up, and it compounds from day one.

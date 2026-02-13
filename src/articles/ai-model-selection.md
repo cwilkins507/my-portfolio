@@ -16,183 +16,141 @@ I've watched this pattern repeat across dozens of teams. We have more powerful A
 
 ## Why This Matters Now
 
-The model landscape has fractured. Two years ago, you had GPT-4 and Claude 2. Pick one. Today you're choosing between Claude Opus 4.5, Sonnet, and Haiku. GPT-5 and Codex. Gemini 3 Pro and Flash. Kimi 2.5. GLM 4.7. Each provider offers multiple tiers, and those tiers perform differently across tasks.
+The model space has fractured. Two years ago, you had GPT-4 and Claude 2. Pick one. Today you're choosing between Claude Opus 4.5, Sonnet, and Haiku. GPT-5 and Codex. Gemini 3 Pro and Flash. Kimi 2.5. GLM 4.7. Each provider offers multiple tiers, and those tiers perform differently across tasks.
 
-Benchmarks have exploded too. SWE-bench measures coding. MMLU measures knowledge. HumanEval measures code generation. MATH measures reasoning. A model can top one benchmark and rank fifth on another. The "best" model depends entirely on what you're asking it to do.
+Benchmarks have exploded too. SWE-bench tests coding, MMLU covers knowledge breadth, HumanEval targets code generation, MATH evaluates reasoning. A model can top one benchmark and rank fifth on another. The "best" model depends entirely on what you're asking it to do.
 
-This fragmentation rewards precision. The teams getting the best results aren't chasing the newest release. They're matching intelligence to complexity with intention.
+This fragmentation rewards precision. The teams getting the best results aren't chasing the newest release. They're matching intelligence to complexity on purpose.
 
-## Three Paradigms: Automation, AI Workflow, and AI Agent
+## Three Approaches: Automation, AI Workflow, and AI Agent
 
 ![Paradigms Comparison](/images/paradigms-comparison.svg)
 
-Before selecting a model, you need to select a paradigm. These represent fundamentally different approaches to AI-assisted work. Each has a place. None is universally superior.
+Before picking a model, pick an approach. These are very different ways of doing AI-assisted work. Each has a place. None is universally superior.
 
 ### Automation
 
-**Definition:** Rule-based systems that execute predefined logic without learning or adapting.
+Automation means rule-based systems -- if-then logic, triggers, deterministic workflows. The system does exactly what you programmed. Every time. No exceptions. No AI involved.
 
-**Core foundation:** If-then logic, triggers, deterministic workflows. The system does exactly what you programmed. Every time. No exceptions.
+Think data entry, file organization, scheduled reports, form submissions, repetitive API calls. Anything where the input format is predictable and the output is predetermined.
 
-**Tasks:** Data entry, file organization, scheduled reports, form submissions, repetitive API calls. Anything where the input format is predictable and the output is predetermined.
+What's good about automation: behavior is 100% predictable, execution runs in milliseconds, there are no API costs per operation, debugging is just tracing the logic path, and there's zero hallucination risk.
 
-**Strengths:**
-- 100% predictable behavior
-- Fast execution (milliseconds, not seconds)
-- Cheap (no API costs per operation)
-- Easy to debug (trace the logic path)
-- Zero hallucination risk
+What's bad: it breaks when inputs deviate from expected formats, it can't handle ambiguity, it needs manual updates when requirements change, and it has no capacity for judgment calls.
 
-**Weaknesses:**
-- Brittle when inputs deviate from expected formats
-- Can't handle ambiguity or edge cases
-- Requires manual updates when requirements change
-- No capacity for judgment calls
+A concrete example: a Zapier workflow that moves email attachments matching specific file types to designated Google Drive folders. The trigger fires, the condition checks, the action executes.
 
-**Example:** A Zapier workflow that moves email attachments matching specific file types to designated Google Drive folders. The trigger fires, the condition checks, the action executes. No AI involved.
-
-**When to use:** The task has clear rules, predictable inputs, and you need 100% reliability. If you can write a flowchart that covers every case, automation wins.
+Use automation when the task has clear rules, predictable inputs, and you need 100% reliability. If you can write a flowchart that covers every case, automation wins.
 
 ### AI Workflow
 
-**Definition:** Human-orchestrated pipelines where AI handles specific steps under human direction.
+AI workflows are human-orchestrated pipelines where AI handles specific steps under human direction. LLM calls sit inside structured workflows. The human stays in the loop for decisions -- AI generates, human validates. AI suggests, human approves.
 
-**Core foundation:** LLM calls embedded in structured workflows. The human remains in the loop for decisions. AI generates, human validates. AI suggests, human approves.
+Good for content drafting with human review, code generation with developer approval, summarization pipelines, RAG-based Q&A, and translation with quality checks.
 
-**Tasks:** Content drafting with human review, code generation with developer approval, summarization pipelines, RAG-based Q&A, translation with quality checks.
+The upside: you get AI capability with human oversight, controllable output quality, and transparent reasoning since you see the AI's output before it goes anywhere. It scales human expertise across more work.
 
-**Strengths:**
-- Balances AI capability with human oversight
-- Controllable output quality
-- Good for high-stakes tasks where errors are costly
-- Transparent reasoning (you see the AI's output before it matters)
-- Scales human expertise across more work
+The downside: it's slower because of the human bottleneck, it takes workflow design expertise, it doesn't scale on its own, and human fatigue can drag quality down over time.
 
-**Weaknesses:**
-- Slower due to human bottleneck
-- Requires workflow design expertise
-- Doesn't scale autonomously
-- Human fatigue can compromise quality over time
+A developer uses Claude to generate a function. They review the output, request specific edits, run the tests, then commit. AI does the heavy lifting. The human makes the final call.
 
-**Example:** A developer uses Claude to generate a function. They review the output, request specific edits, run the tests, then commit. AI assists with the heavy lifting. Human makes the final call.
-
-**When to use:** The task benefits from AI capability but requires human judgment. The stakes are high enough that you can't afford unchecked AI output. You have the bandwidth for human review.
+Use this when the task benefits from AI capability but requires human judgment. The stakes are high enough that you can't afford unchecked AI output, and you have the bandwidth for review.
 
 ### AI Agent
 
-**Definition:** Autonomous systems that plan, execute, and adapt across multiple steps with minimal human intervention.
+Agents are autonomous systems that plan, execute, and adapt across multiple steps with minimal human intervention. They use tools, memory, planning loops, and self-correction. The LLM acts as the "brain" coordinating actions across tools and APIs -- breaking down goals, executing steps, evaluating results, and adjusting.
 
-**Core foundation:** Tool use, memory, planning loops, self-correction. The LLM acts as the "brain" coordinating actions across tools and APIs. It breaks down goals, executes steps, evaluates results, and adjusts.
+They're built for multi-step research, autonomous coding with test validation, complex data analysis, end-to-end task completion, and investigation and diagnosis.
 
-**Tasks:** Multi-step research, autonomous coding with test validation, complex data analysis, end-to-end task completion, investigation and diagnosis.
+What agents do well: they handle complex, multi-step tasks that would exhaust human attention, scale without linear increases in human effort, recover from errors, adapt to surprises, and maintain context across long task sequences. They also open up work that was previously too tedious for anyone to attempt.
 
-**Strengths:**
-- Handles complex, multi-step tasks that would exhaust human attention
-- Scales without linear increases in human effort
-- Can recover from errors and adapt to unexpected situations
-- Maintains context across long task sequences
-- Unlocks work that was previously too tedious to attempt
+Where agents struggle: they're less predictable than human-in-the-loop workflows, cost more (multiple LLM calls and tool invocations), and are harder to debug when things go wrong. Errors can compound across steps, and they need solid guardrails and monitoring.
 
-**Weaknesses:**
-- Less predictable than human-in-the-loop workflows
-- Higher cost (multiple LLM calls, tool invocations)
-- Harder to debug when things go wrong
-- Risk of compounding errors across steps
-- Requires robust guardrails and monitoring
+Claude Code investigating a bug report shows this well. It reads the error logs, traces the code path across multiple files, identifies the root cause, writes a fix, runs the test suite, and prepares a commit. Human approval comes only at the end.
 
-**Example:** Claude Code investigates a bug report. It reads the error logs, traces the code path across multiple files, identifies the root cause, writes a fix, runs the test suite, and prepares a commit. Human approval comes only at the end.
+Use agents when the task involves many steps that don't require individual human judgment. You need guardrails in place (tests, validation, rollback capability), and the cost of autonomous operation should be lower than the cost of human attention on every step.
 
-**When to use:** The task involves many steps that don't require individual human judgment. You have guardrails in place (tests, validation, rollback capability). The cost of autonomous operation is lower than the cost of human attention on every step.
+### Choosing Between Approaches
 
-### Choosing Between Paradigms
+The right choice comes down to a few questions:
 
-The right choice depends on three factors:
+**How predictable are your inputs?** If they're structured and consistent, automation works. If they vary widely, you need AI.
 
-1. **Predictability of inputs:** If inputs are structured and consistent, automation works. If inputs vary widely, you need AI.
+**What do errors cost you?** If a mistake costs $100,000 or a customer relationship, keep humans in the loop. If a mistake just costs you a retry, agents can handle it.
 
-2. **Stakes of errors:** If a mistake costs you $100,000 or a customer relationship, keep humans in the loop. If a mistake costs you a retry, agents can handle it.
+**How much autonomy does the task need?** If it needs judgment calls every few steps, use workflows. If judgment is only needed at checkpoints, agents scale better.
 
-3. **Required autonomy:** If the task needs judgment calls every few steps, use workflows. If judgment is needed only at checkpoints, agents scale better.
-
-Most teams should default to AI workflows and graduate to agents only for tasks where they've built confidence through iteration.
+Most teams should default to AI workflows and graduate to agents only after they've built confidence through iteration.
 
 ## The Task Complexity Spectrum
 
 Tasks exist on a spectrum. Low complexity tasks have structured inputs, clear outputs, and minimal reasoning requirements. High complexity tasks are open-ended, require planning, and demand error recovery.
 
-**Low complexity:** Classification, extraction, formatting, simple Q&A with clear answers. The model needs to understand the input and produce a predictable output. A well-crafted prompt handles most edge cases.
+**Low complexity** covers classification, extraction, formatting, and simple Q&A with clear answers. The model just needs to understand the input and produce a predictable output. A good prompt handles most edge cases.
 
-**Medium complexity:** Summarization, code completion, Q&A with context, translation with nuance. The model needs contextual understanding and some reasoning. Multiple valid outputs exist. Quality varies with model capability.
+**Medium complexity** gets more interesting. Summarization, code completion, Q&A with context, translation with nuance. Here the model needs real contextual understanding. Multiple valid outputs exist, and quality varies with model capability.
 
-**High complexity:** Autonomous research, multi-file refactoring, novel problem-solving, long-horizon planning. The model needs to maintain state, use tools, recover from dead ends, and synthesize information across many sources.
+**High complexity** means autonomous research, multi-file refactoring, novel problem-solving, and long-horizon planning. The model has to maintain state, use tools, recover from dead ends, and pull together information across sources. This is where model choice matters most.
 
-Here's the thing: these levels don't map cleanly to model tiers. A Haiku-class model handles low complexity tasks as well as Opus. Sometimes better, because smaller models are less likely to overthink simple problems.
+But these levels don't map cleanly to model tiers. A Haiku-class model handles low complexity tasks as well as Opus. Sometimes better, because smaller models are less likely to overthink simple problems.
 
 ## Why Overpowered Models Backfire
 
 Reaching for the most capable model on every task creates real problems.
 
-**Cost waste:** GPT-5 costs 20x more than smaller models per token. Claude Opus 4.5 costs 15x more than Haiku. If you're processing 10,000 support tickets through Opus when Haiku would suffice, you're burning money.
+**Cost waste** is the obvious one. GPT-5 costs 20x more than smaller models per token. Claude Opus 4.5 costs 15x more than Haiku. If you're processing 10,000 support tickets through Opus when Haiku would do, you're burning money.
 
-**Latency issues:** Larger models are slower. For interactive applications, the difference between 200ms and 2 seconds changes user experience fundamentally.
+Larger models are also slower. For interactive applications, the difference between 200ms and 2 seconds changes the user experience entirely.
 
-**Overconfident outputs:** Powerful models are trained to be helpful. On simple tasks, this helpfulness manifests as unnecessary elaboration, unsolicited suggestions, and confident assertions about things you didn't ask.
+Then there's overconfidence. Powerful models are trained to be helpful. On simple tasks, that helpfulness shows up as unnecessary elaboration, unsolicited suggestions, and confident assertions about things you didn't ask about.
 
-**The sledgehammer problem:** When all you have is GPT-5, everything looks like it needs GPT-5. You stop designing efficient workflows because the model can brute-force through bad prompts.
+And the sledgehammer problem: when all you have is GPT-5, everything looks like it needs GPT-5. You stop designing efficient workflows because the model can brute-force through bad prompts.
 
 ## Why Underpowered Models Fail
 
-The opposite mistake is equally common. Teams try to save money by using small models on tasks that require more capability.
+The opposite mistake is just as common. Teams try to save money by using small models on tasks that require more capability.
 
-**Hallucination increases:** Smaller models have less internal knowledge and weaker reasoning. They fill gaps with plausible-sounding fabrication.
+**Hallucination goes up.** Smaller models have less internal knowledge and weaker reasoning. They fill gaps with plausible-sounding fabrication.
 
-**Instruction following degrades:** Complex prompts with multiple requirements overwhelm smaller models. They'll nail 3 out of 5 instructions and silently drop the rest.
+Instruction following breaks down too. Complex prompts with multiple requirements overwhelm smaller models. They'll nail 3 out of 5 instructions and silently drop the rest.
 
-**Context limits become bottlenecks:** A 4K context window can't hold a meaningful codebase. You end up chunking and losing coherence.
+Context limits hit hard. A 4K context window can't hold a meaningful codebase. You end up chunking and losing coherence.
 
-**Subtlety is lost:** Smaller models miss implications, ignore tone requirements, and flatten nuance. Fine for data extraction. Bad for anything requiring judgment.
+Subtlety gets lost. Smaller models miss implications, ignore tone requirements, and flatten nuance. Fine for data extraction. Bad for anything requiring judgment.
 
-The hard part is finding the minimum viable model for each task. This requires testing, not guessing.
+The hard part is finding the minimum viable model for each task. This takes testing, not guessing.
 
 ## Matching Models to Task Types
 
-Different tasks demand different capabilities. Here's how to think about selection:
+Different tasks demand different capabilities. Here's how I think about selection.
 
 ### Coding Tasks
 
-**What matters:** Reasoning depth, instruction following, tool use capability, knowledge of programming patterns.
+Reasoning depth, instruction following, tool use, and knowledge of programming patterns all matter here. SWE-bench Verified ([swebench.com](https://www.swebench.com/)) is the benchmark to watch -- it measures real-world bug fixing on open-source repos. It tests actual software engineering, not isolated algorithm puzzles, which is why it's the gold standard for coding capability.
 
-**Where to look:** SWE-bench Verified ([swebench.com](https://www.swebench.com/)) measures real-world bug fixing on open-source repos. This is the gold standard for coding capability because it tests actual software engineering, not isolated algorithm puzzles.
-
-**Current leaders (as of December 2025):** Claude Opus 4.5 and Sonnet, GPT-5 Codex, Gemini 3 Pro, Kimi 2.5. For simpler code generation (boilerplate, formatting, simple functions), Haiku or Gemini Flash often suffice.
+As of December 2025, Claude Opus 4.5, Sonnet, GPT-5 Codex, Gemini 3 Pro, and Kimi 2.5 lead the pack. For simpler code generation -- boilerplate, formatting, simple functions -- Haiku or Gemini Flash often do the job.
 
 ### Image Generation
 
-**What matters:** Visual quality, style control, prompt adherence, consistency across generations.
+Visual quality, style control, prompt adherence, and consistency across generations are the key factors. This space moves fast. Midjourney v6, DALL-E 3, and Stable Diffusion 3 each make different tradeoffs between quality, control, and cost.
 
-**Where to look:** This space moves fast. Current outputs from Midjourney v6, DALL-E 3, and Stable Diffusion 3 represent different tradeoffs between quality, control, and cost.
-
-**Selection factors:** Midjourney for aesthetic quality. DALL-E 3 for prompt following. Stable Diffusion for local control and customization.
+Pick Midjourney for aesthetic quality, DALL-E 3 for prompt following, and Stable Diffusion for local control and customization.
 
 ### Research and Analysis
 
-**What matters:** Long context handling, factual grounding, citation capability, synthesis across sources.
+You care about long context handling, factual grounding, citation capability, and synthesis across sources. The Vellum AI Leaderboard ([vellum.ai/llm-leaderboard](https://www.vellum.ai/llm-leaderboard)) aggregates multiple benchmarks and gives a useful general comparison.
 
-**Where to look:** The Vellum AI Leaderboard ([vellum.ai/llm-leaderboard](https://www.vellum.ai/llm-leaderboard)) aggregates multiple benchmarks and provides a useful general comparison.
-
-**Current leaders (as of December 2025):** Claude Opus 4.5's 200K context window makes it strong for long documents. Gemini 3 handles up to 2M tokens. Kimi 2.5 excels at long-context tasks. Perplexity specializes in research with built-in search.
+As of December 2025: Claude Opus 4.5's 200K context window makes it strong for long documents, while Gemini 3 pushes that to 2M tokens. Kimi 2.5 excels at long-context tasks. And Perplexity takes a different angle entirely -- built-in search that grounds responses in current sources.
 
 ### Simple Classification and Extraction
 
-**What matters:** Speed, cost, consistency. Capability ceiling is less important than reliability floor.
+Speed, cost, and consistency matter most. Capability ceiling is less important than reliability floor.
 
-**Best choices:** Claude Haiku, Gemini Flash, GLM 4.7 Lite. These models cost pennies per thousand calls and respond in milliseconds. For structured extraction with clear schemas, they match larger model accuracy.
+Claude Haiku, Gemini Flash, and GLM 4.7 Lite are your picks here. These models cost pennies per thousand calls and respond in milliseconds. For structured extraction with clear schemas, they match larger model accuracy.
 
 ### Creative Writing
 
-**What matters:** Voice consistency, narrative coherence, stylistic range.
-
-**Selection factors:** This is subjective. Claude tends toward measured, thoughtful prose. GPT-5 produces more varied styles. Test on your specific use case.
+Voice consistency, narrative coherence, and stylistic range are what you're evaluating. This is subjective. Claude tends toward measured, thoughtful prose. GPT-5 produces more varied styles. Test on your specific use case.
 
 ## Using Benchmarks Wisely
 
@@ -200,14 +158,9 @@ Benchmarks measure specific capabilities. A model that tops SWE-bench may rank f
 
 **The Vellum Leaderboard** aggregates scores across multiple benchmarks. It's useful for general capability comparison but hides task-specific variation.
 
-**SWE-bench Verified** tests real software engineering tasks. Models must fix actual bugs in real codebases. This matters because coding benchmarks that test isolated problems (HumanEval, MBPP) don't capture the difficulty of navigating large projects.
+**SWE-bench Verified** tests real software engineering tasks. Models must fix actual bugs in real codebases. This matters because coding benchmarks that test isolated problems (HumanEval, MBPP) don't capture the difficulty of working across large projects.
 
-**What benchmarks miss:**
-- Latency and throughput
-- Cost per task
-- Reliability under load
-- Behavior on your specific domain
-- Integration complexity
+What benchmarks miss: latency, throughput, cost per task, reliability under load, behavior on your specific domain, and how hard the integration is.
 
 Treat benchmarks as a starting filter. They tell you which models are worth testing. They don't tell you which model wins for your use case.
 
@@ -215,25 +168,25 @@ Treat benchmarks as a starting filter. They tell you which models are worth test
 
 Raw capability is one factor. Production deployment requires more.
 
-**API reliability:** Does the provider maintain uptime during traffic spikes? What's their historical incident rate?
+**API reliability** matters more than you'd think. Does the provider maintain uptime during traffic spikes? What's their historical incident rate?
 
-**Rate limits:** Can you scale to your expected volume? What happens when you hit limits?
+**Rate limits** are the next question. Can you scale to your expected volume? What happens when you hit limits?
 
-**Pricing structure:** Input and output tokens are priced differently. Caching, batching, and fine-tuned models have different economics.
+Pricing is rarely straightforward. Input and output tokens are priced differently. Caching, batching, and fine-tuned models have different economics.
 
-**Context window:** 32K, 128K, 200K, 1M, 2M. The right size depends on your task. Bigger isn't always better (longer contexts increase cost and latency).
+Context window sizes vary wildly: 32K, 128K, 200K, 1M, 2M. The right size depends on your task. Bigger isn't always better -- longer contexts increase cost and latency.
 
-**Tool use support:** If you're building agents, native function calling matters. Some providers handle this better than others.
+If you're building agents, native function calling matters. Some providers handle tool use better than others.
 
-**Fine-tuning availability:** Can you train on your data? What's the minimum dataset size? What does it cost?
+**Fine-tuning availability** is worth checking early. Can you train on your data? What's the minimum dataset size? What does it cost?
 
-**Data privacy:** Where is data processed? Is it retained? What compliance certifications does the provider hold?
+And don't overlook data privacy. Where is data processed? Is it retained? What compliance certifications does the provider hold?
 
 ## The Harness Mindset
 
-Here's the mental shift that separates good practitioners from great ones. Stop asking "what's the best model?" Start asking "what's the best model for this task?"
+The shift worth making: treat model selection as an engineering decision, not a default. The question that actually matters is "what's the best model *for this task*?"
 
-**Treat models like tools in a workshop.** A table saw and a hand saw both cut wood. One isn't better than the other. They're suited for different jobs. A master carpenter reaches for the right tool without thinking. You should reach for the right model the same way.
+Think of models like tools in a workshop. A table saw and a hand saw both cut wood. Neither is better -- they're for different jobs. A master carpenter grabs the right tool without thinking about it. You should pick models the same way.
 
 Here's what this looks like in practice. A developer building an AI-assisted research tool might use:
 
@@ -247,11 +200,11 @@ Here's what this looks like in practice. A developer building an AI-assisted res
 
 That's five different models in one application. Each chosen for what it does best. The developer who uses Opus for everything pays 15x more for their classification layer and gets worse real-time results than Grok. The developer who uses Haiku for everything gets fast responses but shallow research and buggy code.
 
-**Build workflows that can swap models.** Abstract your LLM calls behind interfaces. Make model selection a configuration choice, not a code change. This lets you test alternatives and route dynamically.
+**Build workflows that can swap models.** Abstract your LLM calls behind interfaces. Make model selection a config choice, not a code change. This lets you test alternatives and route on the fly.
 
-**Use routing logic.** Simple tasks go to fast, cheap models. Complex tasks go to capable, expensive models. A classification layer at the front of your pipeline can save significant cost with no quality loss.
+**Use routing logic.** Simple tasks go to fast, cheap models. Complex tasks go to capable, expensive models. A classification layer at the front of your pipeline can cut costs with no quality loss.
 
-**Test empirically.** Benchmarks are starting points. Your domain has quirks that benchmarks don't capture. Run 50 examples from your actual use case through candidate models. Measure what matters to you.
+**Test on your own data.** Benchmarks are starting points. Your domain has quirks that benchmarks don't capture. Run 50 examples from your actual use case through candidate models. Measure what matters to you.
 
 ## A Framework for Selection
 
@@ -263,22 +216,22 @@ When you're facing a new AI task, work through these steps:
 
 **2. Assess complexity.** Is the task deterministic or ambiguous? Single-step or multi-step? Bounded or open-ended? Does it require judgment, creativity, or just execution?
 
-**3. Choose the paradigm.** Can automation handle it? Does it need AI with human oversight? Can an agent run autonomously with checkpoint approval?
+**3. Choose your approach.** Can automation handle it? Does it need AI with human oversight? Can an agent run on its own with checkpoint approval?
 
 **4. Select candidate models.** Based on task type, identify 2-3 models worth testing. Use benchmarks to filter, but don't rely on them to decide.
 
 **5. Test and iterate.** Run real examples. Measure quality, cost, latency. Adjust prompts. Try the next model tier up or down. Find the minimum viable model that meets your quality bar.
 
-This process takes a few hours. It saves weeks of debugging and thousands in unnecessary API costs.
+Budget a few hours for this. It pays back in weeks of avoided debugging and thousands saved in API costs.
 
-## Best Practices and Guardrails
+## What Works (and What Doesn't)
 
 **Do:**
 - Start with the smallest model that might work, then scale up if needed
 - Measure cost per task, not just cost per token
 - Build model-agnostic abstractions in your code
 - Log inputs, outputs, and model versions for debugging
-- Set up alerts for quality degradation and cost spikes
+- Set up alerts for quality drops and cost spikes
 - Review a sample of AI outputs regularly, even for automated pipelines
 
 **Don't:**
@@ -289,12 +242,12 @@ This process takes a few hours. It saves weeks of debugging and thousands in unn
 - Lock yourself into a single provider
 - Trust marketing claims over empirical testing
 
-## Moving Forward
+## Try This
 
-Pick one task you're currently handling with AI. Run it through the framework. Identify your current model, assess whether it matches the task complexity, and test one alternative.
+Pick one task you're currently handling with AI. Run it through the framework above. Identify your current model, check whether it matches the task complexity, and test one alternative.
 
-If you're using GPT-5 for everything, try Gemini Flash or Haiku on your simplest tasks. If you're building agents, make sure you've validated the underlying model on your specific domain before letting it run autonomously.
+If you're using GPT-5 for everything, try Gemini Flash or Haiku on your simplest tasks. If you're building agents, make sure you've validated the underlying model on your specific domain before letting it run on its own.
 
-The teams I've watched succeed with AI share one trait: they treat model selection as an engineering decision, not a default. They test, measure, and iterate. They match intelligence to complexity with intention.
+The teams I've watched succeed with AI share one trait: they treat model selection as an engineering decision, not a default. They test, measure, and iterate. They match capability to complexity on purpose.
 
 That intention is the difference between AI that helps and AI that costs.
