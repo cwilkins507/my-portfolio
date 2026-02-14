@@ -14,17 +14,7 @@ const quizQuestions = [
   },
   {
     id: 2,
-    question: "How many hours per week does your team spend on repetitive tasks?",
-    options: [
-      "Less than 5 hours",
-      "5-10 hours",
-      "10-20 hours",
-      "More than 20 hours"
-    ]
-  },
-  {
-    id: 3,
-    question: "What's eating up the most time?",
+    question: "What's eating up the most time right now?",
     options: [
       "Data entry and copying between systems",
       "Email and follow-ups",
@@ -33,23 +23,33 @@ const quizQuestions = [
     ]
   },
   {
-    id: 4,
-    question: "Have you tried to automate this before?",
+    id: 3,
+    question: "What happens when those tasks pile up?",
     options: [
-      "No — not sure where to start",
-      "Yes — with Zapier/Make but hit limits",
-      "Yes — hired a developer but it didn't work out",
-      "Yes — built something ourselves but it's fragile"
+      "We miss deadlines or drop the ball",
+      "Costly mistakes and rework",
+      "Team burns out or we have to hire more",
+      "Growth stalls because we're stuck in the weeds"
+    ]
+  },
+  {
+    id: 4,
+    question: "If you got 10+ hours back every week, what would change?",
+    options: [
+      "Take on more clients without hiring",
+      "Focus on strategy instead of busywork",
+      "Finally launch projects that keep getting pushed",
+      "Reduce stress and stop firefighting"
     ]
   },
   {
     id: 5,
-    question: "What's your budget for automation help?",
+    question: "How soon do you want this solved?",
     options: [
-      "Under $2K (I need something small)",
-      "$2K-$5K (willing to invest in the right solution)",
-      "$5K-$15K (this is a priority)",
-      "$15K+ (ready for a bigger project)"
+      "Just exploring for now",
+      "In the next 30 days",
+      "As soon as possible",
+      "We're already behind"
     ]
   },
   {
