@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <defs>
+    <style>
+      .title { font-size: 16px; fill: #0f172a; font-weight: 700; }
+      .subtitle { font-size: 11px; fill: #94a3b8; }
+      .scenario-title { font-size: 14px; fill: #0f172a; font-weight: 600; }
+      .bar-label { font-size: 11px; fill: #334155; font-weight: 500; }
+      .bar-value { font-size: 12px; font-weight: 700; }
+      .bar-detail { font-size: 10px; fill: #64748b; }
+      .total-label { font-size: 13px; fill: #0f172a; font-weight: 700; }
+      .savings { font-size: 14px; fill: #059669; font-weight: 700; }
+      .divider { stroke: #e2e8f0; stroke-width: 1; stroke-dasharray: 6,4; }
+      .note { font-size: 10px; fill: #94a3b8; font-style: italic; }
+      .callout-box { fill: #ecfdf5; stroke: #10b981; stroke-width: 1.5; rx: 6; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="720" height="420" fill="#fafbfc" rx="8"/>
+
+  <!-- Title -->
+  <text x="360" y="30" text-anchor="middle" class="title">Multi-Model Routing Saves 5-10x on API Costs</text>
+  <text x="360" y="48" text-anchor="middle" class="subtitle">1,000 coding tasks/month. Same quality on 80% of tasks. Real savings on the bill.</text>
+
+  <!-- Divider -->
+  <line x1="360" y1="70" x2="360" y2="340" class="divider"/>
+
+  <!-- LEFT: Single Model (Opus for everything) -->
+  <text x="180" y="85" text-anchor="middle" class="scenario-title">Single Model: Opus for Everything</text>
+
+  <!-- Bar: 1000 tasks × $5/MTok avg -->
+  <!-- Assume ~2K tokens avg per task input = $10 per task = $10,000/mo -->
+  <!-- Let's simplify: show relative cost units -->
+
+  <!-- One big purple bar -->
+  <rect x="60" y="110" width="240" height="40" fill="#6366f1" rx="4" opacity="0.9"/>
+  <text x="70" y="134" class="bar-label" fill="#ffffff">1,000 tasks @ ~$5/MTok</text>
+
+  <rect x="60" y="160" width="240" height="25" fill="#6366f1" rx="4" opacity="0.4"/>
+  <text x="70" y="177" class="bar-label">All tasks: same model, same price</text>
+
+  <!-- Total -->
+  <text x="180" y="225" text-anchor="middle" class="total-label">Total: ~$5,000/mo</text>
+  <text x="180" y="242" text-anchor="middle" class="bar-detail">(assuming ~1K tokens avg input per task)</text>
+
+  <!-- Simple graphic: one big block -->
+  <rect x="80" y="260" width="200" height="60" fill="#6366f1" rx="6" opacity="0.15" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="180" y="285" text-anchor="middle" class="bar-label" fill="#4f46e5">100% Opus 4.6</text>
+  <text x="180" y="300" text-anchor="middle" class="bar-detail">$5.00/MTok for every task</text>
+
+
+  <!-- RIGHT: Multi-Model Routing -->
+  <text x="540" y="85" text-anchor="middle" class="scenario-title">Multi-Model: Route by Complexity</text>
+
+  <!-- 80% cheap tasks (800 @ $0.11) -->
+  <rect x="420" y="110" width="192" height="40" fill="#10b981" rx="4" opacity="0.8"/>
+  <text x="430" y="128" class="bar-label" fill="#ffffff">800 tasks @ ~$0.11/MTok</text>
+  <text x="430" y="142" class="bar-detail" fill="#d1fae5">= ~$88</text>
+
+  <!-- 20% frontier tasks (200 @ $5) -->
+  <rect x="616" y="110" width="48" height="40" fill="#6366f1" rx="4" opacity="0.9"/>
+
+  <text x="420" y="174" class="bar-label">200 tasks @ ~$5/MTok = ~$1,000</text>
+
+  <!-- Total -->
+  <text x="540" y="225" text-anchor="middle" class="total-label">Total: ~$1,088/mo</text>
+  <text x="540" y="242" text-anchor="middle" class="bar-detail">(80/20 split, same quality where it counts)</text>
+
+  <!-- Stacked blocks showing the split -->
+  <rect x="420" y="260" width="160" height="60" fill="#10b981" rx="6" opacity="0.15" stroke="#10b981" stroke-width="1.5"/>
+  <text x="500" y="285" text-anchor="middle" class="bar-label" fill="#059669">80% GLM-5</text>
+  <text x="500" y="300" text-anchor="middle" class="bar-detail">$0.11/MTok</text>
+
+  <rect x="584" y="260" width="76" height="60" fill="#6366f1" rx="6" opacity="0.15" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="622" y="285" text-anchor="middle" class="bar-label" fill="#4f46e5">20%</text>
+  <text x="622" y="300" text-anchor="middle" class="bar-detail">Opus</text>
+
+  <!-- Savings callout -->
+  <rect x="230" y="345" width="260" height="50" class="callout-box"/>
+  <text x="360" y="370" text-anchor="middle" class="savings">~4.6x cheaper with multi-model routing</text>
+  <text x="360" y="386" text-anchor="middle" class="bar-detail">$5,000/mo → $1,088/mo. Same quality on hard tasks.</text>
+
+  <!-- Bottom note -->
+  <text x="360" y="412" text-anchor="middle" class="note">Estimates assume ~1K input tokens per task. Actual savings depend on your task mix and token usage.</text>
+</svg>

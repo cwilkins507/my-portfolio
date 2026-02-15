@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 460" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <defs>
+    <style>
+      .axis-label { font-size: 11px; fill: #64748b; }
+      .axis-title { font-size: 13px; fill: #334155; font-weight: 600; }
+      .title { font-size: 16px; fill: #0f172a; font-weight: 700; }
+      .subtitle { font-size: 11px; fill: #94a3b8; }
+      .model-label { font-size: 12px; font-weight: 600; }
+      .model-detail { font-size: 10px; fill: #64748b; }
+      .gridline { stroke: #e2e8f0; stroke-width: 1; stroke-dasharray: 4,4; }
+      .axis-line { stroke: #cbd5e1; stroke-width: 1.5; }
+      .callout { font-size: 10px; fill: #475569; font-style: italic; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="720" height="460" fill="#fafbfc" rx="8"/>
+
+  <!-- Title -->
+  <text x="360" y="32" text-anchor="middle" class="title">Performance vs. Cost: The Gap Is in Price, Not Quality</text>
+  <text x="360" y="50" text-anchor="middle" class="subtitle">SWE-bench Verified scores within 2.6 points. Pricing spans 45x.</text>
+
+  <!-- Chart area: x=100..640, y=75..380 -->
+  <!-- Y-axis: Cost/MTok (log scale) $0.10, $0.50, $1.00, $2.00, $5.00 -->
+  <!-- X-axis: SWE-bench 75% to 80% -->
+
+  <!-- Axes -->
+  <line x1="100" y1="380" x2="640" y2="380" class="axis-line"/>
+  <line x1="100" y1="75" x2="100" y2="380" class="axis-line"/>
+
+  <!-- X-axis labels (SWE-bench %) -->
+  <text x="100" y="400" text-anchor="middle" class="axis-label">75%</text>
+  <text x="208" y="400" text-anchor="middle" class="axis-label">76%</text>
+  <text x="316" y="400" text-anchor="middle" class="axis-label">77%</text>
+  <text x="424" y="400" text-anchor="middle" class="axis-label">78%</text>
+  <text x="532" y="400" text-anchor="middle" class="axis-label">79%</text>
+  <text x="640" y="400" text-anchor="middle" class="axis-label">80%</text>
+  <text x="370" y="430" text-anchor="middle" class="axis-title">SWE-bench Verified Score</text>
+
+  <!-- X grid lines -->
+  <line x1="208" y1="75" x2="208" y2="380" class="gridline"/>
+  <line x1="316" y1="75" x2="316" y2="380" class="gridline"/>
+  <line x1="424" y1="75" x2="424" y2="380" class="gridline"/>
+  <line x1="532" y1="75" x2="532" y2="380" class="gridline"/>
+
+  <!-- Y-axis labels (log scale: $0.10=380, $0.50=280, $1.00=228, $2.00=176, $5.00=105) -->
+  <!-- log mapping: y = 380 - (log10(price) - log10(0.10)) / (log10(5.00) - log10(0.10)) * 305 -->
+  <!-- log10(0.10)=-1, log10(5.00)=0.699, range=1.699 -->
+  <!-- $0.10: y=380, $0.50: y=380-305*(0.699/1.699)=380-125=255, $1.00: y=380-305*(1/1.699)=380-180=200 -->
+  <!-- $2.00: y=380-305*(1.301/1.699)=380-234=146, $5.00: y=380-305*(1.699/1.699)=75 -->
+
+  <text x="90" y="384" text-anchor="end" class="axis-label">$0.10</text>
+  <text x="90" y="259" text-anchor="end" class="axis-label">$0.50</text>
+  <text x="90" y="204" text-anchor="end" class="axis-label">$1.00</text>
+  <text x="90" y="150" text-anchor="end" class="axis-label">$2.00</text>
+  <text x="90" y="79" text-anchor="end" class="axis-label">$5.00</text>
+
+  <!-- Y grid lines -->
+  <line x1="100" y1="255" x2="640" y2="255" class="gridline"/>
+  <line x1="100" y1="200" x2="640" y2="200" class="gridline"/>
+  <line x1="100" y1="146" x2="640" y2="146" class="gridline"/>
+
+  <!-- Y-axis title (rotated) -->
+  <text x="22" y="228" text-anchor="middle" class="axis-title" transform="rotate(-90, 22, 228)">Cost per MTok (log scale)</text>
+
+  <!-- "Proprietary" zone shading (top half, light) -->
+  <rect x="100" y="75" width="540" height="152" fill="#f1f5f9" opacity="0.5" rx="0"/>
+  <text x="630" y="92" text-anchor="end" class="callout">Proprietary</text>
+
+  <!-- "Open Source" zone shading (bottom half, light) -->
+  <rect x="100" y="227" width="540" height="153" fill="#ecfdf5" opacity="0.4" rx="0"/>
+  <text x="630" y="370" text-anchor="end" class="callout">Open Source</text>
+
+  <!-- Data points -->
+  <!-- Opus 4.6: 79.4%, $5.00 → x=100+(79.4-75)/5*540=100+475=575, y=75 -->
+  <circle cx="575" cy="78" r="22" fill="#6366f1" opacity="0.15" stroke="#6366f1" stroke-width="2"/>
+  <circle cx="575" cy="78" r="5" fill="#6366f1"/>
+  <text x="555" y="112" text-anchor="middle" class="model-label" fill="#4f46e5">Opus 4.6</text>
+  <text x="555" y="125" text-anchor="middle" class="model-detail">79.4% · $5.00</text>
+
+  <!-- Codex 5.3: 77.3%, $1.75 → x=100+(77.3-75)/5*540=100+248=348, y=380-305*(log10(1.75)+1)/1.699=380-305*1.243/1.699=380-223=157 -->
+  <circle cx="348" cy="157" r="18" fill="#6366f1" opacity="0.15" stroke="#6366f1" stroke-width="2"/>
+  <circle cx="348" cy="157" r="5" fill="#6366f1"/>
+  <text x="348" y="185" text-anchor="middle" class="model-label" fill="#4f46e5">Codex 5.3</text>
+  <text x="348" y="198" text-anchor="middle" class="model-detail">77.3% · $1.75</text>
+
+  <!-- GLM-5: 77.8%, $0.11 → x=100+(77.8-75)/5*540=100+302=402, y=380-305*(log10(0.11)+1)/1.699=380-305*0.041/1.699=380-7=373 -->
+  <circle cx="402" cy="373" r="20" fill="#10b981" opacity="0.15" stroke="#10b981" stroke-width="2"/>
+  <circle cx="402" cy="373" r="5" fill="#10b981"/>
+  <text x="442" y="358" text-anchor="start" class="model-label" fill="#059669">GLM-5</text>
+  <text x="442" y="371" text-anchor="start" class="model-detail">77.8% · $0.11</text>
+
+  <!-- Kimi K2.5: 76.8%, ~$0.08 (open weight, estimating low) → x=100+(76.8-75)/5*540=100+194=294, y≈380 -->
+  <circle cx="294" cy="376" r="16" fill="#10b981" opacity="0.15" stroke="#10b981" stroke-width="2"/>
+  <circle cx="294" cy="376" r="5" fill="#10b981"/>
+  <text x="254" y="358" text-anchor="end" class="model-label" fill="#059669">Kimi K2.5</text>
+  <text x="254" y="371" text-anchor="end" class="model-detail">76.8% · open weight</text>
+
+  <!-- Annotation arrow: vertical distance between Opus and GLM-5 -->
+  <line x1="670" y1="95" x2="670" y2="358" stroke="#f59e0b" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="670,95 666,105 674,105" fill="#f59e0b"/>
+  <polygon points="670,358 666,348 674,348" fill="#f59e0b"/>
+  <text x="685" y="210" text-anchor="start" class="axis-label" fill="#d97706" font-weight="600">45x</text>
+  <text x="685" y="224" text-anchor="start" class="axis-label" fill="#d97706">price</text>
+  <text x="685" y="238" text-anchor="start" class="axis-label" fill="#d97706">gap</text>
+
+  <!-- Legend -->
+  <circle cx="180" cy="445" r="5" fill="#6366f1"/>
+  <text x="190" y="449" class="axis-label">Proprietary</text>
+  <circle cx="280" cy="445" r="5" fill="#10b981"/>
+  <text x="290" y="449" class="axis-label">Open Source</text>
+  <text x="400" y="449" class="axis-label">Bubble size = relative context window</text>
+</svg>

@@ -23,7 +23,8 @@ export default defineConfig({
         '/articles/CRM-No-Code': '/articles/crm-no-code',
         '/articles/Design-Patterns': '/articles/design-patterns',
         '/articles/JPA': '/articles/jpa',
-        '/articles/Lessons-Learned': '/articles/lessons-learned',
+        '/articles/Lessons-Learned': '/articles/lessons-learned-2025',
+        '/articles/lessons-learned': '/articles/lessons-learned-2025',
         '/articles/MCP': '/articles/mcp',
         '/articles/Microservice-Redesign': '/articles/microservice-redesign',
         '/articles/N8n': '/articles/n8n',
@@ -57,7 +58,8 @@ export default defineConfig({
                     '/articles/crm-no-code': '2026-01-19',
                     '/articles/design-patterns': '2026-01-24',
                     '/articles/jpa': '2025-11-22',
-                    '/articles/lessons-learned': '2025-12-31',
+                    '/articles/lessons-learned-2025': '2025-12-31',
+                    '/articles/lessons-learned-2026': '2026-02-15',
                     '/articles/mcp': '2025-11-06',
                     '/articles/microservice-redesign': '2025-11-16',
                     '/articles/n8n': '2025-11-04',
@@ -70,6 +72,7 @@ export default defineConfig({
                     '/articles/ai-model-selection': '2026-02-03',
                     '/articles/enterprise-best-practices': '2026-02-01',
                     '/articles/context-engineering-ai-coding-tools': '2026-02-05',
+                    '/articles/ai-coding-model-wars-2026': '2026-02-15',
                 };
                 const path = new URL(item.url).pathname;
                 if (articleDates[path]) {

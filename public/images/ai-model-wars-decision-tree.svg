@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 520" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <defs>
+    <style>
+      .node-rect { rx: 8; ry: 8; stroke-width: 2; }
+      .decision { fill: #f8fafc; stroke: #94a3b8; }
+      .result-opus { fill: #eef2ff; stroke: #6366f1; }
+      .result-codex { fill: #eef2ff; stroke: #6366f1; }
+      .result-glm { fill: #ecfdf5; stroke: #10b981; }
+      .result-kimi { fill: #ecfdf5; stroke: #10b981; }
+      .result-cheap { fill: #fefce8; stroke: #eab308; }
+      .start-node { fill: #0f172a; stroke: none; }
+      .node-text { font-size: 12px; fill: #0f172a; font-weight: 600; }
+      .node-sub { font-size: 10px; fill: #64748b; }
+      .start-text { font-size: 13px; fill: #ffffff; font-weight: 700; }
+      .edge { stroke: #94a3b8; stroke-width: 1.5; fill: none; }
+      .edge-label { font-size: 10px; fill: #475569; font-weight: 500; }
+      .title { font-size: 16px; fill: #0f172a; font-weight: 700; }
+      .subtitle { font-size: 11px; fill: #94a3b8; }
+      .cost-tag { font-size: 9px; font-weight: 600; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="780" height="520" fill="#fafbfc" rx="8"/>
+
+  <!-- Title -->
+  <text x="390" y="30" text-anchor="middle" class="title">Which Model Should You Use?</text>
+  <text x="390" y="46" text-anchor="middle" class="subtitle">Route by task complexity and requirements. Don't overthink the easy stuff.</text>
+
+  <!-- START NODE -->
+  <rect x="320" y="65" width="140" height="38" class="node-rect start-node" rx="19"/>
+  <text x="390" y="88" text-anchor="middle" class="start-text">New Coding Task</text>
+
+  <!-- LEVEL 1: Complexity -->
+  <!-- Lines from start to three complexity nodes -->
+  <path d="M 340,103 L 140,155" class="edge"/>
+  <path d="M 390,103 L 390,155" class="edge"/>
+  <path d="M 440,103 L 640,155" class="edge"/>
+
+  <text x="225" y="125" text-anchor="middle" class="edge-label">Simple</text>
+  <text x="390" y="138" text-anchor="middle" class="edge-label">Medium</text>
+  <text x="555" y="125" text-anchor="middle" class="edge-label">Complex</text>
+
+  <!-- SIMPLE → Cheap model (terminal) -->
+  <rect x="55" y="155" width="170" height="52" class="node-rect result-cheap"/>
+  <text x="140" y="176" text-anchor="middle" class="node-text">Haiku / Flash / mini</text>
+  <text x="140" y="192" text-anchor="middle" class="node-sub">Formatting, linting, boilerplate</text>
+  <text x="140" y="203" text-anchor="middle" class="cost-tag" fill="#a16207">~$0.10-0.25/MTok</text>
+
+  <!-- MEDIUM → Decision: Special requirements? -->
+  <rect x="300" y="155" width="180" height="38" class="node-rect decision"/>
+  <text x="390" y="179" text-anchor="middle" class="node-text">Special requirements?</text>
+
+  <!-- COMPLEX → Decision: Multi-step reasoning? -->
+  <rect x="555" y="155" width="180" height="38" class="node-rect decision"/>
+  <text x="645" y="179" text-anchor="middle" class="node-text">Sustained reasoning?</text>
+
+  <!-- MEDIUM branches -->
+  <path d="M 320,193 L 155,260" class="edge"/>
+  <path d="M 370,193 L 305,260" class="edge"/>
+  <path d="M 435,193 L 490,260" class="edge"/>
+  <path d="M 460,193 L 630,260" class="edge"/>
+
+  <text x="218" y="230" text-anchor="middle" class="edge-label">Privacy</text>
+  <text x="318" y="235" text-anchor="middle" class="edge-label">Budget</text>
+  <text x="448" y="235" text-anchor="middle" class="edge-label">Frontend/</text>
+  <text x="448" y="246" text-anchor="middle" class="edge-label">visual</text>
+  <text x="558" y="230" text-anchor="middle" class="edge-label">Standard</text>
+
+  <!-- Privacy → GLM-5 self-hosted -->
+  <rect x="60" y="260" width="190" height="52" class="node-rect result-glm"/>
+  <text x="155" y="281" text-anchor="middle" class="node-text" fill="#059669">GLM-5 (self-hosted)</text>
+  <text x="155" y="297" text-anchor="middle" class="node-sub">MIT license, code stays local</text>
+  <text x="155" y="308" text-anchor="middle" class="cost-tag" fill="#059669">Infra cost only</text>
+
+  <!-- Budget → GLM-5 API -->
+  <rect x="210" y="260" width="190" height="52" class="node-rect result-glm"/>
+  <text x="305" y="281" text-anchor="middle" class="node-text" fill="#059669">GLM-5 (API)</text>
+  <text x="305" y="297" text-anchor="middle" class="node-sub">Frontier quality, 45x cheaper</text>
+  <text x="305" y="308" text-anchor="middle" class="cost-tag" fill="#059669">~$0.11/MTok</text>
+
+  <!-- Frontend → Kimi K2.5 -->
+  <rect x="400" y="260" width="180" height="52" class="node-rect result-kimi"/>
+  <text x="490" y="281" text-anchor="middle" class="node-text" fill="#059669">Kimi K2.5</text>
+  <text x="490" y="297" text-anchor="middle" class="node-sub">Vision, UI gen, design-to-code</text>
+  <text x="490" y="308" text-anchor="middle" class="cost-tag" fill="#059669">Open weight</text>
+
+  <!-- Standard → Codex 5.3 -->
+  <rect x="545" y="260" width="170" height="52" class="node-rect result-codex"/>
+  <text x="630" y="281" text-anchor="middle" class="node-text" fill="#4f46e5">Codex 5.3</text>
+  <text x="630" y="297" text-anchor="middle" class="node-sub">Fast iteration, pair programming</text>
+  <text x="630" y="308" text-anchor="middle" class="cost-tag" fill="#4338ca">~$1.75/MTok</text>
+
+  <!-- COMPLEX branches -->
+  <path d="M 620,193 L 545,370" class="edge"/>
+  <path d="M 670,193 L 670,370" class="edge"/>
+
+  <text x="565" y="290" text-anchor="middle" class="edge-label" transform="rotate(-70, 565, 290)">Agent</text>
+  <text x="565" y="302" text-anchor="middle" class="edge-label" transform="rotate(-70, 565, 302)">swarms</text>
+  <text x="690" y="290" text-anchor="middle" class="edge-label">Deep</text>
+  <text x="690" y="302" text-anchor="middle" class="edge-label">reasoning</text>
+
+  <!-- Agent swarms → Kimi K2.5 (or Opus Agent Teams) -->
+  <rect x="430" y="370" width="200" height="52" class="node-rect result-kimi"/>
+  <text x="530" y="391" text-anchor="middle" class="node-text" fill="#059669">Kimi K2.5 agent swarms</text>
+  <text x="530" y="407" text-anchor="middle" class="node-sub">100 sub-agents, 1,500 tool calls</text>
+  <text x="530" y="418" text-anchor="middle" class="cost-tag" fill="#059669">Open weight</text>
+
+  <!-- Deep reasoning → Opus 4.6 -->
+  <rect x="590" y="370" width="170" height="52" class="node-rect result-opus"/>
+  <text x="675" y="391" text-anchor="middle" class="node-text" fill="#4f46e5">Opus 4.6</text>
+  <text x="675" y="407" text-anchor="middle" class="node-sub">Agent Teams, 1M context</text>
+  <text x="675" y="418" text-anchor="middle" class="cost-tag" fill="#4338ca">~$5.00/MTok</text>
+
+  <!-- Legend -->
+  <rect x="50" y="460" width="12" height="12" rx="3" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="68" y="470" class="node-sub">Proprietary</text>
+  <rect x="140" y="460" width="12" height="12" rx="3" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+  <text x="158" y="470" class="node-sub">Open Source</text>
+  <rect x="230" y="460" width="12" height="12" rx="3" fill="#fefce8" stroke="#eab308" stroke-width="1.5"/>
+  <text x="248" y="470" class="node-sub">Budget tier</text>
+
+  <!-- Bottom note -->
+  <text x="390" y="505" text-anchor="middle" class="subtitle">When in doubt, start with the cheaper model. Escalate if quality isn't there.</text>
+</svg>
