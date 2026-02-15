@@ -6,6 +6,17 @@ excerpt: "Why IaC matters, how to run Terraform at team scale, and a step-by-ste
 seo_title: "Terraform and Infrastructure as Code: Practical Team Guide"
 meta_description: "Get started with Terraform and IaC. Covers why infrastructure as code matters, team-scale workflows, state management, and a step-by-step AWS EC2 example."
 target_keywords: "Terraform tutorial, infrastructure as code, Terraform AWS example, IaC best practices, Terraform team workflow"
+faqs:
+  - q: "What is Infrastructure as Code and why does it matter?"
+    a: "Infrastructure as Code (IaC) defines your cloud infrastructure in text files instead of manual console clicks. It lets you preview changes before applying them, track who changed what via git history, recreate entire environments from scratch, and revert broken changes by reverting a commit."
+  - q: "How does Terraform work?"
+    a: "Terraform models infrastructure as a dependency graph using HCL (HashiCorp Configuration Language). You describe the desired state of your resources, run 'terraform plan' to see exactly what will change, and run 'terraform apply' to execute. It works with AWS, GCP, Azure, and thousands of other providers."
+  - q: "What are Terraform best practices for team workflows?"
+    a: "Use remote state with locking (S3 + DynamoDB for AWS), keep stacks small and focused, write reusable modules for repeated patterns, review infrastructure changes via pull requests with plan output included, run Terraform in CI, pin provider versions, and never commit secrets to your repo."
+  - q: "How do you manage Terraform state safely?"
+    a: "Use remote state storage (like S3) with locking (like DynamoDB) to prevent concurrent modifications. Encrypt state files since they contain secrets, restrict access, and maintain separate state files per environment (dev, staging, prod). Never use local state files in a team setting."
+  - q: "What common Terraform mistakes should I avoid?"
+    a: "Avoid letting people make manual console changes that drift from your Terraform code, putting all resources in one massive state file, using overly clever loops that become unreadable, not pinning provider versions (which can cause unexpected resource recreation), and giving Terraform overly broad IAM permissions."
 ---
 # Terraform and IaC: The Operating System of Your Cloud
 

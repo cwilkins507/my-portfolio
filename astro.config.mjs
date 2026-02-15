@@ -33,6 +33,7 @@ export default defineConfig({
         '/articles/Structured-Output': '/articles/structured-output',
         '/articles/System-Design-Best-Practices': '/articles/system-design-best-practices',
         '/articles/Terraform': '/articles/terraform',
+        '/writing': '/',
     },
     integrations: [
         react(),

@@ -51,7 +51,7 @@ Beginners try to connect everything at once. Start with a triangle:
 2) A system of record (accounting, property management, case management) 
 3) A communication tool (email, calendar, SMS)
 
-![Integration Triangle](/images/integration-triangle.png)
+![CRM integration triangle showing connections between CRM, system of record, and communication tools](/images/integration-triangle.png)
 
 This triangle covers most manual work. It also reveals where duplicates and drift come from.
 
@@ -77,7 +77,7 @@ Write one sentence per step. Avoid tool names at first.
 Example:
 - When a lead submits the website form > Create or update the contact in CRM > Create an onboarding task for the team > Send a welcome email > Notify the advisor or agent 
 
-![Alt Text](/images/crm-workflow.png)
+![CRM workflow automation diagram showing lead capture to follow-up pipeline](/images/crm-workflow.png)
 
 This becomes your automation specification aka spec.
 

@@ -6,6 +6,17 @@ excerpt: "A breakdown of production-ready AWS Lambda and SQS configurations, cov
 seo_title: "AWS Lambda and SQS Best Practices for Production Systems"
 meta_description: "Production-ready AWS Lambda and SQS patterns. Learn visibility timeouts, batch processing, dead letter queues, idempotency, and SNS fan-out configurations."
 target_keywords: "AWS Lambda best practices, SQS configuration, Lambda SQS integration, serverless best practices, AWS messaging patterns"
+faqs:
+  - q: "What should the SQS visibility timeout be relative to the Lambda timeout?"
+    a: "The visibility timeout should be at least 6 times the Lambda timeout. This covers retries, cold starts, and jitter, preventing duplicate message pickup and rapid retry loops that exhaust retries and flood your DLQ."
+  - q: "How do you calculate the optimal batch size for SQS to Lambda?"
+    a: "Use the formula: Batch Size <= (Lambda timeout * 0.8) / p95 per-message processing time. The 0.8 factor provides a 20% safety margin, and using p95 instead of average prevents skew from outlier messages."
+  - q: "What is ReportBatchItemFailures and why should I enable it?"
+    a: "ReportBatchItemFailures lets your Lambda return only the IDs of failed messages instead of failing the entire batch. If 1 out of 10 messages fails, only that 1 is retried, avoiding unnecessary reprocessing of successful messages."
+  - q: "How do you implement idempotency in AWS Lambda with SQS?"
+    a: "Store an idempotency key (preferably a business key like order_id, or the SQS MessageId) in DynamoDB before processing. Check for the key at the start of each handler invocation and skip duplicates. AWS Lambda Powertools also provides a built-in idempotency decorator."
+  - q: "What is bisect_batch_on_function_error and when should I use it?"
+    a: "It automatically splits a failed batch in half and retries each half separately, continuing to bisect until the poison pill message is isolated. Enable it alongside ReportBatchItemFailures to prevent a single bad message from blocking an entire batch."
 ---
 # AWS Messaging & Compute: SNS, SQS, Lambda Production Patterns
 

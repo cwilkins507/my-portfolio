@@ -7,8 +7,27 @@ const articles = articlesRaw.map(article => ({
   slug: article.file.split('/').pop().replace('.md', ''),
   ...article.frontmatter,
 })).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+const collectionSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Technical Articles on AI, AWS & Software Architecture",
+  "description": "In-depth technical articles on Python automation, AWS serverless patterns, AI integration, system design, and software engineering best practices.",
+  "url": "https://collinwilkins.com/articles",
+  "author": {
+    "@type": "Person",
+    "name": "Collin Wilkins",
+    "url": "https://collinwilkins.com/about"
+  },
+  "hasPart": articles.slice(0, 10).map(article => ({
+    "@type": "Article",
+    "headline": article.title,
+    "url": `https://collinwilkins.com/articles/${article.slug}`,
+    "datePublished": article.date
+  }))
+};
 ---
 
-<Layout title="Technical Articles on AI, AWS & Software Architecture | Collin Wilkins" description="In-depth technical articles on Python automation, AWS serverless patterns, AI integration, system design, and software engineering best practices.">
+<Layout title="Technical Articles on AI, AWS & Software Architecture | Collin Wilkins" description="In-depth technical articles on Python automation, AWS serverless patterns, AI integration, system design, and software engineering best practices." schema={collectionSchema}>
 	<ArticleList articles={articles} client:load />
 </Layout>

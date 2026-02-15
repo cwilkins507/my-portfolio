@@ -6,6 +6,17 @@ excerpt: "Classic design patterns still solve modern problems, but only if you u
 seo_title: "Modern Design Patterns: Practical Guide for Software Engineers"
 meta_description: "Classic design patterns applied to modern codebases. Learn when to use Strategy, Observer, Builder, and more with real examples and refactoring tips."
 target_keywords: "design patterns, software design patterns, clean code, refactoring patterns, modern design patterns"
+faqs:
+  - q: "When should I use the Strategy pattern in my code?"
+    a: "Use Strategy when you have multiple ways to perform an operation and the logic changes based on context, such as pricing rules per region or different authentication methods per tenant. It replaces growing if/else chains with interchangeable, testable implementations."
+  - q: "What is the Adapter pattern and why is it important?"
+    a: "The Adapter pattern wraps external APIs behind a stable interface your code controls. This protects your business logic from third-party SDK changes and gives you a clean boundary for testing with mocks."
+  - q: "How do I avoid overusing design patterns?"
+    a: "Start with the simplest code possible and only refactor toward a pattern when friction repeats. If you can't explain the pattern to a junior developer in two minutes, it's too complex. Prefer composition over inheritance and let patterns emerge through refactoring."
+  - q: "What is the Observer pattern used for in modern software?"
+    a: "Observer lets one action trigger multiple side effects (analytics, notifications, audit logs) without bloating the original function. It keeps your core logic small, allows new subscribers to be added independently, and forms the basis of event-driven architectures."
+  - q: "How should I introduce design patterns into an existing codebase?"
+    a: "Introduce patterns iteratively: write a failing test for the new requirement, extract a seam around the unstable behavior, apply the pattern at the seam, rename for clarity, and delete dead code. This keeps changes localized and avoids risky rewrites."
 ---
 
 # Modern Design Patterns: Beyond the Bookmarks

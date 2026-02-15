@@ -6,6 +6,17 @@ excerpt: "Not all tasks need the most powerful AI model. Learn how to match mode
 seo_title: "AI Model Selection Guide: Choose Models for Coding, Research, and Automation"
 meta_description: "Learn how to choose between AI automation, workflows, and agents. Match model intelligence to task complexity for better results at lower cost."
 target_keywords: "AI model selection, task complexity, AI agents vs automation, LLM benchmarks, choosing AI models, SWE-bench, model intelligence"
+faqs:
+  - q: "How do I choose the right AI model for my task?"
+    a: "Define your task clearly, assess its complexity (low, medium, or high), choose an approach (automation, AI workflow, or agent), then test 2-3 candidate models on real examples from your use case. Start with the smallest model that might work and scale up only if needed."
+  - q: "What is the difference between AI automation, AI workflows, and AI agents?"
+    a: "Automation is rule-based and deterministic with no AI involved. AI workflows use LLMs for specific steps with human review and approval in the loop. AI agents operate autonomously across multiple steps, planning, using tools, and self-correcting with minimal human intervention."
+  - q: "Why shouldn't I always use the most powerful AI model?"
+    a: "Overpowered models waste money (up to 15-20x more per token), respond more slowly hurting user experience, and tend to over-elaborate on simple tasks. They can also mask bad prompt design since the model brute-forces through poor instructions."
+  - q: "What is SWE-bench and why does it matter for AI coding tools?"
+    a: "SWE-bench Verified tests AI models on real-world bug fixing in open-source repositories, measuring actual software engineering capability rather than isolated algorithm puzzles. It is considered the gold standard benchmark for evaluating coding ability in AI models."
+  - q: "How should I use AI benchmarks when selecting a model?"
+    a: "Treat benchmarks as a starting filter to identify which models are worth testing, not as a final decision. A model can top one benchmark and rank fifth on another. Always test candidates on 50 or more examples from your actual use case and measure quality, cost, and latency."
 ---
 
 # Understanding Model Intelligence and Task Complexity
@@ -24,7 +35,7 @@ This fragmentation rewards precision. The teams getting the best results aren't 
 
 ## Three Approaches: Automation, AI Workflow, and AI Agent
 
-![Paradigms Comparison](/images/paradigms-comparison.svg)
+![Comparison chart of AI automation, AI workflow, and AI agent paradigms](/images/paradigms-comparison.svg)
 
 Before picking a model, pick an approach. These are very different ways of doing AI-assisted work. Each has a place. None is universally superior.
 
@@ -208,7 +219,7 @@ That's five different models in one application. Each chosen for what it does be
 
 ## A Framework for Selection
 
-![Model Selection Framework](/images/model-selection-framework.svg)
+![Decision framework for selecting the right AI model based on task complexity](/images/model-selection-framework.svg)
 
 When you're facing a new AI task, work through these steps:
 

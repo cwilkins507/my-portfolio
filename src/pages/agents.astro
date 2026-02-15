@@ -1,8 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import AgentsDoc from '../components/AgentsDoc';
+
+const agentsSchema = {
+	"@context": "https://schema.org",
+	"@type": "WebPage",
+	"name": "Example AGENTS.md | AI Project Documentation",
+	"description": "A real-world example of an AGENTS.md file for AI-assisted development. See how to structure project context for CLI agents and coding assistants.",
+	"url": "https://collinwilkins.com/agents",
+	"author": {
+		"@type": "Person",
+		"name": "Collin Wilkins",
+		"url": "https://collinwilkins.com/about"
+	}
+};
 ---
 
-<Layout title="Example AGENTS.md | AI Project Documentation" description="A real-world example of an AGENTS.md file for AI-assisted development. See how to structure project context for CLI agents and coding assistants.">
+<Layout title="Example AGENTS.md | AI Project Documentation" description="A real-world example of an AGENTS.md file for AI-assisted development. See how to structure project context for CLI agents and coding assistants." schema={agentsSchema}>
 	<AgentsDoc client:load />
 </Layout>

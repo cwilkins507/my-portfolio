@@ -6,6 +6,17 @@ excerpt: "Cloud-native system design that scales and fails well. Learn durable p
 seo_title: "Best Practices for System Design: Real-World Lessons"
 meta_description: "A practical guide to system design best practices—scalability, resilience, consistency, and observability—backed by case studies from Amazon, Google, Netflix."
 target_keywords: "system design best practices, cloud-native architecture, scalability, resilience engineering, microservices, data consistency, observability, API design"
+faqs:
+  - q: "What are the most important system design best practices for distributed systems?"
+    a: "Start with clear service boundaries mapped to business capabilities, design for failure with timeouts, circuit breakers, and bulkheads, choose consistency levels deliberately, and treat observability as a design constraint with SLIs, SLOs, and error budgets."
+  - q: "When should I use strong consistency vs eventual consistency?"
+    a: "Use strong consistency for identity, authorization, money, and inventory where anomalies would be unacceptable. Use eventual consistency for search, analytics, recommendations, and notifications where slight staleness is tolerable and availability matters more."
+  - q: "What is the saga pattern and when should I use it?"
+    a: "The saga pattern breaks distributed workflows into small compensatable steps. If a later step fails, previous steps can be undone with compensating actions instead of leaving data half-committed. Use it for multi-service transactions where a traditional distributed lock is impractical."
+  - q: "How should I implement circuit breakers in a microservices architecture?"
+    a: "Circuit breakers trip when error rates for a dependency spike, temporarily stopping requests to give the failing service time to recover. Combine them with bulkheads to isolate resource pools per dependency so one failure doesn't cascade across your entire system."
+  - q: "What are SLIs, SLOs, and error budgets in system design?"
+    a: "SLIs (Service Level Indicators) measure what users feel, such as availability and latency. SLOs (Service Level Objectives) set targets with time windows. Error budgets represent the allowed failure you can spend on change — when you burn through your budget, you slow down releases to protect reliability."
 ---
 
 # Best Practices for System Design: Lessons from Real-World Applications

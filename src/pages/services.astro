@@ -1,9 +1,52 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Services from '../components/Services';
+
+const servicesSchema = {
+	"@context": "https://schema.org",
+	"@type": "WebPage",
+	"name": "Services | AI Automation & Python Consulting",
+	"description": "AI automation, Python development, and AWS serverless consulting services. From workflow automation to cloud architecture, I help teams ship faster.",
+	"url": "https://collinwilkins.com/services",
+	"provider": {
+		"@type": "Person",
+		"name": "Collin Wilkins",
+		"url": "https://collinwilkins.com/about"
+	},
+	"hasOfferCatalog": {
+		"@type": "OfferCatalog",
+		"name": "Consulting Services",
+		"itemListElement": [
+			{
+				"@type": "Offer",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "AI Automation & Integration",
+					"description": "Custom AI workflows, LLM integration, and intelligent automation that reduces manual work and scales with your business."
+				}
+			},
+			{
+				"@type": "Offer",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "Python Development",
+					"description": "Production-grade Python applications, APIs, and data pipelines built for reliability and performance."
+				}
+			},
+			{
+				"@type": "Offer",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "AWS Serverless Architecture",
+					"description": "Cloud-native architectures using Lambda, SQS, SNS, and event-driven patterns that scale automatically."
+				}
+			}
+		]
+	}
+};
 ---
 
-<Layout title="Services | AI Automation & Python Consulting" description="AI automation, Python development, and AWS serverless consulting services. From workflow automation to cloud architecture, I help teams ship faster.">
+<Layout title="Services | AI Automation & Python Consulting" description="AI automation, Python development, and AWS serverless consulting services. From workflow automation to cloud architecture, I help teams ship faster." schema={servicesSchema}>
 	<Services client:load />
 	<noscript>
 		<div class="container mx-auto px-4 py-16 max-w-4xl">

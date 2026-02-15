@@ -23,9 +23,9 @@ The models have reached an inflection point. I was writing about 80% of the code
 
 These models are now REALLY good. The premier models (Gemini 3, Claude Opus, GPT 5.2/codex) are scoring ~80% on SWE-bench verified, which is the LLM equivalent to HackerRank or HackerEarth. These are real problems and the models are solving a larger percentage of them, these are borderline-Senior Engineer+ level results.
 
-![Veluum AI cost chart](/images/veluum.png)
+![Veluum chart showing declining AI model costs reaching minimum wage parity](/images/veluum.png)
 
-![SWE-bench verified benchmark scores](/images/swe-bench-verified.png)
+![SWE-bench Verified benchmark scores comparing top AI coding models in 2026](/images/swe-bench-verified.png)
 
 ### The models are getting cheaper
 
@@ -136,7 +136,7 @@ And iterate. Prompts are rarely right on the first try. Version them, test them,
 | Style Unbundling | Describe qualities of a style rather than copying it |
 | Negative Constraints | Specify what to avoid |
 
-![Robot chef prompting illustration](/images/robot-chef.png)
+![Illustration of structured prompt engineering showing role, goal, context, and output format](/images/robot-chef.png)
 
 
 | Weak | Strong |

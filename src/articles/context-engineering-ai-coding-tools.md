@@ -8,6 +8,17 @@ excerpt: "Most developers blame the model when AI coding tools produce bad outpu
 seo_title: "Context Engineering: Make AI Coding Tools Actually Work"
 meta_description: "Learn how context engineering, agentic workflows, and repeatable skills systems transform AI coding tools from novelty into compounding productivity. Practical patterns from daily use with Claude Code, Cursor, Codex, and more."
 target_keywords: "context engineering, agentic coding, AI coding assistant, AI pair programming, Claude Code, Cursor agent mode, Codex CLI, vibe coding, CLAUDE.md, developer productivity, AI code review, agentic development"
+faqs:
+  - q: "What is context engineering for AI coding tools?"
+    a: "Context engineering is the practice of deliberately shaping what an AI agent knows before it starts working. It includes writing project context files (like CLAUDE.md or .cursorrules), scoping conversations to single tasks, using plan mode, encoding repeatable workflows as skills, and delegating subtasks to subagents."
+  - q: "What is the difference between agentic AI coding tools and traditional AI code assistants?"
+    a: "Traditional assistants like autocomplete and chat work from fragments or partial views of your code. Agentic tools like Claude Code, Cursor agent mode, and Codex CLI operate inside your environment with direct access to your file system, shell, git, and test runners, allowing them to read, write, execute, and iterate autonomously."
+  - q: "What is a CLAUDE.md file and what should it contain?"
+    a: "CLAUDE.md is a project context file that loads automatically at the start of every Claude Code session. It should include your project structure, build and test commands, naming conventions, things the agent should never do, and the reasoning behind constraints so the agent can generalize beyond specific rules."
+  - q: "What is plan mode in AI coding tools and why should I use it?"
+    a: "Plan mode tells the AI agent to research your codebase, map dependencies, and present an implementation plan before writing any code. Reviewing a plan for five minutes can save hours of debugging by catching architectural risks and edge cases before implementation begins."
+  - q: "How do you review AI-generated code effectively?"
+    a: "Watch for hallucinated imports that don't exist in your codebase, confident logic errors in edge cases, unnecessary abstractions you didn't ask for, silent behavior changes to function signatures or defaults, and stale context artifacts. If a diff looks right but you can't explain why, slow down and read line by line."
 
 ---
 # Context Engineering: The Skill That Makes AI Coding Tools Actually Work

@@ -42,52 +42,69 @@ const pageTitle = frontmatter.seo_title || frontmatter.title;
 const pageDescription = frontmatter.meta_description || frontmatter.excerpt;
 
 // Article structured data for SEO
+const graphItems = [
+  {
+    "@type": "Article",
+    "headline": frontmatter.title,
+    "description": pageDescription,
+    "datePublished": frontmatter.date,
+    "dateModified": frontmatter.date,
+    "author": {
+      "@type": "Person",
+      "name": "Collin Wilkins",
+      "url": "https://collinwilkins.com/about"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Collin Wilkins"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://collinwilkins.com/articles/${slug}`
+    }
+  },
+  {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://collinwilkins.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Articles",
+        "item": "https://collinwilkins.com/articles"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": frontmatter.title
+      }
+    ]
+  }
+];
+
+// Add FAQPage schema if article has FAQs defined in frontmatter
+if (frontmatter.faqs && frontmatter.faqs.length > 0) {
+  graphItems.push({
+    "@type": "FAQPage",
+    "mainEntity": frontmatter.faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a
+      }
+    }))
+  });
+}
+
 const articleSchema = {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Article",
-      "headline": frontmatter.title,
-      "description": pageDescription,
-      "datePublished": frontmatter.date,
-      "dateModified": frontmatter.date,
-      "author": {
-        "@type": "Person",
-        "name": "Collin Wilkins",
-        "url": "https://collinwilkins.com/about"
-      },
-      "publisher": {
-        "@type": "Person",
-        "name": "Collin Wilkins"
-      },
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": `https://collinwilkins.com/articles/${slug}`
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://collinwilkins.com"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Articles",
-          "item": "https://collinwilkins.com/articles"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": frontmatter.title
-        }
-      ]
-    }
-  ]
+  "@graph": graphItems
 };
 ---
 
