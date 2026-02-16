@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import NewsletterSignup from '../../components/NewsletterSignup.astro';
 
 const allArticles = await Astro.glob('../../articles/*.md');
 
@@ -120,7 +121,7 @@ const articleSchema = {
       <a href="/" class="text-teal-400 hover:text-teal-300 mb-8 inline-block">
         ← Back to Articles
       </a>
-      <h1 class="text-4xl font-serif font-bold text-white mb-4">{frontmatter.title}</h1>
+      <h1 class="text-3xl font-serif font-bold text-white mb-4">{frontmatter.title}</h1>
       <article class="text-moonlight-text-secondary mb-4">
         {new Date(frontmatter.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
       </article>
@@ -135,6 +136,9 @@ const articleSchema = {
       <div class="prose prose-invert max-w-none prose-headings:font-serif prose-headings:text-white prose-p:text-moonlight-text-secondary prose-a:text-teal-400 prose-strong:text-white prose-code:text-teal-300 prose-pre:bg-[rgba(255,255,255,0.03)] prose-pre:border prose-pre:border-[rgba(255,255,255,0.06)]">
         <Content />
       </div>
+
+      {/* Newsletter Signup */}
+      <NewsletterSignup variant="inline" />
 
       {/* Related Articles */}
       {relatedArticles.length > 0 && (
@@ -163,7 +167,7 @@ const articleSchema = {
       <div class="mt-20 p-8 md:p-12 bg-[rgba(255,255,255,0.03)] rounded-2xl border border-[rgba(255,255,255,0.06)] shadow-2xl relative overflow-hidden group">
         <div class="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full -mr-16 -mt-16 blur-2xl group-hover:bg-teal-500/20 transition-colors duration-500"></div>
         <div class="relative z-10">
-          <h3 class="text-3xl font-serif font-bold text-white mb-4">Wrestling with a technical challenge?</h3>
+          <h3 class="text-2xl font-serif font-bold text-white mb-4">Wrestling with a technical challenge?</h3>
           <p class="text-xl text-moonlight-text-secondary mb-8 max-w-2xl leading-relaxed">
             I help companies automate complex workflows, integrate AI into their stacks, and build scalable cloud architectures.
           </p>

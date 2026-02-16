@@ -182,18 +182,18 @@ const About = () => {
             }}
             aria-hidden="true"
           />
-          <h1 className="text-5xl md:text-6xl font-serif font-extrabold text-white mb-8 text-center relative z-10">
+          <h1 className="text-3xl md:text-4xl font-serif font-extrabold text-white mb-8 text-center relative z-10">
             {portfolioData.headline}
           </h1>
 
           {/* 1. Origin Story, 2. Philosophy, 3. The Moat */}
-          <div className="text-lg md:text-xl text-moonlight-text-secondary leading-relaxed space-y-6 text-left">
+          <div className="text-base md:text-lg text-moonlight-text-secondary leading-relaxed space-y-6 text-left">
             {portfolioData.aboutMe.map((section, idx) => (
               <div key={idx} className="mb-12">
-                <h2 className="text-3xl font-serif font-bold text-teal-400 mb-6 border-b border-purple-500/20 pb-2">
+                <h2 className="text-2xl font-serif font-bold text-teal-400 mb-6 border-b border-purple-500/20 pb-2">
                   {section.title}
                 </h2>
-                <div className="text-lg md:text-xl text-moonlight-text-secondary leading-relaxed space-y-6 text-left">
+                <div className="text-base md:text-lg text-moonlight-text-secondary leading-relaxed space-y-6 text-left">
                   {section.content.split('\n\n').map((paragraph, pIdx) => (
                     <p key={pIdx} className="leading-relaxed whitespace-pre-line">
                       {paragraph.trim()}
@@ -222,7 +222,7 @@ const About = () => {
 
         {/* 4. Proof Points */}
         <section className="mb-24">
-          <h2 className="text-4xl font-serif font-bold text-center text-white mb-16">Proof Points</h2>
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-white mb-16">Proof Points</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {portfolioData.proofPoints.map((point, idx) => (
               <div key={idx} className="bg-[rgba(255,255,255,0.03)] rounded-xl p-6 border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] hover:shadow-[0_8px_32px_rgba(20,184,166,0.1)] hover:-translate-y-0.5 will-change-transform transition-all duration-300">
@@ -240,7 +240,7 @@ const About = () => {
 
         {/* 5. FiNimbus — Domain Expertise */}
         <section className="mb-24">
-          <h2 className="text-4xl font-serif font-bold text-center text-white mb-16">
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-white mb-16">
             {portfolioData.finimbus.title}
           </h2>
           <div className="bg-[rgba(255,255,255,0.03)] rounded-xl p-8 border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] transition-all duration-300 max-w-4xl mx-auto">
@@ -267,7 +267,7 @@ const About = () => {
 
         {/* 6. How to Work With Me */}
         <section className="mb-24">
-          <h2 className="text-4xl font-serif font-bold text-center text-white mb-16">
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-white mb-16">
             {portfolioData.howToWork.title}
           </h2>
           <div className="bg-[rgba(255,255,255,0.03)] p-8 rounded-xl border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] transition-all duration-300 max-w-4xl mx-auto">
@@ -326,7 +326,7 @@ const About = () => {
 
         {/* 7. Technical Skills */}
         <section className="mb-24">
-          <h2 className="text-4xl font-serif font-bold text-center text-white mb-12">Technical Skills</h2>
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-white mb-12">Technical Skills</h2>
           <div className="bg-[rgba(255,255,255,0.03)] p-8 rounded-xl shadow-xl border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] transition-all duration-300 max-w-5xl mx-auto">
             <div className="space-y-8">
               {Object.entries(portfolioData.skills).map(([category, skills]) => (
@@ -347,7 +347,7 @@ const About = () => {
 
         {/* 8. Experience */}
         <section className="mb-24">
-          <h2 className="text-4xl font-serif font-bold text-center text-white mb-16">Professional Experience</h2>
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-white mb-16">Professional Experience</h2>
           <div className="relative border-l-4 border-purple-500/50 ml-4 md:ml-20 max-w-4xl mx-auto">
             {portfolioData.experiences.map((exp, idx) => (
               <div key={idx} className="mb-16 pl-10 md:pl-16 relative">
@@ -365,7 +365,7 @@ const About = () => {
 
         {/* 9. Education & Certifications */}
         <section>
-          <h2 className="text-4xl font-serif font-bold text-center text-white mb-16">Education & Certifications</h2>
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-white mb-16">Education & Certifications</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
             <div className="bg-[rgba(255,255,255,0.03)] p-6 rounded-xl shadow-xl border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] transition-all duration-300">
               <h3 className="text-2xl font-serif font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Education</h3>

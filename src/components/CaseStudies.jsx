@@ -64,7 +64,7 @@ const CaseStudies = () => {
             aria-hidden="true"
           />
           <div className="relative z-10">
-            <h1 className="text-5xl md:text-6xl font-serif font-extrabold text-white mb-6">
+            <h1 className="text-3xl md:text-4xl font-serif font-extrabold text-white mb-6">
               Case Studies
             </h1>
             <p className="text-lg md:text-xl text-moonlight-text-secondary max-w-3xl mx-auto leading-relaxed">
@@ -82,7 +82,7 @@ const CaseStudies = () => {
             {/* Header with metric */}
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8">
               <div>
-                <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-2">
+                <h2 className="text-2xl md:text-3xl font-serif font-bold text-white mb-2">
                   {cs.headline}
                 </h2>
                 <div className="flex items-center gap-3 text-moonlight-text-muted text-sm">

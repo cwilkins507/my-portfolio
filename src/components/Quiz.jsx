@@ -105,7 +105,7 @@ Quiz Results:
     return (
       <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-6 font-sans">
         <div className="max-w-2xl w-full text-center space-y-6">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold">Got it!</h1>
+          <h1 className="text-3xl md:text-4xl font-serif font-bold">Got it!</h1>
           <p className="text-xl text-zinc-300">I'll review your answers and send a quick analysis to {email}.</p>
           <div className="bg-white/10 p-8 rounded-2xl border border-white/20">
             <Check className="w-16 h-16 text-green-400 mx-auto mb-4" />
@@ -146,7 +146,7 @@ Quiz Results:
     <div className="min-h-screen bg-black text-white flex flex-col font-sans overflow-x-hidden">
       {/* Header Section */}
       <div className="pt-12 pb-8 px-6 text-center space-y-4">
-        <h1 className="text-4xl md:text-6xl font-serif font-bold leading-tight">
+        <h1 className="text-3xl md:text-4xl font-serif font-bold leading-tight">
           See If Automation Fits Your Business
         </h1>
         <p className="text-moonlight-text-secondary text-lg md:text-xl font-light">

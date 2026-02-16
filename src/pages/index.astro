@@ -11,35 +11,6 @@ const articles = articlesRaw.map(article => ({
   ...article.frontmatter,
 })).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-// Helper function for category mapping
-const CATEGORIES = {
-  'AI & Agents': ['AI', 'LLM Tools', 'CLI Agents', 'MCP', 'Workflow Automation', 'Prompt Engineering'],
-  'Cloud & DevOps': ['AWS', 'Terraform', 'Infrastructure as Code', 'DevOps', 'Serverless', 'Azure', 'GCP'],
-  'Architecture': ['Software Architecture', 'System Design', 'Microservices', 'Distributed Systems'],
-  'Engineering': ['Software Engineering', 'Best Practices', 'Low-code', 'Database Optimization']
-};
-
-const getCategoryForArticle = (tags) => {
-  if (!tags || tags.length === 0) return 'Engineering';
-  for (const [category, categoryTags] of Object.entries(CATEGORIES)) {
-    for (const tag of tags) {
-      if (categoryTags.some(catTag => catTag.toLowerCase() === tag.toLowerCase())) {
-        return category;
-      }
-    }
-  }
-  return 'Engineering';
-};
-
-const formatDate = (dateString) => {
-  return new Date(dateString).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    timeZone: 'UTC'
-  });
-};
-
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -98,153 +69,19 @@ const personSchema = {
 	<!-- 1. Hero Section -->
 	<AnimatedHero
 		headline="I Help Small Teams Stop Drowning in Manual Work"
-		subheadline="The same automation patterns I built at Ford? They work for 5-person teams too. No enterprise budget required."
-		supportingStat="Research: Companies could save 30% of employee time through automation (McKinsey)"
-		sourceUrl="https://www.mckinsey.com/featured-insights/future-of-work/jobs-lost-jobs-gained-what-the-future-of-work-will-mean-for-jobs-skills-and-wages"
-		subtext="Ex-Ford, Morningstar | Now helping small businesses automate like the big guys"
-		pricingHint="Most small business projects: $2K–$10K"
+		subheadline="I'm Collin — I spent years building automation at Ford and Morningstar. Now I help small teams do the same thing without the enterprise budget. Below are my articles, what I'm building, and how to work with me."
 		ctas={[
-			{ href: '/quiz', text: 'See If Automation Fits Your Business', variant: 'primary' },
-			{ href: '#work', text: 'See My Work', variant: 'secondary' }
+			{ href: '/services', text: 'Work With Me', variant: 'primary' },
+			{ href: '#articles', text: 'Read My Articles', variant: 'secondary' }
 		]}
+		showNewsletter={true}
 		client:load
 	/>
 
 	<!-- 2. Glow Divider -->
 	<GlowDivider />
 
-	<!-- 3. Featured Articles Section -->
-	<section class="py-16 md:py-24 max-w-6xl mx-auto px-4">
-		<h2 class="text-3xl font-serif font-semibold text-moonlight-text-primary mb-8">Featured Articles</h2>
-		<div class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 scrollbar-hide">
-			{articles.slice(0, 3).map(article => (
-				<a
-					href={`/articles/${article.slug}`}
-					class="group flex-shrink-0 w-[300px] md:w-[400px] snap-start rounded-2xl p-8 transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.01] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] hover:shadow-[0_8px_32px_rgba(20,184,166,0.1)] will-change-transform border"
-					style="background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.06);"
-				>
-					<span class="text-xs uppercase tracking-[0.08em] text-moonlight-text-faint font-medium">
-						{getCategoryForArticle(article.tags)}
-					</span>
-					<h3 class="text-xl font-serif text-moonlight-text-primary mt-3 mb-2 group-hover:text-teal-400 transition leading-snug">
-						{article.title}
-					</h3>
-					<p class="text-sm text-moonlight-text-secondary line-clamp-2">
-						{article.excerpt}
-					</p>
-					<div class="text-xs text-moonlight-text-faint mt-4">
-						{formatDate(article.date)}
-					</div>
-				</a>
-			))}
-		</div>
-	</section>
-
-	<!-- 4. Background/Proof Section (Testimonial Cards) -->
-	<section id="work" class="py-16 md:py-24 max-w-6xl mx-auto px-4">
-		<h2 class="text-sm uppercase tracking-widest text-moonlight-text-faint mb-8">Background</h2>
-		<div class="grid md:grid-cols-3 gap-6">
-			<!-- Card 1: Ford Credit -->
-			<div
-				class="rounded-2xl p-8 border transition-all duration-300 hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] hover:shadow-[0_8px_32px_rgba(20,184,166,0.1)] hover:-translate-y-0.5 will-change-transform"
-				style="background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.06);"
-			>
-				<div class="text-sm font-medium text-moonlight-text-muted mb-3">Remote Dealership Inventory Audit</div>
-				<div class="text-3xl font-bold text-teal-400 mb-2">$5M saved</div>
-				<p class="text-moonlight-text-secondary mb-6 leading-relaxed">
-					IoT telemetry for 450K+ vehicles at Ford Credit
-				</p>
-				<div class="text-moonlight-text-primary font-medium">Ford Motor Company</div>
-				<div class="text-moonlight-text-muted text-sm">Lead Engineer</div>
-			</div>
-
-			<!-- Card 2: Morningstar -->
-			<div
-				class="rounded-2xl p-8 border transition-all duration-300 hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] hover:shadow-[0_8px_32px_rgba(20,184,166,0.1)] hover:-translate-y-0.5 will-change-transform"
-				style="background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.06);"
-			>
-				<div class="text-sm font-medium text-moonlight-text-muted mb-3">Compliance Engine Modernization</div>
-				<div class="text-3xl font-bold text-teal-400 mb-2">90% reduction</div>
-				<p class="text-moonlight-text-secondary mb-6 leading-relaxed">
-					Event-driven architecture at Morningstar
-				</p>
-				<div class="text-moonlight-text-primary font-medium">Morningstar</div>
-				<div class="text-moonlight-text-muted text-sm">Senior Engineer</div>
-			</div>
-
-			<!-- Card 3: F-150 Launch -->
-			<div
-				class="rounded-2xl p-8 border transition-all duration-300 hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] hover:shadow-[0_8px_32px_rgba(20,184,166,0.1)] hover:-translate-y-0.5 will-change-transform"
-				style="background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.06);"
-			>
-				<div class="text-sm font-medium text-moonlight-text-muted mb-3">Stolen Vehicle Services</div>
-				<div class="text-3xl font-bold text-teal-400 mb-2">2024 Launch</div>
-				<p class="text-moonlight-text-secondary mb-6 leading-relaxed">
-					Real-time theft recovery for Ford F-150
-				</p>
-				<div class="text-moonlight-text-primary font-medium">Ford Motor Company</div>
-				<div class="text-moonlight-text-muted text-sm">Lead Engineer</div>
-			</div>
-		</div>
-		<div class="mt-8 text-center">
-			<a href="/case-studies" class="text-teal-400 hover:text-teal-300 transition-colors font-medium text-sm">
-				View full case studies →
-			</a>
-		</div>
-	</section>
-
-	<!-- 4b. SMB Translation Section -->
-	<section class="py-16 md:py-24 max-w-6xl mx-auto px-4">
-		<h2 class="text-3xl font-serif font-semibold text-moonlight-text-primary mb-4 text-center">Same Patterns, Smaller Scale</h2>
-		<p class="text-moonlight-text-secondary text-center mb-12 max-w-2xl mx-auto">
-			Enterprise wins sound impressive, but the same logic works for small teams. Here's how:
-		</p>
-		<div class="grid md:grid-cols-3 gap-6">
-			<!-- Card 1: Inventory Translation -->
-			<div
-				class="rounded-2xl p-8 border transition-all duration-300 hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] hover:shadow-[0_8px_32px_rgba(20,184,166,0.1)] hover:-translate-y-0.5 will-change-transform"
-				style="background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.06);"
-			>
-				<div class="text-sm font-medium text-moonlight-text-muted mb-3">Enterprise Version</div>
-				<div class="text-lg font-semibold text-moonlight-text-primary mb-4">"$5M saved with IoT inventory"</div>
-				<div class="text-sm font-medium text-teal-400 mb-2">For Your Business →</div>
-				<p class="text-moonlight-text-secondary leading-relaxed">
-					Inventory tracking doesn't need IoT sensors. I've built the same logic with Google Sheets + Zapier for $500.
-				</p>
-			</div>
-
-			<!-- Card 2: Compliance Translation -->
-			<div
-				class="rounded-2xl p-8 border transition-all duration-300 hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] hover:shadow-[0_8px_32px_rgba(20,184,166,0.1)] hover:-translate-y-0.5 will-change-transform"
-				style="background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.06);"
-			>
-				<div class="text-sm font-medium text-moonlight-text-muted mb-3">Enterprise Version</div>
-				<div class="text-lg font-semibold text-moonlight-text-primary mb-4">"90% reduction in compliance checks"</div>
-				<div class="text-sm font-medium text-teal-400 mb-2">For Your Business →</div>
-				<p class="text-moonlight-text-secondary leading-relaxed">
-					If your team checks 10 things manually every morning, I can make that one click. Same pattern, smaller scale.
-				</p>
-			</div>
-
-			<!-- Card 3: Architecture Translation -->
-			<div
-				class="rounded-2xl p-8 border transition-all duration-300 hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] hover:shadow-[0_8px_32px_rgba(20,184,166,0.1)] hover:-translate-y-0.5 will-change-transform"
-				style="background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.06);"
-			>
-				<div class="text-sm font-medium text-moonlight-text-muted mb-3">Enterprise Version</div>
-				<div class="text-lg font-semibold text-moonlight-text-primary mb-4">"Event-driven architecture"</div>
-				<div class="text-sm font-medium text-teal-400 mb-2">For Your Business →</div>
-				<p class="text-moonlight-text-secondary leading-relaxed">
-					Any time you copy data from one system to another, that's automatable. I've done it for CRMs, invoicing, and lead capture.
-				</p>
-			</div>
-		</div>
-	</section>
-
-	<!-- 5. Glow Divider -->
-	<GlowDivider />
-
-	<!-- 6. Currently Building Section (FiNimbus) -->
+	<!-- 3. Currently Building Section (FiNimbus) -->
 	<section class="py-16 md:py-24 max-w-4xl mx-auto px-4">
 		<div
 			class="rounded-2xl p-8 md:p-12 text-center border transition-all duration-300 hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] hover:shadow-[0_8px_32px_rgba(20,184,166,0.1)] will-change-transform"
@@ -289,34 +126,4 @@ const personSchema = {
 		</noscript>
 	</section>
 
-	<!-- 8. Quiz CTA Section -->
-	<section class="py-16 md:py-24 bg-[#0a0a0b]">
-		<div class="max-w-4xl mx-auto px-4 text-center">
-			<h2 class="text-4xl md:text-5xl font-serif font-semibold text-moonlight-text-primary mb-6 leading-tight">
-				Not sure if automation fits?
-			</h2>
-			<p class="text-xl text-moonlight-text-secondary mb-8">
-				Take my 2-minute quiz to see where you're losing hours to manual work.
-			</p>
-			<div>
-				<a
-					href="/quiz"
-					class="inline-block bg-teal-500 text-white hover:bg-teal-400 px-10 py-5 rounded-full font-bold text-lg shadow-xl transition-all duration-300 transform hover:scale-105"
-				>
-					Take the Quiz →
-				</a>
-				<p class="text-sm text-moonlight-text-muted mt-4">5 questions • 2 minutes • Free analysis</p>
-			</div>
-		</div>
-	</section>
 </Layout>
-
-<style>
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-</style>

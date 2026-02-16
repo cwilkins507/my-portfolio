@@ -2,6 +2,7 @@
 import { Linkedin, Github, BadgeDollarSign } from 'lucide-react';
 import ContactModalWrapper from '../components/ContactModalWrapper';
 import Navigation from '../components/Navigation';
+import NewsletterSignup from '../components/NewsletterSignup.astro';
 import '../index.css';
 
 interface Props {
@@ -97,8 +98,9 @@ const currentYear = new Date().getFullYear();
 		</main>
 
 		<!-- Footer -->
-		<footer class="bg-[#0a0a0b] p-6 border-t border-[rgba(255,255,255,0.06)]">
+		<footer class="bg-[#0a0a0b] p-6 pt-10 border-t border-[rgba(255,255,255,0.06)]">
 			<div class="container mx-auto text-center text-moonlight-text-muted px-4">
+				<NewsletterSignup variant="footer" />
 				<p class="text-sm">&copy; {currentYear} {portfolioData.name}. All Rights Reserved.</p>
 				<div class="flex justify-center space-x-6 mt-3 text-lg">
 					<a href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-teal-400 transition" aria-label="LinkedIn">

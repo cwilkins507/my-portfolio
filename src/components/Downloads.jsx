@@ -13,7 +13,7 @@ const Downloads = () => {
       <div className="container mx-auto px-4 md:px-8 max-w-6xl">
         {/* Page Title */}
         <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-7xl font-serif font-extrabold text-white mb-6 tracking-tight">
+          <h1 className="text-3xl md:text-4xl font-serif font-extrabold text-white mb-6 tracking-tight">
             Resources
           </h1>
           <p className="text-xl text-zinc-400 max-w-2xl mx-auto font-light">
@@ -35,7 +35,7 @@ const Downloads = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
               <div className="order-2 md:order-1">
-                <h3 className="text-4xl md:text-5xl font-serif font-bold text-white leading-tight mb-6">
+                <h3 className="text-2xl md:text-3xl font-serif font-bold text-white leading-tight mb-6">
                   Stop Building Chatbots. <br /><span className="italic text-zinc-400">Start Engineering Systems.</span>
                 </h3>
 

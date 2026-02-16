@@ -65,17 +65,17 @@ const Services = () => {
                         aria-hidden="true"
                     />
                     <div className="relative z-10">
-                        <h1 className="text-5xl md:text-6xl font-serif font-extrabold text-white mb-6">
+                        <h1 className="text-3xl md:text-4xl font-serif font-extrabold text-white mb-6">
                             Services
                         </h1>
-                        <p className="text-xl text-moonlight-text-secondary max-w-3xl mx-auto leading-relaxed mb-4">
+                        <p className="text-lg text-moonlight-text-secondary max-w-3xl mx-auto leading-relaxed mb-4">
                             I help small businesses figure out where AI and automation actually make sense—without the enterprise price tag.
                         </p>
-                        <p className="text-xl text-moonlight-text-secondary max-w-3xl mx-auto leading-relaxed mb-4">
+                        <p className="text-lg text-moonlight-text-secondary max-w-3xl mx-auto leading-relaxed mb-4">
                             You're here because something in your business is costing too much time.
                             Manual data entry eating 10 hours a week. Copying between systems. Following up with leads by hand.
                         </p>
-                        <p className="text-xl text-moonlight-text-secondary max-w-3xl mx-auto leading-relaxed">
+                        <p className="text-lg text-moonlight-text-secondary max-w-3xl mx-auto leading-relaxed">
                             I fix those. The same patterns I used at Ford and Morningstar work for small teams too—just scaled appropriately.
                         </p>
                     </div>
@@ -132,7 +132,7 @@ const Services = () => {
 
                 {/* How It Works Section */}
                 <section className="mb-24 bg-[rgba(255,255,255,0.03)] p-8 md:p-12 rounded-3xl border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] transition-all duration-300">
-                    <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-6 border-b border-purple-500/20 pb-4">
+                    <h2 className="text-2xl md:text-3xl font-serif font-bold text-white mb-6 border-b border-purple-500/20 pb-4">
                         How It Works
                     </h2>
                     <div className="text-lg text-moonlight-text-secondary leading-relaxed space-y-8">
@@ -184,7 +184,7 @@ const Services = () => {
 
                 {/* Pricing Section */}
                 <section className="mb-24">
-                    <h2 className="text-3xl font-serif font-bold text-white mb-8 text-center">
+                    <h2 className="text-2xl md:text-3xl font-serif font-bold text-white mb-8 text-center">
                         What Does This Cost?
                     </h2>
                     <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -248,7 +248,7 @@ const Services = () => {
 
                 {/* Quiz CTA */}
                 <section className="mb-24 bg-[rgba(255,255,255,0.03)] p-8 md:p-12 rounded-3xl border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] transition-all duration-300 text-center">
-                    <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">Not sure which service fits?</h2>
+                    <h2 className="text-2xl md:text-3xl font-serif font-bold text-white mb-4">Not sure which service fits?</h2>
                     <p className="text-moonlight-text-secondary mb-8 max-w-2xl mx-auto text-lg">
                         Take our 2-minute quiz to get a personalized AI action plan delivered to your inbox.
                     </p>
@@ -262,7 +262,7 @@ const Services = () => {
 
                 {/* CTA Section */}
                 <section className="bg-[rgba(255,255,255,0.03)] p-8 md:p-12 rounded-3xl border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] transition-all duration-300 text-center shadow-2xl">
-                    <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-6">Ready to start a project?</h2>
+                    <h2 className="text-2xl md:text-3xl font-serif font-bold text-white mb-6">Ready to start a project?</h2>
                     <p className="text-moonlight-text-secondary mb-10 max-w-2xl mx-auto text-lg">
                         I'm taking on 2-3 new clients per quarter.
                         If your team is losing 5+ hours a week to manual work, let's talk.

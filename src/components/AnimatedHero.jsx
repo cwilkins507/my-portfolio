@@ -13,7 +13,7 @@ import MagneticButton from './MagneticButton';
  * @param {string} pricingHint - Pricing transparency line (optional)
  * @param {Array} ctas - Array of CTA objects with { href, text, variant }
  */
-export default function AnimatedHero({ headline, subheadline, supportingStat, sourceUrl, subtext, pricingHint, ctas = [] }) {
+export default function AnimatedHero({ headline, subheadline, supportingStat, sourceUrl, subtext, pricingHint, ctas = [], showNewsletter = false }) {
   const prefersReducedMotion = useReducedMotion();
 
   // Split headline into words for stagger animation
@@ -116,7 +116,7 @@ export default function AnimatedHero({ headline, subheadline, supportingStat, so
 
         {/* Animated headline with stagger effect */}
         <motion.h1
-          className="text-4xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 leading-[1.2]"
+          className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-6 leading-[1.25]"
           variants={prefersReducedMotion ? {} : containerVariants}
           initial={prefersReducedMotion ? false : "hidden"}
           animate={prefersReducedMotion ? false : "visible"}
@@ -127,7 +127,7 @@ export default function AnimatedHero({ headline, subheadline, supportingStat, so
               <motion.span
                 key={`${word}-${index}`}
                 variants={prefersReducedMotion ? {} : wordVariants}
-                className={`inline-block mr-3 md:mr-4 ${shouldEmphasize ? 'text-teal-400 font-semibold italic' : ''}`}
+                className={`inline-block mr-2 md:mr-3 ${shouldEmphasize ? 'text-teal-400 font-semibold italic' : ''}`}
               >
                 {word}
               </motion.span>
@@ -138,7 +138,7 @@ export default function AnimatedHero({ headline, subheadline, supportingStat, so
         {/* Subheadline with fade-in */}
         {subheadline && (
           <motion.p
-            className="text-xl md:text-2xl text-moonlight-text-secondary mb-2"
+            className="text-lg md:text-xl text-moonlight-text-secondary mb-2"
             variants={subheadlineVariants}
             initial="hidden"
             animate="visible"
@@ -174,7 +174,7 @@ export default function AnimatedHero({ headline, subheadline, supportingStat, so
         {/* Subtext */}
         {subtext && (
           <motion.p
-            className="text-lg md:text-xl text-moonlight-text-muted mb-4"
+            className="text-base md:text-lg text-moonlight-text-muted mb-4"
             variants={subheadlineVariants}
             initial="hidden"
             animate="visible"
@@ -186,7 +186,7 @@ export default function AnimatedHero({ headline, subheadline, supportingStat, so
         {/* Pricing Hint */}
         {pricingHint && (
           <motion.p
-            className="text-base md:text-lg text-teal-400 font-medium mb-8"
+            className="text-sm md:text-base text-teal-400 font-medium mb-8"
             variants={subheadlineVariants}
             initial="hidden"
             animate="visible"
@@ -212,6 +212,42 @@ export default function AnimatedHero({ headline, subheadline, supportingStat, so
                 {cta.text}
               </MagneticButton>
             ))}
+          </motion.div>
+        )}
+
+        {/* Newsletter Signup */}
+        {showNewsletter && (
+          <motion.div
+            className="mt-10 max-w-md mx-auto"
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+            animate={prefersReducedMotion ? false : { opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.5,
+              delay: words.length * 0.08 + 0.9,
+              ease: 'easeOut',
+            }}
+          >
+            <p className="text-sm text-moonlight-text-muted mb-3">Bi-weekly emails on automation, AI, and systems that run without you.</p>
+            <form
+              action="https://buttondown.com/api/emails/embed-subscribe/collinwilkins"
+              method="post"
+              target="popupwindow"
+              className="flex gap-2"
+            >
+              <input
+                type="email"
+                name="email"
+                placeholder="your@email.com"
+                required
+                className="flex-1 px-3 py-2 text-sm bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] rounded-lg text-white placeholder-[#71717a] focus:outline-none focus:border-teal-400 focus:ring-1 focus:ring-teal-400 transition"
+              />
+              <button
+                type="submit"
+                className="px-4 py-2 text-sm bg-teal-500 text-white font-semibold rounded-lg hover:bg-teal-400 transition-all duration-300 whitespace-nowrap"
+              >
+                Subscribe
+              </button>
+            </form>
           </motion.div>
         )}
       </div>

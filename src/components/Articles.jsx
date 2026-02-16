@@ -109,10 +109,10 @@ const ArticleList = ({ articles = [] }) => {
           <div className="container mx-auto px-4 py-24 md:py-32 relative z-10">
             <div className="max-w-4xl mx-auto">
               <span className="text-teal-400 text-sm font-bold uppercase tracking-[0.08em]">Latest Article</span>
-              <h1 className="text-5xl md:text-7xl font-serif font-black text-moonlight-text-primary mt-4 mb-6 leading-tight tracking-tight">
+              <h1 className="text-3xl md:text-5xl font-serif font-black text-moonlight-text-primary mt-4 mb-6 leading-tight tracking-tight">
                 {featuredArticle.title}
               </h1>
-              <p className="text-xl md:text-2xl text-moonlight-text-secondary mb-8 leading-relaxed font-light">
+              <p className="text-lg md:text-xl text-moonlight-text-secondary mb-8 leading-relaxed font-light">
                 {featuredArticle.excerpt}
               </p>
               <div className="flex items-center gap-4 mb-8">

@@ -51,7 +51,7 @@ const AgentsDoc = () => {
         </div>
 
         {/* Page Title */}
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-8">
+        <h1 className="text-3xl md:text-4xl font-bold text-white mb-8">
           Example AGENTS.md
         </h1>
 
