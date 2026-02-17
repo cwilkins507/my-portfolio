@@ -7,50 +7,37 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Moonlight base colors
-        'moonlight-bg': '#0a0a0b',
-        'moonlight-surface': 'rgba(255, 255, 255, 0.03)',
+        // Theme-aware semantic tokens (via CSS custom properties)
+        'theme-bg': 'var(--color-bg)',
+        'theme-surface': 'var(--color-surface)',
+        'theme-surface-hover': 'var(--color-surface-hover)',
+        'theme-border': 'var(--color-border)',
+        'theme-border-hover': 'var(--color-border-hover)',
 
-        // Text hierarchy
+        'theme-text': {
+          primary: 'var(--color-text-primary)',
+          secondary: 'var(--color-text-secondary)',
+          muted: 'var(--color-text-muted)',
+          faint: 'var(--color-text-faint)',
+        },
+
+        // Gold accent
+        accent: {
+          DEFAULT: 'var(--color-accent)',
+          hover: 'var(--color-accent-hover)',
+          muted: 'var(--color-accent-muted)',
+          border: 'var(--color-accent-border)',
+        },
+
+        // Keep moonlight-text aliases for gradual migration
         'moonlight-text': {
-          primary: '#e4e4e7',
-          secondary: '#a1a1aa',
-          muted: '#71717a',
-          faint: '#52525b',
+          primary: 'var(--color-text-primary)',
+          secondary: 'var(--color-text-secondary)',
+          muted: 'var(--color-text-muted)',
+          faint: 'var(--color-text-faint)',
         },
 
-        // Teal accent (original color scheme)
-        teal: {
-          300: '#5eead4',
-          400: '#2dd4bf',
-          500: '#14b8a6',
-          600: '#0d9488',
-          700: '#0f766e',
-        },
-
-        // Category-specific tag colors
-        'category-ai': {
-          bg: 'rgba(20, 184, 166, 0.15)',
-          text: '#2dd4bf',
-          border: 'rgba(20, 184, 166, 0.3)',
-        },
-        'category-engineering': {
-          bg: 'rgba(34, 197, 94, 0.15)',
-          text: '#4ade80',
-          border: 'rgba(34, 197, 94, 0.3)',
-        },
-        'category-architecture': {
-          bg: 'rgba(251, 146, 60, 0.15)',
-          text: '#fb923c',
-          border: 'rgba(251, 146, 60, 0.3)',
-        },
-        'category-cloud': {
-          bg: 'rgba(56, 189, 248, 0.15)',
-          text: '#38bdf8',
-          border: 'rgba(56, 189, 248, 0.3)',
-        },
-
-        // Keep zinc for backgrounds
+        // Keep zinc for utility usage
         zinc: {
           400: '#a1a1aa',
           500: '#71717a',
@@ -65,7 +52,7 @@ export default {
         serif: ['Newsreader', 'Georgia', 'serif'],
         sans: ['DM Sans', 'Inter', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
-        display: ['DM Sans', 'Inter', 'sans-serif'], // Keep for compatibility
+        display: ['DM Sans', 'Inter', 'sans-serif'],
       },
       letterSpacing: {
         'tight-headline': '-0.01em',
@@ -76,27 +63,15 @@ export default {
         'body': '1.6',
       },
       boxShadow: {
-        'glow': '0 12px 40px rgba(45, 212, 191, 0.3)',
-        'glow-sm': '0 8px 24px rgba(45, 212, 191, 0.2)',
-        'card': '0 12px 32px rgba(0, 0, 0, 0.5)',
+        'card': '0 12px 32px var(--color-shadow-card)',
       },
     },
   },
   plugins: [require('@tailwindcss/typography')],
   safelist: [
-    'bg-teal-400',
-    'bg-teal-500',
-    'bg-teal-600',
-    'text-teal-300',
-    'text-teal-400',
-    'text-teal-500',
-    'border-teal-400',
-    'hover:text-teal-400',
-    'hover:bg-teal-500',
-    'hover:bg-teal-600',
-    'text-emerald-400',
-    'text-orange-500',
-    'text-cyan-400',
-    'text-blue-500',
+    'bg-accent',
+    'text-accent',
+    'border-accent',
+    'hover:text-accent',
   ],
 }

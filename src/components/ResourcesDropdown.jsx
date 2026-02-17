@@ -23,24 +23,24 @@ const ResourcesDropdown = () => {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center hover:text-teal-400 transition"
+        className="flex items-center hover:text-[var(--color-text-primary)] transition"
       >
         Resources
         <ChevronDown className={`ml-1 w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
       {isOpen && (
-        <div className="absolute top-full left-0 mt-2 py-2 w-48 bg-gray-800 rounded-md shadow-xl border border-gray-700">
+        <div className="absolute top-full left-0 mt-2 py-2 w-48 bg-[var(--color-surface)] rounded-md shadow-xl border border-[var(--color-border)]">
           <a
             href="/writing"
-            className="block px-4 py-2 text-sm hover:bg-gray-700 hover:text-teal-400 transition"
+            className="block px-4 py-2 text-sm hover:bg-[var(--color-surface-hover)] hover:text-[var(--color-text-primary)] transition"
             onClick={() => setIsOpen(false)}
           >
             Written
           </a>
           <a
             href="/resources"
-            className="block px-4 py-2 text-sm hover:bg-gray-700 hover:text-teal-400 transition"
+            className="block px-4 py-2 text-sm hover:bg-[var(--color-surface-hover)] hover:text-[var(--color-text-primary)] transition"
             onClick={() => setIsOpen(false)}
           >
             Download

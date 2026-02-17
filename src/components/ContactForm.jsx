@@ -67,12 +67,12 @@ const ContactForm = ({ email, initialService = '', onSuccess }) => {
   if (status === 'success') {
     return (
       <div className="text-center py-8">
-        <CheckCircle className="w-16 h-16 text-teal-400 mx-auto mb-4" />
-        <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
-        <p className="text-gray-400 mb-6">Thanks for reaching out. I'll get back to you soon.</p>
+        <CheckCircle className="w-16 h-16 text-[var(--color-accent)] mx-auto mb-4" />
+        <h3 className="text-2xl font-bold text-[var(--color-text-primary)] mb-2">Message Sent!</h3>
+        <p className="text-[var(--color-text-muted)] mb-6">Thanks for reaching out. I'll get back to you soon.</p>
         <button
           onClick={() => setStatus('idle')}
-          className="text-teal-400 hover:text-teal-300 font-medium transition"
+          className="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] font-medium transition"
         >
           Send another message
         </button>
@@ -84,8 +84,8 @@ const ContactForm = ({ email, initialService = '', onSuccess }) => {
     <form onSubmit={handleSubmit} className="max-w-xl mx-auto">
       <div className="space-y-4 mb-6">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-            Name <span className="text-teal-400">*</span>
+          <label htmlFor="name" className="block text-sm font-medium text-[var(--color-text-secondary)] mb-2">
+            Name <span className="text-[var(--color-accent)]">*</span>
           </label>
           <input
             type="text"
@@ -94,14 +94,14 @@ const ContactForm = ({ email, initialService = '', onSuccess }) => {
             required
             value={formData.name}
             onChange={handleChange}
-            className="w-full bg-gray-800 text-gray-200 px-4 py-3 rounded-md border border-gray-700 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 outline-none transition"
+            className="w-full bg-[var(--color-surface)] text-[var(--color-text-primary)] px-4 py-3 rounded-md border border-[var(--color-border)] focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] outline-none transition"
             placeholder="Your name"
           />
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-            Email <span className="text-teal-400">*</span>
+          <label htmlFor="email" className="block text-sm font-medium text-[var(--color-text-secondary)] mb-2">
+            Email <span className="text-[var(--color-accent)]">*</span>
           </label>
           <input
             type="email"
@@ -110,14 +110,14 @@ const ContactForm = ({ email, initialService = '', onSuccess }) => {
             required
             value={formData.email}
             onChange={handleChange}
-            className="w-full bg-gray-800 text-gray-200 px-4 py-3 rounded-md border border-gray-700 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 outline-none transition"
+            className="w-full bg-[var(--color-surface)] text-[var(--color-text-primary)] px-4 py-3 rounded-md border border-[var(--color-border)] focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] outline-none transition"
             placeholder="you@example.com"
           />
         </div>
 
         <div>
-          <label htmlFor="service" className="block text-sm font-medium text-gray-300 mb-2">
-            Service Interest <span className="text-teal-400">*</span>
+          <label htmlFor="service" className="block text-sm font-medium text-[var(--color-text-secondary)] mb-2">
+            Service Interest <span className="text-[var(--color-accent)]">*</span>
           </label>
           <select
             id="service"
@@ -125,7 +125,7 @@ const ContactForm = ({ email, initialService = '', onSuccess }) => {
             required
             value={formData.service}
             onChange={handleChange}
-            className="w-full bg-gray-800 text-gray-200 px-4 py-3 rounded-md border border-gray-700 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 outline-none transition"
+            className="w-full bg-[var(--color-surface)] text-[var(--color-text-primary)] px-4 py-3 rounded-md border border-[var(--color-border)] focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] outline-none transition"
           >
             {SERVICE_OPTIONS.map(option => (
               <option key={option.value} value={option.value} disabled={option.value === ''}>
@@ -136,8 +136,8 @@ const ContactForm = ({ email, initialService = '', onSuccess }) => {
         </div>
 
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-            Message <span className="text-gray-500">(optional)</span>
+          <label htmlFor="message" className="block text-sm font-medium text-[var(--color-text-secondary)] mb-2">
+            Message <span className="text-[var(--color-text-faint)]">(optional)</span>
           </label>
           <textarea
             id="message"
@@ -145,7 +145,7 @@ const ContactForm = ({ email, initialService = '', onSuccess }) => {
             rows={4}
             value={formData.message}
             onChange={handleChange}
-            className="w-full bg-gray-800 text-gray-200 px-4 py-3 rounded-md border border-gray-700 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 outline-none transition resize-none"
+            className="w-full bg-[var(--color-surface)] text-[var(--color-text-primary)] px-4 py-3 rounded-md border border-[var(--color-border)] focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] outline-none transition resize-none"
             placeholder="Tell me about your project..."
           />
         </div>
@@ -161,7 +161,7 @@ const ContactForm = ({ email, initialService = '', onSuccess }) => {
       <button
         type="submit"
         disabled={status === 'submitting'}
-        className="w-full bg-teal-500 hover:bg-teal-400 disabled:bg-teal-500/50 disabled:cursor-not-allowed text-white font-bold py-3 px-10 rounded-full transition-all duration-300 transform hover:scale-105 disabled:hover:scale-100 shadow-xl flex items-center justify-center"
+        className="w-full bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-3 px-10 rounded-full transition-all duration-300 transform hover:scale-105 disabled:hover:scale-100 shadow-xl flex items-center justify-center"
       >
         {status === 'submitting' ? (
           <>
@@ -176,9 +176,9 @@ const ContactForm = ({ email, initialService = '', onSuccess }) => {
         )}
       </button>
 
-      <p className="text-center text-gray-500 mt-4 text-sm">
+      <p className="text-center text-[var(--color-text-muted)] mt-4 text-sm">
         Or email me directly at{' '}
-        <a href={`mailto:${email}`} className="text-teal-400 hover:text-teal-300 transition">
+        <a href={`mailto:${email}`} className="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition">
           {email}
         </a>
       </p>

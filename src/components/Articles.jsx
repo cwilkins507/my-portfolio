@@ -11,28 +11,11 @@ const CATEGORIES = {
   'Engineering': ['Software Engineering', 'Best Practices', 'Low-code', 'Database Optimization']
 };
 
-// Category colors for Moonlight theme
-const CATEGORY_COLORS = {
-  'AI & Agents': {
-    bg: 'rgba(20, 184, 166, 0.15)',
-    text: '#2dd4bf',
-    border: 'rgba(20, 184, 166, 0.3)',
-  },
-  'Engineering': {
-    bg: 'rgba(34, 197, 94, 0.15)',
-    text: '#4ade80',
-    border: 'rgba(34, 197, 94, 0.3)',
-  },
-  'Architecture': {
-    bg: 'rgba(251, 146, 60, 0.15)',
-    text: '#fb923c',
-    border: 'rgba(251, 146, 60, 0.3)',
-  },
-  'Cloud & DevOps': {
-    bg: 'rgba(56, 189, 248, 0.15)',
-    text: '#38bdf8',
-    border: 'rgba(56, 189, 248, 0.3)',
-  },
+// Unified grayscale category style
+const CATEGORY_STYLE = {
+  bg: 'var(--color-surface)',
+  text: 'var(--color-text-secondary)',
+  border: 'var(--color-border)',
 };
 
 const getCategoryForArticle = (tags) => {
@@ -93,22 +76,22 @@ const ArticleList = ({ articles = [] }) => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0b]">
+    <div className="min-h-screen bg-[var(--color-bg)]">
       {/* Featured Article Hero */}
       {featuredArticle && (
-        <div className="border-b relative overflow-hidden" style={{ background: 'rgba(255,255,255,0.03)', borderColor: 'rgba(255,255,255,0.06)' }}>
+        <div className="border-b relative overflow-hidden" style={{ background: 'var(--color-surface)', borderColor: 'var(--color-border)' }}>
           {/* Atmospheric blur depth effect */}
           <div
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[480px] z-0 hidden md:block"
             style={{
-              background: 'linear-gradient(135deg, rgba(20,184,166,0.15), rgba(139,92,246,0.08), transparent)',
+              background: 'linear-gradient(135deg, var(--color-blur-primary), var(--color-blur-secondary), transparent)',
               filter: 'blur(80px)',
             }}
             aria-hidden="true"
           />
           <div className="container mx-auto px-4 py-24 md:py-32 relative z-10">
             <div className="max-w-4xl mx-auto">
-              <span className="text-teal-400 text-sm font-bold uppercase tracking-[0.08em]">Latest Article</span>
+              <span className="text-[var(--color-accent)] text-sm font-bold uppercase tracking-[0.08em]">Latest Article</span>
               <h1 className="text-3xl md:text-5xl font-serif font-black text-moonlight-text-primary mt-4 mb-6 leading-tight tracking-tight">
                 {featuredArticle.title}
               </h1>
@@ -121,9 +104,9 @@ const ArticleList = ({ articles = [] }) => {
                 <span
                   className="text-sm px-3 py-1 rounded-full border"
                   style={{
-                    background: CATEGORY_COLORS[getCategoryForArticle(featuredArticle.tags)]?.bg || CATEGORY_COLORS['Engineering'].bg,
-                    color: CATEGORY_COLORS[getCategoryForArticle(featuredArticle.tags)]?.text || CATEGORY_COLORS['Engineering'].text,
-                    borderColor: CATEGORY_COLORS[getCategoryForArticle(featuredArticle.tags)]?.border || CATEGORY_COLORS['Engineering'].border,
+                    background: CATEGORY_STYLE.bg,
+                    color: CATEGORY_STYLE.text,
+                    borderColor: CATEGORY_STYLE.border,
                   }}
                 >
                   {getCategoryForArticle(featuredArticle.tags)}
@@ -131,7 +114,7 @@ const ArticleList = ({ articles = [] }) => {
               </div>
               <a
                 href={`/articles/${featuredArticle.slug}`}
-                className="inline-flex items-center bg-teal-500 hover:bg-teal-400 text-white font-bold text-lg py-4 px-10 rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl"
+                className="inline-flex items-center bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white font-bold text-lg py-4 px-10 rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl"
               >
                 Read Article <ArrowRight className="w-6 h-6 ml-2" />
               </a>
@@ -152,12 +135,12 @@ const ArticleList = ({ articles = [] }) => {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-6 py-2 rounded-full font-medium text-sm transition-all duration-300 ${
                   selectedCategory === category
-                    ? 'bg-teal-400 text-white scale-105'
-                    : 'text-moonlight-text-secondary border hover:border-teal-400/50 hover:text-teal-400'
+                    ? 'bg-[var(--color-text-primary)] text-[var(--color-bg)] scale-105'
+                    : 'text-moonlight-text-secondary border hover:border-[var(--color-border-hover)] hover:text-[var(--color-text-primary)]'
                 }`}
                 style={selectedCategory !== category ? {
-                  background: 'rgba(255,255,255,0.03)',
-                  borderColor: 'rgba(255,255,255,0.06)'
+                  background: 'var(--color-surface)',
+                  borderColor: 'var(--color-border)'
                 } : {}}
               >
                 {category}
@@ -176,14 +159,14 @@ const ArticleList = ({ articles = [] }) => {
         >
           {filteredArticles.map((article) => {
             const category = getCategoryForArticle(article.tags);
-            const colors = CATEGORY_COLORS[category] || CATEGORY_COLORS['Engineering'];
+            const colors = CATEGORY_STYLE;
 
             return (
               <motion.a
                 href={`/articles/${article.slug}`}
                 key={article.slug}
-                className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 py-6 border-b hover:bg-[rgba(255,255,255,0.05)] transition-all duration-300 group px-4"
-                style={{ borderColor: 'rgba(255,255,255,0.04)' }}
+                className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 py-6 border-b hover:bg-[var(--color-surface-hover)] transition-all duration-300 group px-4"
+                style={{ borderColor: 'var(--color-border)' }}
                 variants={itemVariants}
               >
                 {/* Left: Category + Date */}
@@ -205,7 +188,7 @@ const ArticleList = ({ articles = [] }) => {
 
                 {/* Middle: Title + Description */}
                 <div className="flex-1">
-                  <h3 className="text-lg font-serif text-moonlight-text-primary group-hover:text-teal-400 mb-1 transition leading-snug">
+                  <h3 className="text-lg font-serif text-moonlight-text-primary group-hover:text-[var(--color-text-primary)] mb-1 transition leading-snug">
                     {article.title}
                   </h3>
                   <p className="text-moonlight-text-muted text-sm line-clamp-2">
@@ -214,7 +197,7 @@ const ArticleList = ({ articles = [] }) => {
                 </div>
 
                 {/* Right: Arrow */}
-                <ArrowRight className="w-5 h-5 text-moonlight-text-faint group-hover:text-teal-400 transition self-start md:self-center" />
+                <ArrowRight className="w-5 h-5 text-moonlight-text-faint group-hover:text-[var(--color-text-primary)] transition self-start md:self-center" />
               </motion.a>
             );
           })}

@@ -19,7 +19,7 @@ export default function AnimatedHero({ headline, subheadline, supportingStat, so
   // Split headline into words for stagger animation
   const words = headline.split(' ');
 
-  // Words to emphasize in teal italic
+  // Words to emphasize in gold italic
   const emphasizeWords = ['Small', 'Teams', 'Drowning', 'Manual'];
 
   const containerVariants = {
@@ -80,7 +80,7 @@ export default function AnimatedHero({ headline, subheadline, supportingStat, so
       <div
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[480px] z-0 hidden md:block"
         style={{
-          background: 'linear-gradient(135deg, rgba(20,184,166,0.15), rgba(139,92,246,0.08), transparent)',
+          background: 'linear-gradient(135deg, var(--color-blur-primary), var(--color-blur-secondary), transparent)',
           filter: 'blur(80px)',
         }}
         aria-hidden="true"
@@ -90,10 +90,10 @@ export default function AnimatedHero({ headline, subheadline, supportingStat, so
       <div
         className="absolute inset-0 opacity-50"
         style={{
-          background: 'radial-gradient(ellipse at top, rgba(20,184,166,0.15), transparent 50%)',
+          background: 'radial-gradient(ellipse at top, var(--color-blur-primary), transparent 50%)',
           backgroundImage: `
-            linear-gradient(rgba(45,212,191,0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(45,212,191,0.05) 1px, transparent 1px)
+            linear-gradient(var(--color-grid-line) 1px, transparent 1px),
+            linear-gradient(90deg, var(--color-grid-line) 1px, transparent 1px)
           `,
           backgroundSize: '50px 50px',
         }}
@@ -110,13 +110,13 @@ export default function AnimatedHero({ headline, subheadline, supportingStat, so
           <img
             src="/images/profile_photo.png"
             alt="Collin Wilkins"
-            className="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover mx-auto border-2 border-[rgba(255,255,255,0.1)] shadow-[0_0_40px_rgba(20,184,166,0.15)]"
+            className="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover mx-auto border-2 border-[var(--color-border-hover)] shadow-[0_0_40px_var(--color-shadow-card)]"
           />
         </motion.div>
 
         {/* Animated headline with stagger effect */}
         <motion.h1
-          className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-6 leading-[1.25]"
+          className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-[var(--color-text-primary)] mb-6 leading-[1.25]"
           variants={prefersReducedMotion ? {} : containerVariants}
           initial={prefersReducedMotion ? false : "hidden"}
           animate={prefersReducedMotion ? false : "visible"}
@@ -127,7 +127,7 @@ export default function AnimatedHero({ headline, subheadline, supportingStat, so
               <motion.span
                 key={`${word}-${index}`}
                 variants={prefersReducedMotion ? {} : wordVariants}
-                className={`inline-block mr-2 md:mr-3 ${shouldEmphasize ? 'text-teal-400 font-semibold italic' : ''}`}
+                className={`inline-block mr-2 md:mr-3 ${shouldEmphasize ? 'text-[var(--color-accent)] font-semibold italic' : ''}`}
               >
                 {word}
               </motion.span>
@@ -163,7 +163,7 @@ export default function AnimatedHero({ headline, subheadline, supportingStat, so
                 href={sourceUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs text-moonlight-text-faint hover:text-teal-400 transition-colors underline decoration-dotted"
+                className="text-xs text-moonlight-text-faint hover:text-[var(--color-accent)] transition-colors underline decoration-dotted"
               >
                 [Source]
               </a>
@@ -186,7 +186,7 @@ export default function AnimatedHero({ headline, subheadline, supportingStat, so
         {/* Pricing Hint */}
         {pricingHint && (
           <motion.p
-            className="text-sm md:text-base text-teal-400 font-medium mb-8"
+            className="text-sm md:text-base text-[var(--color-accent)] font-medium mb-8"
             variants={subheadlineVariants}
             initial="hidden"
             animate="visible"
@@ -239,11 +239,11 @@ export default function AnimatedHero({ headline, subheadline, supportingStat, so
                 name="email"
                 placeholder="your@email.com"
                 required
-                className="flex-1 px-3 py-2 text-sm bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] rounded-lg text-white placeholder-[#71717a] focus:outline-none focus:border-teal-400 focus:ring-1 focus:ring-teal-400 transition"
+                className="flex-1 px-3 py-2 text-sm bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg text-[var(--color-text-primary)] placeholder-[var(--color-text-faint)] focus:outline-none focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] transition"
               />
               <button
                 type="submit"
-                className="px-4 py-2 text-sm bg-teal-500 text-white font-semibold rounded-lg hover:bg-teal-400 transition-all duration-300 whitespace-nowrap"
+                className="px-4 py-2 text-sm bg-[var(--color-accent)] text-white font-semibold rounded-lg hover:bg-[var(--color-accent-hover)] transition-all duration-300 whitespace-nowrap"
               >
                 Subscribe
               </button>

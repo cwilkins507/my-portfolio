@@ -68,13 +68,13 @@ const ContactModal = ({ isOpen, onClose, initialService, email }) => {
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-title"
-        className="relative bg-gray-800 border border-gray-700 w-full sm:max-w-2xl h-full sm:h-auto max-h-screen sm:max-h-[90vh] rounded-t-2xl sm:rounded-2xl overflow-y-auto shadow-2xl transform transition-all duration-200 animate-in fade-in zoom-in-95"
+        className="relative bg-[var(--color-surface)] border border-[var(--color-border)] w-full sm:max-w-2xl h-full sm:h-auto max-h-screen sm:max-h-[90vh] rounded-t-2xl sm:rounded-2xl overflow-y-auto shadow-2xl transform transition-all duration-200 animate-in fade-in zoom-in-95"
       >
         {/* Close Button */}
         <button
           ref={closeButtonRef}
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition z-10"
+          className="absolute top-4 right-4 p-2 text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-surface-hover)] rounded-lg transition z-10"
           aria-label="Close modal"
         >
           <X className="w-5 h-5" />
@@ -82,10 +82,10 @@ const ContactModal = ({ isOpen, onClose, initialService, email }) => {
 
         {/* Header */}
         <div className="p-8 pb-6">
-          <h2 id="modal-title" className="text-3xl font-bold text-white mb-2">
+          <h2 id="modal-title" className="text-3xl font-bold text-[var(--color-text-primary)] mb-2">
             Get in Touch
           </h2>
-          <p className="text-gray-400">
+          <p className="text-[var(--color-text-secondary)]">
             Let's discuss how I can help with your project
           </p>
         </div>

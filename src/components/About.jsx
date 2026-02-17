@@ -168,7 +168,7 @@ const About = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black py-16 md:py-24">
+    <div className="min-h-screen bg-[var(--color-bg)] py-16 md:py-24">
       <div className="container mx-auto px-4 md:px-8 max-w-7xl">
 
         {/* Header / Bio Section */}
@@ -177,12 +177,12 @@ const About = () => {
           <div
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[480px] z-0 hidden md:block"
             style={{
-              background: 'linear-gradient(135deg, rgba(20,184,166,0.15), rgba(139,92,246,0.08), transparent)',
+              background: 'linear-gradient(135deg, var(--color-blur-primary), var(--color-blur-secondary), transparent)',
               filter: 'blur(80px)',
             }}
             aria-hidden="true"
           />
-          <h1 className="text-3xl md:text-4xl font-serif font-extrabold text-white mb-8 text-center relative z-10">
+          <h1 className="text-3xl md:text-4xl font-serif font-extrabold text-[var(--color-text-primary)] mb-8 text-center relative z-10">
             {portfolioData.headline}
           </h1>
 
@@ -190,7 +190,7 @@ const About = () => {
           <div className="text-base md:text-lg text-moonlight-text-secondary leading-relaxed space-y-6 text-left">
             {portfolioData.aboutMe.map((section, idx) => (
               <div key={idx} className="mb-12">
-                <h2 className="text-2xl font-serif font-bold text-teal-400 mb-6 border-b border-purple-500/20 pb-2">
+                <h2 className="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-6 border-b border-[var(--color-border)] pb-2">
                   {section.title}
                 </h2>
                 <div className="text-base md:text-lg text-moonlight-text-secondary leading-relaxed space-y-6 text-left">
@@ -205,16 +205,16 @@ const About = () => {
           </div>
 
           <div className="flex justify-center space-x-6 mt-10">
-            <a href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer" className="text-moonlight-text-secondary hover:text-teal-400 transition">
+            <a href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer" className="text-moonlight-text-secondary hover:text-[var(--color-text-primary)] transition">
               <Linkedin className="w-8 h-8" />
             </a>
-            <a href={portfolioData.upwork} target="_blank" rel="noopener noreferrer" className="text-moonlight-text-secondary hover:text-teal-400 transition">
+            <a href={portfolioData.upwork} target="_blank" rel="noopener noreferrer" className="text-moonlight-text-secondary hover:text-[var(--color-text-primary)] transition">
               <BadgeDollarSign className="w-8 h-8" />
             </a>
-            <a href={portfolioData.github} target="_blank" rel="noopener noreferrer" className="text-moonlight-text-secondary hover:text-teal-400 transition">
+            <a href={portfolioData.github} target="_blank" rel="noopener noreferrer" className="text-moonlight-text-secondary hover:text-[var(--color-text-primary)] transition">
               <Github className="w-8 h-8" />
             </a>
-            <a href={`mailto:${portfolioData.email}`} className="text-moonlight-text-secondary hover:text-teal-400 transition">
+            <a href={`mailto:${portfolioData.email}`} className="text-moonlight-text-secondary hover:text-[var(--color-text-primary)] transition">
               <Mail className="w-8 h-8" />
             </a>
           </div>
@@ -222,15 +222,15 @@ const About = () => {
 
         {/* 4. Proof Points */}
         <section className="mb-24">
-          <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-white mb-16">Proof Points</h2>
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-[var(--color-text-primary)] mb-16">Proof Points</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {portfolioData.proofPoints.map((point, idx) => (
-              <div key={idx} className="bg-[rgba(255,255,255,0.03)] rounded-xl p-6 border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] hover:shadow-[0_8px_32px_rgba(20,184,166,0.1)] hover:-translate-y-0.5 will-change-transform transition-all duration-300">
-                <div className="text-3xl font-bold text-teal-400 mb-3">{point.metric}</div>
+              <div key={idx} className="bg-[var(--color-surface)] rounded-xl p-6 border border-[var(--color-border)] hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] hover:shadow-card hover:-translate-y-0.5 will-change-transform transition-all duration-300">
+                <div className="text-3xl font-bold text-[var(--color-accent)] mb-3">{point.metric}</div>
                 <p className="text-moonlight-text-secondary mb-4 leading-relaxed">
                   {point.problem}
                 </p>
-                <a href="/case-studies" className="text-teal-400 text-sm hover:text-teal-300 transition inline-flex items-center">
+                <a href="/case-studies" className="text-[var(--color-accent)] text-sm hover:text-[var(--color-accent-hover)] transition inline-flex items-center">
                   Read full case study <ArrowRight className="w-4 h-4 ml-1" />
                 </a>
               </div>
@@ -240,12 +240,12 @@ const About = () => {
 
         {/* 5. FiNimbus — Domain Expertise */}
         <section className="mb-24">
-          <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-white mb-16">
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-[var(--color-text-primary)] mb-16">
             {portfolioData.finimbus.title}
           </h2>
-          <div className="bg-[rgba(255,255,255,0.03)] rounded-xl p-8 border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] transition-all duration-300 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-serif font-bold text-white mb-4">
-              <span className="text-teal-400">FiNimbus</span> — AI-powered CFO for small businesses
+          <div className="bg-[var(--color-surface)] rounded-xl p-8 border border-[var(--color-border)] hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] transition-all duration-300 max-w-4xl mx-auto">
+            <h3 className="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">
+              <span className="text-[var(--color-accent)]">FiNimbus</span> — AI-powered CFO for small businesses
             </h3>
             <div className="space-y-4 text-moonlight-text-secondary leading-relaxed">
               {portfolioData.finimbus.content.map((paragraph, idx) => (
@@ -258,7 +258,7 @@ const About = () => {
               href="https://finimbus.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-teal-400 hover:text-teal-300 transition-colors font-medium inline-block mt-6"
+              className="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors font-medium inline-block mt-6"
             >
               → finimbus.com
             </a>
@@ -267,21 +267,21 @@ const About = () => {
 
         {/* 6. How to Work With Me */}
         <section className="mb-24">
-          <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-white mb-16">
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-[var(--color-text-primary)] mb-16">
             {portfolioData.howToWork.title}
           </h2>
-          <div className="bg-[rgba(255,255,255,0.03)] p-8 rounded-xl border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] transition-all duration-300 max-w-4xl mx-auto">
+          <div className="bg-[var(--color-surface)] p-8 rounded-xl border border-[var(--color-border)] hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] transition-all duration-300 max-w-4xl mx-auto">
             <p className="text-lg text-moonlight-text-secondary leading-relaxed mb-8">
               {portfolioData.howToWork.intro}
             </p>
 
             {/* 4-Step Process */}
             <div className="mb-8">
-              <h3 className="text-xl font-serif font-bold text-teal-400 mb-4">How it works:</h3>
+              <h3 className="text-xl font-serif font-bold text-[var(--color-text-primary)] mb-4">How it works:</h3>
               <ol className="space-y-3 text-moonlight-text-secondary">
                 {portfolioData.howToWork.steps.map((step, idx) => (
                   <li key={idx} className="flex items-start">
-                    <span className="text-teal-400 font-bold mr-3 flex-shrink-0">{idx + 1}.</span>
+                    <span className="text-[var(--color-text-primary)] font-bold mr-3 flex-shrink-0">{idx + 1}.</span>
                     <span>{step}</span>
                   </li>
                 ))}
@@ -290,7 +290,7 @@ const About = () => {
 
             {/* What I Build */}
             <div className="mb-8">
-              <h3 className="text-xl font-serif font-bold text-teal-400 mb-4">What I build:</h3>
+              <h3 className="text-xl font-serif font-bold text-[var(--color-text-primary)] mb-4">What I build:</h3>
               <div className="space-y-4 text-moonlight-text-secondary">
                 {portfolioData.howToWork.services.map((service, idx) => (
                   <p key={idx}>
@@ -302,9 +302,9 @@ const About = () => {
             </div>
 
             {/* Guarantee */}
-            <div className="bg-[rgba(20,184,166,0.08)] border-l-4 border-teal-400 p-6 rounded-r-lg mb-8">
+            <div className="bg-[var(--color-accent-muted)] border-l-4 border-[var(--color-accent)] p-6 rounded-r-lg mb-8">
               <p className="text-moonlight-text-secondary font-medium">
-                <span className="text-teal-400 font-bold">Guarantee:</span> {portfolioData.howToWork.guarantee}
+                <span className="text-[var(--color-accent)] font-bold">Guarantee:</span> {portfolioData.howToWork.guarantee}
               </p>
             </div>
 
@@ -315,7 +315,7 @@ const About = () => {
               </p>
               <a
                 href="?modal=contact"
-                className="inline-flex items-center justify-center bg-teal-500 hover:bg-teal-400 text-white font-bold py-3 px-10 rounded-full transition-all duration-300 shadow-xl transform hover:scale-105"
+                className="inline-flex items-center justify-center bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white font-bold py-3 px-10 rounded-full transition-all duration-300 shadow-xl transform hover:scale-105"
               >
                 <Mail className="w-5 h-5 mr-3" />
                 Start a Conversation
@@ -326,15 +326,15 @@ const About = () => {
 
         {/* 7. Technical Skills */}
         <section className="mb-24">
-          <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-white mb-12">Technical Skills</h2>
-          <div className="bg-[rgba(255,255,255,0.03)] p-8 rounded-xl shadow-xl border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] transition-all duration-300 max-w-5xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-[var(--color-text-primary)] mb-12">Technical Skills</h2>
+          <div className="bg-[var(--color-surface)] p-8 rounded-xl shadow-xl border border-[var(--color-border)] hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] transition-all duration-300 max-w-5xl mx-auto">
             <div className="space-y-8">
               {Object.entries(portfolioData.skills).map(([category, skills]) => (
                 <div key={category}>
-                  <h3 className="text-xl font-semibold text-teal-400 mb-4">{category}</h3>
+                  <h3 className="text-xl font-semibold text-[var(--color-text-primary)] mb-4">{category}</h3>
                   <div className="flex flex-wrap gap-3">
                     {skills.map(skill => (
-                      <span key={skill} className="bg-zinc-900 text-teal-300 text-sm font-medium px-4 py-2 rounded-full transition duration-200 hover:bg-teal-700 hover:text-white transform hover:scale-105 shadow-md border border-[rgba(255,255,255,0.06)]">
+                      <span key={skill} className="bg-[var(--color-surface)] text-[var(--color-text-secondary)] text-sm font-medium px-4 py-2 rounded-full transition duration-200 hover:bg-[var(--color-surface-hover)] hover:text-[var(--color-text-primary)] transform hover:scale-105 shadow-md border border-[var(--color-border)]">
                         {skill}
                       </span>
                     ))}
@@ -347,15 +347,15 @@ const About = () => {
 
         {/* 8. Experience */}
         <section className="mb-24">
-          <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-white mb-16">Professional Experience</h2>
-          <div className="relative border-l-4 border-purple-500/50 ml-4 md:ml-20 max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-[var(--color-text-primary)] mb-16">Professional Experience</h2>
+          <div className="relative border-l-4 border-[var(--color-border-hover)] ml-4 md:ml-20 max-w-4xl mx-auto">
             {portfolioData.experiences.map((exp, idx) => (
               <div key={idx} className="mb-16 pl-10 md:pl-16 relative">
                 {/* Timeline Dot */}
-                <div className="absolute w-4 h-4 bg-teal-500 rounded-full -left-[10px] top-2 border-4 border-black"></div>
+                <div className="absolute w-4 h-4 bg-[var(--color-text-muted)] rounded-full -left-[10px] top-2 border-4 border-[var(--color-bg)]"></div>
 
                 <p className="text-sm text-moonlight-text-muted mb-2">{exp.period}</p>
-                <h3 className="text-2xl font-serif font-bold text-teal-400">{exp.role}</h3>
+                <h3 className="text-2xl font-serif font-bold text-[var(--color-text-primary)]">{exp.role}</h3>
                 <h4 className="text-lg font-semibold text-moonlight-text-secondary mb-4">{exp.company}</h4>
                 <p className="text-moonlight-text-secondary leading-relaxed">{exp.description}</p>
               </div>
@@ -365,10 +365,10 @@ const About = () => {
 
         {/* 9. Education & Certifications */}
         <section>
-          <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-white mb-16">Education & Certifications</h2>
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-[var(--color-text-primary)] mb-16">Education & Certifications</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-            <div className="bg-[rgba(255,255,255,0.03)] p-6 rounded-xl shadow-xl border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] transition-all duration-300">
-              <h3 className="text-2xl font-serif font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Education</h3>
+            <div className="bg-[var(--color-surface)] p-6 rounded-xl shadow-xl border border-[var(--color-border)] hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] transition-all duration-300">
+              <h3 className="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4 border-b border-[var(--color-border)] pb-2">Education</h3>
               {portfolioData.education.map((edu, idx) => (
                 <div key={idx} className="mb-4">
                   <p className="text-lg font-semibold text-moonlight-text-secondary">{edu.degree}</p>
@@ -376,12 +376,12 @@ const About = () => {
                 </div>
               ))}
             </div>
-            <div className="bg-[rgba(255,255,255,0.03)] p-6 rounded-xl shadow-xl border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] transition-all duration-300">
-              <h3 className="text-2xl font-serif font-bold text-teal-400 mb-4 border-b border-teal-400/50 pb-2">Certifications</h3>
+            <div className="bg-[var(--color-surface)] p-6 rounded-xl shadow-xl border border-[var(--color-border)] hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] transition-all duration-300">
+              <h3 className="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4 border-b border-[var(--color-border)] pb-2">Certifications</h3>
               <ul className="space-y-3">
                 {portfolioData.certifications.map((cert, idx) => (
                   <li key={idx} className="text-moonlight-text-secondary flex items-center">
-                    <span className="text-teal-500 mr-2">&#9679;</span> {cert}
+                    <span className="text-[var(--color-text-muted)] mr-2">&#9679;</span> {cert}
                   </li>
                 ))}
               </ul>

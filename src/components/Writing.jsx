@@ -23,19 +23,19 @@ const Writing = ({ articlesInitial = [] }) => {
   // Article list view
   return (
     <div className="container mx-auto px-4 py-16">
-      <h1 className="text-4xl font-serif font-bold text-white mb-2">From the Desk</h1>
-      <p className="text-xl text-zinc-400 mb-8">Cloud, Code, and Enterprise Insights</p>
+      <h1 className="text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-2">From the Desk</h1>
+      <p className="text-xl text-[var(--color-text-secondary)] mb-8">Cloud, Code, and Enterprise Insights</p>
 
       <div className="mb-8 flex flex-col sm:flex-row gap-4">
         <input
           type="text"
           placeholder="Search articles..."
-          className="bg-zinc-950 text-gray-200 px-4 py-2 rounded-md w-full sm:w-64 border border-zinc-800"
+          className="bg-[var(--color-bg)] text-[var(--color-text-primary)] px-4 py-2 rounded-md w-full sm:w-64 border border-[var(--color-border)]"
           onChange={(e) => setSearchTerm(e.target.value)}
           value={searchTerm}
         />
         <select
-          className="bg-zinc-950 text-gray-200 px-4 py-2 rounded-md border border-zinc-800"
+          className="bg-[var(--color-bg)] text-[var(--color-text-primary)] px-4 py-2 rounded-md border border-[var(--color-border)]"
           onChange={(e) => setSelectedTag(e.target.value)}
           value={selectedTag}
         >
@@ -51,22 +51,22 @@ const Writing = ({ articlesInitial = [] }) => {
           <a 
             key={article.slug} 
             href={`/articles/${article.slug}`}
-            className="bg-zinc-950 p-6 rounded-xl hover:bg-zinc-900 transition duration-300 border border-zinc-800 hover:border-teal-400 group"
+            className="bg-[var(--color-surface)] p-6 rounded-xl hover:bg-[var(--color-surface-hover)] transition duration-300 border border-[var(--color-border)] hover:border-[var(--color-border-hover)] group"
           >
-            <h2 className="text-2xl font-serif font-bold text-white mb-2 group-hover:text-teal-400 transition">{article.title}</h2>
-            <div className="text-zinc-500 text-sm mb-2">{new Date(article.date).toLocaleDateString()}</div>
+            <h2 className="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-2 group-hover:text-[var(--color-accent)] transition">{article.title}</h2>
+            <div className="text-[var(--color-text-muted)] text-sm mb-2">{new Date(article.date).toLocaleDateString()}</div>
             <div className="flex gap-2 mb-4 flex-wrap">
               {article.tags && article.tags.slice(0, 3).map(tag => (
                 <span
                   key={tag}
-                  className="bg-zinc-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-zinc-800"
+                  className="bg-[var(--color-surface)] text-[var(--color-text-secondary)] text-xs px-3 py-1 rounded-full border border-[var(--color-border)]"
                 >
                   {tag}
                 </span>
               ))}
             </div>
-            <p className="text-zinc-400 mb-4">{article.excerpt}</p>
-            <span className="text-teal-400 hover:text-teal-300">
+            <p className="text-[var(--color-text-secondary)] mb-4">{article.excerpt}</p>
+            <span className="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">
               Read more →
             </span>
           </a>

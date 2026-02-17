@@ -85,11 +85,16 @@ const currentYear = new Date().getFullYear();
 			)
 		)}
 
+		<!-- Anti-FOUC: Apply theme before paint -->
+		<script is:inline>
+			(function(){try{var s=JSON.parse(localStorage.getItem('theme-storage'));if(s&&s.state&&s.state.theme==='light'){document.documentElement.classList.add('light')}}catch(e){}})();
+		</script>
+
 		<!-- Plausible Analytics -->
 		<script async src="https://plausible.io/js/pa-CmOP0LRtv6tlswXjVukB6.js"></script>
 		<script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
 	</head>
-	<body class="min-h-screen bg-[#0a0a0b] text-[#e4e4e7] font-sans leading-normal tracking-wider">
+	<body class="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)] font-sans leading-normal tracking-wider">
 		<!-- Navigation with Scroll-Triggered Blur -->
 		<Navigation portfolioData={portfolioData} client:load />
 
@@ -98,18 +103,18 @@ const currentYear = new Date().getFullYear();
 		</main>
 
 		<!-- Footer -->
-		<footer class="bg-[#0a0a0b] p-6 pt-10 border-t border-[rgba(255,255,255,0.06)]">
-			<div class="container mx-auto text-center text-moonlight-text-muted px-4">
+		<footer class="bg-[var(--color-bg)] p-6 pt-10 border-t border-[var(--color-border)]">
+			<div class="container mx-auto text-center text-theme-text-muted px-4">
 				<NewsletterSignup variant="footer" />
 				<p class="text-sm">&copy; {currentYear} {portfolioData.name}. All Rights Reserved.</p>
 				<div class="flex justify-center space-x-6 mt-3 text-lg">
-					<a href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-teal-400 transition" aria-label="LinkedIn">
+					<a href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-text-primary)] transition" aria-label="LinkedIn">
 						<Linkedin className="w-6 h-6" />
 					</a>
-					<a href={portfolioData.upwork} target="_blank" rel="noopener noreferrer" class="hover:text-teal-400 transition" aria-label="Upwork Profile">
+					<a href={portfolioData.upwork} target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-text-primary)] transition" aria-label="Upwork Profile">
 						<BadgeDollarSign className="w-6 h-6" />
 					</a>
-					<a href={portfolioData.github} target="_blank" rel="noopener noreferrer" class="hover:text-teal-400 transition" aria-label="GitHub">
+					<a href={portfolioData.github} target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-text-primary)] transition" aria-label="GitHub">
 						<Github className="w-6 h-6" />
 					</a>
 				</div>

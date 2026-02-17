@@ -118,22 +118,22 @@ const articleSchema = {
 >
   <div class="container mx-auto px-4 py-16">
     <div class="max-w-3xl mx-auto">
-      <a href="/" class="text-teal-400 hover:text-teal-300 mb-8 inline-block">
+      <a href="/" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] mb-8 inline-block">
         ← Back to Articles
       </a>
-      <h1 class="text-3xl font-serif font-bold text-white mb-4">{frontmatter.title}</h1>
+      <h1 class="text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-4">{frontmatter.title}</h1>
       <article class="text-moonlight-text-secondary mb-4">
         {new Date(frontmatter.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
       </article>
       <div class="flex flex-wrap gap-2 mb-8">
         {frontmatter.tags?.map(tag => (
-          <span class="bg-[rgba(255,255,255,0.03)] text-teal-300 text-sm px-3 py-1 rounded-full border border-[rgba(255,255,255,0.06)]">
+          <span class="bg-[var(--color-surface)] text-[var(--color-text-secondary)] text-sm px-3 py-1 rounded-full border border-[var(--color-border)]">
             {tag}
           </span>
         ))}
       </div>
       
-      <div class="prose prose-invert max-w-none prose-headings:font-serif prose-headings:text-white prose-p:text-moonlight-text-secondary prose-a:text-teal-400 prose-strong:text-white prose-code:text-teal-300 prose-pre:bg-[rgba(255,255,255,0.03)] prose-pre:border prose-pre:border-[rgba(255,255,255,0.06)]">
+      <div class="prose prose-invert max-w-none prose-headings:font-serif prose-headings:text-[var(--color-text-primary)] prose-p:text-moonlight-text-secondary prose-a:text-[var(--color-accent)] prose-strong:text-[var(--color-text-primary)] prose-code:text-[var(--color-text-secondary)] prose-pre:bg-[var(--color-surface)] prose-pre:border prose-pre:border-[var(--color-border)]">
         <Content />
       </div>
 
@@ -142,15 +142,15 @@ const articleSchema = {
 
       {/* Related Articles */}
       {relatedArticles.length > 0 && (
-        <div class="mt-16 border-t border-[rgba(255,255,255,0.06)] pt-12">
-          <h2 class="text-2xl font-serif font-bold text-white mb-8">Related Articles</h2>
+        <div class="mt-16 border-t border-[var(--color-border)] pt-12">
+          <h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-8">Related Articles</h2>
           <div class="grid gap-6 md:grid-cols-3">
             {relatedArticles.map(related => (
               <a
                 href={`/articles/${related.slug}`}
-                class="bg-[rgba(255,255,255,0.03)] rounded-xl p-6 hover:bg-zinc-900 transition duration-300 border border-[rgba(255,255,255,0.06)] hover:border-teal-400 group"
+                class="bg-[var(--color-surface)] rounded-xl p-6 hover:bg-[var(--color-surface-hover)] transition duration-300 border border-[var(--color-border)] hover:border-[var(--color-border-hover)] group"
               >
-                <h3 class="text-lg font-serif font-bold text-white mb-2 group-hover:text-teal-400 transition leading-tight">
+                <h3 class="text-lg font-serif font-bold text-[var(--color-text-primary)] mb-2 group-hover:text-[var(--color-text-primary)] transition leading-tight">
                   {related.title}
                 </h3>
                 <p class="text-moonlight-text-muted text-sm mb-3">
@@ -164,23 +164,23 @@ const articleSchema = {
       )}
 
       {/* Article Footer CTA */}
-      <div class="mt-20 p-8 md:p-12 bg-[rgba(255,255,255,0.03)] rounded-2xl border border-[rgba(255,255,255,0.06)] shadow-2xl relative overflow-hidden group">
-        <div class="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full -mr-16 -mt-16 blur-2xl group-hover:bg-teal-500/20 transition-colors duration-500"></div>
+      <div class="mt-20 p-8 md:p-12 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl relative overflow-hidden group">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-[var(--color-blur-primary)] rounded-full -mr-16 -mt-16 blur-2xl transition-colors duration-500"></div>
         <div class="relative z-10">
-          <h3 class="text-2xl font-serif font-bold text-white mb-4">Wrestling with a technical challenge?</h3>
+          <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Wrestling with a technical challenge?</h3>
           <p class="text-xl text-moonlight-text-secondary mb-8 max-w-2xl leading-relaxed">
             I help companies automate complex workflows, integrate AI into their stacks, and build scalable cloud architectures.
           </p>
           <div class="flex flex-col sm:flex-row gap-4">
             <a
               href="/quiz"
-              class="inline-flex items-center justify-center bg-teal-500 text-white hover:bg-teal-400 font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl"
+              class="inline-flex items-center justify-center bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl"
             >
               Get Your AI Plan
             </a>
             <a
               href="/services"
-              class="inline-flex items-center justify-center bg-[rgba(255,255,255,0.03)] text-white border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] font-bold py-3 px-8 rounded-full transition-all duration-300"
+              class="inline-flex items-center justify-center bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border)] hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] font-bold py-3 px-8 rounded-full transition-all duration-300"
             >
               View My Services
             </a>
@@ -188,7 +188,7 @@ const articleSchema = {
               href="https://www.linkedin.com/in/collin-wilkins-1020215a/"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center justify-center bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(255,255,255,0.05)] text-white font-bold py-3 px-8 rounded-full transition-all duration-300 border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.12)]"
+              class="inline-flex items-center justify-center bg-[var(--color-surface)] hover:bg-[var(--color-surface-hover)] text-[var(--color-text-primary)] font-bold py-3 px-8 rounded-full transition-all duration-300 border border-[var(--color-border)] hover:border-[var(--color-border-hover)]"
             >
               Connect on LinkedIn
             </a>

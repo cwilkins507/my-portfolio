@@ -75,12 +75,12 @@ const guideSchema = {
   publishedTime="2026-01-07"
   schema={guideSchema}
 >
-  <div class="min-h-screen bg-black">
+  <div class="min-h-screen bg-[var(--color-bg)]">
     <!-- Hero Section -->
     <div class="container mx-auto px-4 py-20 md:py-28">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-12">
-          <a href="/resources" class="text-teal-400 hover:text-teal-300 mb-8 inline-block text-sm">
+          <a href="/resources" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] mb-8 inline-block text-sm">
             &larr; Back to Resources
           </a>
         </div>
@@ -89,12 +89,12 @@ const guideSchema = {
           <!-- Left Column: Content -->
           <div>
             <h1 class="text-5xl md:text-6xl font-serif font-extrabold leading-tight mb-6">
-              <span class="italic text-zinc-400">Stop Building Chatbots.</span> <br />
-              <span class="text-white">Start Engineering Systems.</span>
+              <span class="italic text-[var(--color-text-secondary)]">Stop Building Chatbots.</span> <br />
+              <span class="text-[var(--color-text-primary)]">Start Engineering Systems.</span>
             </h1>
 
-            <p class="text-xl text-zinc-400 leading-relaxed mb-8">
-              Most AI workflows collapse under real-world complexity. Learn the DOE Framework to turn a <span class="text-white font-semibold">59% success rate into 99%+</span> for your autonomous agents.
+            <p class="text-xl text-[var(--color-text-secondary)] leading-relaxed mb-8">
+              Most AI workflows collapse under real-world complexity. Learn the DOE Framework to turn a <span class="text-[var(--color-text-primary)] font-semibold">59% success rate into 99%+</span> for your autonomous agents.
             </p>
 
             <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-4">
@@ -103,17 +103,17 @@ const guideSchema = {
                 target="_blank"
                 rel="noopener noreferrer"
                 onclick="if (window.plausible) { window.plausible('PDF Download', { props: { resource: 'Agentic Workflows Guide', location: 'hero' } }); }"
-                class="inline-flex items-center gap-3 px-8 py-4 bg-teal-500 text-white rounded-full font-bold hover:bg-teal-400 transition-all duration-300 transform hover:scale-105 shadow-2xl"
+                class="inline-flex items-center gap-3 px-8 py-4 bg-[var(--color-accent)] text-white rounded-full font-bold hover:bg-[var(--color-accent-hover)] transition-all duration-300 transform hover:scale-105 shadow-2xl"
               >
                 <FileDown className="w-5 h-5" />
                 <span>Get the DOE Framework (Free PDF)</span>
               </a>
-              <span class="text-sm text-zinc-400 border border-zinc-700 rounded-full px-4 py-2">
+              <span class="text-sm text-[var(--color-text-secondary)] border border-[var(--color-border)] rounded-full px-4 py-2">
                 No email required
               </span>
             </div>
 
-            <p class="text-sm text-zinc-500">
+            <p class="text-sm text-[var(--color-text-muted)]">
               1.2MB &middot; 28 pages &middot; Instant download
             </p>
           </div>
@@ -121,11 +121,11 @@ const guideSchema = {
           <!-- Right Column: Thumbnail (hidden on mobile) -->
           <div class="hidden lg:block">
             <div class="relative group/image">
-              <div class="absolute -inset-1 bg-gradient-to-r from-teal-500/20 to-zinc-500/20 rounded-xl blur opacity-25 group-hover/image:opacity-40 transition duration-1000"></div>
+              <div class="absolute -inset-1 bg-gradient-to-r from-[var(--color-accent-muted)] to-transparent rounded-xl blur opacity-25 group-hover/image:opacity-40 transition duration-1000"></div>
               <img
                 src="/images/thumbnail.png"
                 alt="Agentic Workflows Guide preview showing DOE Framework"
-                class="relative w-full rounded-lg border border-zinc-800 shadow-2xl transform transition duration-500 group-hover/image:scale-[1.02]"
+                class="relative w-full rounded-lg border border-[var(--color-border)] shadow-2xl transform transition duration-500 group-hover/image:scale-[1.02]"
                 loading="eager"
               />
             </div>
@@ -135,68 +135,68 @@ const guideSchema = {
     </div>
 
     <!-- What You'll Learn Section -->
-    <div class="bg-zinc-950 border-t border-zinc-800">
+    <div class="bg-[var(--color-surface)] border-t border-[var(--color-border)]">
       <div class="container mx-auto px-4 py-16">
         <div class="max-w-6xl mx-auto">
-          <h2 class="text-4xl font-serif font-bold text-white mb-12 text-center">
+          <h2 class="text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-12 text-center">
             What You'll Learn
           </h2>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="bg-black p-8 rounded-xl border border-zinc-800 hover:border-teal-400/50 transition-all duration-300">
+            <div class="bg-[var(--color-bg)] p-8 rounded-xl border border-[var(--color-border)] hover:border-[var(--color-border-hover)] transition-all duration-300">
               <div class="flex items-start gap-4">
-                <CheckCircle className="w-6 h-6 text-teal-400 flex-shrink-0 mt-1" />
+                <CheckCircle className="w-6 h-6 text-[var(--color-accent)] flex-shrink-0 mt-1" />
                 <div>
-                  <h3 class="text-xl font-serif font-bold text-white mb-3">Close the Capability Overhang</h3>
-                  <p class="text-zinc-400 leading-relaxed">
+                  <h3 class="text-xl font-serif font-bold text-[var(--color-text-primary)] mb-3">Close the Capability Overhang</h3>
+                  <p class="text-[var(--color-text-secondary)] leading-relaxed">
                     Bridge the gap between what AI can do and how it's actually deployed. Stop copy-pasting into chat UIs and start building production systems.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div class="bg-black p-8 rounded-xl border border-zinc-800 hover:border-teal-400/50 transition-all duration-300">
+            <div class="bg-[var(--color-bg)] p-8 rounded-xl border border-[var(--color-border)] hover:border-[var(--color-border-hover)] transition-all duration-300">
               <div class="flex items-start gap-4">
-                <CheckCircle className="w-6 h-6 text-teal-400 flex-shrink-0 mt-1" />
+                <CheckCircle className="w-6 h-6 text-[var(--color-accent)] flex-shrink-0 mt-1" />
                 <div>
-                  <h3 class="text-xl font-serif font-bold text-white mb-3">The DOE Framework</h3>
-                  <p class="text-zinc-400 leading-relaxed">
+                  <h3 class="text-xl font-serif font-bold text-[var(--color-text-primary)] mb-3">The DOE Framework</h3>
+                  <p class="text-[var(--color-text-secondary)] leading-relaxed">
                     Directive, Orchestration, Execution: a builder-first architecture for production-grade agents that scales reliably.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div class="bg-black p-8 rounded-xl border border-zinc-800 hover:border-teal-400/50 transition-all duration-300">
+            <div class="bg-[var(--color-bg)] p-8 rounded-xl border border-[var(--color-border)] hover:border-[var(--color-border-hover)] transition-all duration-300">
               <div class="flex items-start gap-4">
-                <CheckCircle className="w-6 h-6 text-teal-400 flex-shrink-0 mt-1" />
+                <CheckCircle className="w-6 h-6 text-[var(--color-accent)] flex-shrink-0 mt-1" />
                 <div>
-                  <h3 class="text-xl font-serif font-bold text-white mb-3">Fix the Math of Failure</h3>
-                  <p class="text-zinc-400 leading-relaxed">
+                  <h3 class="text-xl font-serif font-bold text-[var(--color-text-primary)] mb-3">Fix the Math of Failure</h3>
+                  <p class="text-[var(--color-text-secondary)] leading-relaxed">
                     Understand why chained AI steps compound errors exponentially (0.9<sup>5</sup> = 59% success rate) and how to architect around it.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div class="bg-black p-8 rounded-xl border border-zinc-800 hover:border-teal-400/50 transition-all duration-300">
+            <div class="bg-[var(--color-bg)] p-8 rounded-xl border border-[var(--color-border)] hover:border-[var(--color-border-hover)] transition-all duration-300">
               <div class="flex items-start gap-4">
-                <CheckCircle className="w-6 h-6 text-teal-400 flex-shrink-0 mt-1" />
+                <CheckCircle className="w-6 h-6 text-[var(--color-accent)] flex-shrink-0 mt-1" />
                 <div>
-                  <h3 class="text-xl font-serif font-bold text-white mb-3">Self-Annealing Workflows</h3>
-                  <p class="text-zinc-400 leading-relaxed">
+                  <h3 class="text-xl font-serif font-bold text-[var(--color-text-primary)] mb-3">Self-Annealing Workflows</h3>
+                  <p class="text-[var(--color-text-secondary)] leading-relaxed">
                     Build systems that diagnose their own failures and apply fixes automatically. Turn errors into inputs, not endpoints.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div class="bg-black p-8 rounded-xl border border-zinc-800 hover:border-teal-400/50 transition-all duration-300">
+            <div class="bg-[var(--color-bg)] p-8 rounded-xl border border-[var(--color-border)] hover:border-[var(--color-border-hover)] transition-all duration-300">
               <div class="flex items-start gap-4">
-                <CheckCircle className="w-6 h-6 text-teal-400 flex-shrink-0 mt-1" />
+                <CheckCircle className="w-6 h-6 text-[var(--color-accent)] flex-shrink-0 mt-1" />
                 <div>
-                  <h3 class="text-xl font-serif font-bold text-white mb-3">Cloud Deployment Patterns</h3>
-                  <p class="text-zinc-400 leading-relaxed">
+                  <h3 class="text-xl font-serif font-bold text-[var(--color-text-primary)] mb-3">Cloud Deployment Patterns</h3>
+                  <p class="text-[var(--color-text-secondary)] leading-relaxed">
                     Move from IDE prototypes to production webhooks with proper observability, logging, and error handling.
                   </p>
                 </div>
@@ -211,7 +211,7 @@ const guideSchema = {
               target="_blank"
               rel="noopener noreferrer"
               onclick="if (window.plausible) { window.plausible('PDF Download', { props: { resource: 'Agentic Workflows Guide', location: 'mid_page' } }); }"
-              class="inline-flex items-center gap-3 px-8 py-4 border border-teal-500/40 text-teal-400 rounded-full font-bold hover:bg-teal-500 hover:text-white transition-all duration-300"
+              class="inline-flex items-center gap-3 px-8 py-4 border border-[var(--color-accent-border)] text-[var(--color-accent)] rounded-full font-bold hover:bg-[var(--color-accent)] hover:text-white transition-all duration-300"
             >
               <FileDown className="w-5 h-5" />
               <span>Download Free Guide</span>
@@ -222,13 +222,13 @@ const guideSchema = {
     </div>
 
     <!-- Key Insight / Pull Quote -->
-    <div class="border-t border-zinc-800">
+    <div class="border-t border-[var(--color-border)]">
       <div class="container mx-auto px-4 py-16">
         <div class="max-w-4xl mx-auto">
           <blockquote class="relative">
-            <div class="absolute -left-4 top-0 text-8xl text-teal-400/20 font-serif leading-none">"</div>
-            <p class="text-2xl md:text-3xl font-serif text-white leading-relaxed pl-12 pr-8 italic">
-              If each step succeeds 90% of the time, a five-step workflow has a success rate of 0.9<sup>5</sup> &asymp; 59%. In business terms, that looks like incorrect invoices, missed leads, and corrupted CRM data. Waiting for 'smarter models' does not solve this. <span class="text-teal-400 font-bold not-italic">The solution is architectural.</span>
+            <div class="absolute -left-4 top-0 text-8xl text-[var(--color-accent-muted)] font-serif leading-none">"</div>
+            <p class="text-2xl md:text-3xl font-serif text-[var(--color-text-primary)] leading-relaxed pl-12 pr-8 italic">
+              If each step succeeds 90% of the time, a five-step workflow has a success rate of 0.9<sup>5</sup> &asymp; 59%. In business terms, that looks like incorrect invoices, missed leads, and corrupted CRM data. Waiting for 'smarter models' does not solve this. <span class="text-[var(--color-accent)] font-bold not-italic">The solution is architectural.</span>
             </p>
           </blockquote>
         </div>
@@ -236,72 +236,72 @@ const guideSchema = {
     </div>
 
     <!-- Inside the Guide -->
-    <div class="bg-zinc-950 border-t border-zinc-800">
+    <div class="bg-[var(--color-surface)] border-t border-[var(--color-border)]">
       <div class="container mx-auto px-4 py-16">
         <div class="max-w-4xl mx-auto">
-          <h2 class="text-3xl font-serif font-bold text-white mb-8 text-center">
+          <h2 class="text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-8 text-center">
             Inside the Guide
           </h2>
 
-          <div class="bg-black rounded-xl border border-zinc-800 p-8 md:p-12">
+          <div class="bg-[var(--color-bg)] rounded-xl border border-[var(--color-border)] p-8 md:p-12">
             <div class="space-y-10">
               <!-- Part 1: The Problem -->
               <div>
-                <p class="text-teal-400 text-sm font-semibold uppercase tracking-wider mb-5">Part 1 &mdash; The Problem</p>
-                <ul class="space-y-4 text-zinc-400">
+                <p class="text-[var(--color-accent)] text-sm font-semibold uppercase tracking-wider mb-5">Part 1 &mdash; The Problem</p>
+                <ul class="space-y-4 text-[var(--color-text-secondary)]">
                   <li class="flex items-start gap-3">
-                    <ArrowRight className="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" />
-                    <span><strong class="text-white">Executive Summary:</strong> Riding the Wave</span>
+                    <ArrowRight className="w-5 h-5 text-[var(--color-text-muted)] flex-shrink-0 mt-0.5" />
+                    <span><strong class="text-[var(--color-text-primary)]">Executive Summary:</strong> Riding the Wave</span>
                   </li>
                   <li class="flex items-start gap-3">
-                    <ArrowRight className="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" />
-                    <span><strong class="text-white">The Architectural Shift:</strong> Graph-Based vs Agentic Workflows</span>
+                    <ArrowRight className="w-5 h-5 text-[var(--color-text-muted)] flex-shrink-0 mt-0.5" />
+                    <span><strong class="text-[var(--color-text-primary)]">The Architectural Shift:</strong> Graph-Based vs Agentic Workflows</span>
                   </li>
                   <li class="flex items-start gap-3">
-                    <ArrowRight className="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" />
-                    <span><strong class="text-white">The Mathematics of Failure:</strong> Why Chains Break</span>
+                    <ArrowRight className="w-5 h-5 text-[var(--color-text-muted)] flex-shrink-0 mt-0.5" />
+                    <span><strong class="text-[var(--color-text-primary)]">The Mathematics of Failure:</strong> Why Chains Break</span>
                   </li>
                 </ul>
               </div>
 
               <!-- Part 2: The Framework -->
               <div>
-                <p class="text-teal-400 text-sm font-semibold uppercase tracking-wider mb-5">Part 2 &mdash; The Framework</p>
-                <ul class="space-y-4 text-zinc-400">
+                <p class="text-[var(--color-accent)] text-sm font-semibold uppercase tracking-wider mb-5">Part 2 &mdash; The Framework</p>
+                <ul class="space-y-4 text-[var(--color-text-secondary)]">
                   <li class="flex items-start gap-3">
-                    <ArrowRight className="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" />
-                    <span><strong class="text-white">The DOE Framework:</strong> Directives, Orchestration, Execution</span>
+                    <ArrowRight className="w-5 h-5 text-[var(--color-text-muted)] flex-shrink-0 mt-0.5" />
+                    <span><strong class="text-[var(--color-text-primary)]">The DOE Framework:</strong> Directives, Orchestration, Execution</span>
                   </li>
                   <li class="flex items-start gap-3">
-                    <ArrowRight className="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" />
-                    <span><strong class="text-white">Case Study:</strong> The ClickUp CRM Manager</span>
+                    <ArrowRight className="w-5 h-5 text-[var(--color-text-muted)] flex-shrink-0 mt-0.5" />
+                    <span><strong class="text-[var(--color-text-primary)]">Case Study:</strong> The ClickUp CRM Manager</span>
                   </li>
                   <li class="flex items-start gap-3">
-                    <ArrowRight className="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" />
-                    <span><strong class="text-white">Self-Annealing Workflows:</strong> Systems That Heal Themselves</span>
+                    <ArrowRight className="w-5 h-5 text-[var(--color-text-muted)] flex-shrink-0 mt-0.5" />
+                    <span><strong class="text-[var(--color-text-primary)]">Self-Annealing Workflows:</strong> Systems That Heal Themselves</span>
                   </li>
                   <li class="flex items-start gap-3">
-                    <ArrowRight className="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" />
-                    <span><strong class="text-white">Sub-Agents:</strong> Scaling via Context Isolation</span>
+                    <ArrowRight className="w-5 h-5 text-[var(--color-text-muted)] flex-shrink-0 mt-0.5" />
+                    <span><strong class="text-[var(--color-text-primary)]">Sub-Agents:</strong> Scaling via Context Isolation</span>
                   </li>
                 </ul>
               </div>
 
               <!-- Part 3: Production -->
               <div>
-                <p class="text-teal-400 text-sm font-semibold uppercase tracking-wider mb-5">Part 3 &mdash; Production</p>
-                <ul class="space-y-4 text-zinc-400">
+                <p class="text-[var(--color-accent)] text-sm font-semibold uppercase tracking-wider mb-5">Part 3 &mdash; Production</p>
+                <ul class="space-y-4 text-[var(--color-text-secondary)]">
                   <li class="flex items-start gap-3">
-                    <ArrowRight className="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" />
-                    <span><strong class="text-white">AI Safety:</strong> Guardrails for Cost and Risk</span>
+                    <ArrowRight className="w-5 h-5 text-[var(--color-text-muted)] flex-shrink-0 mt-0.5" />
+                    <span><strong class="text-[var(--color-text-primary)]">AI Safety:</strong> Guardrails for Cost and Risk</span>
                   </li>
                   <li class="flex items-start gap-3">
-                    <ArrowRight className="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" />
-                    <span><strong class="text-white">Cloud Deployment:</strong> Architect vs. Resident</span>
+                    <ArrowRight className="w-5 h-5 text-[var(--color-text-muted)] flex-shrink-0 mt-0.5" />
+                    <span><strong class="text-[var(--color-text-primary)]">Cloud Deployment:</strong> Architect vs. Resident</span>
                   </li>
                   <li class="flex items-start gap-3">
-                    <ArrowRight className="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" />
-                    <span><strong class="text-white">Technical Appendix:</strong> Workspace Standards & Folder Structure</span>
+                    <ArrowRight className="w-5 h-5 text-[var(--color-text-muted)] flex-shrink-0 mt-0.5" />
+                    <span><strong class="text-[var(--color-text-primary)]">Technical Appendix:</strong> Workspace Standards & Folder Structure</span>
                   </li>
                 </ul>
               </div>
@@ -312,14 +312,14 @@ const guideSchema = {
     </div>
 
     <!-- Author Bio -->
-    <div class="bg-zinc-950 border-t border-zinc-800">
+    <div class="bg-[var(--color-surface)] border-t border-[var(--color-border)]">
       <div class="container mx-auto px-4 py-16">
         <div class="max-w-4xl mx-auto text-center">
-          <h3 class="text-2xl font-serif font-bold text-white mb-4">About the Author</h3>
-          <p class="text-lg text-zinc-400 leading-relaxed mb-6">
-            By <strong class="text-white">Collin Wilkins</strong>, Lead Engineer with 12 years of experience automating systems at Ford and Morningstar. Specializing in Python automation, AI integration, and AWS serverless architecture.
+          <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">About the Author</h3>
+          <p class="text-lg text-[var(--color-text-secondary)] leading-relaxed mb-6">
+            By <strong class="text-[var(--color-text-primary)]">Collin Wilkins</strong>, Lead Engineer with 12 years of experience automating systems at Ford and Morningstar. Specializing in Python automation, AI integration, and AWS serverless architecture.
           </p>
-          <a href="/about" class="text-teal-400 hover:text-teal-300 font-semibold">
+          <a href="/about" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] font-semibold">
             Learn more about my work &rarr;
           </a>
         </div>
@@ -327,17 +327,17 @@ const guideSchema = {
     </div>
 
     <!-- Download CTA -->
-    <div class="border-t border-zinc-800">
+    <div class="border-t border-[var(--color-border)]">
       <div class="container mx-auto px-4 py-20">
         <div class="max-w-4xl mx-auto">
-          <div class="bg-zinc-950 p-12 md:p-16 rounded-2xl border border-zinc-800 shadow-2xl relative overflow-hidden group text-center">
-            <div class="absolute -inset-x-20 -top-20 h-40 bg-teal-500/5 blur-[100px] pointer-events-none group-hover:bg-teal-500/10 transition-all duration-500"></div>
+          <div class="bg-[var(--color-surface)] p-12 md:p-16 rounded-2xl border border-[var(--color-border)] shadow-2xl relative overflow-hidden group text-center">
+            <div class="absolute -inset-x-20 -top-20 h-40 bg-[var(--color-blur-primary)] blur-[100px] pointer-events-none transition-all duration-500"></div>
 
             <div class="relative z-10">
-              <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-6">
+              <h2 class="text-4xl md:text-5xl font-serif font-bold text-[var(--color-text-primary)] mb-6">
                 Ready to Build Reliable AI Systems?
               </h2>
-              <p class="text-xl text-zinc-400 mb-10 max-w-2xl mx-auto">
+              <p class="text-xl text-[var(--color-text-secondary)] mb-10 max-w-2xl mx-auto">
                 Join developers and engineering leaders who've downloaded this guide. No email required.
               </p>
 
@@ -346,13 +346,13 @@ const guideSchema = {
                 target="_blank"
                 rel="noopener noreferrer"
                 onclick="if (window.plausible) { window.plausible('PDF Download', { props: { resource: 'Agentic Workflows Guide', location: 'bottom_cta' } }); }"
-                class="inline-flex items-center gap-3 px-10 py-5 bg-teal-500 text-white rounded-full font-bold text-lg hover:bg-teal-400 transition-all duration-300 transform hover:scale-105 shadow-2xl"
+                class="inline-flex items-center gap-3 px-10 py-5 bg-[var(--color-accent)] text-white rounded-full font-bold text-lg hover:bg-[var(--color-accent-hover)] transition-all duration-300 transform hover:scale-105 shadow-2xl"
               >
                 <FileDown className="w-6 h-6" />
                 <span>Get the DOE Framework (Free PDF)</span>
               </a>
 
-              <p class="text-sm text-zinc-500 mt-6">
+              <p class="text-sm text-[var(--color-text-muted)] mt-6">
                 1.2MB &middot; 28 pages &middot; Instant download
               </p>
             </div>
@@ -362,14 +362,14 @@ const guideSchema = {
     </div>
 
     <!-- SEO Content Section -->
-    <div class="border-t border-zinc-800">
+    <div class="border-t border-[var(--color-border)]">
       <div class="container mx-auto px-4 py-20">
         <div class="max-w-4xl mx-auto">
-          <h2 class="text-4xl font-serif font-bold text-white mb-12">
+          <h2 class="text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-12">
             Why Agentic Workflows Fail (And How to Fix Them)
           </h2>
 
-          <div class="prose prose-invert max-w-none prose-headings:font-serif prose-headings:text-white prose-p:text-zinc-400 prose-p:leading-relaxed prose-p:text-lg prose-a:text-teal-400 prose-strong:text-white prose-h3:text-2xl prose-h3:mt-12 prose-h3:mb-6">
+          <div class="prose prose-invert max-w-none prose-headings:font-serif prose-headings:text-[var(--color-text-primary)] prose-p:text-[var(--color-text-secondary)] prose-p:leading-relaxed prose-p:text-lg prose-a:text-[var(--color-accent)] prose-strong:text-[var(--color-text-primary)] prose-h3:text-2xl prose-h3:mt-12 prose-h3:mb-6">
             <p>
               Most organizations are experiencing a <strong>capability overhang</strong>: a widening gap between what frontier AI models can do and how they're actually deployed. Teams copy-paste into chat UIs or wire together brittle automations that collapse when an API response changes shape.
             </p>
@@ -404,13 +404,13 @@ const guideSchema = {
 
             <ul class="space-y-4 my-8">
               <li>
-                <strong class="text-white">Directives (Layer 1)</strong> — Standard Operating Procedures written in Markdown. They contain zero code, just business intent: the mission, expected inputs, allowed tools, and success criteria.
+                <strong class="text-[var(--color-text-primary)]">Directives (Layer 1)</strong> — Standard Operating Procedures written in Markdown. They contain zero code, just business intent: the mission, expected inputs, allowed tools, and success criteria.
               </li>
               <li>
-                <strong class="text-white">Orchestration (Layer 2)</strong> — The LLM itself, typically operating inside an IDE like VS Code or Cursor. It reads the Directive, evaluates state, and selects which Execution script to run next. This layer handles the unforeseen: API failures, partial data, ambiguous outcomes.
+                <strong class="text-[var(--color-text-primary)]">Orchestration (Layer 2)</strong> — The LLM itself, typically operating inside an IDE like VS Code or Cursor. It reads the Directive, evaluates state, and selects which Execution script to run next. This layer handles the unforeseen: API failures, partial data, ambiguous outcomes.
               </li>
               <li>
-                <strong class="text-white">Execution (Layer 3)</strong> — Modular, deterministic code (Python or TypeScript). A script like <code>send_email.py</code> doesn't reason—it accepts inputs and performs a single action with 100% reliability.
+                <strong class="text-[var(--color-text-primary)]">Execution (Layer 3)</strong> — Modular, deterministic code (Python or TypeScript). A script like <code>send_email.py</code> doesn't reason—it accepts inputs and performs a single action with 100% reliability.
               </li>
             </ul>
 
@@ -443,7 +443,7 @@ const guideSchema = {
               The future is cloud-native agents: natural-language queries to URLs that trigger reliable, observable workflows. The DOE Framework provides the architectural foundation to build systems that actually work in production.
             </p>
 
-            <p class="text-xl font-semibold text-white mt-12">
+            <p class="text-xl font-semibold text-[var(--color-text-primary)] mt-12">
               Download the complete guide to learn the implementation details, folder structures, cloud deployment patterns, and advanced techniques like self-annealing workflows and sub-agent orchestration.
             </p>
           </div>
@@ -452,46 +452,46 @@ const guideSchema = {
     </div>
 
     <!-- Related Resources -->
-    <div class="bg-zinc-950 border-t border-zinc-800">
+    <div class="bg-[var(--color-surface)] border-t border-[var(--color-border)]">
       <div class="container mx-auto px-4 py-16">
         <div class="max-w-6xl mx-auto">
-          <h2 class="text-3xl font-serif font-bold text-white mb-12 text-center">
+          <h2 class="text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-12 text-center">
             Related Resources
           </h2>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <a
               href="/articles/cli-agents"
-              class="bg-black p-8 rounded-xl border border-zinc-800 hover:border-teal-400 transition-all duration-300 group"
+              class="bg-[var(--color-bg)] p-8 rounded-xl border border-[var(--color-border)] hover:border-[var(--color-border-hover)] transition-all duration-300 group"
             >
-              <h3 class="text-xl font-serif font-bold text-white mb-3 group-hover:text-teal-400 transition-colors">
+              <h3 class="text-xl font-serif font-bold text-[var(--color-text-primary)] mb-3 group-hover:text-[var(--color-accent)] transition-colors">
                 CLI Agents: The Future of Development
               </h3>
-              <p class="text-zinc-400 text-sm leading-relaxed">
+              <p class="text-[var(--color-text-secondary)] text-sm leading-relaxed">
                 Explore how CLI-based AI agents are revolutionizing software development and workflow automation.
               </p>
             </a>
 
             <a
               href="/agents"
-              class="bg-black p-8 rounded-xl border border-zinc-800 hover:border-teal-400 transition-all duration-300 group"
+              class="bg-[var(--color-bg)] p-8 rounded-xl border border-[var(--color-border)] hover:border-[var(--color-border-hover)] transition-all duration-300 group"
             >
-              <h3 class="text-xl font-serif font-bold text-white mb-3 group-hover:text-teal-400 transition-colors">
+              <h3 class="text-xl font-serif font-bold text-[var(--color-text-primary)] mb-3 group-hover:text-[var(--color-accent)] transition-colors">
                 AGENTS.md Template
               </h3>
-              <p class="text-zinc-400 text-sm leading-relaxed">
+              <p class="text-[var(--color-text-secondary)] text-sm leading-relaxed">
                 Download the template I use to document and specify AI agent behaviors and safety protocols.
               </p>
             </a>
 
             <a
               href="/quiz"
-              class="bg-black p-8 rounded-xl border border-zinc-800 hover:border-teal-400 transition-all duration-300 group"
+              class="bg-[var(--color-bg)] p-8 rounded-xl border border-[var(--color-border)] hover:border-[var(--color-border-hover)] transition-all duration-300 group"
             >
-              <h3 class="text-xl font-serif font-bold text-white mb-3 group-hover:text-teal-400 transition-colors">
+              <h3 class="text-xl font-serif font-bold text-[var(--color-text-primary)] mb-3 group-hover:text-[var(--color-accent)] transition-colors">
                 Get Your AI Implementation Plan
               </h3>
-              <p class="text-zinc-400 text-sm leading-relaxed">
+              <p class="text-[var(--color-text-secondary)] text-sm leading-relaxed">
                 Take the 5-minute quiz to receive a custom roadmap for implementing AI in your organization.
               </p>
             </a>

@@ -103,11 +103,11 @@ Quiz Results:
 
   if (isComplete) {
     return (
-      <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-6 font-sans">
+      <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)] flex flex-col items-center justify-center p-6 font-sans">
         <div className="max-w-2xl w-full text-center space-y-6">
           <h1 className="text-3xl md:text-4xl font-serif font-bold">Got it!</h1>
-          <p className="text-xl text-zinc-300">I'll review your answers and send a quick analysis to {email}.</p>
-          <div className="bg-white/10 p-8 rounded-2xl border border-white/20">
+          <p className="text-xl text-[var(--color-text-secondary)]">I'll review your answers and send a quick analysis to {email}.</p>
+          <div className="bg-[var(--color-surface)] p-8 rounded-2xl border border-[var(--color-border)]">
             <Check className="w-16 h-16 text-green-400 mx-auto mb-4" />
             <p>If automation makes sense for your situation, I'll include rough pricing and next steps.</p>
           </div>
@@ -116,7 +116,7 @@ Quiz Results:
               reset();
               window.location.href = '/';
             }}
-            className="bg-[rgba(255,255,255,0.03)] text-white border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] px-8 py-3 rounded-full font-bold transition-all duration-300"
+            className="bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border)] hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] px-8 py-3 rounded-full font-bold transition-all duration-300"
           >
             Return Home
           </button>
@@ -143,7 +143,7 @@ Quiz Results:
   const progress = (currentStep / totalQuestions) * 100;
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)] flex flex-col font-sans overflow-x-hidden">
       {/* Header Section */}
       <div className="pt-12 pb-8 px-6 text-center space-y-4">
         <h1 className="text-3xl md:text-4xl font-serif font-bold leading-tight">
@@ -155,9 +155,9 @@ Quiz Results:
       </div>
 
       {/* Progress Bar Container */}
-      <div className="w-full h-1 bg-zinc-800 relative">
+      <div className="w-full h-1 bg-[var(--color-border)] relative">
         <motion.div
-          className="absolute h-full bg-white transition-all duration-500 ease-out"
+          className="absolute h-full bg-[var(--color-text-primary)] transition-all duration-500 ease-out"
           initial={{ width: 0 }}
           animate={{ width: `${progress}%` }}
         />
@@ -190,10 +190,10 @@ Quiz Results:
                         onClick={() => handleOptionClick(option)}
                         className="w-full flex items-center group text-left transition-all duration-200"
                       >
-                        <div className="flex-shrink-0 w-8 h-8 rounded bg-white mr-6 flex items-center justify-center group-hover:bg-zinc-200 transition-colors">
+                        <div className="flex-shrink-0 w-8 h-8 rounded bg-white mr-6 flex items-center justify-center group-hover:bg-gray-200 transition-colors">
                           {answers[currentStep + 1] === option && <Check className="text-black w-5 h-5" />}
                         </div>
-                        <span className="text-lg md:text-xl font-light text-zinc-100 group-hover:text-white">
+                        <span className="text-lg md:text-xl font-light text-[var(--color-text-secondary)] group-hover:text-[var(--color-text-primary)]">
                           {option}
                         </span>
                       </button>
@@ -208,7 +208,7 @@ Quiz Results:
                     {currentStep > 0 && (
                       <button
                         onClick={handleBack}
-                        className="flex items-center text-moonlight-text-muted hover:text-white transition-colors"
+                        className="flex items-center text-moonlight-text-muted hover:text-[var(--color-text-primary)] transition-colors"
                       >
                         <ChevronLeft className="w-5 h-5 mr-1" />
                         Back
@@ -222,7 +222,7 @@ Quiz Results:
                     <h2 className="text-3xl font-light leading-tight">
                       Based on your answers, automation could help.
                     </h2>
-                    <p className="text-zinc-600 text-lg">
+                    <p className="text-gray-600 text-lg">
                       I'll send you a quick analysis of where you're losing time—and what it might cost to fix.
                     </p>
                   </div>
@@ -230,45 +230,45 @@ Quiz Results:
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <label className="text-sm font-medium text-moonlight-text-muted uppercase tracking-wider">First Name</label>
+                        <label className="text-sm font-medium text-gray-500 uppercase tracking-wider">First Name</label>
                         <input
                           required
                           type="text"
                           value={firstName}
                           onChange={(e) => setFirstName(e.target.value)}
                           placeholder="First Name"
-                          className="w-full px-4 py-3 rounded border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-black transition-all"
+                          className="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black transition-all"
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-sm font-medium text-moonlight-text-muted uppercase tracking-wider">Last Name</label>
+                        <label className="text-sm font-medium text-gray-500 uppercase tracking-wider">Last Name</label>
                         <input
                           required
                           type="text"
                           value={lastName}
                           onChange={(e) => setLastName(e.target.value)}
                           placeholder="Last Name"
-                          className="w-full px-4 py-3 rounded border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-black transition-all"
+                          className="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black transition-all"
                         />
                       </div>
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-sm font-medium text-moonlight-text-muted uppercase tracking-wider">Email</label>
+                      <label className="text-sm font-medium text-gray-500 uppercase tracking-wider">Email</label>
                       <input
                         required
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Email"
-                        className="w-full px-4 py-3 rounded border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-black transition-all"
+                        className="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black transition-all"
                       />
                     </div>
 
                     <button
                       type="submit"
                       disabled={isSubmitting || !firstName || !lastName || !email}
-                      className="w-full bg-black text-white text-xl py-4 rounded font-medium hover:bg-zinc-800 transition-colors shadow-lg active:scale-[0.98] transform disabled:opacity-50"
+                      className="w-full bg-[var(--color-accent)] text-white text-xl py-4 rounded font-medium hover:bg-[var(--color-accent-hover)] transition-colors shadow-lg active:scale-[0.98] transform disabled:opacity-50"
                     >
                       {isSubmitting ? 'Sending...' : 'Get My Results'}
                     </button>
@@ -282,11 +282,11 @@ Quiz Results:
 
       {/* Footer Branding */}
       <footer className="p-6 flex justify-end items-center">
-        <div className="bg-zinc-900 px-4 py-2 rounded flex items-center space-x-2 text-sm border border-[rgba(255,255,255,0.06)]">
+        <div className="bg-[var(--color-surface)] px-4 py-2 rounded flex items-center space-x-2 text-sm border border-[var(--color-border)]">
           <span className="text-moonlight-text-secondary">Powered by</span>
           <div className="flex items-center space-x-1">
-            <div className="w-2 h-2 rounded-full bg-white opacity-50" />
-            <span className="font-bold text-white">interact</span>
+            <div className="w-2 h-2 rounded-full bg-[var(--color-text-primary)] opacity-50" />
+            <span className="font-bold text-[var(--color-text-primary)]">interact</span>
           </div>
         </div>
       </footer>
@@ -297,7 +297,7 @@ Quiz Results:
           font-family: 'Instrument Serif', serif;
         }
         body {
-          background-color: black;
+          background-color: var(--color-bg);
         }
       ` }} />
     </div>

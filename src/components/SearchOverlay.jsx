@@ -47,7 +47,7 @@ export default function SearchOverlay({ articles, isOpen, onClose }) {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Search Input */}
-            <div className="flex items-center gap-3 p-4 border-b border-[rgba(255,255,255,0.06)]">
+            <div className="flex items-center gap-3 p-4 border-b border-[var(--color-border)]">
               <Search className="w-5 h-5 text-moonlight-text-muted" />
               <input
                 ref={inputRef}
@@ -59,7 +59,7 @@ export default function SearchOverlay({ articles, isOpen, onClose }) {
               />
               <button
                 onClick={onClose}
-                className="p-1 hover:bg-[rgba(255,255,255,0.05)] rounded transition"
+                className="p-1 hover:bg-[var(--color-surface-hover)] rounded transition"
               >
                 <X className="w-5 h-5 text-moonlight-text-muted" />
               </button>
@@ -74,7 +74,7 @@ export default function SearchOverlay({ articles, isOpen, onClose }) {
                       <a
                         key={article.slug}
                         href={`/articles/${article.slug}`}
-                        className="block p-3 hover:bg-[rgba(255,255,255,0.05)] rounded-lg transition group"
+                        className="block p-3 hover:bg-[var(--color-surface-hover)] rounded-lg transition group"
                       >
                         <h3 className="text-moonlight-text-primary font-serif text-base mb-1 group-hover:text-purple-400">
                           {article.title}

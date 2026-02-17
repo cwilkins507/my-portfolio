@@ -7,8 +7,8 @@ const { variant = 'inline' } = Astro.props;
 ---
 
 {variant === 'inline' ? (
-  <div class="mt-16 mb-4 p-8 md:p-10 bg-[rgba(255,255,255,0.03)] rounded-2xl border border-[rgba(255,255,255,0.06)]">
-    <h3 class="text-2xl font-serif font-bold text-white mb-2">Get posts like this in your inbox</h3>
+  <div class="mt-16 mb-4 p-8 md:p-10 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)]">
+    <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-2">Get posts like this in your inbox</h3>
     <p class="text-moonlight-text-secondary mb-6">Bi-weekly emails on automation, AI, and building systems that run without you. No fluff.</p>
     <form
       action="https://buttondown.com/api/emails/embed-subscribe/collinwilkins"
@@ -21,11 +21,11 @@ const { variant = 'inline' } = Astro.props;
         name="email"
         placeholder="your@email.com"
         required
-        class="flex-1 px-4 py-3 bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] rounded-lg text-white placeholder-moonlight-text-muted focus:outline-none focus:border-teal-400 focus:ring-1 focus:ring-teal-400 transition"
+        class="flex-1 px-4 py-3 bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-[var(--color-text-primary)] placeholder-[var(--color-text-faint)] focus:outline-none focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] transition"
       />
       <button
         type="submit"
-        class="px-6 py-3 bg-teal-500 text-white font-semibold rounded-lg hover:bg-teal-400 transition-all duration-300 whitespace-nowrap"
+        class="px-6 py-3 bg-[var(--color-accent)] text-white font-semibold rounded-lg hover:bg-[var(--color-accent-hover)] transition-all duration-300 whitespace-nowrap"
       >
         Subscribe
       </button>
@@ -46,11 +46,11 @@ const { variant = 'inline' } = Astro.props;
         name="email"
         placeholder="your@email.com"
         required
-        class="flex-1 px-3 py-2 text-sm bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] rounded-lg text-white placeholder-moonlight-text-muted focus:outline-none focus:border-teal-400 focus:ring-1 focus:ring-teal-400 transition"
+        class="flex-1 px-3 py-2 text-sm bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-[var(--color-text-primary)] placeholder-[var(--color-text-faint)] focus:outline-none focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] transition"
       />
       <button
         type="submit"
-        class="px-4 py-2 text-sm bg-teal-500 text-white font-semibold rounded-lg hover:bg-teal-400 transition-all duration-300 whitespace-nowrap"
+        class="px-4 py-2 text-sm bg-[var(--color-accent)] text-white font-semibold rounded-lg hover:bg-[var(--color-accent-hover)] transition-all duration-300 whitespace-nowrap"
       >
         Subscribe
       </button>

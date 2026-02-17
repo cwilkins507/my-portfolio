@@ -84,12 +84,12 @@ const personSchema = {
 	<!-- 3. Currently Building Section (FiNimbus) -->
 	<section class="py-16 md:py-24 max-w-4xl mx-auto px-4">
 		<div
-			class="rounded-2xl p-8 md:p-12 text-center border transition-all duration-300 hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.12)] hover:shadow-[0_8px_32px_rgba(20,184,166,0.1)] will-change-transform"
-			style="background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.06);"
+			class="rounded-2xl p-8 md:p-12 text-center border transition-all duration-300 hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] hover:shadow-card will-change-transform"
+			style="background: var(--color-surface); border-color: var(--color-border);"
 		>
 			<div class="text-xs uppercase tracking-widest text-moonlight-text-faint mb-4">Currently Building</div>
 			<h3 class="text-2xl md:text-3xl font-serif font-semibold text-moonlight-text-primary mb-3">
-				<span class="text-teal-400">FiNimbus</span> — AI-powered CFO for small businesses.
+				<span class="text-[var(--color-accent)]">FiNimbus</span> — AI-powered CFO for small businesses.
 			</h3>
 			<p class="text-moonlight-text-secondary text-base leading-relaxed mb-6 max-w-2xl mx-auto">
 				Translates your financial statements into the key drivers that actually matter—the same ones I watched separate thriving dealerships from struggling ones at Ford Credit. Financial clarity, instantly.
@@ -98,7 +98,7 @@ const personSchema = {
 				href="https://finimbus.com"
 				target="_blank"
 				rel="noopener noreferrer"
-				class="text-teal-400 hover:text-teal-300 transition-colors font-medium inline-flex items-center gap-2"
+				class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors font-medium inline-flex items-center gap-2"
 			>
 				→ finimbus.com
 			</a>
@@ -111,14 +111,14 @@ const personSchema = {
 		<!-- Server-rendered article links for SEO crawlers -->
 		<noscript>
 			<div class="container mx-auto px-4 py-16">
-				<h2 class="text-2xl font-serif font-bold text-white mb-8">All Articles</h2>
+				<h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-8">All Articles</h2>
 				<ul class="space-y-4">
 					{articles.map(article => (
 						<li>
-							<a href={`/articles/${article.slug}`} class="text-teal-400 hover:text-teal-300 text-lg">
+							<a href={`/articles/${article.slug}`} class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] text-lg">
 								{article.title}
 							</a>
-							<p class="text-zinc-500 text-sm">{article.date}</p>
+							<p class="text-[var(--color-text-muted)] text-sm">{article.date}</p>
 						</li>
 					))}
 				</ul>

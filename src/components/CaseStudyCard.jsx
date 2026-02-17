@@ -15,12 +15,12 @@ export default function CaseStudyCard({ title, metric, description, featured = f
     rest: {
       scale: 1,
       y: 0,
-      boxShadow: '0 0 0 rgba(20,184,166,0)',
+      boxShadow: '0 0 0 rgba(0,0,0,0)',
     },
     hover: {
       scale: 1.01,
       y: -2,
-      boxShadow: '0 8px 32px rgba(20,184,166,0.1)',
+      boxShadow: '0 8px 32px var(--color-shadow-card)',
       transition: {
         duration: 0.3,
         ease: 'easeOut',
@@ -33,32 +33,28 @@ export default function CaseStudyCard({ title, metric, description, featured = f
       data-card-type="case-study"
       className={`rounded-lg p-6 transition-all duration-300 border will-change-transform ${
         featured ? 'md:col-span-2' : ''
-      } hover:bg-[rgba(255,255,255,0.05)]`}
+      } hover:bg-[var(--color-surface-hover)]`}
       style={{
-        background: 'rgba(255,255,255,0.03)',
-        borderColor: 'rgba(255,255,255,0.06)',
+        background: 'var(--color-surface)',
+        borderColor: 'var(--color-border)',
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)';
+        e.currentTarget.style.borderColor = 'var(--color-border-hover)';
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)';
+        e.currentTarget.style.borderColor = 'var(--color-border)';
       }}
       variants={cardVariants}
       initial="rest"
       whileHover="hover"
       animate="rest"
     >
-      <h3 className="text-lg font-serif font-semibold text-white mb-2">{title}</h3>
+      <h3 className="text-lg font-serif font-semibold text-[var(--color-text-primary)] mb-2">{title}</h3>
 
       {/* Metric with gradient text and animated counter */}
       <p className="text-2xl font-mono font-bold mb-2">
         <span
-          className="bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent"
-          style={{
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-          }}
+          className="text-[var(--color-accent)]"
         >
           {metric.type === 'counter' ? (
             <AnimatedCounter
@@ -71,19 +67,13 @@ export default function CaseStudyCard({ title, metric, description, featured = f
           )}
         </span>
         <noscript>
-          <span
-            className="bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent"
-            style={{
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-            }}
-          >
+          <span className="text-[var(--color-accent)]">
             {metric.prefix}{metric.value}{metric.suffix}
           </span>
         </noscript>
       </p>
 
-      <p className="text-zinc-400 text-sm">{description}</p>
+      <p className="text-[var(--color-text-secondary)] text-sm">{description}</p>
     </motion.div>
   );
 }

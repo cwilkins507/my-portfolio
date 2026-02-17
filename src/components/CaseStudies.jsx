@@ -49,7 +49,7 @@ const CaseStudies = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black py-20">
+    <div className="min-h-screen bg-[var(--color-bg)] py-20">
       <div className="container mx-auto px-4 md:px-8 max-w-5xl">
 
         {/* Hero */}
@@ -58,13 +58,13 @@ const CaseStudies = () => {
           <div
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[480px] z-0 hidden md:block"
             style={{
-              background: 'linear-gradient(135deg, rgba(20,184,166,0.15), rgba(139,92,246,0.08), transparent)',
+              background: 'linear-gradient(135deg, var(--color-blur-primary), var(--color-blur-secondary), transparent)',
               filter: 'blur(80px)',
             }}
             aria-hidden="true"
           />
           <div className="relative z-10">
-            <h1 className="text-3xl md:text-4xl font-serif font-extrabold text-white mb-6">
+            <h1 className="text-3xl md:text-4xl font-serif font-extrabold text-[var(--color-text-primary)] mb-6">
               Case Studies
             </h1>
             <p className="text-lg md:text-xl text-moonlight-text-secondary max-w-3xl mx-auto leading-relaxed">
@@ -77,12 +77,12 @@ const CaseStudies = () => {
         {caseStudies.map((cs, idx) => (
           <section
             key={cs.id}
-            className={`mb-16 ${idx < caseStudies.length - 1 ? 'border-b border-[rgba(255,255,255,0.06)] pb-16' : ''}`}
+            className={`mb-16 ${idx < caseStudies.length - 1 ? 'border-b border-[var(--color-border)] pb-16' : ''}`}
           >
             {/* Header with metric */}
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8">
               <div>
-                <h2 className="text-2xl md:text-3xl font-serif font-bold text-white mb-2">
+                <h2 className="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-2">
                   {cs.headline}
                 </h2>
                 <div className="flex items-center gap-3 text-moonlight-text-muted text-sm">
@@ -92,7 +92,7 @@ const CaseStudies = () => {
                 </div>
               </div>
               <div className="md:text-right flex-shrink-0">
-                <div className="text-4xl font-bold text-teal-400">{cs.metric}</div>
+                <div className="text-4xl font-bold text-[var(--color-accent)]">{cs.metric}</div>
                 <div className="text-moonlight-text-muted text-sm">{cs.metricLabel}</div>
               </div>
             </div>
@@ -100,21 +100,21 @@ const CaseStudies = () => {
             {/* Problem / Solution / Technical */}
             <div className="space-y-8 text-lg text-moonlight-text-secondary leading-relaxed">
               <div>
-                <h3 className="text-xl font-serif font-bold text-teal-400 mb-3">The Problem</h3>
+                <h3 className="text-xl font-serif font-bold text-[var(--color-text-primary)] mb-3">The Problem</h3>
                 {cs.problem.split('\n\n').map((p, i) => (
                   <p key={i} className="leading-relaxed">{p}</p>
                 ))}
               </div>
 
               <div>
-                <h3 className="text-xl font-serif font-bold text-teal-400 mb-3">What We Built</h3>
+                <h3 className="text-xl font-serif font-bold text-[var(--color-text-primary)] mb-3">What We Built</h3>
                 {cs.solution.split('\n\n').map((p, i) => (
                   <p key={i} className="leading-relaxed">{p}</p>
                 ))}
               </div>
 
               <div>
-                <h3 className="text-xl font-serif font-bold text-teal-400 mb-3">How It Works</h3>
+                <h3 className="text-xl font-serif font-bold text-[var(--color-text-primary)] mb-3">How It Works</h3>
                 {cs.technical.split('\n\n').map((p, i) => (
                   <p key={i} className="leading-relaxed">{p}</p>
                 ))}
@@ -126,7 +126,7 @@ const CaseStudies = () => {
               {cs.technologies.map(tech => (
                 <span
                   key={tech}
-                  className="bg-zinc-900 text-teal-300 text-xs font-medium px-3 py-1 rounded-full border border-[rgba(255,255,255,0.06)]"
+                  className="bg-[var(--color-surface)] text-[var(--color-text-secondary)] text-xs font-medium px-3 py-1 rounded-full border border-[var(--color-border)]"
                 >
                   {tech}
                 </span>
@@ -134,15 +134,15 @@ const CaseStudies = () => {
             </div>
 
             {/* Universal Takeaway */}
-            <div className="bg-[rgba(20,184,166,0.08)] border-l-4 border-teal-400 p-6 rounded-r-lg">
+            <div className="bg-[var(--color-accent-muted)] border-l-4 border-[var(--color-accent)] p-6 rounded-r-lg">
               <p className="text-moonlight-text-secondary italic">{cs.takeaway}</p>
             </div>
           </section>
         ))}
 
         {/* Bottom CTA */}
-        <section className="text-center py-16 border-t border-[rgba(255,255,255,0.06)]">
-          <h2 className="text-3xl font-serif font-bold text-white mb-4">
+        <section className="text-center py-16 border-t border-[var(--color-border)]">
+          <h2 className="text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-4">
             Have a bottleneck like these?
           </h2>
           <p className="text-moonlight-text-secondary mb-8 max-w-2xl mx-auto">
@@ -150,7 +150,7 @@ const CaseStudies = () => {
           </p>
           <a
             href="?modal=contact"
-            className="inline-flex items-center justify-center bg-teal-500 hover:bg-teal-400 text-white font-bold py-3 px-10 rounded-full transition-all duration-300 shadow-xl transform hover:scale-105"
+            className="inline-flex items-center justify-center bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white font-bold py-3 px-10 rounded-full transition-all duration-300 shadow-xl transform hover:scale-105"
           >
             <Mail className="w-5 h-5 mr-3" />
             Start a Conversation
