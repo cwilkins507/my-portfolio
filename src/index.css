@@ -81,8 +81,9 @@
    z-0:  Background blur effects
    z-[1]: Content cards (default stacking)
    z-10: Hero content, elevated elements
-   z-40: Navigation
    z-50: Grain texture overlay, modals
+   z-[52]: Mobile menu overlay
+   z-[55]: Navigation bar
 */
 
 /* Grain texture overlay */
