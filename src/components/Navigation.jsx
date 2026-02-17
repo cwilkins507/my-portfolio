@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Linkedin, Github, Search } from 'lucide-react';
+import { Linkedin, Github, Twitter, Search } from 'lucide-react';
 
 const Navigation = ({ portfolioData, onSearchClick }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -42,6 +42,9 @@ const Navigation = ({ portfolioData, onSearchClick }) => {
         <div className="flex items-center gap-6">
           <a href="/articles" className="text-[13px] text-moonlight-text-muted hover:text-moonlight-text-primary underline decoration-transparent hover:decoration-teal-400 underline-offset-4 transition-all duration-300">
             Articles
+          </a>
+          <a href="/newsletter" className="text-[13px] text-moonlight-text-muted hover:text-moonlight-text-primary underline decoration-transparent hover:decoration-teal-400 underline-offset-4 transition-all duration-300">
+            Newsletter
           </a>
           <a href="/resources" className="text-[13px] text-moonlight-text-muted hover:text-moonlight-text-primary underline decoration-transparent hover:decoration-teal-400 underline-offset-4 transition-all duration-300">
             Resources
@@ -86,6 +89,14 @@ const Navigation = ({ portfolioData, onSearchClick }) => {
               className="text-moonlight-text-muted hover:text-teal-400 transition"
             >
               <Github className="w-4 h-4" />
+            </a>
+            <a
+              href="https://x.com/CollinWilkins7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-moonlight-text-muted hover:text-teal-400 transition"
+            >
+              <Twitter className="w-4 h-4" />
             </a>
           </div>
         </div>
