@@ -96,7 +96,35 @@ const Downloads = () => {
             </a>
           </div>
 
-          {/* You can add more cards here easily */}
+          {/* AI Prompt Toolkit */}
+          <div>
+            <h2 className="text-[var(--color-text-muted)] text-sm font-mono uppercase tracking-[0.2em] mb-6 font-semibold">
+              Toolkits
+            </h2>
+            <a
+              href="/resources/ai-prompt-toolkit"
+              className="group block bg-[var(--color-surface)] p-8 rounded-2xl border border-[var(--color-border)] hover:border-[var(--color-border-hover)] transition-all duration-300"
+            >
+              <div className="flex items-start justify-between">
+                <div className="space-y-4">
+                  <div className="p-3 bg-[var(--color-surface)] rounded-lg w-fit border border-[var(--color-border)] group-hover:border-[var(--color-border-hover)] transition-colors">
+                    <FileDown className="w-6 h-6 text-[var(--color-accent)]" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-2 group-hover:text-[var(--color-accent)] transition-colors">
+                      AI Prompt Toolkit
+                    </h3>
+                    <p className="text-[var(--color-text-muted)] font-light leading-relaxed">
+                      22 tested prompts for market research, competitor analysis, SEO, and automation.
+                    </p>
+                    <span className="inline-block mt-3 text-xs text-[var(--color-text-secondary)] border border-[var(--color-border)] rounded-full px-3 py-1">
+                      Free · No email required
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
     </div>

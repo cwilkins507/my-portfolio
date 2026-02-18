@@ -135,6 +135,12 @@ That question is worth spending real time on.
 
 *Try agentic mode on one bounded task this week. Define the plan yourself, let the agent execute, review the output. You'll learn more from one real attempt than from reading ten articles about it. Including this one.*
 
+> ### Prompt Chaining for Business (Not Just Code)
+>
+> The orchestration pattern I describe in this article — decompose, delegate, review — applies beyond engineering. I use a 6-step prompt chain to run market research, build personas, analyze competitors, plan SEO, and produce content. Each prompt's output feeds the next. The full workflow (plus all 22 prompts) is in the free AI Prompt Toolkit.
+>
+> **[Get the AI Prompt Toolkit (free) →](/resources/ai-prompt-toolkit)**
+
 > **Accuracy note:** All statistics and claims in this article are sourced from the referenced publications. The METR study (July 2025) measured 19% slowdown for experienced developers. Anthropic's 2026 Agentic Coding Trends Report provides the 60% AI involvement and 0-20% full delegation figures. Model launch details are sourced from The Register, VentureBeat, and vendor announcements. No fabricated data, quotes, or testimonials.
 
 ## References
