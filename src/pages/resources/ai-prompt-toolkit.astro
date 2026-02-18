@@ -1,0 +1,1269 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NewsletterSignup from '../../components/NewsletterSignup.astro';
+
+const toolkitSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "22 AI Prompts That Replace Your Marketing Team",
+      "description": "22 original AI prompts for market research, competitor analysis, SEO, and automation — built and tested by a solo founder running two businesses.",
+      "author": {
+        "@type": "Person",
+        "name": "Collin Wilkins",
+        "url": "https://collinwilkins.com/about"
+      },
+      "datePublished": "2026-02-18",
+      "dateModified": "2026-02-18",
+      "publisher": {
+        "@type": "Person",
+        "name": "Collin Wilkins"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://collinwilkins.com/resources/ai-prompt-toolkit"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://collinwilkins.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Resources",
+          "item": "https://collinwilkins.com/resources"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "AI Prompt Toolkit",
+          "item": "https://collinwilkins.com/resources/ai-prompt-toolkit"
+        }
+      ]
+    }
+  ]
+};
+
+const categories = [
+  { id: "automation", name: "Automation & Operations", count: 3 },
+  { id: "market-research", name: "Market Research", count: 4 },
+  { id: "personas", name: "Customer Personas", count: 3 },
+  { id: "competitors", name: "Competitor Analysis", count: 3 },
+  { id: "seo", name: "SEO", count: 4 },
+  { id: "website", name: "Website & Conversion", count: 3 },
+  { id: "marketing", name: "Marketing & Growth", count: 2 },
+];
+---
+
+<Layout
+  title="AI Prompt Toolkit: 22 Prompts for Solo Founders | Collin Wilkins"
+  description="22 original AI prompts for market research, competitor analysis, SEO, and automation — built and tested by a solo founder running two businesses. Free, no email required."
+  type="article"
+  publishedTime="2026-02-18"
+  schema={toolkitSchema}
+>
+  <div class="min-h-screen bg-[var(--color-bg)]">
+    <!-- Hero Section -->
+    <div class="container mx-auto px-4 py-20 md:py-28">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-8">
+          <a href="/resources" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] mb-8 inline-block text-sm">
+            &larr; Back to Resources
+          </a>
+        </div>
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-extrabold leading-tight mb-6 text-center">
+          <span class="text-[var(--color-text-primary)]">22 AI Prompts That Replace</span><br />
+          <span class="italic text-[var(--color-text-secondary)]">Your Marketing Team</span>
+        </h1>
+
+        <p class="text-xl text-[var(--color-text-secondary)] leading-relaxed mb-8 text-center max-w-3xl mx-auto">
+          The prompts I built and tested for market research, personas, competitor analysis, SEO, and ops. Across two businesses. No team. Every prompt is copy-paste ready.
+        </p>
+
+        <div class="flex justify-center items-center gap-4 mb-4">
+          <span class="text-sm text-[var(--color-text-secondary)] border border-[var(--color-border)] rounded-full px-4 py-2">
+            22 prompts &middot; 7 categories
+          </span>
+          <span class="text-sm text-[var(--color-text-secondary)] border border-[var(--color-border)] rounded-full px-4 py-2">
+            Free &middot; No email required
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Navigation -->
+    <div class="container mx-auto px-4 py-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl px-8 py-6 space-y-3">
+          <!-- Search -->
+          <div class="relative max-w-lg mx-auto" role="search" aria-label="Search prompts">
+            <label for="prompt-search" class="sr-only">Search prompts</label>
+            <svg class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--color-text-muted)] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            <input
+              type="text"
+              id="prompt-search"
+              placeholder="Search prompts by keyword..."
+              class="w-full h-10 pl-10 pr-24 text-sm bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:border-[var(--color-accent)] focus:shadow-[0_0_0_3px_rgba(var(--color-accent-rgb),0.15)] transition-all"
+            />
+            <span id="prompt-search-count" class="absolute right-10 top-1/2 -translate-y-1/2 text-xs text-[var(--color-text-muted)] whitespace-nowrap hidden" aria-live="polite"></span>
+            <button id="prompt-search-clear" class="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hidden" type="button" aria-label="Clear search">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+          </div>
+          <!-- Category pills — wrapping grid, all visible -->
+          <nav class="flex flex-wrap justify-center gap-2" aria-label="Prompt categories">
+            {categories.map(cat => (
+              <a
+                href={`#${cat.id}`}
+                data-category-link={cat.id}
+                class="px-4 py-1.5 text-sm font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] bg-[var(--color-bg)] hover:bg-[var(--color-border)] rounded-full border border-[var(--color-border)] transition-all duration-200"
+              >
+                {cat.name} <span class="text-[var(--color-text-muted)]" data-category-count>({cat.count})</span>
+              </a>
+            ))}
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Use -->
+    <div class="container mx-auto px-4 py-16">
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-[var(--color-surface)] p-8 md:p-10 rounded-2xl border border-[var(--color-border)]">
+          <h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Don't use these prompts one at a time.</h2>
+          <p class="text-[var(--color-text-secondary)] leading-relaxed mb-4">
+            The biggest mistake people make with AI prompts is treating them like Google searches. These 22 prompts are organized into a system. Each category builds on the last.
+          </p>
+          <p class="text-[var(--color-text-secondary)] leading-relaxed mb-6">
+            Market research feeds personas. Personas feed competitor analysis. Competitor analysis feeds SEO. SEO feeds content. The compound output is worth more than any individual prompt. <a href="#chaining" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">See the chaining workflow &darr;</a>
+          </p>
+          <p class="text-sm text-[var(--color-text-muted)]">
+            <strong class="text-[var(--color-text-secondary)]">Who this is for:</strong> Solo founders, freelancers, and small teams (1-5 people) already comfortable with ChatGPT or Claude. Revenue range $100K&ndash;$1M.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 1: AUTOMATION & OPERATIONS -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div id="automation" class="scroll-mt-32 border-t border-[var(--color-border)]">
+      <div class="container mx-auto px-4 py-16">
+        <div class="max-w-4xl mx-auto">
+          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 1 of 7</p>
+          <h2 class="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Automation & Operations</h2>
+          <p class="text-lg text-[var(--color-text-secondary)] mb-12 max-w-3xl">
+            If you're running a service business, this is your home base. These three prompts cover workflow design, process breakdown, and AI integration planning.
+          </p>
+
+          <!-- Prompt 1 -->
+          <div class="mb-16" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#1</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Create Business Automation Workflows</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              You have a process that eats 3-5 hours per week. You know it could be automated but you don't know where to start or which tools to connect. This prompt maps the entire workflow for you.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are an automation architect specializing in small business operations. Your job is to design practical, implementable automation workflows.
+
+I run [YOUR BUSINESS TYPE] and need to automate this process:
+
+**Current process (manual steps):**
+[DESCRIBE EACH STEP YOU DO MANUALLY — e.g., "1. New lead fills out contact form on website. 2. I copy their info into a Google Sheet. 3. I send a welcome email from Gmail. 4. I create a task in Asana. 5. I add them to my Mailchimp list."]
+
+**Tools I already use:**
+[LIST YOUR CURRENT TOOLS — e.g., Google Workspace, Asana, Mailchimp, Stripe, Slack]
+
+**Automation platform preference:**
+[Zapier / Make.com / n8n / No preference]
+
+**Budget for new tools:** [e.g., $50-100/month]
+
+Design an automation workflow for this process. For each step, provide:
+1. Trigger event (what starts this step)
+2. Action (what happens)
+3. Tool/integration used
+4. Data passed between steps
+5. Error handling (what happens if this step fails)
+
+Also include:
+- A plain-English summary of the full workflow
+- Implementation sequence (what to build first)
+- Estimated setup time
+- Monthly cost estimate
+- One thing that will likely break and how to fix it</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~2 hours per workflow</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Mapping new automations, client proposals, scoping projects</span>
+            </div>
+          </div>
+
+          <!-- Prompt 2 -->
+          <div class="mb-16" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#2</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Automate Business Processes</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              You know which process to automate but need step-by-step implementation instructions — not strategy, not theory, just "do this, then this, then this."
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are a process automation specialist. I need implementation-ready instructions to automate a specific business process. No strategy or theory — just the steps to build it.
+
+**Process to automate:**
+[DESCRIBE THE PROCESS — e.g., "Client onboarding: when a new client signs a proposal in PandaDoc, automatically create their project folder in Google Drive, add them to our project management tool, send a welcome email with next steps, and schedule a kickoff call."]
+
+**Tools available:**
+[LIST YOUR TOOLS — e.g., PandaDoc, Google Drive, ClickUp, Gmail, Calendly]
+
+**Automation platform:** [Zapier / Make.com / n8n]
+
+**My technical level:** [Beginner — I can click through UIs / Intermediate — I can write basic scripts / Advanced — I can use APIs and webhooks]
+
+For each automation step, provide:
+1. The exact trigger or action to configure
+2. Which fields to map and where the data comes from
+3. Any filters or conditions to set
+4. Testing instructions (how to verify this step works)
+5. Common failure point and fix
+
+Format the output as a numbered checklist I can follow in one sitting. Include the estimated time to build each step.</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~1-2 hours per process</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Quick implementation plans, breaking complex processes into steps</span>
+            </div>
+          </div>
+
+          <!-- Prompt 3 -->
+          <div class="mb-4" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#3</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Optimize AI Business Integration</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              You're past the "should I use AI?" phase and into "where specifically?" This prompt analyzes your operations and recommends where AI creates the most leverage.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are an AI integration consultant for small businesses. Analyze my business and recommend specific, practical AI integration opportunities.
+
+**My business:**
+- Type: [YOUR BUSINESS TYPE — e.g., "marketing agency serving B2B SaaS companies"]
+- Team size: [NUMBER]
+- Annual revenue: [RANGE — e.g., "$300K-$500K"]
+- Main services/products: [LIST THEM]
+
+**Current tech stack:**
+[LIST ALL TOOLS — e.g., "HubSpot CRM, Google Workspace, Slack, ClickUp, QuickBooks, Mailchimp, WordPress"]
+
+**Where I spend the most time (weekly):**
+1. [TASK AND HOURS — e.g., "Writing client reports: 6 hours"]
+2. [TASK AND HOURS — e.g., "Responding to emails: 4 hours"]
+3. [TASK AND HOURS — e.g., "Creating social media content: 3 hours"]
+
+**What I've already tried with AI:** [e.g., "ChatGPT for drafting emails, nothing else"]
+
+**Budget for AI tools:** [e.g., "$100-300/month"]
+
+Provide:
+1. Top 5 AI integration opportunities, ranked by time saved per dollar spent
+2. For each opportunity: specific tool recommendation, expected time savings per week, setup complexity (1-5), and monthly cost
+3. A 30-day implementation roadmap (what to set up first, second, third)
+4. One integration I should NOT do yet and why
+5. Total estimated weekly hours saved after full implementation</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~2 hours per assessment</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> AI readiness assessments, tool selection, integration planning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 2: MARKET RESEARCH -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div id="market-research" class="scroll-mt-32 border-t border-[var(--color-border)] bg-[var(--color-surface)]">
+      <div class="container mx-auto px-4 py-16">
+        <div class="max-w-4xl mx-auto">
+          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 2 of 7</p>
+          <h2 class="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Market Research</h2>
+          <p class="text-lg text-[var(--color-text-secondary)] mb-12 max-w-3xl">
+            Everything else in this toolkit works better when you start here. Market research is the foundation that makes your personas, competitor analysis, and SEO strategy accurate instead of theoretical.
+          </p>
+
+          <!-- Prompt 4 -->
+          <div class="mb-16" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#4</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Conduct Reddit Market Research</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              This is the prompt I wish I'd found six months earlier. It mines Reddit for the exact language your target audience uses when nobody's trying to sell them anything.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are a market research analyst specializing in online community analysis. Mine Reddit for authentic audience language and pain points.
+
+**Research target:**
+- Problem/topic: [THE PROBLEM YOUR PRODUCT SOLVES — e.g., "small business owners struggling with financial management"]
+- Target audience: [WHO SPECIFICALLY — e.g., "business owners with 2-12 employees, $300K-$800K revenue"]
+- Subreddits to analyze: [LIST 3-5 — e.g., "r/smallbusiness, r/Bookkeeping, r/Entrepreneur, r/freelance"]
+
+**What I'm looking for:**
+1. The exact words and phrases people use to describe this problem (not marketing language — their language)
+2. Recurring complaints and frustrations (what comes up again and again)
+3. Solutions they've tried and why those solutions failed
+4. Emotional triggers (what makes them angry, anxious, or frustrated about this topic)
+5. Objections to existing solutions (why they haven't bought something already)
+
+**Output format:**
+1. **Top 10 verbatim phrases** — Direct quotes or near-quotes that capture how this audience talks about the problem. These should be usable as blog post titles or ad copy.
+2. **Pain point themes** — Group the findings into 4-6 recurring themes with 2-3 supporting examples each.
+3. **Failed solutions** — What has this audience already tried? Why didn't it work?
+4. **Buying triggers** — What events or moments push someone from "I should fix this" to "I'm fixing this now"?
+5. **Objection map** — The top 5 reasons this audience resists buying a solution, with the language they use to express each objection.</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~3 hours per research session</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Pre-launch research, messaging, blog topic ideation</span>
+            </div>
+          </div>
+
+          <!-- Prompt 5 -->
+          <div class="mb-16" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#5</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Conduct Market Analysis</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              You need the lay of the land before committing to a market. This prompt produces a structured analysis of market size, key players, and opportunity areas.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are a market analyst preparing a competitive landscape briefing for a founder entering a new market.
+
+**Market to analyze:**
+- Industry/niche: [YOUR MARKET — e.g., "AI-powered financial tools for small businesses"]
+- Geographic focus: [e.g., "United States, English-speaking markets"]
+- My product/service: [ONE SENTENCE — e.g., "An AI CFO tool that automates financial analysis for businesses with $300K-$800K revenue"]
+
+**Provide a structured analysis covering:**
+
+1. **Market overview** — Current size estimate, growth trajectory, key drivers, and one major headwind
+2. **Key players** — Top 5-8 competitors with: company name and URL, target audience, pricing model, key differentiator, weakness or gap
+3. **Audience segments** — 3-4 distinct buyer segments within this market
+4. **Market gaps** — 2-3 underserved niches or unmet needs
+5. **Barriers to entry** — What makes this market hard to enter?
+6. **Strategic recommendations** — Where should I position based on my product?
+
+Cite sources where possible. Flag estimates vs. verified figures.</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~2+ hours per analysis</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> New market entry, strategic planning, investor conversations</span>
+            </div>
+          </div>
+
+          <!-- Prompt 6 -->
+          <div class="mb-16" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#6</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Conduct Market Research Validation</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              You have a specific business idea. Before you spend three months building it, run this sanity check against market data.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are a startup advisor who specializes in pre-build market validation. Evaluate this business idea honestly — I need a go/no-go recommendation, not encouragement.
+
+**The idea:**
+[DESCRIBE YOUR PRODUCT OR SERVICE IN 2-3 SENTENCES]
+
+**Target audience:** [WHO SPECIFICALLY]
+
+**My unfair advantage (if any):** [e.g., "I'm a software engineer who also runs a service business"]
+
+**Evaluate this idea across:**
+
+1. **Demand signals** — Is there evidence people are actively searching for or paying for solutions to this problem?
+2. **Competitive density** — How many direct and indirect competitors exist? Are they well-funded?
+3. **Market sizing** — Estimate the addressable market using bottom-up logic (number of potential customers × realistic price point)
+4. **Willingness to pay** — What are comparable products charging?
+5. **Timing** — Is this idea early, on time, or late to market?
+6. **Risk factors** — Top 3 reasons this idea could fail.
+
+**Final output:** A go / pivot / pass recommendation with specific reasoning. If "pivot," describe what you'd change.</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~2+ hours per validation</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Pre-build sanity checks, choosing between ideas</span>
+            </div>
+          </div>
+
+          <!-- Prompt 7 -->
+          <div class="mb-4" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#7</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Conduct Industry Trends Research</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              What's heating up? What's cooling down? This prompt gives you a structured view of industry trends with trajectory data.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are an industry analyst tracking trends for a business owner who needs to make strategic decisions — not just stay informed.
+
+**Industry:** [YOUR INDUSTRY]
+**My business context:** [WHAT YOU DO]
+**Time horizon:** Next 6-12 months
+
+**Produce a trend analysis table with these columns:**
+
+| Trend | Current State | Trajectory | Adoption Stage | Key Players | Relevance to My Business | Content Opportunity |
+
+**Include:**
+1. 8-10 trends, ranked by relevance to my business
+2. For each trend: one specific data point or signal that supports the trajectory assessment
+3. A "Trends to Watch" section with 2-3 emerging signals too early to call
+4. A "Trends to Ignore" section with 1-2 trends that get attention but won't impact businesses like mine
+
+Cite sources where possible. Flag data-backed vs. directional estimates.</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~1-2 hours per research cycle</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Content planning, staying current, finding emerging opportunities</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 3: CUSTOMER PERSONAS -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div id="personas" class="scroll-mt-32 border-t border-[var(--color-border)]">
+      <div class="container mx-auto px-4 py-16">
+        <div class="max-w-4xl mx-auto">
+          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 3 of 7</p>
+          <h2 class="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Customer Personas</h2>
+          <p class="text-lg text-[var(--color-text-secondary)] mb-12 max-w-3xl">
+            Most founders skip this step and write marketing copy for "everyone." Feed these prompts your market research output from Section 2 for dramatically better results.
+          </p>
+
+          <!-- Prompt 8 -->
+          <div class="mb-16" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#8</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Create Customer Personas</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              The foundational persona prompt. Everything downstream — content, ads, product decisions — gets better when this one is done well.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are a customer research strategist. Build a detailed buyer persona for my business based on the information I provide.
+
+**My business:** [WHAT YOU SELL]
+**Target market:** [WHO YOU SELL TO]
+
+**Audience research (paste below if available):**
+[PASTE OUTPUT FROM REDDIT RESEARCH PROMPT OR ANY AUDIENCE DATA YOU HAVE. If you don't have any, say "None — build from general market knowledge."]
+
+**Build a persona document with:**
+
+1. **Name and snapshot** — A realistic first name and one-paragraph description
+2. **Demographics** — Age range, role, business type, team size, revenue range, location
+3. **Psychographics** — Values, identity, what they admire, what they avoid
+4. **Daily reality** — What does a typical workday look like? What takes too long?
+5. **Goals** — Top 3 business goals and top 3 personal goals
+6. **Pain points** — Top 5 frustrations, written in their language (not marketing language)
+7. **Objections** — 5 most likely reasons they'd say no to a product like mine
+8. **Buying behavior** — Where do they research? Who influences their decisions?
+9. **Content preferences** — What do they read? What channels and formats work?
+10. **Messaging angles** — 3 headlines that would stop this person mid-scroll. 3 email opening lines.
+
+Write the persona in second person ("You wake up at...") so it reads like a character description.</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~2+ hours per persona</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> New product development, content planning, team alignment</span>
+            </div>
+          </div>
+
+          <!-- Prompt 9 -->
+          <div class="mb-16" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#9</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Conduct Audience Research</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              Broader than a single persona. This maps your entire audience landscape — segments, channels, content preferences — so you know where to show up.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are an audience research analyst. Map the full audience landscape for my business — not just one persona, but all the segments I should know about.
+
+**My business:** [WHAT YOU SELL AND TO WHOM]
+**Current customers (if any):** [DESCRIBE YOUR BEST CUSTOMERS]
+**Channels I currently use:** [e.g., "Blog, X/Twitter, newsletter, organic search"]
+
+**Produce an audience research document with:**
+
+1. **Audience segments** — Identify 3-5 distinct segments. For each: segment name, estimated size, willingness to pay, how to reach them, content they consume, buying trigger
+
+2. **Channel analysis** — For each channel, assess fit:
+   Rate each: Opportunity (High/Med/Low), Effort (High/Med/Low), Time to Results (Fast/Medium/Slow)
+
+3. **Content format matrix** — Which formats work best for each segment:
+   | Segment | Blog | Video | Email | Social | Podcast |
+   (Rate each: Primary / Secondary / Skip)
+
+4. **Prioritization** — Which segment first? Which channel gives best ROI with limited time?</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~2+ hours per audience analysis</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Distribution strategy, channel selection, content format decisions</span>
+            </div>
+          </div>
+
+          <!-- Prompt 10 -->
+          <div class="mb-4" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#10</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Generate Target Audience Fit Analysis</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              Before you commit to a go-to-market strategy, run this sanity check. Does the thing you're building actually match the people you're building it for?
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are a product-market fit analyst. Evaluate how well my product matches my target audience. Be critical — I'd rather find gaps now than after launch.
+
+**My product/service:**
+[DESCRIBE WHAT YOU'RE BUILDING — features, pricing, delivery model]
+
+**My target audience:**
+[DESCRIBE YOUR TARGET CUSTOMER — or paste your persona document]
+
+**Evaluate fit across these dimensions and score each 1-10:**
+
+1. **Problem-Solution Fit** — Does my product solve a real, urgent problem?
+2. **Language Fit** — Does my messaging use words this audience uses?
+3. **Price-Value Fit** — Is pricing aligned with what this audience expects to pay?
+4. **Channel Fit** — Can I reach this audience through channels I have access to?
+5. **Timing Fit** — Is this audience ready to buy this type of solution now?
+6. **Competitive Fit** — Is my differentiation meaningful to this audience?
+
+**For each dimension:** Score (1-10), Evidence, Gap (if score < 7), Fix (one concrete action)
+
+**Summary:** Overall fit score, top 2 strengths, top 2 risks, one recommendation.</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~1-2 hours per analysis</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Pre-launch validation, feature prioritization, go-to-market planning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 4: COMPETITOR ANALYSIS -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div id="competitors" class="scroll-mt-32 border-t border-[var(--color-border)] bg-[var(--color-surface)]">
+      <div class="container mx-auto px-4 py-16">
+        <div class="max-w-4xl mx-auto">
+          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 4 of 7</p>
+          <h2 class="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Competitor Analysis</h2>
+          <p class="text-lg text-[var(--color-text-secondary)] mb-12 max-w-3xl">
+            Stop guessing at your positioning. The URL-based prompt below is my single top pick in the entire toolkit.
+          </p>
+
+          <!-- Prompt 11 -->
+          <div class="mb-16" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#11</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Get Competitor Analysis from URLs</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              My top pick in the entire toolkit. Just paste in competitor URLs and get back a competitive intelligence doc you can act on.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are a competitive intelligence analyst. Analyze these competitor websites and produce an actionable intelligence document.
+
+**Competitor URLs:**
+1. [URL 1]
+2. [URL 2]
+3. [URL 3]
+
+**My business:** [WHAT YOU DO AND WHO YOU SERVE]
+
+**For each competitor, analyze:**
+
+1. **Positioning statement** — How do they describe themselves?
+2. **Target audience** — Who are they targeting? (inferred from messaging, case studies, pricing)
+3. **Pricing signals** — Visible pricing, pricing model, free tier?
+4. **Key features** — Top 5-7 features they highlight
+5. **Messaging tone** — Professional/casual/technical?
+6. **Social proof** — What testimonials, logos, case studies do they use?
+7. **Content strategy** — Blog topics? How often?
+8. **Weaknesses** — What's missing? What audience are they ignoring?
+
+**Then provide:**
+- **Comparison matrix** — Feature-by-feature comparison table
+- **Positioning gaps** — 3 specific angles where I can differentiate
+- **Content gaps** — 3 topics they're not covering that I should
+- **One thing each competitor does better than me** — Be honest</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~4 hours per competitor</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Competitive positioning, feature gaps, content differentiation</span>
+            </div>
+          </div>
+
+          <!-- Prompt 12 -->
+          <div class="mb-16" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#12</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Conduct Competitive Analysis</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              Broader than the URL-based prompt. This one maps the competitive landscape at the industry level — who's playing, where the gaps are, and how to position against the field.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are a competitive strategy consultant. Conduct a comprehensive competitive analysis of my market.
+
+**My market:** [YOUR INDUSTRY/NICHE]
+**My product:** [ONE-LINE DESCRIPTION]
+**My current positioning:** [HOW YOU CURRENTLY DESCRIBE YOURSELF — or "I haven't figured this out yet"]
+
+**Produce a competitive landscape analysis:**
+
+1. **Market map** — Categorize competitors into tiers: Direct, Indirect, Adjacent. List 3-5 per tier.
+2. **Competitive dynamics** — Who's the market leader and why? Who's gaining ground? Where is consolidation happening?
+3. **Feature landscape** — What's table stakes vs. differentiators?
+4. **Pricing landscape** — Typical range? Dominant models? Race to bottom or room for premium?
+5. **Content and distribution** — How do competitors acquire customers?
+6. **Opportunity map** — Underserved segments, use cases, and content gaps
+7. **Positioning recommendation** — How should I position to win?</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~2+ hours per analysis</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Market entry strategy, identifying underserved niches</span>
+            </div>
+          </div>
+
+          <!-- Prompt 13 -->
+          <div class="mb-4" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#13</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Generate Industry Gap Analysis</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              Where are the white spaces in your market? This prompt maps underserved gaps by opportunity size, competitive density, and your ability to fill them.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are a strategic advisor helping a founder find high-opportunity gaps in their market.
+
+**My industry:** [YOUR MARKET]
+**My capabilities:** [WHAT YOU'RE GOOD AT]
+**My constraints:** [e.g., "Solo founder, limited budget, can't compete on enterprise features"]
+
+**Identify 5-8 gaps in this market. For each gap, provide:**
+
+1. **Gap description** — What's underserved or missing?
+2. **Evidence** — What signals tell you this gap exists?
+3. **Target audience** — Who is underserved?
+4. **Market size** — Small niche / Medium segment / Large opportunity
+5. **Competitive density** — Empty / Light / Moderate / Crowded
+6. **Entry barrier** — Low (content play) / Medium (tool required) / High (enterprise sales)
+7. **Fit with my capabilities** — Score 1-10
+8. **Recommended approach** — How should I attack this gap?
+
+**Rank all gaps by:** Priority = (Market Size x Fit) / (Competitive Density x Entry Barrier)
+
+Recommend the top 2 to pursue first with a specific first step for each.</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~2+ hours per analysis</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Prioritizing offerings, finding underserved segments</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 5: SEO -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div id="seo" class="scroll-mt-32 border-t border-[var(--color-border)]">
+      <div class="container mx-auto px-4 py-16">
+        <div class="max-w-4xl mx-auto">
+          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 5 of 7</p>
+          <h2 class="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-4">SEO</h2>
+          <p class="text-lg text-[var(--color-text-secondary)] mb-12 max-w-3xl">
+            The prompts that build your traffic engine. SEO is a slow game, but the research phase doesn't have to be.
+          </p>
+
+          <!-- Prompt 14 -->
+          <div class="mb-16" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#14</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Generate SEO Strategy Plan</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              The "big picture" prompt for anyone starting from zero. Produces a full SEO strategy with keyword clusters, content architecture, and a 90-day action plan.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are an SEO strategist building a plan for a small business with limited time and budget. Prioritize high-impact, low-effort wins.
+
+**My website:** [YOUR DOMAIN]
+**My business:** [WHAT YOU DO AND WHO YOU SERVE]
+**Current state of SEO:** [e.g., "25 blog posts, ~500 organic visits/month. No keyword strategy."]
+**My content capacity:** [e.g., "1-2 blog posts per week. I'm the only writer."]
+
+**Build an SEO strategy covering:**
+
+1. **Quick wins** — 3-5 things I can do this week to improve rankings
+2. **Keyword strategy** — 5 pillar topics, each with 3-4 cluster keywords, estimated difficulty, and content type recommendation
+3. **Content architecture** — Pillar-spoke model, internal linking strategy, URL structure
+4. **Technical SEO checklist** — Page speed, schema markup, mobile, indexing
+5. **90-day plan** — Month-by-month specific actions
+6. **Metrics to track** — What should I measure weekly?
+
+Be specific to my business. Don't give me generic advice.</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~2+ hours</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Starting SEO from scratch, auditing existing approach</span>
+            </div>
+          </div>
+
+          <!-- Prompt 15 -->
+          <div class="mb-16" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#15</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Conduct Keyword Research</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              From blank spreadsheet to prioritized keyword list. Covers brainstorming, clustering, volume estimation, and content mapping.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are an SEO keyword research specialist. Build a prioritized keyword list for my business that I can turn into a content calendar.
+
+**My business:** [WHAT YOU DO AND WHO YOU SERVE]
+**My website domain:** [YOUR DOMAIN]
+**Existing content topics (if any):** [LIST YOUR CURRENT BLOG POST TOPICS]
+**Primary competitors:** [2-3 COMPETITOR DOMAINS]
+
+**Step 1 — Brainstorm:** Generate 30-40 keyword ideas across: problems, solutions, questions, comparisons
+**Step 2 — Cluster:** Group into 5-7 thematic clusters
+**Step 3 — Analyze:** For each keyword, estimate: Monthly Volume, Difficulty, Search Intent, Recommended Content Type
+**Step 4 — Prioritize:** Rank top 15 keywords. Low difficulty + commercial intent = highest priority.
+
+**Output:** Prioritized keyword table, plus 3 "quick win" keywords I could rank for within 60 days.
+
+Note: Estimates are directional. I'll validate top picks with Ahrefs/Semrush.</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~1.5 hours per keyword session</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Initial keyword research, finding content opportunities</span>
+            </div>
+          </div>
+
+          <!-- Prompt 16 -->
+          <div class="mb-16" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#16</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Generate Long-Tail Keywords</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              Long-tail keywords are where solo founders actually compete. This prompt surfaces the specific, low-competition variations of your core keywords.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are an SEO specialist focused on long-tail keyword strategy for small businesses competing against larger players.
+
+**My core keywords:** [LIST 3-5]
+**My niche:** [YOUR SPECIFIC MARKET]
+**Industries I serve:** [LIST 2-4]
+
+**For each core keyword, generate:**
+
+1. **10 long-tail variations** with industry-specific, size-specific, problem-specific, and comparison modifiers
+
+2. **For each variation, estimate:**
+   | Keyword | Est. Volume | Competition | Purchase Intent | Recommended Content Type |
+
+3. **Quick-win cluster** — The 5 long-tail keywords with the best combination of low competition, high purchase intent, and niche relevance
+
+4. **Programmatic SEO opportunities** — Are there patterns that could be templated? (e.g., "[metric] for [industry]" → one template, 10 pages)
+
+Flag which estimates are data-backed vs. directional guesses.</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~2+ hours</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Low-competition keywords, niche targeting, programmatic SEO</span>
+            </div>
+          </div>
+
+          <!-- Prompt 17 -->
+          <div class="mb-4" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#17</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Generate SEO Content Strategy</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              Turns your keyword research into a prioritized content plan with impact scoring so you know what to write first.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are a content strategist specializing in SEO-driven content for small businesses. Build a content strategy that maximizes organic traffic with limited publishing capacity.
+
+**My business:** [WHAT YOU DO AND WHO YOU SERVE]
+**My keyword research:** [PASTE OR SUMMARIZE OUTPUT FROM KEYWORD RESEARCH PROMPT]
+**Current content:** [NUMBER OF POSTS, TOPICS COVERED]
+**Publishing capacity:** [e.g., "2 posts per month, 1 writer (me)"]
+**Goal:** [e.g., "Grow organic traffic from 500 to 2,000/month in 6 months"]
+
+**Build a content strategy matrix:**
+| # | Title | Target Keyword | Content Type | Funnel Stage | Impact Score (1-10) | Effort (Hours) | Priority |
+
+**Also provide:**
+1. **Publishing sequence** — What to write first (highest-impact, lowest-effort)
+2. **Internal linking plan** — How these posts connect (pillar vs. spokes)
+3. **Content gaps vs. competitors** — Topics they rank for that I don't
+4. **Content refresh candidates** — Existing posts to update first
+
+Limit to 12-15 content pieces. I need a focused plan, not a wish list.</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~2+ hours</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Editorial calendar planning, content prioritization</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 6: WEBSITE & CONVERSION -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div id="website" class="scroll-mt-32 border-t border-[var(--color-border)] bg-[var(--color-surface)]">
+      <div class="container mx-auto px-4 py-16">
+        <div class="max-w-4xl mx-auto">
+          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 6 of 7</p>
+          <h2 class="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Website & Conversion</h2>
+          <p class="text-lg text-[var(--color-text-secondary)] mb-12 max-w-3xl">
+            Your website is doing two jobs: explaining what you do and getting people to act. Most solo founder sites are decent at the first and terrible at the second.
+          </p>
+
+          <!-- Prompt 18 -->
+          <div class="mb-16" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#18</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Optimize Website Conversions</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              Paste your existing page copy and get a section-by-section conversion audit with specific rewrites.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are a conversion rate optimization specialist. Audit my website page and provide specific, actionable improvements.
+
+**Page URL:** [YOUR PAGE URL — or paste the full page copy below]
+**Page goal:** [WHAT DO YOU WANT VISITORS TO DO]
+**Current conversion rate (if known):** [e.g., "~2%" or "I don't know"]
+**Target audience:** [WHO VISITS THIS PAGE]
+
+**Page copy:**
+[PASTE YOUR FULL PAGE COPY HERE]
+
+**Audit for:**
+1. **Above the fold** — Is the value prop clear within 5 seconds?
+2. **Headline strength** — Rate 1-10 and suggest 3 alternatives
+3. **CTA clarity** — One clear primary CTA? Specific button text?
+4. **Social proof** — Testimonials, logos, numbers?
+5. **Objection handling** — Are objections addressed on the page?
+6. **Copy structure** — Problem → Solution → Proof → CTA flow?
+7. **Friction points** — What might cause a visitor to leave?
+
+**For each issue:** What's wrong, why it matters, suggested fix with example copy.
+
+Rate the page overall (1-10) and list the top 3 highest-impact changes.</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~1-2 hours per page</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Landing page optimization, pre-launch copy review</span>
+            </div>
+          </div>
+
+          <!-- Prompt 19 -->
+          <div class="mb-16" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#19</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Optimize Website A/B Testing</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              Once you have traffic, this prompt designs structured A/B tests so you're testing strategically, not randomly.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are an A/B testing strategist. Design a testing plan for my website page.
+
+**Page URL:** [YOUR PAGE URL]
+**Page goal:** [WHAT CONVERSION ARE YOU OPTIMIZING]
+**Current monthly visitors:** [APPROXIMATE NUMBER]
+**Current conversion rate (if known):** [e.g., "2.3%" or "unknown"]
+
+**Design 3-5 A/B tests, prioritized by expected impact. For each test:**
+
+1. **Element being tested** — headline, CTA, social proof placement, form fields, etc.
+2. **Hypothesis** — "If we change [X] to [Y], then [metric] will improve because [reason]."
+3. **Control (A)** — Current version
+4. **Variant (B)** — Proposed change with specific new copy
+5. **Primary metric** — What are you measuring?
+6. **Minimum sample size** — How many visitors before it's statistically valid?
+7. **Expected impact** — Conservative estimate of improvement
+
+**Also include:**
+- Testing sequence (which test first)
+- What NOT to test (elements that won't move the needle at my traffic level)
+- Minimum traffic threshold (when is A/B testing worth doing vs. just making the change?)</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~1-2 hours per test plan</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Conversion optimization, systematic experimentation</span>
+            </div>
+          </div>
+
+          <!-- Prompt 20 -->
+          <div class="mb-4" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#20</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Generate Website Development Plan</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              The planning prompt before you build (or rebuild) a website. Covers structure, pages, content requirements, and UX flow.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are a web strategist planning a website for a small business. Focus on what actually converts — not what looks impressive in a portfolio.
+
+**My business:** [WHAT YOU DO, WHO YOU SERVE, WHAT YOU SELL]
+**Website goal:** [PRIMARY GOAL]
+**Current state:** [e.g., "No website yet" / "Existing site that needs a redesign"]
+**Tech preference:** [e.g., "Astro, Next.js, WordPress, No preference"]
+**My time/budget:** [e.g., "Building it myself over a weekend"]
+
+**Build a website plan:**
+
+1. **Site map** — Every page the site needs. For a solo founder, 5-8 pages max.
+2. **Page-by-page requirements** — Purpose, key sections, primary CTA, content needs, SEO target
+3. **User flow** — The 2-3 most important paths through the site
+4. **Must-haves vs. nice-to-haves** — MVP for launch vs. month 2 vs. skip until you have traffic
+5. **Technical requirements** — Analytics, forms, email capture, integrations</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~2+ hours per site plan</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> New site builds, redesigns, information architecture</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 7: MARKETING & GROWTH -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div id="marketing" class="scroll-mt-32 border-t border-[var(--color-border)]">
+      <div class="container mx-auto px-4 py-16">
+        <div class="max-w-4xl mx-auto">
+          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 7 of 7</p>
+          <h2 class="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Marketing & Growth</h2>
+          <p class="text-lg text-[var(--color-text-secondary)] mb-12 max-w-3xl">
+            The "last mile" prompts that turn your research, personas, and SEO strategy into actual leads and revenue.
+          </p>
+
+          <!-- Prompt 21 -->
+          <div class="mb-16" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#21</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Create LinkedIn Funnel Blueprint</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              Designs a complete LinkedIn lead generation system — profile optimization, content strategy, DM sequences, and conversion paths from connections to clients.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are a LinkedIn growth strategist for B2B service businesses. Build a complete LinkedIn lead generation funnel.
+
+**My business:** [WHAT YOU SELL AND TO WHOM]
+**My offer:** [SPECIFIC SERVICE/PRODUCT WITH PRICE RANGE]
+**My target buyer on LinkedIn:** [TITLE, COMPANY SIZE, INDUSTRY]
+**My current LinkedIn state:** [e.g., "500 connections, haven't posted in months"]
+
+**Build a LinkedIn funnel with:**
+
+1. **Profile optimization** — Headline formula, about section structure, featured section, banner recommendation
+2. **Content strategy** — 4 content pillars, posting cadence, 10 specific post ideas with hooks
+3. **Connection strategy** — Who to connect with, connection request template, weekly targets
+4. **DM sequence** — Trigger, Message 1 (no pitch), Message 2 (share value), Message 3 (soft offer), rules for when to stop
+5. **Conversion path** — From DM to discovery call. Lead magnet, booking process, qualifying questions.
+
+Make everything feel like a real person, not a sales robot.</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~2+ hours</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> B2B lead generation, consultants and agencies</span>
+            </div>
+          </div>
+
+          <!-- Prompt 22 -->
+          <div class="mb-4" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#22</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Generate Persuasive Copy (PASTOR Framework)</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              Uses the PASTOR copywriting framework — Problem, Amplify, Story, Transformation, Offer, Response — to produce structured persuasive copy for any medium.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are a direct-response copywriter who specializes in the PASTOR framework. Write persuasive copy for my business.
+
+**What I'm writing copy for:** [LANDING PAGE / EMAIL SEQUENCE / SALES PAGE / AD]
+**My product/service:** [WHAT YOU SELL]
+**Target audience:** [WHO IS READING THIS — paste your persona if you have one]
+**Primary CTA:** [WHAT DO YOU WANT THE READER TO DO]
+**Tone:** [e.g., "Direct and confident, not pushy. Like a smart friend giving advice."]
+
+**Write the copy using the PASTOR framework:**
+
+**P — Problem:** Open with the specific pain the reader is feeling right now. Use their language.
+**A — Amplify:** Show what happens if they don't solve this. Make the cost of inaction concrete.
+**S — Story:** Brief story illustrating the before state. Label hypotheticals clearly.
+**T — Transformation:** Show the after state. Be specific about outcomes.
+**O — Offer:** Present your product as the bridge from before to after.
+**R — Response:** Clear CTA. Remove risk. Create urgency only if it's real.
+
+**Format:**
+- [IF LANDING PAGE: Write full page sections with headlines and body copy]
+- [IF EMAIL: Write 3-5 emails in a sequence]
+- [IF AD: Write 3 variants, each under 125 words]
+
+Mark any claims that need real data with [VERIFY].</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~2+ hours per piece</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Landing pages, sales pages, email sequences, ad copy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PROMPT CHAINING WORKFLOW -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div id="chaining" class="scroll-mt-32 border-t border-[var(--color-border)] bg-[var(--color-surface)]">
+      <div class="container mx-auto px-4 py-16">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-4">The Prompt Chaining Workflow</h2>
+          <p class="text-lg text-[var(--color-text-secondary)] mb-8">
+            This is the workflow that produced the FiNimbus marketing strategy, competitive analysis, persona research, SEO architecture, and editorial calendar. Each step took 30-60 minutes instead of the 4-8 hours it would take manually.
+          </p>
+
+          <div class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-xl p-8 mb-12">
+            <pre class="text-sm text-[var(--color-text-secondary)] font-mono whitespace-pre-wrap leading-relaxed"><code>Step 1: Market Research
+│  Run: Reddit Market Research + Market Analysis + Validation
+│  Output: Audience language, market landscape, demand signals
+│
+├──▶ Step 2: Customer Personas
+│    Run: Create Customer Personas (feed in Step 1 output)
+│    Output: Detailed persona profiles with real audience language
+│
+├──▶ Step 3: Competitor Analysis
+│    Run: Competitor Analysis from URLs + Industry Gap Analysis
+│    Output: Positioning gaps, feature comparison, differentiation
+│
+├──▶ Step 4: SEO Strategy
+│    Run: SEO Strategy Plan + Keyword Research + Long-Tail Keywords
+│    Input: Steps 1-3 outputs inform keyword selection
+│    Output: Keyword clusters, content architecture, editorial plan
+│
+├──▶ Step 5: Content & Marketing
+│    Run: SEO Content Strategy + Persuasive Copy
+│    Input: Personas + positioning + keywords from above
+│    Output: Content calendar, landing page copy, campaign briefs
+│
+└──▶ Step 6: Automation & Operations
+     Run: Business Automation Workflows + Process Automation
+     Input: The marketing processes from Step 5
+     Output: Automated workflows for content, lead capture, follow-up</code></pre>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-[var(--color-bg)] p-6 rounded-xl border border-[var(--color-border)]">
+              <h3 class="text-lg font-serif font-bold text-[var(--color-text-primary)] mb-3">Without Chaining</h3>
+              <p class="text-[var(--color-text-secondary)] text-sm leading-relaxed">
+                Persona prompt cold: "Create a persona for small business owners who need financial tools." Output: generic demographics. "Sarah, 35-45, owns a marketing agency." Not wrong. Not useful.
+              </p>
+            </div>
+            <div class="bg-[var(--color-bg)] p-6 rounded-xl border border-[var(--color-accent)] border-opacity-30">
+              <h3 class="text-lg font-serif font-bold text-[var(--color-accent)] mb-3">With Chaining</h3>
+              <p class="text-[var(--color-text-secondary)] text-sm leading-relaxed">
+                Same persona prompt, fed with Reddit research output. Result: phrases like "I just check my bank balance and hope it's enough." Those phrases became blog post titles. That persona now drives every piece of content we produce.
+              </p>
+            </div>
+          </div>
+
+          <p class="text-[var(--color-text-secondary)] leading-relaxed">
+            Same prompt. Radically different output. The only variable was the input quality — and that input came from the previous step in the chain. This is why the sequence matters.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NEWSLETTER SIGNUP -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="border-t border-[var(--color-border)]">
+      <div class="container mx-auto px-4 py-16">
+        <div class="max-w-4xl mx-auto">
+          <NewsletterSignup variant="inline" />
+        </div>
+      </div>
+    </div>
+
+    <!-- About the Author -->
+    <div class="bg-[var(--color-surface)] border-t border-[var(--color-border)]">
+      <div class="container mx-auto px-4 py-16">
+        <div class="max-w-4xl mx-auto text-center">
+          <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">About the Author</h3>
+          <p class="text-lg text-[var(--color-text-secondary)] leading-relaxed mb-6">
+            By <strong class="text-[var(--color-text-primary)]">Collin Wilkins</strong>. Lead Engineer with 12 years of experience automating systems at Ford and Morningstar. I run an automation consulting practice and an AI CFO product called <a href="https://finimbus.com" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">FiNimbus</a>. These 22 prompts are the ones I actually use.
+          </p>
+          <a href="/about" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] font-semibold">
+            Learn more about my work &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // Plausible tracking for prompt toolkit page
+  if (typeof window !== 'undefined' && window.plausible) {
+    window.plausible('pageview', { props: { resource: 'AI Prompt Toolkit' } });
+  }
+
+  // Prompt search/filter
+  (function () {
+    var CATEGORY_IDS = ['automation', 'market-research', 'personas', 'competitors', 'seo', 'website', 'marketing'];
+
+    var searchInput = document.getElementById('prompt-search');
+    var searchCount = document.getElementById('prompt-search-count');
+    var searchClear = document.getElementById('prompt-search-clear');
+    if (!searchInput) return;
+
+    // Build section → prompt map using data-prompt attributes
+    var sections = [];
+    var TOTAL_PROMPTS = 0;
+    CATEGORY_IDS.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var prompts = Array.from(el.querySelectorAll('[data-prompt]'));
+      TOTAL_PROMPTS += prompts.length;
+      sections.push({ el: el, id: id, prompts: prompts });
+    });
+
+    // Create "no results" message and insert before first section
+    var noResults = document.createElement('div');
+    noResults.className = 'container mx-auto px-4 py-16 text-center hidden';
+    noResults.id = 'no-results';
+    noResults.setAttribute('aria-live', 'polite');
+    var noResultsP = document.createElement('p');
+    noResultsP.className = 'text-lg text-[var(--color-text-secondary)]';
+    noResultsP.textContent = 'No prompts match your search.';
+    noResults.appendChild(noResultsP);
+    var firstSection = document.getElementById(CATEGORY_IDS[0]);
+    if (firstSection) firstSection.parentNode.insertBefore(noResults, firstSection);
+
+    function setLinkDisabled(link, disabled) {
+      if (disabled) {
+        link.classList.add('opacity-40', 'pointer-events-none');
+        link.setAttribute('aria-disabled', 'true');
+        link.setAttribute('tabindex', '-1');
+      } else {
+        link.classList.remove('opacity-40', 'pointer-events-none');
+        link.removeAttribute('aria-disabled');
+        link.removeAttribute('tabindex');
+      }
+    }
+
+    function doSearch() {
+      var query = searchInput.value.trim().toLowerCase();
+      var hasQuery = query.length > 0;
+
+      searchClear.classList.toggle('hidden', !hasQuery);
+
+      if (!hasQuery) {
+        // Restore everything
+        sections.forEach(function (s) {
+          s.el.classList.remove('hidden');
+          s.prompts.forEach(function (p) { p.classList.remove('hidden'); });
+        });
+        searchCount.classList.add('hidden');
+        noResults.classList.add('hidden');
+        // Reset category link counts and state
+        CATEGORY_IDS.forEach(function (id) {
+          var link = document.querySelector('[data-category-link="' + id + '"]');
+          if (link) {
+            setLinkDisabled(link, false);
+            var countSpan = link.querySelector('[data-category-count]');
+            var section = sections.find(function (s) { return s.id === id; });
+            if (countSpan && section) countSpan.textContent = '(' + section.prompts.length + ')';
+          }
+        });
+        return;
+      }
+
+      var totalVisible = 0;
+
+      sections.forEach(function (s) {
+        var sectionVisible = 0;
+        s.prompts.forEach(function (p) {
+          var text = p.textContent.toLowerCase();
+          var match = text.indexOf(query) !== -1;
+          p.classList.toggle('hidden', !match);
+          if (match) sectionVisible++;
+        });
+
+        s.el.classList.toggle('hidden', sectionVisible === 0);
+        totalVisible += sectionVisible;
+
+        // Update category link count and disabled state
+        var link = document.querySelector('[data-category-link="' + s.id + '"]');
+        if (link) {
+          var countSpan = link.querySelector('[data-category-count]');
+          if (countSpan) countSpan.textContent = '(' + sectionVisible + ')';
+          setLinkDisabled(link, sectionVisible === 0);
+        }
+      });
+
+      searchCount.textContent = totalVisible + ' of ' + TOTAL_PROMPTS;
+      searchCount.classList.remove('hidden');
+      noResults.classList.toggle('hidden', totalVisible > 0);
+    }
+
+    searchInput.addEventListener('input', doSearch);
+
+    searchClear.addEventListener('click', function () {
+      searchInput.value = '';
+      doSearch();
+      searchInput.focus();
+    });
+  })();
+</script>
