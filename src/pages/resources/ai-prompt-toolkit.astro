@@ -14,11 +14,17 @@ const toolkitSchema = {
         "name": "Collin Wilkins",
         "url": "https://collinwilkins.com/about"
       },
+      "image": "https://collinwilkins.com/images/og-default.png",
       "datePublished": "2026-02-18",
       "dateModified": "2026-02-18",
       "publisher": {
-        "@type": "Person",
-        "name": "Collin Wilkins"
+        "@type": "Organization",
+        "name": "Collin Wilkins",
+        "url": "https://collinwilkins.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://collinwilkins.com/favicon.svg"
+        }
       },
       "mainEntityOfPage": {
         "@type": "WebPage",
@@ -63,8 +69,8 @@ const categories = [
 ---
 
 <Layout
-  title="AI Prompt Toolkit: 22 Prompts for Solo Founders | Collin Wilkins"
-  description="22 original AI prompts for market research, competitor analysis, SEO, and automation — built and tested by a solo founder running two businesses. Free, no email required."
+  title="AI Prompt Toolkit: 22 Free Prompts for Solo Founders"
+  description="22 original AI prompts for market research, competitor analysis, SEO, and automation — built by a solo founder running two businesses. Free, no signup."
   type="article"
   publishedTime="2026-02-18"
   schema={toolkitSchema}
@@ -138,9 +144,9 @@ const categories = [
     <div class="container mx-auto px-4 py-16">
       <div class="max-w-4xl mx-auto">
         <div class="bg-[var(--color-surface)] p-8 md:p-10 rounded-2xl border border-[var(--color-border)]">
-          <h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Don't use these prompts one at a time.</h2>
+          <h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">How solo founders use these prompts</h2>
           <p class="text-[var(--color-text-secondary)] leading-relaxed mb-4">
-            The biggest mistake people make with AI prompts is treating them like Google searches. These 22 prompts are organized into a system. Each category builds on the last.
+            The biggest mistake people make with ChatGPT prompts and Claude prompts is treating them like Google searches. These aren't <a href="/articles/prompt-engineering" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">prompt engineering</a> experiments — they're 22 production prompts organized into a system. Each category builds on the last.
           </p>
           <p class="text-[var(--color-text-secondary)] leading-relaxed mb-6">
             Market research feeds personas. Personas feed competitor analysis. Competitor analysis feeds SEO. SEO feeds content. The compound output is worth more than any individual prompt. <a href="#chaining" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">See the chaining workflow &darr;</a>
@@ -161,7 +167,7 @@ const categories = [
           <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 1 of 7</p>
           <h2 class="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Automation & Operations</h2>
           <p class="text-lg text-[var(--color-text-secondary)] mb-12 max-w-3xl">
-            If you're running a service business, this is your home base. These three prompts cover workflow design, process breakdown, and AI integration planning.
+            If you're running a <a href="/articles/service-business-automations" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">service business</a>, this is your home base. These three prompts cover workflow design, process breakdown, and AI integration planning.
           </p>
 
           <!-- Prompt 1 -->
@@ -1071,7 +1077,7 @@ Mark any claims that need real data with [VERIFY].</code></pre>
         <div class="max-w-4xl mx-auto">
           <h2 class="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-4">The Prompt Chaining Workflow</h2>
           <p class="text-lg text-[var(--color-text-secondary)] mb-8">
-            This is the workflow that produced the FiNimbus marketing strategy, competitive analysis, persona research, SEO architecture, and editorial calendar. Each step took 30-60 minutes instead of the 4-8 hours it would take manually.
+            This is the workflow that produced the FiNimbus marketing strategy, competitive analysis, persona research, SEO architecture, and editorial calendar. Each step took 30-60 minutes instead of the 4-8 hours it would take manually. This is <a href="/guides/agentic-workflows" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">agentic thinking</a> applied to marketing.
           </p>
 
           <div class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-xl p-8 mb-12">
@@ -1142,7 +1148,7 @@ Mark any claims that need real data with [VERIFY].</code></pre>
         <div class="max-w-4xl mx-auto text-center">
           <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">About the Author</h3>
           <p class="text-lg text-[var(--color-text-secondary)] leading-relaxed mb-6">
-            By <strong class="text-[var(--color-text-primary)]">Collin Wilkins</strong>. Lead Engineer with 12 years of experience automating systems at Ford and Morningstar. I run an automation consulting practice and an AI CFO product called <a href="https://finimbus.com" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">FiNimbus</a>. These 22 prompts are the ones I actually use.
+            By <strong class="text-[var(--color-text-primary)]">Collin Wilkins</strong>. Lead Engineer with 12 years of experience automating systems at Ford and Morningstar. I run an <a href="/services" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">automation consulting practice</a> and an AI CFO product called <a href="https://finimbus.com" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">FiNimbus</a>. These 22 prompts are the ones I actually use.
           </p>
           <a href="/about" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] font-semibold">
             Learn more about my work &rarr;
