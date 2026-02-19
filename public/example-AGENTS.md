@@ -24,6 +24,17 @@ You operate within a 3-layer architecture that separates concerns to maximize re
 
 **Why this works:** if you do everything yourself, errors compound. 90% accuracy per step = 59% success over 5 steps. The solution is push complexity into deterministic code. That way you just focus on decision-making.
 
+## Session Start Protocol
+
+When starting a task, do this before touching anything:
+
+1. Read the relevant directive in `directives/` for this task.
+2. List scripts in `execution/` to see what already exists.
+3. Check `.tmp/` for leftover state from the last run.
+4. Clarify scope with the user before creating or modifying any files.
+
+Don't skip this. The most common source of wasted work is starting execution before understanding what's already there.
+
 ## Operating Principles
 
 **1. Check for tools first**
@@ -33,12 +44,32 @@ Before writing a script, check `execution/` per your directive. Only create new 
 - Read error message and stack trace
 - Fix the script and test it again (unless it uses paid tokens/credits/etc—in which case you check w user first)
 - Update the directive with what you learned (API limits, timing, edge cases)
-- Example: you hit an API rate limit → you then look into API → find a batch endpoint that would fix → rewrite script to accommodate → test → update directive.
+- Example: you hit an API rate limit → look into API → find a batch endpoint that fixes it → rewrite script → test → update directive.
 
 **3. Update directives as you learn**
 Directives are living documents. When you discover API constraints, better approaches, common errors, or timing expectations—update the directive. But don't create or overwrite directives without asking unless explicitly told to. Directives are your instruction set and must be preserved (and improved upon over time, not extemporaneously used and then discarded).
 
-## Self-annealing loop
+## When to Ask vs Proceed
+
+**Proceed without asking:**
+- Reading files, running read-only scripts, checking `.tmp/` state
+- Fixing bugs in existing execution scripts
+- Writing intermediate files to `.tmp/`
+
+**Ask first:**
+- Creating new directives
+- Deleting files outside `.tmp/`
+- Making external API calls with side effects (writes, sends, charges)
+- Large data operations that can't be undone
+
+**Always ask:**
+- Modifying existing directives (unless explicitly told to)
+- Any action affecting production systems, billing, or external accounts
+- Anything you're not sure belongs in the "proceed" bucket
+
+When in doubt, ask. A quick confirmation costs 10 seconds. An unwanted write to a production system costs much more.
+
+## Self-Annealing Loop
 
 Errors are learning opportunities. When something breaks:
 1. Fix it
@@ -46,6 +77,16 @@ Errors are learning opportunities. When something breaks:
 3. Test tool, make sure it works
 4. Update directive to include new flow
 5. System is now stronger
+
+## End of Session
+
+Before closing a session:
+
+1. Review any directives you modified this session.
+2. Add a `## Learnings` section at the bottom of each modified directive with what changed and why. Date-stamp it.
+3. If you created new scripts, confirm they're tested and the directive references them.
+
+This is what makes the system compound. The agent reads updated directives at the start of every run—so each session's learnings become the baseline for the next one.
 
 ## File Organization
 
@@ -61,6 +102,32 @@ Errors are learning opportunities. When something breaks:
 - `credentials.json`, `token.json` - Google OAuth credentials (required files, in `.gitignore`)
 
 **Key principle:** Local files are only for processing. Deliverables live in cloud services (Google Sheets, Slides, etc.) where the user can access them. Everything in `.tmp/` can be deleted and regenerated.
+
+## Anti-Patterns
+
+Things that break this system:
+
+- **Don't improvise what a script should do.** That's what directives are for. If a directive is unclear, ask—don't guess.
+- **Don't skip testing after fixing a script.** A fix that isn't tested is just a new bug waiting to surface.
+- **Don't commit anything in `.tmp/`.** It's transient by design.
+- **Don't overwrite a working script without reading it first.** The existing script may handle edge cases you're not aware of.
+- **Don't try to do everything in one tool call.** Break work into discrete steps. Run, check, continue.
+
+## Model Selection
+
+Match the model to the task:
+
+- **Opus** — Planning new directives, complex routing decisions, architectural questions. Use when you need to reason carefully about approach before acting.
+- **Sonnet** — Running existing scripts, standard fixes, execution tasks. Faster and cheaper for clear-path work.
+- **Haiku** — High-volume lightweight tasks: classification, simple extraction, repeated small calls.
+
+Default pattern: Opus to plan → Sonnet to implement.
+
+## Context Management
+
+Context quality degrades around 20–40% capacity, not at 100%. Don't wait until output starts failing to notice it.
+
+If you observe drift, repeated mistakes, or forgotten constraints mid-session: stop, tell the user, and ask them to start a fresh session. Re-run the Session Start Protocol from the top with fresh context.
 
 ## Summary
 

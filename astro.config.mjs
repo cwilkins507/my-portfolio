@@ -72,6 +72,7 @@ export default defineConfig({
                     '/articles/ai-model-selection': '2026-02-03',
                     '/articles/enterprise-best-practices': '2026-02-01',
                     '/articles/context-engineering-ai-coding-tools': '2026-02-05',
+                    '/articles/context-engineering': '2026-02-19',
                     '/articles/ai-coding-model-wars-2026': '2026-02-15',
                 };
                 const path = new URL(item.url).pathname;

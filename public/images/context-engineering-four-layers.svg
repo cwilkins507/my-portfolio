@@ -1,0 +1,41 @@
+<svg width="900" height="430" viewBox="0 0 900 430" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="900" height="430" fill="#282c34"/>
+
+  <!-- Title -->
+  <text x="450" y="36" font-family="'SF Mono','Fira Code',monospace" font-size="18" font-weight="600" fill="#abb2bf" text-anchor="middle">The Four Layers of Context</text>
+
+  <!-- Layer 4: Session Context (EPHEMERAL) - y=54 -->
+  <rect x="50" y="54" width="800" height="72" fill="#2e3240" rx="3" stroke="#4b5263" stroke-width="1" stroke-dasharray="5,3"/>
+  <rect x="50" y="54" width="5" height="72" fill="#636d83" rx="3 0 0 3"/>
+  <text x="70" y="80" font-family="'SF Mono','Fira Code',monospace" font-size="13" font-weight="700" fill="#636d83">Layer 4: Session Context</text>
+  <text x="70" y="100" font-family="'SF Mono','Fira Code',monospace" font-size="12" fill="#4b5263">Files read this session, conversation history</text>
+  <text x="842" y="94" font-family="'SF Mono','Fira Code',monospace" font-size="11" font-weight="700" fill="#636d83" text-anchor="end">EPHEMERAL</text>
+
+  <!-- Dashed separator -->
+  <line x1="50" y1="142" x2="850" y2="142" stroke="#4b5263" stroke-width="1" stroke-dasharray="8,5"/>
+
+  <!-- Layer 3: File-Level Docs - y=152 -->
+  <rect x="50" y="152" width="800" height="72" fill="#1a3a3a" rx="3"/>
+  <rect x="50" y="152" width="5" height="72" fill="#4fc1aa" rx="3 0 0 3"/>
+  <text x="70" y="178" font-family="'SF Mono','Fira Code',monospace" font-size="13" font-weight="700" fill="#4fc1aa">Layer 3: File-Level Docs</text>
+  <text x="70" y="198" font-family="'SF Mono','Fira Code',monospace" font-size="12" fill="#abb2bf">Comments, type annotations, naming</text>
+
+  <!-- Layer 2: Instruction Files - y=234 -->
+  <rect x="50" y="234" width="800" height="72" fill="#162850" rx="3"/>
+  <rect x="50" y="234" width="5" height="72" fill="#61afef" rx="3 0 0 3"/>
+  <text x="70" y="260" font-family="'SF Mono','Fira Code',monospace" font-size="13" font-weight="700" fill="#61afef">Layer 2: Instruction Files</text>
+  <text x="70" y="280" font-family="'SF Mono','Fira Code',monospace" font-size="12" fill="#abb2bf">CLAUDE.md, Cursor rules, Copilot instructions</text>
+
+  <!-- Layer 1: Project Structure - y=316 -->
+  <rect x="50" y="316" width="800" height="72" fill="#0e1d3a" rx="3"/>
+  <rect x="50" y="316" width="5" height="72" fill="#528bff" rx="3 0 0 3"/>
+  <text x="70" y="342" font-family="'SF Mono','Fira Code',monospace" font-size="13" font-weight="700" fill="#528bff">Layer 1: Project Structure</text>
+  <text x="70" y="362" font-family="'SF Mono','Fira Code',monospace" font-size="12" fill="#abb2bf">Folder names, file naming, co-location</text>
+
+  <!-- PERMANENT label spanning layers 1-3 -->
+  <text x="842" y="286" font-family="'SF Mono','Fira Code',monospace" font-size="11" font-weight="700" fill="#98c379" text-anchor="end">PERMANENT</text>
+
+  <!-- Subtitle -->
+  <text x="450" y="414" font-family="'SF Mono','Fira Code',monospace" font-size="11" fill="#4b5263" text-anchor="middle">Most developers invest all their energy in Layer 4. It resets every session.</text>
+</svg>
