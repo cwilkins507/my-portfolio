@@ -21,31 +21,31 @@ faqs:
 ---
 # Context Engineering for AI Coding Tools: Why Your Codebase Structure Matters More Than Your Prompts
 
-This one is long. 
+This one is long and a more detailed follow up to my [first article on the topic](https://collinwilkins.com/articles/context-engineering-ai-coding-tools) on this
 
-Two promises before we get into it: first, you'll walk away with at least one thing you can apply this week to get more consistent results from your AI coding tool. Second, the examples throughout use Claude Code — that's my daily stack, not an endorsement. Every principle here applies to Cursor, Copilot, or whatever you're running. The mechanics differ. The discipline doesn't.
+Two things before we get into it: first, you'll walk away with at least one thing you can apply this week to get more consistent results from your AI coding tool. Second, the examples throughout use Claude Code — that's my daily stack, not an endorsement. Every principle here applies to Cursor, Copilot, or whatever you're running. The mechanics differ. The discipline doesn't.
 
-Let's start with an example...
+Let's start with an example that probably happened to you this week...
 
-You ask your AI coding tool to add a new API endpoint. It generates exactly what you need — right naming convention, right file location, imports from the correct internal libraries. You close the task in 15 minutes.
+You asked your AI coding tool to add a new API endpoint. It generated exactly what you need — right naming convention, file location, and imports. You closed the task in 15 minutes.
 
-Next morning, same tool, same project. You ask for another endpoint. It uses a naming pattern from a framework you dropped three months ago. The file lands in the wrong directory. It imports a library that's no longer in the dependency tree. You spend 40 minutes cleaning it up.
+Next morning, same tool, same project. You asked for another endpoint. It used a naming pattern from a framework you dropped three months ago. The file landed in the wrong directory. It imported a library that's no longer in the dependency tree. You spent 40 minutes cleaning it up.
 
-Then a teammate tries the same tool on the same codebase. Their output matches neither of yours.
+Then a teammate tried the same tool on the same codebase. Their output matched neither of yours.
 
-Same model, same codebase. Three completely different results. The variable nobody names: what the AI could actually see. Controlling that is a discipline. Most developers aren't doing it.
+Same model and codebase produced three completely different results. The variable nobody names: what the AI could actually see. Controlling that is a discipline and many developers aren't doing it.
 
 ## The Debate Everyone's Having Wrong
 
 A few weeks ago, an HN thread along the lines of "Cursor's context is 10X better than Claude Code's" hit the front page with 150+ points and hundreds of comments. Developers trading war stories about which tool retrieves the right files, which one hallucinates project conventions, which one actually understands a large codebase.
 
-Good discussion. Wrong frame.
+The thread was comparing tool features — how Cursor auto-indexes and retrieves files by semantic similarity versus how Claude Code relies on explicit file reads and instruction routing. Worth knowing. 
 
-The thread was comparing tool features — how Cursor auto-indexes and retrieves files by semantic similarity versus how Claude Code relies on explicit file reads and instruction routing. Worth knowing. But none of it explains why the same tool, same codebase, same developer produces solid output on Tuesday and garbage on Thursday.
-
-That gap has a name: context engineering.
+But none of it explains why the same tool, same codebase, same developer produces solid output on Tuesday and unshippable output on Thursday. That gap is context engineering.
 
 **Context engineering** is the discipline of controlling what information an AI coding tool has access to, how that information is structured, and what instructions govern its behavior. It's distinct from prompt engineering (what you say in a given session) and model selection (which AI you use). You can write perfect prompts and pick the most capable model and still get inconsistent results if the context is wrong.
+
+I wwent into this in more detail [here](https://collinwilkins.com/articles/enterprise-best-practices), this variability is actually designed into models to help give them reasoning
 
 Developers who understand this produce more consistent work than any tool comparison would predict. The ones still debating Cursor vs. Claude Code are optimizing the wrong variable.
 
@@ -53,11 +53,11 @@ Developers who understand this produce more consistent work than any tool compar
 
 Every AI coding tool generates predictions from everything in its context window. That's not just your last message. It includes the files the tool read earlier in the session, the instruction files it loaded at startup, documentation it retrieved, and the full conversation history. You're getting a response to everything the model has seen, not just what you typed.
 
-**The Primacy Problem.** Models recall information near the beginning and end of their context window better than material buried in the middle. The implication is direct: your most important instructions — naming conventions, anti-patterns, what to never modify — belong at the top of your config files, not tucked into section 7 after a wall of boilerplate. Instructions at line 300 of a bloated CLAUDE.md are functionally invisible no matter how well-written they are.
+**The Primacy Problem.** Models recall information near the beginning and end of their context window better than material buried in the middle. The implication is direct: your most important instructions — naming conventions, anti-patterns, what to never modify — belong at the top of your config files, not tucked into section 7 after a wall of boilerplate. Instructions at line 300 of a bloated CLAUDE.md are functionally invisible no matter how well-written they are. 
 
 ![The Primacy Problem — models recall the beginning and end of their context window better than the middle](/images/context-engineering-primacy-problem.svg)
 
-Here's a practical test. Ask your AI tool: "What naming conventions does this project use?" If it answers correctly without reading a specific file, your context is working. If it asks for clarification or gives you a generic answer, your context engineering needs work.
+Ask your AI tool: "What naming conventions does this project use?" If it answers correctly without reading a specific file, your context is working. If it asks for clarification or gives you a generic answer, your context engineering needs work.
 
 Garbage in, garbage out applies at the context level, not just the prompt level. A well-crafted prompt can't compensate for context that's missing, outdated, or structurally wrong.
 
@@ -84,7 +84,9 @@ The math is simple: one hour invested in a CLAUDE.md instruction file compounds 
 
 ## CLAUDE.md Patterns That Actually Work
 
-Every major AI coding tool has an equivalent to CLAUDE.md. Cursor has `.cursor/rules`. GitHub Copilot has `.github/copilot-instructions.md`. Same principle across all of them: a file the AI reads at session start that shapes its behavior for everything that follows.
+Every major AI coding tool has an equivalent to CLAUDE.md. Cursor has `.cursor/rules`. GitHub Copilot has `.github/copilot-instructions.md`. OpenAI and others use AGENTS.md. Same principle across all of them: a file the AI reads at session start that shapes its behavior for everything that follows. 
+
+> this file is loaded automatically at the start of every session! 
 
 Most teams write this file wrong. They treat it like a README.
 
@@ -135,7 +137,7 @@ docs/decisions/ - Architecture Decision Records. One file per major decision.
 - No default exports -- named exports only
 ```
 
-This is roughly the structure this vault uses, adapted for a software project. It took over 100 iterations to reach something stable. That's not a warning. That's the nature of the document. You evolve it, you don't write it once.
+This is roughly the structure this vault uses, adapted for a software project. It took many iterations to reach something stable. That's the nature of the document. You evolve it, you don't write it once so version control it with your other code changes.
 
 The ROI data on this is concrete. Aakash Gupta's PM OS (news.aakashg.com, Feb 2026) used a well-crafted CLAUDE.md with skills and sub-agents to reduce PRD creation from 4-8 hours to 30 minutes. Harry Zhang called CLAUDE.md the "highest ROI habit" in Claude Code. Faros AI's 2026 measurement of Claude Code usage across engineering teams found roughly 4:1 ROI — cost per PR around $37.50 against 2 hours saved at $75/hour. Not controlled studies. Consistent practitioner reports. The pattern holds across enough setups that dismissing it as anecdote is a mistake.
 
@@ -151,11 +153,11 @@ Consistent naming matters more than you'd expect. If some components are named `
 
 Keep tests, docs, and decisions next to the code they describe. A test file two directories away from its source module is context the agent might never retrieve. A test file in the same directory gets read automatically when the source gets opened. Don't make the agent hunt. It won't always find what it's looking for, and you'll pay for that in bad output.
 
-A `docs/decisions/` folder earns its keep fast. One file per major architectural choice, written when you make the decision. When the agent is working in the payments layer and a relevant ADR exists, it surfaces the reasoning behind how things are built. Without ADRs, the agent sees the what and invents the why.
+A `docs/decisions/` folder earns its keep fast. One file per major architectural choice, written when you make the decision. When the agent is working in the payments layer and a relevant ADR exists, it surfaces the reasoning behind how things are built. Without ADRs, the agent sees the what and invents the why. 
+
+> A good practice is to write the architectural map or code in a lookup table in this section so there's a quick reference for AI to get up to speed on a codebase (every session is 'new').
 
 Deeply nested folder hierarchies are a hidden context tax. Every level of nesting increases the probability that relevant files fall outside the context window when the agent is working on something nearby. Flat structure with clear naming outperforms deep hierarchies for AI-assisted work. If your project is necessarily deep, your instruction file routing has to be precise enough to compensate.
-
-Mark generated code explicitly. If auto-generated files live next to source files without distinguishing signals, the agent treats them as source truth. Name the folders differently. Put them on the exclusion list in your instruction file. This is one of the most common sources of confusing AI behavior in larger codebases.
 
 Structure produces consistent context. Even perfect structure can't fix a bloated context window, though. That's where most sessions quietly break down.
 
@@ -182,7 +184,7 @@ Compact preserves momentum. A new session preserves clarity. Clarity usually win
 
 **Three modes, three different situations.** Plan mode (`/plan`) makes the AI propose before touching anything. Use it for multi-file changes, anything touching shared infrastructure, or any task where you're not certain what the blast radius is. The proposal step isn't overhead. It's the difference between reviewing a plan and reviewing a broken implementation.
 
-Accept with edits is the default for most sessions. The AI does the work, you verify the judgment.
+Accept with edits is the default for most sessions. The AI does the work, you verify.
 
 Bypass or auto-approve is appropriate only when Layers 1-3 are solid. When the AI knows your conventions, when it has explicit anti-patterns to follow, when the context is tight — that's when giving it autonomous scope makes sense. Better context engineering is how you earn the right to give your agent autonomy.
 
@@ -212,11 +214,11 @@ Use MCP when you genuinely need live data. Current timestamps, a real database q
 
 Use skills when you have a repeatable workflow. Content patterns, review checklists, tasks the agent performs identically every time. Pre-write it once, reference it for as long as the workflow holds.
 
-The decision rule: if you can write it down and have it work 90% of the time, write it as a skill. Every unnecessary MCP call is a context tax paid on every execution.
+The decision rule: if you can write it down and have it work 90% of the time, write it as a skill. Every unnecessary MCP call is a context tax paid on every execution. You can even use the MCP first to get something working quickly then create your own skill to get that output.
 
 ## Auditing Your Context Setup
 
-Three questions. Your AI should answer all three from context alone, without reading a specific file.
+Your AI should answer these questions from context alone, without reading a specific file:
 
 1. What naming convention does this project use for components?
 2. What's the tech stack?
@@ -228,6 +230,8 @@ Signs your context is bloated:
 - The AI asks you to clarify things it should already know
 - Suggestions don't match project conventions
 - Errors reference wrong library versions or deprecated APIs
+
+> If this is happening you should `/compact` or start a new session, you aren't getting optimal results anyways.
 
 Signs your context is working:
 - The AI refers to project conventions without being prompted
