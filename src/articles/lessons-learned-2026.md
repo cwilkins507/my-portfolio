@@ -182,7 +182,7 @@ This matters even more with AI tools. LLMs don't store context. If you want to u
 
 The most expensive knowledge in any codebase is the context that only exists in someone's head.
 
-**15. "Culture beats tooling. Every time."**
+**15. "Culture beats tooling."**
 
 No AI tool, CI pipeline, or observability platform will save a team with bad culture.
 
@@ -191,7 +191,7 @@ No AI tool, CI pipeline, or observability platform will save a team with bad cul
 
 No tool will ever outperform a team that trusts each other.
 
-**16. "Continuous learning isn't a buzzword. It's survival."**
+**16. "Continuous learning is survival."**
 
 The half-life of technical skills is getting shorter. What you learned two years ago is already outdated.
 
@@ -203,6 +203,61 @@ There's a quote I like: legacy code is code without supporting tests. I think ab
 
 **Translation:**
 The moment you stop learning, you start becoming legacy.
+
+**17. "Cascade your foreign keys. Save yourself the headache."**
+
+If you have a parent table with child relationships, set cascade on the optional foreign keys.
+
+I watched a team burn half a Thursday debugging a data cleanup script that failed silently. The deletions had to happen in exact dependency order across six tables. One missed junction table and the whole thing rolled back. No error message that told you which table broke the chain. Just a silent rollback and a growing sense of dread.
+
+With cascade set on the optional relationships, you manage the parent record. The database handles the rest.
+
+**Translation:**
+Design your data model so the obvious action is the correct action. If deleting a parent requires a checklist of dependent operations, you've built a system that punishes the next person who touches it.
+
+**18. "Take AI doom articles with a grain of salt. First principles don't expire."**
+
+Every week there's a new post about AI replacing engineers. Some of it is signal. Most of it is noise from people who've never shipped production software.
+
+I review PRs from AI-assisted workflows daily. I still catch issues the model can't see: a race condition that only shows up under load, a permission check that's technically correct but doesn't match how our consumers actually authenticate, an API contract that drifts from the spec because the LLM filled in what it assumed the interface did. The failure modes are the same ones we've always had. They just show up faster now.
+
+The bottleneck is the same thing it's always been: someone who understands what the code should do, whether it's secure, and how it behaves when things go wrong.
+
+Context management. Security. System design. Observability. Testing. Error handling. None of those expire regardless of who writes the code. The companies hiring right now aren't looking for prompt jockeys. They want engineers who can use AI while still protecting the organization. That means knowing when the output is wrong, knowing what to test, and knowing what the model can't see.
+
+AI made code cheap. It didn't change engineering principles.
+
+**19. "Taste is the new bottleneck."**
+
+Anyone can generate a landing page, a blog post, a working prototype in an afternoon now. The barrier to shipping collapsed. That's the good news.
+
+The bad news is that most of it looks and reads the same.
+
+I built this blog with AI tools. It took me longer to edit AI output into something that actually sounded like me than it would have taken to write it from scratch at first. The tool produced the words. I had to decide which ones deserved to stay.
+
+In engineering, the same dynamic plays out in code. Every shortcut AI makes easy (skipping tests, ignoring edge cases, shipping the first draft) introduces tech debt or security gaps. Discipline to reject the fast-but-fragile option is what separates software that lasts from software you'll rewrite.
+
+Restraint turns tools into amplifiers. Without it, you get more volume but less soul.
+
+Cultivate taste by consuming widely and learning to articulate *why* something works or doesn't. Not "I don't like it." That's a feeling (though its helpful because your gut is telling you something). "The hierarchy is wrong because the CTA competes with the headline." That's taste.
+
+Does this serve the core problem? Does it strengthen the brand? Would I regret adding this in six months? If you can't answer those, you're not building.
+
+**Translation:**
+When production is free, editing becomes the skill. The people who win aren't the ones who ship the most. They're the ones who know what to keep and what to kill.
+
+**20. "Build for the switch. The best model today won't be the best model in three months."**
+
+Four major coding models launched in six days this February. The benchmark gap between the best and worst was 2.6 percentage points. Two were proprietary, two open source. One cost $5 per million tokens. Another cost $0.11 for nearly the same performance.
+
+I wrote a [full breakdown](https://collinwilkins.com/articles/ai-coding-model-wars-2026) of that week. The takeaway wasn't which model won. It's that the leaderboard reshuffles every few months and the cost curves keep collapsing. If your workflows, processes, and tooling are locked to one provider, you're paying a tax every time the market moves and you can't follow it.
+
+Nobody runs a single EC2 instance type for their entire infrastructure. Same logic applies to LLMs. Simple tasks go to cheap models. Complex multi-file refactors go to frontier models. The routing decision should be easy to change because you'll be changing it often.
+
+The practical version: build your systems so switching a model is a config change, not a rewrite. Have identical AGENTS, GEMINI, and CLAUDE.md files. Treat the LLM as a dependency you expect to swap, the same way you'd treat a database driver or a cloud provider. The teams that move fastest aren't the ones who picked the right model. They're the ones who made it cheap to pick again.
+
+**Translation:**
+Vendor lock-in is expensive when the market shifts every quarter. Build the abstraction now. The switch will come whether you planned for it or not.
 
 ---
 
