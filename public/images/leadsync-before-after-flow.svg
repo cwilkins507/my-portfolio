@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <defs>
+    <style>
+      .title { font-size: 16px; fill: #0f172a; font-weight: 700; }
+      .subtitle { font-size: 11px; fill: #94a3b8; }
+      .panel-title { font-size: 14px; font-weight: 700; }
+      .panel-sub { font-size: 11px; fill: #64748b; }
+      .node-rect { rx: 8; ry: 8; stroke-width: 1.5; }
+      .node-text { font-size: 11px; fill: #0f172a; font-weight: 600; }
+      .node-sub { font-size: 9px; fill: #64748b; }
+      .edge-manual { stroke: #f59e0b; stroke-width: 1.5; fill: none; stroke-dasharray: 6,4; }
+      .edge-auto { stroke: #10b981; stroke-width: 1.5; fill: none; }
+      .delay-label { font-size: 9px; fill: #dc2626; font-weight: 500; font-style: italic; }
+      .speed-label { font-size: 9px; fill: #059669; font-weight: 600; }
+      .divider { stroke: #e2e8f0; stroke-width: 1; stroke-dasharray: 6,4; }
+      .badge-text { font-size: 16px; font-weight: 800; }
+      .note { font-size: 10px; fill: #94a3b8; font-style: italic; }
+      .sep { stroke: #d1d5db; stroke-width: 0.5; stroke-dasharray: 3,3; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="480" fill="#fafbfc" rx="8"/>
+
+  <!-- Title -->
+  <text x="450" y="28" text-anchor="middle" class="title">Beta Signup Response: Before vs After</text>
+  <text x="450" y="44" text-anchor="middle" class="subtitle">From days of manual follow-up to a 30-second automated pipeline</text>
+
+  <!-- Divider -->
+  <line x1="450" y1="58" x2="450" y2="458" class="divider"/>
+
+
+  <!-- ==================== LEFT PANEL: BEFORE ==================== -->
+
+  <text x="220" y="72" text-anchor="middle" class="panel-title" fill="#b45309">BEFORE</text>
+  <text x="220" y="86" text-anchor="middle" class="panel-sub">Manual process</text>
+
+  <!-- Node 1: Web3Forms Submit -->
+  <rect x="130" y="100" width="180" height="34" class="node-rect" fill="#fff7ed" stroke="#f59e0b"/>
+  <text x="220" y="121" text-anchor="middle" class="node-text">Web3Forms Submit</text>
+
+  <!-- Line 1→2 -->
+  <line x1="220" y1="134" x2="220" y2="162" class="edge-manual"/>
+
+  <!-- Node 2: Email Notification -->
+  <rect x="130" y="162" width="180" height="34" class="node-rect" fill="#fff7ed" stroke="#f59e0b"/>
+  <text x="220" y="183" text-anchor="middle" class="node-text">Email Notification</text>
+
+  <!-- Line 2→3 with delay -->
+  <line x1="220" y1="196" x2="220" y2="224" class="edge-manual"/>
+  <text x="318" y="214" class="delay-label">hours... a day?</text>
+
+  <!-- Node 3: ??? (uncertain, dashed border) -->
+  <rect x="130" y="224" width="180" height="34" class="node-rect" fill="#fef3c7" stroke="#f59e0b" stroke-dasharray="4,3"/>
+  <text x="220" y="245" text-anchor="middle" class="node-text" fill="#92400e">See it... eventually</text>
+
+  <!-- Line 3→4 with delay -->
+  <line x1="220" y1="258" x2="220" y2="286" class="edge-manual"/>
+  <text x="318" y="276" class="delay-label">manual effort</text>
+
+  <!-- Node 4: Manual Sheet Entry -->
+  <rect x="130" y="286" width="180" height="34" class="node-rect" fill="#fff7ed" stroke="#f59e0b"/>
+  <text x="220" y="307" text-anchor="middle" class="node-text">Copy to Spreadsheet</text>
+
+  <!-- Line 4→5 with delay -->
+  <line x1="220" y1="320" x2="220" y2="348" class="edge-manual"/>
+  <text x="318" y="338" class="delay-label">more manual effort</text>
+
+  <!-- Node 5: Manual Reply -->
+  <rect x="130" y="348" width="180" height="34" class="node-rect" fill="#fff7ed" stroke="#f59e0b"/>
+  <text x="220" y="369" text-anchor="middle" class="node-text">Write &amp; Send Reply</text>
+
+  <!-- Big delay badge -->
+  <rect x="155" y="400" width="130" height="34" rx="17" fill="#fecaca" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="220" y="422" text-anchor="middle" class="badge-text" fill="#dc2626">1–3 DAYS</text>
+
+
+  <!-- ==================== RIGHT PANEL: AFTER ==================== -->
+
+  <text x="670" y="72" text-anchor="middle" class="panel-title" fill="#059669">AFTER</text>
+  <text x="670" y="86" text-anchor="middle" class="panel-sub">LeadSync automated pipeline</text>
+
+  <!-- Node 1: Tally Form Submit -->
+  <rect x="580" y="100" width="180" height="34" class="node-rect" fill="#ecfdf5" stroke="#10b981"/>
+  <text x="670" y="121" text-anchor="middle" class="node-text">Tally Form Submit</text>
+
+  <!-- Line 1→2 -->
+  <line x1="670" y1="134" x2="670" y2="167" class="edge-auto"/>
+
+  <!-- Node 2: Modal Webhook -->
+  <rect x="580" y="167" width="180" height="42" class="node-rect" fill="#ecfdf5" stroke="#10b981"/>
+  <text x="670" y="188" text-anchor="middle" class="node-text">Modal Webhook</text>
+  <text x="670" y="201" text-anchor="middle" class="node-sub">process_new_lead()</text>
+
+  <!-- Parallel split: three lines -->
+  <line x1="616" y1="209" x2="535" y2="253" class="edge-auto"/>
+  <line x1="670" y1="209" x2="670" y2="253" class="edge-auto"/>
+  <line x1="724" y1="209" x2="815" y2="253" class="edge-auto"/>
+
+  <!-- Node 3a: Sheet Log -->
+  <rect x="475" y="253" width="120" height="42" class="node-rect" fill="#ecfdf5" stroke="#10b981"/>
+  <text x="535" y="273" text-anchor="middle" class="node-text">Sheet Log</text>
+  <text x="535" y="286" text-anchor="middle" class="node-sub">sheets.py</text>
+
+  <!-- Node 3b: Welcome Email -->
+  <rect x="610" y="253" width="120" height="42" class="node-rect" fill="#ecfdf5" stroke="#10b981"/>
+  <text x="670" y="273" text-anchor="middle" class="node-text">Welcome Email</text>
+  <text x="670" y="286" text-anchor="middle" class="node-sub">emails.py → Lead</text>
+
+  <!-- Node 3c: Owner Alert -->
+  <rect x="755" y="253" width="120" height="42" class="node-rect" fill="#ecfdf5" stroke="#10b981"/>
+  <text x="815" y="273" text-anchor="middle" class="node-text">Owner Alert</text>
+  <text x="815" y="286" text-anchor="middle" class="node-sub">emails.py → Collin</text>
+
+  <!-- Speed badge -->
+  <rect x="607" y="312" width="126" height="24" rx="12" fill="#d1fae5" stroke="#10b981" stroke-width="1"/>
+  <text x="670" y="328" text-anchor="middle" class="speed-label">~30 SECONDS</text>
+
+  <!-- Separator for cron section -->
+  <line x1="478" y1="352" x2="872" y2="352" class="sep"/>
+  <text x="670" y="370" text-anchor="middle" class="note">24 hours later (if no manual outreach)...</text>
+
+  <!-- Node 4a: Modal Cron -->
+  <rect x="525" y="382" width="120" height="34" class="node-rect" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="585" y="403" text-anchor="middle" class="node-text">Modal Cron</text>
+
+  <!-- Line cron → nurture -->
+  <line x1="645" y1="399" x2="695" y2="399" class="edge-auto"/>
+
+  <!-- Node 4b: Nurture Email -->
+  <rect x="695" y="382" width="130" height="34" class="node-rect" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="760" y="403" text-anchor="middle" class="node-text">Nurture Email</text>
+
+  <!-- Bottom note -->
+  <text x="450" y="468" text-anchor="middle" class="note">The same signup that took days now runs in seconds. The 24hr nurture is the only intentional delay.</text>
+</svg>
