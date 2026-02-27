@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="480" viewBox="0 0 700 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+          <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1a2744" stroke-width="0.5"/>
+        </pattern>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+
+      <rect width="700" height="420" fill="url(#grid)" opacity="0.3"/>
+
+      <!-- Left panel: Top-level comment -->
+      <text x="170" y="25" text-anchor="middle" fill="#64748b" font-size="10" letter-spacing="1">TOP-LEVEL SUMMARY</text>
+
+      <rect x="20" y="40" width="300" height="360" rx="8" fill="#0f172a" stroke="#3b82f6" stroke-width="2"/>
+
+      <!-- PR header -->
+      <rect x="20" y="40" width="300" height="35" rx="8" fill="#1e293b"/>
+      <circle cx="45" cy="58" r="10" fill="#3b82f6"/>
+      <text x="45" y="62" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="600">AI</text>
+      <text x="65" y="55" fill="#94a3b8" font-size="9">AI Review Bot</text>
+      <text x="65" y="68" fill="#64748b" font-size="8">commented 2 min ago</text>
+
+      <!-- Summary content -->
+      <rect x="35" y="90" width="270" height="25" rx="3" fill="#1e3a5f"/>
+      <text x="45" y="107" fill="#3b82f6" font-size="11" font-weight="600">## AI Review Summary</text>
+
+      <text x="45" y="135" fill="#94a3b8" font-size="9" letter-spacing="0.5">RISK LEVEL</text>
+      <rect x="105" y="122" width="60" height="18" rx="3" fill="#854d0e" stroke="#eab308" stroke-width="1"/>
+      <text x="135" y="135" text-anchor="middle" fill="#fef08a" font-size="10" font-weight="600">Medium</text>
+
+      <text x="45" y="165" fill="#e2e8f0" font-size="10" font-family="SF Mono, monospace">This PR adds a new payment</text>
+      <text x="45" y="180" fill="#e2e8f0" font-size="10" font-family="SF Mono, monospace">endpoint. Changes touch auth</text>
+      <text x="45" y="195" fill="#e2e8f0" font-size="10" font-family="SF Mono, monospace">middleware and database queries.</text>
+
+      <rect x="35" y="215" width="270" height="25" rx="3" fill="#1e3a5f"/>
+      <text x="45" y="232" fill="#3b82f6" font-size="11" font-weight="600">Top Findings</text>
+
+      <!-- Finding items -->
+      <g transform="translate(35, 250)">
+        <circle cx="15" cy="8" r="6" fill="#ef4444"/>
+        <text x="15" y="12" text-anchor="middle" fill="#ffffff" font-size="8" font-weight="600">1</text>
+        <text x="30" y="12" fill="#e2e8f0" font-size="10">SQL injection risk at L42</text>
+
+        <circle cx="15" cy="33" r="6" fill="#f59e0b"/>
+        <text x="15" y="37" text-anchor="middle" fill="#ffffff" font-size="8" font-weight="600">2</text>
+        <text x="30" y="37" fill="#e2e8f0" font-size="10">Missing rate limit on endpoint</text>
+
+        <circle cx="15" cy="58" r="6" fill="#f59e0b"/>
+        <text x="15" y="62" text-anchor="middle" fill="#ffffff" font-size="8" font-weight="600">3</text>
+        <text x="30" y="62" fill="#e2e8f0" font-size="10">No test for auth failure case</text>
+      </g>
+
+      <!-- Checkmark indicator -->
+      <rect x="35" y="335" width="270" height="50" rx="4" fill="#052e16" stroke="#22c55e" stroke-width="1"/>
+      <text x="50" y="355" fill="#22c55e" font-size="10" font-weight="600">Recommended action:</text>
+      <text x="50" y="373" fill="#86efac" font-size="10">Address critical finding before merge</text>
+
+      <!-- Right panel: Inline comment -->
+      <text x="530" y="25" text-anchor="middle" fill="#64748b" font-size="10" letter-spacing="1">INLINE COMMENT</text>
+
+      <rect x="380" y="40" width="300" height="360" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+
+      <!-- File header -->
+      <rect x="380" y="40" width="300" height="35" rx="8" fill="#1e293b"/>
+      <text x="400" y="62" fill="#94a3b8" font-size="11" font-family="SF Mono, monospace">src/payments/handler.ts</text>
+
+      <!-- Code context -->
+      <rect x="395" y="90" width="270" height="130" rx="4" fill="#1e293b"/>
+
+      <!-- Line numbers and code -->
+      <text x="405" y="110" fill="#475569" font-size="10" font-family="SF Mono, monospace">40</text>
+      <text x="430" y="110" fill="#94a3b8" font-size="10" font-family="SF Mono, monospace">async function process(req) {</text>
+
+      <text x="405" y="128" fill="#475569" font-size="10" font-family="SF Mono, monospace">41</text>
+      <text x="430" y="128" fill="#94a3b8" font-size="10" font-family="SF Mono, monospace">  const userId = req.params.id;</text>
+
+      <!-- Highlighted line -->
+      <rect x="395" y="135" width="270" height="22" fill="#450a0a" opacity="0.6"/>
+      <text x="405" y="150" fill="#ef4444" font-size="10" font-family="SF Mono, monospace">42</text>
+      <text x="430" y="150" fill="#fca5a5" font-size="10" font-family="SF Mono, monospace">  query = `SELECT * FROM...</text>
+
+      <text x="405" y="168" fill="#475569" font-size="10" font-family="SF Mono, monospace">43</text>
+      <text x="430" y="168" fill="#94a3b8" font-size="10" font-family="SF Mono, monospace">  return db.execute(query);</text>
+
+      <text x="405" y="186" fill="#475569" font-size="10" font-family="SF Mono, monospace">44</text>
+      <text x="430" y="186" fill="#94a3b8" font-size="10" font-family="SF Mono, monospace">}</text>
+
+      <!-- Inline comment box -->
+      <rect x="395" y="230" width="270" height="155" rx="6" fill="#1e293b" stroke="#ef4444" stroke-width="2" filter="url(#glow)"/>
+
+      <rect x="395" y="230" width="270" height="30" rx="6" fill="#7f1d1d"/>
+      <circle cx="415" cy="245" r="8" fill="#ef4444"/>
+      <text x="415" y="249" text-anchor="middle" fill="#ffffff" font-size="8" font-weight="600">!</text>
+      <text x="430" y="249" fill="#fca5a5" font-size="10" font-weight="600">Critical: SQL Injection Risk</text>
+
+      <text x="410" y="280" fill="#e2e8f0" font-size="10">String concatenation with user</text>
+      <text x="410" y="295" fill="#e2e8f0" font-size="10">input creates injection risk.</text>
+
+      <rect x="410" y="310" width="240" height="35" rx="3" fill="#0f172a"/>
+      <text x="420" y="325" fill="#22c55e" font-size="9" font-weight="600">Suggested fix:</text>
+      <text x="420" y="340" fill="#86efac" font-size="9" font-family="SF Mono, monospace">db.execute(sql, [userId])</text>
+
+      <rect x="410" y="355" width="70" height="22" rx="4" fill="#166534" stroke="#22c55e" stroke-width="1"/>
+      <text x="445" y="370" text-anchor="middle" fill="#22c55e" font-size="10" font-weight="600">Apply</text>
+
+      <rect x="490" y="355" width="70" height="22" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <text x="525" y="370" text-anchor="middle" fill="#94a3b8" font-size="10">Dismiss</text>
+
+      <!-- VS indicator -->
+      <rect x="335" y="195" width="30" height="30" rx="15" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <text x="350" y="215" text-anchor="middle" fill="#64748b" font-size="10" font-weight="600">+</text>
+    </svg>
