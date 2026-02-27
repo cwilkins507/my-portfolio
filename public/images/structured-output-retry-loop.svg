@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 460" font-family="system-ui, -apple-system, sans-serif">
+  <style>
+    text { font-size: 14px; fill: #374151; }
+    .title { font-size: 18px; font-weight: 700; fill: #1e40af; }
+    .step { font-size: 12px; fill: #6b7280; }
+    .label { font-size: 13px; font-weight: 600; }
+    .green { fill: #15803d; }
+    .orange { fill: #c2410c; }
+    .red { fill: #dc2626; }
+  </style>
+
+  <!-- Title (centered over the main column) -->
+  <text x="260" y="28" text-anchor="middle" class="title">Validate-Repair-Retry Loop</text>
+
+  <!-- ========== MAIN COLUMN (center x=260) ========== -->
+
+  <!-- Box 1: Call LLM -->
+  <rect x="160" y="50" width="200" height="48" rx="8" fill="#dbeafe" stroke="#1e40af" stroke-width="2"/>
+  <text x="260" y="79" text-anchor="middle" font-weight="600" fill="#1e40af">Call LLM</text>
+
+  <!-- Arrow down -->
+  <line x1="260" y1="98" x2="260" y2="122" stroke="#374151" stroke-width="2"/>
+  <polygon points="260,130 254,120 266,120" fill="#374151"/>
+
+  <!-- Box 2: Validate output -->
+  <rect x="160" y="130" width="200" height="48" rx="8" fill="#dbeafe" stroke="#1e40af" stroke-width="2"/>
+  <text x="260" y="159" text-anchor="middle" font-weight="600" fill="#1e40af">Validate against schema</text>
+
+  <!-- Arrow down -->
+  <line x1="260" y1="178" x2="260" y2="204" stroke="#374151" stroke-width="2"/>
+  <polygon points="260,212 254,202 266,202" fill="#374151"/>
+
+  <!-- Diamond: Valid? -->
+  <polygon points="260,212 320,248 260,284 200,248" fill="#fef3c7" stroke="#374151" stroke-width="2"/>
+  <text x="260" y="253" text-anchor="middle" font-weight="600">Valid?</text>
+
+  <!-- ========== YES PATH (down) ========== -->
+  <line x1="260" y1="284" x2="260" y2="316" stroke="#15803d" stroke-width="2"/>
+  <polygon points="260,324 254,314 266,314" fill="#15803d"/>
+  <text x="274" y="306" class="label green">Yes</text>
+
+  <!-- Success box -->
+  <rect x="160" y="324" width="200" height="48" rx="8" fill="#d1fae5" stroke="#15803d" stroke-width="2"/>
+  <text x="260" y="353" text-anchor="middle" font-weight="600" class="green">Use result</text>
+
+  <!-- ========== NO PATH (left, then down to retries diamond) ========== -->
+  <line x1="200" y1="248" x2="130" y2="248" stroke="#c2410c" stroke-width="2"/>
+  <polygon points="122,248 132,242 132,254" fill="#c2410c"/>
+  <text x="162" y="240" class="label orange">No</text>
+
+  <!-- Diamond: Retries left? -->
+  <polygon points="70,212 122,248 70,284 18,248" fill="#fef3c7" stroke="#374151" stroke-width="2"/>
+  <text x="70" y="244" text-anchor="middle" font-weight="600" font-size="12">Retries</text>
+  <text x="70" y="258" text-anchor="middle" font-weight="600" font-size="12">left?</text>
+
+  <!-- ========== RETRIES YES: loop back up to Call LLM ========== -->
+  <!-- Arrow up from retries diamond -->
+  <line x1="70" y1="212" x2="70" y2="74" stroke="#c2410c" stroke-width="2"/>
+  <!-- Arrow right into Call LLM box -->
+  <line x1="70" y1="74" x2="152" y2="74" stroke="#c2410c" stroke-width="2"/>
+  <polygon points="160,74 150,68 150,80" fill="#c2410c"/>
+  <text x="82" y="170" class="label orange">Yes</text>
+
+  <!-- Annotation on the loop-back arrow -->
+  <text x="56" y="136" text-anchor="end" class="step" fill="#c2410c">Append errors</text>
+  <text x="56" y="150" text-anchor="end" class="step" fill="#c2410c">to prompt</text>
+
+  <!-- ========== RETRIES NO: fallback ========== -->
+  <line x1="70" y1="284" x2="70" y2="316" stroke="#dc2626" stroke-width="2"/>
+  <polygon points="70,324 64,314 76,314" fill="#dc2626"/>
+  <text x="82" y="306" class="label red">No</text>
+
+  <!-- Fallback box -->
+  <rect x="10" y="324" width="120" height="48" rx="8" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="70" y="345" text-anchor="middle" font-weight="600" class="red">Fallback</text>
+  <text x="70" y="361" text-anchor="middle" font-size="11" class="red">(manual review)</text>
+
+  <!-- ========== LEGEND ========== -->
+  <rect x="370" y="400" width="14" height="14" rx="3" fill="#d1fae5" stroke="#15803d" stroke-width="1.5"/>
+  <text x="390" y="412" font-size="11" fill="#374151">Success</text>
+  <rect x="370" y="420" width="14" height="14" rx="3" fill="#ffedd5" stroke="#c2410c" stroke-width="1.5"/>
+  <text x="390" y="432" font-size="11" fill="#374151">Retry loop</text>
+  <rect x="370" y="440" width="14" height="14" rx="3" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="390" y="452" font-size="11" fill="#374151">Retries exhausted</text>
+</svg>
