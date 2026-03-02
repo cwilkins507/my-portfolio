@@ -170,7 +170,7 @@ Either way, the math works. A $2,000 automation that saves 5 hours per week pays
 
 > ### AI Prompts That Design Your Automations
 >
-> The five automations in this article took me hours to scope the first time. Now I use three AI prompts to design automation workflows in 30 minutes — mapping triggers, actions, and tool connections for any business process. I put together a free toolkit with the 22 prompts I actually use to run market research, competitor analysis, SEO, and operations across two businesses.
+> The five automations in this article took me hours to scope the first time. Now I use three AI prompts to design automation workflows in 30 minutes — mapping triggers, actions, and tool connections for any business process. I put together a free toolkit with the 28 prompts I actually use to run market research, competitor analysis, SEO, and operations across two businesses.
 >
 > **[Get the AI Prompt Toolkit (free) →](/resources/ai-prompt-toolkit)**
 

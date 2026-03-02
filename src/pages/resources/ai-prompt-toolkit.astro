@@ -7,8 +7,8 @@ const toolkitSchema = {
   "@graph": [
     {
       "@type": "Article",
-      "headline": "22 AI Prompts That Replace Your Marketing Team",
-      "description": "22 original AI prompts for market research, competitor analysis, SEO, and automation — built and tested by a solo founder running two businesses.",
+      "headline": "28 AI Prompts That Replace Your Marketing Team",
+      "description": "28 original AI prompts for market research, competitor analysis, SEO, automation, and AI agent building — built and tested by a solo founder running two businesses.",
       "author": {
         "@type": "Person",
         "name": "Collin Wilkins",
@@ -65,12 +65,13 @@ const categories = [
   { id: "seo", name: "SEO", count: 4 },
   { id: "website", name: "Website & Conversion", count: 3 },
   { id: "marketing", name: "Marketing & Growth", count: 2 },
+  { id: "ai-agents", name: "AI Agents", count: 6 },
 ];
 ---
 
 <Layout
-  title="AI Prompt Toolkit: 22 Free Prompts for Solo Founders"
-  description="22 original AI prompts for market research, competitor analysis, SEO, and automation — built by a solo founder running two businesses. Free, no signup."
+  title="AI Prompt Toolkit: 28 Free Prompts for Solo Founders"
+  description="28 original AI prompts for market research, competitor analysis, SEO, automation, and building AI agents — built by a solo founder running two businesses. Free, no signup."
   type="article"
   publishedTime="2026-02-18"
   schema={toolkitSchema}
@@ -86,7 +87,7 @@ const categories = [
         </div>
 
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-extrabold leading-tight mb-6 text-center">
-          <span class="text-[var(--color-text-primary)]">22 AI Prompts That Replace</span><br />
+          <span class="text-[var(--color-text-primary)]">28 AI Prompts That Replace</span><br />
           <span class="italic text-[var(--color-text-secondary)]">Your Marketing Team</span>
         </h1>
 
@@ -96,7 +97,7 @@ const categories = [
 
         <div class="flex justify-center items-center gap-4 mb-4">
           <span class="text-sm text-[var(--color-text-secondary)] border border-[var(--color-border)] rounded-full px-4 py-2">
-            22 prompts &middot; 7 categories
+            28 prompts &middot; 8 categories
           </span>
           <span class="text-sm text-[var(--color-text-secondary)] border border-[var(--color-border)] rounded-full px-4 py-2">
             Free &middot; No email required
@@ -146,7 +147,7 @@ const categories = [
         <div class="bg-[var(--color-surface)] p-8 md:p-10 rounded-2xl border border-[var(--color-border)]">
           <h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">How solo founders use these prompts</h2>
           <p class="text-[var(--color-text-secondary)] leading-relaxed mb-4">
-            The biggest mistake people make with ChatGPT prompts and Claude prompts is treating them like Google searches. These aren't <a href="/articles/prompt-engineering" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">prompt engineering</a> experiments — they're 22 production prompts organized into a system. Each category builds on the last.
+            The biggest mistake people make with ChatGPT prompts and Claude prompts is treating them like Google searches. These aren't <a href="/articles/prompt-engineering" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">prompt engineering</a> experiments — they're 28 production prompts organized into a system. Each category builds on the last.
           </p>
           <p class="text-[var(--color-text-secondary)] leading-relaxed mb-6">
             Market research feeds personas. Personas feed competitor analysis. Competitor analysis feeds SEO. SEO feeds content. The compound output is worth more than any individual prompt. <a href="#chaining" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">See the chaining workflow &darr;</a>
@@ -1070,6 +1071,277 @@ Mark any claims that need real data with [VERIFY].</code></pre>
     </div>
 
     <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 8: AI AGENTS -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div id="ai-agents" class="scroll-mt-32 border-t border-[var(--color-border)] bg-[var(--color-surface)]">
+      <div class="container mx-auto px-4 py-16">
+        <div class="max-w-4xl mx-auto">
+          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 8 of 8</p>
+          <h2 class="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-4">AI Agents</h2>
+          <p class="text-lg text-[var(--color-text-secondary)] mb-12 max-w-3xl">
+            Building an AI agent isn't an engineering task — it's a writing task. These six prompts walk you from role definition to working instruction set to weekly improvement loop. No code. No automation tools. Just structured thinking and copy-paste prompts.
+          </p>
+
+          <!-- Prompt 23 -->
+          <div class="mb-16" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#23</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Define AI Employee Role</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              Before you write a single instruction, you need to know exactly what you're building. This prompt forces precision on scope, decision authority, and quality bar — so you don't spend three hours building the wrong thing.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are a business operations specialist. Help me precisely define an AI employee I want to build so I don't waste time building in the wrong direction.
+
+**The role I'm trying to fill:**
+[DESCRIBE THE FUNCTION — e.g., "Someone who writes social media content for my business," "Someone who handles initial client inquiry responses," "Someone who researches leads before sales calls"]
+
+**My business:**
+- Type: [e.g., "marketing agency," "solo consulting practice," "e-commerce brand"]
+- Team size: [NUMBER — including yourself]
+- Tools I use daily: [LIST YOUR KEY TOOLS — e.g., Gmail, HubSpot, Notion, Slack]
+
+Answer these questions in a structured format:
+
+1. **Job Title:** What would this role be called at a company?
+
+2. **Core Function:** In one sentence, what does this person do all day?
+
+3. **Top 5 Recurring Tasks:** For each task: what triggers it, what the finished output looks like, and how long it typically takes a human.
+
+4. **Decision Authority:** What can this role decide independently vs. what should it flag for human review?
+
+5. **Quality Bar:** How do I know if the output is good?
+
+6. **What AI Can Do vs. Can't Do:** Which tasks are automatable by AI today? Which require human judgment and should stay with me?
+
+7. **Common Mistakes:** What do people get wrong in this role that experienced professionals don't?
+
+Format as a clean reference document I can use as the foundation for building this AI employee.</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~1 hour per role scoped</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Starting any AI agent build, scoping before writing instructions</span>
+            </div>
+          </div>
+
+          <!-- Prompt 24 -->
+          <div class="mb-16" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#24</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Convert Manual Workflow to AI Instructions</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              You already do this task. You just do it manually. Describe your exact process and this prompt converts it into a Claude system prompt you can run in seconds instead of hours.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are an AI workflow designer. I do a task manually and repeatedly. Convert my exact process into a system prompt that lets Claude handle this task with minimal input from me each time.
+
+**The task I do manually:**
+[DESCRIBE IT — e.g., "Every Monday I review last week's sales numbers, compare to prior week and prior month, then write a short Slack message summarizing what's up, what's down, and what I'm watching."]
+
+**My process, step by step:**
+1. [STEP 1 — include what you look at and what you decide]
+2. [STEP 2]
+3. [STEP 3]
+
+**Tools or inputs I use:**
+[LIST THEM — e.g., "Google Sheets with revenue data, Slack workspace, Notion doc with goals context"]
+
+**What a good output looks like:**
+[DESCRIBE THE FINISHED RESULT — e.g., "A 3-paragraph Slack message. Conversational tone. Under 150 words."]
+
+**My preferences and rules:**
+[e.g., "Always flag if revenue dropped more than 10% week over week. Never show raw numbers without context."]
+
+Based on this, write:
+
+1. A system prompt / project instruction set I can paste into Claude — who it is, process steps, output format, what never to do.
+
+2. A short "how to use" section — what I need to paste in each time I run this.
+
+3. Any gaps in my process description I should clarify before relying on this.</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~45 min to build; recurring hours saved every week after</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Weekly reports, client deliverable drafts, recurring research tasks</span>
+            </div>
+          </div>
+
+          <!-- Prompt 25 -->
+          <div class="mb-16" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#25</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Build AI Employee from a Job Description</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              You know what role you need but can't afford to hire. Paste a job description and this prompt extracts the automatable 60-70%, writes the instruction set, and tells you what's still on your plate.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>I have a job description for a role I can't afford to hire. Help me build an AI employee that handles the parts of this job that AI can realistically do today.
+
+**Job description:**
+[PASTE THE JOB DESCRIPTION — or write your own description of the role you need]
+
+**My business context:**
+- Type: [e.g., "solo consulting practice," "5-person agency"]
+- Tools I already have: [LIST YOUR TOOLS — e.g., Gmail, Notion, HubSpot, Google Workspace]
+- What I need most: [TOP 1-2 OUTCOMES — e.g., "First drafts of client deliverables," "Researched responses to inbound inquiries"]
+
+Do this analysis:
+
+1. **Task Audit:** List every responsibility from the JD. Mark each as:
+   - [AI NOW] — AI can handle this reliably today
+   - [AI ASSIST] — AI does the first 80%, I review and refine
+   - [HUMAN ONLY] — Requires judgment or real-world action AI can't replicate
+
+2. **AI Employee Scope:** Focusing only on [AI NOW] and [AI ASSIST] tasks, define what I'm actually building.
+
+3. **System Prompt:** Write the full instruction set — role, step-by-step process, output format per task type, what never to do.
+
+4. **What I Still Need to Do:** For [HUMAN ONLY] tasks, a one-liner per task so I know what stays on my plate.
+
+5. **Input Template:** The minimum I need to paste into Claude each time to get a good result.</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~2 hours per role designed</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Roles you've priced out and can't justify, fractional function replacement</span>
+            </div>
+          </div>
+
+          <!-- Prompt 26 -->
+          <div class="mb-16" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#26</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Extract Expert Process from Content</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              You found someone who does it well — a podcast, article, or consultant's notes. Instead of trying to apply their method manually, paste the content and get executable AI instructions you can run tomorrow.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>I have content from an expert describing how they do [THEIR TASK/SPECIALTY]. Help me turn their methodology into a repeatable AI instruction set.
+
+**Expert content:**
+[PASTE THE TRANSCRIPT, ARTICLE, NOTES, OR CAPTIONS]
+
+**What I want to automate:**
+[DESCRIBE THE SPECIFIC TASK — e.g., "I want Claude to write client proposals using this person's approach," "I want Claude to conduct lead research using their methodology"]
+
+**My context:**
+- Business type: [e.g., "freelance copywriter," "2-person marketing agency"]
+- How I'll use this: [e.g., "For every new client," "Weekly"]
+
+Do this:
+
+1. **Extract the Process:** Pull the methodology into numbered steps in execution order — what triggers each step, what inputs are needed, what the output looks like.
+
+2. **Fill the Gaps:** Identify what the expert implied but didn't state. Fill with best practices and flag: [ASSUMED — verify this fits your situation].
+
+3. **Calibrate Language:** Convert vague terms into specific instructions. "Research the client" becomes "check their LinkedIn, website homepage, and last 3 press releases."
+
+4. **Write the Instruction Set:** Full system prompt covering role, step-by-step process, output format, and what never to do.
+
+5. **Flag for Review:** Note anything personal to the expert's situation that may not apply to mine.</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~1-2 hours per methodology extracted</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Podcast takeaways, consultant frameworks, expert articles with step-by-step process</span>
+            </div>
+          </div>
+
+          <!-- Prompt 27 -->
+          <div class="mb-16" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#27</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">AI Employee Performance Review</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              You've been using an AI instruction set for a week. Some outputs were good. Some weren't. This prompt turns that feedback into specific changes that improve the instruction set — the same feedback loop you'd run with a real hire.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>I've been using an AI instruction set for [WHAT IT DOES]. I want to improve the outputs based on this week's runs.
+
+**Current instruction set:**
+[PASTE YOUR CURRENT SYSTEM PROMPT OR INSTRUCTION SET]
+
+**This week's usage:**
+- Times I ran it: [NUMBER]
+- Outputs I used as-is or with minor edits: [NUMBER]
+- Outputs that needed significant rework: [NUMBER]
+- Outputs I didn't use at all: [NUMBER]
+
+**What worked well (keep this):**
+[e.g., "Structure was right," "Tone was on," "It asked good clarifying questions"]
+
+**What needs to be fixed:**
+[SPECIFIC PROBLEMS — e.g., "It kept recommending things I'd said were off the table," "Output was always too long," "It made assumptions instead of asking me"]
+
+**What's missing (should be added):**
+[THINGS THE INSTRUCTION SET SHOULD DO THAT IT CURRENTLY DOESN'T]
+
+**What's excessive (cut or reduce):**
+[THINGS THE AI DOES THAT I DON'T NEED]
+
+Based on this:
+
+1. **Diagnose the root cause** — For each problem: missing instruction, ambiguous instruction, or conflicting instructions?
+
+2. **Rewrite the instruction set** — Fix every issue. Keep the structure but improve the failing parts. Show before/after for each change.
+
+3. **Flag risks** — If a change might break something that was working, call it out.
+
+4. **Suggest one test** — One specific task to run next week to verify the biggest fix worked.</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~30 min per review; improvement compounds into hours saved weekly</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Weekly tuning of any AI agent, custom GPTs, Claude projects</span>
+            </div>
+          </div>
+
+          <!-- Prompt 28 -->
+          <div class="mb-4" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#28</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Design Multi-Step AI Workflow</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              Some tasks have multiple steps where each output feeds the next. This prompt maps the full sequence, defines what passes between steps, and writes individual prompts for each step — so you stop copy-pasting between disconnected chats.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>I have a recurring workflow with multiple steps where each output feeds the next. Help me design it and give me the prompts to run each step.
+
+**The workflow I want to build:**
+[DESCRIBE THE FULL PROCESS — e.g., "1. Research a prospect. 2. Write a personalized outreach email using that research. 3. Generate call talking points from the email. 4. After the call, write a follow-up based on what was discussed."]
+
+**My situation:**
+- Business type: [e.g., "solo consultant," "3-person agency"]
+- Tools I have: [e.g., Gmail, HubSpot, Notion, Google Docs]
+- How often I run this: [e.g., "3-4 times per week"]
+- Technical level: [No-code only / Comfortable with Zapier or Make]
+
+Design this workflow:
+
+1. **Workflow Map:** For each step — what triggers it, what input it needs, what Claude does, what the output is, what gets passed to the next step.
+
+2. **Dependency Map:** Which steps must be sequential? Which could run in parallel?
+
+3. **Step-by-Step Prompts:** A complete copy-paste prompt for each step, with a placeholder for the previous step's output. Each prompt should be self-contained.
+
+4. **Failure Points:** For each step, what's most likely to go wrong? What should I do if the output isn't usable?
+
+5. **Time Estimate:** How long should the full workflow take once it's set up?</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> Typically 1-3 hours per workflow run converted to 15-30 minutes</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Sales prospecting sequences, client onboarding flows, recurring research-to-output pipelines</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
     <!-- PROMPT CHAINING WORKFLOW -->
     <!-- ═══════════════════════════════════════════ -->
     <div id="chaining" class="scroll-mt-32 border-t border-[var(--color-border)] bg-[var(--color-surface)]">
@@ -1148,7 +1420,7 @@ Mark any claims that need real data with [VERIFY].</code></pre>
         <div class="max-w-4xl mx-auto text-center">
           <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">About the Author</h3>
           <p class="text-lg text-[var(--color-text-secondary)] leading-relaxed mb-6">
-            By <strong class="text-[var(--color-text-primary)]">Collin Wilkins</strong>. Lead Engineer with 12 years of experience automating systems at Ford and Morningstar. I run an <a href="/services" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">automation consulting practice</a> and an AI CFO product called <a href="https://finimbus.com" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">FiNimbus</a>. These 22 prompts are the ones I actually use.
+            By <strong class="text-[var(--color-text-primary)]">Collin Wilkins</strong>. Lead Engineer with 12 years of experience automating systems at Ford and Morningstar. I run an <a href="/services" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">automation consulting practice</a> and an AI CFO product called <a href="https://finimbus.com" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">FiNimbus</a>. These 28 prompts are the ones I actually use.
           </p>
           <a href="/about" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] font-semibold">
             Learn more about my work &rarr;
@@ -1167,7 +1439,7 @@ Mark any claims that need real data with [VERIFY].</code></pre>
 
   // Prompt search/filter
   (function () {
-    var CATEGORY_IDS = ['automation', 'market-research', 'personas', 'competitors', 'seo', 'website', 'marketing'];
+    var CATEGORY_IDS = ['automation', 'market-research', 'personas', 'competitors', 'seo', 'website', 'marketing', 'ai-agents'];
 
     var searchInput = document.getElementById('prompt-search');
     var searchCount = document.getElementById('prompt-search-count');

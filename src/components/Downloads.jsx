@@ -115,7 +115,7 @@ const Downloads = () => {
                       AI Prompt Toolkit
                     </h3>
                     <p className="text-[var(--color-text-muted)] font-light leading-relaxed">
-                      22 tested prompts for market research, competitor analysis, SEO, and automation.
+                      28 tested prompts for market research, competitor analysis, SEO, and automation.
                     </p>
                     <span className="inline-block mt-3 text-xs text-[var(--color-text-secondary)] border border-[var(--color-border)] rounded-full px-3 py-1">
                       Free · No email required
