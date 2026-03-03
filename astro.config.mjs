@@ -74,6 +74,7 @@ export default defineConfig({
                     '/articles/context-engineering-ai-coding-tools': '2026-02-05',
                     '/articles/context-engineering': '2026-02-19',
                     '/articles/ai-coding-model-wars-2026': '2026-02-15',
+                    '/articles/ai-agent-content-pipeline-experiment': '2026-03-03',
                 };
                 const path = new URL(item.url).pathname;
                 if (articleDates[path]) {
