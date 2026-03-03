@@ -20,7 +20,7 @@ I handed the full content pipeline to an AI agent: research, topic selection, wr
 
 The reason is honest. I'm buried in a product release (end of March) and haven't had time to curate blog content. I've been playing Pokémon instead of writing. So I ran an experiment: what happens when the agent gets the keys?
 
-The real question isn't whether AI can write a blog post. It can. The question is whether the infrastructure around the agent changes the output quality in measurable ways. That's what this post tests.
+The real question isn't whether AI can write a blog post. It can. The question is whether the infrastructure around an ai agent content pipeline changes the output quality in measurable ways. That's what this post tests.
 
 ## What the Agent Has Access To
 
@@ -119,23 +119,25 @@ The bet: if the writing patterns, agents, and scoring rubric are good enough, th
 
 ### Block B: AI Pattern Killer
 
-*Block A processed through the `ai-pattern-killer` skill. Tests whether removing AI-sounding patterns improves readability.*
+*Block A processed through the `ai-pattern-killer` skill at paranoid sensitivity (9.5 minimum score, burstiness target 10, zero hedge tolerance). Tests whether removing AI-sounding patterns improves readability.*
 
-A pattern is forming across engineering teams that use AI agents for real work. CIO.com named it directly in January 2026: "delegate, review, own."
+Every engineering team running AI agents for real work lands in the same place. CIO.com named it in January 2026: **"delegate, review, own."**
 
-The model is straightforward. AI agents handle first-pass execution: scaffolding, implementation, testing, documentation. Engineers review outputs for correctness, risk, and alignment. Ownership of architecture, trade-offs, and outcomes stays human.
+The model is simple. AI agents handle the first pass — they scaffold, implement, test, and write the docs. Engineers read every output, checking for bugs, security gaps, and whether it matches what was actually asked for. Architecture, trade-offs, and outcomes? Those stay with the humans.
 
-This sounds obvious until you look at the data. The METR study found that experienced developers accepted less than 44% of AI-generated code suggestions. 75% reported reading every line. 56% made major modifications. Developers aren't blindly shipping AI output. They're treating agents as first-draft machines and themselves as editors with veto power.
+This sounds obvious until you look at the data. Look at METR's numbers. Experienced developers accepted less than 44% of AI-generated code. 75% reported reading every line. 56% made major modifications. Developers aren't blindly shipping AI output. They're treating agents as first-draft machines. The human gets the final call.
 
-Addy Osmani at Google describes the same workflow: "The LLM is an assistant, not an autonomously reliable coder. I am the senior dev; the LLM is there to accelerate me, not replace my judgment."
+Addy Osmani at Google: "The LLM is an assistant, not an autonomously reliable coder. I am the senior dev; the LLM is there to accelerate me, not replace my judgment."
 
-The Anthropic 2026 Agentic Coding Report puts numbers on the gap: developers use AI in roughly 60% of their work but can fully delegate only 0-20% of tasks. The delta between usage and delegation is the review layer. It's where quality control lives.
+The Anthropic 2026 Agentic Coding Report puts numbers on the gap: developers use AI in 60% of their work but can fully delegate only 0-20% of tasks. That 40-60% delta between usage and full delegation is the **review layer** — where quality control either holds or doesn't.
 
-This maps directly to content production. The agent writes the first draft. The writing patterns shape the voice. The content reviewer scores against a rubric. But someone still owns the decision to publish. In this experiment, nobody does. That's the point. I'm testing what happens when you remove the human review layer entirely and rely on infrastructure instead.
+Now apply this to content. Agent writes the first draft, writing patterns control the voice, and a scoring rubric flags what slips through. But someone still decides whether to hit publish. In this experiment, nobody does.
 
-The bet: if the writing patterns, agents, and scoring rubric are good enough, the infrastructure can substitute for the human editor. If they're not, you'll see exactly where it breaks.
+That's the point.
 
-**Annotation:** The AI pattern killer found zero REQUIRED fixes. It scored the raw output at 8.7/10 with 28 sentences scanned and 0 rewritten. Three minor REVIEW suggestions were offered (parallel structure, dramatic buildup), all flagged as "the original works" and recommended keeping. The writing patterns already prevented the AI tells the pattern killer looks for. This is the most interesting result of the experiment: the upstream context (11 writing pattern files shaping the initial output) eliminated the need for downstream cleanup.
+I'm testing what happens when you pull the human out of the loop and replace the review layer with infrastructure — writing patterns and agents, backed by a 140-point scoring rubric. If the system works, you don't need the editor. If it doesn't, you'll see exactly where it breaks.
+
+**Annotation:** At paranoid sensitivity, the AI pattern killer found 17 flags — 12 REQUIRED, 5 REVIEW. Key fixes: de-nominalized "first-pass execution" to active verbs, broke anaphora chains (three consecutive "The..." paragraph openers), removed filler adverbs ("directly," "roughly"), added bold emphasis on key terms, shortened sentences via person shifts. Final score: 9.6/10 across 28 sentences. The paranoid config caught structural patterns the default medium config missed — sentence cadence uniformity, nominalization density, identical paragraph openings. The writing patterns prevented vocabulary-level AI tells upstream, but structural tells survived until the sensitivity was cranked up. This is the most interesting result: the config sensitivity level is the variable that determines whether post-processing earns its cost.
 
 *Hit reply and tell me which version reads best.*
 
@@ -195,9 +197,9 @@ In this experiment, nobody does.
 
 That's the whole point. I pulled the human out of the loop and replaced the review layer with infrastructure. Writing patterns, specialized agents, a 140-point scoring rubric. If the system is good enough, the infrastructure substitutes for the editor. If it's not, you'll see exactly where it breaks in the next 500 words.
 
-**Annotation:** Block D is identical to Block C. The chained treatment (AI pattern killer → voice polish) produces the same output as voice polish alone because the AI pattern killer made zero changes to Block A. The writing patterns already prevented the patterns the killer looks for, so the first link in the chain is a no-op. This is the second-most interesting finding of the experiment: when upstream context is good enough, stacking post-processing skills adds latency and token cost without improving quality. Two skills chained ≠ better output. It means the first skill had nothing to fix.
+**Annotation:** Block D shows voice polish applied to the original Block A (before the AI pattern killer config was strengthened). At the original medium sensitivity, the pattern killer made zero changes, so Block D matched Block C. After cranking to paranoid sensitivity, the pattern killer produced the distinct Block B above — meaning a true chained treatment would now start from Block B's rewritten base and produce a third distinct output. The takeaway: stacking post-processing skills isn't inherently overhead or inherently valuable. It depends entirely on the sensitivity config. At medium, the first link in the chain was a no-op. At paranoid, it rewrites 12 sentences before voice polish even touches the text.
 
-*Tools used in this experiment: [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code), Obsidian, 11 custom writing pattern files, 4 specialized agents. The agent definitions and skill configs are all markdown files — no code required.*
+*Tools used in this experiment: [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code), Obsidian, 11 custom writing pattern files, 4 specialized agents. The agent definitions and skill configs are all markdown files. No code required.*
 
 ---
 
@@ -205,15 +207,15 @@ That's the whole point. I pulled the human out of the loop and replaced the revi
 
 The content-reviewer agent scored this draft **7/10**. Here's what it flagged.
 
-**Strongest areas:** Pillar alignment (9/10 — direct hit on "AI Agents in Practice"), structure (8/10), and the unique concept. The reviewer called the Block B finding "the best finding in the piece" and noted the production prompt as "the strongest transparency move."
+**Strongest areas:** Pillar alignment (9/10, direct hit on "AI Agents in Practice"), structure (8/10), and the unique concept. The reviewer noted the production prompt as "the strongest transparency move" and flagged the sensitivity-as-variable finding in Block B as the most actionable insight.
 
-**Weakest area:** Sourcing (6/10). Three claims lack URLs: the Addy Osmani quote, the CIO.com "delegate, review, own" attribution, and the Anthropic 2026 Agentic Coding Report statistics. The reviewer also flagged a potential conflation between METR study statistics and Anthropic report statistics in Block A. These are real gaps — the no-fabrication rule requires verifiable links or hedge language, and the agent didn't provide links for every claim.
+**Weakest area:** Sourcing (6/10). Three claims lack URLs: the Addy Osmani quote, the CIO.com "delegate, review, own" attribution, and the Anthropic 2026 Agentic Coding Report statistics. The reviewer also flagged a potential conflation between METR study statistics and Anthropic report statistics in Block A. These are real gaps. The no-fabrication rule requires verifiable links or hedge language, and the agent didn't provide links for every claim.
 
 **SEO:** The exact target keyword phrase "ai agent content pipeline" never appears verbatim in the body text or any heading. The individual words appear throughout, but exact-match targeting is missing.
 
 **AI pattern detection:** 8 minor patterns found, mostly structural (bold-label repetition in the research section, "the point is" framing used twice). Zero vocabulary-level AI tells. The reviewer confirmed the writing patterns prevented the vocabulary issues upstream.
 
-**The honest assessment:** A 7 is fair. The concept carries the piece, but the sourcing gaps are real and the four-treatment section reprints identical text unnecessarily. The reviewer's top fix: "Add missing source URLs." The agent didn't do that. That's a human-review task the infrastructure couldn't handle autonomously.
+**The honest assessment:** A 7 is fair. The concept carries the piece, but the sourcing gaps are real. The reviewer's top fix: "Add missing source URLs." The agent didn't do that. That's a human-review task the infrastructure couldn't handle autonomously.
 
 This is exactly the kind of finding that makes the experiment worth running. The infrastructure handles mechanics and voice. It doesn't handle editorial judgment about what needs a citation link.
 
@@ -233,4 +235,4 @@ If you want to run this experiment yourself, start with the system, not the mode
 
 *Related: [How I Actually Use AI Agents Every Day](/articles/ai-agent-workflow-claude-code) covers the daily agent workflow this experiment extends. [Context Engineering](/articles/context-engineering) explains the four-layer framework that makes agent infrastructure work. [From Vibe Coding to Agentic Engineering](/articles/from-vibe-coding-to-agentic-engineering) covers the paradigm shift this post operates within.*
 
-*Subscribe to the newsletter for practical AI engineering breakdowns — no summaries of other people's summaries.*
+*Subscribe to the newsletter for practical AI engineering breakdowns. No summaries of other people's summaries.*
