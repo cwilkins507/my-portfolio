@@ -9,6 +9,7 @@
   --color-bg: #0C0C0C;
   --color-surface: rgba(255,255,255,0.03);
   --color-surface-hover: rgba(255,255,255,0.05);
+  --color-surface-elevated: rgba(12,12,12,0.92);
 
   /* Borders */
   --color-border: rgba(255,255,255,0.08);
@@ -47,6 +48,7 @@
   --color-bg: #FFFFFF;
   --color-surface: #F7F7F7;
   --color-surface-hover: #EFEFEF;
+  --color-surface-elevated: rgba(255,255,255,0.96);
 
   --color-border: rgba(0,0,0,0.08);
   --color-border-hover: rgba(0,0,0,0.15);

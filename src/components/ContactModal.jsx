@@ -68,7 +68,7 @@ const ContactModal = ({ isOpen, onClose, initialService, email }) => {
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-title"
-        className="relative bg-[var(--color-surface)] border border-[var(--color-border)] w-full sm:max-w-2xl h-full sm:h-auto max-h-screen sm:max-h-[90vh] rounded-t-2xl sm:rounded-2xl overflow-y-auto shadow-2xl transform transition-all duration-200 animate-in fade-in zoom-in-95"
+        className="relative bg-[var(--color-surface-elevated)] backdrop-blur-xl border border-[var(--color-border)] w-full sm:max-w-2xl h-full sm:h-auto max-h-screen sm:max-h-[90vh] rounded-t-2xl sm:rounded-2xl overflow-y-auto shadow-[0_24px_80px_rgba(0,0,0,0.55)] transform transition-all duration-200 animate-in fade-in zoom-in-95"
       >
         {/* Close Button */}
         <button

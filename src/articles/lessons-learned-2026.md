@@ -1,6 +1,6 @@
 ---
 title: "Lessons Learned in 2026"
-date: "2026-02-15"
+date: "2026-03-05"
 tags: ["Lessons Learned", "Software Engineering", "Mindset", "AI", "Career"]
 excerpt: "A generalist's field notes from 2026. AI changed the game, execution still wins, and the engineers who connect dots nobody else sees are the ones getting ahead."
 seo_title: "Lessons Learned in 2026: A Generalist Engineer's Field Notes"
@@ -258,6 +258,47 @@ The practical version: build your systems so switching a model is a config chang
 
 **Translation:**
 Vendor lock-in is expensive when the market shifts every quarter. Build the abstraction now. The switch will come whether you planned for it or not.
+
+**21. "Generic prompts produce generic output."**
+
+The prompt is the brief. Most people treat it as a starting point — fire something vague at the model and edit from there. The better approach flips it: do the hard thinking upfront. Define the role, the output format, and the constraints before you write a word of the prompt body.
+
+When the role is specific ("You are a conversion copywriter who specializes in B2B SaaS landing pages"), the output is specific. When the task is one thing, not three, the output is usable. When the format is explicit, you don't reformat by hand — you pipe it directly to the next step.
+
+Less editing on the back end is a direct result of more precision up front. The model isn't the bottleneck. The brief is.
+
+**Translation:**
+Specificity is leverage. The time you save in the edit pass is always longer than the time you spend sharpening the prompt.
+
+**22. "Specialize then compound."**
+
+Chaining prompts before any single prompt works is a common mistake. You get compound garbage — each step inherits the noise from the step before it.
+
+Get the single version right first. Run the market research prompt until the output is actually usable as research. Then wire the persona prompt to receive it. Then the competitor gap prompt. Validate each handoff before you automate it.
+
+The system only runs as fast as the slowest correct step. A broken chain fails silently — it produces output that looks reasonable until you check whether it's actually accurate.
+
+**23. "The chain is the product."**
+
+A single prompt is a move. A connected system of prompts is a workflow. The compound output beats any one.
+
+The engineers who get real leverage from AI aren't the ones who found the best individual prompt. They're the ones who built the handoffs. Market research feeds into personas. Personas feed into competitor gaps. Competitor gaps feed into content strategy. Each step receives a clean, structured output from the step before.
+
+What makes this hard is format discipline. The output shape of step one has to match the expected input shape of step two. If you don't define both, the chain breaks at the seam and you're back to copying and pasting between windows.
+
+**Translation:**
+Individual prompts are tactics. A system of connected prompts is a strategy. The advantage compounds across every step.
+
+**24. "Version your prompts."**
+
+The first version is never the best. The problem is most people don't know why it got better — they made changes, the output improved, and they moved on. Next time they hit the same problem, they're starting over.
+
+Treat prompts like code. Write down what you changed and why. "Added a format constraint — output was unstructured and broke the downstream step." "Narrowed the role — output was too general." That log is worth more than the prompt itself.
+
+Prompt sprawl is the failure mode. You end up with a folder of markdown files, three variants of the same persona prompt, and no memory of which one actually worked. The version history is the discipline that prevents it.
+
+**Translation:**
+Iteration without documentation is just thrashing. Track what changed, why it changed, and what the result was. That's how a prompt becomes a system.
 
 ---
 
