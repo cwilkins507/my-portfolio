@@ -165,14 +165,14 @@ const ArticleList = ({ articles = [] }) => {
               <motion.a
                 href={`/articles/${article.slug}`}
                 key={article.slug}
-                className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 py-6 border-b hover:bg-[var(--color-surface-hover)] transition-all duration-300 group px-4"
+                className="flex flex-col gap-4 py-6 border-b hover:bg-[var(--color-surface-hover)] transition-all duration-300 group px-4 md:grid md:grid-cols-[220px_minmax(0,1fr)_auto] md:items-center md:gap-6"
                 style={{ borderColor: 'var(--color-border)' }}
                 variants={itemVariants}
               >
                 {/* Left: Category + Date */}
-                <div className="flex-shrink-0 md:w-48 flex items-center gap-3 flex-wrap">
+                <div className="flex items-center gap-3 flex-wrap md:w-[220px] md:flex-nowrap">
                   <span
-                    className="text-xs font-medium px-3 py-1 rounded-full border"
+                    className="whitespace-nowrap text-xs font-medium px-3 py-1 rounded-full border"
                     style={{
                       background: colors.bg,
                       color: colors.text,
@@ -187,7 +187,7 @@ const ArticleList = ({ articles = [] }) => {
                 </div>
 
                 {/* Middle: Title + Description */}
-                <div className="flex-1">
+                <div className="min-w-0">
                   <h3 className="text-lg font-serif text-moonlight-text-primary group-hover:text-[var(--color-text-primary)] mb-1 transition leading-snug">
                     {article.title}
                   </h3>
