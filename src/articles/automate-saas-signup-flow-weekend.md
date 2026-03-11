@@ -17,7 +17,7 @@ faqs:
 
 ## The Automation Guy With a Manual Signup Flow
 
-My day job is lead software developer. On the side, I'm building [FiNimbus](https://finimbus.com) and trying to sell automation consulting using AI tools. I've spent years replacing manual processes at places like Ford and Morningstar. I even wrote an [article](/articles/service-business-automations) about the cost of slow lead response.
+My day job is lead software developer. On the side, I'm building [FiNimbus](https://finimbus.com) and providing automation consulting using AI tools. I've spent years replacing manual processes at places like Ford and Morningstar. I even wrote an [article](/articles/service-business-automations) about the cost of slow lead response.
 
 My own beta signup flow? Fully manual. Someone fills out the form, I get an email notification, and I get to it when I get to it. Maybe that evening. Maybe the next day. I'm not sitting there monitoring signups between standups and code reviews.
 

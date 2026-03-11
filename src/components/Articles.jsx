@@ -89,20 +89,20 @@ const ArticleList = ({ articles = [] }) => {
             }}
             aria-hidden="true"
           />
-          <div className="container mx-auto px-4 py-24 md:py-32 relative z-10">
-            <div className="max-w-4xl mx-auto">
+          <div className="container mx-auto px-4 py-24 md:py-32 relative z-10 flex flex-col items-center text-center">
+            <div className="max-w-4xl mx-auto flex flex-col items-center">
               <span className="text-[var(--color-accent)] text-sm font-bold uppercase tracking-[0.08em]">Latest Article</span>
-              <h1 className="text-3xl md:text-5xl font-serif font-black text-moonlight-text-primary mt-4 mb-6 leading-tight tracking-tight">
+              <h1 className="text-3xl md:text-5xl font-serif font-black text-[var(--color-text-primary)] mt-4 mb-6 leading-tight tracking-tight">
                 {featuredArticle.title}
               </h1>
-              <p className="text-lg md:text-xl text-moonlight-text-secondary mb-8 leading-relaxed font-light">
+              <p className="text-lg md:text-xl text-[var(--color-text-secondary)] mb-8 leading-relaxed font-light">
                 {featuredArticle.excerpt}
               </p>
-              <div className="flex items-center gap-4 mb-8">
-                <span className="text-moonlight-text-secondary">{formatDate(featuredArticle.date)}</span>
-                <span className="text-moonlight-text-faint">•</span>
+              <div className="flex justify-center items-center gap-4 mb-8">
+                <span className="text-[var(--color-text-secondary)]">{formatDate(featuredArticle.date)}</span>
+                <span className="text-[var(--color-text-faint)]">•</span>
                 <span
-                  className="text-sm px-3 py-1 rounded-full border"
+                  className="text-sm px-3 py-1 rounded-full border whitespace-nowrap"
                   style={{
                     background: CATEGORY_STYLE.bg,
                     color: CATEGORY_STYLE.text,
@@ -126,17 +126,17 @@ const ArticleList = ({ articles = [] }) => {
       {/* Category Tabs & Article List */}
       <div className="container mx-auto px-4 py-16 md:py-24">
         {/* Category Navigation */}
-        <div className="flex items-center justify-between mb-12">
-          <h2 className="text-3xl font-serif font-semibold text-moonlight-text-primary">All Articles</h2>
-          <div className="flex flex-wrap gap-3">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
+          <h2 className="text-3xl font-serif font-semibold text-[var(--color-text-primary)]">All Articles</h2>
+          <div className="flex flex-wrap gap-2 md:gap-3">
             {['All', ...Object.keys(CATEGORIES)].map(category => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-2 rounded-full font-medium text-sm transition-all duration-300 ${
+                className={`px-4 md:px-6 py-2 rounded-full font-medium text-xs md:text-sm transition-all duration-300 ${
                   selectedCategory === category
-                    ? 'bg-[var(--color-text-primary)] text-[var(--color-bg)] scale-105'
-                    : 'text-moonlight-text-secondary border hover:border-[var(--color-border-hover)] hover:text-[var(--color-text-primary)]'
+                    ? 'bg-[var(--color-text-primary)] text-[var(--color-bg)] scale-105 shadow-card'
+                    : 'text-[var(--color-text-secondary)] border hover:border-[var(--color-border-hover)] hover:text-[var(--color-text-primary)]'
                 }`}
                 style={selectedCategory !== category ? {
                   background: 'var(--color-surface)',
@@ -165,12 +165,24 @@ const ArticleList = ({ articles = [] }) => {
               <motion.a
                 href={`/articles/${article.slug}`}
                 key={article.slug}
-                className="flex flex-col gap-4 py-6 border-b hover:bg-[var(--color-surface-hover)] transition-all duration-300 group px-4 md:grid md:grid-cols-[220px_minmax(0,1fr)_auto] md:items-center md:gap-6"
+                className="flex flex-col py-6 border-b hover:bg-[var(--color-surface-hover)] transition-all duration-300 group px-4 md:px-6"
                 style={{ borderColor: 'var(--color-border)' }}
                 variants={itemVariants}
               >
-                {/* Left: Category + Date */}
-                <div className="flex items-center gap-3 flex-wrap md:w-[220px] md:flex-nowrap">
+                <div className="flex justify-between items-start gap-4 mb-2">
+                  <h3 className="text-xl md:text-2xl font-serif text-[var(--color-text-primary)] group-hover:text-[var(--color-accent)] transition leading-snug">
+                    {article.title}
+                  </h3>
+                  <ArrowRight className="w-5 h-5 text-[var(--color-text-faint)] group-hover:text-[var(--color-accent)] transition mt-1 flex-shrink-0" />
+                </div>
+                
+                <p className="text-[var(--color-text-secondary)] text-sm md:text-base mb-4 line-clamp-2 md:line-clamp-none">
+                  {article.excerpt}
+                </p>
+
+                <div className="flex items-center gap-4 mt-auto">
+                  <span className="text-[var(--color-text-secondary)] text-sm">{formatDate(article.date)}</span>
+                  <span className="text-[var(--color-text-faint)]">•</span>
                   <span
                     className="whitespace-nowrap text-xs font-medium px-3 py-1 rounded-full border"
                     style={{
@@ -181,23 +193,7 @@ const ArticleList = ({ articles = [] }) => {
                   >
                     {category}
                   </span>
-                  <span className="text-moonlight-text-faint text-xs">
-                    {formatDate(article.date)}
-                  </span>
                 </div>
-
-                {/* Middle: Title + Description */}
-                <div className="min-w-0">
-                  <h3 className="text-lg font-serif text-moonlight-text-primary group-hover:text-[var(--color-text-primary)] mb-1 transition leading-snug">
-                    {article.title}
-                  </h3>
-                  <p className="text-moonlight-text-muted text-sm line-clamp-2">
-                    {article.excerpt}
-                  </p>
-                </div>
-
-                {/* Right: Arrow */}
-                <ArrowRight className="w-5 h-5 text-moonlight-text-faint group-hover:text-[var(--color-text-primary)] transition self-start md:self-center" />
               </motion.a>
             );
           })}
@@ -205,7 +201,7 @@ const ArticleList = ({ articles = [] }) => {
 
         {filteredArticles.length === 0 && (
           <div className="text-center py-16">
-            <p className="text-moonlight-text-muted text-lg">
+            <p className="text-[var(--color-text-muted)] text-lg">
               No articles found in this category.
             </p>
           </div>

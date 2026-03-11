@@ -51,24 +51,43 @@ const Writing = ({ articlesInitial = [] }) => {
           <a 
             key={article.slug} 
             href={`/articles/${article.slug}`}
-            className="bg-[var(--color-surface)] p-6 rounded-xl hover:bg-[var(--color-surface-hover)] transition duration-300 border border-[var(--color-border)] hover:border-[var(--color-border-hover)] group"
+            className="flex flex-col bg-[var(--color-surface)] p-6 rounded-xl transition-all duration-300 border border-[var(--color-border)] hover:border-[var(--color-border-hover)] hover:-translate-y-1 hover:shadow-card group relative"
           >
-            <h2 className="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-2 group-hover:text-[var(--color-accent)] transition">{article.title}</h2>
-            <div className="text-[var(--color-text-muted)] text-sm mb-2">{new Date(article.date).toLocaleDateString()}</div>
-            <div className="flex gap-2 mb-4 flex-wrap">
-              {article.tags && article.tags.slice(0, 3).map(tag => (
-                <span
-                  key={tag}
-                  className="bg-[var(--color-surface)] text-[var(--color-text-secondary)] text-xs px-3 py-1 rounded-full border border-[var(--color-border)]"
-                >
-                  {tag}
-                </span>
-              ))}
+            <div className="flex justify-between items-start gap-4 mb-2">
+              <h2 className="text-xl md:text-2xl font-serif font-bold text-[var(--color-text-primary)] group-hover:text-[var(--color-accent)] transition leading-snug">
+                {article.title}
+              </h2>
+              <ArrowRight className="w-5 h-5 text-[var(--color-text-faint)] group-hover:text-[var(--color-accent)] transition mt-1 flex-shrink-0" />
             </div>
-            <p className="text-[var(--color-text-secondary)] mb-4">{article.excerpt}</p>
-            <span className="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">
-              Read more →
-            </span>
+            <p className="text-[var(--color-text-secondary)] text-sm md:text-base mb-6 flex-grow">
+              {article.excerpt}
+            </p>
+            <div className="flex items-center gap-3 mt-auto pt-4 border-t border-[var(--color-border)]">
+              <span className="text-[var(--color-text-secondary)] text-sm whitespace-nowrap">
+                {new Date(article.date).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                  timeZone: 'UTC'
+                })}
+              </span>
+              <span className="text-[var(--color-text-faint)]">•</span>
+              <div className="flex gap-2 flex-wrap">
+                {article.tags && article.tags.slice(0, 1).map(tag => (
+                  <span
+                    key={tag}
+                    className="whitespace-nowrap text-xs font-medium px-3 py-1 rounded-full border"
+                    style={{
+                      background: 'var(--color-surface)',
+                      color: 'var(--color-text-secondary)',
+                      borderColor: 'var(--color-border)',
+                    }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
           </a>
         ))}
       </div>
