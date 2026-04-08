@@ -13,14 +13,14 @@ import MagneticButton from './MagneticButton';
  * @param {string} pricingHint - Pricing transparency line (optional)
  * @param {Array} ctas - Array of CTA objects with { href, text, variant }
  */
-export default function AnimatedHero({ headline, subheadline, supportingStat, sourceUrl, subtext, pricingHint, ctas = [], showNewsletter = false }) {
+export default function AnimatedHero({ headline, subheadline, supportingStat, sourceUrl, subtext, pricingHint, ctas = [], emphasizeWords: emphasizeWordsProp, showNewsletter = false }) {
   const prefersReducedMotion = useReducedMotion();
 
   // Split headline into words for stagger animation
   const words = headline.split(' ');
 
   // Words to emphasize in gold italic
-  const emphasizeWords = ['Small', 'Teams', 'Drowning', 'Manual'];
+  const emphasizeWords = emphasizeWordsProp || ['Small', 'Teams', 'Drowning', 'Manual'];
 
   const containerVariants = {
     hidden: { opacity: 0 },

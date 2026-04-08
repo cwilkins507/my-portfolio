@@ -5,10 +5,9 @@ import { useTheme } from '../hooks/useTheme';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 
 const NAV_LINKS = [
+  { href: '/consulting', label: 'Consulting' },
   { href: '/articles', label: 'Articles' },
   { href: '/newsletter', label: 'Newsletter' },
-  { href: '/resources', label: 'Resources' },
-  { href: '/services', label: 'Services' },
   { href: '/about', label: 'About' },
   { href: '/?modal=contact', label: 'Contact' },
 ];

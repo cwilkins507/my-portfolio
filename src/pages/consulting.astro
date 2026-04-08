@@ -1,0 +1,124 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Consulting from '../components/Consulting';
+
+const consultingSchema = {
+	"@context": "https://schema.org",
+	"@type": "ProfessionalService",
+	"name": "Collin Wilkins — AI & Automation Consulting",
+	"description": "I help mid-market engineering teams ship AI and automation. Enterprise background (Ford, Morningstar). Assessments, fractional architecture, implementation sprints. Working systems, not slide decks.",
+	"url": "https://collinwilkins.com/consulting",
+	"provider": {
+		"@type": "Person",
+		"name": "Collin Wilkins",
+		"url": "https://collinwilkins.com/about"
+	},
+	"hasOfferCatalog": {
+		"@type": "OfferCatalog",
+		"name": "Consulting Services",
+		"itemListElement": [
+			{
+				"@type": "Offer",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "AI & Automation Assessment",
+					"description": "Workflow audit, AI readiness evaluation, prioritized roadmap with ROI estimates, and 3 deployed quick wins."
+				},
+				"priceSpecification": {
+					"@type": "PriceSpecification",
+					"priceCurrency": "USD",
+					"minPrice": "7500",
+					"maxPrice": "15000"
+				}
+			},
+			{
+				"@type": "Offer",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "Fractional Automation Architect",
+					"description": "Embedded 10-15 hours per week with your engineering team. Architecture decisions, vendor evaluations, hands-on implementation guidance, and code review."
+				},
+				"priceSpecification": {
+					"@type": "PriceSpecification",
+					"priceCurrency": "USD",
+					"minPrice": "5000",
+					"maxPrice": "8000",
+					"unitText": "MONTH"
+				}
+			},
+			{
+				"@type": "Offer",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "AI Adoption Workshop",
+					"description": "Hands-on training for engineering teams on prompt engineering, AI coding tools, internal automation patterns, and convention file architecture. Up to 20 engineers."
+				},
+				"priceSpecification": {
+					"@type": "PriceSpecification",
+					"priceCurrency": "USD",
+					"minPrice": "3000",
+					"maxPrice": "8000"
+				}
+			},
+			{
+				"@type": "Offer",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "Implementation Sprint",
+					"description": "End-to-end build and deployment of a specific automation system. Scoping, implementation, documentation, and handoff."
+				},
+				"priceSpecification": {
+					"@type": "PriceSpecification",
+					"priceCurrency": "USD",
+					"minPrice": "15000",
+					"maxPrice": "30000"
+				}
+			},
+			{
+				"@type": "Offer",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "Advisory Retainer",
+					"description": "Monthly strategy calls, architecture reviews, vendor evaluations, and async access for questions between calls."
+				},
+				"priceSpecification": {
+					"@type": "PriceSpecification",
+					"priceCurrency": "USD",
+					"minPrice": "3000",
+					"maxPrice": "5000",
+					"unitText": "MONTH"
+				}
+			}
+		]
+	}
+};
+---
+
+<Layout
+	title="AI & Automation Consulting for Engineering Teams — Collin Wilkins"
+	description="I help mid-market engineering teams ship AI and automation. Enterprise background (Ford, Morningstar). Assessments, fractional architecture, implementation sprints. Working systems, not slide decks."
+	schema={consultingSchema}
+>
+	<Consulting client:load />
+	<noscript>
+		<div class="container mx-auto px-4 py-16 max-w-4xl">
+			<h1 class="text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-6">Consulting</h1>
+			<p class="text-xl text-[var(--color-text-secondary)] mb-8">I help engineering teams ship AI and automation without the 6-month consulting engagement.</p>
+			<h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">AI & Automation Assessment</h2>
+			<p class="text-[var(--color-text-secondary)] mb-2">$7,500 - $15,000 | 1-2 weeks</p>
+			<p class="text-[var(--color-text-secondary)] mb-6">Workflow audit, AI readiness evaluation, prioritized roadmap with ROI estimates, and 3 deployed quick wins.</p>
+			<h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Fractional Automation Architect</h2>
+			<p class="text-[var(--color-text-secondary)] mb-2">$5,000 - $8,000/month | 3-6 month minimum</p>
+			<p class="text-[var(--color-text-secondary)] mb-6">Embedded with your engineering team. Architecture decisions, vendor evaluations, hands-on implementation guidance, and code review.</p>
+			<h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">AI Adoption Workshop</h2>
+			<p class="text-[var(--color-text-secondary)] mb-2">$3,000 - $8,000 | Half-day or full-day</p>
+			<p class="text-[var(--color-text-secondary)] mb-6">Hands-on training for engineering teams on prompt engineering, AI coding tools, and internal automation patterns.</p>
+			<h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Implementation Sprint</h2>
+			<p class="text-[var(--color-text-secondary)] mb-2">$15,000 - $30,000 | 4-8 weeks</p>
+			<p class="text-[var(--color-text-secondary)] mb-6">End-to-end build and deployment of a specific automation system with documentation and handoff.</p>
+			<h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Advisory Retainer</h2>
+			<p class="text-[var(--color-text-secondary)] mb-2">$3,000 - $5,000/month | Ongoing</p>
+			<p class="text-[var(--color-text-secondary)] mb-6">Monthly strategy calls, architecture reviews, vendor evaluations, and async access.</p>
+		</div>
+	</noscript>
+</Layout>
