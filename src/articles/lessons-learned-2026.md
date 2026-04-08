@@ -17,6 +17,8 @@ These lessons come from what I actually did this year — building software, lea
 
 Let's get into it.
 
+*(Updated April 2026 with 8 new lessons.)*
+
 ---
 
 **1. "AI is a power tool, not a replacement."**
@@ -299,6 +301,83 @@ Prompt sprawl is the failure mode. You end up with a folder of markdown files, t
 
 **Translation:**
 Iteration without documentation is just thrashing. Track what changed, why it changed, and what the result was. That's how a prompt becomes a system.
+
+**25. "Volume finds the signal. Displacement captures it."**
+
+There's a tweet I keep thinking about — the answer to getting results is usually *more*. More outbound, more ads, more shots. And then there's Nick Saraev's growth data showing the opposite: his biggest subscriber days all came from a handful of spikes where he read the market and moved fast, not from grinding out daily uploads. Both are right. They're just sequential.
+
+Volume is how you discover what works. You publish enough, pitch enough, ship enough that patterns emerge — what resonates, what falls flat, what the market actually wants from you right now. But once you've found the signal, staying in volume mode is just motion. Saraev's framing is clean: motion is zigzagging. Displacement is the straight line to the goal. He didn't need a breakthrough. He needed a 1.46x improvement in how effectively he spent the time he was already spending.
+
+The mistake is trying to be strategic before you have enough data to strategize from. The other mistake is staying in volume mode after you've already found what works.
+
+**Translation:**
+Volume is exploration. Displacement is exploitation. The people who stall are the ones who never switch modes — or switch too early.
+
+**26. "Manipulate knowledge, not just code."**
+
+Karpathy said something that reframed how I think about my AI workflows: "A large fraction of my recent token throughput is going less into manipulating code, and more into manipulating knowledge." He's running an LLM-maintained markdown wiki in Obsidian — about 400K words, no RAG, just index files and summaries the model auto-maintains. The compounding loop is the thing: ingest sources, have the LLM compile them into interlinked articles, query against the wiki, file outputs back in to make the whole system richer for the next query.
+
+I've been running a version of this for months without naming it that clearly. Every KB entry, every session recap, every brief that links back to research — it's the same loop. Each interaction makes the next one more useful. The model gets better not because it's smarter, but because the knowledge base it reads keeps growing. That's a fundamentally different relationship with AI than "paste context, get output, close tab."
+
+The practical implication: time spent organizing what you know compounds harder than time spent generating new output. A well-maintained wiki is infrastructure. Scattered notes are inventory that depreciates.
+
+**Translation:**
+The highest-leverage AI workflow isn't generation. It's building a knowledge system where every query makes the next one better.
+
+**27. "Your creative output has a metabolism."**
+
+Dan Koe described a cycle I recognized immediately: shift focus away from your creative routine, stress fills the gap, ideas stop flowing, the stress compounds. He calls creativity a state of consciousness, not a talent — and identifies three things that kill it: conditioning that suppresses curiosity, productivity-obsession that leaves no room for open thinking, and information overconsumption that overwhelms your ability to process anything.
+
+Even Saraev flagged this. His trend-monitoring system works, but chasing news cycles took a psychological toll — "I hate being this plugged-in." There's a real tension between the volume lesson (take more shots) and the sustainability lesson (a stressed mind can't see new connections). The resolution isn't balance in some abstract sense. It's recognizing that creative capacity has a metabolic rate. You can only process so much input before you go flat. Feed the system, but leave room for it to digest.
+
+**Translation:**
+Information overconsumption works like overeating. Your mind has a metabolic rate. Exceed it and the output goes flat regardless of how hard you push.
+
+**28. "Confidence moves faster than intelligence."**
+
+The ones who moved fastest around me weren't the most talented. They were the ones who learned presence — how to read the room, know the players, and position what they were saying so the right people heard it.
+
+That's a different kind of intelligence. It's not IQ. It's knowing how to get what you want out of a situation. How to frame an architecture decision so your VP cares. How to present your work so leadership remembers your name when the next opportunity opens. How to sell yourself without feeling like you're selling yourself.
+
+People remember who showed up with conviction.
+
+**Translation:** Technical skill gets you to the table. Presence is what makes people listen once you're there. Learn to read the room.
+
+**29. "Speed of action beats quality of plan."**
+
+This connects to lesson 25 but sharpens the point. The bolder you allow yourself to be, the higher the chances you end up somewhere good. Not because boldness is smart — because it generates information. Every action produces feedback. Every plan just produces more planning.
+
+I shipped my first blog post before I had a content strategy. I published my first side project before I had a portfolio site. Both of those decisions taught me more in a week than the months I spent thinking about them beforehand. The plan would have been wrong anyway. The action showed me what to fix.
+
+**Translation:**
+A mediocre action beats a perfect plan because action produces data and plans produce assumptions.
+
+**30. "If it takes two minutes, do it now."**
+
+Small undone tasks don't stay small. They sit in your head, drain a tiny amount of attention, and compound into a fog of "things I need to get to." The Slack reply, the PR approval, the quick config change. None of them are hard. All of them weigh something when they pile up.
+
+I started applying this after I noticed my focus sessions were getting interrupted by my own mental backlog, not by other people. The two-minute rule isn't about productivity. It's about clearing the runway so the deep work has room to land.
+
+**Translation:**
+Small completions build momentum. Small deferrals build drag. The two-minute rule isn't about efficiency — it's about keeping your head clear for the work that actually matters.
+
+**31. "You just have to be consistently stupid about not giving up."**
+
+There's no elegant way to say this. Most of the outcomes I'm proud of came from refusing to quit long past the point where quitting made sense. The blog nobody read for months. The side project that took three rewrites. The career transition that cost me two years of earnings.
+
+Persistence isn't a strategy. It's what's left after every strategy fails. The people who end up with something worth having are usually the ones who were too stubborn to stop when the numbers said they should.
+
+**Translation:**
+Talent gets you started. Stubbornness gets you there. The gap between people who ship and people who don't is almost never ability.
+
+**32. "No one is coming to save you."**
+
+No mentor, no company, no framework, no AI tool is going to hand you the career you want. Every safety net I've ever had was one I built — the network, the skills, the side projects, the proof of work.
+
+This isn't cynicism. It's the most freeing realization I've had. Once you stop waiting for permission, rescue, or the right opportunity to find you, you start building the thing yourself. That's when it compounds.
+
+**Translation:**
+Ownership is the only strategy that scales. Everything else is a dependency on someone else's priorities.
 
 ---
 
