@@ -5,7 +5,14 @@ tags: ["Automation", "Service Business", "AI", "ROI", "Business Strategy"]
 excerpt: "A 4-factor framework for evaluating AI automation in service businesses. Real tools, actual cost ranges, and when the math doesn't work."
 seo_title: "AI Automation ROI for Service Businesses: A Practitioner's Framework"
 meta_description: "A 4-factor framework for evaluating AI automation ROI in service businesses. Real tools, cost ranges, and the hidden costs vendors won't mention."
-target_keywords: "AI automation ROI service business, AI automation for service businesses, business automation ROI, AI receptionist ROI, voice AI for business"
+target_keywords: "AI automation ROI service business, AI automation for service businesses, business automation ROI, AI receptionist ROI, voice AI for business, AI receptionist cost, service business automation tools, what to automate first small business"
+faqs:
+  - q: "How do I know if my service business should automate?"
+    a: "Evaluate four factors: volume (50+ daily repetitions is a strong candidate), complexity (3-5 decision branches works well, 10+ usually doesn't), error cost (low-stakes tasks first — a misrouted appointment is minor, a botched quote commits you to unprofitable work), and integration depth (1-2 systems is straightforward, 5+ is a fundamentally different project). If most factors land favorable, you have a strong automation candidate."
+  - q: "How much does AI automation cost for a small service business?"
+    a: "Off-the-shelf tools like Bland AI, Vapi, or Smith.ai run $200-500/month for standard scheduling, FAQ, and call routing. Platform-plus-customization using n8n or Make costs $1,000-5,000 setup plus $50-200/month ongoing. Custom implementations for complex multi-system integrations run $15,000-50,000+. But add hidden costs: integration maintenance (2-3 hours/month), staff retraining, and weekly failure monitoring. A $300/month voice AI platform actually costs closer to $500-800/month in total loaded cost."
+  - q: "What should a service business automate first?"
+    a: "Start with appointment scheduling and confirmations — high volume, low complexity, minimal error cost. FAQ and service inquiry responses are close seconds (the same 15 questions make up most inbound calls). After-hours call routing and review request follow-ups round out Tier 1. Avoid automating complaint handling, emergency triage, or complex quoting until simpler automations are running smoothly and your team trusts the system."
 ---
 
 ## The Mechanic Shop That Automated Its Front Desk
@@ -55,7 +62,7 @@ If three or four factors land on the right, the process probably isn't ready for
 
 ### Tier 1: High ROI, Low Risk
 
-**Appointment scheduling and confirmations.** High volume, low complexity, minimal error cost. If a booking gets the wrong time slot, the customer calls back. Voice AI platforms can handle this well, typically $200-500/month depending on call volume.
+**Appointment scheduling and confirmations.** High volume, low complexity, minimal error cost. If a booking gets the wrong time slot, the customer calls back. AI receptionist platforms can handle this well, typically $200-500/month depending on call volume — a fraction of what a dedicated receptionist costs annually.
 
 **FAQ and service inquiry responses.** The same 15 questions make up the vast majority of inbound calls at most service businesses. An AI system trained on your FAQ handles these without any judgment calls.
 

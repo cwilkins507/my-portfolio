@@ -5,7 +5,7 @@ tags: ["AI", "System Design", "LLM", "Architecture", "Infrastructure", "Cost Opt
 excerpt: "Your team is calling 4 LLM providers from 6 services with no routing layer. Here's the architecture pattern that fixes it."
 seo_title: "LLM Gateway Architecture and Multi-Model Routing"
 meta_description: "A practitioner's guide to LLM gateway architecture: three deployment patterns, model routing strategies, and a step-by-step implementation playbook for engineering teams."
-target_keywords: "LLM gateway architecture, LLM routing strategy, multi-model architecture, LLM cost optimization, AI model selection framework, LiteLLM architecture"
+target_keywords: "LLM gateway architecture, LLM routing strategy, multi-model architecture, LLM cost optimization, AI model selection framework, LiteLLM architecture, LLM gateway vs API gateway, self-hosted LLM gateway, LLM provider failover"
 faqs:
   - q: "When does an engineering team actually need an LLM gateway?"
     a: "If you can't answer 'what is each team spending per feature per month on LLM calls,' you need one. The clearest triggers are: 3+ services making LLM calls, monthly LLM spend above $3K, need for provider redundancy (automatic failover when Anthropic or OpenAI has an outage), or data residency requirements that force geographic routing. Below those thresholds, single-provider routing with tiered models handles most use cases without additional infrastructure."
@@ -29,7 +29,7 @@ An LLM gateway sits between your application code and your model providers. Inst
 
 ![LLM Gateway Architecture — services route through a gateway to multiple providers](/images/llm-gateway-architecture.svg)
 
-Think API gateway (Kong, Envoy), but built for LLM traffic patterns specifically. LLM calls stream responses, bill per token, throw provider-specific errors like Anthropic's 529 overloaded, and can run for 30+ seconds on complex prompts. A generic API gateway doesn't handle any of that well.
+If you're familiar with API gateways like Kong or Envoy, the concept is similar — but an LLM gateway is purpose-built for LLM traffic patterns. The difference between an LLM gateway and a traditional API gateway matters: LLM calls stream responses, bill per token instead of per request, throw provider-specific errors like Anthropic's 529 overloaded, and can run for 30+ seconds on complex prompts. A generic API gateway doesn't handle any of that well. Token-aware rate limiting, model-level routing, and cost tracking per request are LLM-specific concerns that require a purpose-built layer.
 
 > The practical value comes down to two things: reliability and cost visibility. Everything else the gateway does supports one of those.
 

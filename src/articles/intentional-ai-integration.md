@@ -5,7 +5,14 @@ tags: ["AI", "Software Engineering", "AI Coding Tools", "Code Quality", "Enginee
 excerpt: "AI tools made your team faster. Then patterns started drifting. Here's how to keep architectural coherence without killing the productivity gains."
 seo_title: "Intentional AI Integration: AI Coding Without Codebase Drift"
 meta_description: "AI tools made your team faster. Then patterns started drifting. A practitioner's playbook for maintaining codebase coherence while using AI coding tools at speed."
-target_keywords: "AI codebase integration strategy, intentional AI adoption, AI code quality, AI generated code management, codebase evolution AI"
+target_keywords: "AI codebase integration strategy, intentional AI adoption, AI code quality, AI generated code management, codebase evolution AI, vibe coding best practices, CLAUDE.md best practices, cursor rules best practices, AI code review checklist"
+faqs:
+  - q: "How do AI coding tools cause codebase drift?"
+    a: "AI tools generate code that works but doesn't carry intent. Each session makes independent architectural choices based on whatever context is available that day. Without explicit constraints, reviewers approve working code without catching style deviations, and the next AI session reads those merged patterns as precedent. Over weeks, this compounds into multiple conflicting patterns for the same operations — error handling, data validation, API formatting — that nobody deliberately chose."
+  - q: "What should go in a CLAUDE.md or cursor rules file?"
+    a: "Four categories: blessed patterns (your team's specific approaches to errors, endpoints, naming, file organization), explicit anti-patterns (what the AI should never do — no raw SQL, no default exports, no new utility files without checking if one exists), exclusion zones (files and directories the AI shouldn't modify like generated code and migrations), and architectural decisions with reasoning (ADRs that prevent the AI from 'improving' intentional design choices). Anti-patterns matter most because AI tools don't know your history of past mistakes."
+  - q: "How do you review AI-generated code differently from human-written code?"
+    a: "Add three questions to standard code review: Can a teammate who didn't write this explain the approach in 60 seconds? Does it follow your team's blessed patterns or introduce a new one? If you deleted it and asked a different AI to rebuild from the same spec, would the structure be similar? These add about 5 minutes per review and catch drift that standard 'does it work' review misses."
 ---
 
 # Intentional AI Integration: How to Adopt AI Coding Tools Without Wrecking Your Codebase
@@ -16,7 +23,9 @@ Swerdlow lays out a framework that's worth knowing even if you never read the fu
 
 None of this is new. Good engineers have followed these rules for years. What's new is the speed at which AI tools violate them.
 
-## The Coherence Tax
+## The Coherence Tax: When Vibe Coding Meets Production Codebases
+
+Vibe coding — describing what you want in natural language and letting AI generate the implementation — has gone mainstream. The productivity gains are real. But vibe coding without guardrails is how codebases drift, and the drift is harder to detect than traditional technical debt because the code works perfectly on day one.
 
 Your team adopted Cursor, Claude Code, or Copilot sometime in the last 6-12 months. PRs are up, cycle time dropped, and the dashboards look great.
 
@@ -135,7 +144,7 @@ Then write your convention file. It doesn't need to be comprehensive on day one.
 
 Add the three review questions to your PR template. This takes 15 minutes and changes the conversation from "does it work" to "does it belong."
 
-The tools will keep getting better. The code they generate will keep getting more plausible. [Enterprise governance patterns](/articles/enterprise-best-practices), [the shift to agentic workflows](/articles/from-vibe-coding-to-agentic-engineering), and multi-agent orchestration all make this more urgent, not less. More agents generating more code means more surface area for drift.
+The tools will keep getting better. The code they generate will keep getting more plausible. Vibe coding best practices will evolve as the tooling matures, but the fundamentals won't change: constrain generation, review for coherence, and maintain understanding. [Enterprise governance patterns](/articles/enterprise-best-practices), [the shift to agentic workflows](/articles/from-vibe-coding-to-agentic-engineering), and multi-agent orchestration all make this more urgent, not less. More agents generating more code means more surface area for drift.
 
 The teams that build these guardrails now will compound that advantage every sprint. The ones that don't will keep wondering why their AI tools feel slower than they used to.
 

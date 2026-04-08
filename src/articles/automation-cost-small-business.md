@@ -4,8 +4,15 @@ date: "2026-03-26"
 tags: ["Automation", "Small Business", "ROI", "Cost Analysis"]
 excerpt: "Real automation costs for small businesses: $0-10K. Three tiers and the ROI math that makes the decision obvious."
 seo_title: "What Automation Costs (And Saves) a Small Business"
-meta_description: "Real automation costs for small businesses: $0-10K. Three tiers, real ROI math. No enterprise fluff."
-target_keywords: "automation cost small business, small business automation ROI, automation pricing, how much does automation cost, business automation investment"
+meta_description: "Real automation costs for small businesses: $0-10K across three tiers. ROI math, payback timelines, and when automation is a bad idea. No enterprise fluff."
+target_keywords: "automation cost small business, small business automation ROI, automation pricing, how much does automation cost, business automation investment, automation payback period, Zapier vs Make cost, small business workflow automation cost"
+faqs:
+  - q: "How much does automation cost for a small business?"
+    a: "Three tiers: DIY with existing tools costs $0-50/month plus 2-10 hours setup time. Serious automation with Zapier Pro ($20-70/month), Make.com Pro ($9-16/month), or self-hosted n8n ($5-20/month for the server) runs $50-300/month total with 10-20 hours of setup. Custom-built automation designed for your specific workflows costs $2,000-10,000 one-time plus $50-200/month ongoing. Most businesses should start at Tier 1 or 2."
+  - q: "How long does it take for business automation to pay for itself?"
+    a: "Most small business automations pay for themselves in 1-3 months. A $50/month DIY automation saving 3 hours per week at $35/hour saves $455/month — immediate payback. A $3,000 custom build saving 8 hours per week at $40/hour saves $1,280/month and pays back in about 2.5 months. After the payback period, every month is pure margin."
+  - q: "When should a small business NOT automate?"
+    a: "Four situations: your process isn't defined yet (automating chaos gives you faster chaos), the task happens fewer than 10 times per week (setup costs don't justify it), every instance requires genuine human judgment (custom proposals, sensitive client communications), or you're automating to avoid fixing a broken process (unhappy customers just get unhappy faster). Fix the experience first, automate the execution second."
 ---
 
 # What Automation Actually Costs (And Saves) a Small Business
