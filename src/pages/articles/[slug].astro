@@ -16,6 +16,17 @@ const { article } = Astro.props;
 const { Content, frontmatter } = article;
 const slug = Astro.params.slug;
 
+// Compute word count from raw markdown (excluding frontmatter)
+let wordCount;
+try {
+  const raw = typeof article.rawContent === 'function' ? article.rawContent() : '';
+  if (raw) {
+    wordCount = raw.trim().split(/\s+/).filter(Boolean).length;
+  }
+} catch (e) {
+  wordCount = undefined;
+}
+
 // Find related articles by shared tags
 const currentTags = frontmatter.tags || [];
 const relatedArticles = allArticles
@@ -43,27 +54,49 @@ const pageTitle = frontmatter.seo_title || frontmatter.title;
 const pageDescription = frontmatter.meta_description || frontmatter.excerpt;
 
 // Article structured data for SEO
-const graphItems = [
-  {
-    "@type": "Article",
-    "headline": frontmatter.title,
-    "description": pageDescription,
-    "datePublished": frontmatter.date,
-    "dateModified": frontmatter.date,
-    "author": {
-      "@type": "Person",
-      "name": "Collin Wilkins",
-      "url": "https://collinwilkins.com/about"
-    },
-    "publisher": {
-      "@type": "Person",
-      "name": "Collin Wilkins"
-    },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": `https://collinwilkins.com/articles/${slug}`
-    }
+const articleEntity = {
+  "@type": "Article",
+  "headline": frontmatter.title,
+  "description": pageDescription,
+  "datePublished": frontmatter.date,
+  "dateModified": frontmatter.date,
+  "inLanguage": "en-US",
+  "isAccessibleForFree": true,
+  "author": {
+    "@type": "Person",
+    "name": "Collin Wilkins",
+    "url": "https://collinwilkins.com/about",
+    "sameAs": [
+      "https://www.linkedin.com/in/collin-wilkins-1020215a/",
+      "https://github.com/cwilkins507"
+    ]
   },
+  "publisher": {
+    "@type": "Person",
+    "name": "Collin Wilkins",
+    "url": "https://collinwilkins.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://collinwilkins.com/articles/${slug}`
+  }
+};
+
+if (wordCount) {
+  articleEntity.wordCount = wordCount;
+  // Estimate reading time at 225 words per minute, ISO 8601 duration
+  articleEntity.timeRequired = `PT${Math.max(1, Math.round(wordCount / 225))}M`;
+}
+if (frontmatter.target_keywords) {
+  articleEntity.keywords = frontmatter.target_keywords;
+}
+if (frontmatter.tags && frontmatter.tags.length > 0) {
+  articleEntity.articleSection = frontmatter.tags[0];
+  articleEntity.about = frontmatter.tags.map(tag => ({ "@type": "Thing", "name": tag }));
+}
+
+const graphItems = [
+  articleEntity,
   {
     "@type": "BreadcrumbList",
     "itemListElement": [

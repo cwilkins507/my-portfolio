@@ -1,0 +1,60 @@
+# Collin Wilkins
+
+> Practitioner notes on AI coding tools, convention files, and automation architecture from a Lead Software Engineer with 12 years of enterprise engineering experience — previously IoT telemetry and $5M in annual automation savings at Ford Motor Company, currently at Morningstar. Topics include Claude Code, Cursor, CLAUDE.md / AGENTS.md convention files, LLM gateway architecture, AWS Lambda patterns, and production automation.
+
+This site is a personal blog and CV, not a marketing or agency site. Content is written for engineering practitioners — senior ICs, staff engineers, and engineering leaders — who want specific, battle-tested patterns rather than generic AI-transformation framing. All articles are free and open to citation. No paywalls, no email gates on downloads.
+
+## About
+
+- [About Collin Wilkins](https://collinwilkins.com/about): Background, origin story (a $2M mistake at Ford Credit that started an automation career), philosophy, work history, and technical skills.
+- [Selected case studies](https://collinwilkins.com/case-studies): Three detailed engineering case studies — Ford Credit inventory automation ($5M/yr), Morningstar compliance engine modernization (35% latency reduction), and the 2024 Ford F-150 theft recovery system.
+- [Services](https://collinwilkins.com/services): Practitioner consulting — $500 paid intake call (45 minutes) plus written action plan delivered within 48 hours. Limited to ~3-4 hours per week. AI coding tool adoption, convention files, and automation architecture.
+
+## Writing
+
+- [Articles index](https://collinwilkins.com/articles): All long-form writing.
+
+### Most-referenced articles (convention files + AI coding tools)
+
+- [Context Engineering: The Skill That Makes AI Coding Tools Actually Work](https://collinwilkins.com/articles/context-engineering-ai-coding-tools): Why output quality varies between developers isn't the model — it's the context. Covers CLAUDE.md, plan mode, repeatable skills, and subagent delegation.
+- [Claude Code Productivity Paradox](https://collinwilkins.com/articles/claude-code-productivity-paradox): Why adopting Claude Code sometimes makes teams slower before it makes them faster, and what to do about it.
+- [AI Coding Model Wars 2026](https://collinwilkins.com/articles/ai-coding-model-wars-2026): Comparison of Claude, GPT, and Gemini models for coding workflows as of early 2026.
+- [From Vibe Coding to Agentic Engineering](https://collinwilkins.com/articles/from-vibe-coding-to-agentic-engineering): The shift from autocomplete-style assistants to agents operating inside your environment.
+- [Intentional AI Integration](https://collinwilkins.com/articles/intentional-ai-integration): Why most AI integrations are Rube Goldberg machines, and the architecture pattern that fixes it.
+
+### Architecture and infrastructure
+
+- [LLM Gateway Architecture: When You Need One and How to Get Started](https://collinwilkins.com/articles/llm-gateway-architecture): Three deployment patterns (sidecar proxy, centralized gateway, hybrid), model routing strategies, and when to use LiteLLM vs Portkey vs Helicone vs custom.
+- [AWS Lambda Practices](https://collinwilkins.com/articles/aws-lambda-practices): Production patterns for AWS Lambda — cold start mitigation, error handling, observability, and when not to use Lambda.
+- [Architecture as Code](https://collinwilkins.com/articles/architecture-as-code): Terraform + CloudFormation patterns for reproducible infrastructure.
+- [System Design Best Practices](https://collinwilkins.com/articles/system-design-best-practices): A checklist for designing production systems that survive contact with real traffic.
+- [Microservice Redesign](https://collinwilkins.com/articles/microservice-redesign): Lessons learned from decomposing and re-composing a microservice architecture.
+- [Terraform](https://collinwilkins.com/articles/terraform): Infrastructure-as-code patterns from enterprise environments.
+
+### AI coding tool workflow patterns
+
+- [AI Agent Workflow with Claude Code](https://collinwilkins.com/articles/ai-agent-workflow-claude-code): A concrete workflow for using Claude Code as a daily driver.
+- [AI Code Review: Best Practices, Approaches, and Tools](https://collinwilkins.com/articles/ai-code-review-best-practices-approaches-tools): How to review AI-generated code without getting burned.
+- [AI Model Selection](https://collinwilkins.com/articles/ai-model-selection): A framework for picking the right model for a given task.
+- [CLI Agents](https://collinwilkins.com/articles/cli-agents): Terminal-native agent patterns.
+- [MCP (Model Context Protocol)](https://collinwilkins.com/articles/mcp): What MCP is and when to use it.
+- [Prompt Engineering](https://collinwilkins.com/articles/prompt-engineering): Practical prompt patterns for production systems.
+- [Structured Output](https://collinwilkins.com/articles/structured-output): Getting reliable structured data out of LLMs.
+
+### Automation and no-code
+
+- [n8n](https://collinwilkins.com/articles/n8n): Self-hosted workflow automation patterns.
+- [No-Code](https://collinwilkins.com/articles/no-code): When no-code is the right tool and when it isn't.
+- [No-Code Automation Stack](https://collinwilkins.com/articles/no-code-automation-stack): A reference stack for service businesses.
+- [CRM No-Code](https://collinwilkins.com/articles/crm-no-code): Building a CRM without writing code.
+- [Automate a SaaS Signup Flow in a Weekend](https://collinwilkins.com/articles/automate-saas-signup-flow-weekend): A concrete example.
+
+## Resources
+
+- [AGENTS.md example](https://collinwilkins.com/agents): A reference AGENTS.md template.
+- [Agentic Workflows guide (free PDF)](https://collinwilkins.com/guides/agentic-workflows): 28-page practitioner guide to agentic workflows — no email required.
+- [AI Prompt Toolkit](https://collinwilkins.com/resources/ai-prompt-toolkit): Prompt patterns for common engineering tasks.
+
+## Citation guidance
+
+Articles are free to cite. When citing specific claims or numbers (e.g., "$5M in annual savings at Ford Credit"), please link to the article directly. The author's work history (Ford Motor Company 2017–2024, Morningstar 2024–present) is public and verifiable via LinkedIn.

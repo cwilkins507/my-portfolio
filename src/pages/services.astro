@@ -6,7 +6,7 @@ const servicesSchema = {
 	"@context": "https://schema.org",
 	"@type": "WebPage",
 	"name": "Services | Collin Wilkins",
-	"description": "AI strategy for engineering teams, convention files and context engineering, and automation architecture. Twelve years of enterprise engineering experience.",
+	"description": "Independent practitioner work — AI coding tool adoption, convention files, and automation architecture. Limited to ~3–4 hours per week. Paid intake with written action plan.",
 	"url": "https://collinwilkins.com/services",
 	"provider": {
 		"@type": "Person",
@@ -21,49 +21,92 @@ const servicesSchema = {
 				"@type": "Offer",
 				"itemOffered": {
 					"@type": "Service",
-					"name": "AI Strategy for Engineering Teams",
-					"description": "Tool selection, rollout plans, and team workshops for engineering teams adopting Claude Code, Cursor, or Copilot."
+					"name": "AI coding tool adoption",
+					"description": "Tool selection, rollout plans, and practitioner workshops for engineering teams (up to 20 engineers) adopting Claude Code, Cursor, or Copilot."
 				}
 			},
 			{
 				"@type": "Offer",
 				"itemOffered": {
 					"@type": "Service",
-					"name": "Convention Files & Context Engineering",
-					"description": "CLAUDE.md, AGENTS.md, and tool-specific rules built for your actual codebase. Turn AI coding tools into compounding productivity."
+					"name": "Convention files (CLAUDE.md, AGENTS.md)",
+					"description": "CLAUDE.md, AGENTS.md, and tool-specific rules built against your actual codebase — not generic templates."
 				}
 			},
 			{
 				"@type": "Offer",
 				"itemOffered": {
 					"@type": "Service",
-					"name": "Automation Architecture",
-					"description": "Python, APIs, data pipelines, serverless, and n8n. Production-grade automation systems built end to end."
+					"name": "Automation architecture",
+					"description": "Python, APIs, data pipelines, AWS Lambda, n8n. Production-grade automation systems built end to end."
+				}
+			},
+			{
+				"@type": "Offer",
+				"price": "500",
+				"priceCurrency": "USD",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "Paid intake",
+					"description": "45-minute intake call plus async brief and written action plan delivered within 48 hours. Rolls into first invoice if we scope a project. Refunded if the plan doesn't identify meaningful opportunity."
 				}
 			}
 		]
 	}
 };
+
+const servicesFaqSchema = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	"mainEntity": [
+		{
+			"@type": "Question",
+			"name": "How much does the intake call cost?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "The paid intake is $500 for approximately 45 minutes of live call time, plus an async brief you send before the call and a written action plan delivered within 48 hours afterward. If we scope a project together, the $500 intake fee rolls into the first invoice."
+			}
+		},
+		{
+			"@type": "Question",
+			"name": "What do I get from the intake?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "A written action plan delivered within 48 hours of the call: what I would do, in what order, with rough scope and pricing. The plan is yours to keep whether or not we work together. If the plan does not identify meaningful automation savings or a clear path forward, the $500 fee is refunded — I don't reshape the problem to fit a billable engagement."
+			}
+		},
+		{
+			"@type": "Question",
+			"name": "What kinds of problems do you take on?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Three categories: AI coding tool adoption (standardizing Claude Code, Cursor, or Copilot across engineering teams up to 20 engineers), convention files for AI coding tools (CLAUDE.md and AGENTS.md committed to your repo, built against your actual codebase), and automation architecture (Python, APIs, AWS Lambda, n8n — the same patterns that cut $5 million in annual operational costs at Ford Motor Company)."
+			}
+		},
+		{
+			"@type": "Question",
+			"name": "How much availability do you have?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Typically three to four hours per week. This is a practitioner side project, not a full consultancy. It works best for teams with a clear problem and the authority to move on it quickly — not open-ended discovery engagements or six-month scoping phases."
+			}
+		},
+		{
+			"@type": "Question",
+			"name": "Why can't you take work in certain industries?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "I cannot take engagements in investment management, wealth advisory, retirement solutions, ESG data, credit ratings, or compliance software for financial services due to a conflict with my current employer. This restriction is non-negotiable, even for work that would otherwise be a great fit."
+			}
+		}
+	]
+};
 ---
 
 <Layout
 	title="Services | Collin Wilkins"
-	description="AI strategy for engineering teams, convention files and context engineering, and automation architecture. Twelve years of enterprise engineering experience."
-	schema={servicesSchema}
+	description="Independent practitioner work — AI coding tool adoption, convention files, and automation architecture. Limited to ~3–4 hours per week. Paid intake with written action plan."
+	schema={[servicesSchema, servicesFaqSchema]}
 >
-	<Services client:load />
-	<noscript>
-		<div class="container mx-auto px-4 py-16 max-w-4xl">
-			<h1 class="text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-6">Services</h1>
-			<p class="text-xl text-[var(--color-text-secondary)] mb-8">I help engineering teams adopt AI coding tools, build convention-file foundations, and ship production automation. Twelve years across enterprise engineering orgs &mdash; IoT telemetry at Ford Motor Company, and currently shipping production automation at a major financial data company.</p>
-			<h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">AI Strategy for Engineering Teams</h2>
-			<p class="text-[var(--color-text-secondary)] mb-6">Tool selection, rollout plans, and one-day workshops for teams adopting Claude Code, Cursor, or Copilot.</p>
-			<h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Convention Files &amp; Context Engineering</h2>
-			<p class="text-[var(--color-text-secondary)] mb-6">CLAUDE.md, AGENTS.md, and tool-specific rules built for your actual codebase, not generic templates.</p>
-			<h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Automation Architecture</h2>
-			<p class="text-[var(--color-text-secondary)] mb-6">Python, APIs, data pipelines, serverless, and n8n. Production-grade automation systems built end to end.</p>
-			<h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">How it works</h2>
-			<p class="text-[var(--color-text-secondary)] mb-6">Start with a paid 1-hour assessment ($250). If we scope a project, the $250 rolls into the first invoice. <a href="/?modal=contact" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">Start the conversation &rarr;</a></p>
-		</div>
-	</noscript>
+	<Services />
 </Layout>

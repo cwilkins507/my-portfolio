@@ -45,7 +45,8 @@ export default defineConfig({
         }),
         sitemap({
             filter(page) {
-                return !page.includes('/writing');
+                // Exclude redirect targets and internal pages from the sitemap
+                return !page.includes('/writing') && !page.includes('/consulting');
             },
             serialize(item) {
                 // Use actual content dates for articles, fallback to build date for static pages

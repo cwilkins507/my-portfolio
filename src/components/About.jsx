@@ -51,31 +51,6 @@ I look at business processes differently. I've lived the pain of operations and 
 I've lived in Dallas, Atlanta, Denver, Nashville, Boston, Tampa, and now Detroit. I'm a generalist by choice. I can drop into any legacy system, identify the bottleneck, and ship the fix. The soundtrack? Creed and Nickelback are fine by me.`
     }
   ],
-  howToWork: {
-    title: "How to Work With Me",
-    intro: "If your team is wasting hours on work a script could handle, I fix that. Most of my projects have been with large companies, but the problems are the same at any size—just smaller numbers.",
-    steps: [
-      "Discovery Call (30 minutes, free): We discuss your biggest workflow bottlenecks",
-      "Automation Audit (1 week): I analyze your processes and identify savings opportunities",
-      "Implementation (timeline varies): I build and deploy the solution",
-      "Handoff: Complete documentation and support to ensure your team can own the system"
-    ],
-    services: [
-      {
-        name: "AI/LLM Integration",
-        description: "AI that actually runs in production, not a ChatGPT wrapper that breaks after a week. I've shipped agents that handle real decisions, not just demos."
-      },
-      {
-        name: "Automation Strategy",
-        description: "I find the manual work that's eating your week and kill it. Usually Python scripts, sometimes Zapier. Whatever's simplest."
-      },
-      {
-        name: "Backend Engineering",
-        description: "APIs and infrastructure that don't fall over when traffic spikes. I use AWS Lambda because you shouldn't pay for servers sitting idle."
-      }
-    ],
-    guarantee: "If I don't identify significant automation savings during the audit, it's free."
-  },
   proofPoints: [
     {
       metric: "Hundreds of hours saved",
@@ -104,14 +79,10 @@ I've lived in Dallas, Atlanta, Denver, Nashville, Boston, Tampa, and now Detroit
   github: "https://github.com/cwilkins507",
   email: "wilkins507@gmail.com",
   skills: {
-    Cloud: ["AWS", "Azure", "GCP"],
-    "Infrastructure as Code": ["Terraform", "CloudFormation"],
-    "CI/CD": ["CodePipeline", "Jenkins", "GitHub Actions"],
-    Languages: ["Java", "Kotlin", "Javascript", "Python", "TypeScript"],
-    Containers: ["Docker", "ECS", "EKS", "Kubernetes"],
-    Databases: ["SQL (Postgres, SQL Server)", "NoSQL (DynamoDB, MongoDB)", "Redis"],
-    Frameworks: ["Spring Boot", "React", "Angular"],
-    Architecture: ["Microservices", "Serverless", "Event-Driven", "REST", "GraphQL"]
+    Languages: ["Python", "TypeScript", "Java"],
+    "Cloud & Infra": ["AWS", "GCP", "Terraform", "AWS Lambda"],
+    Architecture: ["Serverless", "Event-Driven", "Microservices", "REST"],
+    "AI Tooling": ["Claude Code", "Cursor", "Convention files (CLAUDE.md / AGENTS.md)", "n8n"]
   },
   experiences: [
     {
@@ -265,66 +236,7 @@ const About = () => {
           </div>
         </section>
 
-        {/* 6. How to Work With Me */}
-        <section className="mb-24">
-          <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-[var(--color-text-primary)] mb-16">
-            {portfolioData.howToWork.title}
-          </h2>
-          <div className="bg-[var(--color-surface)] p-8 rounded-xl border border-[var(--color-border)] hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] transition-all duration-300 max-w-4xl mx-auto">
-            <p className="text-lg text-moonlight-text-secondary leading-relaxed mb-8">
-              {portfolioData.howToWork.intro}
-            </p>
-
-            {/* 4-Step Process */}
-            <div className="mb-8">
-              <h3 className="text-xl font-serif font-bold text-[var(--color-text-primary)] mb-4">How it works:</h3>
-              <ol className="space-y-3 text-moonlight-text-secondary">
-                {portfolioData.howToWork.steps.map((step, idx) => (
-                  <li key={idx} className="flex items-start">
-                    <span className="text-[var(--color-text-primary)] font-bold mr-3 flex-shrink-0">{idx + 1}.</span>
-                    <span>{step}</span>
-                  </li>
-                ))}
-              </ol>
-            </div>
-
-            {/* What I Build */}
-            <div className="mb-8">
-              <h3 className="text-xl font-serif font-bold text-[var(--color-text-primary)] mb-4">What I build:</h3>
-              <div className="space-y-4 text-moonlight-text-secondary">
-                {portfolioData.howToWork.services.map((service, idx) => (
-                  <p key={idx}>
-                    <span className="font-semibold text-moonlight-text-primary">{service.name}:</span>{' '}
-                    {service.description}
-                  </p>
-                ))}
-              </div>
-            </div>
-
-            {/* Guarantee */}
-            <div className="bg-[var(--color-accent-muted)] border-l-4 border-[var(--color-accent)] p-6 rounded-r-lg mb-8">
-              <p className="text-moonlight-text-secondary font-medium">
-                <span className="text-[var(--color-accent)] font-bold">Guarantee:</span> {portfolioData.howToWork.guarantee}
-              </p>
-            </div>
-
-            {/* CTA */}
-            <div className="text-center">
-              <p className="text-moonlight-text-secondary mb-6">
-                Currently accepting new projects. Tell me about the manual process that's draining your team's time, and I'll respond within 24-48 hours with next steps.
-              </p>
-              <a
-                href="?modal=contact"
-                className="inline-flex items-center justify-center bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white font-bold py-3 px-10 rounded-full transition-all duration-300 shadow-xl transform hover:scale-105"
-              >
-                <Mail className="w-5 h-5 mr-3" />
-                Start a Conversation
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* 7. Technical Skills */}
+        {/* 6. Technical Skills */}
         <section className="mb-24">
           <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-[var(--color-text-primary)] mb-12">Technical Skills</h2>
           <div className="bg-[var(--color-surface)] p-8 rounded-xl shadow-xl border border-[var(--color-border)] hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] transition-all duration-300 max-w-5xl mx-auto">

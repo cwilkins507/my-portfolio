@@ -41,6 +41,7 @@ const personSchema = {
   "jobTitle": "Lead Software Engineer",
   "description": "Lead Engineer with 12 years of enterprise engineering experience across Ford Motor Company and Morningstar. Writes about AI coding tools, convention files, and automation architecture.",
   "url": "https://collinwilkins.com",
+  "image": "https://collinwilkins.com/images/profile_photo.png",
   "sameAs": [
     "https://www.linkedin.com/in/collin-wilkins-1020215a/",
     "https://github.com/cwilkins507",
@@ -53,7 +54,12 @@ const personSchema = {
     "Serverless Architecture",
     "Software Engineering",
     "IoT",
-    "AI Agents"
+    "AI Agents",
+    "Claude Code",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "Convention Files",
+    "LLM Gateway Architecture"
   ],
   "alumniOf": [
     {
@@ -66,12 +72,51 @@ const personSchema = {
     "name": "Morningstar"
   }
 };
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Who is Collin Wilkins?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Collin Wilkins is a Lead Software Engineer at Morningstar with 12 years of enterprise engineering experience. He previously built IoT telemetry and automation systems at Ford Motor Company that cut approximately $5 million in annual operational costs, including the platform behind the 2024 F-150 theft recovery feature. He writes practitioner notes on AI coding tools, convention files, LLM gateway architecture, and production automation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are convention files in the context of AI coding tools?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Convention files (CLAUDE.md, AGENTS.md, .cursorrules) are project context files that load automatically when an AI coding agent starts a session. They encode project structure, build and test commands, naming conventions, constraints the agent should never violate, and the reasoning behind those constraints. Well-written convention files are the difference between AI tools producing inconsistent output and compounding productivity over time, because they solve the real problem: context, not model quality."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between CLAUDE.md and AGENTS.md?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CLAUDE.md is specific to Claude Code and loads automatically at the start of every session with project context. AGENTS.md is an emerging cross-tool convention — a single file that multiple coding agents (Claude Code, Codex, Cursor, and others) can read, reducing the need to maintain separate rule files per tool. Both serve the same purpose: encoding what the agent needs to know about the project before it starts working."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What topics does collinwilkins.com cover?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI coding tool adoption (Claude Code, Cursor, Copilot), convention files and context engineering (CLAUDE.md, AGENTS.md), LLM gateway architecture, AWS Lambda automation patterns, Python automation, system design, and production-grade infrastructure. The focus is on practitioner patterns from real enterprise engineering work — specific, battle-tested, and statistics-rich rather than generic AI-transformation framing."
+      }
+    }
+  ]
+};
 ---
 
 <Layout
   title="Collin Wilkins | Lead Software Engineer"
   description="Practitioner notes on AI coding tools, convention files, and automation architecture. 12 years of enterprise engineering across Ford Motor Company and Morningstar."
-  schema={[websiteSchema, personSchema]}
+  schema={[websiteSchema, personSchema, faqSchema]}
 >
 	<!-- Override Navigation to include SearchOverlay -->
 	<NavigationWrapper articles={articles} client:load />
