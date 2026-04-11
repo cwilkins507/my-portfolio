@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 
 const SERVICE_OPTIONS = [
-  { value: '', label: 'Select a service...' },
-  { value: 'ai-automation', label: 'AI & Automation Consulting' },
-  { value: 'python-scripting', label: 'Python Scripting & API Integration' },
-  { value: 'aws-serverless', label: 'AWS & Serverless Architecture' },
+  { value: '', label: 'No preference / general inquiry' },
+  { value: 'ai-strategy', label: 'AI Strategy for Engineering Teams' },
+  { value: 'convention-files', label: 'Convention Files & Context Engineering' },
+  { value: 'automation-architecture', label: 'Automation Architecture' },
 ];
 
 const ContactForm = ({ email, initialService = '', onSuccess }) => {
@@ -117,18 +117,17 @@ const ContactForm = ({ email, initialService = '', onSuccess }) => {
 
         <div>
           <label htmlFor="service" className="block text-sm font-medium text-[var(--color-text-secondary)] mb-2">
-            Service Interest <span className="text-[var(--color-accent)]">*</span>
+            Service Interest <span className="text-[var(--color-text-faint)]">(optional)</span>
           </label>
           <select
             id="service"
             name="service"
-            required
             value={formData.service}
             onChange={handleChange}
             className="w-full bg-[var(--color-surface)] text-[var(--color-text-primary)] px-4 py-3 rounded-md border border-[var(--color-border)] focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] outline-none transition"
           >
             {SERVICE_OPTIONS.map(option => (
-              <option key={option.value} value={option.value} disabled={option.value === ''}>
+              <option key={option.value} value={option.value}>
                 {option.label}
               </option>
             ))}

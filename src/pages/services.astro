@@ -5,8 +5,8 @@ import Services from '../components/Services';
 const servicesSchema = {
 	"@context": "https://schema.org",
 	"@type": "WebPage",
-	"name": "Services | AI Automation & Python Consulting",
-	"description": "AI automation, Python development, and AWS serverless consulting services. From workflow automation to cloud architecture, I help teams ship faster.",
+	"name": "Services | Collin Wilkins",
+	"description": "AI strategy for engineering teams, convention files and context engineering, and automation architecture. Twelve years of enterprise engineering experience.",
 	"url": "https://collinwilkins.com/services",
 	"provider": {
 		"@type": "Person",
@@ -15,30 +15,30 @@ const servicesSchema = {
 	},
 	"hasOfferCatalog": {
 		"@type": "OfferCatalog",
-		"name": "Consulting Services",
+		"name": "Services",
 		"itemListElement": [
 			{
 				"@type": "Offer",
 				"itemOffered": {
 					"@type": "Service",
-					"name": "AI Automation & Integration",
-					"description": "Custom AI workflows, LLM integration, and intelligent automation that reduces manual work and scales with your business."
+					"name": "AI Strategy for Engineering Teams",
+					"description": "Tool selection, rollout plans, and team workshops for engineering teams adopting Claude Code, Cursor, or Copilot."
 				}
 			},
 			{
 				"@type": "Offer",
 				"itemOffered": {
 					"@type": "Service",
-					"name": "Python Development",
-					"description": "Production-grade Python applications, APIs, and data pipelines built for reliability and performance."
+					"name": "Convention Files & Context Engineering",
+					"description": "CLAUDE.md, AGENTS.md, and tool-specific rules built for your actual codebase. Turn AI coding tools into compounding productivity."
 				}
 			},
 			{
 				"@type": "Offer",
 				"itemOffered": {
 					"@type": "Service",
-					"name": "AWS Serverless Architecture",
-					"description": "Cloud-native architectures using Lambda, SQS, SNS, and event-driven patterns that scale automatically."
+					"name": "Automation Architecture",
+					"description": "Python, APIs, data pipelines, serverless, and n8n. Production-grade automation systems built end to end."
 				}
 			}
 		]
@@ -46,18 +46,24 @@ const servicesSchema = {
 };
 ---
 
-<Layout title="Services | AI Automation & Python Consulting" description="AI automation, Python development, and AWS serverless consulting services. From workflow automation to cloud architecture, I help teams ship faster." schema={servicesSchema}>
+<Layout
+	title="Services | Collin Wilkins"
+	description="AI strategy for engineering teams, convention files and context engineering, and automation architecture. Twelve years of enterprise engineering experience."
+	schema={servicesSchema}
+>
 	<Services client:load />
 	<noscript>
 		<div class="container mx-auto px-4 py-16 max-w-4xl">
 			<h1 class="text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-6">Services</h1>
-			<p class="text-xl text-[var(--color-text-secondary)] mb-8">AI automation, Python development, and AWS serverless consulting.</p>
-			<h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">AI Automation & Integration</h2>
-			<p class="text-[var(--color-text-secondary)] mb-6">Custom AI workflows, LLM integration, and intelligent automation that reduces manual work and scales with your business.</p>
-			<h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Python Development</h2>
-			<p class="text-[var(--color-text-secondary)] mb-6">Production-grade Python applications, APIs, and data pipelines built for reliability and performance.</p>
-			<h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">AWS Serverless Architecture</h2>
-			<p class="text-[var(--color-text-secondary)] mb-6">Cloud-native architectures using Lambda, SQS, SNS, and event-driven patterns that scale automatically.</p>
+			<p class="text-xl text-[var(--color-text-secondary)] mb-8">I help engineering teams adopt AI coding tools, build convention-file foundations, and ship production automation. Twelve years across enterprise engineering orgs &mdash; IoT telemetry at Ford Motor Company, and currently shipping production automation at a major financial data company.</p>
+			<h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">AI Strategy for Engineering Teams</h2>
+			<p class="text-[var(--color-text-secondary)] mb-6">Tool selection, rollout plans, and one-day workshops for teams adopting Claude Code, Cursor, or Copilot.</p>
+			<h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Convention Files &amp; Context Engineering</h2>
+			<p class="text-[var(--color-text-secondary)] mb-6">CLAUDE.md, AGENTS.md, and tool-specific rules built for your actual codebase, not generic templates.</p>
+			<h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Automation Architecture</h2>
+			<p class="text-[var(--color-text-secondary)] mb-6">Python, APIs, data pipelines, serverless, and n8n. Production-grade automation systems built end to end.</p>
+			<h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">How it works</h2>
+			<p class="text-[var(--color-text-secondary)] mb-6">Start with a paid 1-hour assessment ($250). If we scope a project, the $250 rolls into the first invoice. <a href="/?modal=contact" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">Start the conversation &rarr;</a></p>
 		</div>
 	</noscript>
 </Layout>

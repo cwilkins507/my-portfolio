@@ -6,8 +6,8 @@ const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Collin Wilkins",
-  "jobTitle": "AI & Automation Consultant",
-  "description": "AI automation consultant helping companies eliminate expensive manual processes. Ex-Ford, Morningstar. Python, AWS, and agentic workflows.",
+  "jobTitle": "Lead Software Engineer",
+  "description": "Lead Engineer with 12 years of enterprise engineering experience across Ford Motor Company and Morningstar. Writes about AI coding tools, convention files, and automation architecture.",
   "url": "https://collinwilkins.com",
   "sameAs": [
     "https://www.linkedin.com/in/collin-wilkins-1020215a/",
@@ -20,13 +20,23 @@ const personSchema = {
     "AI Integration",
     "Automation",
     "Event-Driven Systems"
-  ]
+  ],
+  "alumniOf": [
+    {
+      "@type": "Organization",
+      "name": "Ford Motor Company"
+    }
+  ],
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Morningstar"
+  }
 };
 ---
 
 <Layout
-  title="About Collin Wilkins | AI & Automation Expert"
-  description="AI automation consultant helping companies eliminate expensive manual processes. Ex-Ford, Morningstar. Python, AWS, and agentic workflows."
+  title="About Collin Wilkins | Lead Software Engineer"
+  description="Lead Software Engineer with 12 years of enterprise engineering experience across Ford Motor Company and Morningstar. Practitioner notes on AI coding tools, convention files, and automation architecture."
   schema={personSchema}
 >
 	<About client:load />
@@ -34,7 +44,7 @@ const personSchema = {
 		<div class="container mx-auto px-4 py-16 max-w-4xl">
 			<h1 class="text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-6">About Collin Wilkins</h1>
 			<p class="text-xl text-[var(--color-text-secondary)] mb-4">Lead Software Engineer with 12 years of experience in automation, Python, AI integration, and AWS serverless architecture.</p>
-			<p class="text-[var(--color-text-secondary)] mb-4">Previously at Ford Motor Company and Morningstar, building systems that handle hundreds of thousands of vehicles and process millions of compliance events.</p>
+			<p class="text-[var(--color-text-secondary)] mb-4">Previously at Ford Motor Company, currently Lead Engineer at Morningstar, building systems that handle hundreds of thousands of vehicles and process millions of events.</p>
 			<h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mt-8 mb-4">Core Expertise</h2>
 			<ul class="text-[var(--color-text-secondary)] space-y-2">
 				<li>Python Automation & AI Integration</li>

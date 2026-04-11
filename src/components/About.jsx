@@ -82,8 +82,8 @@ I've lived in Dallas, Atlanta, Denver, Nashville, Boston, Tampa, and now Detroit
       problem: "A team was driving to locations to manually count inventory. We automated it so the data updates itself."
     },
     {
-      metric: "90% less busywork",
-      problem: "Someone was spending a full day each week running the same compliance checks by hand. Now it runs automatically."
+      metric: "$5M in annual savings",
+      problem: "Manual vehicle audits at Ford Credit were eating millions in operational costs. I built the IoT telemetry platform that replaced them."
     },
     {
       metric: "2024 Product Launch",

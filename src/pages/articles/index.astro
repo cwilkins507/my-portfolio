@@ -8,6 +8,37 @@ const articles = articlesRaw.map(article => ({
   ...article.frontmatter,
 })).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
+// Curated "Start Here" selection (Writer Site Refresh, 2026-04-10)
+const START_HERE = [
+  {
+    slug: 'context-engineering-ai-coding-tools',
+    blurb: "Why AI tools produce bad output isn't the model, it's the context.",
+  },
+  {
+    slug: 'llm-gateway-architecture',
+    blurb: "When you need a gateway, when you don't, and how to avoid lock-in.",
+  },
+  {
+    slug: 'claude-code-productivity-paradox',
+    blurb: "Individual metrics are up. Organizational metrics are flat. Here's why.",
+  },
+  {
+    slug: 'lessons-learned-2026',
+    blurb: "32 lessons from the last year of building with AI coding tools.",
+  },
+  {
+    slug: 'how-to-know-if-your-business-is-ready-for-ai',
+    blurb: "The readiness question most teams skip, and why it matters.",
+  },
+];
+
+const startHereArticles = START_HERE
+  .map(entry => {
+    const article = articles.find(a => a.slug === entry.slug);
+    return article ? { ...article, blurb: entry.blurb } : null;
+  })
+  .filter(Boolean);
+
 const collectionSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
@@ -29,5 +60,29 @@ const collectionSchema = {
 ---
 
 <Layout title="Technical Articles on AI, AWS & Software Architecture | Collin Wilkins" description="In-depth technical articles on Python automation, AWS serverless patterns, AI integration, system design, and software engineering best practices." schema={collectionSchema}>
+	<section class="container mx-auto max-w-5xl px-4 pt-24 md:pt-32 pb-12">
+		<h2 class="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Start Here</h2>
+		<p class="text-moonlight-text-secondary mb-8 max-w-2xl">
+			Not sure where to begin? These are the articles that best represent my work and the direction I'm writing toward.
+		</p>
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+			{startHereArticles.map(article => (
+				<a
+					href={`/articles/${article.slug}`}
+					class="group flex flex-col rounded-2xl p-6 border border-[var(--color-border)] bg-[var(--color-surface)] hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] hover:shadow-card hover:-translate-y-0.5 will-change-transform transition-all duration-300"
+				>
+					<h3 class="text-lg font-serif font-bold text-[var(--color-text-primary)] mb-3 leading-snug group-hover:text-[var(--color-accent)] transition-colors">
+						{article.title}
+					</h3>
+					<p class="text-moonlight-text-secondary text-sm leading-relaxed flex-grow mb-4">
+						{article.blurb}
+					</p>
+					<span class="text-[var(--color-accent)] text-sm font-semibold inline-flex items-center gap-2">
+						Read article <span aria-hidden="true">&rarr;</span>
+					</span>
+				</a>
+			))}
+		</div>
+	</section>
 	<ArticleList articles={articles} client:load />
 </Layout>

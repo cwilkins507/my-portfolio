@@ -12,6 +12,8 @@ export default defineConfig({
         format: 'file',
     },
     redirects: {
+        // Consolidate /consulting → /services (Writer Site Refresh, 2026-04-10)
+        '/consulting': '/services',
         // Old uppercase URLs → new lowercase (from pre-rename filenames)
         '/articles/AI-Assisted-Coding-pt2': '/articles/ai-assisted-coding-pt2',
         '/articles/AI-Assisted-Coding': '/articles/ai-assisted-coding',

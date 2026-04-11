@@ -1,5 +1,4 @@
 import React from 'react';
-import { ArrowRight, Mail } from 'lucide-react';
 
 const caseStudies = [
   {
@@ -140,21 +139,15 @@ const CaseStudies = () => {
           </section>
         ))}
 
-        {/* Bottom CTA */}
+        {/* Bottom link — biographical, not sales framing */}
         <section className="text-center py-16 border-t border-[var(--color-border)]">
-          <h2 className="text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-4">
-            Have a bottleneck like these?
-          </h2>
-          <p className="text-moonlight-text-secondary mb-8 max-w-2xl mx-auto">
-            Tell me about the manual process that's draining your team's time. I'll respond within 24-48 hours with next steps.
+          <p className="text-moonlight-text-secondary max-w-2xl mx-auto">
+            More on how I think about this work in{' '}
+            <a href="/articles" className="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] font-semibold">
+              the articles
+            </a>
+            .
           </p>
-          <a
-            href="?modal=contact"
-            className="inline-flex items-center justify-center bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white font-bold py-3 px-10 rounded-full transition-all duration-300 shadow-xl transform hover:scale-105"
-          >
-            <Mail className="w-5 h-5 mr-3" />
-            Start a Conversation
-          </a>
         </section>
 
       </div>
