@@ -43,6 +43,16 @@ const servicesSchema = {
 			},
 			{
 				"@type": "Offer",
+				"price": "99",
+				"priceCurrency": "USD",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "AI Readiness Assessment (soft-launch pricing)",
+					"description": "1-hour working call plus a 3-artifact deliverable bundle: written action plan with diagnosed readiness level and 3-4 highest-ROI next steps, custom AI Adoption Playbook adapted to your stack, and a ready-to-commit AGENTS.md tailored to your codebase. Running the first 5 at $99; $250 after. Rolls into first invoice if we scope a larger project."
+				}
+			},
+			{
+				"@type": "Offer",
 				"price": "500",
 				"priceCurrency": "USD",
 				"itemOffered": {
@@ -59,6 +69,14 @@ const servicesFaqSchema = {
 	"@context": "https://schema.org",
 	"@type": "FAQPage",
 	"mainEntity": [
+		{
+			"@type": "Question",
+			"name": "What's the AI Readiness Assessment?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "A focused 1-hour working call for engineering leaders, plus a 3-artifact deliverable bundle: a written action plan with your team's diagnosed readiness level and the 3-4 highest-ROI next steps, a custom AI Adoption Playbook adapted to your stack, and a ready-to-commit AGENTS.md tailored to your codebase. Running the first 5 at $99 to build case studies. After that, $250. Rolls into the first invoice if we scope a larger project."
+			}
+		},
 		{
 			"@type": "Question",
 			"name": "How much does the intake call cost?",

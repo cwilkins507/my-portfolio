@@ -47,6 +47,40 @@ const Services = () => {
           </p>
         </header>
 
+        {/* ── AI Readiness Assessment (soft launch) ── */}
+        <section id="assessment" className="mb-16 border border-[var(--color-accent)] rounded-lg p-6 md:p-8 bg-[var(--color-accent)]/5">
+          <div className="mb-4 inline-block px-3 py-1 text-xs font-semibold rounded bg-[var(--color-accent)] text-white">
+            First 5 at $99 (normally $250)
+          </div>
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-4">
+            AI Readiness Assessment
+          </h2>
+          <p className="text-base md:text-lg text-moonlight-text-secondary leading-relaxed mb-6">
+            A 1-hour working call plus a 3-artifact deliverable bundle scoped to your team. Built for VP Eng, CTOs, and engineering leads trying to move past the "should we try this" phase and into measurable adoption.
+          </p>
+          <p className="text-sm font-semibold text-[var(--color-text-primary)] mb-3">What you get:</p>
+          <ul className="space-y-3 pl-5 list-disc marker:text-[var(--color-accent)] text-moonlight-text-secondary leading-relaxed mb-6">
+            <li>
+              <strong className="text-[var(--color-text-primary)]">Written action plan</strong> — your team's diagnosed readiness level and the 3-4 highest-ROI next steps, with effort and expected outcome per action.
+            </li>
+            <li>
+              <strong className="text-[var(--color-text-primary)]">Custom AI Adoption Playbook</strong> — my public playbook adapted to your stack, scale, and level. Examples use your domain, not generic SaaS.
+            </li>
+            <li>
+              <strong className="text-[var(--color-text-primary)]">Custom AGENTS.md</strong> — ready to commit to your main repo. Tailored to your codebase structure, conventions, and stack.
+            </li>
+          </ul>
+          <p className="text-sm text-moonlight-text-muted mb-6">
+            Running the first 5 at $99 to build out case studies. After that, $250. Rolls into the first invoice if we scope a larger project.
+          </p>
+          <a
+            href="/?modal=contact"
+            className="inline-block px-6 py-3 text-sm font-semibold rounded-lg bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] transition-colors"
+          >
+            Book an assessment →
+          </a>
+        </section>
+
         {/* ── What I work on ── */}
         <section className="mb-16">
           <h2 className="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-8">

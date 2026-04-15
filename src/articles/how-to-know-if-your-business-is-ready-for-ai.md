@@ -1,173 +1,160 @@
 ---
 title: "How to Know If Your Business Is Ready for AI"
 date: "2026-04-10"
-tags: ["AI", "Small Business", "AI Strategy", "Business Readiness"]
-excerpt: "A practical AI readiness self-assessment for small business owners. 4 levels, 5 questions, and honest answers about what AI can and can't do."
+updated: "2026-04-15"
+tags: ["AI", "AI Adoption", "Engineering Leadership", "Claude Code", "Convention Files", "AI Strategy"]
+excerpt: "A 2-minute AI readiness quiz for engineering teams using Claude Code, Cursor, Cowork, or ChatGPT. Five questions, four levels, and the one thing to do next at each stage — whether your team ships code, decks, or reports."
 seo_title: "How to Know If Your Business Is Ready for AI"
-meta_description: "A practical self-assessment for small business owners. 4 readiness levels, 5 diagnostic questions, honest answers about what AI can and can't do."
-target_keywords: "is my business ready for AI, AI readiness assessment, AI for small business, small business AI adoption, AI readiness checklist"
+meta_description: "A 2-minute AI readiness quiz for engineering leaders. Five questions, four foundation-maturity levels, and honest answers about what to do next — whether your team writes code, decks, or reports."
+target_keywords: "is my business ready for AI, is my engineering team ready for AI, AI readiness engineering teams, Claude Code rollout, convention files, when to use AI coding tools"
 ---
-
 # How to Know If Your Business Is Ready for AI
 
-Every headline says AI is changing business. Every podcast guest says you need to "start using AI or get left behind."
+Your team just started using Claude Code, ChatGPT, or Gemini for a few months now. Output quality swings wildly between people, so you are starting to ask whether any of this is actually working. Leadership keeps nodding at the demos, but velocity hasn't moved in a way anyone can prove.
 
-Nobody's talking to the 8-person marketing agency wondering if any of this applies to them.
+That's the question nobody wants to ask out loud: are we actually ready for this, or did we skip a step?
 
-I've helped enterprise teams and small businesses adopt AI. Here's what I've learned: most businesses aren't ready for what the headlines are selling. But they're ready for what AI can actually do at their scale.
+After a decade inside engineering orgs at Ford and Morningstar, the pattern is consistent. Not the model. Not the vendor. Not the license count. What matters is whether your team has the foundation: convention files, shared patterns, ownership, measurement.
 
-Those are two very different things. And that gap is where the real opportunity lives.
+Here's a 2-minute quiz to find out where you actually sit, and what to do next.
 
-## The AI Readiness Spectrum
+**If you're not an engineering team, read along with some mental substitutions** The examples here are engineering-specific (Claude Code, Cursor, CLAUDE.md, code review) because that's where the foundation is most concrete. Convention files are literal files in a repo, which makes them verifiable. But the same principles apply anywhere your team is using AI: marketing copy, client decks, quarterly reports, analytics dashboards, or operational workflows. Replace "CLAUDE.md" with "SOP." Replace "repo" with "shared drive." Replace "code review" with "output review." The foundation stays the same no matter what tools you're running, and the level you land on says the same thing about your team either way.
 
-Readiness isn't yes or no. It's a spectrum with four levels, and your position on it tells you exactly what to do next.
+---
 
-### Level 1: Not Ready Yet
+## The AI Readiness Quiz
 
-Your processes aren't defined. Things happen differently every time depending on who's doing them. Data lives in heads, email threads, and scattered spreadsheets nobody trusts.
+Five questions. Pick the answer closest to your team's current state. Count your A's, B's, and C's.
 
-This isn't a judgment. It's a diagnosis.
+### 1. How does your team evaluate AI output quality?
 
-**You can't automate what you can't describe.** If you can't write down how your business handles client onboarding step by step, no AI tool will fix that. You'd be automating chaos.
+- **A.** Each person decides for themselves. If it passes the sniff test, it ships.
+- **B.** Output review catches AI slop, but it's the same slop repeating across workflows.
+- **C.** Output reviews flag AI-specific failure modes, and convention files killed the most common ones before they ever reached a human reviewer.
 
-**What to do:** Map your core processes first. Write down the steps. Identify where things break. This alone will improve your business before any technology enters the picture.
+### 2. Where is your team spending time on repetitive work?
 
-Process clarity is the prerequisite. Once you have it, you're closer to AI than you think.
+- **A.** Honestly, no idea. We haven't tracked it.
+- **B.** I can name 2-3 places (test scaffolding, code review, maybe migrations), but we're not measuring whether AI actually helped.
+- **C.** We track it per sprint (2 weeks). Migration work and test scaffolding are measurably faster, and we have rough hours-saved numbers per category.
 
-### Level 2: Ready for AI-Powered Tools
+### 3. What's in your main repo for AI context?
 
-You have defined processes. You use SaaS tools for core operations. Your data lives in those tools, not just in your head.
+- **A.** Nothing. Users prompt however they figured out on their own.
+- **B.** A CLAUDE.md or AGENTS.md (convention file) exists, maintained by one brave soul. Most of the team ignores it.
+- **C.** Convention files are load-bearing. Updated regularly, reviewed like code. A new team member can onboard to "how we use Claude Code here" in thirty minutes.
 
-This is where most small businesses sit. And this is where AI delivers real value without building anything custom.
+### 4. Who owns your AI tooling strategy?
 
-**What AI looks like here:**
+- **A.** Everyone and therefore nobody. Seats are in Finance, usage is in Slack, and there's no single point of accountability.
+- **B.** One engineer is informally "the AI person," but it's not on their job description and they do it on the side.
+- **C.** Someone owns it explicitly, at least part-time. They set the standards, maintain convention files, and answer to leadership on ROI.
 
-- ChatGPT or Claude for drafting client emails, proposals, and content. Not replacing your voice. Getting you past the blank page in 30 seconds instead of 20 minutes.
-- AI features already built into tools you pay for. HubSpot's AI email writer. Notion's AI summaries. QuickBooks' AI categorization. They exist. Most people haven't turned them on.
-- Upload a document, ask questions about it. Paste in your P&L, ask "what stands out." That used to require an analyst. Now it takes 30 seconds and costs nothing.
+### 5. Can you estimate ROI on your current AI tool spend?
 
-**Cost:** $0-50/month. Most of it's free or included in subscriptions you already have.
+- **A.** No idea. Licenses are a line item, usage is anecdotal.
+- **B.** I could make something up in a budget meeting, but I don't trust the number.
+- **C.** The math is defensible. We can tell leadership what we spent, what we saved, and on which category of work, with enough confidence to keep the seats through budget scrutiny.
 
-**What to do:** Enable AI features in tools you already use. Try ChatGPT or Claude for 3 tasks this week: drafting, summarizing, analyzing. Don't buy new tools yet.
+---
 
-Most small businesses belong here. But some are ready for more.
+## Your Score
 
-### Level 3: Ready for Custom AI
+| Your answers | Your level |
+|---|---|
+| **4-5 A's** | **Level 1** — Individual experimentation, no foundation |
+| **Mostly A's and B's** | **Level 2** — Foundation exists, standardization starting |
+| **Mostly B's and C's** | **Level 3** — Convention-driven workflows, measured ROI |
+| **4-5 C's** | **Level 4** — Multi-team adoption, architectural integration |
 
-You have defined workflows, clean data, and clear ROI targets. You've used off-the-shelf AI and you can see the gaps where a custom solution would outperform.
+If you're stuck between two levels, default down. The pre-work you were going to do anyway happens there, and the tools catch up faster than you think.
 
-**What AI looks like here:**
+![AI Readiness Spectrum: four levels from individual experimentation to multi-team adoption](/images/ai-readiness-4-level-spectrum.svg)
 
-- Lead comes in, AI scores it against your criteria, hot leads route to you, cold ones enter a nurture sequence. No manual triage.
-- Client reports with AI-written narrative summaries. Proposals that pull from your past work and adapt to new contexts.
-- Automation that handles exceptions instead of breaking on them.
+---
 
-**Cost:** $2,000-10,000 to build + $50-200/month to run.
+## Level 1: Individual experimentation, no foundation
 
-**What to do:** Identify your highest-ROI workflow. Build that one. Prove it works. Then decide if you need more.
+Licenses are being activated and developers using the tools however they figured out on their own. There are no convention files in the repo or shared patterns. Two employees on the same team prompt Claude Code completely differently, and neither is wrong, but neither is shared. Most teams are here right now, and most of them think they're at Level 2. The output variance you're seeing is baked in.
 
-### Level 4: Ready for AI Strategy
+**You're here if:** Your repo has no CLAUDE.md or AGENTS.md, and "how we use AI here" lives in one person's head.
 
-AI integrated across marketing, operations, client delivery, finance. Multiple systems talking to each other. You need someone to architect the whole thing, not build individual pieces.
+**Do this next:** Commit a first-draft convention file to your main repo this week. Thirty lines from your best-AI-output senior engineer, describing how the codebase actually works. It'll be wrong in places. Iterate from there. (If you need a starting template, [Context Engineering for AI Coding Tools](/articles/context-engineering-ai-coding-tools) breaks down the anatomy. For real examples to copy from, see the [community catalog at agents.md](https://agents.md/#examples) or [mine](/agents).)
 
-Most small businesses don't need Level 4. If you're here, you need a consultant for the architecture, not the code.
+## Level 2: Foundation exists, standardization starting
 
-That's the spectrum. Now let's figure out where you actually sit on it.
+You've created a convention file. One or two employees are sharing patterns in PR reviews and Slack. You can see measurable improvement on boilerplate, migrations, scaffolding — the stuff that used to be Wednesday afternoon work and is now Wednesday morning work. This is where most "successful AI adoption" stories actually sit. The LinkedIn posts about how AI changed someone's velocity are usually right around here. The trap is mistaking Level 2 for Level 3 — that's [The Claude Code Productivity Paradox](/articles/claude-code-productivity-paradox) in a sentence. AI feels productive without moving team-wide velocity in a way leadership can measure.
 
-## The 5-Question Self-Assessment
+**You're here if:** Your convention file gets updated by more than one person, and you've killed at least one recurring category of AI slop through better context rather than manual review catches.
 
-Answer honestly. No right or wrong answers. Just a clear-eyed look at where you are.
+**Do this next:** Measure one recurring workflow for a month. Output review first-pass, migration work, or draft generation. Real numbers: how many PRs, how many hours, how much cleanup after the AI finished. That measurement is the entry point to Level 3, and without it you're guessing.
 
-### 1. Can you describe your core processes step by step?
+## Level 3: Convention-driven workflows with measured ROI
 
-Pick your most important business process. Can you write down every step, in order, with who does what?
+Convention files live alongside code, get updated like code, and the team treats them as load-bearing. Someone owns AI tooling strategy. When a new team member joins, they're productive with the tooling in the first week because the context for how this team works is committed to the shared file. Leadership can answer "what did AI save us this quarter" with a defensible range.
 
-**Yes:** You have the foundation. AI improves defined processes. Move to Question 2.
+**You're here if:** ROI is rough but tangible, convention files are part of code review, and AI tooling has a named owner with at least part-time allocation.
 
-**No:** Process mapping comes before AI. The upside: most businesses discover 2-4 obvious improvements just by writing things down. That's free money sitting on the table.
+**Do this next:** Find the highest-leverage workflow that isn't yet AI-augmented and get it to production. Internal automation replacing SaaS line items is usually the biggest win after code generation work. The IoT telemetry pipeline that I helped build at Ford cut $5M in operational costs follows the same pattern. Find the repetitive operational work, build the thing, measure the savings.
 
-### 2. Where are you spending the most time on repetitive tasks?
+## Level 4: Multi-team adoption, architectural integration
 
-Name three tasks your team does every week that are repetitive, predictable, and don't require creative judgment.
+Multiple teams running production workloads that depend on AI. Agentic workflows for incident triage, release notes, on-call augmentation. Maybe an LLM-powered feature in the product itself. The question stops being "which AI coding tool" and starts being "how do we govern AI-dependent systems across the whole org." Model selection becomes strategic.
 
-**Can name 3+:** Those are your AI candidates. Each one you automate buys back hours.
+**You're here if:** You read the first three levels and mostly nodded. Most teams aren't at Level 4 this year, and that's fine.
 
-**Can't name any:** Either your work is genuinely non-repetitive, or you haven't looked closely enough. Track your time for one week. You'll find them.
+**Do this next:** You need architectural judgment across teams, not another rollout. Find someone who's built and shipped this in an org your size.
 
-### 3. Do you have data, or are you running on gut feel?
+---
 
-When you make business decisions about pricing, hiring, or which clients to pursue, are you looking at numbers?
+## What Other Teams Are Actually Running
 
-**Have data, even messy spreadsheets:** AI can analyze it, spot patterns, and surface things you'd miss. This is AI's biggest win at the small business level.
+If your team isn't running at least one of these workflows, the quiz above is telling you something. These are things real teams are doing right now with Claude, ChatGPT, and Cowork. [Worklytics' 2025 adoption benchmark](https://www.worklytics.co/resources/2025-ai-adoption-benchmarks-employee-usage-statistics) puts marketing teams at 70-85% AI tool adoption and finance and sales at 65-80%. Every function is already using AI. The differentiator now is depth of use.
 
-**All gut feel:** Start collecting data first. Three months of consistent tracking gives AI something to work with. Gut feel isn't wrong. Data-informed gut feel is a weapon.
+**Marketing:** brand voice checkers against every outbound draft, ad copy variants at scale, a living instruction file holding banned phrases, current campaigns, and competitor positioning.
 
-### 4. What's your realistic budget?
+>Foundation test: does your brand voice doc live somewhere the AI can actually reference, or is it a PDF nobody has opened in six months?
 
-Be honest about what you can spend without stress.
+**Sales:** auto-enriching CRM notes from call transcripts, first-draft proposals from intake forms, battle cards the AI pulls from during live deals. [Morgan Stanley's AskResearchGPT](https://www.morganstanley.com/press-releases/morgan-stanley-research-announces-askresearchgpt) gives salespeople and research staff a way to surface insights across 70,000+ proprietary reports, with a one-click auto-draft-email feature that cut client-inquiry response time by roughly 90%.
 
-**$0-100/month:** Level 2. AI features in existing tools plus ChatGPT or Claude. Don't underestimate this. A $20/month ChatGPT subscription replacing 5 hours of drafting time per week is a 50x return.
+>Foundation test: does your ICP and objection-handling playbook live in a shared doc the AI uses?
 
-**$100-500/month:** Dedicated AI tools and automation layered on top of your existing stack.
+**Finance and ops:** variance analysis narratives from raw P&L ("why revenue dropped 8%"), monthly board packets generated from metrics, SOPs for recurring processes.
 
-**$500+/month:** Custom solutions, consulting, integrated systems.
+>Foundation test: do your metric definitions live in one place, or does each report reinvent the wheel?
 
-Every level delivers real value. Don't force $500/month when $50 solves the actual problem.
+**HR and People:** job descriptions from role scorecards, interview feedback summarized across panels, performance review scaffolding from quarterly notes.
 
-### 5. Who would own this?
+>Foundation test: do your competency frameworks live where the AI can reference them, or only in one HR business partner's head?
 
-If you implemented AI tools tomorrow, who makes sure they keep working? Who evolves them? Who troubleshoots when something breaks?
+**Analysts:** dashboard commentary (the "why behind the numbers" paragraph nobody wants to write), exec summaries of weekly metrics, slide-ready takeaways from raw SQL.
 
-**Have someone (or yourself):** Move forward. AI needs an owner, even if that owner spends 2 hours a month on it.
+>Foundation test: do your metric definitions and chart style rules live anywhere the AI can see?
 
-**Nobody:** It will stall. Every technology initiative without an owner dies the same death. Remember that CRM migration you started and never finished? Same dynamic. **Technology without ownership is shelfware.**
+**Operations and PMs:** meeting summaries from recordings, runbooks from post-incident notes, weekly status updates built from Slack and Jira threads.
 
-Your answers map directly to a readiness level. Now here's what you can do with AI at each one.
+>Foundation test: does your team's operating rhythm live in a doc, or only in your head?
 
-## What AI Can Do for a Small Business Right Now
+The Anthropic skills pack makes much of this plug-and-play: **pptx** for decks, **xlsx** for spreadsheets, **docx** for Word files with tracked changes, **pdf** for document processing, **internal-comms** for status reports, **canvas-design** for one-pagers. Anthropic's official [financial-services-plugins pack](https://github.com/anthropics/financial-services-plugins) ships 41 purpose-built skills for equity research, investment banking, PE, and wealth management, all installable without writing code. And community MCP servers like [Aanerud's Microsoft Office integration](https://github.com/Aanerud/MCP-Microsoft-Office) (117 tools across Outlook, Excel, PowerPoint, Teams) plug Claude directly into the tools your non-technical teams already live in.
 
-Forget the hype. Here's what works today for teams of 2-12 people:
+Whatever your function, the quiz above is telling you the same thing.
 
-**Draft and accelerate written content.** Client emails, proposals, blog posts, reports. A 30-second first draft beats 20 minutes of staring at a blank page. Every time.
+---
 
-**Analyze and summarize documents.** Upload a contract: "What are the key terms?" Paste competitor content: "What topics are they covering that we aren't?" Feed in financials: "What should I worry about?"
+## What Most Teams Get Wrong About Timing
 
-**Triage customer communications.** AI reads incoming emails and routes them. Urgent requests get flagged. Routine questions get drafted responses for your approval.
+Most teams won't skip the tools. They'll keep paying for seats, keep shipping AI-assisted work (code, decks, reports, marketing copy, whatever their function produces), and keep wondering six months from now why output didn't move the way the vendor demos implied. The orgs figuring this out first use the same models everyone else has access to, just with better context: convention files, shared patterns, measured workflows, a named owner. The gap compounds every quarter.
 
-**Generate reports from raw data.** Numbers in, formatted analysis with narrative summaries out. What used to take an analyst on Tuesday takes a prompt on Tuesday morning.
+Nobody's telling you that part from stage. The tools aren't the competitive advantage anymore. The foundation is.
 
-**Power smarter automation.** Instead of rigid if/then rules, AI handles nuance. "If this lead matches our ideal profile AND visited the pricing page, route to sales immediately." That conditional logic used to require a developer. Now it requires a sentence.
+Figure out your level. Do the one thing that matches. The worst move right now is spending another quarter evaluating the next AI coding tool while your convention files stay empty and your ROI stays unmeasurable.
 
-## What AI Can't Do (Yet)
+---
 
-**Replace human judgment on complex decisions.** Should you fire this client? Pivot your offering? Take on a project outside your scope? AI informs these decisions. It doesn't make them.
+**Not ready to book yet? Start here.** The [AI Prompt Toolkit](/resources/ai-prompt-toolkit) is 28 prompts I use across two businesses. Market research, competitor analysis, SEO, automation. Copy what fits your team.
 
-**Work with data you don't have.** AI doesn't create data from nothing. No financials tracked means no profit margin calculated. Nothing in, nothing out.
+---
 
-**Fix broken processes.** AI accelerates whatever it's applied to. Broken process plus AI equals broken process at scale. If client onboarding confuses people now, AI just delivers the confusion faster.
+Want a practitioner read on where your team actually sits? I'm running the first 5 AI readiness assessments at $99 (normally $250) to build out case studies. You get a 1-hour working call, a written action plan with 3-4 highest-ROI next steps, a custom AI Adoption Playbook adapted to your stack, and a ready-to-commit AGENTS.md for your main repo. **[Book one →](/services#assessment)**
 
-**Run without oversight.** Every AI system needs a human checking output. The oversight gets lighter as you build trust with the system. It never reaches zero.
-
-## Your Next Step
-
-One action per level. Do the one that matches where you are.
-
-**Level 1:** Map your top 3 processes. Write down every step. You'll find improvements before you touch any technology.
-
-**Level 2:** This week, try one AI tool for one task. Draft an email with ChatGPT. Summarize a document with Claude. Enable the AI feature in your CRM. Time it. See if it saves 15 minutes.
-
-**Level 3:** Identify your highest-ROI workflow. Calculate the manual cost per month. Get a quote to automate it. The math makes the decision for you.
-
-**Level 4:** Talk to a consultant about the whole system. At this level, the value is in the architecture, not the individual tools.
-
-## The Timing Question
-
-There's no perfect time to start.
-
-The businesses winning with AI didn't wait for the technology to mature. They started with one use case. Learned what worked. Expanded from there. Compounding knowledge beats perfect timing.
-
-But "not ready" is a valid answer. If your processes aren't defined, your data doesn't exist, and nobody has time to own it, you have pre-work to do. That pre-work is valuable on its own.
-
-**The worst move:** spending $5,000 on AI tools while your core processes run on memory and sticky notes.
-
-**The best move:** figure out where you actually are, then take the next step from there.
+Or read the public framework: **[AI Adoption Playbook →](/guides/ai-adoption-playbook)** — this post is Chapter 1. The playbook walks through the other four.
