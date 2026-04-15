@@ -14,7 +14,7 @@ Your team just started using Claude Code, ChatGPT, or Gemini for a few months no
 
 That's the question nobody wants to ask out loud: are we actually ready for this, or did we skip a step?
 
-After a decade inside engineering orgs at Ford and Morningstar, the pattern is consistent. Not the model. Not the vendor. Not the license count. What matters is whether your team has the foundation: convention files, shared patterns, ownership, measurement.
+After a decade inside engineering orgs at Ford and Morningstar, the pattern is consistent. What matters is whether your team has the foundation: convention files, shared patterns, ownership, measurement.
 
 Here's a 2-minute quiz to find out where you actually sit, and what to do next.
 
