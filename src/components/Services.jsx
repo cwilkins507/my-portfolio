@@ -73,12 +73,12 @@ const Services = () => {
           <p className="text-sm text-moonlight-text-muted mb-6">
             Running the first 5 at $99 to build out case studies. After that, $250. Rolls into the first invoice if we scope a larger project.
           </p>
-          <a
-            href="/?modal=contact"
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent('openContactModal'))}
             className="inline-block px-6 py-3 text-sm font-semibold rounded-lg bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] transition-colors"
           >
             Book an assessment →
-          </a>
+          </button>
         </section>
 
         {/* ── What I work on ── */}
@@ -170,12 +170,12 @@ const Services = () => {
             <p className="text-lg text-moonlight-text-secondary leading-relaxed mb-8">
               If any of this sounds like your team, send a short note describing the problem. I read every submission and respond within 48 hours with either a scoping proposal or an honest "I'm not the right fit for this."
             </p>
-            <a
-              href="/?modal=contact"
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent('openContactModal'))}
               className="inline-block px-6 py-3 text-sm font-semibold rounded-lg bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] transition-colors"
             >
               Start the conversation →
-            </a>
+            </button>
           </div>
         </section>
 

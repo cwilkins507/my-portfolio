@@ -9,8 +9,11 @@ const NAV_LINKS = [
   { href: '/resources', label: 'Resources' },
   { href: '/services', label: 'Services' },
   { href: '/about', label: 'About' },
-  { href: '/?modal=contact', label: 'Contact' },
 ];
+
+const openContactModal = () => {
+  window.dispatchEvent(new CustomEvent('openContactModal'));
+};
 
 const Navigation = ({ portfolioData, onSearchClick }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -146,6 +149,12 @@ const Navigation = ({ portfolioData, onSearchClick }) => {
                   {label}
                 </a>
               ))}
+              <button
+                onClick={openContactModal}
+                className="text-[13px] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] underline decoration-transparent hover:decoration-[var(--color-text-primary)] underline-offset-4 transition-all duration-300"
+              >
+                Contact
+              </button>
             </div>
 
             {/* Search Button (desktop) */}
@@ -274,6 +283,13 @@ const Navigation = ({ portfolioData, onSearchClick }) => {
                   {label}
                 </motion.a>
               ))}
+              <motion.button
+                onClick={() => { closeMobile(); openContactModal(); }}
+                className="text-3xl font-serif text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors duration-200 py-1"
+                variants={itemVariants}
+              >
+                Contact
+              </motion.button>
 
               {/* Divider */}
               <motion.div
