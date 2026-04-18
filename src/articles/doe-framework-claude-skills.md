@@ -47,6 +47,20 @@ Skills are nearly a 1:1 replacement for the Directive layer. They load on demand
 
 For personal work, much of `directives/` folder in my old DOE sandbox has been deprecated. Skills do the job better. My `agent-review` skill replaced a loose "review after implementation" rule I used to stuff into CLAUDE.md. The rule lives in the SKILL.md, the prompts that shape the reviewer live in `prompts/reviewer.md`, and the whole thing only loads when the trigger fires. That's the directive pattern with better ergonomics. And if you create a shared skills repo other agents and projects can leverage the same files.
 
+Skills don't have to be pure directive — they can bundle execution too. The [Anthropic docs](https://code.claude.com/docs/en/skills) describe the skill folder structure as:
+
+```
+my-skill/
+├── SKILL.md           # Main instructions (required)
+├── template.md        # Template for Claude to fill in
+├── examples/
+│   └── sample.md      # Example output showing expected format
+└── scripts/
+    └── validate.sh    # Script Claude can execute
+```
+
+Since skills can run bundled scripts in any language, you can pack a directive (SKILL.md) and its execution (`scripts/`) into one folder. That's the gray area where D and E collapse into a single unit. I lean D-only when the execution is shared across multiple directives — keep scripts external, let the orchestrator call them. But when the script only makes sense inside one directive and you want the whole thing to be copy-pastable, bundling is fine. The skill becomes more like a function than a pure SOP.
+
 If your D layer is just markdown SOPs you read every session, Skills are a pure upgrade. There's also a giant directory of skills people use every day worth checking out at [skills.sh](https://skills.sh/).
 
 ![Skills.sh directory](/images/skills-sh-directory.png)
@@ -119,6 +133,8 @@ The orchestrator does work that belongs to a sub-agent. It fixes code instead of
 His fix is a delegation protocol with invocation contracts: templated calls, access matrices, explicit role boundaries in markdown. That's the protocol layer and it matters, but it's a soft boundary. Nothing mechanically prevents the orchestrator from writing to the wrong file.
 
 The mechanical fix is scoped tools. A reviewer sub-agent with `tools: Read, Glob, Grep, Bash` and `disallowedTools: Write, Edit` cannot modify files. The harness enforces the separation, not the agent's discipline.
+
+> Caveat on scoped tools: when a sub-agent has persistent memory enabled, Read/Write/Edit come back on automatically. The [Claude Code docs](https://code.claude.com/docs/en/sub-agents#enable-persistent-memory) put it plainly: "Read, Write, and Edit tools are automatically enabled so the subagent can manage its memory files." That's global, not scoped to the memory path. If you want hard mechanical scoping, either disable memory on the reviewer, or split the role across two agents — one memory-on for pattern learning, one memory-off with scoped tools for the actual review. Thanks to Maurizio for catching this.
 
 Both matter. Protocol tells the orchestrator when to delegate. Tool scoping guarantees the delegate can't overreach even if the orchestrator gets lazy. Practical rule: every sub-agent you build, ask what the minimum tool set for this role is, and block the rest in frontmatter.
 
