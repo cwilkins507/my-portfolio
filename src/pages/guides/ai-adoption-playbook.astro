@@ -213,14 +213,12 @@ const playbookSchema = {
           <li><strong class="text-[var(--color-text-primary)]">AI Readiness Diagnostic Worksheet</strong> (Excel / Google Sheets) &mdash; 7-dimension scoring rubric with level-based next steps. Run it in a team meeting.</li>
           <li><strong class="text-[var(--color-text-primary)]">Convention Files Starter Pack</strong> &mdash; <code>CLAUDE.md</code> and <code>AGENTS.md</code> templates from real production usage, ready to drop into your repo.</li>
         </ul>
-        <p>Free, no upsell. Drop your email and I'll send them.</p>
+        <p>Free, no upsell. Drop your email for instant access.</p>
       </div>
 
       <div class="p-6 md:p-8 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)]">
         <form
-          action="https://buttondown.com/api/emails/embed-subscribe/collinwilkins"
-          method="post"
-          target="popupwindow"
+          id="toolkit-form"
           class="flex flex-col sm:flex-row gap-3"
         >
           <input type="hidden" name="tag" value="playbook-toolkit" />
@@ -236,12 +234,30 @@ const playbookSchema = {
             type="submit"
             class="px-6 py-3 bg-[var(--color-accent)] text-white font-semibold rounded-lg hover:bg-[var(--color-accent-hover)] transition-all duration-300 whitespace-nowrap"
           >
-            Send the toolkit
+            Get instant access
           </button>
         </form>
-        <p class="text-xs text-moonlight-text-muted mt-3">One email with the download links. No nurture sequence. Unsubscribe anytime.</p>
+        <p class="text-xs text-moonlight-text-muted mt-3">Instant access. No nurture sequence. Unsubscribe anytime.</p>
       </div>
     </section>
 
   </article>
 </Layout>
+
+<script>
+  const form = document.getElementById('toolkit-form');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = (form.querySelector('input[type="email"]') as HTMLInputElement).value;
+      const data = new FormData();
+      data.append('email', email);
+      data.append('tag', 'playbook-toolkit');
+      navigator.sendBeacon(
+        'https://buttondown.com/api/emails/embed-subscribe/collinwilkins',
+        data
+      );
+      window.location.href = '/guides/ai-adoption-playbook/thanks';
+    });
+  }
+</script>
