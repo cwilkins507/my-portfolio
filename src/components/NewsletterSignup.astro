@@ -7,9 +7,9 @@ const { variant = 'inline' } = Astro.props;
 ---
 
 {variant === 'inline' ? (
-  <div class="mt-16 mb-4 p-8 md:p-10 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)]">
-    <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-2">Get posts like this in your inbox</h3>
-    <p class="text-moonlight-text-secondary mb-6">Bi-weekly emails on automation, AI, and building systems that run without you. No fluff.</p>
+  <div class="mt-16 mb-4 p-8 md:p-12 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)]">
+    <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-2">Notes from production.</h3>
+    <p class="text-moonlight-text-secondary mb-6">Working playbooks and field notes for learning by doing. AI coding, convention files, automation architecture, and the production details that decide whether the work survives past the demo.</p>
     <form
       action="https://buttondown.com/api/emails/embed-subscribe/collinwilkins"
       method="post"
@@ -21,11 +21,11 @@ const { variant = 'inline' } = Astro.props;
         name="email"
         placeholder="your@email.com"
         required
-        class="flex-1 px-4 py-3 bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-[var(--color-text-primary)] placeholder-[var(--color-text-faint)] focus:outline-none focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] transition"
+        class="flex-1 min-h-14 px-5 py-4 text-base bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-[var(--color-text-primary)] placeholder-[var(--color-text-faint)] focus:outline-none focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] transition"
       />
       <button
         type="submit"
-        class="px-6 py-3 bg-[var(--color-accent)] text-white font-semibold rounded-lg hover:bg-[var(--color-accent-hover)] transition-all duration-300 whitespace-nowrap"
+        class="min-h-14 px-7 py-4 text-base bg-[var(--color-accent)] text-white font-semibold rounded-lg hover:bg-[var(--color-accent-hover)] transition-all duration-300 whitespace-nowrap"
       >
         Subscribe
       </button>
@@ -34,7 +34,7 @@ const { variant = 'inline' } = Astro.props;
   </div>
 ) : (
   <div class="max-w-md mx-auto mb-6">
-    <p class="text-sm text-moonlight-text-secondary mb-3">Bi-weekly emails on automation, AI, and systems that run without you.</p>
+    <p class="text-sm text-moonlight-text-secondary mb-3">Every other week, I send notes on AI tools and automation systems that run without you.</p>
     <form
       action="https://buttondown.com/api/emails/embed-subscribe/collinwilkins"
       method="post"

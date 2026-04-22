@@ -48,7 +48,7 @@ const Services = () => {
         </header>
 
         {/* ── AI Readiness Assessment (soft launch) ── */}
-        <section id="assessment" className="mb-16 border border-[var(--color-accent)] rounded-lg p-6 md:p-8 bg-[var(--color-accent)]/5">
+        <section id="assessment" className="mb-16 border border-[var(--color-accent)] rounded-lg p-6 md:p-8 bg-[var(--color-accent-muted)]">
           <div className="mb-4 inline-block px-3 py-1 text-xs font-semibold rounded bg-[var(--color-accent)] text-white">
             First 5 at $99 (normally $250)
           </div>
@@ -56,7 +56,7 @@ const Services = () => {
             AI Readiness Assessment
           </h2>
           <p className="text-base md:text-lg text-moonlight-text-secondary leading-relaxed mb-6">
-            A 1-hour working call plus a 3-artifact deliverable bundle scoped to your team. Built for VP Eng, CTOs, and engineering leads trying to move past the "should we try this" phase and into measurable adoption.
+            A 1-hour working call plus a 3-artifact deliverable bundle — written action plan, adapted playbook, and custom AGENTS.md committed to your repo.
           </p>
           <p className="text-sm font-semibold text-[var(--color-text-primary)] mb-3">What you get:</p>
           <ul className="space-y-3 pl-5 list-disc marker:text-[var(--color-accent)] text-moonlight-text-secondary leading-relaxed mb-6">
@@ -70,9 +70,6 @@ const Services = () => {
               <strong className="text-[var(--color-text-primary)]">Custom AGENTS.md</strong> — ready to commit to your main repo. Tailored to your codebase structure, conventions, and stack.
             </li>
           </ul>
-          <p className="text-sm text-moonlight-text-muted mb-6">
-            Running the first 5 at $99 to build out case studies. After that, $250. Rolls into the first invoice if we scope a larger project.
-          </p>
           <button
             onClick={() => window.dispatchEvent(new CustomEvent('openContactModal'))}
             className="inline-block px-6 py-3 text-sm font-semibold rounded-lg bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] transition-colors"

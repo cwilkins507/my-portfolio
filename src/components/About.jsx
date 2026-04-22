@@ -1,307 +1,291 @@
 import React from 'react';
-import { Linkedin, Github, Mail, BadgeDollarSign, ArrowRight } from 'lucide-react';
+import { ArrowRight, Download, ExternalLink } from 'lucide-react';
 
-// Portfolio data
-const portfolioData = {
-  name: "Collin Wilkins",
-  headline: "I automate the boring stuff so your team stops losing hours to spreadsheets",
-  aboutMe: [
-    {
-      title: "How I Got Here: A $2 Million Mistake",
-      content: `Most engineers start their story with a "Hello World" script. Mine starts with a $2 million liability.
-
-In 2019, while working in Finance at Ford Motor Company, I noticed a costly flaw in our process. We had interest rate spreads that needed daily updates across dozens of regions and thousands of contracts. This was during the end of the zero interest rate era, and we held our breaths each time the Fed announced a meeting.
-
-Our manual lead time? 30 days.
-
-I did the math: if the Fed hiked rates after each meeting, that 30-day lag could cost us roughly $2 million annually.
-
-I proposed an automated fix. The response? "We don't have the technical resources or skills to do that."
-
-So I built what I could myself. Cut that 30-day lead time down to 7 days.
-
-That's when it clicked for me.
-
-Code isn't just for engineers. It's a business tool. I build systems that solve expensive problems and give people their time back.`
-    },
-    {
-      title: "Why I Think About Money Before Code",
-      content: `I'm a tech optimist and a problem-spotter. The biggest wins don't come from "Big AI" magic wands. They come from fixing the friction points that compound over time. The "death by a thousand cuts" issues. Small manual tasks that add up to massive time sinks.
-
-If your team spends 20% of their week on repetitive clicks or manually importing contacts, you're not just losing time. You're losing the chance to focus on what actually matters.
-
-I've inherited too many systems where the only documentation was "Steve's memory." And Steve quit. Everything I build is documented in the code itself. If I leave, the logic stays behind.
-
-I pick reliability over trendiness. The tools I use aren't flashy, but they scale without the headaches. You only pay for what you use. No expensive servers sitting idle at 3 AM.`
-    },
-    {
-      title: "Sales Background, Engineering Toolkit",
-      content: `I spent the first half of my career in Sales and Business Development, moving through 7 states and 13 territories for Ford. I've been the "Field Rep" and I've been the "Lead Engineer."
-
-That's the difference.
-
-Most developers look at a Jira ticket and miss the bigger picture. There's a joke I've seen play out more times than I'd like:
-
-An engineer designs a beautiful deck that meets all structural and safety codes. Except it has no stairs and isn't attached to the house.
-
-When asked why, the engineer replies: "Well, that wasn't in the requirements."
-
-I look at business processes differently. I've lived the pain of operations and manual data entry. I can tie technical architecture directly to business value. I speak Finance, I speak Sales, and I speak Python.
-
-I've lived in Dallas, Atlanta, Denver, Nashville, Boston, Tampa, and now Detroit. I'm a generalist by choice. I can drop into any legacy system, identify the bottleneck, and ship the fix. The soundtrack? Creed and Nickelback are fine by me.`
-    }
-  ],
-  proofPoints: [
-    {
-      metric: "Hundreds of hours saved",
-      problem: "A team was driving to locations to manually count inventory. We automated it so the data updates itself."
-    },
-    {
-      metric: "$5M in annual savings",
-      problem: "Manual vehicle audits at Ford Credit were eating millions in operational costs. I built the IoT telemetry platform that replaced them."
-    },
-    {
-      metric: "2024 Product Launch",
-      problem: "Built a privacy-first tracking system for vehicle theft recovery. Security without surveillance."
-    }
-  ],
-  finimbus: {
-    title: "Understanding the Business Behind the Code",
-    content: [
-      `At Ford Credit, I analyzed hundreds of financial statements from dealerships and small businesses applying for credit. You start to see patterns. The best-performing dealerships weren't tracking more metrics — they were focused on fewer, and they understood exactly what those numbers meant for their next move.`,
-      `Most small business owners have financial statements they don't understand. They see numbers but don't know what those numbers are telling them to do. So they either ignore the reports, pay someone to translate, or fly blind until a lender or accountant delivers bad news.`,
-      `FiNimbus fixes that. It takes your financials and translates them into the key drivers that actually matter — the same ones I watched separate thriving businesses from struggling ones, the same ones lenders use to evaluate your creditworthiness. Not another dashboard. Just clear, plain-language answers.`,
-      `This is what I do: spot the manual bottleneck, understand the domain, automate the solution.`
-    ]
+const proofPoints = [
+  {
+    metric: '$5M',
+    label: 'annual savings',
+    detail: 'Remote vehicle audit automation replaced physical inventory checks with telemetry-driven verification.',
   },
-  linkedin: "https://www.linkedin.com/in/collin-wilkins-1020215a/",
-  upwork: "https://www.upwork.com/freelancers/~014ffbc17b83da9407",
-  github: "https://github.com/cwilkins507",
-  email: "wilkins507@gmail.com",
-  skills: {
-    Languages: ["Python", "TypeScript", "Java"],
-    "Cloud & Infra": ["AWS", "GCP", "Terraform", "AWS Lambda"],
-    Architecture: ["Serverless", "Event-Driven", "Microservices", "REST"],
-    "AI Tooling": ["Claude Code", "Cursor", "Convention files (CLAUDE.md / AGENTS.md)", "n8n"]
+  {
+    metric: '450k',
+    label: 'vehicles',
+    detail: 'Remote inventory workflows handled dealership audit coverage at production scale.',
   },
-  experiences: [
-    {
-      role: "Lead Software Engineer",
-      company: "Morningstar, Inc. — Detroit, MI",
-      period: "Apr 2024 – Present",
-      description: "Architected and deployed secure, cloud-native services for regulated financial clients, onboarding 23 recordkeepers. Modernized compliance engine with AWS SQS & Lambda, improving throughput and reducing latency by 35%. Designed monitoring/alerting solutions with Grafana & Splunk to maintain 99.99% uptime."
-    },
-    {
-      role: "Full Stack Software Engineer – Connected Vehicle",
-      company: "Ford Motor Company — Dearborn, MI",
-      period: "Feb 2021 – Apr 2024",
-      description: "Built and maintained IoT microservices on Azure and GCP for real-time telemetry and OTA updates. Implemented Kafka listeners processing 600k+ vehicle events daily. Developed theft anticipation/recovery features for 2024 F-150. Migrated identity systems to ADFS & SSO and strengthened Zero Trust security. Redesigned cloud-based inventory auditing app handling 450k vehicles. Saved $5M annually."
-    },
-    {
-      role: "Market Area Sales Manager (Pricing & Strategy)",
-      company: "Ford Motor Company",
-      period: "Jul 2019 – Jan 2021",
-      description: "Designed digital pricing tools delivering $2.2M in annual savings. Collaborated with leadership on technology roadmaps and pricing models for North America."
-    },
-    {
-      role: "Business Development Manager",
-      company: "Ford Motor Company",
-      period: "Mar 2017 – Jun 2019",
-      description: "Served as technical sales advisor for digital onboarding and financial planning tools across 13 dealer accounts ($75M AUM). Deployed tailored technical sales engagements and captured $10M in revenue."
-    }
-  ],
-  education: [
-    {
-      degree: "MBA",
-      school: "Lipscomb University – Nashville, TN",
-      year: "2016"
-    },
-    {
-      degree: "BS, Business Administration (Finance & Accounting)",
-      school: "University of Colorado Boulder",
-      year: "2013"
-    }
-  ],
-  certifications: [
-    "AWS Cloud Practitioner (2025)",
-    "Microsoft Azure Fundamentals (AZ-900) (2024)",
-    "Architecting with Google Kubernetes Engine (2024)",
-    "Google Foundations of Cybersecurity (2024)",
-    "Richardson Next Level Sales Training Certified (2017)",
-    "Six Sigma Black Belt CSSBB (2016)"
-  ]
-};
+  {
+    metric: '600k+',
+    label: 'daily events',
+    detail: 'Kafka and cloud event pipelines processed vehicle telemetry across connected systems.',
+  },
+  {
+    metric: '12 yrs',
+    label: 'business + engineering',
+    detail: 'Finance, sales, enterprise engineering, cloud architecture, and automation delivery.',
+  },
+];
 
+const focusAreas = [
+  {
+    title: 'AI coding tool adoption',
+    description:
+      'Helping engineering teams move from scattered individual usage to shared conventions, rollout plans, and measurement. Claude Code, Cursor, Copilot, Codex: the tool matters less than the operating layer around it.',
+  },
+  {
+    title: 'Convention files',
+    description:
+      'Writing and maintaining CLAUDE.md, AGENTS.md, and tool-specific rules that give AI agents the context they need before they touch a repo.',
+  },
+  {
+    title: 'Automation architecture',
+    description:
+      'Designing Python, API, AWS Lambda, n8n, and data workflows with boring production details included: errors, logs, ownership, monitoring, and handoff.',
+  },
+];
+
+const principles = [
+  {
+    title: 'Production over demos',
+    description:
+      'A working demo is the beginning of the work, not the end. The valuable part is what happens when the system runs without you.',
+  },
+  {
+    title: 'Context over hype',
+    description:
+      'Better models help. Better context compounds. A repo with real conventions beats a prompt pasted into a blank chat.',
+  },
+  {
+    title: 'Measurement over theater',
+    description:
+      "If nobody can say what changed after the rollout, the project was mostly vibes with a procurement trail.",
+  },
+];
+
+const background = [
+  {
+    company: 'Morningstar',
+    role: 'Lead Software Engineer',
+    description:
+      'Cloud-native services, regulated systems, compliance workflows, distributed queues, and observability.',
+  },
+  {
+    company: 'Ford Motor Company',
+    role: 'Connected Vehicle Engineering',
+    description:
+      'IoT telemetry, Kafka, Pub/Sub, remote inventory audit systems, and vehicle event workflows at production scale.',
+  },
+  {
+    company: 'Ford Credit',
+    role: 'Finance, pricing, sales',
+    description:
+      'The business-side foundation: process gaps, pricing exposure, field operations, and stakeholder trust.',
+  },
+];
 
 const About = () => {
-  React.useEffect(() => {
-    document.title = "About Collin Wilkins | AI & Automation Expert";
-  }, []);
-
   return (
-    <div className="min-h-screen bg-[var(--color-bg)] py-16 md:py-24">
-      <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-
-        {/* Header / Bio Section */}
-        <section className="mb-24 max-w-5xl mx-auto relative overflow-hidden">
-          {/* Atmospheric blur depth effect */}
+    <div className="min-h-screen bg-[var(--color-bg)] pt-16 md:pt-24">
+      <article className="container mx-auto px-4 md:px-8 max-w-6xl pb-24">
+        <header className="grid grid-cols-[1px_minmax(0,1fr)] lg:grid-cols-[1px_minmax(0,1fr)_220px] gap-5 md:gap-8 mb-20 md:mb-24 pb-16 md:pb-20 border-b border-[var(--color-border)]">
           <div
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[480px] z-0 hidden md:block"
-            style={{
-              background: 'linear-gradient(135deg, var(--color-blur-primary), var(--color-blur-secondary), transparent)',
-              filter: 'blur(80px)',
-            }}
+            className="flex-none w-px self-stretch bg-gradient-to-b from-[var(--color-accent)] via-[var(--color-accent-muted)] to-transparent"
             aria-hidden="true"
           />
-          <h1 className="text-3xl md:text-4xl font-serif font-extrabold text-[var(--color-text-primary)] mb-8 text-center relative z-10">
-            {portfolioData.headline}
-          </h1>
 
-          {/* 1. Origin Story, 2. Philosophy, 3. The Moat */}
-          <div className="text-base md:text-lg text-moonlight-text-secondary leading-relaxed space-y-6 text-left">
-            {portfolioData.aboutMe.map((section, idx) => (
-              <div key={idx} className="mb-12">
-                <h2 className="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-6 border-b border-[var(--color-border)] pb-2">
-                  {section.title}
-                </h2>
-                <div className="text-base md:text-lg text-moonlight-text-secondary leading-relaxed space-y-6 text-left">
-                  {section.content.split('\n\n').map((paragraph, pIdx) => (
-                    <p key={pIdx} className="leading-relaxed whitespace-pre-line">
-                      {paragraph.trim()}
-                    </p>
-                  ))}
-                </div>
-              </div>
-            ))}
+          <div className="min-w-0">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-accent)] mb-5">
+              About
+            </p>
+            <h1 className="max-w-3xl text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[var(--color-text-primary)] leading-[1.1] break-words mb-8">
+              I build the operating layer around AI tools, automation, and engineering teams.
+            </h1>
+            <p className="max-w-3xl text-lg md:text-xl text-moonlight-text-secondary leading-relaxed mb-5">
+              Most of my work happens inside enterprise engineering teams. This site is where I write down the patterns that survive contact with production: convention files, agent workflows, automation architecture, and the business math underneath them.
+            </p>
+            <p className="max-w-3xl text-sm md:text-base text-moonlight-text-muted leading-relaxed mb-8">
+              I take on a small amount of independent work when the fit is clear. The goal is not to look like a big agency. The goal is to be useful before, during, and after the first conversation.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="/articles"
+                className="inline-flex w-full sm:w-auto items-center justify-center gap-2 min-h-11 px-5 rounded-lg bg-[var(--color-accent)] text-white text-sm font-bold hover:bg-[var(--color-accent-hover)] transition-colors"
+              >
+                Read the writing
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </a>
+              <a
+                href="/services#assessment"
+                className="inline-flex w-full sm:w-auto items-center justify-center gap-2 min-h-11 px-5 rounded-lg bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-text-primary)] text-sm font-bold hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] transition-colors"
+              >
+                Work with me
+                <ExternalLink className="w-4 h-4" aria-hidden="true" />
+              </a>
+              <a
+                href="/Collin-Wilkins-Resume.pdf"
+                className="inline-flex w-full sm:w-auto items-center justify-center gap-2 min-h-11 px-5 rounded-lg bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-text-primary)] text-sm font-bold hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] transition-colors"
+              >
+                Download CV
+                <Download className="w-4 h-4" aria-hidden="true" />
+              </a>
+            </div>
           </div>
 
-          <div className="flex justify-center space-x-6 mt-10">
-            <a href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer" className="text-moonlight-text-secondary hover:text-[var(--color-text-primary)] transition">
-              <Linkedin className="w-8 h-8" />
-            </a>
-            <a href={portfolioData.upwork} target="_blank" rel="noopener noreferrer" className="text-moonlight-text-secondary hover:text-[var(--color-text-primary)] transition">
-              <BadgeDollarSign className="w-8 h-8" />
-            </a>
-            <a href={portfolioData.github} target="_blank" rel="noopener noreferrer" className="text-moonlight-text-secondary hover:text-[var(--color-text-primary)] transition">
-              <Github className="w-8 h-8" />
-            </a>
-            <a href={`mailto:${portfolioData.email}`} className="text-moonlight-text-secondary hover:text-[var(--color-text-primary)] transition">
-              <Mail className="w-8 h-8" />
-            </a>
+          <aside className="col-start-2 lg:col-start-auto lg:border-l lg:border-[var(--color-accent-border)] lg:pl-6 pt-2 text-moonlight-text-secondary leading-relaxed">
+            <img
+              src="/images/profile_photo.png"
+              alt="Collin Wilkins"
+              className="hidden lg:block w-32 h-32 rounded-full object-cover border border-[var(--color-border)] mb-6"
+            />
+            <p className="text-sm md:text-base">
+              Lead software engineer. Previously Ford Motor Company, now Morningstar. Writing about AI coding tools, convention files, and automation architecture.
+            </p>
+            <p className="inline-flex mt-5 px-3 py-1.5 rounded-full border border-[var(--color-accent-border)] bg-[var(--color-accent-muted)] text-[var(--color-accent)] text-xs font-bold">
+              Limited independent work
+            </p>
+          </aside>
+        </header>
+
+        <section className="grid md:grid-cols-[260px_minmax(0,1fr)] gap-8 md:gap-16 mb-20">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-accent)] mb-4">
+              Why this exists
+            </p>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] leading-tight">
+              Not a resume. Not an agency costume.
+            </h2>
+          </div>
+          <div className="max-w-3xl text-base md:text-lg text-moonlight-text-secondary leading-relaxed space-y-5">
+            <p>
+              I am not trying to turn this site into a glossy consulting firm with a fake bench of people behind it. I am also not trying to make the page read like I am shopping for a job.
+            </p>
+            <p>
+              The useful middle is a practitioner trust page: enough background to understand where my judgment comes from, enough proof to reduce risk, and enough clarity to know what kind of work I can actually help with.
+            </p>
+            <p>
+              That matters because the work I care about is usually messy. AI tooling fails because teams have no shared conventions. Automation fails because nobody owns the error paths. Internal systems fail because the business process was never understood before the code was written.
+            </p>
           </div>
         </section>
 
-        {/* 4. Proof Points */}
-        <section className="mb-24">
-          <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-[var(--color-text-primary)] mb-16">Proof Points</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {portfolioData.proofPoints.map((point, idx) => (
-              <div key={idx} className="bg-[var(--color-surface)] rounded-xl p-6 border border-[var(--color-border)] hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] hover:shadow-card hover:-translate-y-0.5 will-change-transform transition-all duration-300">
-                <div className="text-3xl font-bold text-[var(--color-accent)] mb-3">{point.metric}</div>
-                <p className="text-moonlight-text-secondary mb-4 leading-relaxed">
-                  {point.problem}
+        <section className="mb-20" aria-label="Proof points">
+          <div className="grid md:grid-cols-4 border border-[var(--color-border)] rounded-lg overflow-hidden">
+            {proofPoints.map((point, index) => (
+              <div
+                key={point.metric}
+                className={`p-6 md:p-7 bg-[var(--color-bg)] ${index > 0 ? 'border-t md:border-t-0 md:border-l border-[var(--color-border)]' : ''}`}
+              >
+                <p className="text-3xl md:text-4xl font-bold text-[var(--color-accent)] mb-2">{point.metric}</p>
+                <p className="text-sm font-semibold text-[var(--color-text-primary)] mb-3">{point.label}</p>
+                <p className="text-sm text-moonlight-text-secondary leading-relaxed">{point.detail}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="grid md:grid-cols-[260px_minmax(0,1fr)] gap-8 md:gap-16 mb-20">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-accent)] mb-4">
+              Where my judgment comes from
+            </p>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] leading-tight">
+              I learned software through the cost of bad process.
+            </h2>
+          </div>
+          <div className="max-w-3xl text-base md:text-lg text-moonlight-text-secondary leading-relaxed space-y-5">
+            <p>
+              I started close to the business side: finance, pricing, sales, dealer operations. That made software feel concrete before it felt technical. A missing workflow was not an abstraction. It was lost time, delayed decisions, operational risk, or seven figures of exposure quietly accumulating in a spreadsheet.
+            </p>
+            <p>
+              Engineering gave me the toolkit to fix those problems at scale. The earlier roles gave me the instinct to ask whether the system should exist, what it should replace, who has to trust it, and what happens when it breaks.
+            </p>
+            <p>
+              That is still the thread. The AI tools are newer. The work is not. Define the process, encode the context, build the system, measure whether it helped.
+            </p>
+          </div>
+        </section>
+
+        <section className="grid md:grid-cols-[260px_minmax(0,1fr)] gap-8 md:gap-16 mb-20">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-accent)] mb-4">
+              Current focus
+            </p>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] leading-tight">
+              The narrow lane I am building around.
+            </h2>
+          </div>
+          <div className="border-t border-[var(--color-border)]">
+            {focusAreas.map((area) => (
+              <div key={area.title} className="grid md:grid-cols-[220px_minmax(0,1fr)] gap-4 md:gap-8 py-7 border-b border-[var(--color-border)]">
+                <h3 className="text-xl md:text-2xl font-serif font-bold text-[var(--color-text-primary)] leading-tight">
+                  {area.title}
+                </h3>
+                <p className="text-moonlight-text-secondary leading-relaxed">
+                  {area.description}
                 </p>
-                <a href="/case-studies" className="text-[var(--color-accent)] text-sm hover:text-[var(--color-accent-hover)] transition inline-flex items-center">
-                  Read full case study <ArrowRight className="w-4 h-4 ml-1" />
-                </a>
               </div>
             ))}
           </div>
         </section>
 
-        {/* 5. FiNimbus — Domain Expertise */}
-        <section className="mb-24">
-          <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-[var(--color-text-primary)] mb-16">
-            {portfolioData.finimbus.title}
-          </h2>
-          <div className="bg-[var(--color-surface)] rounded-xl p-8 border border-[var(--color-border)] hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] transition-all duration-300 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">
-              <span className="text-[var(--color-accent)]">FiNimbus</span> — AI-powered CFO for small businesses
-            </h3>
-            <div className="space-y-4 text-moonlight-text-secondary leading-relaxed">
-              {portfolioData.finimbus.content.map((paragraph, idx) => (
-                <p key={idx} className={idx === portfolioData.finimbus.content.length - 1 ? "font-medium text-moonlight-text-primary" : ""}>
-                  {paragraph}
+        <section className="mb-20">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-accent)] mb-5">
+            Operating philosophy
+          </p>
+          <div className="grid md:grid-cols-3 border border-[var(--color-border)] rounded-lg overflow-hidden">
+            {principles.map((principle, index) => (
+              <div
+                key={principle.title}
+                className={`p-6 md:p-7 bg-[var(--color-surface)] ${index > 0 ? 'border-t md:border-t-0 md:border-l border-[var(--color-border)]' : ''}`}
+              >
+                <h3 className="text-xl md:text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">
+                  {principle.title}
+                </h3>
+                <p className="text-moonlight-text-secondary leading-relaxed">
+                  {principle.description}
                 </p>
-              ))}
-            </div>
-            <a
-              href="https://finimbus.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors font-medium inline-block mt-6"
-            >
-              → finimbus.com
-            </a>
-          </div>
-        </section>
-
-        {/* 6. Technical Skills */}
-        <section className="mb-24">
-          <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-[var(--color-text-primary)] mb-12">Technical Skills</h2>
-          <div className="bg-[var(--color-surface)] p-8 rounded-xl shadow-xl border border-[var(--color-border)] hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] transition-all duration-300 max-w-5xl mx-auto">
-            <div className="space-y-8">
-              {Object.entries(portfolioData.skills).map(([category, skills]) => (
-                <div key={category}>
-                  <h3 className="text-xl font-semibold text-[var(--color-text-primary)] mb-4">{category}</h3>
-                  <div className="flex flex-wrap gap-3">
-                    {skills.map(skill => (
-                      <span key={skill} className="bg-[var(--color-surface)] text-[var(--color-text-secondary)] text-sm font-medium px-4 py-2 rounded-full transition duration-200 hover:bg-[var(--color-surface-hover)] hover:text-[var(--color-text-primary)] transform hover:scale-105 shadow-md border border-[var(--color-border)]">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 8. Experience */}
-        <section className="mb-24">
-          <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-[var(--color-text-primary)] mb-16">Professional Experience</h2>
-          <div className="relative border-l-4 border-[var(--color-border-hover)] ml-4 md:ml-20 max-w-4xl mx-auto">
-            {portfolioData.experiences.map((exp, idx) => (
-              <div key={idx} className="mb-16 pl-10 md:pl-16 relative">
-                {/* Timeline Dot */}
-                <div className="absolute w-4 h-4 bg-[var(--color-text-muted)] rounded-full -left-[10px] top-2 border-4 border-[var(--color-bg)]"></div>
-
-                <p className="text-sm text-moonlight-text-muted mb-2">{exp.period}</p>
-                <h3 className="text-2xl font-serif font-bold text-[var(--color-text-primary)]">{exp.role}</h3>
-                <h4 className="text-lg font-semibold text-moonlight-text-secondary mb-4">{exp.company}</h4>
-                <p className="text-moonlight-text-secondary leading-relaxed">{exp.description}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* 9. Education & Certifications */}
-        <section>
-          <h2 className="text-2xl md:text-3xl font-serif font-bold text-center text-[var(--color-text-primary)] mb-16">Education & Certifications</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-            <div className="bg-[var(--color-surface)] p-6 rounded-xl shadow-xl border border-[var(--color-border)] hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] transition-all duration-300">
-              <h3 className="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4 border-b border-[var(--color-border)] pb-2">Education</h3>
-              {portfolioData.education.map((edu, idx) => (
-                <div key={idx} className="mb-4">
-                  <p className="text-lg font-semibold text-moonlight-text-secondary">{edu.degree}</p>
-                  <p className="text-moonlight-text-muted text-sm">{edu.school} ({edu.year})</p>
+        <section className="grid md:grid-cols-[260px_minmax(0,1fr)] gap-8 md:gap-16 mb-20">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-accent)] mb-4">
+              Selected background
+            </p>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] leading-tight">
+              The formal record, condensed.
+            </h2>
+          </div>
+          <div className="border-t border-[var(--color-border)]">
+            {background.map((item) => (
+              <div key={`${item.company}-${item.role}`} className="grid md:grid-cols-[220px_minmax(0,1fr)] gap-4 md:gap-8 py-7 border-b border-[var(--color-border)]">
+                <div>
+                  <h3 className="text-xl md:text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-1">
+                    {item.company}
+                  </h3>
+                  <p className="text-sm text-moonlight-text-muted">{item.role}</p>
                 </div>
-              ))}
-            </div>
-            <div className="bg-[var(--color-surface)] p-6 rounded-xl shadow-xl border border-[var(--color-border)] hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] transition-all duration-300">
-              <h3 className="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4 border-b border-[var(--color-border)] pb-2">Certifications</h3>
-              <ul className="space-y-3">
-                {portfolioData.certifications.map((cert, idx) => (
-                  <li key={idx} className="text-moonlight-text-secondary flex items-center">
-                    <span className="text-[var(--color-text-muted)] mr-2">&#9679;</span> {cert}
-                  </li>
-                ))}
-              </ul>
-            </div>
+                <p className="text-moonlight-text-secondary leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+            ))}
           </div>
         </section>
 
-      </div>
+        <footer className="grid md:grid-cols-[minmax(0,1fr)_auto] gap-8 items-center border-t border-[var(--color-border)] pt-10">
+          <p className="max-w-3xl text-lg text-moonlight-text-secondary leading-relaxed">
+            If you are wrestling with AI adoption, convention files, or automation architecture, start with the writing. If the problem is concrete and time-sensitive, book the assessment.
+          </p>
+          <a
+            href="/services#assessment"
+            className="inline-flex items-center justify-center gap-2 min-h-11 px-5 rounded-lg bg-[var(--color-accent)] text-white text-sm font-bold hover:bg-[var(--color-accent-hover)] transition-colors"
+          >
+            Book an assessment
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
+          </a>
+        </footer>
+      </article>
     </div>
   );
 };

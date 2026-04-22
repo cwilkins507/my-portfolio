@@ -14,7 +14,7 @@ export default defineConfig({
     redirects: {
         // Consolidate /consulting → /services (Writer Site Refresh, 2026-04-10)
         '/consulting': '/services',
-        // Old uppercase URLs → new lowercase (from pre-rename filenames)
+        // Old article URLs -> current lowercase slugs (from pre-rename filenames)
         '/articles/AI-Assisted-Coding-pt2': '/articles/ai-assisted-coding-pt2',
         '/articles/AI-Assisted-Coding': '/articles/ai-assisted-coding',
         '/articles/Architecture-as-Code': '/articles/architecture-as-code',
@@ -25,7 +25,6 @@ export default defineConfig({
         '/articles/CRM-No-Code': '/articles/crm-no-code',
         '/articles/Design-Patterns': '/articles/design-patterns',
         '/articles/JPA': '/articles/jpa',
-        '/articles/Lessons-Learned': '/articles/lessons-learned-2025',
         '/articles/lessons-learned': '/articles/lessons-learned-2025',
         '/articles/MCP': '/articles/mcp',
         '/articles/Microservice-Redesign': '/articles/microservice-redesign',

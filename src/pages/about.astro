@@ -7,19 +7,26 @@ const personSchema = {
   "@type": "Person",
   "name": "Collin Wilkins",
   "jobTitle": "Lead Software Engineer",
-  "description": "Lead Engineer with 12 years of enterprise engineering experience across Ford Motor Company and Morningstar. Writes about AI coding tools, convention files, and automation architecture.",
+  "description": "Lead Software Engineer with 12 years across enterprise engineering, finance, and business operations. Writes about AI coding tools, convention files, automation architecture, and production systems.",
   "url": "https://collinwilkins.com",
   "sameAs": [
     "https://www.linkedin.com/in/collin-wilkins-1020215a/",
-    "https://github.com/cwilkins507"
+    "https://github.com/cwilkins507",
+    "https://x.com/CollinWilkins7"
   ],
   "knowsAbout": [
     "Python",
     "AWS",
     "Serverless Architecture",
     "AI Integration",
+    "AI Coding Tools",
+    "Claude Code",
+    "Convention Files",
+    "Context Engineering",
     "Automation",
-    "Event-Driven Systems"
+    "Automation Architecture",
+    "Event-Driven Systems",
+    "Software Architecture"
   ],
   "alumniOf": [
     {
@@ -35,23 +42,9 @@ const personSchema = {
 ---
 
 <Layout
-  title="About Collin Wilkins | Lead Software Engineer"
-  description="Lead Software Engineer with 12 years of enterprise engineering experience across Ford Motor Company and Morningstar. Practitioner notes on AI coding tools, convention files, and automation architecture."
+  title="About Collin Wilkins | AI Tooling, Automation Architecture, and Engineering Systems"
+  description="Lead Software Engineer writing about AI coding tools, convention files, automation architecture, and production systems. Previously Ford Motor Company, now Morningstar."
   schema={personSchema}
 >
-	<About client:load />
-	<noscript>
-		<div class="container mx-auto px-4 py-16 max-w-4xl">
-			<h1 class="text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-6">About Collin Wilkins</h1>
-			<p class="text-xl text-[var(--color-text-secondary)] mb-4">Lead Software Engineer with 12 years of experience in automation, Python, AI integration, and AWS serverless architecture.</p>
-			<p class="text-[var(--color-text-secondary)] mb-4">Previously at Ford Motor Company, currently Lead Engineer at Morningstar, building systems that handle hundreds of thousands of vehicles and process millions of events.</p>
-			<h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mt-8 mb-4">Core Expertise</h2>
-			<ul class="text-[var(--color-text-secondary)] space-y-2">
-				<li>Python Automation & AI Integration</li>
-				<li>AWS Serverless Architecture (Lambda, SQS, SNS)</li>
-				<li>Event-Driven Systems & Microservices</li>
-				<li>Enterprise Software Engineering</li>
-			</ul>
-		</div>
-	</noscript>
+	<About />
 </Layout>
