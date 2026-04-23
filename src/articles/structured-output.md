@@ -1,11 +1,11 @@
 ---
 title: "Structured Outputs in LLMs: Reliable Data for Real Pipelines"
 date: "2026-01-17"
-updated: "2026-02-27"
+updated: "2026-04-23"
 tags: ["Software Engineering", "LLMs", "Structured Outputs", "Data Engineering", "AI", "JSON Schema", "Observability", "Constrained Decoding", "Pydantic"]
 excerpt: "Structured outputs turn LLM text into dependable, validated data. Learn schemas, validation loops, provider-native features, and practical patterns for extraction, routing, and ETL."
 seo_title: "LLM Structured Outputs: Schema Validation for Real Pipelines (2026)"
-meta_description: "Turn LLM text into validated, structured data with JSON Schema. Covers OpenAI, Claude, and Gemini native structured outputs, Pydantic patterns, and production pipelines."
+meta_description: "2026 best practices for LLM structured outputs across OpenAI, Claude, Gemini, and vLLM. JSON Schema, constrained decoding, Pydantic, and production patterns."
 target_keywords: "LLM structured output, structured outputs AI, JSON schema LLM, AI data pipeline, structured data extraction, constrained decoding, Pydantic LLM"
 ---
 # Structured Outputs in LLMs: Reliable Data for Real Pipelines
@@ -16,9 +16,9 @@ I've watched teams spend days debugging pipelines that looked fine on the surfac
 
 Every time model output becomes input, you need outputs you can validate, store, diff, and replay. That includes ETL, labeling, routing, retrieval metadata, analytics, and automation.
 
-This article walks through what structured outputs are, why they improve data handling, how the major providers support them natively, and how to ship them as an engineering practice.
+What follows: what structured outputs actually are, where they earn their keep, how each major provider implements them in 2026, and what you have to wire up on your side so model output becomes something you can store, query, and replay.
 
-> **Updated Feb 2026:** Major update covering native provider support (OpenAI, Claude, Gemini, Bedrock, Mistral), constrained decoding benchmarks from JSONSchemaBench, multimodal extraction, agentic workflows and MCP, streaming structured outputs, and new failure modes including over-constrained schemas and reasoning field ordering.
+> **Updated April 2026:** Provider-specific sections for OpenAI, Claude, Gemini, and self-hosted vLLM; current API shapes for each (including Gemini's renamed `response_json_schema` and vLLM v0.12's `structured_outputs` wrapper); and a decision guide for picking between XGrammar, Guidance, and Outlines. Builds on the February 2026 revision that added native provider support, JSONSchemaBench results, multimodal extraction, streaming, MCP, and common failure modes.
 ## What "structured output" means in practice
 A structured output is an LLM response that follows:
 - A known format, like JSON
@@ -84,17 +84,93 @@ Once you have a schema that fits the job, the next question is how to actually g
 There are a few approaches that hold up. Most teams combine them.
 
 ### 1) Native structured output modes
-As of early 2026, the major providers all support native structured output enforcement:
+Every major provider ships native structured output enforcement now:
 
 | Provider | Feature | How it works |
 |---|---|---|
 | **OpenAI** | `response_format: { type: "json_schema" }` | Constrained decoding guarantees schema compliance. Also works with `strict: true` on tool calls. |
-| **Anthropic Claude** | `output_config.format` | Native JSON schema enforcement, GA across Claude 4.5/4.6 models. Also supports `strict: true` on tool definitions. |
-| **Google Gemini** | `response_mime_type: "application/json"` + `response_schema` | Full JSON Schema support including `anyOf`, `$ref`, recursive schemas, and property ordering. |
+| **Anthropic Claude** | `output_config.format` | Native JSON schema enforcement, GA across Claude 4.5/4.6/4.7 and Haiku 4.5. Also supports `strict: true` on tool definitions. |
+| **Google Gemini** | `response_mime_type: "application/json"` + `response_json_schema` | JSON Schema support including `enum`, `format`, numeric/array bounds, and `propertyOrdering`. Some keywords (like external `$ref`) are silently ignored. |
 | **AWS Bedrock** | Structured outputs via Converse API | Available as of early 2026. Works with Claude models and select open-weight models. |
 | **Mistral** | Custom structured outputs | Schema-constrained JSON across all models on La Plateforme. |
 
-These features use constrained decoding under the hood. The model's token generation is restricted at inference time so that only schema-valid tokens can be produced. Syntax errors become impossible by construction.
+These features use constrained decoding under the hood. The model's token generation is restricted at inference time so only schema-valid tokens can be produced. Syntax errors become impossible by construction.
+
+The surface looks similar across providers, but the details diverge enough that porting code between them isn't free. Here's what actually changes when you move.
+
+#### OpenAI (2026)
+
+Strict mode is the default now. JSON mode (`type: "json_object"`) still works but it's legacy — it guarantees valid JSON syntax and nothing else.
+
+```python
+response_format={
+  "type": "json_schema",
+  "json_schema": {
+    "name": "TicketSummary",
+    "schema": TicketSummary.model_json_schema(),
+    "strict": True,
+  }
+}
+```
+
+Three things I've gotten bitten by:
+- The Responses API moved structured output from `response_format` to `text.format`. Chat Completions still uses the old shape, so if you're migrating, the parameter name changes under you.
+- Optional fields need a union with `null`. Pydantic's `Optional[str]` maps correctly. Hand-rolled schemas that use `required: false` get rejected in strict mode.
+- Refusals come back as a refusal object, not schema-compliant JSON. If your retry loop doesn't check for that, it'll retry forever on a safety-blocked input.
+
+The Assistants API sunsets August 2026, so anything you build there today you're rebuilding soon.
+
+#### Anthropic Claude (2026)
+
+Native structured outputs are GA on Opus 4.5/4.6/4.7, Sonnet 4.5/4.6, and Haiku 4.5. The shape is `output_config.format`.
+
+```python
+output_config={
+  "format": {
+    "type": "json_schema",
+    "schema": TicketSummary.model_json_schema(),
+  }
+}
+```
+
+Claude's strict mode rejects more of the JSON Schema spec than OpenAI's: no recursive schemas, no `minimum`/`maximum`, no string length constraints, no external `$ref`. Those checks have to move into Pydantic post-validation instead of the schema itself. Hard limits worth knowing before you hit them: 20 strict tools per request, 24 optional parameters total, 16 union-type parameters.
+
+First request per schema pays compile latency. There's a 24-hour grammar cache, but schema edits invalidate it, so every time you tweak a field the next call is slow. Two quiet gotchas on top of that: required properties come out first in the response, always — put reasoning fields before answer fields or the model commits early (same rule as OpenAI). And refusals can come back non-schema-compliant, so handle them the same way you handle OpenAI refusals.
+
+TypeScript users get Zod support via `zodOutputFormat()`. The SDK pulls the JSON schema out of the Zod definition automatically.
+
+#### Google Gemini (2026)
+
+Gemini's shape is `response_mime_type: "application/json"` plus `response_json_schema` (the old `response_schema` parameter is deprecated).
+
+```python
+generation_config={
+  "response_mime_type": "application/json",
+  "response_json_schema": TicketSummary.model_json_schema(),
+}
+```
+
+The thing that burns people: unsupported keywords are silently ignored. No error, no warning — the model just returns JSON that doesn't match your schema. Test your actual schema end-to-end before you ship, not a simplified version.
+
+One other edge: Gemini 2.0 Flash needs explicit `propertyOrdering`. The 2.5 and 3.x series handle it automatically.
+
+New in the 3 series, structured output composes with Google Search grounding, URL Context, Code Execution, and File Search. For RAG-adjacent workflows this is the cleanest path across the three major providers — you stay inside one generation call instead of a search-then-generate chain.
+
+#### Self-hosted (vLLM, llama.cpp, TGI)
+
+Running your own inference, vLLM is the reference path. The parameter shape changed in v0.12.
+
+```python
+# Current (v0.12+)
+sampling_params = SamplingParams(
+  structured_outputs={"json": schema_dict}
+)
+
+# Deprecated
+sampling_params = SamplingParams(guided_json=schema_dict)
+```
+
+The `structured_outputs` wrapper takes `choice`, `regex`, `json`, `grammar`, or `structural_tag`. Default backend is `"auto"`, which routes per request — usually to XGrammar, which is the default across vLLM, SGLang, TensorRT-LLM, and MLC-LLM now. Pin a specific backend (`xgrammar`, `guidance`, `outlines`, `lm-format-enforcer`) when you need deterministic behavior for benchmarks.
 
 You still need semantic validation. A syntactically valid JSON string can still contain a wrong order ID or a hallucinated confidence score.
 
@@ -122,11 +198,21 @@ If you're running models on your own infrastructure (vLLM, llama.cpp, TGI), cons
 
 The [JSONSchemaBench](https://arxiv.org/abs/2501.10868) paper benchmarked six frameworks across 10,000 real-world schemas. Results worth knowing:
 - **Guidance** won on speed, coverage, and quality. Roughly 2x faster token generation than competitors.
-- **XGrammar** (default in recent vLLM) delivers up to 80x throughput improvement over older solutions. Near-zero overhead when grammars are cached.
-- **Outlines** had the lowest compliance rate due to compilation timeouts on complex schemas.
-- Constrained decoding is **faster** than unconstrained generation, not slower — in some cases significantly so. That surprised a lot of people.
+- **XGrammar** is now the default backend for vLLM, SGLang, TensorRT-LLM, and MLC-LLM. Vendor-quoted at up to 100x throughput over older solutions via vocab partitioning and adaptive token-mask caching.
+- **Outlines** had the lowest compliance rate in the original benchmark due to compilation timeouts on complex schemas. The Rust rewrite (`outlines-core`) has tightened that, but it still pays to benchmark your own schemas before committing.
+- Constrained decoding is **faster** than unconstrained generation, not slower — sometimes by an order of magnitude. Grammar enforcement trims the model's search space, so you spend fewer tokens on dead ends.
 
-The practical takeaway: if you're self-hosting, pick Guidance or XGrammar. If you're using a managed API, the provider handles this for you.
+#### Which engine should I pick?
+
+Three engines cover 95% of self-hosted use. Pick by use case, not benchmark leaderboard.
+
+- **XGrammar** is the default in vLLM, SGLang, TensorRT-LLM, and MLC-LLM. Fast when you reuse a small number of schemas across many requests — the grammar cache is what makes it fast, so one-schema-at-scale is the sweet spot.
+- **Guidance** had the strongest raw throughput and widest schema coverage in JSONSchemaBench. Good fit for processes that generate against many different schemas, or when you need mixed free-text and structured output in a single generation.
+- **Outlines** is Pydantic-first. The Rust core (`outlines-core 0.1`) closed most of the compile-timeout gap from the original benchmark, but complex recursive schemas still need testing before you ship. Pick this if your team already lives in Pydantic or you want regex and CFG support alongside JSON Schema.
+
+If you can't decide, start with XGrammar through vLLM's `"auto"` backend. You'll only feel the difference between these three when your schemas get complex or your throughput gets serious.
+
+If you're using a managed API, the provider handles all of this for you — you don't need to pick.
 
 ### 5) Validate, repair, retry
 This is the workhorse pattern for any approach.
@@ -143,7 +229,7 @@ That loop:
 This loop catches drift before it hits your database. Each retry costs tokens, so track retry rates. If a prompt consistently needs 2+ retries, the prompt or schema needs work, not more retries.
 
 ### Libraries that wrap these patterns
-You don't have to build the validate-retry loop yourself. [Instructor](https://python.useinstructor.com/) (Python, one of the most downloaded LLM utility libraries) wraps the exact Pydantic pattern shown below. It routes to provider-native structured output when available, falls back to tool calling otherwise. [LangChain](https://docs.langchain.com/oss/python/langchain/structured-output)'s `with_structured_output` does the same auto-routing across providers.
+You don't have to build the validate-retry loop yourself. [Instructor](https://python.useinstructor.com/) (Python) wraps the Pydantic pattern shown below and routes to provider-native structured output when available, falling back to tool calling otherwise. [LangChain](https://docs.langchain.com/oss/python/langchain/structured-output)'s `with_structured_output` does the same auto-routing across providers. Pick either and stop writing the retry loop by hand.
 ## A practical example: schema-first extraction in Python
 This example combines prompted JSON with the validate-repair-retry loop using [Pydantic](https://docs.pydantic.dev/). It's the pattern I reach for first on any new extraction task. Readable, strict, and easy to extend.
 
@@ -211,7 +297,7 @@ def extract_ticket(user_text: str, max_retries: int = 2) -> TicketSummary:
 
     for attempt in range(max_retries + 1):
         response = client.chat.completions.create(
-            model="gpt-4o",
+            model="gpt-5.4",
             messages=messages,
             # Use json_schema for constrained decoding; fall back to json_object
             # for providers that don't yet support full schema enforcement
@@ -245,7 +331,7 @@ Here is your prior JSON:
 {bad_json}
 """.strip()
 ```
-The same pattern works with Claude (`output_config.format` with your JSON schema) or Gemini (`response_schema`). The Pydantic model stays the same across providers.
+The same pattern works with Claude (`output_config.format` with your JSON schema) or Gemini (`response_json_schema`). The Pydantic model stays the same across providers.
 
 ### Step 4: Treat validated output as an event
 Once validated, store the structured record with metadata:
@@ -273,7 +359,7 @@ LLMs are good at deciding "where does this go." The pattern shows up everywhere:
 
 A structured routing record needs four things: a `label` enum (no freeform strings), a bounded `confidence` float, a `reasons` list, and a `requires_human_review` boolean.
 
-That last field is the one most teams skip. It's the one that pays for itself. When `requires_human_review` is true, the ticket goes to a person before anything else happens. No assumptions. No downstream damage to clean up.
+That last field is the one most teams skip, and the one that pays for itself. When `requires_human_review` is true, the ticket goes to a person before anything downstream touches it — no quiet assumptions, no cleanup two weeks later when a dashboard starts lying.
 ### Data cleaning and normalization
 LLMs can normalize messy fields:
 - Address components
@@ -293,7 +379,7 @@ A structured output can carry:
 - `missing_info`: list of gaps to fetch next
 That makes the generation step auditable. It also makes follow-up retrieval easier.
 ### Multimodal extraction
-This is one of the fastest-growing use cases. GPT-4o with structured output can extract validated JSON directly from images: invoice line items, receipt totals, form fields, document metadata. Mistral released a dedicated OCR model that combines document understanding with structured JSON extraction.
+This is one of the fastest-growing use cases. GPT-5.4 and Claude Opus 4.7 both handle image inputs with structured output, pulling validated JSON straight from invoices, receipts, form fields, and document metadata. Mistral OCR (released in 2025) does the same in a single API call — document understanding and structured JSON extraction fused together.
 
 The pattern is the same: define a Pydantic model, pass the image, validate the output. The schema doesn't care whether the input was text or a photo of a crumpled receipt.
 
@@ -387,8 +473,7 @@ Pick one task — ticket routing, entity extraction, whatever produces the most 
 That's it for week one. Expand one field at a time after that. Schemas improve under real data pressure, not in planning docs.
 
 ## Make your LLM outputs trustworthy
-Structured outputs turn LLMs into dependable data producers.
-They make parsing predictable, validation routine, and monitoring actionable.
+Structured outputs turn LLMs into dependable data producers. Parsing stops being a scan job, validation runs as a single schema check, and monitoring becomes something you query in SQL instead of read with your eyes.
 
 A year ago, you had to build all of this yourself. Now the major providers handle constrained decoding natively, and libraries like Instructor wrap the remaining validation logic. The barrier to entry dropped, but the engineering discipline still matters. Native structured output doesn't save you from semantic errors, over-constrained schemas, or reasoning field ordering mistakes.
 
