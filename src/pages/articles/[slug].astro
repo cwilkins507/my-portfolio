@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import NewsletterSignup from '../../components/NewsletterSignup.astro';
 
 const allArticles = await Astro.glob('../../articles/*.md');
 
@@ -172,9 +171,6 @@ const articleSchema = {
           <Content />
         </div>
       </div>
-
-      {/* Newsletter Signup */}
-      <NewsletterSignup variant="footer" />
 
       {/* Related Articles */}
       {relatedArticles.length > 0 && (
