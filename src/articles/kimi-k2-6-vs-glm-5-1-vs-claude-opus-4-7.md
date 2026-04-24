@@ -6,7 +6,7 @@ tags: ["AI", "Software Engineering", "AI Coding Models", "Open Source", "Develop
 excerpt: "The gap between Kimi K2.6 and GLM-5.1 on public coding benchmarks is basically noise. The real decision is when to route work to them versus Claude Opus 4.7."
 seo_title: "Kimi K2.6 vs GLM-5.1 vs Claude Opus 4.7: Coding Wars 2.0"
 meta_description: "Kimi K2.6, GLM-5.1, and Claude Opus 4.7 compared on SWE-Bench, pricing, context, and workflow fit. Which coding model to use, when to escalate, and where each one breaks."
-target_keywords: "kimi k2.6, kimi k2.6 review, kimi k2.6 benchmarks, glm-5.1, glm 5.1, glm-5.1 review, glm-5.1 coding model, claude opus 4.7, opus 4.7 coding, opus 4.7 benchmarks, kimi k2.6 vs glm-5.1, kimi 2.6 vs glm5.1, glm-5.1 vs opus 4.7, kimi k2.6 vs opus 4.7, best open source coding model 2026, best coding llm 2026"
+target_keywords: "kimi k2.6, kimi k2.6 review, kimi k2.6 benchmarks, glm-5.1, glm 5.1, glm-5.1 review, glm-5.1 coding model, claude opus 4.7, opus 4.7 coding, opus 4.7 benchmarks, kimi k2.6 vs glm-5.1, kimi 2.6 vs glm5.1, glm-5.1 vs opus 4.7, kimi k2.6 vs opus 4.7, deepseek v4 coding model, gpt-5.5 coding model, best open source coding model 2026, best coding llm 2026"
 faqs:
   - q: "What's the difference between Kimi K2.6 and GLM-5.1 for coding?"
     a: "On SWE-Bench Pro, Kimi K2.6 scores 58.6 and GLM-5.1 scores 58.4 — a 0.2-point gap that is effectively noise. The real differences are architecture and pricing: Kimi K2.6 is a 1T-parameter MoE with 32B active, a 400M vision encoder, and an agent-swarm runtime aimed at visual and frontend work. GLM-5.1 is MIT-licensed open weights tuned for long-running coding agents (hundreds of rounds, thousands of tool calls) and costs $1.40 input / $4.40 output per 1M tokens vs Kimi's $0.95 / $4."
@@ -20,6 +20,8 @@ faqs:
     a: "Route between multiple. The best teams don't standardize on one model — they standardize on an evaluation loop. Use GLM-5.1 or Kimi K2.6 for routine refactors, test scaffolding, and first-pass implementation. Escalate to Claude Opus 4.7 only for architecture review, hard debugging, security-sensitive changes, and final review before risky merges. Pick the cheapest model that handles the task; escalate when a wrong answer is expensive."
   - q: "Can I run Kimi K2.6 or GLM-5.1 locally?"
     a: "Both support local serving, but practicality differs. GLM-5.1 is tuned for local deployment and lists support via SGLang, vLLM, xLLM, Transformers, and KTransformers — it's the more obvious choice if self-hosting is the goal. Kimi K2.6 supports vLLM, SGLang, and KTransformers too, but its 1T-parameter MoE size means most users run it through Moonshot's stack or a serious inference cluster rather than on a laptop. Weights being open doesn't mean serving is free: you trade token bills for infra, latency, monitoring, and maintenance."
+  - q: "How do DeepSeek V4 and GPT-5.5 change this comparison?"
+    a: "They make the routing argument stronger. DeepSeek V4-Pro adds a 1M-context, MIT-licensed open-weight option at $1.74 input / $3.48 output per 1M tokens on OpenRouter, with strong SWE Verified and Terminal-Bench signals. GPT-5.5 pushes the closed frontier price ceiling to $5 input / $30 output per 1M tokens when API access opens. That doesn't make either one the automatic winner. It means teams need to test price, review burden, context behavior, and workflow fit together."
 ---
 
 # Coding Wars 2.0: The Definitive Comparison of Kimi K2.6, GLM-5.1, and Claude Opus 4.7
@@ -37,6 +39,8 @@ Of the open source models, Kimi K2.6 is the better first test when the job is vi
 If you're coming from older Opus 4.6 comparisons, the current Anthropic version is Opus 4.7.
 
 > Note: I've actually switched back to 4.6 from 4.7 in some of my own flows because I didn't see enough lift to justify the 1.3-1.4x [token premium](https://simonwillison.net/2026/apr/20/claude-token-counts/).
+
+> **Updated April 24, 2026:** DeepSeek V4 and GPT-5.5 both landed after this article went live. I wouldn't rename the comparison around them, but they matter for the price pressure story. DeepSeek V4-Pro adds another open weight 1M context option at $1.74 input and $3.48 output per 1M tokens on OpenRouter. GPT-5.5 moves the closed frontier price ceiling higher at $5 input and $30 output per 1M tokens when API access opens. The practical read is the same: route by workflow, and stop paying premium model prices for work a cheaper model can handle.
 
 ## The Short Version
 
@@ -72,7 +76,7 @@ One trust caveat: self-hosting and API use are different bets. Kimi's API terms 
 
 ## Benchmark Snapshot
 
-As of April 23, 2026, the public model pages put Kimi K2.6 and GLM-5.1 close enough that the benchmark table should not be the only thing making the decision.
+As of April 24, 2026, the public model pages put Kimi K2.6 and GLM-5.1 close enough that the benchmark table should not be the only thing making the decision.
 
 | Model | Access / license | Deployment / context | Published pricing | Selected coding signals |
 |---|---|---:|---|---|
@@ -85,6 +89,21 @@ Sources: [Kimi K2.6 model card](https://huggingface.co/moonshotai/Kimi-K2.6), [K
 Don't over-read the 58.6 vs. 58.4 gap on SWE-Bench Pro. That's not a product strategy. It's basically noise until you run both models against your own repo, your own prompts, and your own definition of "good enough."
 
 Vendor benchmark tables don't always line up perfectly either. Different harnesses, settings, tool access, effort levels, and reporting choices move the number. That doesn't make the numbers useless. It means they're a starting filter, not the final answer.
+
+## April 24 Update: DeepSeek V4 and GPT-5.5 Raise the Price Pressure
+
+DeepSeek V4 doesn't replace the Kimi-vs-GLM question. It makes the question more annoying, which is usually how model selection gets more honest.
+
+DeepSeek's official Hugging Face card lists V4-Pro as a 1.6T-parameter MoE model with 49B active parameters, MIT-licensed weights, and a 1M-token context window. OpenRouter lists the hosted V4-Pro price at $1.74 input and $3.48 output per 1M tokens. That's not cheaper than GLM-5.1 on input, but it is cheaper than GLM on output and far below Opus-class output pricing.
+
+OpenAI moved the other direction with GPT-5.5. Its launch page says the API will be $5 input and $30 output per 1M tokens, with a 1M context window. OpenAI also says GPT-5.5 is more token-efficient than GPT-5.4 in Codex, so the real bill may not scale linearly from the headline rate. Fine. Still: $30/M output changes how you think about agent loops, especially when coding agents can burn through long reasoning traces and multi-file diffs without asking you first.
+
+| Model | What changed | Selected coding signals |
+|---|---|---|
+| DeepSeek V4-Pro | Open-weight 1M-context model with cheaper output than GLM-5.1 and far cheaper output than Opus/GPT-5.5 | SWE-Bench Pro 55.4, SWE Verified 80.6, Terminal-Bench 2.0 67.9 |
+| GPT-5.5 | Closed frontier model pushes output pricing to $30/M, with OpenAI claiming better token efficiency in Codex | OpenAI reports SWE-Bench Pro 58.6 and Terminal-Bench 2.0 82.7 |
+
+This is why I don't like absolute "best model" takes. GPT-5.5 may be the right answer when its token efficiency and Codex integration pay for themselves. DeepSeek V4-Pro may be the right answer when you need 1M context, open weights, and cheap output. Kimi may still be the right first swing for design-to-code. GLM may still be the cleaner open-weight backend for long-running coding agents.
 
 ## Kimi K2.6: The Swarm and Design-to-Code Bet
 
@@ -217,6 +236,10 @@ Use **GLM-5.1** first for open, local, privacy-sensitive, and long-running codin
 
 Use **Opus 4.7** as the premium escalation lane. Architecture, hard debugging, high-risk review, weird cross-file reasoning. Don't waste it on boilerplate. That's how you end up with a very expensive autocomplete.
 
+Add **DeepSeek V4-Pro** to the eval set if your workflow is long-context, output-heavy, or price-sensitive. I wouldn't crown it from launch-day charts. I would run it against the same task packet as GLM and Kimi, then watch review burden closely. Cheap output is only cheap if the cleanup doesn't eat the savings.
+
+Treat **GPT-5.5** like the expensive frontier lane it is. If Codex gets more done with fewer tokens, great. Measure that. But don't assume a higher ceiling model belongs in every loop just because it shipped yesterday.
+
 Pick the cheapest model that handles the task. Escalate when the mistake would be expensive. Measure review burden. Keep the routing rules somewhere explicit instead of scattered through human habit.
 
 I'm also testing what local self-hosting actually looks like on an M1 Air with 16 GB, because a lot of "just run it locally" advice gets vague fast once the hardware is real.
@@ -246,3 +269,7 @@ I write about AI engineering, coding agents, and the boring workflow layer that 
 - [Z.ai pricing docs](https://docs.z.ai/guides/overview/pricing)
 - [Claude Opus 4.7 release - Anthropic](https://www.anthropic.com/news/claude-opus-4-7)
 - [Claude Opus page - Anthropic](https://www.anthropic.com/claude/opus)
+- [DeepSeek V4-Pro model card - DeepSeek on Hugging Face](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro)
+- [DeepSeek V4 collection - DeepSeek on Hugging Face](https://huggingface.co/collections/deepseek-ai/deepseek-v4)
+- [DeepSeek V4-Pro pricing - OpenRouter](https://openrouter.ai/deepseek/deepseek-v4-pro)
+- [GPT-5.5 release - OpenAI](https://openai.com/index/introducing-gpt-5-5/)
