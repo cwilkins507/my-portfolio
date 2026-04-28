@@ -1,0 +1,126 @@
+---
+import PreviewLayout from '../../layouts/PreviewLayout.astro';
+import ArticleList from '../../components/Articles';
+import AnimatedHero from '../../components/AnimatedHero';
+import GlowDivider from '../../components/GlowDivider';
+import StatStrip from '../../components/StatStrip';
+
+const articleModules = import.meta.glob('../../articles/*.md', { eager: true });
+const articles = Object.entries(articleModules).map(([file, article]) => ({
+  slug: file.split('/').pop().replace('.md', ''),
+  ...article.frontmatter,
+})).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+const FEATURED_SLUGS = [
+  'context-engineering-ai-coding-tools',
+  'llm-gateway-architecture',
+  'claude-code-productivity-paradox',
+];
+const featuredArticles = FEATURED_SLUGS
+  .map(slug => articles.find(a => a.slug === slug))
+  .filter(Boolean);
+---
+
+<PreviewLayout
+	title="[Preview] Homepage with stat strip | Collin Wilkins"
+	description="Preview of the homepage with a 3-stat credibility strip between the hero and Start Here."
+>
+	<!-- 1. Hero Section (unchanged) -->
+	<AnimatedHero
+		headline="Practitioner Notes on AI Coding Tools, Convention Files, and Automation Architecture"
+		subheadline="12 years of enterprise engineering — previously IoT telemetry and $5M in automation savings at Ford Motor Company, now Lead Engineer at Morningstar. I write about AI coding tools, convention files, and automation architecture for engineering teams."
+		availabilityBadge="Currently taking 2–3 clients"
+		emphasizeWords={['AI', 'Coding', 'Convention', 'Automation']}
+		ctas={[
+			{ href: '#articles', text: 'Read the writing', variant: 'primary' },
+			{ href: '/services', text: 'Work with me', variant: 'secondary' }
+		]}
+	/>
+
+	<!-- NEW: 3-stat credibility strip -->
+	<StatStrip />
+
+	<!-- 2. Glow Divider -->
+	<GlowDivider />
+
+	<!-- 3. Featured Articles (Start Here) -->
+	<section class="py-12 md:py-20 max-w-5xl mx-auto px-6 md:px-8">
+		<div class="flex items-baseline gap-4 mb-8">
+			<h2 class="text-lg font-serif font-bold text-[var(--color-text-primary)]">Start Here</h2>
+			<span class="text-xs text-[var(--color-text-faint)] uppercase tracking-widest font-mono">3 articles</span>
+		</div>
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+			{featuredArticles[0] && (
+				<a
+					href={`/articles/${featuredArticles[0].slug}`}
+					class="group flex flex-col rounded-xl p-7 md:p-8 border border-[var(--color-accent-border)] bg-[var(--color-accent-muted)] hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-accent)] hover:-translate-y-0.5 will-change-transform transition-all duration-300 md:row-span-2 relative overflow-hidden"
+				>
+					<div class="pointer-events-none absolute -right-8 -top-8 w-40 h-40 rounded-full opacity-60" style="background: radial-gradient(ellipse, rgba(201,169,110,0.12) 0%, transparent 70%);" aria-hidden="true"></div>
+					<span class="text-xs font-semibold uppercase tracking-widest text-[var(--color-accent)] mb-4 block">Featured</span>
+					<h3 class="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-4 leading-[1.2] group-hover:text-[var(--color-accent)] transition-colors flex-grow">
+						{featuredArticles[0].title}
+					</h3>
+					<p class="text-[var(--color-text-secondary)] text-sm leading-relaxed mb-8">
+						{featuredArticles[0].excerpt}
+					</p>
+					<span class="text-[var(--color-accent)] text-sm font-semibold inline-flex items-center gap-2 mt-auto">
+						Read article <span aria-hidden="true">&rarr;</span>
+					</span>
+				</a>
+			)}
+			{featuredArticles.slice(1).map(article => (
+				<a
+					href={`/articles/${article.slug}`}
+					class="group flex flex-col rounded-xl p-6 border border-[var(--color-border)] bg-[var(--color-surface)] hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] hover:-translate-y-0.5 will-change-transform transition-all duration-300"
+				>
+					<h3 class="text-lg font-serif font-bold text-[var(--color-text-primary)] mb-2 leading-snug group-hover:text-[var(--color-accent)] transition-colors">
+						{article.title}
+					</h3>
+					<p class="text-[var(--color-text-secondary)] text-sm leading-relaxed flex-grow mb-4">
+						{article.excerpt}
+					</p>
+					<span class="text-[var(--color-accent)] text-sm font-semibold inline-flex items-center gap-2">
+						Read article <span aria-hidden="true">&rarr;</span>
+					</span>
+				</a>
+			))}
+		</div>
+	</section>
+
+	<!-- 4. Newsletter capture -->
+	<section class="py-14 max-w-7xl mx-auto px-6 md:px-8">
+		<div class="flex flex-col lg:flex-row lg:items-center gap-8 p-8 md:p-10 lg:p-12 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] relative overflow-hidden">
+			<div class="pointer-events-none absolute right-0 top-0 w-64 h-full rounded-r-2xl" style="background: radial-gradient(ellipse at top right, rgba(201,169,110,0.06) 0%, transparent 70%);" aria-hidden="true"></div>
+			<div class="flex-1 relative z-[1]">
+				<p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-accent)] mb-3">Newsletter · Every other week</p>
+				<h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-2">Notes from production.</h3>
+				<p class="text-base text-[var(--color-text-secondary)] leading-relaxed">Working playbooks and field notes for learning by doing. AI coding, convention files, automation architecture, and the production details that decide whether the work survives past the demo.</p>
+			</div>
+			<form
+				action="https://buttondown.com/api/emails/embed-subscribe/collinwilkins"
+				method="post"
+				target="popupwindow"
+				class="flex flex-col sm:flex-row gap-3 flex-none w-full lg:w-[42rem] relative z-[1]"
+			>
+				<input
+					type="email"
+					name="email"
+					placeholder="your@email.com"
+					required
+					class="flex-1 min-h-14 px-5 py-4 text-base bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-[var(--color-text-primary)] placeholder-[var(--color-text-faint)] focus:outline-none focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] transition"
+				/>
+				<button
+					type="submit"
+					class="min-h-14 px-7 py-4 text-base font-semibold rounded-lg bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] transition-colors whitespace-nowrap"
+				>
+					Subscribe
+				</button>
+			</form>
+		</div>
+	</section>
+
+	<!-- 5. All Articles Section -->
+	<section id="articles" class="py-16">
+		<ArticleList articles={articles} client:load />
+	</section>
+</PreviewLayout>

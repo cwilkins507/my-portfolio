@@ -1,0 +1,78 @@
+---
+import PreviewLayout from '../../layouts/PreviewLayout.astro';
+
+const previews = [
+  {
+    label: 'Homepage + 3-stat strip',
+    href: '/preview',
+    compareTo: '/',
+    note: 'Hero unchanged. New StatStrip slotted between hero and Start Here. Footer also has Upwork removed.',
+  },
+  {
+    label: 'Services — Option A (cards by deliverable)',
+    href: '/preview/services-deliverable',
+    compareTo: '/services',
+    note: 'AI Readiness Audit · Convention File Architecture · Automation Architecture. Plus FAQ at the bottom. Numbered intake intentionally NOT used.',
+  },
+  {
+    label: 'Services — Option C (cards by engagement shape)',
+    href: '/preview/services-engagement',
+    compareTo: '/services',
+    note: '1–2 week Audit · 4–6 week Project · Ongoing Advisory. Plus FAQ at the bottom. Numbered intake intentionally NOT used.',
+  },
+];
+---
+
+<PreviewLayout
+	title="[Preview] All previews | Collin Wilkins"
+	description="Index of preview routes for the Auten/practitioner Services + homepage refresh."
+>
+	<div class="min-h-screen bg-[var(--color-bg)] pt-16 md:pt-24">
+		<article class="container mx-auto px-4 md:px-8 max-w-3xl pb-24">
+			<header class="mb-12">
+				<h1 class="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-4 leading-[1.2]">
+					Preview index
+				</h1>
+				<p class="text-base md:text-lg text-[var(--color-text-secondary)] leading-relaxed">
+					Open each preview alongside the live page in a separate tab to compare. Nothing here is linked from nav, indexed, or part of the production build pipeline.
+				</p>
+			</header>
+
+			<ul class="space-y-4">
+				{previews.map((p) => (
+					<li class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
+						<h2 class="text-lg font-serif font-bold text-[var(--color-text-primary)] mb-3">{p.label}</h2>
+						<p class="text-sm text-[var(--color-text-secondary)] leading-relaxed mb-4">{p.note}</p>
+						<div class="flex flex-wrap gap-3 text-sm">
+							<a
+								href={p.href}
+								class="inline-flex items-center px-4 py-2 rounded-lg bg-[var(--color-accent)] text-white font-semibold hover:bg-[var(--color-accent-hover)] transition-colors"
+							>
+								Open preview →
+							</a>
+							<a
+								href={p.compareTo}
+								class="inline-flex items-center px-4 py-2 rounded-lg border border-[var(--color-border)] text-[var(--color-text-primary)] font-semibold hover:border-[var(--color-border-hover)] hover:bg-[var(--color-surface-hover)] transition-colors"
+							>
+								Compare to live ({p.compareTo})
+							</a>
+						</div>
+					</li>
+				))}
+			</ul>
+
+			<section class="mt-12 p-6 rounded-xl border border-[var(--color-accent-border)] bg-[var(--color-accent-muted)]">
+				<h2 class="text-lg font-serif font-bold text-[var(--color-text-primary)] mb-3">Footer change (applies to all previews)</h2>
+				<p class="text-sm text-[var(--color-text-secondary)] leading-relaxed">
+					Every preview page renders with the <strong>Upwork link removed from the footer</strong> — only LinkedIn and GitHub remain. Scroll to the bottom of any preview to see the change. Compare against the footer of any live page (e.g. <a href="/" class="text-[var(--color-accent)] underline">/</a>).
+				</p>
+			</section>
+
+			<section class="mt-12 text-sm text-[var(--color-text-muted)]">
+				<p>
+					Once you pick a direction, I'll port the chosen content into <code>src/pages/index.astro</code> and <code>src/pages/services.astro</code>, remove Upwork from <code>src/layouts/Layout.astro</code>, and delete <code>src/pages/preview/</code>.
+				</p>
+			</section>
+		</article>
+	</div>
+</PreviewLayout>
