@@ -1,239 +1,424 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ArticleList from '../components/Articles';
-import AnimatedHero from '../components/AnimatedHero';
-import GlowDivider from '../components/GlowDivider';
-import NavigationWrapper from '../components/NavigationWrapper';
 
-const articlesRaw = await Astro.glob('../articles/*.md');
-const articles = articlesRaw.map(article => ({
-  slug: article.file.split('/').pop().replace('.md', ''),
+const articleModules = import.meta.glob('../articles/*.md', { eager: true });
+const articles = Object.entries(articleModules).map(([file, article]) => ({
+  slug: file.split('/').pop().replace('.md', ''),
   ...article.frontmatter,
 })).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-// Featured articles (curated — Writer Site Refresh, 2026-04-10)
 const FEATURED_SLUGS = [
   'context-engineering-ai-coding-tools',
   'llm-gateway-architecture',
   'claude-code-productivity-paradox',
 ];
+
 const featuredArticles = FEATURED_SLUGS
-  .map(slug => articles.find(a => a.slug === slug))
+  .map(slug => articles.find(article => article.slug === slug))
   .filter(Boolean);
 
+const proofPoints = [
+  {
+    metric: '$5M',
+    label: 'annual savings',
+    detail: 'Remote audit work that moved dealership inventory checks from lot visits to connected-vehicle signals.',
+  },
+  {
+    metric: '450k+',
+    label: 'vehicles',
+    detail: 'Vehicles covered by connected workflows across dealership inventory and audit work.',
+  },
+  {
+    metric: '600k+',
+    label: 'daily events',
+    detail: 'Vehicle events moving through Kafka and cloud pipelines every day.',
+  },
+  {
+    metric: '10h',
+    label: 'saved weekly',
+    detail: 'Morningstar compliance work that cut daily manual runs by 90%.',
+  },
+];
+
+const workAreas = [
+  {
+    title: 'AI tools inside engineering teams',
+    description:
+      'I help teams get Claude Code, Cursor, Copilot, and Codex out of side-project mode and into repo conventions, review habits, and repeatable workflows.',
+    signal: 'Claude Code, Cursor, Copilot, Codex',
+  },
+  {
+    title: 'Automation and internal systems',
+    description:
+      "If a team is still clicking through Postman, copying CSVs, or babysitting runs by hand, there's probably a better system hiding in there. Python, APIs, Lambda, queues, n8n when it fits. Boring on purpose.",
+    signal: 'Python, APIs, Lambda, queues, integrations',
+  },
+  {
+    title: 'Architecture when the problem is still fuzzy',
+    description:
+      "Some problems don't need a giant platform. They need someone to map the workflow, find the expensive part, build the right slice, and leave the decision trail somewhere better than Slack.",
+    signal: 'Architecture, implementation, decision support',
+  },
+];
+
+const selectedWork = [
+  {
+    company: 'Ford Motor Company',
+    title: 'Eliminating a 30-day manual audit process',
+    metric: '$5M',
+    metricLabel: 'annual savings',
+    summary:
+      'I led the architecture for a telemetry platform that checked dealership inventory with connected-vehicle signals instead of slow physical audits. Fewer lot visits, less delay, about $5M in annual savings.',
+    tags: ['Kafka', 'Pub/Sub', 'Azure IoT Hub'],
+  },
+  {
+    company: 'Morningstar',
+    title: 'Cutting 20% of weekly engineering bandwidth',
+    metric: '90%',
+    metricLabel: 'fewer daily runs',
+    summary:
+      'I moved daily compliance runs out of Postman and into an event-driven workflow with load-aware scheduling, database diffing, SQS, and short-lived Fargate tasks. Less babysitting. More actual engineering time.',
+    tags: ['AWS SQS', 'Fargate', 'Event-driven systems'],
+  },
+  {
+    company: 'Ford Motor Company',
+    title: "Protecting America's most stolen vehicle",
+    metric: '2024',
+    metricLabel: 'production launch',
+    summary:
+      "I worked on the telemetry behind F-150 theft recovery, where you can't just spam location data and call it done. Recovery speed had to sit with privacy, battery, and cost.",
+    tags: ['Zero Trust', 'Kafka', 'IoT telemetry'],
+  },
+];
+
+const credibilitySignals = [
+  'Lead Software Engineer at Morningstar',
+  'Previously Ford connected vehicle systems, pricing, and field work',
+  '12 years across engineering, pricing, sales, and operations',
+  'Case studies covering $5M savings, 450k+ vehicles, and 600k+ daily events',
+];
+
 const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Collin Wilkins",
-  "url": "https://collinwilkins.com",
-  "description": "Technical articles on Python automation, AWS serverless architecture, AI integration, and building systems that deliver measurable business value.",
-  "author": {
-    "@type": "Person",
-    "name": "Collin Wilkins",
-    "url": "https://collinwilkins.com/about"
-  }
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Collin Wilkins',
+  url: 'https://collinwilkins.com',
+  description:
+    'Portfolio for Collin Wilkins, a Lead Software Engineer focused on AI tools, automation, internal systems, and software that has to work in production.',
+  author: {
+    '@type': 'Person',
+    name: 'Collin Wilkins',
+    url: 'https://collinwilkins.com/about',
+  },
 };
 
 const personSchema = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Collin Wilkins",
-  "jobTitle": "Lead Software Engineer",
-  "description": "Lead Engineer with 12 years of enterprise engineering experience across Ford Motor Company and Morningstar. Writes about AI coding tools, convention files, and automation architecture.",
-  "url": "https://collinwilkins.com",
-  "image": "https://collinwilkins.com/images/profile_photo.png",
-  "sameAs": [
-    "https://www.linkedin.com/in/collin-wilkins-1020215a/",
-    "https://github.com/cwilkins507",
-    "https://www.upwork.com/freelancers/~014ffbc17b83da9407"
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Collin Wilkins',
+  jobTitle: 'Lead Software Engineer',
+  description:
+    'Lead Software Engineer with 12 years across Ford Motor Company and Morningstar. Focused on AI tools, automation, internal systems, and production software.',
+  url: 'https://collinwilkins.com',
+  image: 'https://collinwilkins.com/images/profile_photo.png',
+  sameAs: [
+    'https://www.linkedin.com/in/collin-wilkins-1020215a/',
+    'https://github.com/cwilkins507',
+    'https://www.upwork.com/freelancers/~014ffbc17b83da9407',
   ],
-  "knowsAbout": [
-    "Python",
-    "AWS",
-    "AI Automation",
-    "Serverless Architecture",
-    "Software Engineering",
-    "IoT",
-    "AI Agents",
-    "Claude Code",
-    "AGENTS.md",
-    "CLAUDE.md",
-    "Convention Files",
-    "LLM Gateway Architecture"
+  knowsAbout: [
+    'Python',
+    'AWS',
+    'AI Automation',
+    'Serverless Architecture',
+    'Software Engineering',
+    'IoT',
+    'AI Agents',
+    'Claude Code',
+    'AGENTS.md',
+    'CLAUDE.md',
+    'Convention Files',
+    'LLM Gateway Architecture',
+    'Event-Driven Architecture',
   ],
-  "alumniOf": [
+  alumniOf: [
     {
-      "@type": "Organization",
-      "name": "Ford Motor Company"
-    }
+      '@type': 'Organization',
+      name: 'Ford Motor Company',
+    },
   ],
-  "worksFor": {
-    "@type": "Organization",
-    "name": "Morningstar"
-  }
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Morningstar',
+  },
 };
 
 const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
     {
-      "@type": "Question",
-      "name": "Who is Collin Wilkins?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Collin Wilkins is a Lead Software Engineer at Morningstar with 12 years of enterprise engineering experience. He previously built IoT telemetry and automation systems at Ford Motor Company that cut approximately $5 million in annual operational costs, including the platform behind the 2024 F-150 theft recovery feature. He writes practitioner notes on AI coding tools, convention files, LLM gateway architecture, and production automation."
-      }
+      '@type': 'Question',
+      name: 'Who is Collin Wilkins?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Collin Wilkins is a Lead Software Engineer at Morningstar with 12 years across engineering, finance, pricing, sales, and operations. He previously worked on Ford connected vehicle systems, including telemetry and automation work tied to approximately $5 million in annual savings.',
+      },
     },
     {
-      "@type": "Question",
-      "name": "What are convention files in the context of AI coding tools?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Convention files (CLAUDE.md, AGENTS.md, .cursorrules) are project context files that load automatically when an AI coding agent starts a session. They encode project structure, build and test commands, naming conventions, constraints the agent should never violate, and the reasoning behind those constraints. Well-written convention files are the difference between AI tools producing inconsistent output and compounding productivity over time, because they solve the real problem: context, not model quality."
-      }
+      '@type': 'Question',
+      name: 'What kind of consulting work does Collin Wilkins take on?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Collin takes on limited independent work for teams dealing with AI tool rollout, automation architecture, internal systems, and hands-on Python or AWS implementation.',
+      },
     },
     {
-      "@type": "Question",
-      "name": "What is the difference between CLAUDE.md and AGENTS.md?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "CLAUDE.md is specific to Claude Code and loads automatically at the start of every session with project context. AGENTS.md is an emerging cross-tool convention — a single file that multiple coding agents (Claude Code, Codex, Cursor, and others) can read, reducing the need to maintain separate rule files per tool. Both serve the same purpose: encoding what the agent needs to know about the project before it starts working."
-      }
+      '@type': 'Question',
+      name: 'What topics does collinwilkins.com cover?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The site covers AI coding tool adoption, context engineering, convention files, LLM gateway architecture, AWS Lambda automation patterns, Python automation, system design, and production-grade infrastructure from a practitioner perspective.',
+      },
     },
-    {
-      "@type": "Question",
-      "name": "What topics does collinwilkins.com cover?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "AI coding tool adoption (Claude Code, Cursor, Copilot), convention files and context engineering (CLAUDE.md, AGENTS.md), LLM gateway architecture, AWS Lambda automation patterns, Python automation, system design, and production-grade infrastructure. The focus is on practitioner patterns from real enterprise engineering work — specific, battle-tested, and statistics-rich rather than generic AI-transformation framing."
-      }
-    }
-  ]
+  ],
 };
 ---
 
 <Layout
-  title="Collin Wilkins | Lead Software Engineer"
-  description="Practitioner notes on AI coding tools, convention files, and automation architecture. 12 years of enterprise engineering across Ford Motor Company and Morningstar."
+  title="Collin Wilkins | AI Tools, Automation, and Internal Systems"
+  description="Lead Software Engineer at Morningstar, previously Ford. I work on AI tools, automation, and production software for teams dealing with expensive process problems."
   schema={[websiteSchema, personSchema, faqSchema]}
 >
-	<!-- Override Navigation to include SearchOverlay -->
-	<NavigationWrapper articles={articles} client:load />
+  <div class="min-h-screen bg-[var(--color-bg)] tracking-normal">
+    <section class="relative overflow-hidden border-b border-[var(--color-border)] pt-20 pb-12 md:pt-24 md:pb-14">
+      <div class="mx-auto max-w-6xl px-6 md:px-8">
+        <div class="grid gap-12 lg:grid-cols-[minmax(0,1.12fr)_minmax(320px,0.88fr)] lg:items-end">
+          <div class="grid grid-cols-[1px_minmax(0,1fr)] gap-5 md:gap-8">
+            <div
+              class="w-px self-stretch bg-gradient-to-b from-[var(--color-accent)] via-[var(--color-accent-border)] to-transparent"
+              aria-hidden="true"
+            ></div>
 
-	<!-- 1. Hero Section -->
-	<AnimatedHero
-		headline="Practitioner Notes on AI Coding Tools, Convention Files, and Automation Architecture"
-		subheadline="12 years of enterprise engineering — previously IoT telemetry and $5M in automation savings at Ford Motor Company, now Lead Engineer at Morningstar. I write about AI coding tools, convention files, and automation architecture for engineering teams."
-		availabilityBadge="Currently taking 2–3 clients"
-		emphasizeWords={['AI', 'Coding', 'Convention', 'Automation']}
-		ctas={[
-			{ href: '#articles', text: 'Read the writing', variant: 'primary' },
-			{ href: '/services', text: 'Work with me', variant: 'secondary' }
-		]}
-	/>
+            <div class="min-w-0">
+              <p class="mb-5 font-mono text-xs uppercase text-[var(--color-accent)]">
+                Collin Wilkins / enterprise engineer / automation
+              </p>
+              <h1 class="max-w-4xl font-serif text-4xl font-bold leading-[1.08] text-[var(--color-text-primary)] sm:text-5xl md:text-5xl">
+                I help teams fix expensive software and process problems hiding in plain sight.
+              </h1>
+              <p class="mt-7 max-w-3xl text-lg leading-relaxed text-[var(--color-text-secondary)] md:text-xl">
+                I'm a Lead Software Engineer at Morningstar, previously Ford Motor Company. I'm useful when the problem is part code, part process, and part organizational scar tissue: AI tools getting weird, manual work that should have died years ago, or a system decision everyone has been politely avoiding.
+              </p>
 
-	<!-- 2. Glow Divider -->
-	<GlowDivider />
+              <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <a
+                  href="/services#assessment"
+                  class="inline-flex min-h-12 items-center justify-center rounded-lg bg-[var(--color-accent)] px-5 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-accent-hover)]"
+                >
+                  Work with me <span class="ml-2" aria-hidden="true">&rarr;</span>
+                </a>
+                <a
+                  href="/case-studies"
+                  class="inline-flex min-h-12 items-center justify-center rounded-lg border border-[var(--color-border-hover)] bg-[var(--color-surface)] px-5 text-sm font-semibold text-[var(--color-text-primary)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+                >
+                  View selected work
+                </a>
+                <a
+                  href="/Collin-Wilkins-Resume.pdf"
+                  class="inline-flex min-h-12 items-center justify-center rounded-lg border border-transparent px-5 text-sm font-semibold text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-text-primary)]"
+                >
+                  Download CV
+                </a>
+              </div>
+            </div>
+          </div>
 
-	<!-- 3. Featured Articles (Start Here) -->
-	<section class="py-12 md:py-20 max-w-5xl mx-auto px-6 md:px-8">
-		<div class="flex items-baseline gap-4 mb-8">
-			<h2 class="text-lg font-serif font-bold text-[var(--color-text-primary)]">Start Here</h2>
-			<span class="text-xs text-[var(--color-text-faint)] uppercase tracking-widest font-mono">3 articles</span>
-		</div>
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-			{/* First card: featured slot — spans full height left column */}
-			{featuredArticles[0] && (
-				<a
-					href={`/articles/${featuredArticles[0].slug}`}
-					class="group flex flex-col rounded-xl p-7 md:p-8 border border-[var(--color-accent-border)] bg-[var(--color-accent-muted)] hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-accent)] hover:-translate-y-0.5 will-change-transform transition-all duration-300 md:row-span-2 relative overflow-hidden"
-				>
-					<div class="pointer-events-none absolute -right-8 -top-8 w-40 h-40 rounded-full opacity-60" style="background: radial-gradient(ellipse, rgba(201,169,110,0.12) 0%, transparent 70%);" aria-hidden="true"></div>
-					<span class="text-xs font-semibold uppercase tracking-widest text-[var(--color-accent)] mb-4 block">Featured</span>
-					<h3 class="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-4 leading-[1.2] group-hover:text-[var(--color-accent)] transition-colors flex-grow">
-						{featuredArticles[0].title}
-					</h3>
-					<p class="text-[var(--color-text-secondary)] text-sm leading-relaxed mb-8">
-						{featuredArticles[0].excerpt}
-					</p>
-					<span class="text-[var(--color-accent)] text-sm font-semibold inline-flex items-center gap-2 mt-auto">
-						Read article <span aria-hidden="true">&rarr;</span>
-					</span>
-				</a>
-			)}
-			{/* Cards 2 & 3: secondary slots — stack on the right */}
-			{featuredArticles.slice(1).map(article => (
-				<a
-					href={`/articles/${article.slug}`}
-					class="group flex flex-col rounded-xl p-6 border border-[var(--color-border)] bg-[var(--color-surface)] hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] hover:-translate-y-0.5 will-change-transform transition-all duration-300"
-				>
-					<h3 class="text-lg font-serif font-bold text-[var(--color-text-primary)] mb-2 leading-snug group-hover:text-[var(--color-accent)] transition-colors">
-						{article.title}
-					</h3>
-					<p class="text-[var(--color-text-secondary)] text-sm leading-relaxed flex-grow mb-4">
-						{article.excerpt}
-					</p>
-					<span class="text-[var(--color-accent)] text-sm font-semibold inline-flex items-center gap-2">
-						Read article <span aria-hidden="true">&rarr;</span>
-					</span>
-				</a>
-			))}
-		</div>
-	</section>
+          <aside class="border-y border-[var(--color-border)] py-6 lg:mb-2" aria-label="Current positioning">
+            <div class="flex items-start gap-4 border-b border-[var(--color-border)] pb-6">
+              <img
+                src="/images/profile_photo.png"
+                alt="Collin Wilkins"
+                class="h-16 w-16 flex-none rounded-full border border-[var(--color-border-hover)] object-cover"
+              />
+              <div>
+                <p class="font-serif text-xl font-bold leading-snug text-[var(--color-text-primary)]">
+                  Business operator turned software engineer.
+                </p>
+                <p class="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+                  I learned to code because waiting on technical resources got expensive. That bias still shows up: find the cost, fix the workflow, and make the system honest enough for the team to run after the handoff.
+                </p>
+              </div>
+            </div>
 
-	<!-- 4. Newsletter capture — between curated articles and full list -->
-	<section class="py-14 max-w-7xl mx-auto px-6 md:px-8">
-		<div class="flex flex-col lg:flex-row lg:items-center gap-8 p-8 md:p-10 lg:p-12 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] relative overflow-hidden">
-			<!-- Subtle gold blur -->
-			<div class="pointer-events-none absolute right-0 top-0 w-64 h-full rounded-r-2xl" style="background: radial-gradient(ellipse at top right, rgba(201,169,110,0.06) 0%, transparent 70%);" aria-hidden="true"></div>
-			<div class="flex-1 relative z-[1]">
-				<p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-accent)] mb-3">Newsletter · Every other week</p>
-				<h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-2">Notes from production.</h3>
-				<p class="text-base text-[var(--color-text-secondary)] leading-relaxed">Working playbooks and field notes for learning by doing. AI coding, convention files, automation architecture, and the production details that decide whether the work survives past the demo.</p>
-			</div>
-			<form
-				action="https://buttondown.com/api/emails/embed-subscribe/collinwilkins"
-				method="post"
-				target="popupwindow"
-				class="flex flex-col sm:flex-row gap-3 flex-none w-full lg:w-[42rem] relative z-[1]"
-			>
-				<input
-					type="email"
-					name="email"
-					placeholder="your@email.com"
-					required
-					class="flex-1 min-h-14 px-5 py-4 text-base bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-[var(--color-text-primary)] placeholder-[var(--color-text-faint)] focus:outline-none focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] transition"
-				/>
-				<button
-					type="submit"
-					class="min-h-14 px-7 py-4 text-base font-semibold rounded-lg bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] transition-colors whitespace-nowrap"
-				>
-					Subscribe
-				</button>
-			</form>
-		</div>
-	</section>
+            <div class="divide-y divide-[var(--color-border)]">
+              {credibilitySignals.map(signal => (
+                <p class="py-4 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+                  <span class="mr-2 text-[var(--color-accent)]" aria-hidden="true">/</span>{signal}
+                </p>
+              ))}
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
 
-	<!-- 7. All Articles Section -->
-	<section id="articles" class="py-16">
-		<ArticleList articles={articles} client:load />
-		<!-- Server-rendered article links for SEO crawlers -->
-		<noscript>
-			<div class="container mx-auto px-4 py-16">
-				<h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-8">All Articles</h2>
-				<ul class="space-y-4">
-					{articles.map(article => (
-						<li>
-							<a href={`/articles/${article.slug}`} class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] text-lg">
-								{article.title}
-							</a>
-							<p class="text-[var(--color-text-muted)] text-sm">{article.date}</p>
-						</li>
-					))}
-				</ul>
-			</div>
-		</noscript>
-	</section>
+    <section class="border-b border-[var(--color-border)]" aria-label="Proof points">
+      <div class="mx-auto grid max-w-6xl grid-cols-1 border-x border-[var(--color-border)] md:grid-cols-4">
+        {proofPoints.map((point, index) => (
+          <div class={`p-6 md:p-7 ${index > 0 ? 'border-t border-[var(--color-border)] md:border-l md:border-t-0' : ''}`}>
+            <p class="font-mono text-4xl font-semibold text-[var(--color-accent)] md:text-5xl">{point.metric}</p>
+            <p class="mt-3 text-sm font-semibold text-[var(--color-text-primary)]">{point.label}</p>
+            <p class="mt-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">{point.detail}</p>
+          </div>
+        ))}
+      </div>
+    </section>
 
+    <section class="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-[280px_minmax(0,1fr)] md:px-8 md:py-20">
+      <div>
+        <p class="font-mono text-xs uppercase text-[var(--color-accent)]">What I do</p>
+        <h2 class="mt-4 font-serif text-3xl font-bold leading-tight text-[var(--color-text-primary)] md:text-4xl">
+          The useful work usually starts messy.
+        </h2>
+      </div>
+
+      <div class="border-t border-[var(--color-border)]">
+        {workAreas.map(area => (
+          <article class="grid gap-4 border-b border-[var(--color-border)] py-7 md:grid-cols-[230px_minmax(0,1fr)] md:gap-8">
+            <div>
+              <h3 class="font-serif text-2xl font-bold leading-tight text-[var(--color-text-primary)]">
+                {area.title}
+              </h3>
+              <p class="mt-3 font-mono text-xs uppercase leading-relaxed text-[var(--color-text-muted)]">
+                {area.signal}
+              </p>
+            </div>
+            <p class="text-base leading-relaxed text-[var(--color-text-secondary)]">
+              {area.description}
+            </p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="border-y border-[var(--color-border)] bg-[var(--color-surface)]">
+      <div class="mx-auto max-w-6xl px-6 py-14 md:px-8 md:py-20">
+        <div class="mb-10 grid gap-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
+          <div>
+            <p class="font-mono text-xs uppercase text-[var(--color-accent)]">Selected work</p>
+            <h2 class="mt-4 max-w-3xl font-serif text-3xl font-bold leading-tight text-[var(--color-text-primary)] md:text-4xl">
+              A few examples from large systems where the constraints were not theoretical.
+            </h2>
+          </div>
+          <a
+            href="/case-studies"
+            class="inline-flex min-h-11 items-center justify-center rounded-lg border border-[var(--color-border-hover)] px-4 text-sm font-semibold text-[var(--color-text-primary)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+          >
+            All case studies
+          </a>
+        </div>
+
+        <div class="grid gap-4 lg:grid-cols-3">
+          {selectedWork.map(work => (
+            <article class="flex min-h-full flex-col rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] p-6">
+              <div class="mb-7 flex items-start justify-between gap-5">
+                <div>
+                  <p class="text-sm font-semibold text-[var(--color-text-primary)]">{work.company}</p>
+                  <p class="mt-1 text-xs text-[var(--color-text-muted)]">{work.metricLabel}</p>
+                </div>
+                <div class="text-right">
+                  <p class="font-mono text-3xl font-semibold text-[var(--color-accent)]">{work.metric}</p>
+                </div>
+              </div>
+
+              <h3 class="font-serif text-2xl font-bold leading-tight text-[var(--color-text-primary)]">
+                {work.title}
+              </h3>
+              <p class="mt-4 flex-1 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+                {work.summary}
+              </p>
+
+              <div class="mt-6 flex flex-wrap gap-2">
+                {work.tags.map(tag => (
+                  <span class="rounded-full border border-[var(--color-border)] px-3 py-1 text-xs text-[var(--color-text-secondary)]">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-[280px_minmax(0,1fr)] md:px-8 md:py-20">
+      <div>
+        <p class="font-mono text-xs uppercase text-[var(--color-accent)]">Writing</p>
+        <h2 class="mt-4 font-serif text-3xl font-bold leading-tight text-[var(--color-text-primary)] md:text-4xl">
+          The writing is the longer version of how I think.
+        </h2>
+        <p class="mt-5 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+          It belongs here, just not as the front door. This is where I work through architecture decisions, AI tool behavior, and the places where production punishes vague thinking.
+        </p>
+      </div>
+
+      <div class="border-t border-[var(--color-border)]">
+        {featuredArticles.map(article => (
+          <a
+            href={`/articles/${article.slug}`}
+            class="group grid gap-4 border-b border-[var(--color-border)] py-6 transition-colors hover:bg-[var(--color-surface)] md:grid-cols-[minmax(0,1fr)_120px] md:px-5"
+          >
+            <div>
+              <h3 class="font-serif text-2xl font-bold leading-tight text-[var(--color-text-primary)] transition-colors group-hover:text-[var(--color-accent)]">
+                {article.title}
+              </h3>
+              <p class="mt-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">{article.excerpt}</p>
+            </div>
+            <span class="self-start justify-self-start pt-1 text-sm font-semibold text-[var(--color-accent)] md:justify-self-end">
+              Read <span aria-hidden="true">&rarr;</span>
+            </span>
+          </a>
+        ))}
+
+        <div class="pt-7">
+          <a
+            href="/articles"
+            class="inline-flex min-h-11 items-center justify-center rounded-lg border border-[var(--color-border-hover)] px-4 text-sm font-semibold text-[var(--color-text-primary)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+          >
+            Browse the full library
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-[var(--color-border)] px-6 py-14 md:px-8 md:py-16">
+      <div class="mx-auto grid max-w-6xl gap-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
+        <div>
+          <p class="font-mono text-xs uppercase text-[var(--color-accent)]">Next step</p>
+          <h2 class="mt-4 max-w-3xl font-serif text-3xl font-bold leading-tight text-[var(--color-text-primary)] md:text-4xl">
+            Send the messy version. That's usually where the useful work starts.
+          </h2>
+          <p class="mt-5 max-w-3xl text-base leading-relaxed text-[var(--color-text-secondary)]">
+            Good fit: an AI rollout getting weird, a manual workflow nobody wants to keep touching, or a system decision that has been sitting around because every option has consequences.
+          </p>
+        </div>
+
+        <div class="flex flex-col gap-3 sm:flex-row md:flex-col">
+          <a
+            href="/services#assessment"
+            class="inline-flex min-h-12 items-center justify-center rounded-lg bg-[var(--color-accent)] px-5 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-accent-hover)]"
+          >
+            Start with a short call <span class="ml-2" aria-hidden="true">&rarr;</span>
+          </a>
+          <a
+            href="/?modal=contact&service=automation-architecture"
+            class="inline-flex min-h-12 items-center justify-center rounded-lg border border-[var(--color-border-hover)] bg-[var(--color-surface)] px-5 text-sm font-semibold text-[var(--color-text-primary)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+          >
+            Send the context
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
 </Layout>

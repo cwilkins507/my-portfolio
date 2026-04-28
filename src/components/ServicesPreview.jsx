@@ -1,35 +1,70 @@
 import React from 'react';
+import ServiceCards from './ServiceCards';
+import ServicesFAQ from './ServicesFAQ';
 
-/**
- * Services - Practitioner-style services page.
- *
- * No motion, no card grids, no "good fit / not fit" dual columns. Narrative
- * prose with a clear paid-intake block. Pure SSR — no client hydration needed.
- *
- * Previously a motion-heavy landing page with 3 service cards + 4-step process
- * + good-fit/not-fit grid + final CTA box. Collapsed to match the site's
- * practitioner-notes + CV positioning and the author's ~3-4 hrs/week capacity.
- */
+const cardSets = {
+  deliverable: {
+    heading: 'What I deliver',
+    subhead:
+      'Three bounded engagement types. Each ships with concrete artifacts that live in your repo and outlast my involvement.',
+    cards: [
+      {
+        tag: 'Diagnostic',
+        title: 'AI Readiness Audit',
+        description:
+          '1-hour working call plus a 3-artifact bundle within 48 hours: written action plan, custom AI Adoption Playbook, and a ready-to-commit AGENTS.md tailored to your codebase.',
+        meta: '$99 (first 5) · $250 after',
+      },
+      {
+        tag: 'Build',
+        title: 'Convention File Architecture',
+        description:
+          'CLAUDE.md, AGENTS.md, and tool-specific rules built against your actual codebase — committed to your repo, paired with one of your engineers so the team owns the result.',
+        meta: 'Scoped after intake',
+      },
+      {
+        tag: 'Build',
+        title: 'Automation Architecture',
+        description:
+          'Python, AWS Lambda, n8n, and the integrations between them. Production-grade systems with error handling, logging, monitoring, and runbooks. The same patterns that cut $5M at Ford.',
+        meta: 'Scoped after intake',
+      },
+    ],
+  },
+  engagement: {
+    heading: 'How we can work together',
+    subhead:
+      'Three engagement shapes. Pick the one that matches where you are — diagnose, build, or stay sharp over time.',
+    cards: [
+      {
+        tag: '1–2 weeks',
+        title: 'Audit',
+        description:
+          'Fixed-scope diagnostic. Working call plus a 3-artifact deliverable bundle within 48 hours: written action plan, custom AI Adoption Playbook, and AGENTS.md committed to your repo.',
+        meta: '$99–$250 fixed',
+      },
+      {
+        tag: '4–6 weeks',
+        title: 'Project',
+        description:
+          'Scoped build with weekly check-ins. Convention files, automation systems, or a focused AI tooling rollout for an engineering team up to 20. Async-first; production-grade handoff with 30 days of support.',
+        meta: 'Scoped after intake',
+      },
+      {
+        tag: 'Ongoing',
+        title: 'Advisory',
+        description:
+          'Async retainer plus a weekly office hour. Best for engineering leaders who want a practitioner on call for tooling decisions, code review on convention files, or unblocking team rollouts.',
+        meta: 'Monthly retainer',
+      },
+    ],
+  },
+};
 
-const services = [
-  {
-    title: 'AI coding tool adoption',
-    description:
-      "Your team has Claude Code, Cursor, or Copilot licenses, but output quality varies wildly between developers, senior engineers are skeptical, and nobody can prove ROI. I help you standardize tool selection, build a rollout plan, and run a practitioner workshop against your actual codebase — for teams up to 20 engineers.",
-  },
-  {
-    title: 'Convention files (CLAUDE.md, AGENTS.md)',
-    description:
-      "The reason your AI tools produce inconsistent output usually isn't the model — it's the context. Convention files are how you turn AI coding tools from novelty into compounding productivity. I audit your codebase and ship CLAUDE.md / AGENTS.md / tool-specific rules committed to your repo. Not generic templates.",
-  },
-  {
-    title: 'Automation architecture',
-    description:
-      "Python, APIs, data pipelines, AWS Lambda, n8n. The same patterns that cut $5M in annual operational costs during my years at Ford Motor Company. Production-grade systems with error handling, logging, and monitoring — not prototypes, not 'we'll fix that later.'",
-  },
-];
+const ServicesPreview = ({ variant = 'deliverable' }) => {
+  const cardConfig = cardSets[variant] ?? cardSets.deliverable;
+  const previewPath = `/preview/services-${variant === 'engagement' ? 'engagement' : 'deliverable'}`;
 
-const Services = () => {
   return (
     <div className="min-h-screen bg-[var(--color-bg)] pt-16 md:pt-24">
       <article className="container mx-auto px-4 md:px-8 max-w-3xl pb-24">
@@ -47,8 +82,18 @@ const Services = () => {
           </p>
         </header>
 
-        {/* ── AI Readiness Assessment (soft launch) ── */}
-        <section id="assessment" className="mb-16 border border-[var(--color-accent)] rounded-lg p-6 md:p-8 bg-[var(--color-accent-muted)]">
+        {/* ── NEW: Service cards (variant-driven) ── */}
+        <ServiceCards
+          heading={cardConfig.heading}
+          subhead={cardConfig.subhead}
+          cards={cardConfig.cards}
+        />
+
+        {/* ── AI Readiness Assessment (existing soft launch block) ── */}
+        <section
+          id="assessment"
+          className="mb-16 border border-[var(--color-accent)] rounded-lg p-6 md:p-8 bg-[var(--color-accent-muted)]"
+        >
           <div className="mb-4 inline-block px-3 py-1 text-xs font-semibold rounded bg-[var(--color-accent)] text-white">
             First 5 at $99 (normally $250)
           </div>
@@ -70,44 +115,15 @@ const Services = () => {
               <strong className="text-[var(--color-text-primary)]">Custom AGENTS.md</strong> — ready to commit to your main repo. Tailored to your codebase structure, conventions, and stack.
             </li>
           </ul>
-          <div className="flex flex-wrap items-center gap-4">
-            <a
-              href="/services?modal=contact&service=ai-strategy"
-              className="inline-block px-6 py-3 text-sm font-semibold rounded-lg bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] transition-colors"
-            >
-              Book an assessment →
-            </a>
-            <a
-              href="/resources/ai-readiness-assessment-sample.pdf"
-              target="_blank"
-              rel="noopener"
-              className="inline-block text-sm font-semibold text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] underline underline-offset-4 transition-colors"
-            >
-              See a sample (PDF) →
-            </a>
-          </div>
+          <a
+            href={`${previewPath}?modal=contact&service=ai-strategy`}
+            className="inline-block px-6 py-3 text-sm font-semibold rounded-lg bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] transition-colors"
+          >
+            Book an assessment →
+          </a>
         </section>
 
-        {/* ── What I work on ── */}
-        <section className="mb-16">
-          <h2 className="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-8">
-            What I work on
-          </h2>
-          <div className="space-y-10">
-            {services.map((service) => (
-              <div key={service.title}>
-                <h3 className="text-xl font-serif font-semibold text-[var(--color-text-primary)] mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-moonlight-text-secondary leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ── The intake ── */}
+        {/* ── The intake (PROSE — numbered intake intentionally NOT used per Q4) ── */}
         <section className="mb-16">
           <h2 className="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-8">
             How engagements start
@@ -115,22 +131,8 @@ const Services = () => {
           <div className="text-moonlight-text-secondary leading-relaxed space-y-4">
             <p>
               Every engagement begins with a{' '}
-              <strong className="text-[var(--color-text-primary)]">paid intake: $500, about 45 minutes of live time</strong>. Here's what that looks like:
+              <strong className="text-[var(--color-text-primary)]">paid intake: $500, about 45 minutes of live time</strong>. You send a short async brief beforehand. I read it ahead of the call. We spend the time direct, practitioner-to-practitioner — no discovery theater. Within 48 hours, you get a written action plan: what I'd do, in what order, with rough scope and pricing. Yours to keep whether or not we work together. If we scope a project, the $500 rolls into the first invoice.
             </p>
-            <ol className="space-y-3 pl-5 list-decimal marker:text-[var(--color-accent)] marker:font-semibold">
-              <li>
-                You send a short async brief (about ten minutes of your time) describing the problem, your stack, and what you've already tried.
-              </li>
-              <li>
-                I read the brief ahead of the call. We spend ~45 minutes together on Zoom — direct, practitioner-to-practitioner, no discovery theater.
-              </li>
-              <li>
-                Within 48 hours, you get a written action plan: what I'd do, in what order, with rough scope and pricing. Yours to keep whether or not we work together.
-              </li>
-              <li>
-                If we scope a project, the $500 intake rolls into the first invoice.
-              </li>
-            </ol>
             <p className="pt-4 border-l-2 border-[var(--color-accent)] pl-4 italic">
               <strong className="text-[var(--color-accent)] not-italic">Guarantee:</strong>{' '}
               if the written action plan doesn't identify meaningful automation savings or a clear path forward, I refund the $500. I don't reshape the problem to fit a billable engagement.
@@ -138,7 +140,7 @@ const Services = () => {
           </div>
         </section>
 
-        {/* ── If we work together ── */}
+        {/* ── If we work together (existing) ── */}
         <section className="mb-16">
           <h2 className="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-8">
             If we work together
@@ -156,7 +158,10 @@ const Services = () => {
           </div>
         </section>
 
-        {/* ── Not a fit ── */}
+        {/* ── NEW: FAQ ── */}
+        <ServicesFAQ />
+
+        {/* ── Not a fit (existing) ── */}
         <section className="mb-16">
           <h2 className="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-8">
             Not a fit
@@ -171,14 +176,14 @@ const Services = () => {
           </div>
         </section>
 
-        {/* ── CTA ── */}
+        {/* ── CTA (existing) ── */}
         <section id="intake">
           <div className="border-t border-[var(--color-border)] pt-12">
             <p className="text-lg text-moonlight-text-secondary leading-relaxed mb-8">
               If any of this sounds like your team, send a short note describing the problem. I read every submission and respond within 48 hours with either a scoping proposal or an honest "I'm not the right fit for this."
             </p>
             <a
-              href="/services?modal=contact"
+              href={`${previewPath}?modal=contact`}
               className="inline-block px-6 py-3 text-sm font-semibold rounded-lg bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] transition-colors"
             >
               Start the conversation →
@@ -191,4 +196,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default ServicesPreview;
