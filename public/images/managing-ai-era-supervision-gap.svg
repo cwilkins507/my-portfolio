@@ -1,0 +1,57 @@
+<svg viewBox="0 0 780 420" xmlns="http://www.w3.org/2000/svg">
+  <rect width="780" height="420" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="390" y="38" text-anchor="middle" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="20" fill="#1e40af" font-weight="600">The Supervision Gap</text>
+
+  <!-- Chart axes -->
+  <line x1="90" y1="55" x2="90" y2="330" stroke="#d1d5db" stroke-width="1.5"/>
+  <line x1="90" y1="330" x2="660" y2="330" stroke="#d1d5db" stroke-width="1.5"/>
+
+  <!-- Horizontal gridlines -->
+  <line x1="90" y1="140" x2="660" y2="140" stroke="#f3f4f6" stroke-width="1"/>
+  <line x1="90" y1="235" x2="660" y2="235" stroke="#f3f4f6" stroke-width="1"/>
+
+  <!-- Shaded review-debt gap -->
+  <polygon points="90,310 215,295 345,265 475,220 615,155  615,308 475,307 345,306 215,308 90,310"
+           fill="#fee2e2" fill-opacity="0.65"/>
+
+  <!-- Review capacity line (flat, dashed gray) -->
+  <polyline points="90,310 215,308 345,306 475,307 615,308"
+            fill="none" stroke="#9ca3af" stroke-width="2.5" stroke-dasharray="8,5"/>
+
+  <!-- Output generation line (rising, blue) -->
+  <polyline points="90,310 215,295 345,265 475,220 615,155"
+            fill="none" stroke="#1e40af" stroke-width="3"/>
+
+  <!-- Data point dots — output line -->
+  <circle cx="90"  cy="310" r="5" fill="#1e40af"/>
+  <circle cx="215" cy="295" r="5" fill="#1e40af"/>
+  <circle cx="345" cy="265" r="5" fill="#1e40af"/>
+  <circle cx="475" cy="220" r="5" fill="#1e40af"/>
+  <circle cx="615" cy="155" r="5" fill="#1e40af"/>
+
+  <!-- X-axis year labels -->
+  <text x="90"  y="355" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="13" fill="#6b7280">2022</text>
+  <text x="215" y="355" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="13" fill="#6b7280">2023</text>
+  <text x="345" y="355" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="13" fill="#6b7280">2024</text>
+  <text x="475" y="355" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="13" fill="#6b7280">2025</text>
+  <text x="615" y="355" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="13" fill="#6b7280">2026</text>
+
+  <!-- Line legend labels (right side) -->
+  <line x1="628" y1="153" x2="650" y2="153" stroke="#1e40af" stroke-width="2.5"/>
+  <circle cx="625" cy="153" r="4" fill="#1e40af"/>
+  <text x="657" y="148" font-family="'Segoe UI', sans-serif" font-size="13" fill="#1e40af" font-weight="600">Output generation</text>
+  <text x="657" y="165" font-family="'Segoe UI', sans-serif" font-size="12" fill="#6b7280">+20% PRs / author YoY</text>
+
+  <line x1="628" y1="308" x2="650" y2="308" stroke="#9ca3af" stroke-width="2.5" stroke-dasharray="5,4"/>
+  <text x="657" y="303" font-family="'Segoe UI', sans-serif" font-size="13" fill="#6b7280" font-weight="600">Review capacity</text>
+  <text x="657" y="320" font-family="'Segoe UI', sans-serif" font-size="12" fill="#9ca3af">roughly flat</text>
+
+  <!-- Gap label -->
+  <text x="420" y="245" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="14" fill="#b91c1c" font-style="italic">review debt builds here</text>
+  <text x="420" y="263" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="12" fill="#dc2626" font-style="italic">incidents per PR +23.5%</text>
+
+  <!-- Source note -->
+  <text x="90" y="395" font-family="'Segoe UI', sans-serif" font-size="11" fill="#9ca3af">Source: Cortex 2026, DX Q1 2026, Allstacks research</text>
+</svg>
