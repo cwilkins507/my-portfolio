@@ -21,7 +21,7 @@ Managing engineering teams with AI has surfaced a counterintuitive pattern. At s
 
 This isn't a tools problem. It's a management problem — specifically, a mismatch between what the job now requires and what most managers actually updated when the tools arrived.
 
-![Chart showing output generation rising steeply while review capacity stays flat, creating a growing review-debt gap](/images/managing-ai-era-supervision-gap.svg)
+![Chart showing output generation rising steeply while review capacity stays flat, creating a growing review-debt gap](/images/managing-ai-era-supervision-gap.png)
 
 ## The supervision gap
 
