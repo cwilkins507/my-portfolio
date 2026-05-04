@@ -151,7 +151,7 @@ Figure out your level. Do the one thing that matches. The worst move right now i
 
 ---
 
-**Not ready to book yet? Start here.** The [AI Prompt Toolkit](/resources/ai-prompt-toolkit) is 28 prompts I use across two businesses. Market research, competitor analysis, SEO, automation. Copy what fits your team.
+**Not ready to book yet? Start here.** The [AI Prompt Toolkit](/resources/ai-prompt-toolkit) is 32 prompts I use across two businesses - code review, documentation, market research, competitor analysis, SEO, automation, and AI employees. Copy what fits your team.
 
 ---
 

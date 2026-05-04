@@ -135,8 +135,8 @@ Then scale.
 
 Copy the After prompt, swap in your own context, and run it in a playground. Version your changes. Track what works.
 
-> ### 28 Business Prompts That Put These Principles to Work
+> ### 32 AI Prompts That Put These Principles to Work
 >
-> Everything in this article — clear instructions, explicit schemas, specific context — applies double when you're using AI for business operations instead of code generation. I built 28 prompts for market research, competitor analysis, SEO, and automation that follow these exact principles. Each one includes my notes on what works, what breaks, and how to chain them so each output feeds the next.
+> Everything in this article - clear instructions, explicit schemas, specific context - applies double when you're using AI for real work instead of toy outputs. I built 32 prompts for code review, documentation, market research, competitor analysis, SEO, automation, and AI employees that follow these exact principles. Each one includes my notes on what works, what breaks, and how to chain them so each output feeds the next.
 >
 > **[Get the AI Prompt Toolkit (free) →](/resources/ai-prompt-toolkit)**
