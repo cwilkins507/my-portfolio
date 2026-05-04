@@ -7,9 +7,11 @@
 :root {
   /* Backgrounds */
   --color-bg: #0C0C0C;
+  --color-bg-deep: #070707;
   --color-surface: rgba(255,255,255,0.03);
   --color-surface-hover: rgba(255,255,255,0.05);
   --color-surface-elevated: rgba(12,12,12,0.92);
+  --color-surface-glass: rgba(20,20,18,0.72);
 
   /* Borders */
   --color-border: rgba(255,255,255,0.08);
@@ -23,9 +25,12 @@
 
   /* Accent — gold, used sparingly */
   --color-accent: #C9A96E;
+  --color-accent-rgb: 201, 169, 110;
   --color-accent-hover: #D4B87E;
   --color-accent-muted: rgba(201,169,110,0.15);
   --color-accent-border: rgba(201,169,110,0.3);
+  --color-signal-green: #93D6A0;
+  --color-signal-blue: #9DB7FF;
 
   /* Shadows */
   --color-shadow-card: rgba(0,0,0,0.3);
@@ -35,10 +40,11 @@
 
   /* Navigation */
   --color-nav-bg: rgba(12,12,12,0.8);
+  --color-nav-bg-end: rgba(12,12,12,0.56);
 
   /* Atmospheric blur */
   --color-blur-primary: rgba(201,169,110,0.08);
-  --color-blur-secondary: rgba(139,92,246,0.05);
+  --color-blur-secondary: rgba(83,125,171,0.08);
 
   /* Grid pattern */
   --color-grid-line: rgba(255,255,255,0.03);
@@ -46,9 +52,11 @@
 
 .light {
   --color-bg: #FFFFFF;
+  --color-bg-deep: #F5F1EA;
   --color-surface: #F7F7F7;
   --color-surface-hover: #EFEFEF;
   --color-surface-elevated: rgba(255,255,255,0.96);
+  --color-surface-glass: rgba(255,255,255,0.74);
 
   --color-border: rgba(0,0,0,0.08);
   --color-border-hover: rgba(0,0,0,0.15);
@@ -59,18 +67,22 @@
   --color-text-faint: #BBBBBB;
 
   --color-accent: #8B6F3A;
+  --color-accent-rgb: 139, 111, 58;
   --color-accent-hover: #7A6234;
   --color-accent-muted: rgba(139,111,58,0.12);
   --color-accent-border: rgba(139,111,58,0.3);
+  --color-signal-green: #2F8F45;
+  --color-signal-blue: #4867C2;
 
   --color-shadow-card: rgba(0,0,0,0.08);
 
   --grain-opacity: 0.015;
 
   --color-nav-bg: rgba(255,255,255,0.8);
+  --color-nav-bg-end: rgba(255,255,255,0.62);
 
   --color-blur-primary: rgba(139,111,58,0.06);
-  --color-blur-secondary: rgba(139,92,246,0.03);
+  --color-blur-secondary: rgba(72,103,194,0.06);
 
   --color-grid-line: rgba(0,0,0,0.03);
 }
@@ -78,6 +90,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  background: var(--color-bg);
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at 18% -10%, rgba(var(--color-accent-rgb), 0.12), transparent 34rem),
+    radial-gradient(circle at 85% 8%, var(--color-blur-secondary), transparent 30rem),
+    linear-gradient(180deg, var(--color-bg-deep), var(--color-bg) 18rem);
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(var(--color-accent-rgb), 0.28);
+  color: var(--color-text-primary);
+}
+
+:focus-visible {
+  outline: 2px solid rgba(var(--color-accent-rgb), 0.75);
+  outline-offset: 4px;
+}
+
+@supports selector(::-webkit-scrollbar) {
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg-deep);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(var(--color-accent-rgb), 0.32);
+    border: 3px solid var(--color-bg-deep);
+    border-radius: 999px;
+  }
+}
 
 /* Z-Index System:
    z-0:  Background blur effects
@@ -100,6 +151,44 @@ body::before {
   pointer-events: none;
   opacity: var(--grain-opacity);
   z-index: 50;
+}
+
+.home-grid {
+  background-image:
+    linear-gradient(to right, var(--color-grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-grid-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(to bottom, black, transparent 78%);
+}
+
+.premium-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.018)),
+    var(--color-surface);
+  box-shadow: 0 24px 90px rgba(0,0,0,0.26);
+}
+
+.premium-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent 28%, transparent 72%, rgba(var(--color-accent-rgb), 0.12));
+  opacity: 0.78;
+}
+
+.premium-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.ink-label {
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 /* Override prose-invert in light mode */

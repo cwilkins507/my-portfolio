@@ -125,14 +125,15 @@ const Navigation = ({ portfolioData, onSearchClick }) => {
       <nav
         className="fixed top-0 left-0 right-0 z-[55] transition-all duration-300"
         style={{
-          background: 'var(--color-nav-bg)',
-          backdropFilter: 'blur(20px)',
+          background: 'linear-gradient(180deg, var(--color-nav-bg), var(--color-nav-bg-end))',
+          backdropFilter: 'blur(22px) saturate(130%)',
           borderBottom: '1px solid var(--color-border)',
+          boxShadow: '0 14px 50px rgba(0,0,0,0.18)',
         }}
       >
-        <div className="max-w-[960px] mx-auto px-6 h-14 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-6 md:px-8 h-16 flex items-center justify-between">
           {/* Logo */}
-          <a href="/" className="font-serif text-lg font-medium text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition">
+          <a href="/" className="font-serif text-lg font-semibold text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition">
             {portfolioData?.name || 'Collin Wilkins'}
           </a>
 
@@ -144,14 +145,14 @@ const Navigation = ({ portfolioData, onSearchClick }) => {
                 <a
                   key={href}
                   href={href}
-                  className="text-[13px] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] underline decoration-transparent hover:decoration-[var(--color-text-primary)] underline-offset-4 transition-all duration-300"
+                  className="text-[13px] font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] underline decoration-transparent hover:decoration-[var(--color-accent)] underline-offset-4 transition-all duration-300"
                 >
                   {label}
                 </a>
               ))}
               <button
                 onClick={openContactModal}
-                className="text-[13px] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] underline decoration-transparent hover:decoration-[var(--color-text-primary)] underline-offset-4 transition-all duration-300"
+                className="text-[13px] font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] underline decoration-transparent hover:decoration-[var(--color-accent)] underline-offset-4 transition-all duration-300"
               >
                 Contact
               </button>
@@ -173,7 +174,7 @@ const Navigation = ({ portfolioData, onSearchClick }) => {
             {/* Theme Toggle (always visible) */}
             <button
               onClick={toggleTheme}
-              className="w-8 h-8 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] hover:border-[var(--color-border-hover)] hover:text-[var(--color-accent)] flex items-center justify-center transition-all duration-200"
+              className="w-9 h-9 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-border)] hover:bg-[var(--color-accent-muted)] hover:text-[var(--color-accent)] flex items-center justify-center transition-all duration-200"
               aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
             >
               {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
