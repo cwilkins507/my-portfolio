@@ -137,7 +137,7 @@ That question is worth spending real time on.
 
 > ### Prompt Chaining for Business (Not Just Code)
 >
-> The orchestration pattern I describe in this article — decompose, delegate, review — applies beyond engineering. I use a 6-step prompt chain to run market research, build personas, analyze competitors, plan SEO, and produce content. Each prompt's output feeds the next. The full workflow (plus all 28 prompts) is in the free AI Prompt Toolkit.
+> The orchestration pattern I describe in this article - decompose, delegate, review - applies beyond engineering. I use a 6-step prompt chain to run market research, build personas, analyze competitors, plan SEO, and produce content. Each prompt's output feeds the next. The full workflow, plus the 32 prompts I use across engineering and go-to-market work, is in the free AI Prompt Toolkit.
 >
 > **[Get the AI Prompt Toolkit (free) →](/resources/ai-prompt-toolkit)**
 
