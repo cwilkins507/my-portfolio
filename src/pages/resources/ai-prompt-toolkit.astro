@@ -7,8 +7,8 @@ const toolkitSchema = {
   "@graph": [
     {
       "@type": "Article",
-      "headline": "32 AI Prompts I Actually Use to Ship Faster and Run Two Businesses",
-      "description": "32 original AI prompts for code review, codebase mapping, README generation, automation, market research, competitor analysis, SEO, and AI employees - built while running two businesses.",
+      "headline": "32 AI Prompts I Actually Use as a Lead Engineer",
+      "description": "The 32 Claude and ChatGPT prompts a Lead Software Engineer with 12 years of enterprise experience uses daily. Engineering, research, automation, AI agents, and more. Free, no signup.",
       "author": {
         "@type": "Person",
         "name": "Collin Wilkins",
@@ -58,6 +58,7 @@ const toolkitSchema = {
 };
 
 const categories = [
+  { id: "engineering", name: "Engineering & Code", count: 4 },
   { id: "automation", name: "Automation & Operations", count: 3 },
   { id: "market-research", name: "Market Research", count: 4 },
   { id: "personas", name: "Customer Personas", count: 3 },
@@ -70,8 +71,8 @@ const categories = [
 ---
 
 <Layout
-  title="AI Prompt Toolkit: 32 Prompts for Engineers, Founders, and Operators"
-  description="32 original AI prompts for code review, codebase mapping, README generation, automation, market research, competitor analysis, SEO, and AI employees - built while running two businesses. Free, no signup."
+  title="32 AI Prompts I Actually Use as a Lead Engineer | Collin Wilkins"
+  description="The 32 Claude and ChatGPT prompts a Lead Software Engineer with 12 years of enterprise experience uses daily. Engineering, research, automation, AI agents, and more. Free, no signup."
   type="article"
   publishedTime="2026-02-18"
   schema={toolkitSchema}
@@ -86,21 +87,34 @@ const categories = [
           </a>
         </div>
 
+        <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-4 font-semibold text-center">
+          Hi, I'm Collin Wilkins
+        </p>
+
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-extrabold leading-tight mb-6 text-center">
-          <span class="text-[var(--color-text-primary)]">32 AI Prompts I Actually Use</span><br />
-          <span class="italic text-[var(--color-text-secondary)]">to Ship Faster and Run Two Businesses</span>
+          <span class="text-[var(--color-text-primary)]">32 AI Prompts</span><br />
+          <span class="italic text-[var(--color-text-secondary)]">I Actually Use</span>
         </h1>
 
         <p class="text-xl text-[var(--color-text-secondary)] leading-relaxed mb-8 text-center max-w-3xl mx-auto">
-          The prompts I built and tested for code review, codebase mapping, README generation, prompt contracts, market research, personas, competitor analysis, SEO, automation, and AI employees. Across two businesses. Every prompt is copy-paste ready.
+          Engineering, code review, market research, SEO, automation, AI employees, and more. Copy-paste ready. No email required.
         </p>
 
-        <div class="flex justify-center items-center gap-4 mb-4">
+        <div class="flex flex-wrap justify-center items-center gap-3 mb-3">
           <span class="text-sm text-[var(--color-text-secondary)] border border-[var(--color-border)] rounded-full px-4 py-2">
             32 prompts &middot; 9 categories
           </span>
           <span class="text-sm text-[var(--color-text-secondary)] border border-[var(--color-border)] rounded-full px-4 py-2">
             Free &middot; No email required
+          </span>
+        </div>
+
+        <div class="flex flex-wrap justify-center items-center gap-3">
+          <span class="text-sm text-[var(--color-text-secondary)] border border-[var(--color-accent-border)] bg-[var(--color-accent-muted)] rounded-full px-4 py-2">
+            <strong class="text-[var(--color-accent)] font-semibold">Lead Software Engineer</strong> &middot; 12 years enterprise
+          </span>
+          <span class="text-sm text-[var(--color-text-secondary)] border border-[var(--color-accent-border)] bg-[var(--color-accent-muted)] rounded-full px-4 py-2">
+            Ex-Ford automation lead &middot; $5M in savings
           </span>
         </div>
       </div>
@@ -145,27 +159,268 @@ const categories = [
     <div class="container mx-auto px-4 py-16">
       <div class="max-w-4xl mx-auto">
         <div class="bg-[var(--color-surface)] p-8 md:p-10 rounded-2xl border border-[var(--color-border)]">
-          <h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">How solo founders use these prompts</h2>
+          <h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">How to use these as a system</h2>
           <p class="text-[var(--color-text-secondary)] leading-relaxed mb-4">
-            The biggest mistake people make with ChatGPT prompts and Claude prompts is treating them like Google searches. These aren't <a href="/articles/prompt-engineering" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">prompt engineering</a> experiments — they're 28 production prompts organized into a system. Each category builds on the last.
+            The biggest mistake people make with ChatGPT prompts and Claude prompts is treating them like Google searches. These aren't <a href="/articles/prompt-engineering" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">prompt engineering</a> experiments — they're 32 production prompts organized into a system. Use one for a single task, or chain a few together for compounding work.
           </p>
           <p class="text-[var(--color-text-secondary)] leading-relaxed mb-6">
-            Market research feeds personas. Personas feed competitor analysis. Competitor analysis feeds SEO. SEO feeds content. The compound output is worth more than any individual prompt. <a href="#chaining" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">See the chaining workflow &darr;</a>
+            Example chain: market research feeds personas. Personas feed competitor analysis. Competitor analysis feeds SEO. SEO feeds content. The compound output is worth more than any individual prompt. <a href="#chaining" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">See the chaining workflow &darr;</a>
           </p>
           <p class="text-sm text-[var(--color-text-muted)]">
-            <strong class="text-[var(--color-text-secondary)]">Who this is for:</strong> Solo founders, freelancers, and small teams (1-5 people) already comfortable with ChatGPT or Claude. Revenue range $100K&ndash;$1M.
+            <strong class="text-[var(--color-text-secondary)]">Who this is for:</strong> Engineers, solo founders, and small teams already comfortable with ChatGPT or Claude. Useful for day-job code, side projects, and consulting work alike.
           </p>
         </div>
       </div>
     </div>
 
     <!-- ═══════════════════════════════════════════ -->
-    <!-- SECTION 1: AUTOMATION & OPERATIONS -->
+    <!-- SECTION 1: ENGINEERING & CODE -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div id="engineering" class="scroll-mt-32 border-t border-[var(--color-border)]">
+      <div class="container mx-auto px-4 py-16">
+        <div class="max-w-4xl mx-auto">
+          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 1 of 9</p>
+          <h2 class="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Engineering & Code</h2>
+          <p class="text-lg text-[var(--color-text-secondary)] mb-12 max-w-3xl">
+            The prompts I lean on most as a Lead Software Engineer working across enterprise systems, side projects, and a consulting practice. Code review, codebase mapping, README generation, and pre-implementation contracts for AI coding tools.
+          </p>
+
+          <!-- Prompt 1 -->
+          <div class="mb-16" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#1</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">AI Code Reviewer (Branch Diff)</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              You have a branch ready to merge but want a second pair of eyes before you ask a teammate. This prompt runs a structured review of your diff covering security, performance, code quality, and best practices, then returns prioritized findings with file:line references.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are a senior code reviewer specializing in security, performance, code quality, and best practices. Review code changes directly from the diff I provide. Be read-only — never propose edits to existing code outside the diff, only feedback on what was changed.
+
+**Diff to review:**
+[PASTE THE OUTPUT OF `git diff main...HEAD` OR `git diff --staged` HERE]
+
+**Repository context (optional):**
+[E.G., "Java/Spring Boot service that processes compliance fund data" or "TypeScript/Next.js marketing site"]
+
+**Project conventions (optional):**
+[ANY KNOWN CONVENTIONS — e.g., "Functional React components only" or "All DB calls go through repositories"]
+
+Filter rules:
+1. Skip lockfiles, generated code, vendored directories, build artifacts, and minified assets unless explicitly relevant
+2. Focus on changed lines first; expand to surrounding context only when needed to judge correctness
+3. Avoid style-only findings unless they materially affect maintainability or correctness
+
+Analyze across these categories:
+- **Security**: injection, auth/authz, secrets, validation, unsafe deserialization, SSRF, XSS, dependency risk
+- **Performance**: N+1 queries, repeated expensive work, blocking calls in async paths, memory growth
+- **Code Quality**: complexity, duplication, brittle branching, poor error handling, dead code introduced by the diff
+- **Best Practices**: missing tests for risky logic, API contract ambiguity, naming, dependency misuse
+
+Output format:
+
+## Code Review Summary
+**Files Reviewed:** [count]
+**Overall Assessment:** [Approve / Approve with Comments / Request Changes]
+
+### Critical Issues (must fix)
+1. [file:line] — Description and fix recommendation
+
+### High Priority
+1. [file:line] — Description and fix recommendation
+
+### Medium Priority
+1. [file:line] — Description and fix recommendation
+
+### Low Priority / Suggestions
+1. [file:line] — Description and suggestion
+
+### What's Done Well
+- [Positive observations about the diff]
+
+Omit empty severity sections. If there are no substantive issues, say so explicitly. Request Changes only if Critical issues exist or High issues materially risk correctness, security, or production stability.</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~30-60 min per PR</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Pre-merge reviews, security spot-checks, solo work without a teammate to review</span>
+            </div>
+          </div>
+
+          <!-- Prompt 2 -->
+          <div class="mb-16" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#2</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Codebase Architecture Mapper</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              You inherited a repo and need to know what's important and what's noise — fast. This prompt produces a high-level architecture map: a Mermaid system diagram and a key-components lookup table you can paste into onboarding docs.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are a codebase cartographer. Produce a high-level architectural map of a software project, separating "landmarks" (key components) from "noise" (low-signal details).
+
+**Repository context:**
+[PASTE THE OUTPUT OF:
+- `find . -type f \( -name "*.ts" -o -name "*.py" -o -name "*.java" -o -name "*.go" \) | head -50`
+- `cat package.json` (or pom.xml / build.gradle / pyproject.toml)
+- `ls src/`
+GIVE ME ENOUGH TO UNDERSTAND THE PROJECT.]
+
+**Primary languages/frameworks I see:**
+[E.G., "Java/Spring Boot, Gradle, AWS SDK" — IF YOU KNOW]
+
+**Scope:**
+[ENTIRE REPO / SPECIFIC MODULE PATH — e.g., "packages/billing-service"]
+
+For your map:
+- **Landmarks to include**: controllers/API endpoints, services/business logic, repositories/data access, key configuration (auth, DB, queue), infrastructure (Terraform, Dockerfile, CI/CD)
+- **Skip**: DTOs/POJOs (unless core domain models), utils/helpers (unless load-bearing)
+- **Tests**: mention they exist but don't map them individually
+
+Produce three outputs:
+
+**1. Architecture Summary** (3-5 sentences)
+What this codebase does, what stack it uses, and how data flows through it at a high level.
+
+**2. Mermaid System Diagram**
+Use `graph TD` flowchart with subgraphs for logical layers (API, Service, Data, Infrastructure). Show key classes/modules as nodes, dependencies as edges. Keep it high-level — not every method or field.
+
+**3. Component Lookup Table**
+
+| Code (File/Class) | Purpose | Type |
+|---|---|---|
+| [path] | [one-line purpose] | Controller / Service / Repository / Config / Infra |
+
+If excluded files dominate the codebase or you needed to skip large areas, note that explicitly.</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~2-4 hours of onboarding</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Joining a new team, inheriting a repo, scoping a refactor, writing onboarding docs</span>
+            </div>
+          </div>
+
+          <!-- Prompt 3 -->
+          <div class="mb-16" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#3</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">README Generator (Anti-Duplication)</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              Your repo has a README from 2022 that no one trusts and a CODEBASE_MAP.md that's actually accurate. This prompt writes a developer-focused README that links to the deep architecture docs instead of duplicating them — keeping the README under 300 lines and actually maintainable.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are a senior project documenter. Write a developer-friendly README.md that gets a new contributor productive in under 5 minutes — without duplicating content that lives in deeper architecture docs.
+
+**Repository details:**
+- Project name: [NAME]
+- One-line description: [E.G., "Compliance fund processor that publishes contract events to SQS"]
+- Tech stack: [E.G., "Java 21, Spring Boot 3, Gradle, AWS SDK v2"]
+- Test framework: [E.G., "JUnit 5 + Mockito, 80% coverage requirement"]
+- Build tool: [E.G., "Gradle / npm / pnpm / cargo"]
+- Deploy target: [E.G., "AWS ECS Fargate via Terraform" or "Vercel"]
+
+**Existing architecture docs (link, don't duplicate):**
+- [PATH TO CODEBASE_MAP.md OR ARCHITECTURE.md IF EXISTS]
+- [PATH TO INFRA OR DEPLOYMENT DOCS IF EXISTS]
+
+Generate a README under 300 lines with these sections, in order:
+
+1. **Title + one-line description** (max 150 characters; 4-6 badges max)
+2. **What It Does** — 3-5 sentence paragraph or concise bullet list, focused on WHAT not HOW
+3. **Architecture** — numbered 5-7 step processing summary; LINK to the architecture doc for diagrams and component tables
+4. **Quick Start** — prerequisites (versions only), 3-step build & run
+5. **Development Workflow** — common commands (build, test, format), environment profiles (table), top-level folder structure only
+6. **Testing** — test commands and coverage commands; LINK to the architecture doc for naming conventions and test structure
+7. **Deployment** — actual commands engineers can run; link to infra docs for environment-specific details
+8. **Troubleshooting** — table format: Issue | Symptom | Solution
+9. **Documentation** — table linking to the architecture map, contributor guide, and other docs
+
+Critical rules:
+- NO emojis in headers or TOC anchor links
+- NO Mermaid diagrams (those live in the architecture doc)
+- NO component/service tables (those live in the architecture doc)
+- NO code examples for tests (those live in the architecture doc)
+- Active voice, imperative mood, present tense
+- Short sentences (max 20 words), short paragraphs (2-4 sentences)
+- All commands copy-pasteable with language tags on code blocks
+- Use GitHub callout boxes (NOTE, IMPORTANT, WARNING) sparingly
+
+Output the full README.md.</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~1-2 hours per repo</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> New repos, README rewrites, monorepo modules, onboarding-friendly docs</span>
+            </div>
+          </div>
+
+          <!-- Prompt 4 -->
+          <div class="mb-16" data-prompt>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#4</span>
+              <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Prompt Contract (Define Done Before AI Implements)</h3>
+            </div>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              You're about to send Claude or Cursor a non-trivial task. The first attempt always misses what you actually wanted because "done" was never defined. This prompt forces a structured contract first, so the agent surfaces its assumptions before writing a single line of code.
+            </p>
+            <div class="relative group">
+              <pre class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>Before you implement anything, generate a structured contract that defines what "done" looks like. I will review and approve it before you start work. Do not write any code until I approve the contract.
+
+**Task:**
+[DESCRIBE WHAT YOU WANT BUILT, FIXED, OR REFACTORED — be as specific as you can]
+
+**Context:**
+[ANY RELEVANT FILES, CONSTRAINTS, OR PRIOR DECISIONS — e.g., "Don't change the public API of UserService. The existing tests in user_test.go must still pass."]
+
+Generate a contract with these four sections, in this order:
+
+**1. Goal**
+A single sentence that states what success looks like from the user's perspective. Not "implement function X" — instead "users can do Y without Z."
+
+**2. Constraints**
+Bullet list of things you must respect or avoid:
+- Files or APIs you must not change
+- Performance/latency requirements
+- Security or compliance requirements
+- Existing conventions to follow (linting, naming, error handling)
+- Scope limits (what's explicitly out of scope)
+
+**3. Format**
+What the deliverable looks like:
+- Files created or changed (with paths)
+- Tests added (with naming pattern)
+- Documentation updated
+- Migrations or config changes
+- The shape of any new public APIs
+
+**4. Failure Conditions**
+Bullet list of things that would mean this is broken, even if the code "works":
+- Tests that must pass (be specific)
+- Behavior that must not regress
+- Edge cases that must be handled
+- Any "if X happens, that's a critical bug" conditions
+
+After generating the contract, ask me one of three questions:
+- "Approve as written?"
+- "Anything to change?"
+- "Should I expand any section before we proceed?"
+
+Do not begin implementation until I respond.</code></pre>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-6 text-sm">
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Time saved:</strong> ~1-2 hours of rework per task</span>
+              <span class="text-[var(--color-text-muted)]"><strong class="text-[var(--color-text-secondary)]">Best for:</strong> Non-trivial AI coding tasks, hand-offs to Claude Code/Cursor/Copilot, anything where "done" is subjective</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 2: AUTOMATION & OPERATIONS -->
     <!-- ═══════════════════════════════════════════ -->
     <div id="automation" class="scroll-mt-32 border-t border-[var(--color-border)]">
       <div class="container mx-auto px-4 py-16">
         <div class="max-w-4xl mx-auto">
-          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 1 of 8</p>
+          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 2 of 9</p>
           <h2 class="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Automation & Operations</h2>
           <p class="text-lg text-[var(--color-text-secondary)] mb-12 max-w-3xl">
             If you're running a <a href="/articles/service-business-automations" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">service business</a>, this is your home base. These three prompts cover workflow design, process breakdown, and AI integration planning.
@@ -174,7 +429,7 @@ const categories = [
           <!-- Prompt 1 -->
           <div class="mb-16" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#1</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#5</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Create Business Automation Workflows</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -219,7 +474,7 @@ Also include:
           <!-- Prompt 2 -->
           <div class="mb-16" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#2</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#6</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Automate Business Processes</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -256,7 +511,7 @@ Format the output as a numbered checklist I can follow in one sitting. Include t
           <!-- Prompt 3 -->
           <div class="mb-4" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#3</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#7</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Optimize AI Business Integration</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -300,12 +555,12 @@ Provide:
     </div>
 
     <!-- ═══════════════════════════════════════════ -->
-    <!-- SECTION 2: MARKET RESEARCH -->
+    <!-- SECTION 3: MARKET RESEARCH -->
     <!-- ═══════════════════════════════════════════ -->
     <div id="market-research" class="scroll-mt-32 border-t border-[var(--color-border)] bg-[var(--color-surface)]">
       <div class="container mx-auto px-4 py-16">
         <div class="max-w-4xl mx-auto">
-          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 2 of 8</p>
+          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 3 of 9</p>
           <h2 class="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Market Research</h2>
           <p class="text-lg text-[var(--color-text-secondary)] mb-12 max-w-3xl">
             Everything else in this toolkit works better when you start here. Market research is the foundation that makes your personas, competitor analysis, and SEO strategy accurate instead of theoretical.
@@ -314,7 +569,7 @@ Provide:
           <!-- Prompt 4 -->
           <div class="mb-16" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#4</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#8</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Conduct Reddit Market Research</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -351,7 +606,7 @@ Provide:
           <!-- Prompt 5 -->
           <div class="mb-16" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#5</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#9</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Conduct Market Analysis</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -385,7 +640,7 @@ Cite sources where possible. Flag estimates vs. verified figures.</code></pre>
           <!-- Prompt 6 -->
           <div class="mb-16" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#6</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#10</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Conduct Market Research Validation</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -421,7 +676,7 @@ Cite sources where possible. Flag estimates vs. verified figures.</code></pre>
           <!-- Prompt 7 -->
           <div class="mb-4" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#7</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#11</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Conduct Industry Trends Research</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -456,12 +711,12 @@ Cite sources where possible. Flag data-backed vs. directional estimates.</code><
     </div>
 
     <!-- ═══════════════════════════════════════════ -->
-    <!-- SECTION 3: CUSTOMER PERSONAS -->
+    <!-- SECTION 4: CUSTOMER PERSONAS -->
     <!-- ═══════════════════════════════════════════ -->
     <div id="personas" class="scroll-mt-32 border-t border-[var(--color-border)]">
       <div class="container mx-auto px-4 py-16">
         <div class="max-w-4xl mx-auto">
-          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 3 of 8</p>
+          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 4 of 9</p>
           <h2 class="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Customer Personas</h2>
           <p class="text-lg text-[var(--color-text-secondary)] mb-12 max-w-3xl">
             Most founders skip this step and write marketing copy for "everyone." Feed these prompts your market research output from Section 2 for dramatically better results.
@@ -470,7 +725,7 @@ Cite sources where possible. Flag data-backed vs. directional estimates.</code><
           <!-- Prompt 8 -->
           <div class="mb-16" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#8</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#12</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Create Customer Personas</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -509,7 +764,7 @@ Write the persona in second person ("You wake up at...") so it reads like a char
           <!-- Prompt 9 -->
           <div class="mb-16" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#9</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#13</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Conduct Audience Research</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -544,7 +799,7 @@ Write the persona in second person ("You wake up at...") so it reads like a char
           <!-- Prompt 10 -->
           <div class="mb-4" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#10</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#14</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Generate Target Audience Fit Analysis</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -582,12 +837,12 @@ Write the persona in second person ("You wake up at...") so it reads like a char
     </div>
 
     <!-- ═══════════════════════════════════════════ -->
-    <!-- SECTION 4: COMPETITOR ANALYSIS -->
+    <!-- SECTION 5: COMPETITOR ANALYSIS -->
     <!-- ═══════════════════════════════════════════ -->
     <div id="competitors" class="scroll-mt-32 border-t border-[var(--color-border)] bg-[var(--color-surface)]">
       <div class="container mx-auto px-4 py-16">
         <div class="max-w-4xl mx-auto">
-          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 4 of 8</p>
+          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 5 of 9</p>
           <h2 class="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Competitor Analysis</h2>
           <p class="text-lg text-[var(--color-text-secondary)] mb-12 max-w-3xl">
             Stop guessing at your positioning. The URL-based prompt below is my single top pick in the entire toolkit.
@@ -596,7 +851,7 @@ Write the persona in second person ("You wake up at...") so it reads like a char
           <!-- Prompt 11 -->
           <div class="mb-16" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#11</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#15</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Get Competitor Analysis from URLs</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -638,7 +893,7 @@ Write the persona in second person ("You wake up at...") so it reads like a char
           <!-- Prompt 12 -->
           <div class="mb-16" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#12</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#16</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Conduct Competitive Analysis</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -670,7 +925,7 @@ Write the persona in second person ("You wake up at...") so it reads like a char
           <!-- Prompt 13 -->
           <div class="mb-4" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#13</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#17</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Generate Industry Gap Analysis</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -708,12 +963,12 @@ Recommend the top 2 to pursue first with a specific first step for each.</code><
     </div>
 
     <!-- ═══════════════════════════════════════════ -->
-    <!-- SECTION 5: SEO -->
+    <!-- SECTION 6: SEO -->
     <!-- ═══════════════════════════════════════════ -->
     <div id="seo" class="scroll-mt-32 border-t border-[var(--color-border)]">
       <div class="container mx-auto px-4 py-16">
         <div class="max-w-4xl mx-auto">
-          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 5 of 8</p>
+          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 6 of 9</p>
           <h2 class="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-4">SEO</h2>
           <p class="text-lg text-[var(--color-text-secondary)] mb-12 max-w-3xl">
             The prompts that build your traffic engine. SEO is a slow game, but the research phase doesn't have to be.
@@ -722,7 +977,7 @@ Recommend the top 2 to pursue first with a specific first step for each.</code><
           <!-- Prompt 14 -->
           <div class="mb-16" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#14</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#18</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Generate SEO Strategy Plan</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -756,7 +1011,7 @@ Be specific to my business. Don't give me generic advice.</code></pre>
           <!-- Prompt 15 -->
           <div class="mb-16" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#15</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#19</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Conduct Keyword Research</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -788,7 +1043,7 @@ Note: Estimates are directional. I'll validate top picks with Ahrefs/Semrush.</c
           <!-- Prompt 16 -->
           <div class="mb-16" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#16</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#20</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Generate Long-Tail Keywords</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -823,7 +1078,7 @@ Flag which estimates are data-backed vs. directional guesses.</code></pre>
           <!-- Prompt 17 -->
           <div class="mb-4" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#17</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#21</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Generate SEO Content Strategy</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -859,12 +1114,12 @@ Limit to 12-15 content pieces. I need a focused plan, not a wish list.</code></p
     </div>
 
     <!-- ═══════════════════════════════════════════ -->
-    <!-- SECTION 6: WEBSITE & CONVERSION -->
+    <!-- SECTION 7: WEBSITE & CONVERSION -->
     <!-- ═══════════════════════════════════════════ -->
     <div id="website" class="scroll-mt-32 border-t border-[var(--color-border)] bg-[var(--color-surface)]">
       <div class="container mx-auto px-4 py-16">
         <div class="max-w-4xl mx-auto">
-          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 6 of 8</p>
+          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 7 of 9</p>
           <h2 class="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Website & Conversion</h2>
           <p class="text-lg text-[var(--color-text-secondary)] mb-12 max-w-3xl">
             Your website is doing two jobs: explaining what you do and getting people to act. Most solo founder sites are decent at the first and terrible at the second.
@@ -873,7 +1128,7 @@ Limit to 12-15 content pieces. I need a focused plan, not a wish list.</code></p
           <!-- Prompt 18 -->
           <div class="mb-16" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#18</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#22</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Optimize Website Conversions</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -912,7 +1167,7 @@ Rate the page overall (1-10) and list the top 3 highest-impact changes.</code></
           <!-- Prompt 19 -->
           <div class="mb-16" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#19</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#23</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Optimize Website A/B Testing</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -950,7 +1205,7 @@ Rate the page overall (1-10) and list the top 3 highest-impact changes.</code></
           <!-- Prompt 20 -->
           <div class="mb-4" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#20</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#24</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Generate Website Development Plan</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -983,12 +1238,12 @@ Rate the page overall (1-10) and list the top 3 highest-impact changes.</code></
     </div>
 
     <!-- ═══════════════════════════════════════════ -->
-    <!-- SECTION 7: MARKETING & GROWTH -->
+    <!-- SECTION 8: MARKETING & GROWTH -->
     <!-- ═══════════════════════════════════════════ -->
     <div id="marketing" class="scroll-mt-32 border-t border-[var(--color-border)]">
       <div class="container mx-auto px-4 py-16">
         <div class="max-w-4xl mx-auto">
-          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 7 of 8</p>
+          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 8 of 9</p>
           <h2 class="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Marketing & Growth</h2>
           <p class="text-lg text-[var(--color-text-secondary)] mb-12 max-w-3xl">
             The "last mile" prompts that turn your research, personas, and SEO strategy into actual leads and revenue.
@@ -997,7 +1252,7 @@ Rate the page overall (1-10) and list the top 3 highest-impact changes.</code></
           <!-- Prompt 21 -->
           <div class="mb-16" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#21</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#25</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Create LinkedIn Funnel Blueprint</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -1030,7 +1285,7 @@ Make everything feel like a real person, not a sales robot.</code></pre>
           <!-- Prompt 22 -->
           <div class="mb-4" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#22</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#26</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Generate Persuasive Copy (PASTOR Framework)</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -1071,12 +1326,12 @@ Mark any claims that need real data with [VERIFY].</code></pre>
     </div>
 
     <!-- ═══════════════════════════════════════════ -->
-    <!-- SECTION 8: AI AGENTS -->
+    <!-- SECTION 9: AI AGENTS -->
     <!-- ═══════════════════════════════════════════ -->
     <div id="ai-agents" class="scroll-mt-32 border-t border-[var(--color-border)] bg-[var(--color-surface)]">
       <div class="container mx-auto px-4 py-16">
         <div class="max-w-4xl mx-auto">
-          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 8 of 8</p>
+          <p class="text-[var(--color-accent)] text-sm font-mono uppercase tracking-[0.2em] mb-3 font-semibold">Category 9 of 9</p>
           <h2 class="text-3xl md:text-4xl font-serif font-bold text-[var(--color-text-primary)] mb-4">AI Employees</h2>
           <p class="text-lg text-[var(--color-text-secondary)] mb-12 max-w-3xl">
             Building an AI agent isn't an engineering task — it's a writing task. These six prompts walk you from role definition to working instruction set to weekly improvement loop. No code. No automation tools. Just structured thinking and copy-paste prompts.
@@ -1085,7 +1340,7 @@ Mark any claims that need real data with [VERIFY].</code></pre>
           <!-- Prompt 23 -->
           <div class="mb-16" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#23</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#27</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Define AI Employee Role</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -1129,7 +1384,7 @@ Format as a clean reference document I can use as the foundation for building th
           <!-- Prompt 24 -->
           <div class="mb-16" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#24</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#28</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Convert Manual Workflow to AI Instructions</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -1172,7 +1427,7 @@ Based on this, write:
           <!-- Prompt 25 -->
           <div class="mb-16" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#25</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#29</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Build AI Employee from a Job Description</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -1213,7 +1468,7 @@ Do this analysis:
           <!-- Prompt 26 -->
           <div class="mb-16" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#26</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#30</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Extract Expert Process from Content</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -1253,7 +1508,7 @@ Do this:
           <!-- Prompt 27 -->
           <div class="mb-16" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#27</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#31</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">AI Employee Performance Review</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -1302,7 +1557,7 @@ Based on this:
           <!-- Prompt 28 -->
           <div class="mb-4" data-prompt>
             <div class="flex items-center gap-3 mb-3">
-              <span class="text-sm font-mono text-[var(--color-text-muted)]">#28</span>
+              <span class="text-sm font-mono text-[var(--color-text-muted)]">#32</span>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Design Multi-Step AI Workflow</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
@@ -1442,7 +1697,7 @@ Design this workflow:
 
   // Prompt search/filter
   (function () {
-    var CATEGORY_IDS = ['automation', 'market-research', 'personas', 'competitors', 'seo', 'website', 'marketing', 'ai-agents'];
+    var CATEGORY_IDS = ['engineering', 'automation', 'market-research', 'personas', 'competitors', 'seo', 'website', 'marketing', 'ai-agents'];
 
     var searchInput = document.getElementById('prompt-search');
     var searchCount = document.getElementById('prompt-search-count');
