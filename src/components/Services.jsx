@@ -35,16 +35,22 @@ const Services = () => {
       <article className="container mx-auto px-4 md:px-8 max-w-3xl pb-24">
 
         {/* ── Heading + bio ── */}
-        <header className="mb-16">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-[var(--color-text-primary)] mb-6 leading-[1.2]">
-            Services
-          </h1>
-          <p className="text-lg md:text-xl text-moonlight-text-secondary leading-relaxed mb-5">
-            I take on a small amount of independent work each week.
-          </p>
-          <p className="text-base md:text-lg text-moonlight-text-muted leading-relaxed">
-            If your team is drowning in manual work, unsure how to standardize AI coding tools, or shipping inconsistent output because nobody's written the convention files yet, this page is for you.
-          </p>
+        <header className="grid grid-cols-[1px_minmax(0,1fr)] gap-5 border-b border-[var(--color-border)] pb-14 mb-16 md:gap-8 md:pb-20">
+          <div
+            className="w-px self-stretch bg-gradient-to-b from-[var(--color-accent)] via-[var(--color-accent-border)] to-transparent"
+            aria-hidden="true"
+          />
+          <div className="min-w-0">
+            <p className="mb-5 font-mono text-xs uppercase text-[var(--color-accent)]">
+              Services
+            </p>
+            <h1 className="max-w-3xl font-serif text-3xl font-bold leading-[1.1] text-[var(--color-text-primary)] md:text-4xl lg:text-5xl">
+              I take on a small amount of independent work each week.
+            </h1>
+            <p className="mt-6 max-w-3xl text-base leading-relaxed text-[var(--color-text-secondary)] md:text-lg">
+              If your team is drowning in manual work, unsure how to standardize AI coding tools, or shipping inconsistent output because nobody's written the convention files yet, this is the right page.
+            </p>
+          </div>
         </header>
 
         {/* ── AI Readiness Assessment (soft launch) ── */}
@@ -55,11 +61,11 @@ const Services = () => {
           <h2 className="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-4">
             AI Readiness Assessment
           </h2>
-          <p className="text-base md:text-lg text-moonlight-text-secondary leading-relaxed mb-6">
+          <p className="text-base md:text-lg text-[var(--color-text-secondary)] leading-relaxed mb-6">
             A 1-hour working call plus a 3-artifact deliverable bundle: written action plan, adapted playbook, and custom AGENTS.md committed to your repo.
           </p>
           <p className="text-sm font-semibold text-[var(--color-text-primary)] mb-3">What you get:</p>
-          <ul className="space-y-3 pl-5 list-disc marker:text-[var(--color-accent)] text-moonlight-text-secondary leading-relaxed mb-6">
+          <ul className="space-y-3 pl-5 list-disc marker:text-[var(--color-accent)] text-[var(--color-text-secondary)] leading-relaxed mb-6">
             <li>
               <strong className="text-[var(--color-text-primary)]">Written action plan.</strong> Your team's diagnosed readiness level and the 3-4 highest-ROI next steps, with effort and expected outcome per action.
             </li>
@@ -99,7 +105,7 @@ const Services = () => {
                 <h3 className="text-xl font-serif font-semibold text-[var(--color-text-primary)] mb-3">
                   {service.title}
                 </h3>
-                <p className="text-moonlight-text-secondary leading-relaxed">
+                <p className="text-[var(--color-text-secondary)] leading-relaxed">
                   {service.description}
                 </p>
               </div>
@@ -112,7 +118,7 @@ const Services = () => {
           <h2 className="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-8">
             How engagements start
           </h2>
-          <div className="text-moonlight-text-secondary leading-relaxed space-y-4">
+          <div className="text-[var(--color-text-secondary)] leading-relaxed space-y-4">
             <p>
               Every engagement begins with a{' '}
               <strong className="text-[var(--color-text-primary)]">paid intake: $500, about 45 minutes of live time</strong>. Here's what that looks like:
@@ -143,7 +149,7 @@ const Services = () => {
           <h2 className="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-8">
             If we work together
           </h2>
-          <div className="text-moonlight-text-secondary leading-relaxed space-y-4">
+          <div className="text-[var(--color-text-secondary)] leading-relaxed space-y-4">
             <p>
               Scoping is a short async exchange: deliverables, timeline, price. No multi-week discovery phase that costs more than the actual work.
             </p>
@@ -161,7 +167,7 @@ const Services = () => {
           <h2 className="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-8">
             Not a fit
           </h2>
-          <div className="text-moonlight-text-secondary leading-relaxed space-y-4">
+          <div className="text-[var(--color-text-secondary)] leading-relaxed space-y-4">
             <p>
               I can't take work in investment management, wealth advisory, retirement solutions, ESG data, credit ratings, or compliance software for financial services. Conflict with my current employer.
             </p>
@@ -174,7 +180,7 @@ const Services = () => {
         {/* ── CTA ── */}
         <section id="intake">
           <div className="border-t border-[var(--color-border)] pt-12">
-            <p className="text-lg text-moonlight-text-secondary leading-relaxed mb-8">
+            <p className="text-lg text-[var(--color-text-secondary)] leading-relaxed mb-8">
               If any of this sounds like your team, send a short note describing the problem. I read every submission and respond within 48 hours with either a scoping proposal or an honest "I'm not the right fit for this."
             </p>
             <a

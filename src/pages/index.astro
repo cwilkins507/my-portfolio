@@ -190,7 +190,9 @@ const faqSchema = {
 
       <div class="relative mx-auto max-w-6xl px-6 md:px-8">
         <div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_390px] lg:items-center">
-          <div class="min-w-0">
+          <div class="min-w-0 flex items-start gap-7 md:gap-9">
+            <div class="hidden md:block flex-none w-px self-stretch bg-gradient-to-b from-[var(--color-accent)] via-[var(--color-accent-border)] to-transparent mt-1" aria-hidden="true"></div>
+            <div class="flex-1 min-w-0">
             <p class="ink-label mb-5 font-mono text-[11px] text-[var(--color-accent)]">
               Collin Wilkins / AI systems / practical automation
             </p>
@@ -229,6 +231,7 @@ const faqSchema = {
                   <p class="mt-2 text-sm font-semibold leading-snug text-[var(--color-text-primary)]">{note.value}</p>
                 </div>
               ))}
+            </div>
             </div>
           </div>
 
