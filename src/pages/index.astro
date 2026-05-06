@@ -1,31 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import StartHere from '../components/StartHere';
+import { CATEGORIES, getCategoryForArticle } from '../data/categories';
 
 const articleModules = import.meta.glob('../articles/*.md', { eager: true });
 const articles = Object.entries(articleModules).map(([file, article]) => ({
   slug: file.split('/').pop().replace('.md', ''),
   ...article.frontmatter,
 })).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-
-const CATEGORIES = {
-  'AI & Agents': ['AI', 'LLM Tools', 'CLI Agents', 'MCP', 'Workflow Automation', 'Prompt Engineering', 'AI Coding Assistant', 'AI Tools', 'Agentic Development', 'Context Engineering'],
-  'Cloud & DevOps': ['AWS', 'Terraform', 'Infrastructure as Code', 'DevOps', 'Serverless', 'Azure', 'GCP'],
-  'Architecture': ['Software Architecture', 'System Design', 'Microservices', 'Distributed Systems'],
-  'Engineering': ['Software Engineering', 'Best Practices', 'Low-code', 'Database Optimization']
-};
-
-const getCategoryForArticle = (tags) => {
-  if (!tags || tags.length === 0) return 'Engineering';
-  for (const [category, categoryTags] of Object.entries(CATEGORIES)) {
-    for (const tag of tags) {
-      if (categoryTags.some(catTag => catTag.toLowerCase() === tag.toLowerCase())) {
-        return category;
-      }
-    }
-  }
-  return 'Engineering';
-};
 
 const START_HERE_SLUGS = [
   {
@@ -247,7 +229,7 @@ const faqSchema = {
         </a>
       </div>
 
-      <StartHere articles={startHereArticles} client:load />
+      <StartHere articles={startHereArticles} />
     </section>
 
     <!-- ============ LATEST ARTICLES ============ -->

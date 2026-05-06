@@ -2,33 +2,12 @@ import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { CATEGORIES, getCategoryForArticle } from '../data/categories';
 
-// Category mapping
-const CATEGORIES = {
-  'AI & Agents': ['AI', 'LLM Tools', 'CLI Agents', 'MCP', 'Workflow Automation', 'Prompt Engineering'],
-  'Cloud & DevOps': ['AWS', 'Terraform', 'Infrastructure as Code', 'DevOps', 'Serverless', 'Azure', 'GCP'],
-  'Architecture': ['Software Architecture', 'System Design', 'Microservices', 'Distributed Systems'],
-  'Engineering': ['Software Engineering', 'Best Practices', 'Low-code', 'Database Optimization']
-};
-
-// Unified grayscale category style
 const CATEGORY_STYLE = {
   bg: 'var(--color-surface)',
   text: 'var(--color-text-secondary)',
   border: 'var(--color-border)',
-};
-
-const getCategoryForArticle = (tags) => {
-  if (!tags || tags.length === 0) return 'Engineering';
-
-  for (const [category, categoryTags] of Object.entries(CATEGORIES)) {
-    for (const tag of tags) {
-      if (categoryTags.some(catTag => catTag.toLowerCase() === tag.toLowerCase())) {
-        return category;
-      }
-    }
-  }
-  return 'Engineering';
 };
 
 const formatDate = (dateString) => {
