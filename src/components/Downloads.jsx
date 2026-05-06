@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { FileDown, BookOpen } from 'lucide-react';
+import { FileDown, BookOpen, Terminal } from 'lucide-react';
 
 const Downloads = () => {
   // Scroll to top when component mounts
@@ -167,6 +167,29 @@ const Downloads = () => {
             <h2 className="text-[var(--color-text-muted)] text-sm font-mono uppercase tracking-[0.2em] mb-6 font-semibold">
               Toolkits
             </h2>
+            <a
+              href="/resources/agent-harness-builder"
+              className="group mb-8 block bg-[var(--color-surface)] p-8 rounded-2xl border border-[var(--color-border)] hover:border-[var(--color-border-hover)] transition-all duration-300"
+            >
+              <div className="flex items-start justify-between">
+                <div className="space-y-4">
+                  <div className="p-3 bg-[var(--color-surface)] rounded-lg w-fit border border-[var(--color-border)] group-hover:border-[var(--color-border-hover)] transition-colors">
+                    <Terminal className="w-6 h-6 text-[var(--color-accent)]" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-2 group-hover:text-[var(--color-accent)] transition-colors">
+                      Agent Harness Builder
+                    </h3>
+                    <p className="text-[var(--color-text-muted)] font-light leading-relaxed">
+                      Answer a short quiz and generate a starter AGENTS.md, RUNBOOK.md, and operating-style file for your AI coding agents. Static, local, no repo access.
+                    </p>
+                    <span className="inline-block mt-3 text-xs text-[var(--color-text-secondary)] border border-[var(--color-border)] rounded-full px-3 py-1">
+                      Browser tool · No email required
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </a>
             <a
               href="/resources/ai-prompt-toolkit"
               className="group block bg-[var(--color-surface)] p-8 rounded-2xl border border-[var(--color-border)] hover:border-[var(--color-border-hover)] transition-all duration-300"
