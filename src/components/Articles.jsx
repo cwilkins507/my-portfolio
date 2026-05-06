@@ -2,33 +2,12 @@ import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { CATEGORIES, getCategoryForArticle } from '../data/categories';
 
-// Category mapping
-const CATEGORIES = {
-  'AI & Agents': ['AI', 'LLM Tools', 'CLI Agents', 'MCP', 'Workflow Automation', 'Prompt Engineering'],
-  'Cloud & DevOps': ['AWS', 'Terraform', 'Infrastructure as Code', 'DevOps', 'Serverless', 'Azure', 'GCP'],
-  'Architecture': ['Software Architecture', 'System Design', 'Microservices', 'Distributed Systems'],
-  'Engineering': ['Software Engineering', 'Best Practices', 'Low-code', 'Database Optimization']
-};
-
-// Unified grayscale category style
 const CATEGORY_STYLE = {
   bg: 'var(--color-surface)',
   text: 'var(--color-text-secondary)',
   border: 'var(--color-border)',
-};
-
-const getCategoryForArticle = (tags) => {
-  if (!tags || tags.length === 0) return 'Engineering';
-
-  for (const [category, categoryTags] of Object.entries(CATEGORIES)) {
-    for (const tag of tags) {
-      if (categoryTags.some(catTag => catTag.toLowerCase() === tag.toLowerCase())) {
-        return category;
-      }
-    }
-  }
-  return 'Engineering';
 };
 
 const formatDate = (dateString) => {
@@ -91,6 +70,16 @@ const ArticleList = ({ articles = [] }) => {
           />
           <div className="container mx-auto px-4 py-24 md:py-32 relative z-10 flex flex-col items-center text-center">
             <div className="max-w-4xl mx-auto flex flex-col items-center">
+              {featuredArticle.image && (
+                <div className="w-full mb-8 overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-deep)] shadow-2xl">
+                  <img
+                    src={featuredArticle.image}
+                    alt=""
+                    className="aspect-[7/4] w-full object-cover"
+                    loading="eager"
+                  />
+                </div>
+              )}
               <span className="text-[var(--color-accent)] text-sm font-bold uppercase tracking-[0.08em]">Latest Article</span>
               <h1 className="text-3xl md:text-5xl font-serif font-black text-[var(--color-text-primary)] mt-4 mb-6 leading-tight tracking-tight">
                 {featuredArticle.title}
@@ -165,34 +154,41 @@ const ArticleList = ({ articles = [] }) => {
               <motion.a
                 href={`/articles/${article.slug}`}
                 key={article.slug}
-                className="flex flex-col py-6 border-b hover:bg-[var(--color-surface-hover)] transition-all duration-300 group px-4 md:px-6"
+                className="flex flex-col md:flex-row md:items-center gap-4 py-6 border-b hover:bg-[var(--color-surface-hover)] transition-all duration-300 group px-4 md:px-6"
                 style={{ borderColor: 'var(--color-border)' }}
                 variants={itemVariants}
               >
-                <div className="flex justify-between items-start gap-4 mb-2">
-                  <h3 className="text-xl md:text-2xl font-serif text-[var(--color-text-primary)] group-hover:text-[var(--color-accent)] transition leading-snug">
-                    {article.title}
-                  </h3>
-                  <ArrowRight className="w-5 h-5 text-[var(--color-text-faint)] group-hover:text-[var(--color-accent)] transition mt-1 flex-shrink-0" />
-                </div>
-                
-                <p className="text-[var(--color-text-secondary)] text-sm md:text-base mb-4 line-clamp-2 md:line-clamp-none">
-                  {article.excerpt}
-                </p>
+                {article.image && (
+                  <div className="flex-none w-full md:w-[160px] aspect-video rounded-lg overflow-hidden border border-[var(--color-border)] group-hover:border-[var(--color-border-hover)] transition-colors">
+                    <img src={article.image} alt={article.title} className="w-full h-full object-cover" loading="lazy" />
+                  </div>
+                )}
+                <div className="flex-1 min-w-0">
+                  <div className="flex justify-between items-start gap-4 mb-2">
+                    <h3 className="text-xl md:text-2xl font-serif text-[var(--color-text-primary)] group-hover:text-[var(--color-accent)] transition leading-snug">
+                      {article.title}
+                    </h3>
+                    <ArrowRight className="w-5 h-5 text-[var(--color-text-faint)] group-hover:text-[var(--color-accent)] transition mt-1 flex-shrink-0" />
+                  </div>
 
-                <div className="flex items-center gap-4 mt-auto">
-                  <span className="text-[var(--color-text-secondary)] text-sm">{formatDate(article.date)}</span>
-                  <span className="text-[var(--color-text-faint)]">•</span>
-                  <span
-                    className="whitespace-nowrap text-xs font-medium px-3 py-1 rounded-full border"
-                    style={{
-                      background: colors.bg,
-                      color: colors.text,
-                      borderColor: colors.border,
-                    }}
-                  >
-                    {category}
-                  </span>
+                  <p className="text-[var(--color-text-secondary)] text-sm md:text-base mb-4 line-clamp-2 md:line-clamp-none">
+                    {article.excerpt}
+                  </p>
+
+                  <div className="flex items-center gap-4 mt-auto">
+                    <span className="text-[var(--color-text-secondary)] text-sm">{formatDate(article.date)}</span>
+                    <span className="text-[var(--color-text-faint)]">•</span>
+                    <span
+                      className="whitespace-nowrap text-xs font-medium px-3 py-1 rounded-full border"
+                      style={{
+                        background: colors.bg,
+                        color: colors.text,
+                        borderColor: colors.border,
+                      }}
+                    >
+                      {category}
+                    </span>
+                  </div>
                 </div>
               </motion.a>
             );

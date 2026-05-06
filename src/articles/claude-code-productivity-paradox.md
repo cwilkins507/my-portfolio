@@ -3,6 +3,7 @@ title: "The Claude Code Productivity Paradox"
 date: "2026-03-11"
 tags: ["AI Coding", "Claude Code", "Developer Productivity", "DORA Metrics", "Engineering Management", "AI Tools"]
 excerpt: "Individual developer metrics are up. Organizational metrics are flat. Here's why the gap exists and what it means for AI coding tool adoption."
+image: "/images/articles/claude-code-productivity-paradox.png"
 seo_title: "The Claude Code Productivity Paradox"
 meta_description: "Individual developer metrics are up. Organizational metrics are flat. Here's why the gap exists and what it means for AI coding tool adoption."
 target_keywords: "claude code productivity, ai coding productivity, claude code ROI, developer productivity measurement, AI coding tools team adoption, DORA metrics AI"

@@ -9,21 +9,29 @@ const Downloads = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[var(--color-bg)] py-20">
+    <div className="min-h-screen bg-[var(--color-bg)] pt-16 pb-24 md:pt-24">
       <div className="container mx-auto px-4 md:px-8 max-w-6xl">
-        {/* Page Title */}
-        <div className="text-center mb-16">
-          <h1 className="text-3xl md:text-4xl font-serif font-extrabold text-[var(--color-text-primary)] mb-6 tracking-tight">
-            Resources
-          </h1>
-          <p className="text-xl text-[var(--color-text-secondary)] max-w-2xl mx-auto font-light">
-            Tools, frameworks, and guides to help you engineer high-reliability AI systems and automation.
-          </p>
-        </div>
+        <header className="grid grid-cols-[1px_minmax(0,1fr)] gap-5 border-b border-[var(--color-border)] pb-14 mb-14 md:gap-8 md:pb-20">
+          <div
+            className="w-px self-stretch bg-gradient-to-b from-[var(--color-accent)] via-[var(--color-accent-border)] to-transparent"
+            aria-hidden="true"
+          />
+          <div className="min-w-0">
+            <p className="mb-5 font-mono text-xs uppercase text-[var(--color-accent)]">
+              Resources
+            </p>
+            <h1 className="max-w-3xl font-serif text-3xl font-bold leading-[1.1] text-[var(--color-text-primary)] md:text-4xl lg:text-5xl">
+              Tools, frameworks, and guides I actually use.
+            </h1>
+            <p className="mt-6 max-w-3xl text-base leading-relaxed text-[var(--color-text-secondary)] md:text-lg">
+              Free. No email required for most of it. Built around the same patterns I use in production.
+            </p>
+          </div>
+        </header>
 
         {/* Featured: AI Adoption Playbook (primary) */}
         <div className="mb-10">
-          <h2 className="text-[var(--color-text-muted)] text-sm font-mono uppercase tracking-[0.2em] mb-6 text-center md:text-left font-semibold">
+          <h2 className="text-[var(--color-text-muted)] text-sm font-mono uppercase tracking-[0.2em] mb-6 font-semibold">
             Featured Resource
           </h2>
           <a
@@ -98,7 +106,7 @@ const Downloads = () => {
 
         {/* Also in the Guides Shelf: Agentic Workflows (secondary) */}
         <div className="mb-16">
-          <h2 className="text-[var(--color-text-muted)] text-sm font-mono uppercase tracking-[0.2em] mb-6 text-center md:text-left font-semibold">
+          <h2 className="text-[var(--color-text-muted)] text-sm font-mono uppercase tracking-[0.2em] mb-6 font-semibold">
             Also in the Guides Shelf
           </h2>
           <a

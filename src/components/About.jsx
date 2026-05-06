@@ -251,6 +251,33 @@ const About = () => {
           </div>
         </section>
 
+        <section className="grid gap-10 border-b border-[var(--color-border)] py-14 md:grid-cols-[280px_minmax(0,1fr)] md:py-20">
+          <div>
+            <p className="font-mono text-xs uppercase text-[var(--color-accent)]">
+              Working together
+            </p>
+            <h2 className="mt-4 font-serif text-3xl font-bold leading-tight text-[var(--color-text-primary)] md:text-4xl">
+              If your team needs help.
+            </h2>
+          </div>
+
+          <div className="max-w-3xl space-y-5 text-base leading-relaxed text-[var(--color-text-secondary)] md:text-lg">
+            <p>
+              I take on a small amount of independent work each week: AI coding tool adoption, convention files, automation architecture, and the system decisions that keep getting deferred because every option has consequences.
+            </p>
+            <p>
+              If that sounds like your team, the services page has the details on how I work and how to start a conversation.
+            </p>
+            <a
+              href="/services"
+              className="inline-flex min-h-11 items-center justify-center rounded-lg bg-[var(--color-accent)] px-5 text-sm font-bold text-white transition-colors hover:bg-[var(--color-accent-hover)]"
+            >
+              View services
+              <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+            </a>
+          </div>
+        </section>
+
         <footer className="grid gap-8 border-t border-[var(--color-border)] pt-10 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
           <p className="max-w-3xl text-lg leading-relaxed text-[var(--color-text-secondary)]">
             That's the backstory. The case studies are the receipts.
