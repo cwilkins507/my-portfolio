@@ -64,7 +64,7 @@ const About = () => {
             <p className="mb-5 font-mono text-xs uppercase text-[var(--color-accent)]">
               About
             </p>
-            <h1 className="max-w-4xl font-serif text-4xl font-bold leading-[1.08] text-[var(--color-text-primary)] md:text-5xl">
+            <h1 className="max-w-3xl font-serif text-3xl font-bold leading-[1.1] text-[var(--color-text-primary)] md:text-4xl lg:text-5xl">
               Most engineers start with "Hello World." Mine starts with a $2 million pricing problem.
             </h1>
             <p className="mt-7 max-w-3xl text-lg leading-relaxed text-[var(--color-text-secondary)] md:text-xl">

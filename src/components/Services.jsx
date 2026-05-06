@@ -15,17 +15,17 @@ const services = [
   {
     title: 'AI coding tool adoption',
     description:
-      "Your team has Claude Code, Cursor, or Copilot licenses, but output quality varies wildly between developers, senior engineers are skeptical, and nobody can prove ROI. I help you standardize tool selection, build a rollout plan, and run a practitioner workshop against your actual codebase — for teams up to 20 engineers.",
+      "Your team has Claude Code, Cursor, or Copilot licenses, but output quality varies wildly between developers, senior engineers are skeptical, and nobody can prove ROI. I help you standardize tool selection, build a rollout plan, and run a practitioner workshop against your actual codebase. For teams up to 20 engineers.",
   },
   {
     title: 'Convention files (CLAUDE.md, AGENTS.md)',
     description:
-      "The reason your AI tools produce inconsistent output usually isn't the model — it's the context. Convention files are how you turn AI coding tools from novelty into compounding productivity. I audit your codebase and ship CLAUDE.md / AGENTS.md / tool-specific rules committed to your repo. Not generic templates.",
+      "The reason your AI tools produce inconsistent output usually isn't the model. It's the context. Convention files are how you turn AI coding tools from novelty into compounding productivity. I audit your codebase and ship CLAUDE.md / AGENTS.md / tool-specific rules committed to your repo. Not generic templates.",
   },
   {
     title: 'Automation architecture',
     description:
-      "Python, APIs, data pipelines, AWS Lambda, n8n. The same patterns that cut $5M in annual operational costs during my years at Ford Motor Company. Production-grade systems with error handling, logging, and monitoring — not prototypes, not 'we'll fix that later.'",
+      "Python, APIs, data pipelines, AWS Lambda, n8n. The same patterns that cut $5M in annual operational costs during my years at Ford Motor Company. Production-grade systems with error handling, logging, and monitoring. Not prototypes, not 'we'll fix that later.'",
   },
 ];
 
@@ -56,18 +56,18 @@ const Services = () => {
             AI Readiness Assessment
           </h2>
           <p className="text-base md:text-lg text-moonlight-text-secondary leading-relaxed mb-6">
-            A 1-hour working call plus a 3-artifact deliverable bundle — written action plan, adapted playbook, and custom AGENTS.md committed to your repo.
+            A 1-hour working call plus a 3-artifact deliverable bundle: written action plan, adapted playbook, and custom AGENTS.md committed to your repo.
           </p>
           <p className="text-sm font-semibold text-[var(--color-text-primary)] mb-3">What you get:</p>
           <ul className="space-y-3 pl-5 list-disc marker:text-[var(--color-accent)] text-moonlight-text-secondary leading-relaxed mb-6">
             <li>
-              <strong className="text-[var(--color-text-primary)]">Written action plan</strong> — your team's diagnosed readiness level and the 3-4 highest-ROI next steps, with effort and expected outcome per action.
+              <strong className="text-[var(--color-text-primary)]">Written action plan.</strong> Your team's diagnosed readiness level and the 3-4 highest-ROI next steps, with effort and expected outcome per action.
             </li>
             <li>
-              <strong className="text-[var(--color-text-primary)]">Custom AI Adoption Playbook</strong> — my public playbook adapted to your stack, scale, and level. Examples use your domain, not generic SaaS.
+              <strong className="text-[var(--color-text-primary)]">Custom AI Adoption Playbook.</strong> My public playbook adapted to your stack, scale, and level. Examples use your domain, not generic SaaS.
             </li>
             <li>
-              <strong className="text-[var(--color-text-primary)]">Custom AGENTS.md</strong> — ready to commit to your main repo. Tailored to your codebase structure, conventions, and stack.
+              <strong className="text-[var(--color-text-primary)]">Custom AGENTS.md.</strong> Ready to commit to your main repo. Tailored to your codebase structure, conventions, and stack.
             </li>
           </ul>
           <div className="flex flex-wrap items-center gap-4">
