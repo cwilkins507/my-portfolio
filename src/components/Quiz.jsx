@@ -217,51 +217,51 @@ Quiz Results:
                   </div>
                 </div>
               ) : (
-                <div className="max-w-2xl mx-auto bg-white rounded-2xl p-8 md:p-12 text-black shadow-2xl">
+                <div className="max-w-2xl mx-auto bg-[var(--color-surface)] rounded-2xl p-8 md:p-12 text-[var(--color-text-primary)] border border-[var(--color-border)] shadow-2xl">
                   <div className="text-center space-y-4 mb-8">
                     <h2 className="text-3xl font-light leading-tight">
                       Based on your answers, automation could help.
                     </h2>
-                    <p className="text-gray-600 text-lg">
-                      I'll send you a quick analysis of where you're losing time—and what it might cost to fix.
+                    <p className="text-[var(--color-text-secondary)] text-lg">
+                      I'll send you a quick analysis of where you're losing time and what it might cost to fix.
                     </p>
                   </div>
 
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <label className="text-sm font-medium text-gray-500 uppercase tracking-wider">First Name</label>
+                        <label className="text-sm font-medium text-[var(--color-text-muted)] uppercase tracking-wider">First Name</label>
                         <input
                           required
                           type="text"
                           value={firstName}
                           onChange={(e) => setFirstName(e.target.value)}
                           placeholder="First Name"
-                          className="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black transition-all"
+                          className="w-full px-4 py-3 rounded bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-[var(--color-accent)] transition-all"
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-sm font-medium text-gray-500 uppercase tracking-wider">Last Name</label>
+                        <label className="text-sm font-medium text-[var(--color-text-muted)] uppercase tracking-wider">Last Name</label>
                         <input
                           required
                           type="text"
                           value={lastName}
                           onChange={(e) => setLastName(e.target.value)}
                           placeholder="Last Name"
-                          className="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black transition-all"
+                          className="w-full px-4 py-3 rounded bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-[var(--color-accent)] transition-all"
                         />
                       </div>
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-sm font-medium text-gray-500 uppercase tracking-wider">Email</label>
+                      <label className="text-sm font-medium text-[var(--color-text-muted)] uppercase tracking-wider">Email</label>
                       <input
                         required
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Email"
-                        className="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black transition-all"
+                        className="w-full px-4 py-3 rounded bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-[var(--color-accent)] transition-all"
                       />
                     </div>
 
@@ -279,17 +279,6 @@ Quiz Results:
           </AnimatePresence>
         </div>
       </main>
-
-      {/* Footer Branding */}
-      <footer className="p-6 flex justify-end items-center">
-        <div className="bg-[var(--color-surface)] px-4 py-2 rounded flex items-center space-x-2 text-sm border border-[var(--color-border)]">
-          <span className="text-moonlight-text-secondary">Powered by</span>
-          <div className="flex items-center space-x-1">
-            <div className="w-2 h-2 rounded-full bg-[var(--color-text-primary)] opacity-50" />
-            <span className="font-bold text-[var(--color-text-primary)]">interact</span>
-          </div>
-        </div>
-      </footer>
 
       <style dangerouslySetInnerHTML={{
         __html: `

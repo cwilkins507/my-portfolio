@@ -122,7 +122,7 @@ const Services = () => {
                 You send a short async brief (about ten minutes of your time) describing the problem, your stack, and what you've already tried.
               </li>
               <li>
-                I read the brief ahead of the call. We spend ~45 minutes together on Zoom — direct, practitioner-to-practitioner, no discovery theater.
+                I read the brief ahead of the call. We spend ~45 minutes together on Zoom: direct, practitioner-to-practitioner, no discovery theater.
               </li>
               <li>
                 Within 48 hours, you get a written action plan: what I'd do, in what order, with rough scope and pricing. Yours to keep whether or not we work together.
@@ -145,13 +145,13 @@ const Services = () => {
           </h2>
           <div className="text-moonlight-text-secondary leading-relaxed space-y-4">
             <p>
-              Scoping is a short async exchange — deliverables, timeline, price. No multi-week discovery phase that costs more than the actual work.
+              Scoping is a short async exchange: deliverables, timeline, price. No multi-week discovery phase that costs more than the actual work.
             </p>
             <p>
-              Build is async-first with weekly check-ins. Production-grade code with error handling, logging, and monitoring — the same bar I hold for my day job.
+              Build is async-first with weekly check-ins. Production-grade code with error handling, logging, and monitoring. The same bar I hold for my day job.
             </p>
             <p>
-              Handoff includes documentation, runbooks, and 30 days of support for bugs or adjustments. After that, you can hire me for maintenance or take it in-house — I prefer when teams can own what I build.
+              Handoff includes documentation, runbooks, and 30 days of support for bugs or adjustments. After that, you can hire me for maintenance or take it in-house. I prefer when teams can own what I build.
             </p>
           </div>
         </section>
@@ -163,10 +163,10 @@ const Services = () => {
           </h2>
           <div className="text-moonlight-text-secondary leading-relaxed space-y-4">
             <p>
-              I can't take work in investment management, wealth advisory, retirement solutions, ESG data, credit ratings, or compliance software for financial services — conflict with my current employer.
+              I can't take work in investment management, wealth advisory, retirement solutions, ESG data, credit ratings, or compliance software for financial services. Conflict with my current employer.
             </p>
             <p>
-              I also don't work well with teams that want a six-month discovery phase before anyone touches code, need daytime or business-hours coverage (my weekdays belong to Morningstar), or expect me to compete in a formal RFP with a scoring rubric. None of those are bad things — they're just not how I can help.
+              I also don't work well with teams that want a six-month discovery phase before anyone touches code, need daytime or business-hours coverage (my weekdays belong to Morningstar), or expect me to compete in a formal RFP with a scoring rubric. None of those are bad things. They're just not how I can help.
             </p>
           </div>
         </section>
