@@ -267,8 +267,24 @@ function mdList(items) {
   return items.map((item) => `- ${item}`).join('\n');
 }
 
+function markdownTableText(value) {
+  return clean(value)
+    .replace(/\r\n|\r|\n/g, ' ')
+    .replace(/\|/g, '\\|');
+}
+
+function inlineCode(value) {
+  const content = markdownTableText(value);
+  const backtickRuns = content.match(/`+/g) || [];
+  const longestRun = backtickRuns.reduce((max, run) => Math.max(max, run.length), 0);
+  const fence = '`'.repeat(longestRun + 1);
+  const paddedContent = content.startsWith('`') || content.endsWith('`') ? ` ${content} ` : content;
+
+  return `${fence}${paddedContent}${fence}`;
+}
+
 function commandValue(command, label) {
-  return isUnknown(command) ? `TODO: Define the ${label.toLowerCase()} command.` : `\`${clean(command)}\``;
+  return isUnknown(command) ? `TODO: Define the ${label.toLowerCase()} command.` : inlineCode(command);
 }
 
 function countKnownCommands(commands) {
