@@ -15,17 +15,17 @@ const services = [
   {
     title: 'AI coding tool adoption',
     description:
-      "Your team has Claude Code, Cursor, or Copilot licenses, but output quality varies wildly between developers, senior engineers are skeptical, and nobody can prove ROI. I help you standardize tool selection, build a rollout plan, and run a practitioner workshop against your actual codebase — for teams up to 20 engineers.",
+      "Your team has Claude Code, Cursor, or Copilot licenses, but output quality varies wildly between developers, senior engineers are skeptical, and nobody can prove ROI. I help you standardize tool selection, build a rollout plan, and run a practitioner workshop against your actual codebase. For teams up to 20 engineers.",
   },
   {
     title: 'Convention files (CLAUDE.md, AGENTS.md)',
     description:
-      "The reason your AI tools produce inconsistent output usually isn't the model — it's the context. Convention files are how you turn AI coding tools from novelty into compounding productivity. I audit your codebase and ship CLAUDE.md / AGENTS.md / tool-specific rules committed to your repo. Not generic templates.",
+      "The reason your AI tools produce inconsistent output usually isn't the model. It's the context. Convention files are how you turn AI coding tools from novelty into compounding productivity. I audit your codebase and ship CLAUDE.md / AGENTS.md / tool-specific rules committed to your repo. Not generic templates.",
   },
   {
     title: 'Automation architecture',
     description:
-      "Python, APIs, data pipelines, AWS Lambda, n8n. The same patterns that cut $5M in annual operational costs during my years at Ford Motor Company. Production-grade systems with error handling, logging, and monitoring — not prototypes, not 'we'll fix that later.'",
+      "Python, APIs, data pipelines, AWS Lambda, n8n. The same patterns that cut $5M in annual operational costs during my years at Ford Motor Company. Production-grade systems with error handling, logging, and monitoring. Not prototypes, not 'we'll fix that later.'",
   },
 ];
 
@@ -56,18 +56,18 @@ const Services = () => {
             AI Readiness Assessment
           </h2>
           <p className="text-base md:text-lg text-moonlight-text-secondary leading-relaxed mb-6">
-            A 1-hour working call plus a 3-artifact deliverable bundle — written action plan, adapted playbook, and custom AGENTS.md committed to your repo.
+            A 1-hour working call plus a 3-artifact deliverable bundle: written action plan, adapted playbook, and custom AGENTS.md committed to your repo.
           </p>
           <p className="text-sm font-semibold text-[var(--color-text-primary)] mb-3">What you get:</p>
           <ul className="space-y-3 pl-5 list-disc marker:text-[var(--color-accent)] text-moonlight-text-secondary leading-relaxed mb-6">
             <li>
-              <strong className="text-[var(--color-text-primary)]">Written action plan</strong> — your team's diagnosed readiness level and the 3-4 highest-ROI next steps, with effort and expected outcome per action.
+              <strong className="text-[var(--color-text-primary)]">Written action plan.</strong> Your team's diagnosed readiness level and the 3-4 highest-ROI next steps, with effort and expected outcome per action.
             </li>
             <li>
-              <strong className="text-[var(--color-text-primary)]">Custom AI Adoption Playbook</strong> — my public playbook adapted to your stack, scale, and level. Examples use your domain, not generic SaaS.
+              <strong className="text-[var(--color-text-primary)]">Custom AI Adoption Playbook.</strong> My public playbook adapted to your stack, scale, and level. Examples use your domain, not generic SaaS.
             </li>
             <li>
-              <strong className="text-[var(--color-text-primary)]">Custom AGENTS.md</strong> — ready to commit to your main repo. Tailored to your codebase structure, conventions, and stack.
+              <strong className="text-[var(--color-text-primary)]">Custom AGENTS.md.</strong> Ready to commit to your main repo. Tailored to your codebase structure, conventions, and stack.
             </li>
           </ul>
           <div className="flex flex-wrap items-center gap-4">
@@ -122,7 +122,7 @@ const Services = () => {
                 You send a short async brief (about ten minutes of your time) describing the problem, your stack, and what you've already tried.
               </li>
               <li>
-                I read the brief ahead of the call. We spend ~45 minutes together on Zoom — direct, practitioner-to-practitioner, no discovery theater.
+                I read the brief ahead of the call. We spend ~45 minutes together on Zoom: direct, practitioner-to-practitioner, no discovery theater.
               </li>
               <li>
                 Within 48 hours, you get a written action plan: what I'd do, in what order, with rough scope and pricing. Yours to keep whether or not we work together.
@@ -145,13 +145,13 @@ const Services = () => {
           </h2>
           <div className="text-moonlight-text-secondary leading-relaxed space-y-4">
             <p>
-              Scoping is a short async exchange — deliverables, timeline, price. No multi-week discovery phase that costs more than the actual work.
+              Scoping is a short async exchange: deliverables, timeline, price. No multi-week discovery phase that costs more than the actual work.
             </p>
             <p>
-              Build is async-first with weekly check-ins. Production-grade code with error handling, logging, and monitoring — the same bar I hold for my day job.
+              Build is async-first with weekly check-ins. Production-grade code with error handling, logging, and monitoring. The same bar I hold for my day job.
             </p>
             <p>
-              Handoff includes documentation, runbooks, and 30 days of support for bugs or adjustments. After that, you can hire me for maintenance or take it in-house — I prefer when teams can own what I build.
+              Handoff includes documentation, runbooks, and 30 days of support for bugs or adjustments. After that, you can hire me for maintenance or take it in-house. I prefer when teams can own what I build.
             </p>
           </div>
         </section>
@@ -163,10 +163,10 @@ const Services = () => {
           </h2>
           <div className="text-moonlight-text-secondary leading-relaxed space-y-4">
             <p>
-              I can't take work in investment management, wealth advisory, retirement solutions, ESG data, credit ratings, or compliance software for financial services — conflict with my current employer.
+              I can't take work in investment management, wealth advisory, retirement solutions, ESG data, credit ratings, or compliance software for financial services. Conflict with my current employer.
             </p>
             <p>
-              I also don't work well with teams that want a six-month discovery phase before anyone touches code, need daytime or business-hours coverage (my weekdays belong to Morningstar), or expect me to compete in a formal RFP with a scoring rubric. None of those are bad things — they're just not how I can help.
+              I also don't work well with teams that want a six-month discovery phase before anyone touches code, need daytime or business-hours coverage (my weekdays belong to Morningstar), or expect me to compete in a formal RFP with a scoring rubric. None of those are bad things. They're just not how I can help.
             </p>
           </div>
         </section>
