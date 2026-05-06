@@ -1,0 +1,78 @@
+<svg width="900" height="320" viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" font-family="'SF Mono','Fira Code',monospace">
+  <defs>
+    <marker id="gs-arr-gray" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#636d83"/>
+    </marker>
+    <marker id="gs-arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#98c379"/>
+    </marker>
+    <marker id="gs-arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#61afef"/>
+    </marker>
+    <marker id="gs-arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#e06c75"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="320" fill="#282c34"/>
+
+  <!-- Title -->
+  <text x="450" y="22" font-size="11" font-weight="700" fill="#636d83" text-anchor="middle" letter-spacing="2">GUIDES · SENSORS · MEMORY LOOP</text>
+
+  <!-- ===== MAIN ROW (center y=155) ===== -->
+
+  <!-- Guides (purple) -->
+  <rect x="30" y="125" width="140" height="60" fill="#1e1a28" rx="3"/>
+  <rect x="30" y="125" width="5" height="60" fill="#c678dd" rx="2"/>
+  <text x="107" y="150" font-size="12" font-weight="700" fill="#c678dd" text-anchor="middle">Guides</text>
+  <text x="107" y="168" font-size="10" fill="#636d83" text-anchor="middle">instructions · docs</text>
+
+  <!-- Arrow Guides → Agent Acts -->
+  <line x1="170" y1="155" x2="208" y2="155" stroke="#636d83" stroke-width="1.5" marker-end="url(#gs-arr-gray)"/>
+
+  <!-- Agent Acts (blue, slightly taller — central role) -->
+  <rect x="210" y="116" width="165" height="78" fill="#1a2a3a" rx="3" stroke="#61afef" stroke-width="1.5"/>
+  <rect x="210" y="116" width="5" height="78" fill="#61afef" rx="2"/>
+  <text x="295" y="150" font-size="13" font-weight="700" fill="#61afef" text-anchor="middle">Agent Acts</text>
+  <text x="295" y="168" font-size="10" fill="#abb2bf" text-anchor="middle">model · tools · loop</text>
+
+  <!-- Arrow Agent Acts → Sensors -->
+  <line x1="375" y1="155" x2="413" y2="155" stroke="#636d83" stroke-width="1.5" marker-end="url(#gs-arr-gray)"/>
+
+  <!-- Sensors (green) -->
+  <rect x="415" y="125" width="140" height="60" fill="#0e1e0e" rx="3"/>
+  <rect x="415" y="125" width="5" height="60" fill="#98c379" rx="2"/>
+  <text x="492" y="150" font-size="12" font-weight="700" fill="#98c379" text-anchor="middle">Sensors</text>
+  <text x="492" y="168" font-size="10" fill="#636d83" text-anchor="middle">tests · lint · review</text>
+
+  <!-- Arrow Sensors → Pass? diamond -->
+  <line x1="555" y1="155" x2="598" y2="155" stroke="#636d83" stroke-width="1.5" marker-end="url(#gs-arr-gray)"/>
+
+  <!-- Pass? diamond (center 630, 155) -->
+  <polygon points="630,134 654,155 630,176 606,155" fill="#2e3240" stroke="#abb2bf" stroke-width="1.5"/>
+  <text x="630" y="159" font-size="11" font-weight="700" fill="#abb2bf" text-anchor="middle">Pass?</text>
+
+  <!-- Arrow Pass yes → Memory -->
+  <line x1="654" y1="155" x2="680" y2="155" stroke="#98c379" stroke-width="1.5" marker-end="url(#gs-arr-green)"/>
+  <text x="667" y="148" font-size="10" fill="#98c379" text-anchor="middle">yes</text>
+
+  <!-- Memory (blue) -->
+  <rect x="682" y="125" width="185" height="60" fill="#0e1a28" rx="3"/>
+  <rect x="682" y="125" width="5" height="60" fill="#61afef" rx="2"/>
+  <text x="772" y="150" font-size="12" font-weight="700" fill="#61afef" text-anchor="middle">Memory</text>
+  <text x="772" y="168" font-size="10" fill="#636d83" text-anchor="middle">handoff · INDEX.md</text>
+
+  <!-- ===== "no" LOOP (above main row) ===== -->
+  <!-- From diamond top (630,134) up to y=74 left to Agent Acts (295,116) -->
+  <path d="M 630 134 L 630 74 L 295 74 L 295 116" fill="none" stroke="#e06c75" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#gs-arr-red)"/>
+  <text x="463" y="66" font-size="10" fill="#e06c75" text-anchor="middle">no — try again</text>
+
+  <!-- ===== Memory LOOP BACK to Guides (below main row) ===== -->
+  <!-- From Memory bottom (772,185) down to y=250 left to Guides (107,250) up to (107,185) -->
+  <path d="M 772 185 L 772 248 L 107 248 L 107 185" fill="none" stroke="#61afef" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#gs-arr-blue)"/>
+  <text x="440" y="266" font-size="10" fill="#61afef" text-anchor="middle">memory feeds the next run — next session starts less cold</text>
+
+  <!-- Caption -->
+  <text x="450" y="298" font-size="11" fill="#636d83" text-anchor="middle">a harness without sensors ships broken work — a harness without memory restarts cold every time</text>
+</svg>
