@@ -8,7 +8,6 @@ const articles = articlesRaw.map(article => ({
   ...article.frontmatter,
 })).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-// Curated "Start Here" selection (Writer Site Refresh, 2026-04-10)
 const START_HERE = [
   {
     slug: 'context-engineering-ai-coding-tools',
@@ -62,7 +61,7 @@ const collectionSchema = {
 <Layout title="Technical Articles on AI, AWS & Software Architecture | Collin Wilkins" description="In-depth technical articles on Python automation, AWS serverless patterns, AI integration, system design, and software engineering best practices." schema={collectionSchema}>
 	<section class="container mx-auto max-w-5xl px-4 pt-24 md:pt-32 pb-12">
 		<h2 class="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Start Here</h2>
-		<p class="text-moonlight-text-secondary mb-8 max-w-2xl">
+		<p class="text-[var(--color-text-secondary)] mb-8 max-w-2xl">
 			Not sure where to begin? These are the articles that best represent my work and the direction I'm writing toward.
 		</p>
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -71,10 +70,15 @@ const collectionSchema = {
 					href={`/articles/${article.slug}`}
 					class="group flex flex-col rounded-2xl p-6 border border-[var(--color-border)] bg-[var(--color-surface)] hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] hover:shadow-card hover:-translate-y-0.5 will-change-transform transition-all duration-300"
 				>
+					{article.image && (
+						<div class="aspect-video rounded-lg overflow-hidden mb-4 border border-[var(--color-border)]">
+							<img src={article.image} alt={article.title} class="w-full h-full object-cover" loading="lazy" />
+						</div>
+					)}
 					<h3 class="text-lg font-serif font-bold text-[var(--color-text-primary)] mb-3 leading-snug group-hover:text-[var(--color-accent)] transition-colors">
 						{article.title}
 					</h3>
-					<p class="text-moonlight-text-secondary text-sm leading-relaxed flex-grow mb-4">
+					<p class="text-[var(--color-text-secondary)] text-sm leading-relaxed flex-grow mb-4">
 						{article.blurb}
 					</p>
 					<span class="text-[var(--color-accent)] text-sm font-semibold inline-flex items-center gap-2">

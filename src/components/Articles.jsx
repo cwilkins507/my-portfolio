@@ -165,34 +165,41 @@ const ArticleList = ({ articles = [] }) => {
               <motion.a
                 href={`/articles/${article.slug}`}
                 key={article.slug}
-                className="flex flex-col py-6 border-b hover:bg-[var(--color-surface-hover)] transition-all duration-300 group px-4 md:px-6"
+                className="flex flex-col md:flex-row md:items-center gap-4 py-6 border-b hover:bg-[var(--color-surface-hover)] transition-all duration-300 group px-4 md:px-6"
                 style={{ borderColor: 'var(--color-border)' }}
                 variants={itemVariants}
               >
-                <div className="flex justify-between items-start gap-4 mb-2">
-                  <h3 className="text-xl md:text-2xl font-serif text-[var(--color-text-primary)] group-hover:text-[var(--color-accent)] transition leading-snug">
-                    {article.title}
-                  </h3>
-                  <ArrowRight className="w-5 h-5 text-[var(--color-text-faint)] group-hover:text-[var(--color-accent)] transition mt-1 flex-shrink-0" />
-                </div>
-                
-                <p className="text-[var(--color-text-secondary)] text-sm md:text-base mb-4 line-clamp-2 md:line-clamp-none">
-                  {article.excerpt}
-                </p>
+                {article.image && (
+                  <div className="flex-none w-full md:w-[160px] aspect-video rounded-lg overflow-hidden border border-[var(--color-border)] group-hover:border-[var(--color-border-hover)] transition-colors">
+                    <img src={article.image} alt={article.title} className="w-full h-full object-cover" loading="lazy" />
+                  </div>
+                )}
+                <div className="flex-1 min-w-0">
+                  <div className="flex justify-between items-start gap-4 mb-2">
+                    <h3 className="text-xl md:text-2xl font-serif text-[var(--color-text-primary)] group-hover:text-[var(--color-accent)] transition leading-snug">
+                      {article.title}
+                    </h3>
+                    <ArrowRight className="w-5 h-5 text-[var(--color-text-faint)] group-hover:text-[var(--color-accent)] transition mt-1 flex-shrink-0" />
+                  </div>
 
-                <div className="flex items-center gap-4 mt-auto">
-                  <span className="text-[var(--color-text-secondary)] text-sm">{formatDate(article.date)}</span>
-                  <span className="text-[var(--color-text-faint)]">•</span>
-                  <span
-                    className="whitespace-nowrap text-xs font-medium px-3 py-1 rounded-full border"
-                    style={{
-                      background: colors.bg,
-                      color: colors.text,
-                      borderColor: colors.border,
-                    }}
-                  >
-                    {category}
-                  </span>
+                  <p className="text-[var(--color-text-secondary)] text-sm md:text-base mb-4 line-clamp-2 md:line-clamp-none">
+                    {article.excerpt}
+                  </p>
+
+                  <div className="flex items-center gap-4 mt-auto">
+                    <span className="text-[var(--color-text-secondary)] text-sm">{formatDate(article.date)}</span>
+                    <span className="text-[var(--color-text-faint)]">•</span>
+                    <span
+                      className="whitespace-nowrap text-xs font-medium px-3 py-1 rounded-full border"
+                      style={{
+                        background: colors.bg,
+                        color: colors.text,
+                        borderColor: colors.border,
+                      }}
+                    >
+                      {category}
+                    </span>
+                  </div>
                 </div>
               </motion.a>
             );

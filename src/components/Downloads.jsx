@@ -24,7 +24,7 @@ const Downloads = () => {
               Tools, frameworks, and guides I actually use.
             </h1>
             <p className="mt-6 max-w-3xl text-base leading-relaxed text-[var(--color-text-secondary)] md:text-lg">
-              Free. No email required for most of it. Built around the same patterns I use at Morningstar and Ford.
+              Free. No email required for most of it. Built around the same patterns I use in production.
             </p>
           </div>
         </header>
