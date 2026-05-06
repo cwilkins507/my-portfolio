@@ -5,6 +5,7 @@ date: "2026-02-05"
 slug: "context-engineering-ai-coding-tools"
 tags: ["Software Engineering", "AI Coding Assistant", "AI Tools", "Developer Productivity", "Agentic Development", "Context Engineering"]
 excerpt: "Most developers blame the model when AI coding tools produce bad output. The real problem is context. Here's the system I built to fix that."
+image: "/images/articles/context-engineering-ai-coding-tools.png"
 seo_title: "Context Engineering: Make AI Coding Tools Actually Work"
 meta_description: "Learn how context engineering, agentic workflows, and repeatable skills systems transform AI coding tools from novelty into compounding productivity. Practical patterns from daily use with Claude Code, Cursor, Codex, and more."
 target_keywords: "context engineering, agentic coding, AI coding assistant, AI pair programming, Claude Code, Cursor agent mode, Codex CLI, vibe coding, CLAUDE.md, developer productivity, AI code review, agentic development"

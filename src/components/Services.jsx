@@ -45,6 +45,43 @@ const Services = () => {
           </div>
         </header>
 
+        <section id="assessment" className="mb-16 border border-[var(--color-accent)] rounded-lg p-6 md:p-8 bg-[var(--color-accent-muted)]">
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-4">
+            AI Readiness Assessment
+          </h2>
+          <p className="text-base md:text-lg text-[var(--color-text-secondary)] leading-relaxed mb-6">
+            A 1-hour working call plus a 3-artifact deliverable bundle: written action plan, adapted playbook, and custom AGENTS.md committed to your repo.
+          </p>
+          <p className="text-sm font-semibold text-[var(--color-text-primary)] mb-3">What you get:</p>
+          <ul className="space-y-3 pl-5 list-disc marker:text-[var(--color-accent)] text-[var(--color-text-secondary)] leading-relaxed mb-6">
+            <li>
+              <strong className="text-[var(--color-text-primary)]">Written action plan.</strong> Your team's diagnosed readiness level and the 3-4 highest-ROI next steps, with effort and expected outcome per action.
+            </li>
+            <li>
+              <strong className="text-[var(--color-text-primary)]">Custom AI Adoption Playbook.</strong> My public playbook adapted to your stack, scale, and level. Examples use your domain, not generic SaaS.
+            </li>
+            <li>
+              <strong className="text-[var(--color-text-primary)]">Custom AGENTS.md.</strong> Ready to commit to your main repo. Tailored to your codebase structure, conventions, and stack.
+            </li>
+          </ul>
+          <div className="flex flex-wrap items-center gap-4">
+            <a
+              href="/services?modal=contact&service=ai-strategy"
+              className="inline-block px-6 py-3 text-sm font-semibold rounded-lg bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] transition-colors"
+            >
+              Book an assessment →
+            </a>
+            <a
+              href="/resources/ai-readiness-assessment-sample.pdf"
+              target="_blank"
+              rel="noopener"
+              className="inline-block text-sm font-semibold text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] underline underline-offset-4 transition-colors"
+            >
+              See a sample (PDF) →
+            </a>
+          </div>
+        </section>
+
         <section className="mb-16">
           <h2 className="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-10">
             Problems I work on

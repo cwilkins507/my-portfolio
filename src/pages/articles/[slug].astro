@@ -51,6 +51,7 @@ const relatedArticles = allArticles
 // Use SEO-specific frontmatter if available, fallback to defaults
 const pageTitle = frontmatter.seo_title || frontmatter.title;
 const pageDescription = frontmatter.meta_description || frontmatter.excerpt;
+const imageUrl = frontmatter.image ? new URL(frontmatter.image, Astro.site).toString() : undefined;
 
 // Article structured data for SEO
 const articleEntity = {
@@ -81,6 +82,9 @@ const articleEntity = {
   }
 };
 
+if (imageUrl) {
+  articleEntity.image = imageUrl;
+}
 if (wordCount) {
   articleEntity.wordCount = wordCount;
   // Estimate reading time at 225 words per minute, ISO 8601 duration
@@ -146,6 +150,7 @@ const articleSchema = {
   description={pageDescription}
   type="article"
   publishedTime={frontmatter.date}
+  image={frontmatter.image}
   schema={articleSchema}
 >
   <div class="container mx-auto px-4 py-16">
@@ -164,10 +169,15 @@ const articleSchema = {
           </span>
         ))}
       </div>
+      {frontmatter.image && (
+        <figure class="mb-12 overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]">
+          <img src={frontmatter.image} alt="" class="aspect-[7/4] w-full object-cover" loading="eager" />
+        </figure>
+      )}
       
       <div class="flex gap-5 md:gap-8">
         <div class="flex-none w-px self-stretch bg-gradient-to-b from-[var(--color-accent)] via-[var(--color-accent-muted)] to-transparent" aria-hidden="true"></div>
-        <div class="prose prose-invert max-w-none min-w-0 prose-headings:font-serif prose-headings:text-[var(--color-text-primary)] prose-p:text-moonlight-text-secondary prose-a:text-[var(--color-accent)] prose-strong:text-[var(--color-text-primary)] prose-code:text-[var(--color-text-secondary)] prose-pre:bg-[var(--color-surface)] prose-pre:border prose-pre:border-[var(--color-border)] prose-img:mx-auto prose-img:w-full prose-img:rounded-lg prose-img:my-10">
+        <div class="prose prose-invert max-w-none min-w-0 prose-headings:font-serif prose-headings:text-[var(--color-text-primary)] prose-p:text-moonlight-text-secondary prose-a:text-[var(--color-accent)] prose-strong:text-[var(--color-text-primary)] prose-code:text-[var(--color-text-secondary)] prose-pre:bg-[var(--color-surface)] prose-pre:border prose-pre:border-[var(--color-border)] prose-img:mx-auto prose-img:w-full prose-img:rounded-lg prose-img:my-10 [&>h1:first-child]:hidden">
           <Content />
         </div>
       </div>

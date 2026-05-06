@@ -91,6 +91,16 @@ const ArticleList = ({ articles = [] }) => {
           />
           <div className="container mx-auto px-4 py-24 md:py-32 relative z-10 flex flex-col items-center text-center">
             <div className="max-w-4xl mx-auto flex flex-col items-center">
+              {featuredArticle.image && (
+                <div className="w-full mb-8 overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-deep)] shadow-2xl">
+                  <img
+                    src={featuredArticle.image}
+                    alt=""
+                    className="aspect-[7/4] w-full object-cover"
+                    loading="eager"
+                  />
+                </div>
+              )}
               <span className="text-[var(--color-accent)] text-sm font-bold uppercase tracking-[0.08em]">Latest Article</span>
               <h1 className="text-3xl md:text-5xl font-serif font-black text-[var(--color-text-primary)] mt-4 mb-6 leading-tight tracking-tight">
                 {featuredArticle.title}
