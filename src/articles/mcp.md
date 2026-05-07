@@ -4,7 +4,7 @@ date: "2025-11-06"
 tags: ["Software Engineering", "Model Context Protocol", "MCP", "LLM tools", "Capability security", "Agent Integration", "Observability"]
 excerpt: "Learn the Model Context Protocol (MCP): what it is, why it matters, and how to ship secure, observable AI tooling with a step-by-step example. Get started now."
 seo_title: "Model Context Protocol (MCP): Guide for Engineers and Leaders"
-meta_description: "Learn MCP (Model Context Protocol) for AI tool integration. Covers typed interfaces, capability security, observability, and a step-by-step implementation example."
+meta_description: "Learn MCP (Model Context Protocol) for AI tool integration. Typed interfaces, capability security, observability, and a step-by-step example."
 target_keywords: "Model Context Protocol, MCP AI tools, MCP integration guide, AI tool protocol, LLM tool integration"
 faqs:
   - q: "What is the Model Context Protocol (MCP)?"

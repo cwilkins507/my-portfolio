@@ -5,7 +5,7 @@ tags: ["AI Agents", "Claude Code", "AGENTS.md", "CLAUDE.md", "Harness Engineerin
 excerpt: "The model is the brain. The harness is the operating environment that makes the brain useful. A plain-English breakdown of agent loops, tools, permissions, memory, verification, and why harness design matters more than model choice."
 image: "/images/articles/ai-agent-harness.png"
 seo_title: "What Is an AI Agent Harness?"
-meta_description: "A plain-English explanation of AI agent harnesses, CLAUDE.md, tools, memory, permissions, and verification. The model gives you capability — the harness determines whether you can trust it."
+meta_description: "A plain-English breakdown of AI agent harnesses: tools, memory, permissions, and verification. The model gives capability — the harness determines trust."
 target_keywords: "AI agent harness, harness engineering, AI agent architecture, CLAUDE.md, AGENTS.md, AI agent tools"
 ---
 

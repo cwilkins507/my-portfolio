@@ -4,7 +4,7 @@ date: "2026-02-15"
 tags: ["AI", "Software Engineering", "Agentic Engineering", "AI Coding Agents", "Claude", "Multi-Agent Systems", "Developer Productivity"]
 excerpt: "Vibe coding was the prompt-first era. Agentic engineering is the orchestration-first era. Here's what changed, why it matters, and what you need to learn next."
 seo_title: "From Vibe Coding to Agentic Engineering: What Changed"
-meta_description: "The shift from vibe coding to agentic engineering explained. What the Feb 2026 model launches mean for AI coding workflows, multi-agent orchestration, and the skills engineers need now."
+meta_description: "The shift from vibe coding to agentic engineering. What 2026 model launches mean for AI coding workflows, multi-agent orchestration, and skills to learn."
 target_keywords: "agentic engineering, agentic coding, vibe coding 2026, AI coding agents, Claude agent teams, multi-agent coding, AI-assisted coding"
 ---
 

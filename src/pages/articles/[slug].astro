@@ -59,7 +59,7 @@ const articleEntity = {
   "headline": frontmatter.title,
   "description": pageDescription,
   "datePublished": frontmatter.date,
-  "dateModified": frontmatter.date,
+  "dateModified": frontmatter.updated || frontmatter.date,
   "inLanguage": "en-US",
   "isAccessibleForFree": true,
   "author": {
@@ -146,7 +146,7 @@ const articleSchema = {
 ---
 
 <Layout
-  title={`${pageTitle} | Collin Wilkins`}
+  title={pageTitle}
   description={pageDescription}
   type="article"
   publishedTime={frontmatter.date}

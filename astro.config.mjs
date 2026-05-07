@@ -78,6 +78,23 @@ export default defineConfig({
                     '/articles/ai-coding-model-wars-2026': '2026-02-15',
                     '/articles/ai-agent-content-pipeline-experiment': '2026-03-03',
                     '/articles/ai-agent-harness': '2026-05-06',
+                    '/articles/3-automations-that-run-without-me': '2026-03-08',
+                    '/articles/ai-agent-workflow-claude-code': '2026-02-27',
+                    '/articles/ai-automation-roi-service-business': '2026-04-03',
+                    '/articles/ai-code-review-best-practices-approaches-tools': '2026-02-27',
+                    '/articles/automate-saas-signup-flow-weekend': '2026-02-25',
+                    '/articles/automation-cost-small-business': '2026-03-26',
+                    '/articles/claude-code-productivity-paradox': '2026-03-11',
+                    '/articles/doe-framework-claude-skills': '2026-04-17',
+                    '/articles/from-vibe-coding-to-agentic-engineering': '2026-02-15',
+                    '/articles/how-to-know-if-your-business-is-ready-for-ai': '2026-04-10',
+                    '/articles/intentional-ai-integration': '2026-04-01',
+                    '/articles/kimi-k2-6-vs-glm-5-1-vs-claude-opus-4-7': '2026-04-23',
+                    '/articles/llm-gateway-architecture': '2026-04-06',
+                    '/articles/managing-engineering-teams-with-ai': '2026-04-30',
+                    '/articles/no-code-automation-stack': '2026-03-09',
+                    '/articles/service-business-automations': '2026-02-11',
+                    '/articles/taste-is-a-moat': '2026-04-23',
                 };
                 const path = new URL(item.url).pathname;
                 if (articleDates[path]) {

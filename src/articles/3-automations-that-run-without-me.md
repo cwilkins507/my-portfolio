@@ -4,7 +4,7 @@ date: "2026-03-08"
 tags: ["Automation", "Python", "PandaDoc", "GitHub Actions", "ClickUp"]
 excerpt: "Three real automations I use daily: PandaDoc proposals, a GitHub Actions trend scanner, and automated onboarding. Exact tools and code."
 seo_title: "3 Automations I Built That Run Without Me"
-meta_description: "Three real automations I use daily: PandaDoc proposal generation, a GitHub Actions trend scanner, and automated client onboarding. Exact tools, code, and results."
+meta_description: "Three real automations I use daily: PandaDoc proposals, a GitHub Actions trend scanner, and automated onboarding. Tools, code, and results."
 target_keywords: "automation examples small business, PandaDoc API automation, GitHub Actions automation, ClickUp CRM automation, real automation examples"
 ---
 

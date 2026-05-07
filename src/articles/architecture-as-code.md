@@ -4,7 +4,7 @@ date: "2025-10-23"
 tags: ["Architecture as Code", "Software Engineering", "Developer Tools", "Diagrams", "System Design"]
 excerpt: "AI now writes a large share of new code. Stand out with Architecture as Code—pros, cons, tools, and a simple adoption plan for leaders, engineers, and recruiters."
 seo_title: "Architecture as Code: Diagrams-as-Code Adoption Guide"
-meta_description: "Adopt architecture as code with diagrams-as-code tools. Learn the pros, cons, and tools for version-controlled architecture diagrams that keep up with your codebase."
+meta_description: "Adopt architecture as code with diagrams-as-code tools. Pros, cons, and tools for version-controlled architecture diagrams that evolve with your codebase."
 target_keywords: "architecture as code, diagrams as code, architecture documentation, system design diagrams, Structurizr, Mermaid diagrams"
 ---
 

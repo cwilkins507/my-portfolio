@@ -4,7 +4,7 @@ date: "2026-04-01"
 tags: ["AI", "Software Engineering", "AI Coding Tools", "Code Quality", "Engineering Leadership"]
 excerpt: "AI tools made your team faster. Then patterns started drifting. Here's how to keep architectural coherence without killing the productivity gains."
 seo_title: "Intentional AI Integration: AI Coding Without Codebase Drift"
-meta_description: "AI tools made your team faster. Then patterns started drifting. A practitioner's playbook for maintaining codebase coherence while using AI coding tools at speed."
+meta_description: "AI tools made your team faster. Then patterns started drifting. A playbook for maintaining codebase coherence while using AI coding tools at speed."
 target_keywords: "AI codebase integration strategy, intentional AI adoption, AI code quality, AI generated code management, codebase evolution AI, vibe coding best practices, CLAUDE.md best practices, cursor rules best practices, AI code review checklist"
 faqs:
   - q: "How do AI coding tools cause codebase drift?"
