@@ -3,6 +3,8 @@ title: "How I Actually Use AI Agents Every Day"
 date: "2026-02-27"
 tags: ["AI Agents", "Claude Code", "Obsidian", "Workflow", "Developer Productivity", "Context Engineering", "MCP"]
 excerpt: "Most AI agent tutorials show Python loops and vector databases. Here's what daily agent use actually looks like: terminal-first orchestration, agent files, context architecture, and a knowledge system that feeds all of it."
+image: "/images/articles/ai-agent-workflow-claude-code.png"
+image_alt: "Terminal-first AI agent workflow connecting instructions, tools, memory, and review."
 seo_title: "How I Use AI Agents Every Day: Claude Code, Agent Files, and Context Architecture"
 meta_description: "How I run AI agents daily: Claude Code CLI, markdown agent definitions, Obsidian as a knowledge layer, and file-backed context across sessions."
 target_keywords: "AI agent development, Claude Code agents, AI workflow, file-backed context, agent files, AI productivity workflow, Claude Code daily use"

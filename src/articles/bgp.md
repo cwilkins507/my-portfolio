@@ -3,6 +3,8 @@ title: "Understanding BGP Anomalies for Engineers and Architects"
 date: "2026-01-08"
 tags: ["Networking", "BGP", "Routing Security", "RPKI", "Route Leaks", "Network Monitoring", "Incident Response"]
 excerpt: "A practical guide to BGP anomalies: taxonomy, detection signals, and mitigation patterns. Deploy RPKI, build guardrails, and design networks that limit blast radius."
+image: "/images/articles/bgp.png"
+image_alt: "Network routing visual showing autonomous systems, route paths, and anomaly detection."
 seo_title: "BGP Anomalies Explained: Detection and Mitigation for Engineers"
 meta_description: "Understand BGP hijacks, route leaks, and anomalies. RPKI deployment, detection signals, and mitigation patterns for network routing security."
 target_keywords: "BGP anomalies, BGP hijack detection, RPKI deployment, route leak mitigation, BGP security"

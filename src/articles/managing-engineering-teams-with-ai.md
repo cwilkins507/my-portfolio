@@ -4,6 +4,7 @@ date: "2026-04-30"
 tags: ["Engineering Management", "AI Tools", "Developer Productivity", "AI Coding", "Team Leadership"]
 excerpt: "Pull requests are up 20%. Incidents per PR are up 23.5%. The supervision gap is real and most managers are missing it."
 image: "/images/articles/managing-engineering-teams-with-ai.png"
+image_alt: "Engineering management in the AI era visual showing the supervision gap between AI output and human review."
 seo_title: "Managing Engineering Teams With AI"
 meta_description: "93% of orgs have AI tools deployed. Incidents are up 23.5%. Here's the supervision gap most managers are missing and 5 responsibilities to fix it."
 target_keywords: "managing engineering teams with AI, ai engineering management, ai development supervision, engineering manager ai tools"

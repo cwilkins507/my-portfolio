@@ -1,0 +1,24 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Prompt engineering visual showing instructions, examples, constraints, and model output flowing together.">
+  <style>
+    :root { --accent: #7dd3fc; --muted: rgba(255,255,255,0.28); }
+    svg { font-family: "DM Sans", Arial, sans-serif; }
+  </style>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="48%" r="58%">
+      <stop offset="0%" stop-color="#7dd3fc" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#7dd3fc" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#08111f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="rgba(255,255,255,0.16)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0.03)"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#08111f"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <path d="M0 540 C190 475 330 605 520 535 C720 460 850 520 1200 410 L1200 630 L0 630Z" fill="rgba(255,255,255,0.035)"/>
+  <path d="M110 110 H1090 V520" fill="none" stroke="url(#edge)" stroke-width="2"/>
+  <text x="110" y="86" fill="#7dd3fc" font-size="24" font-weight="700" letter-spacing="0">AI-Powered Engineering Teams</text>
+  <text x="110" y="580" fill="rgba(255,255,255,0.82)" font-size="34" font-weight="700" letter-spacing="0">Prompt Engineering</text>
+  <rect x="250" y="330" width="130" height="92" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" /><rect x="440" y="400" width="130" height="92" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" /><line x1="440" y1="446" x2="380" y2="376" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><rect x="630" y="330" width="130" height="92" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" /><line x1="630" y1="376" x2="570" y2="446" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><rect x="820" y="400" width="130" height="92" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" /><line x1="820" y1="446" x2="760" y2="376" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><path d="M285 575 C480 650 750 650 965 555" fill="none" stroke="var(--accent)" stroke-width="6" opacity="0.8"/>
+</svg>

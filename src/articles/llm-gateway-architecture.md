@@ -4,6 +4,7 @@ date: "2026-04-06"
 tags: ["AI", "System Design", "LLM", "Architecture", "Infrastructure", "Cost Optimization"]
 excerpt: "Your team is calling 4 LLM providers from 6 services with no routing layer. Here's the architecture pattern that fixes it."
 image: "/images/articles/llm-gateway-architecture.png"
+image_alt: "LLM gateway architecture diagram showing routing, policy, observability, and model provider boundaries."
 seo_title: "LLM Gateway Architecture and Multi-Model Routing"
 meta_description: "LLM gateway architecture: three deployment patterns, model routing strategies, and a step-by-step implementation playbook for engineering teams."
 target_keywords: "LLM gateway architecture, LLM routing strategy, multi-model architecture, LLM cost optimization, AI model selection framework, LiteLLM architecture, LLM gateway vs API gateway, self-hosted LLM gateway, LLM provider failover"

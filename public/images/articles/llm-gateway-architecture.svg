@@ -1,0 +1,48 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LLM gateway architecture diagram showing routing, policy, observability, and model provider boundaries.">
+  <style>
+    :root { --accent: #22d3ee; --muted: rgba(255,255,255,0.28); }
+    svg { font-family: "DM Sans", Arial, sans-serif; }
+  </style>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="48%" r="58%">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#22d3ee" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#08111f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="rgba(255,255,255,0.16)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0.03)"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#08111f"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <path d="M0 540 C190 475 330 605 520 535 C720 460 850 520 1200 410 L1200 630 L0 630Z" fill="rgba(255,255,255,0.035)"/>
+  <path d="M110 110 H1090 V520" fill="none" stroke="url(#edge)" stroke-width="2"/>
+  <text x="110" y="86" fill="#22d3ee" font-size="24" font-weight="700" letter-spacing="0">System Design for Scale</text>
+  <text x="110" y="580" fill="rgba(255,255,255,0.82)" font-size="34" font-weight="700" letter-spacing="0">LLM Gateway</text>
+  <g transform="translate(145 190)">
+        <rect x="0" y="0" width="165" height="58" rx="14" fill="rgba(255,255,255,0.05)" stroke="#94a3b8" stroke-width="2" opacity="0.95"/>
+  <text x="20" y="34" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">Service A</text>
+  <rect x="0" y="92" width="165" height="58" rx="14" fill="rgba(255,255,255,0.05)" stroke="#94a3b8" stroke-width="2" opacity="0.95"/>
+  <text x="20" y="126" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">Service B</text>
+  <rect x="0" y="184" width="165" height="58" rx="14" fill="rgba(255,255,255,0.05)" stroke="#94a3b8" stroke-width="2" opacity="0.95"/>
+  <text x="20" y="218" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">Service C</text>
+  
+        <line x1="165" y1="29" x2="365" y2="120" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" opacity="0.78"/><polyline points="349.1531742783393,122.20864541004494 365,120 356.2543076543626,106.60175886933442" fill="none" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/><line x1="165" y1="121" x2="365" y2="120" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" opacity="0.78"/><polyline points="351.53378766216827,128.64066694604233 365,120 351.4480564466051,111.4944238334138" fill="none" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/><line x1="165" y1="213" x2="365" y2="120" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" opacity="0.78"/><polyline points="356.3651870896837,133.46996681524624 365,120 349.13548510599423,117.92222061376353" fill="none" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/>
+        <rect x="365" y="40" width="230" height="160" rx="18" fill="rgba(34,211,238,0.16)" stroke="#22d3ee" stroke-width="3"/>
+        <text x="425" y="95" fill="rgba(255,255,255,0.78)" font-size="25" font-weight="700" letter-spacing="0">LLM Gateway</text>
+        <text x="418" y="128" fill="rgba(255,255,255,0.58)" font-size="15" font-weight="700" letter-spacing="0">routing</text>
+        <text x="418" y="152" fill="rgba(255,255,255,0.58)" font-size="15" font-weight="700" letter-spacing="0">policy + fallback</text>
+        <text x="418" y="176" fill="rgba(255,255,255,0.58)" font-size="15" font-weight="700" letter-spacing="0">cost + observability</text>
+        <rect x="780" y="0" width="180" height="52" rx="14" fill="rgba(255,255,255,0.05)" stroke="#94a3b8" stroke-width="2" opacity="0.95"/>
+  <text x="800" y="34" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">Anthropic</text>
+  <rect x="780" y="72" width="180" height="52" rx="14" fill="rgba(255,255,255,0.05)" stroke="#94a3b8" stroke-width="2" opacity="0.95"/>
+  <text x="800" y="106" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">OpenAI</text>
+  <rect x="780" y="144" width="180" height="52" rx="14" fill="rgba(255,255,255,0.05)" stroke="#94a3b8" stroke-width="2" opacity="0.95"/>
+  <text x="800" y="178" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">Bedrock</text>
+  <rect x="780" y="216" width="180" height="52" rx="14" fill="rgba(255,255,255,0.05)" stroke="#94a3b8" stroke-width="2" opacity="0.95"/>
+  <text x="800" y="250" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">Azure</text>
+  
+        <line x1="595" y1="120" x2="780" y2="26" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" opacity="0.78"/><polyline points="771.8398372869367,39.762693940371214 780,26 764.0727139089181,24.476334100653926" fill="none" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/><line x1="595" y1="120" x2="780" y2="98" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" opacity="0.78"/><polyline points="767.5976595626074,108.10850887495367 780,98 765.5728879846672,91.08202060591097" fill="none" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/><line x1="595" y1="120" x2="780" y2="170" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" opacity="0.78"/><polyline points="764.7218349165681,174.75159675092533 780,170 769.1955004117153,158.19903441888098" fill="none" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/><line x1="595" y1="120" x2="780" y2="242" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" opacity="0.78"/><polyline points="764.0024526568625,241.7198589568208 780,242 773.4420548198348,227.40570813592012" fill="none" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/>
+      </g>
+</svg>

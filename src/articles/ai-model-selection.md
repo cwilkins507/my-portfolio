@@ -3,6 +3,8 @@ title: "AI Model Selection: Choosing the Right Model and Application Pattern"
 date: "2026-02-03"
 tags: ["Software Engineering", "AI", "Machine Learning", "LLMs", "Developer Tools"]
 excerpt: "Not all tasks need the most powerful AI model. Learn how to match model intelligence to task complexity and stop overpaying for sledgehammers when you need scalpels."
+image: "/images/articles/ai-model-selection.png"
+image_alt: "Model selection matrix matching task complexity to model capability and cost."
 seo_title: "AI Model Selection Guide: Choose Models for Coding, Research, and Automation"
 meta_description: "Learn how to choose between AI automation, workflows, and agents. Match model intelligence to task complexity for better results at lower cost."
 target_keywords: "AI model selection, task complexity, AI agents vs automation, LLM benchmarks, choosing AI models, SWE-bench, model intelligence"

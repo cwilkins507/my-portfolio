@@ -4,6 +4,8 @@ date: "2026-04-10"
 updated: "2026-04-15"
 tags: ["AI", "AI Adoption", "Engineering Leadership", "Claude Code", "Convention Files", "AI Strategy"]
 excerpt: "A 2-minute AI readiness quiz for engineering teams using Claude Code, Cursor, Cowork, or ChatGPT. Five questions, four levels, and the one thing to do next at each stage — whether your team ships code, decks, or reports."
+image: "/images/articles/how-to-know-if-your-business-is-ready-for-ai.png"
+image_alt: "Four-level AI readiness spectrum moving from individual experimentation to governed team adoption."
 seo_title: "How to Know If Your Business Is Ready for AI"
 meta_description: "A 2-minute AI readiness quiz for engineering leaders. Five questions, four maturity levels, and what to do next at each stage."
 target_keywords: "is my business ready for AI, is my engineering team ready for AI, AI readiness engineering teams, Claude Code rollout, convention files, when to use AI coding tools"

@@ -1,0 +1,40 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Model selection matrix matching task complexity to model capability and cost.">
+  <style>
+    :root { --accent: #2dd4bf; --muted: rgba(255,255,255,0.28); }
+    svg { font-family: "DM Sans", Arial, sans-serif; }
+  </style>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="48%" r="58%">
+      <stop offset="0%" stop-color="#2dd4bf" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#2dd4bf" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#08111f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="rgba(255,255,255,0.16)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0.03)"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#08111f"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <path d="M0 540 C190 475 330 605 520 535 C720 460 850 520 1200 410 L1200 630 L0 630Z" fill="rgba(255,255,255,0.035)"/>
+  <path d="M110 110 H1090 V520" fill="none" stroke="url(#edge)" stroke-width="2"/>
+  <text x="110" y="86" fill="#2dd4bf" font-size="24" font-weight="700" letter-spacing="0">AI-Powered Engineering Teams</text>
+  <text x="110" y="580" fill="rgba(255,255,255,0.82)" font-size="34" font-weight="700" letter-spacing="0">Model Selection</text>
+  <g transform="translate(180 192)">
+        <rect x="0" y="0" width="840" height="310" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>
+        <rect x="45" y="76" width="135" height="58" rx="14" fill="rgba(255,255,255,0.05)" stroke="#60a5fa" stroke-width="2" opacity="0.95"/>
+  <text x="65" y="110" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">1. Define task</text>
+  <rect x="200" y="148" width="135" height="58" rx="14" fill="rgba(255,255,255,0.05)" stroke="#818cf8" stroke-width="2" opacity="0.95"/>
+  <text x="220" y="182" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">2. Assess complexity</text>
+  <line x1="180" y1="105" x2="200" y2="177" stroke="#2dd4bf" stroke-width="3" stroke-linecap="round" opacity="0.78"/><polyline points="188.1238735727083,166.2781708145026 200,177 204.64479240220828,161.68902669519707" fill="none" stroke="#2dd4bf" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/><rect x="355" y="76" width="135" height="58" rx="14" fill="rgba(255,255,255,0.05)" stroke="#f472b6" stroke-width="2" opacity="0.95"/>
+  <text x="375" y="110" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">3. Choose pattern</text>
+  <line x1="335" y1="177" x2="355" y2="105" stroke="#2dd4bf" stroke-width="3" stroke-linecap="round" opacity="0.78"/><polyline points="359.6447924022083,120.31097330480294 355,105 343.1238735727083,115.7218291854974" fill="none" stroke="#2dd4bf" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/><rect x="510" y="148" width="135" height="58" rx="14" fill="rgba(255,255,255,0.05)" stroke="#fbbf24" stroke-width="2" opacity="0.95"/>
+  <text x="530" y="182" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">4. Select model</text>
+  <line x1="490" y1="105" x2="510" y2="177" stroke="#2dd4bf" stroke-width="3" stroke-linecap="round" opacity="0.78"/><polyline points="498.1238735727083,166.2781708145026 510,177 514.6447924022083,161.68902669519707" fill="none" stroke="#2dd4bf" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/><rect x="665" y="76" width="135" height="58" rx="14" fill="rgba(255,255,255,0.05)" stroke="#4ade80" stroke-width="2" opacity="0.95"/>
+  <text x="685" y="110" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">5. Test result</text>
+  <line x1="645" y1="177" x2="665" y2="105" stroke="#2dd4bf" stroke-width="3" stroke-linecap="round" opacity="0.78"/><polyline points="669.6447924022083,120.31097330480294 665,105 653.1238735727082,115.7218291854974" fill="none" stroke="#2dd4bf" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/>
+        <path d="M70 255 C240 232 390 228 560 196 S712 130 785 70" fill="none" stroke="#2dd4bf" stroke-width="6" stroke-linecap="round"/>
+        <text x="70" y="282" fill="#99f6e4" font-size="16" font-weight="700" letter-spacing="0">simpler, cheaper</text>
+        <text x="640" y="58" fill="#99f6e4" font-size="16" font-weight="700" letter-spacing="0">harder, smarter</text>
+      </g>
+</svg>

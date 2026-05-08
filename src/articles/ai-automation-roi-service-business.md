@@ -3,6 +3,8 @@ title: "The ROI Math on AI Automation for Service Businesses: When It Works, Whe
 date: "2026-04-03"
 tags: ["Automation", "Service Business", "AI", "ROI", "Business Strategy"]
 excerpt: "A 4-factor framework for evaluating AI automation in service businesses. Real tools, actual cost ranges, and when the math doesn't work."
+image: "/images/articles/ai-automation-roi-service-business.png"
+image_alt: "Automation ROI model showing time, volume, exception rate, and tool cost converging into a decision point."
 seo_title: "AI Automation ROI for Service Businesses: A Practitioner's Framework"
 meta_description: "A 4-factor framework for evaluating AI automation ROI in service businesses. Real tools, cost ranges, and the hidden costs vendors won't mention."
 target_keywords: "AI automation ROI service business, AI automation for service businesses, business automation ROI, AI receptionist ROI, voice AI for business, AI receptionist cost, service business automation tools, what to automate first small business"

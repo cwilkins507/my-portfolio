@@ -1,0 +1,24 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Automation ROI model showing time, volume, exception rate, and tool cost converging into a decision point.">
+  <style>
+    :root { --accent: #fbbf24; --muted: rgba(255,255,255,0.28); }
+    svg { font-family: "DM Sans", Arial, sans-serif; }
+  </style>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="48%" r="58%">
+      <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#fbbf24" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#08111f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="rgba(255,255,255,0.16)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0.03)"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#08111f"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <path d="M0 540 C190 475 330 605 520 535 C720 460 850 520 1200 410 L1200 630 L0 630Z" fill="rgba(255,255,255,0.035)"/>
+  <path d="M110 110 H1090 V520" fill="none" stroke="url(#edge)" stroke-width="2"/>
+  <text x="110" y="86" fill="#fbbf24" font-size="24" font-weight="700" letter-spacing="0">Automation Architecture</text>
+  <text x="110" y="580" fill="rgba(255,255,255,0.82)" font-size="34" font-weight="700" letter-spacing="0">Automation ROI</text>
+  <rect x="260" y="250" width="780" height="360" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" /><rect x="330" y="330" width="92" height="120" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" /><line x1="422" y1="390" x2="880" y2="430" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><rect x="475" y="330" width="92" height="120" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" /><line x1="567" y1="390" x2="880" y2="430" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><rect x="620" y="330" width="92" height="120" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" /><line x1="712" y1="390" x2="880" y2="430" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><rect x="765" y="330" width="92" height="120" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" /><line x1="857" y1="390" x2="880" y2="430" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><circle cx="900" cy="430" r="48" fill="var(--accent)" opacity="0.95"/><path d="M850 500 L945 500 L900 555 Z" fill="var(--accent)" opacity="0.88"/>
+</svg>

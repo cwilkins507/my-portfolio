@@ -5,6 +5,8 @@ date: "2026-02-19"
 slug: "context-engineering"
 tags: ["Software Engineering", "AI Tools", "Developer Productivity", "Claude Code", "Context Engineering"]
 excerpt: "Most developers over-invest in prompt engineering and ignore context. Here's the four-layer framework that makes every AI coding session better."
+image: "/images/articles/context-engineering.png"
+image_alt: "Four-layer context engineering stack for better AI coding sessions."
 seo_title: "Context Engineering: The Four-Layer Framework for AI Coding Tools"
 meta_description: "Most developers over-invest in prompt engineering and ignore context. Here's the four-layer framework that makes every AI coding session better."
 target_keywords: "CLAUDE.md best practices, codebase structure AI coding, AI coding context window, context window management, context engineering four layers, primacy problem AI, CLAUDE md instruction file"

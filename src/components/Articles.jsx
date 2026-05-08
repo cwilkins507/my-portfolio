@@ -74,7 +74,7 @@ const ArticleList = ({ articles = [] }) => {
                 <div className="w-full mb-8 overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-deep)] shadow-2xl">
                   <img
                     src={featuredArticle.image}
-                    alt=""
+                    alt={featuredArticle.image_alt || featuredArticle.title}
                     className="aspect-[7/4] w-full object-cover"
                     loading="eager"
                   />
@@ -160,7 +160,7 @@ const ArticleList = ({ articles = [] }) => {
               >
                 {article.image && (
                   <div className="flex-none w-full md:w-[160px] aspect-video rounded-lg overflow-hidden border border-[var(--color-border)] group-hover:border-[var(--color-border-hover)] transition-colors">
-                    <img src={article.image} alt={article.title} className="w-full h-full object-cover" loading="lazy" />
+                    <img src={article.image} alt={article.image_alt || article.title} className="w-full h-full object-cover" loading="lazy" />
                   </div>
                 )}
                 <div className="flex-1 min-w-0">

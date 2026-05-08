@@ -1,0 +1,24 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Software design patterns visual showing reusable components arranged into a maintainable system.">
+  <style>
+    :root { --accent: #818cf8; --muted: rgba(255,255,255,0.28); }
+    svg { font-family: "DM Sans", Arial, sans-serif; }
+  </style>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="48%" r="58%">
+      <stop offset="0%" stop-color="#818cf8" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#818cf8" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#08111f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="rgba(255,255,255,0.16)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0.03)"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#08111f"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <path d="M0 540 C190 475 330 605 520 535 C720 460 850 520 1200 410 L1200 630 L0 630Z" fill="rgba(255,255,255,0.035)"/>
+  <path d="M110 110 H1090 V520" fill="none" stroke="url(#edge)" stroke-width="2"/>
+  <text x="110" y="86" fill="#818cf8" font-size="24" font-weight="700" letter-spacing="0">System Design for Scale</text>
+  <text x="110" y="580" fill="rgba(255,255,255,0.82)" font-size="34" font-weight="700" letter-spacing="0">Design Patterns</text>
+  <path d="M670 300 L940 420 L670 540 L400 420Z" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.17)" stroke-width="3"/><path d="M670 375 L940 495 L670 615 L400 495Z" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.17)" stroke-width="3"/><path d="M670 450 L940 570 L670 690 L400 570Z" fill="rgba(255,255,255,0.09)" stroke="rgba(255,255,255,0.17)" stroke-width="3"/><path d="M670 525 L940 645 L670 765 L400 645Z" fill="rgba(255,255,255,0.11)" stroke="var(--accent)" stroke-width="3"/>
+</svg>

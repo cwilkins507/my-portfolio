@@ -3,6 +3,8 @@ title: "I Gave My AI Agent Full Control of the Content Pipeline. Here's What Hap
 date: "2026-03-03"
 tags: ["AI Agents", "Claude Code", "Content Pipeline", "AI Writing", "Experiment", "Context Engineering"]
 excerpt: "Research, topic selection, writing, post-processing — all run by an AI agent with zero human edits. Here's the full pipeline, the four-treatment experiment, and the honest 7/10 score."
+image: "/images/articles/ai-agent-content-pipeline-experiment.png"
+image_alt: "AI content pipeline moving from research to drafting, polishing, scoring, and publishing."
 seo_title: "I Gave My AI Agent Full Control of the Content Pipeline"
 meta_description: "Research, topic selection, writing, post-processing — all run by an AI agent with zero human edits. Here's the full pipeline, including what it got wrong."
 target_keywords: "ai agent content pipeline, ai generated blog post experiment, autonomous ai writing, claude code content production, ai agent workflow"

@@ -52,6 +52,7 @@ const relatedArticles = allArticles
 const pageTitle = frontmatter.seo_title || frontmatter.title;
 const pageDescription = frontmatter.meta_description || frontmatter.excerpt;
 const imageUrl = frontmatter.image ? new URL(frontmatter.image, Astro.site).toString() : undefined;
+const imageAlt = frontmatter.image_alt || frontmatter.title;
 
 // Article structured data for SEO
 const articleEntity = {
@@ -171,7 +172,7 @@ const articleSchema = {
       </div>
       {frontmatter.image && (
         <figure class="mb-12 overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]">
-          <img src={frontmatter.image} alt="" class="aspect-[7/4] w-full object-cover" loading="eager" />
+          <img src={frontmatter.image} alt={imageAlt} class="aspect-[7/4] w-full object-cover" loading="eager" />
         </figure>
       )}
       

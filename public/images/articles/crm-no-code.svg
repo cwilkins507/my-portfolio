@@ -1,0 +1,24 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="No-code CRM integration pattern connecting forms, contacts, enrichment, and follow-up systems.">
+  <style>
+    :root { --accent: #fb7185; --muted: rgba(255,255,255,0.28); }
+    svg { font-family: "DM Sans", Arial, sans-serif; }
+  </style>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="48%" r="58%">
+      <stop offset="0%" stop-color="#fb7185" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#fb7185" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#08111f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="rgba(255,255,255,0.16)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0.03)"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#08111f"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <path d="M0 540 C190 475 330 605 520 535 C720 460 850 520 1200 410 L1200 630 L0 630Z" fill="rgba(255,255,255,0.035)"/>
+  <path d="M110 110 H1090 V520" fill="none" stroke="url(#edge)" stroke-width="2"/>
+  <text x="110" y="86" fill="#fb7185" font-size="24" font-weight="700" letter-spacing="0">Automation Architecture</text>
+  <text x="110" y="580" fill="rgba(255,255,255,0.82)" font-size="34" font-weight="700" letter-spacing="0">CRM Integration</text>
+  <circle cx="270" cy="430" r="36" fill="var(--accent)" opacity="0.95"/><rect x="220" y="495" width="100" height="60" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" /><line x1="315" y1="430" x2="405" y2="430" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><circle cx="435" cy="430" r="36" fill="var(--accent)" opacity="0.95"/><rect x="385" y="495" width="100" height="60" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" /><line x1="480" y1="430" x2="570" y2="430" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><circle cx="600" cy="430" r="36" fill="var(--accent)" opacity="0.95"/><rect x="550" y="495" width="100" height="60" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" /><line x1="645" y1="430" x2="735" y2="430" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><circle cx="765" cy="430" r="36" fill="var(--accent)" opacity="0.95"/><rect x="715" y="495" width="100" height="60" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" /><line x1="810" y1="430" x2="900" y2="430" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><circle cx="930" cy="430" r="36" fill="var(--accent)" opacity="0.95"/><rect x="880" y="495" width="100" height="60" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" />
+</svg>

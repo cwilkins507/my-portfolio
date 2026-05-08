@@ -3,6 +3,8 @@ title: "AWS Lambda Practices: Messaging & Compute Best Practices"
 date: "2025-12-09"
 tags: ["AWS", "Lambda", "SQS", "Serverless", "Distributed Systems", "DevOps", "SNS"]
 excerpt: "A breakdown of production-ready AWS Lambda and SQS configurations, covering visibility timeouts, batch sizes, failure handling, and idempotency strategies."
+image: "/images/articles/aws-lambda-practices.png"
+image_alt: "Serverless architecture pattern showing event queues, Lambda compute, retries, and failure handling."
 seo_title: "AWS Lambda and SQS Best Practices for Production Systems"
 meta_description: "Production-ready AWS Lambda and SQS patterns. Learn visibility timeouts, batch processing, dead letter queues, idempotency, and SNS fan-out configurations."
 target_keywords: "AWS Lambda best practices, SQS configuration, Lambda SQS integration, serverless best practices, AWS messaging patterns"

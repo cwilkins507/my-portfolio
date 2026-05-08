@@ -1,0 +1,24 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="No-code development visual showing reusable blocks connected into a governed business workflow.">
+  <style>
+    :root { --accent: #fb7185; --muted: rgba(255,255,255,0.28); }
+    svg { font-family: "DM Sans", Arial, sans-serif; }
+  </style>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="48%" r="58%">
+      <stop offset="0%" stop-color="#fb7185" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#fb7185" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#08111f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="rgba(255,255,255,0.16)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0.03)"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#08111f"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <path d="M0 540 C190 475 330 605 520 535 C720 460 850 520 1200 410 L1200 630 L0 630Z" fill="rgba(255,255,255,0.035)"/>
+  <path d="M110 110 H1090 V520" fill="none" stroke="url(#edge)" stroke-width="2"/>
+  <text x="110" y="86" fill="#fb7185" font-size="24" font-weight="700" letter-spacing="0">Automation Architecture</text>
+  <text x="110" y="580" fill="rgba(255,255,255,0.82)" font-size="34" font-weight="700" letter-spacing="0">No-Code Development</text>
+  <rect x="300" y="340" width="150" height="78" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" /><circle cx="330" cy="379" r="16" fill="var(--accent)" opacity="0.95"/><rect x="560" y="340" width="150" height="78" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" /><line x1="560" y1="379" x2="450" y2="285" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><circle cx="590" cy="379" r="16" fill="var(--accent)" opacity="0.95"/><rect x="820" y="340" width="150" height="78" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" /><line x1="820" y1="379" x2="710" y2="285" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><circle cx="850" cy="379" r="16" fill="var(--accent)" opacity="0.95"/><rect x="300" y="520" width="150" height="78" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" /><line x1="300" y1="559" x2="190" y2="465" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><circle cx="330" cy="559" r="16" fill="var(--accent)" opacity="0.95"/><rect x="560" y="520" width="150" height="78" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" /><line x1="560" y1="559" x2="450" y2="465" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><circle cx="590" cy="559" r="16" fill="var(--accent)" opacity="0.95"/><rect x="820" y="520" width="150" height="78" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" /><line x1="820" y1="559" x2="710" y2="465" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><circle cx="850" cy="559" r="16" fill="var(--accent)" opacity="0.95"/><path d="M810 525 C900 520 990 575 1030 645" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round"/>
+</svg>

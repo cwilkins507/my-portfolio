@@ -3,6 +3,8 @@ title: "AI-Assisted Coding in 2025"
 date: "2025-10-19"
 tags: ["AI", "Software Engineering", "Developer Tools"]
 excerpt: "How AI is actually changing software development—from what I've seen in the wild and what's working versus what's hype."
+image: "/images/articles/ai-assisted-coding.png"
+image_alt: "AI-assisted coding workflow connecting developer intent, generated code, and human review."
 seo_title: "AI-Assisted Coding in 2025: What's Working and What's Hype"
 meta_description: "A real-world look at AI-assisted coding in 2025. What's actually changing in software development workflows, team roles, and productivity—beyond the hype."
 target_keywords: "AI assisted coding, AI coding tools 2025, AI software development, GitHub Copilot, AI pair programming"

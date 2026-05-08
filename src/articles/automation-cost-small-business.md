@@ -3,6 +3,8 @@ title: "What Automation Actually Costs (And Saves) a Small Business"
 date: "2026-03-26"
 tags: ["Automation", "Small Business", "ROI", "Cost Analysis"]
 excerpt: "Real automation costs for small businesses: $0-10K. Three tiers and the ROI math that makes the decision obvious."
+image: "/images/articles/automation-cost-small-business.png"
+image_alt: "Three automation cost tiers comparing do-it-yourself tools, professional platforms, and custom systems."
 seo_title: "What Automation Costs (And Saves) a Small Business"
 meta_description: "Real automation costs for small businesses: $0-10K across three tiers. ROI math, payback timelines, and when automation is a bad idea. No enterprise fluff."
 target_keywords: "automation cost small business, small business automation ROI, automation pricing, how much does automation cost, business automation investment, automation payback period, Zapier vs Make cost, small business workflow automation cost"

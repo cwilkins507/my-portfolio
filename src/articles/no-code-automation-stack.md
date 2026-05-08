@@ -3,6 +3,8 @@ title: "The No-Code Automation Stack for Non-Technical Founders"
 date: "2026-03-09"
 tags: ["Automation", "No-Code", "Small Business", "Make.com", "ClickUp"]
 excerpt: "A practical no-code stack for founders: 8 tools in 3 layers, $9-73/month, with a complete lead-to-client workflow. Start automating this week."
+image: "/images/articles/no-code-automation-stack.png"
+image_alt: "No-code automation stack visual connecting tools, workflow logic, data, and human approval."
 seo_title: "The No-Code Automation Stack for Non-Technical Founders"
 meta_description: "A practical no-code automation stack for small business founders. 8 tools in 3 layers, $9-73/month, with a complete lead-to-client workflow example."
 target_keywords: "no-code automation stack, automation tools for small business, Make.com vs Zapier, no-code workflow, business automation tools, non-technical automation"

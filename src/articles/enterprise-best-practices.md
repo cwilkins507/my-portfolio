@@ -3,6 +3,8 @@ title: "Enterprise Best Practices for AI-Assisted Software Engineering Teams"
 date: "2026-02-01"
 tags: ["AI", "Software Engineering", "Enterprise", "Claude", "GitHub Copilot", "LLM", "DevTools", "Prompting"]
 excerpt: "AI tooling can speed up enterprise engineering teams, but only with the right guardrails. A practical guide to prompting, context management, governance, and parallelization across Claude, Copilot, and CLI tools."
+image: "/images/articles/enterprise-best-practices.png"
+image_alt: "Enterprise AI engineering practice stack showing prompts, reviews, guardrails, and delivery controls."
 seo_title: "Enterprise Best Practices for AI Software Engineering"
 meta_description: "A practical guide to Claude, Copilot, and CLI tools in enterprise engineering teams. Covers prompting, context management, governance, and parallelization."
 target_keywords: "enterprise AI software engineering best practices, AI coding tools enterprise, claude copilot enterprise, AI prompting, context management"

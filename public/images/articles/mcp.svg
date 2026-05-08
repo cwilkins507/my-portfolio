@@ -1,0 +1,24 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Model Context Protocol hub connecting AI tools to secure external capabilities.">
+  <style>
+    :root { --accent: #38bdf8; --muted: rgba(255,255,255,0.28); }
+    svg { font-family: "DM Sans", Arial, sans-serif; }
+  </style>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="48%" r="58%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#38bdf8" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#08111f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="rgba(255,255,255,0.16)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0.03)"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#08111f"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <path d="M0 540 C190 475 330 605 520 535 C720 460 850 520 1200 410 L1200 630 L0 630Z" fill="rgba(255,255,255,0.035)"/>
+  <path d="M110 110 H1090 V520" fill="none" stroke="url(#edge)" stroke-width="2"/>
+  <text x="110" y="86" fill="#38bdf8" font-size="24" font-weight="700" letter-spacing="0">AI Agents in Practice</text>
+  <text x="110" y="580" fill="rgba(255,255,255,0.82)" font-size="34" font-weight="700" letter-spacing="0">MCP</text>
+  <circle cx="670" cy="455" r="64" fill="var(--accent)" opacity="0.95"/><line x1="670" y1="455" x2="915" y2="455" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><circle cx="915" cy="455" r="30" fill="var(--accent)" opacity="0.95"/><line x1="670" y1="455" x2="792.5" y2="593.5640646055101" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><circle cx="792.5" cy="593.5640646055101" r="30" fill="var(--accent)" opacity="0.95"/><line x1="670" y1="455" x2="547.5" y2="593.5640646055102" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><circle cx="547.5" cy="593.5640646055102" r="30" fill="var(--accent)" opacity="0.95"/><line x1="670" y1="455" x2="425" y2="455" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><circle cx="425" cy="455" r="30" fill="var(--accent)" opacity="0.95"/><line x1="670" y1="455" x2="547.4999999999999" y2="316.43593539448983" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><circle cx="547.4999999999999" cy="316.43593539448983" r="30" fill="var(--accent)" opacity="0.95"/><line x1="670" y1="455" x2="792.5" y2="316.43593539448983" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><circle cx="792.5" cy="316.43593539448983" r="30" fill="var(--accent)" opacity="0.95"/>
+</svg>

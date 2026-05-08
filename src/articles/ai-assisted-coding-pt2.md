@@ -3,6 +3,8 @@ title: "AI Coding Assistants: Trends, Limits, and What's Next"
 date: "2026-01-10"
 tags: ["Software Engineering", "AI Coding Assistants", "LLM tools", "Developer Productivity", "Secure AI Adoption", "Agent Integration", "Observability"]
 excerpt: "What AI coding assistants actually do well, where they fail, and how to use them without breaking things or forgetting how to code."
+image: "/images/articles/ai-assisted-coding-pt2.png"
+image_alt: "AI coding assistant workflow showing capability, guardrails, observability, and review limits."
 seo_title: "AI Coding Assistants: Trends, Limits, What's Next"
 meta_description: "How AI coding assistants evolved, where they help and hurt, and how to adopt them safely with actual guardrails and metrics."
 target_keywords: "AI coding assistants, developer productivity, code generation, LLM coding tools, secure AI adoption, software engineering best practices, pair programming AI, code review automation"

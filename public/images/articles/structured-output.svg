@@ -1,0 +1,42 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Validated structured output path turning language model responses into reliable pipeline data.">
+  <style>
+    :root { --accent: #4ade80; --muted: rgba(255,255,255,0.28); }
+    svg { font-family: "DM Sans", Arial, sans-serif; }
+  </style>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="48%" r="58%">
+      <stop offset="0%" stop-color="#4ade80" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#4ade80" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#08111f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="rgba(255,255,255,0.16)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0.03)"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#08111f"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <path d="M0 540 C190 475 330 605 520 535 C720 460 850 520 1200 410 L1200 630 L0 630Z" fill="rgba(255,255,255,0.035)"/>
+  <path d="M110 110 H1090 V520" fill="none" stroke="url(#edge)" stroke-width="2"/>
+  <text x="110" y="86" fill="#4ade80" font-size="24" font-weight="700" letter-spacing="0">System Design for Scale</text>
+  <text x="110" y="580" fill="rgba(255,255,255,0.82)" font-size="34" font-weight="700" letter-spacing="0">Structured Outputs</text>
+  <g transform="translate(105 230)">
+        <rect x="0" y="50" width="160" height="72" rx="14" fill="rgba(255,255,255,0.06)" stroke="#94a3b8" stroke-width="2" opacity="0.95"/>
+  <text x="20" y="84" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">LLM Text</text>
+  <text x="20" y="112" fill="rgba(255,255,255,0.48)" font-size="14" font-weight="600" letter-spacing="0">untrusted</text>
+        <line x1="160" y1="86" x2="270" y2="86" stroke="#4ade80" stroke-width="4" stroke-linecap="round" opacity="0.78"/><polyline points="256.49075319196777,94.57322871966394 270,86 256.49075319196777,77.42677128033606" fill="none" stroke="#4ade80" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/>
+        <rect x="270" y="50" width="165" height="72" rx="14" fill="rgba(255,255,255,0.06)" stroke="#60a5fa" stroke-width="2" opacity="0.95"/>
+  <text x="290" y="84" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">Parse JSON</text>
+  
+        <line x1="435" y1="86" x2="555" y2="86" stroke="#4ade80" stroke-width="4" stroke-linecap="round" opacity="0.78"/><polyline points="541.4907531919678,94.57322871966394 555,86 541.4907531919678,77.42677128033606" fill="none" stroke="#4ade80" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/>
+        <rect x="555" y="28" width="205" height="116" rx="14" fill="rgba(74,222,128,0.12)" stroke="#4ade80" stroke-width="2" opacity="0.95"/>
+  <text x="575" y="62" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">Validate Schema</text>
+  <text x="575" y="90" fill="rgba(255,255,255,0.48)" font-size="14" font-weight="600" letter-spacing="0">reject, repair, retry</text>
+        <line x1="760" y1="86" x2="885" y2="86" stroke="#4ade80" stroke-width="4" stroke-linecap="round" opacity="0.78"/><polyline points="871.4907531919678,94.57322871966394 885,86 871.4907531919678,77.42677128033606" fill="none" stroke="#4ade80" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/>
+        <rect x="885" y="50" width="165" height="72" rx="14" fill="rgba(255,255,255,0.06)" stroke="#4ade80" stroke-width="2" opacity="0.95"/>
+  <text x="905" y="84" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">Trusted Data</text>
+  <text x="905" y="112" fill="rgba(255,255,255,0.48)" font-size="14" font-weight="600" letter-spacing="0">pipeline safe</text>
+        <path d="M650 144 C650 230 400 230 400 122" fill="none" stroke="#fb7185" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 7"/>
+        <text x="490" y="252" fill="#fda4af" font-size="16" font-weight="700" letter-spacing="0">invalid output retries before storage</text>
+      </g>
+</svg>

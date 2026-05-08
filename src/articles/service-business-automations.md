@@ -3,6 +3,8 @@ title: "5 Automations Every Service Business Should Have by 2026"
 date: "2026-02-11"
 tags: ["Automation", "Small Business", "Service Business", "No-Code"]
 excerpt: "The 5 automations that save service businesses 10+ hours/week. Concrete tools, setup times, and ROI for agencies and consultants."
+image: "/images/articles/service-business-automations.png"
+image_alt: "Five connected service business workflows for leads, proposals, onboarding, delivery, and follow-up."
 seo_title: "5 Automations Every Service Business Needs in 2026"
 meta_description: "The 5 automations that save service businesses 10+ hours/week. Concrete tools, setup times, and ROI for agencies, consultants, and studios."
 target_keywords: "service business automation, automation for agencies, automate client onboarding, automated reporting, small business automation"

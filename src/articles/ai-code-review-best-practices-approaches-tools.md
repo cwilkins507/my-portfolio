@@ -3,6 +3,8 @@ title: "AI Code Review: Approaches, Trends, and Best Practices"
 date: "2026-02-27"
 tags: ["Software Engineering", "Code Review", "AI Tools", "Secure Development", "DevEx", "CI/CD"]
 excerpt: "AI is writing more code. Here's how to review it faster — local agent patterns, CI/CD integration, and the vendor landscape including Greptile, CodeRabbit, and GitHub Copilot."
+image: "/images/articles/ai-code-review-best-practices-approaches-tools.png"
+image_alt: "AI-assisted code review flow with local checks, continuous integration, and human approval."
 seo_title: "AI Code Review: Approaches, Tools, and Best Practices (2026)"
 meta_description: "Three approaches to AI code review: local agents, CI/CD integration, and vendor tools. Best practices for signal, gating, and ownership."
 target_keywords: "AI code review, AI pull request review, LLM code review best practices, automated code review, integrate AI in CI, secure AI review workflow, developer productivity AI"

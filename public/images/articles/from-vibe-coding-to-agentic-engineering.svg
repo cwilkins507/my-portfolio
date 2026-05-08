@@ -1,0 +1,48 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Shift from prompt-first coding to orchestrated agentic engineering workflows.">
+  <style>
+    :root { --accent: #c084fc; --muted: rgba(255,255,255,0.28); }
+    svg { font-family: "DM Sans", Arial, sans-serif; }
+  </style>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="48%" r="58%">
+      <stop offset="0%" stop-color="#c084fc" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#c084fc" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#08111f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="rgba(255,255,255,0.16)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0.03)"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#08111f"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <path d="M0 540 C190 475 330 605 520 535 C720 460 850 520 1200 410 L1200 630 L0 630Z" fill="rgba(255,255,255,0.035)"/>
+  <path d="M110 110 H1090 V520" fill="none" stroke="url(#edge)" stroke-width="2"/>
+  <text x="110" y="86" fill="#c084fc" font-size="24" font-weight="700" letter-spacing="0">AI Agents in Practice</text>
+  <text x="110" y="580" fill="rgba(255,255,255,0.82)" font-size="34" font-weight="700" letter-spacing="0">Agentic Engineering</text>
+  <g transform="translate(145 186)">
+        <rect x="0" y="48" width="430" height="230" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>
+        <text x="74" y="98" fill="rgba(255,255,255,0.78)" font-size="28" font-weight="700" letter-spacing="0">Vibe Coding</text>
+        <rect x="76" y="130" width="280" height="50" rx="14" fill="rgba(255,255,255,0.06)" stroke="#c084fc" stroke-width="2" opacity="0.95"/>
+  <text x="96" y="164" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">Human writes prompt</text>
+  
+        <rect x="76" y="204" width="280" height="50" rx="14" fill="rgba(255,255,255,0.06)" stroke="#c084fc" stroke-width="2" opacity="0.95"/>
+  <text x="96" y="238" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">AI generates code</text>
+  
+        <line x1="216" y1="180" x2="216" y2="204" stroke="#c084fc" stroke-width="3" stroke-linecap="round" opacity="0.78"/><polyline points="207.42677128033606,190.49075319196777 216,204 224.57322871966394,190.49075319196777" fill="none" stroke="#c084fc" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/>
+        <line x1="430" y1="164" x2="610" y2="164" stroke="#c084fc" stroke-width="7" stroke-linecap="round" opacity="0.78"/><polyline points="596.4907531919678,172.57322871966394 610,164 596.4907531919678,155.42677128033606" fill="none" stroke="#c084fc" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/>
+        <rect x="610" y="0" width="430" height="330" rx="18" fill="rgba(96,165,250,0.08)" stroke="#60a5fa" stroke-width="2"/>
+        <text x="684" y="52" fill="rgba(255,255,255,0.78)" font-size="28" font-weight="700" letter-spacing="0">Agentic Engineering</text>
+        <rect x="665" y="132" width="88" height="58" rx="14" fill="rgba(255,255,255,0.06)" stroke="#60a5fa" stroke-width="2" opacity="0.95"/>
+  <text x="685" y="166" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">Agent A</text>
+  <rect x="780" y="132" width="88" height="58" rx="14" fill="rgba(255,255,255,0.06)" stroke="#60a5fa" stroke-width="2" opacity="0.95"/>
+  <text x="800" y="166" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">Agent B</text>
+  <rect x="895" y="132" width="88" height="58" rx="14" fill="rgba(255,255,255,0.06)" stroke="#60a5fa" stroke-width="2" opacity="0.95"/>
+  <text x="915" y="166" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">Agent C</text>
+  
+        <rect x="720" y="236" width="210" height="58" rx="14" fill="rgba(255,255,255,0.06)" stroke="#4ade80" stroke-width="2" opacity="0.95"/>
+  <text x="740" y="270" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">Human reviews output</text>
+  
+        <line x1="709" y1="190" x2="825" y2="236" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" opacity="0.78"/><polyline points="809.281790064783,238.98962814283743 825,236 815.6024152886591,223.05066018697582" fill="none" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/><line x1="824" y1="190" x2="825" y2="236" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" opacity="0.78"/><polyline points="816.1351864646671,222.68027474067964 825,236 833.2775937191175,222.30761371340895" fill="none" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/><line x1="939" y1="190" x2="825" y2="236" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" opacity="0.78"/><polyline points="834.3197548303677,222.9945330763622 825,236 840.7358569116936,238.89530779964812" fill="none" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/>
+      </g>
+</svg>

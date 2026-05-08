@@ -1,0 +1,24 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Command-line AI agent interface connected to tools, files, and execution steps.">
+  <style>
+    :root { --accent: #4ade80; --muted: rgba(255,255,255,0.28); }
+    svg { font-family: "DM Sans", Arial, sans-serif; }
+  </style>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="48%" r="58%">
+      <stop offset="0%" stop-color="#4ade80" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#4ade80" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#08111f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="rgba(255,255,255,0.16)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0.03)"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#08111f"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <path d="M0 540 C190 475 330 605 520 535 C720 460 850 520 1200 410 L1200 630 L0 630Z" fill="rgba(255,255,255,0.035)"/>
+  <path d="M110 110 H1090 V520" fill="none" stroke="url(#edge)" stroke-width="2"/>
+  <text x="110" y="86" fill="#4ade80" font-size="24" font-weight="700" letter-spacing="0">AI Agents in Practice</text>
+  <text x="110" y="580" fill="rgba(255,255,255,0.82)" font-size="34" font-weight="700" letter-spacing="0">CLI Agents</text>
+  <rect x="260" y="260" width="820" height="420" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" /><rect x="300" y="310" width="740" height="56" rx="12" fill="rgba(0,0,0,0.28)"/><path d="M330 425 L430 425" stroke="var(--accent)" stroke-width="7" stroke-linecap="round"/><path d="M470 425 L760 425" stroke="rgba(255,255,255,0.34)" stroke-width="7" stroke-linecap="round"/><path d="M330 477 L430 477" stroke="var(--accent)" stroke-width="7" stroke-linecap="round"/><path d="M470 477 L760 477" stroke="rgba(255,255,255,0.34)" stroke-width="7" stroke-linecap="round"/><path d="M330 529 L430 529" stroke="var(--accent)" stroke-width="7" stroke-linecap="round"/><path d="M470 529 L760 529" stroke="rgba(255,255,255,0.34)" stroke-width="7" stroke-linecap="round"/><path d="M330 581 L430 581" stroke="var(--accent)" stroke-width="7" stroke-linecap="round"/><path d="M470 581 L760 581" stroke="rgba(255,255,255,0.34)" stroke-width="7" stroke-linecap="round"/><circle cx="900" cy="520" r="44" fill="var(--accent)" opacity="0.95"/>
+</svg>

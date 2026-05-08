@@ -3,6 +3,8 @@ title: "How I Automated My SaaS Signup Flow in a Weekend"
 date: "2026-02-25"
 tags: ["Automation", "Python", "Build in Public", "SaaS", "Modal"]
 excerpt: "Built a beta signup pipeline (form to email in 30 seconds) with Modal, Resend, and Google Sheets. 913 lines of Python, 4 hours, $0/month."
+image: "/images/articles/automate-saas-signup-flow-weekend.png"
+image_alt: "SaaS signup automation flow connecting form submission, CRM capture, notifications, and onboarding."
 seo_title: "How I Automated My SaaS Signup Flow in a Weekend ($0/mo)"
 meta_description: "Built a beta signup pipeline (form to email in 30 seconds) with Modal, Resend, and Google Sheets. 913 lines of Python, 4 hours, $0/month."
 target_keywords: "automate SaaS signup flow, Modal serverless automation, automated beta signup, lead capture automation Python, webhook email automation, build in public SaaS"

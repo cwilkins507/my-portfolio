@@ -1,0 +1,38 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SaaS signup automation flow connecting form submission, CRM capture, notifications, and onboarding.">
+  <style>
+    :root { --accent: #34d399; --muted: rgba(255,255,255,0.28); }
+    svg { font-family: "DM Sans", Arial, sans-serif; }
+  </style>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="48%" r="58%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#34d399" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#08111f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="rgba(255,255,255,0.16)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0.03)"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#08111f"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <path d="M0 540 C190 475 330 605 520 535 C720 460 850 520 1200 410 L1200 630 L0 630Z" fill="rgba(255,255,255,0.035)"/>
+  <path d="M110 110 H1090 V520" fill="none" stroke="url(#edge)" stroke-width="2"/>
+  <text x="110" y="86" fill="#34d399" font-size="24" font-weight="700" letter-spacing="0">Automation Architecture</text>
+  <text x="110" y="580" fill="rgba(255,255,255,0.82)" font-size="34" font-weight="700" letter-spacing="0">Signup Automation</text>
+  <g transform="translate(125 222)">
+        <rect x="0" y="0" width="160" height="62" rx="14" fill="rgba(255,255,255,0.06)" stroke="#94a3b8" stroke-width="2" opacity="0.95"/>
+  <text x="20" y="34" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">Tally Form</text>
+  <rect x="210" y="92" width="160" height="62" rx="14" fill="rgba(255,255,255,0.06)" stroke="#34d399" stroke-width="2" opacity="0.95"/>
+  <text x="230" y="126" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">Webhook</text>
+  <line x1="160" y1="31" x2="210" y2="123" stroke="#34d399" stroke-width="4" stroke-linecap="round" opacity="0.78"/><polyline points="196.01650582105708,115.22427556124384 210,123 211.0818035795931,107.03661373595253" fill="none" stroke="#34d399" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/><rect x="420" y="0" width="160" height="62" rx="14" fill="rgba(255,255,255,0.06)" stroke="#60a5fa" stroke-width="2" opacity="0.95"/>
+  <text x="440" y="34" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">Process Lead</text>
+  <line x1="370" y1="123" x2="420" y2="31" stroke="#34d399" stroke-width="4" stroke-linecap="round" opacity="0.78"/><polyline points="421.0818035795931,46.96338626404747 420,31 406.0165058210571,38.77572443875616" fill="none" stroke="#34d399" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/><rect x="630" y="92" width="160" height="62" rx="14" fill="rgba(255,255,255,0.06)" stroke="#fbbf24" stroke-width="2" opacity="0.95"/>
+  <text x="650" y="126" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">Notify Owner</text>
+  <line x1="580" y1="31" x2="630" y2="123" stroke="#34d399" stroke-width="4" stroke-linecap="round" opacity="0.78"/><polyline points="616.0165058210571,115.22427556124384 630,123 631.0818035795932,107.03661373595253" fill="none" stroke="#34d399" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/><rect x="840" y="0" width="160" height="62" rx="14" fill="rgba(255,255,255,0.06)" stroke="#4ade80" stroke-width="2" opacity="0.95"/>
+  <text x="860" y="34" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">Sheet + Email</text>
+  <line x1="790" y1="123" x2="840" y2="31" stroke="#34d399" stroke-width="4" stroke-linecap="round" opacity="0.78"/><polyline points="841.0818035795932,46.96338626404747 840,31 826.0165058210571,38.77572443875616" fill="none" stroke="#34d399" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/>
+        <rect x="170" y="205" width="520" height="66" rx="16" fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="2"/>
+        <text x="220" y="247" fill="#bbf7d0" font-size="24" font-weight="700" letter-spacing="0">form to response in 30 seconds</text>
+      </g>
+</svg>

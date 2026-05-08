@@ -5,6 +5,7 @@ slug: "doe-framework-claude-skills"
 tags: ["AI Agents", "Claude Code", "Claude Skills", "DOE Framework", "Agent Orchestration", "AI Workflows", "Claude Cowork", "Second Brain"]
 excerpt: "A reader asked whether DOE still holds up now that Claude Skills, Managed Agents, and Cowork exist. Short answer: yes, and his question sharpened the framework in ways the original post didn't."
 image: "/images/articles/doe-framework-claude-skills.png"
+image_alt: "DOE framework and Claude Skills visual showing orchestration layers for agent workflows."
 seo_title: "Is the DOE Framework Still Relevant in the Age of Claude Skills?"
 meta_description: "Does the DOE framework still apply with Claude Skills, Managed Agents, and Cowork? What each replaces and what it doesn't."
 target_keywords: "claude skills orchestration, doe framework, claude managed agents, claude cowork, claude routines, agent self-annealing, sub-agent delegation, claude code sub-agents"
