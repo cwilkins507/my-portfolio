@@ -78,6 +78,7 @@ export default defineConfig({
                     '/articles/ai-coding-model-wars-2026': '2026-02-15',
                     '/articles/ai-agent-content-pipeline-experiment': '2026-03-03',
                     '/articles/ai-agent-harness': '2026-05-06',
+                    '/articles/ai-code-quality-bad-code-tax': '2026-05-12',
                     '/articles/3-automations-that-run-without-me': '2026-03-08',
                     '/articles/ai-agent-workflow-claude-code': '2026-02-27',
                     '/articles/ai-automation-roi-service-business': '2026-04-03',
