@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import React, { useState, useRef, useMemo } from 'react';
+import { ArrowRight, Search, X } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
 import { CATEGORIES, getCategoryForArticle } from '../data/categories';
 
 const CATEGORY_STYLE = {
@@ -21,15 +20,28 @@ const formatDate = (dateString) => {
 
 const ArticleList = ({ articles = [] }) => {
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
   const gridRef = useRef(null);
   const isInView = useInView(gridRef, { once: true, margin: '-100px' });
 
   const featuredArticle = articles?.length > 0 ? articles[0] : null;
   const remainingArticles = articles?.slice(1) || [];
 
-  const filteredArticles = selectedCategory === 'All'
-    ? remainingArticles
-    : remainingArticles.filter(article => getCategoryForArticle(article.tags) === selectedCategory);
+  const filteredArticles = useMemo(() => {
+    let results = selectedCategory === 'All'
+      ? remainingArticles
+      : remainingArticles.filter(article => getCategoryForArticle(article.tags) === selectedCategory);
+
+    if (searchQuery.trim()) {
+      const terms = searchQuery.toLowerCase().trim().split(/\s+/);
+      results = results.filter(article => {
+        const haystack = `${article.title} ${article.excerpt} ${(article.tags || []).join(' ')}`.toLowerCase();
+        return terms.every(term => haystack.includes(term));
+      });
+    }
+
+    return results;
+  }, [remainingArticles, selectedCategory, searchQuery]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -114,9 +126,29 @@ const ArticleList = ({ articles = [] }) => {
 
       {/* Category Tabs & Article List */}
       <div className="container mx-auto px-4 py-16 md:py-24">
-        {/* Category Navigation */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
-          <h2 className="text-3xl font-serif font-semibold text-[var(--color-text-primary)]">All Articles</h2>
+        {/* Search + Category Navigation */}
+        <div className="flex flex-col gap-6 mb-12">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <h2 className="text-3xl font-serif font-semibold text-[var(--color-text-primary)]">All Articles</h2>
+            <div className="relative w-full md:w-80">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--color-text-faint)]" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search topics, concepts..."
+                className="w-full pl-10 pr-9 py-2.5 rounded-full text-sm bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-faint)] focus:outline-none focus:border-[var(--color-accent)] transition-colors"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--color-text-faint)] hover:text-[var(--color-text-secondary)] transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+          </div>
           <div className="flex flex-wrap gap-2 md:gap-3">
             {['All', ...Object.keys(CATEGORIES)].map(category => (
               <button
@@ -198,7 +230,7 @@ const ArticleList = ({ articles = [] }) => {
         {filteredArticles.length === 0 && (
           <div className="text-center py-16">
             <p className="text-[var(--color-text-muted)] text-lg">
-              No articles found in this category.
+              {searchQuery ? 'No articles match your search.' : 'No articles found in this category.'}
             </p>
           </div>
         )}

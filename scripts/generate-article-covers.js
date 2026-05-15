@@ -365,6 +365,14 @@ const covers = [
     accent: '#a78bfa',
     motif: 'layers',
   },
+  {
+    slug: 'ai-code-quality-bad-code-tax',
+    pillar: 'AI-Powered Engineering Teams',
+    title: 'Bad Code Is an AI Tax',
+    alt: 'AI code quality loop showing how unclear architecture creates review drag and how structure creates leverage.',
+    accent: '#f43f5e',
+    motif: 'loops',
+  },
 ];
 
 function node(x, y, r, color = 'var(--accent)') {
@@ -635,6 +643,32 @@ function concept(cover) {
         ${['Tally Form', 'Webhook', 'Process Lead', 'Notify Owner', 'Sheet + Email'].map((t, i) => `${conceptBox(i * 210, i % 2 ? 92 : 0, 160, 62, t, '', ['#94a3b8', '#34d399', '#60a5fa', '#fbbf24', '#4ade80'][i])}${i ? conceptArrow(i * 210 - 50, (i - 1) % 2 ? 123 : 31, i * 210, i % 2 ? 123 : 31, '#34d399', 4) : ''}`).join('')}
         <rect x="170" y="205" width="520" height="66" rx="16" fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="2"/>
         ${label(220, 247, 'form to response in 30 seconds', 24, '#bbf7d0')}
+      </g>`;
+    case 'ai-code-quality-bad-code-tax':
+      return `<g transform="translate(95 195)">
+        <rect x="0" y="0" width="440" height="310" rx="18" fill="rgba(244,63,94,0.08)" stroke="#f43f5e" stroke-width="2"/>
+        ${label(35, 38, 'Tax Loop', 22, '#fda4af')}
+        ${smallLabel(35, 60, 'speed becomes drag', '#fb7185')}
+        ${conceptBox(50, 82, 170, 50, 'Unclear arch.', '', '#f43f5e')}
+        ${conceptBox(250, 82, 150, 50, 'Larger diffs', '', '#f43f5e')}
+        ${conceptBox(250, 168, 165, 50, 'Slower review', '', '#f43f5e')}
+        ${conceptBox(50, 168, 160, 50, 'Lower trust', '', '#f43f5e')}
+        ${conceptArrow(220, 107, 250, 107, '#f43f5e', 3)}
+        ${conceptArrow(325, 132, 325, 168, '#f43f5e', 3)}
+        ${conceptArrow(250, 193, 210, 193, '#f43f5e', 3)}
+        ${conceptArrow(130, 168, 130, 132, '#f43f5e', 3)}
+        <rect x="560" y="0" width="440" height="310" rx="18" fill="rgba(74,222,128,0.08)" stroke="#4ade80" stroke-width="2"/>
+        ${label(595, 38, 'Counter-Loop', 22, '#bbf7d0')}
+        ${smallLabel(595, 60, 'structure creates leverage', '#86efac')}
+        ${conceptBox(610, 82, 180, 50, 'Shared intent', '', '#4ade80')}
+        ${conceptBox(810, 82, 160, 50, 'Smaller diffs', '', '#4ade80')}
+        ${conceptBox(810, 168, 175, 50, 'Faster feedback', '', '#4ade80')}
+        ${conceptBox(610, 168, 175, 50, 'Safer delegation', '', '#4ade80')}
+        ${conceptArrow(790, 107, 810, 107, '#4ade80', 3)}
+        ${conceptArrow(890, 132, 890, 168, '#4ade80', 3)}
+        ${conceptArrow(810, 193, 785, 193, '#4ade80', 3)}
+        ${conceptArrow(700, 168, 700, 132, '#4ade80', 3)}
+        ${conceptArrow(440, 155, 560, 155, 'rgba(255,255,255,0.3)', 5)}
       </g>`;
     default:
       return '';

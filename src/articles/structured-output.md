@@ -1,7 +1,8 @@
 ---
 title: "Structured Outputs in LLMs: Reliable Data for Real Pipelines"
 date: "2026-01-17"
-updated: "2026-04-23"
+updated: "2026-05-15"
+related_articles: ["context-engineering-ai-coding-tools", "llm-gateway-architecture", "ai-code-review-best-practices-approaches-tools"]
 tags: ["Software Engineering", "LLMs", "Structured Outputs", "Data Engineering", "AI", "JSON Schema", "Observability", "Constrained Decoding", "Pydantic"]
 excerpt: "Structured outputs turn LLM text into dependable, validated data. Learn schemas, validation loops, provider-native features, and practical patterns for extraction, routing, and ETL."
 image: "/images/articles/structured-output.png"
@@ -20,7 +21,7 @@ Every time model output becomes input, you need outputs you can validate, store,
 
 What follows: what structured outputs actually are, where they earn their keep, how each major provider implements them in 2026, and what you have to wire up on your side so model output becomes something you can store, query, and replay.
 
-> **Updated April 2026:** Provider-specific sections for OpenAI, Claude, Gemini, and self-hosted vLLM; current API shapes for each (including Gemini's renamed `response_json_schema` and vLLM v0.12's `structured_outputs` wrapper); and a decision guide for picking between XGrammar, Guidance, and Outlines. Builds on the February 2026 revision that added native provider support, JSONSchemaBench results, multimodal extraction, streaming, MCP, and common failure modes.
+> **Updated May 2026:** Claude 4.7 added to provider table. Newsletter and prompt toolkit links added. Related articles refreshed. Builds on the April 2026 revision (provider-specific sections for OpenAI, Claude, Gemini, and self-hosted vLLM; current API shapes; XGrammar/Guidance/Outlines decision guide) and the February 2026 revision (native provider support, JSONSchemaBench results, multimodal extraction, streaming, MCP, failure modes).
 ## What "structured output" means in practice
 A structured output is an LLM response that follows:
 - A known format, like JSON
@@ -335,6 +336,8 @@ Here is your prior JSON:
 ```
 The same pattern works with Claude (`output_config.format` with your JSON schema) or Gemini (`response_json_schema`). The Pydantic model stays the same across providers.
 
+I write about patterns like this every two weeks -- schema design, agent workflows, production AI pitfalls. If this was useful, [subscribe here](/newsletter) for the next one.
+
 ### Step 4: Treat validated output as an event
 Once validated, store the structured record with metadata:
 - Input text hash
@@ -470,7 +473,7 @@ Schema changes are breaking changes. Record a `schema_version` and `prompt_versi
 ## A simple adoption plan
 You don't need to rebuild your pipeline. Start with one workflow.
 
-Pick one task — ticket routing, entity extraction, whatever produces the most downstream pain right now. Define a small schema with enums and constraints. Add validation and one repair retry. Store validated outputs as JSONL events. Add two dashboards: validation error rate and label distribution.
+Pick one task — ticket routing, entity extraction, whatever produces the most downstream pain right now. Define a small schema with enums and constraints (the [AI Prompt Toolkit](/resources/ai-prompt-toolkit) has extraction templates to start from). Add validation and one repair retry. Store validated outputs as JSONL events. Add two dashboards: validation error rate and label distribution.
 
 That's it for week one. Expand one field at a time after that. Schemas improve under real data pressure, not in planning docs.
 

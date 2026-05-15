@@ -26,27 +26,46 @@ try {
   wordCount = undefined;
 }
 
-// Find related articles by shared tags
-const currentTags = frontmatter.tags || [];
-const relatedArticles = allArticles
-  .filter(a => {
-    const aSlug = a.file.split('/').pop().replace('.md', '');
-    return aSlug !== slug;
-  })
-  .map(a => {
-    const aTags = a.frontmatter.tags || [];
-    const sharedTags = currentTags.filter(tag => aTags.includes(tag));
-    return {
-      slug: a.file.split('/').pop().replace('.md', ''),
-      title: a.frontmatter.title,
-      excerpt: a.frontmatter.excerpt,
-      date: a.frontmatter.date,
-      sharedCount: sharedTags.length,
-    };
-  })
-  .filter(a => a.sharedCount > 0)
-  .sort((a, b) => b.sharedCount - a.sharedCount || new Date(b.date).getTime() - new Date(a.date).getTime())
-  .slice(0, 3);
+// Related articles: use manual override from frontmatter, fall back to tag-based matching
+const manualRelatedSlugs: string[] = frontmatter.related_articles || [];
+let relatedArticles: { slug: string; title: string; excerpt: string; date: string; sharedCount: number }[];
+
+if (manualRelatedSlugs.length > 0) {
+  relatedArticles = manualRelatedSlugs
+    .map(rs => {
+      const match = allArticles.find(a => a.file.split('/').pop().replace('.md', '') === rs);
+      if (!match) return null;
+      return {
+        slug: rs,
+        title: match.frontmatter.title,
+        excerpt: match.frontmatter.excerpt,
+        date: match.frontmatter.date,
+        sharedCount: 0,
+      };
+    })
+    .filter((a): a is NonNullable<typeof a> => a !== null);
+} else {
+  const currentTags = frontmatter.tags || [];
+  relatedArticles = allArticles
+    .filter(a => {
+      const aSlug = a.file.split('/').pop().replace('.md', '');
+      return aSlug !== slug;
+    })
+    .map(a => {
+      const aTags = a.frontmatter.tags || [];
+      const sharedTags = currentTags.filter(tag => aTags.includes(tag));
+      return {
+        slug: a.file.split('/').pop().replace('.md', ''),
+        title: a.frontmatter.title,
+        excerpt: a.frontmatter.excerpt,
+        date: a.frontmatter.date,
+        sharedCount: sharedTags.length,
+      };
+    })
+    .filter(a => a.sharedCount > 0)
+    .sort((a, b) => b.sharedCount - a.sharedCount || new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 3);
+}
 
 // Use SEO-specific frontmatter if available, fallback to defaults
 const pageTitle = frontmatter.seo_title || frontmatter.title;
