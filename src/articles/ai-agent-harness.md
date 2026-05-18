@@ -316,7 +316,7 @@ They're how the model does things it can't do from text alone:
 - read a spreadsheet
 - edit a document
 
-The common mistake is thinking more tools equals a smarter agent. Usually it means a more confused one.
+The common mistake is thinking more tools equals a smarter agent. Usually it means a more confused one. There's measurement behind that: tool-selection accuracy drops from around 43% to under 14% as the tool count grows, and every tool definition sits idle in the context window at roughly 300–1,400 tokens whether it gets used or not. The Claude Code team holds about twenty tools and is constantly looking to cut, for one stated reason: every new tool is one more option the model has to reason about before it can act.
 
 Start with the smallest tool set that can do the job. If the task is rewriting a paragraph, it probably needs no tools. If the task is fixing a bug, it needs file access and a test command. If the task is researching current prices, it needs web search or an API.
 
@@ -507,6 +507,8 @@ It isn't just an SDK. It isn't just a prompt. It isn't just `CLAUDE.md`.
 It's the operating environment: the instructions, tools, tests, memory, permissions, hooks, recovery paths, and feedback loops that keep the agent pointed at the job.
 
 The model gives you capability. The harness decides whether you can trust it.
+
+Not all of it lasts. Some of the harness is durable: verification discipline, context preparation, the rule about running tests before calling something done. Some is scaffolding that dissolves as models get better at managing themselves. Anthropic's team removed the need for context resets entirely when Opus 4.5 landed. A task list that once kept the agent on track became a constraint. Know which half you're building on.
 
 ## Sources
 
