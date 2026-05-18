@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { FileDown, BookOpen, Terminal } from 'lucide-react';
+import { FileDown, BookOpen, Mail, Terminal } from 'lucide-react';
 
 const Downloads = () => {
   // Scroll to top when component mounts
@@ -28,6 +28,52 @@ const Downloads = () => {
             </p>
           </div>
         </header>
+
+        <section className="mb-16 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-6 md:p-8">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(320px,420px)] lg:items-center">
+            <div className="flex gap-4">
+              <div className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-[var(--color-accent-border)] bg-[var(--color-accent-muted)] sm:flex">
+                <Mail className="h-5 w-5 text-[var(--color-accent)]" />
+              </div>
+              <div>
+                <h2 className="text-xl font-serif font-bold text-[var(--color-text-primary)]">
+                  Want the next resource when it ships?
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)] md:text-base">
+                  Downloads stay free. Drop your email only if you want occasional notes on AI tooling, automation systems, and new templates.
+                </p>
+              </div>
+            </div>
+            <form
+              action="https://buttondown.com/api/emails/embed-subscribe/collinwilkins"
+              method="post"
+              target="popupwindow"
+              rel="noopener noreferrer"
+              className="space-y-3"
+            >
+              <input type="hidden" name="tag" value="resources-index" />
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="your@email.com"
+                  required
+                  aria-label="Email address"
+                  className="min-h-12 flex-1 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-3 text-sm text-[var(--color-text-primary)] placeholder:text-[var(--color-text-faint)] transition focus:border-[var(--color-accent)] focus:outline-none focus:ring-1 focus:ring-[var(--color-accent)]"
+                />
+                <button
+                  type="submit"
+                  className="min-h-12 rounded-lg bg-[var(--color-accent)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--color-accent-hover)]"
+                >
+                  Subscribe
+                </button>
+              </div>
+              <p className="text-xs text-[var(--color-text-muted)]">
+                No spam. Unsubscribe anytime.
+              </p>
+            </form>
+          </div>
+        </section>
 
         {/* Featured: AI Adoption Playbook (primary) */}
         <div className="mb-10">

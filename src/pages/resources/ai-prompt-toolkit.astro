@@ -1667,7 +1667,14 @@ Design this workflow:
     <div class="border-t border-[var(--color-border)]">
       <div class="container mx-auto px-4 py-16">
         <div class="max-w-4xl mx-auto">
-          <NewsletterSignup variant="inline" />
+          <NewsletterSignup
+            variant="inline"
+            title="Want the next toolkit when it ships?"
+            description="This prompt library stays free on the page. Subscribe only if you want occasional notes on AI coding, automation systems, and new resources."
+            buttonLabel="Subscribe"
+            tag="ai-prompt-toolkit"
+            note="Optional. No spam. Unsubscribe anytime."
+          />
         </div>
       </div>
     </div>
@@ -1690,11 +1697,6 @@ Design this workflow:
 </Layout>
 
 <script>
-  // Plausible tracking for prompt toolkit page
-  if (typeof window !== 'undefined' && window.plausible) {
-    window.plausible('pageview', { props: { resource: 'AI Prompt Toolkit' } });
-  }
-
   // Prompt search/filter
   (function () {
     var CATEGORY_IDS = ['engineering', 'automation', 'market-research', 'personas', 'competitors', 'seo', 'website', 'marketing', 'ai-agents'];

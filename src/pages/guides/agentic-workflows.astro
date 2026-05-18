@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { FileDown, CheckCircle, ArrowRight } from 'lucide-react';
+import NewsletterSignup from '../../components/NewsletterSignup.astro';
 
 const guideSchema = {
   "@context": "https://schema.org",
@@ -108,14 +109,25 @@ const guideSchema = {
                 <FileDown className="w-5 h-5" />
                 <span>Get the DOE Framework (Free PDF)</span>
               </a>
-              <span class="text-sm text-[var(--color-text-secondary)] border border-[var(--color-border)] rounded-full px-4 py-2">
-                No email required
+            <span class="text-sm text-[var(--color-text-secondary)] border border-[var(--color-border)] rounded-full px-4 py-2">
+                Free download
               </span>
             </div>
 
             <p class="text-sm text-[var(--color-text-muted)]">
               1.2MB &middot; 28 pages &middot; Instant download
             </p>
+
+            <div class="mt-8">
+              <NewsletterSignup
+                variant="inline"
+                title="Want more systems notes?"
+                description="The PDF is free either way. Subscribe only if you want occasional notes on agentic workflows, automation architecture, and new resources."
+                buttonLabel="Subscribe"
+                tag="agentic-workflows-guide"
+                note="Optional. No spam. Unsubscribe anytime."
+              />
+            </div>
           </div>
 
           <!-- Right Column: Thumbnail (hidden on mobile) -->
@@ -338,7 +350,7 @@ const guideSchema = {
                 Ready to Build Reliable AI Systems?
               </h2>
               <p class="text-xl text-[var(--color-text-secondary)] mb-10 max-w-2xl mx-auto">
-                Join developers and engineering leaders who've downloaded this guide. No email required.
+                Join developers and engineering leaders who've downloaded this guide. Free, with an optional newsletter signup if you want more notes later.
               </p>
 
               <a

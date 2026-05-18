@@ -7,6 +7,7 @@ import {
   Copy,
   Download,
   FileText,
+  Mail,
   Terminal,
 } from 'lucide-react';
 
@@ -419,7 +420,7 @@ function autonomyPolicy(answers) {
     'Suggest patches only': 'Do not edit files directly. Produce a patch plan or diff for review.',
     'Edit with review': 'Make narrow edits inside the requested scope, then stop for review before broadening the work.',
     'Run tests and fix': 'Make scoped edits, run available verification, and fix failures caused by the change.',
-    'Autonomous within limits': 'Act independently on small reversible changes inside this file, then report what changed and how it was verified.',
+    'Autonomous within limits': 'Act independently on small reversible changes inside the requested scope, then report what changed and how it was verified.',
   };
 
   const lines = [base[answers.autonomy] || base['Edit with review']];
@@ -861,12 +862,15 @@ function AgentHarnessBuilder() {
         textarea.style.opacity = '0';
         document.body.appendChild(textarea);
         textarea.select();
-        document.execCommand('copy');
+        const copied = document.execCommand('copy');
         document.body.removeChild(textarea);
+        if (!copied) {
+          throw new Error('Copy command failed');
+        }
       }
       setCopyStatus(fileName);
       window.setTimeout(() => setCopyStatus(''), 1800);
-    } catch (error) {
+    } catch {
       setCopyStatus('Copy failed');
     }
   }
@@ -890,7 +894,7 @@ function AgentHarnessBuilder() {
       window.setTimeout(() => URL.revokeObjectURL(url), 0);
       setZipStatus('Zip ready');
       window.setTimeout(() => setZipStatus(''), 1800);
-    } catch (error) {
+    } catch {
       setZipStatus('');
       setZipError('Zip download failed. Copy buttons still work.');
     }
@@ -1155,6 +1159,45 @@ function AgentHarnessBuilder() {
                   {zipError}
                 </p>
               )}
+              <form
+                action="https://buttondown.com/api/emails/embed-subscribe/collinwilkins"
+                method="post"
+                target="popupwindow"
+                rel="noopener noreferrer"
+                className="mt-5 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] p-4"
+              >
+                <input type="hidden" name="tag" value="agent-harness-builder" />
+                <div className="mb-3 flex items-start gap-3">
+                  <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-accent)]" />
+                  <div>
+                    <p className="text-sm font-semibold text-[var(--color-text-primary)]">
+                      Want more agent templates?
+                    </p>
+                    <p className="mt-1 text-xs leading-relaxed text-[var(--color-text-secondary)]">
+                      The zip is free either way. Subscribe only if you want occasional notes and new resources.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-2 sm:flex-row">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="your@email.com"
+                    required
+                    aria-label="Email address"
+                    className="min-h-10 flex-1 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2 text-sm text-[var(--color-text-primary)] placeholder:text-[var(--color-text-faint)] transition focus:border-[var(--color-accent)] focus:outline-none focus:ring-1 focus:ring-[var(--color-accent)]"
+                  />
+                  <button
+                    type="submit"
+                    className="min-h-10 rounded-lg bg-[var(--color-accent)] px-4 py-2 text-sm font-semibold text-[#111] transition hover:bg-[var(--color-accent-hover)]"
+                  >
+                    Subscribe
+                  </button>
+                </div>
+                <p className="mt-2 text-xs text-[var(--color-text-muted)]">
+                  Optional. Unsubscribe anytime.
+                </p>
+              </form>
             </div>
 
             <div className="p-0">
