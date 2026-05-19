@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Getting Started with AI Tools — A Practitioner's Do-It-With-Me Guide</title>
+<meta name="description" content="You're already using ChatGPT or Claude. This is the 15-minute setup that turns it from a clever search box into something that knows you, your work, and how you like things done.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --black:#111113; --dark:#1a1a1e; --gray-900:#2a2a2e; --gray-700:#555560;
+    --gray-500:#7a7a85; --gray-300:#b0b0b8; --gray-100:#e8e8ec; --gray-50:#f4f4f6;
+    --white:#fff; --blue:#2970e5; --blue-light:#eef3fc; --blue-dark:#1a4faa;
+    --green:#1a8a5c; --green-light:#e8f5ef; --purple:#6b3de8; --purple-light:#f0ebfc;
+    --orange:#d97706; --orange-light:#fef3e2;
+    --content-width:1080px;
+    --serif:'Instrument Serif',Georgia,serif;
+    --sans:'Inter',-apple-system,sans-serif;
+    --mono:'JetBrains Mono',monospace;
+  }
+  html { font-size:16px; -webkit-font-smoothing:antialiased; scroll-behavior:smooth; }
+  body { font-family:var(--sans); color:var(--black); background:var(--white); line-height:1.6; }
+  a { color:var(--blue); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .container { max-width:var(--content-width); margin:0 auto; padding:0 clamp(20px,4vw,40px); }
+
+  /* COVER — print only */
+  .cover { display:none; }
+
+  /* HERO */
+  .hero { background:var(--black); color:var(--white); padding:clamp(56px,8vw,100px) 0 clamp(48px,6vw,76px); position:relative; overflow:hidden; }
+  .hero::before { content:''; position:absolute; top:0; right:0; width:50%; height:100%; background:linear-gradient(135deg,transparent 30%,rgba(41,112,229,.08) 100%); }
+  .hero .container { position:relative; }
+  .hero-eyebrow { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--gray-300); margin-bottom:20px; }
+  .hero-eyebrow span { color:#6da5f5; }
+  .hero h1 { font-family:var(--serif); font-size:clamp(40px,6vw,70px); line-height:1.04; font-weight:400; letter-spacing:-.02em; max-width:840px; margin-bottom:22px; }
+  .hero h1 em { font-style:italic; color:#6da5f5; }
+  .hero-sub { font-size:clamp(17px,2vw,21px); color:var(--gray-300); max-width:640px; line-height:1.55; margin-bottom:36px; }
+  .hero-meta { font-size:13px; color:var(--gray-500); border-top:1px solid rgba(255,255,255,.1); padding-top:20px; }
+  .hero-meta strong { color:var(--gray-300); font-weight:600; }
+
+  /* HOOK */
+  .hook { background:var(--gray-50); border-bottom:1px solid var(--gray-100); padding:clamp(48px,6vw,76px) 0; }
+  .hook-card { background:var(--white); border:1px solid var(--gray-100); border-radius:16px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.04),0 8px 32px rgba(0,0,0,.04); }
+  .hook-head { padding:28px 32px; border-bottom:1px solid var(--gray-100); display:flex; align-items:flex-start; gap:18px; }
+  .hook-icon { width:44px; height:44px; border-radius:11px; background:var(--blue-light); color:var(--blue); display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
+  .hook-head h2 { font-family:var(--serif); font-size:28px; font-weight:400; line-height:1.2; margin-bottom:6px; }
+  .hook-head p { font-size:15px; color:var(--gray-700); }
+  .prompt-block { background:#15151b; }
+  .prompt-bar { display:flex; align-items:center; justify-content:space-between; padding:12px 20px; border-bottom:1px solid rgba(255,255,255,.08); }
+  .prompt-bar .dots { display:flex; gap:7px; }
+  .prompt-bar .dots i { width:11px; height:11px; border-radius:50%; display:block; }
+  .prompt-bar .dots i:nth-child(1){background:#ff5f57}.prompt-bar .dots i:nth-child(2){background:#febc2e}.prompt-bar .dots i:nth-child(3){background:#28c840}
+  .copy-btn { font-family:var(--sans); font-size:12px; font-weight:600; color:var(--gray-300); background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); border-radius:7px; padding:7px 14px; cursor:pointer; transition:all .15s; }
+  .copy-btn:hover { background:rgba(255,255,255,.16); color:#fff; }
+  .copy-btn.copied { background:var(--green); color:#fff; border-color:var(--green); }
+  pre.prompt { font-family:var(--mono); font-size:13.5px; line-height:1.7; color:#e6e6ea; padding:26px 28px; white-space:pre-wrap; overflow-x:auto; }
+  .prompt-hint { font-size:13px; color:var(--gray-700); padding:18px 32px; background:var(--blue-light); border-top:1px solid #d9e4f7; }
+  .prompt-hint strong { color:var(--blue-dark); }
+
+  /* SECTION SHELL */
+  section.block { padding:clamp(56px,7vw,92px) 0; }
+  section.block.alt { background:var(--gray-50); }
+  .eyebrow { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--blue); margin-bottom:14px; }
+  .block h2.title { font-family:var(--serif); font-size:clamp(32px,4.5vw,48px); font-weight:400; line-height:1.12; letter-spacing:-.01em; max-width:740px; margin-bottom:16px; }
+  .block .lede { font-size:17px; color:var(--gray-700); max-width:680px; margin-bottom:46px; }
+
+  /* SPECTRUM */
+  .spectrum { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .icard { border:1px solid var(--gray-100); border-radius:14px; padding:28px; background:var(--white); }
+  .icard .tag { display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:5px 10px; border-radius:6px; margin-bottom:16px; }
+  .icard:nth-child(1) .tag{background:var(--blue-light);color:var(--blue-dark)}
+  .icard:nth-child(2) .tag{background:var(--green-light);color:var(--green)}
+  .icard:nth-child(3) .tag{background:var(--purple-light);color:var(--purple)}
+  .icard .ico { font-size:26px; margin-bottom:14px; display:block; }
+  .icard h3 { font-size:19px; font-weight:700; margin-bottom:8px; letter-spacing:-.01em; }
+  .icard p { font-size:14px; color:var(--gray-700); line-height:1.55; margin-bottom:14px; }
+  .icard .tools { font-size:12.5px; font-weight:600; color:var(--gray-500); font-family:var(--mono); }
+  .spectrum-rail { display:flex; align-items:center; justify-content:space-between; margin-top:20px; font-size:12.5px; color:var(--gray-500); font-weight:500; padding:0 8px; }
+  .spectrum-rail .line { flex:1; height:1px; background:linear-gradient(90deg,var(--blue),var(--purple)); margin:0 16px; }
+
+  /* DO IT WITH ME */
+  .step-card { background:var(--white); border:1px solid var(--gray-100); border-radius:16px; overflow:hidden; margin-top:28px; }
+  .step-card:first-of-type { margin-top:0; }
+  .step-head { display:flex; gap:18px; align-items:flex-start; padding:28px 32px; border-bottom:1px solid var(--gray-100); }
+  .step-num { width:38px; height:38px; border-radius:50%; background:var(--blue); color:#fff; font-weight:700; font-size:16px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .step-head h3 { font-size:20px; font-weight:700; letter-spacing:-.01em; margin-bottom:5px; }
+  .step-head p { font-size:14.5px; color:var(--gray-700); }
+  .step-body { padding:28px 32px; }
+  .step-body > .label { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--gray-500); margin-bottom:12px; }
+  .step-body > .label.mt { margin-top:26px; }
+  .mini-prompt { background:#15151b; border-radius:11px; overflow:hidden; margin-bottom:4px; }
+  .mini-prompt .prompt-bar { padding:10px 16px; }
+  .mini-prompt pre { font-family:var(--mono); font-size:13px; line-height:1.65; color:#e6e6ea; padding:20px 22px; white-space:pre-wrap; overflow-x:auto; }
+  .example { border:1px dashed var(--gray-300); border-radius:11px; background:var(--gray-50); padding:22px 24px; }
+  .example .ex-label { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--green); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+  .example .ex-label::before { content:'✓'; width:18px; height:18px; background:var(--green-light); color:var(--green); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; }
+  .example pre { font-family:var(--mono); font-size:12.5px; line-height:1.7; color:var(--gray-900); white-space:pre-wrap; overflow-x:auto; }
+  .example pre .h { color:var(--blue-dark); font-weight:600; }
+  .callout { display:flex; gap:14px; align-items:flex-start; background:var(--orange-light); border:1px solid #f3dcae; border-radius:11px; padding:18px 22px; margin-top:24px; font-size:14px; color:#7a4d08; }
+  .callout b { color:#5e3b06; }
+  .callout .ci { font-size:18px; }
+
+  /* TABLE */
+  .tbl { width:100%; border-collapse:collapse; border:1px solid var(--gray-100); border-radius:12px; overflow:hidden; font-size:14px; }
+  .tbl th { background:var(--black); color:#fff; text-align:left; padding:14px 20px; font-size:12px; font-weight:600; letter-spacing:.5px; text-transform:uppercase; }
+  .tbl td { padding:14px 20px; border-top:1px solid var(--gray-100); color:var(--gray-700); }
+  .tbl td.f { font-family:var(--mono); font-weight:500; color:var(--black); }
+  .tbl tr:nth-child(even) td { background:var(--gray-50); }
+
+  /* PATH CARDS */
+  .paths { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .pcard { border:1px solid var(--gray-100); border-radius:14px; padding:0; overflow:hidden; background:var(--white); }
+  .pcard .bar { height:4px; }
+  .pcard:nth-child(1) .bar{background:var(--blue)} .pcard:nth-child(2) .bar{background:var(--green)} .pcard:nth-child(3) .bar{background:var(--purple)}
+  .pcard .inner { padding:26px; }
+  .pcard .emoji { font-size:26px; }
+  .pcard h3 { font-size:19px; font-weight:700; margin:10px 0 4px; }
+  .pcard .who { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--gray-500); margin-bottom:18px; }
+  .pcard ol { list-style:none; counter-reset:s; }
+  .pcard li { counter-increment:s; font-size:13.5px; color:var(--gray-700); line-height:1.5; padding:9px 0 9px 30px; position:relative; border-top:1px solid var(--gray-100); }
+  .pcard li:first-child { border-top:none; }
+  .pcard li::before { content:counter(s); position:absolute; left:0; top:9px; width:20px; height:20px; border-radius:50%; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  .pcard:nth-child(1) li::before{background:var(--blue-light);color:var(--blue-dark)}
+  .pcard:nth-child(2) li::before{background:var(--green-light);color:var(--green)}
+  .pcard:nth-child(3) li::before{background:var(--purple-light);color:var(--purple)}
+  .pcard .deeper { display:block; margin-top:16px; font-size:13.5px; font-weight:600; }
+
+  /* FOOTER CTA */
+  .footer-cta { background:var(--black); color:#fff; padding:clamp(56px,7vw,92px) 0; text-align:center; }
+  .footer-cta h2 { font-family:var(--serif); font-size:clamp(30px,4vw,44px); font-weight:400; margin-bottom:16px; }
+  .footer-cta p { font-size:16px; color:var(--gray-300); max-width:560px; margin:0 auto 32px; }
+  .email-form { display:flex; gap:10px; max-width:440px; margin:0 auto 14px; }
+  .email-form input { flex:1; font-family:var(--sans); font-size:15px; padding:14px 18px; border-radius:10px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.06); color:#fff; }
+  .email-form input::placeholder { color:var(--gray-500); }
+  .email-form button { font-family:var(--sans); font-size:15px; font-weight:600; padding:14px 24px; border-radius:10px; border:none; background:var(--blue); color:#fff; cursor:pointer; }
+  .email-form button:hover { background:#3a7ef0; }
+  .footer-cta .fine { font-size:12.5px; color:var(--gray-500); }
+  .footer-cta .repo-cta { font-size:13.5px; color:var(--gray-300); margin-top:14px; }
+  .footer-cta .repo-cta a { color:#6da5f5; font-weight:600; }
+  .footer-cta .links { margin-top:34px; padding-top:26px; border-top:1px solid rgba(255,255,255,.1); font-size:14px; color:var(--gray-500); }
+  .footer-cta .links a { color:#6da5f5; margin:0 4px; }
+
+  @media (max-width:820px) {
+    .spectrum, .paths { grid-template-columns:1fr; }
+    .hook-head, .step-head { flex-direction:column; gap:12px; }
+    .email-form { flex-direction:column; }
+  }
+
+  /* ============ PRINT / PDF — Arize-style document ============ */
+  @page { size:A4; margin:14mm 15mm; }
+  @media print {
+    html { font-size:9.5pt; }
+    body { background:#fff; line-height:1.45; }
+    a { color:var(--blue-dark); }
+    .container { max-width:100%; padding:0; }
+    .no-print { display:none !important; }
+
+    /* Cover page — full page, then everything flows */
+    .cover { display:flex; flex-direction:column; height:calc(297mm - 28mm); page-break-after:always; padding:0; }
+    .cover .c-mid { margin:auto 0; }
+    .cover .c-top { font-size:10pt; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--blue); }
+    .cover .c-mid h1 { font-family:var(--serif); font-size:42pt; font-weight:400; line-height:1.04; letter-spacing:-.02em; margin:0 0 14pt; }
+    .cover .c-mid h1 em { font-style:italic; color:var(--blue); }
+    .cover .c-mid p { font-size:13pt; color:var(--gray-700); max-width:120mm; line-height:1.45; }
+    .cover .c-rule { height:3pt; width:60pt; background:var(--blue); margin:20pt 0; }
+    .cover .c-bottom { font-size:10pt; color:var(--gray-700); border-top:1px solid var(--gray-100); padding-top:12pt; }
+    .cover .c-bottom strong { color:var(--black); }
+
+    /* Strip dark backgrounds, flow as one continuous document */
+    .hero, .hook, section.block, section.block.alt, .footer-cta {
+      background:#fff !important; color:var(--black) !important;
+      padding:10pt 0 6pt !important; page-break-before:auto;
+    }
+    .hero::before { display:none; }
+    .hero { padding-top:0 !important; }
+    .hero-eyebrow, .eyebrow { color:var(--blue) !important; margin-bottom:6pt; }
+    .hero h1 { color:var(--black); font-size:24pt; line-height:1.1; margin-bottom:10pt; }
+    .hero h1 em, .footer-cta h2 { color:var(--blue) !important; }
+    .hero-sub, .footer-cta p { color:var(--gray-700) !important; font-size:11pt; margin-bottom:12pt; }
+    .hero-meta { border-color:var(--gray-100); color:var(--gray-500) !important; padding-top:10pt; }
+    .hero-meta strong { color:var(--black) !important; }
+
+    /* Everything flows as one document; only small atomic blocks stay whole */
+    section.block, .hook, .step-card, .hook-card { page-break-inside:auto; page-break-before:auto; }
+    .block h2.title { font-size:17pt; margin-bottom:8pt; }
+    .block .lede { font-size:10.5pt; margin-bottom:14pt; }
+
+    /* Only small atomic blocks stay whole. Code/example boxes may split across
+       pages (normal for a reference doc) — this backfills bottom-of-page gaps. */
+    .icard, .pcard, .callout, .tbl tr, .step-head, .hook-head { page-break-inside:avoid; }
+    .example, .mini-prompt, .prompt-block, .step-card, .hook-card { page-break-inside:auto; }
+    .block h2.title, .eyebrow, .step-head h3, .hook-head h2 { page-break-after:avoid; }
+    .step-card { margin-top:10pt; box-shadow:none; }
+    .step-head, .hook-head { padding:12pt 16pt; }
+    .step-body { padding:12pt 16pt; }
+    .hook-card { box-shadow:none; }
+
+    /* Re-establish desktop multi-column layout (A4 ~794px trips the 820px mobile breakpoint) */
+    .spectrum, .paths { grid-template-columns:repeat(3,1fr) !important; gap:8pt !important; }
+    .hook-head, .step-head { flex-direction:row !important; gap:14pt !important; }
+    .icard { padding:14pt !important; }
+    .icard h3 { font-size:12pt; margin-bottom:5pt; }
+    .icard p { font-size:8.5pt; line-height:1.4; margin-bottom:8pt; }
+    .icard .ico { font-size:18pt; margin-bottom:8pt; }
+    .icard .tag { font-size:7pt; margin-bottom:8pt; padding:3pt 6pt; }
+    .icard .tools { font-size:7.5pt; }
+    .pcard .inner { padding:14pt !important; }
+    .pcard h3 { font-size:12pt; margin:6pt 0 2pt; }
+    .pcard .emoji { font-size:18pt; }
+    .pcard .who { font-size:7.5pt; margin-bottom:10pt; }
+    .pcard li { font-size:8.5pt; padding:6pt 0 6pt 22pt; }
+    .pcard li::before { width:15pt; height:15pt; font-size:8pt; }
+    .pcard .deeper { font-size:8.5pt; margin-top:10pt; }
+    .spectrum-rail { font-size:8pt; margin-top:10pt; }
+    .callout { padding:12pt 16pt; margin-top:14pt; font-size:9.5pt; }
+    .prompt-hint { font-size:9pt; }
+    section.block, .hook, .footer-cta { padding:8pt 0 4pt !important; }
+    .block .lede { margin-bottom:10pt; }
+    .hero-meta { padding-top:8pt; margin-bottom:0; }
+
+    /* Code blocks: light, readable, no wasted ink */
+    .prompt-block, .mini-prompt { background:#f4f4f6 !important; border:1px solid var(--gray-100); }
+    pre.prompt, .mini-prompt pre, .example pre { color:var(--gray-900) !important; font-size:8.5pt; line-height:1.55; padding:14pt 16pt; }
+    .prompt-bar { border-color:var(--gray-100); padding:8pt 14pt; }
+    .prompt-bar .dots i { background:var(--gray-300) !important; }
+    .prompt-hint { background:var(--blue-light) !important; padding:12pt 18pt; }
+    .spectrum, .paths { gap:8pt; }
+    .icard, .pcard .inner { padding:16pt; }
+
+    .footer-cta { text-align:left; page-break-before:avoid; padding:0 !important; }
+    .footer-cta h2 { font-size:13pt; margin-bottom:2pt; }
+    .footer-cta p { margin:0 0 3pt 0 !important; max-width:none !important; font-size:9pt; }
+    .email-form, .footer-cta .fine { display:none !important; }
+    .footer-cta .repo-cta { display:none !important; } /* pdf-note carries both URLs in print */
+    .footer-cta .links { border-color:var(--gray-100); color:var(--gray-700); margin-top:3pt; padding-top:4pt; font-size:9pt; }
+    .footer-cta .pdf-note { display:block !important; font-size:9pt; color:var(--gray-700); margin-top:3pt; }
+  }
+  .footer-cta .pdf-note { display:none; }
+</style>
+</head>
+<body>
+
+<!-- COVER (print/PDF only) -->
+<div class="cover container">
+  <div class="c-top">A Practitioner's Guide · collinwilkins.com</div>
+  <div class="c-mid">
+    <h1>Getting Started<br>with <em>AI Tools</em></h1>
+    <div class="c-rule"></div>
+    <p>The 15-minute setup that turns ChatGPT or Claude from a clever search box into something that knows you, your work, and how you like things done.</p>
+  </div>
+  <div class="c-bottom"><strong>By Collin Wilkins</strong> &nbsp;·&nbsp; A do-it-with-me guide &nbsp;·&nbsp; Free to share</div>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">A Practitioner's Guide · <a href="https://collinwilkins.com" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">collinwilkins.com</a></div>
+    <h1>Stop starting from <em>zero</em> every time you open an AI tool.</h1>
+    <p class="hero-sub">You're already using ChatGPT or Claude. This is the setup that turns it from a clever search box into something that actually knows you, your work, and how you like things done. No code required.</p>
+    <div class="hero-meta"><strong>By Collin Wilkins</strong> &nbsp;·&nbsp; A do-it-with-me guide. Read it once, set it up as you go, keep the files forever.</div>
+  </div>
+</header>
+
+<!-- HOOK -->
+<section class="hook">
+  <div class="container">
+    <div class="hook-card">
+      <div class="hook-head">
+        <div class="hook-icon">⚡</div>
+        <div>
+          <h2>Start here: paste this into Claude or ChatGPT</h2>
+          <p>It interviews you for about five minutes, then writes your reusable AI setup files. This is the whole guide compressed into one prompt. Everything below explains what it's doing and where the files go.</p>
+        </div>
+      </div>
+      <div class="prompt-block">
+        <div class="prompt-bar">
+          <div class="dots"><i></i><i></i><i></i></div>
+          <button class="copy-btn no-print" onclick="copyEl(this,'mainPrompt')">Copy prompt</button>
+        </div>
+        <pre class="prompt" id="mainPrompt">You're going to help me set up a reusable context profile for working with AI tools. I want files I can reuse in every session so I don't re-explain myself every time.
+
+Interview me one question at a time. Do not ask everything at once. Cover:
+
+1. My work — my role, what I'm responsible for, what I'm trying to get done over the next few months.
+2. My tools — what I work in day to day (apps, file types, whatever's relevant to me).
+3. How I like to work with AI — plan first or just do it, how blunt you should be, response length, anything that annoys me.
+4. My recurring tasks — the things I'd hand to an AI every week if it already knew my context.
+5. If I create content — who it's for, my tone, one or two things I'd say and one or two I never would. Skip this if it doesn't apply to me.
+
+Ask a follow-up when an answer is vague. When you have enough, output three files as separate Markdown code blocks:
+- about-me.md — who I am and what I'm working on
+- working-preferences.md — how I want you to collaborate with me
+- brand-voice.md — only if I create content
+
+Keep each file under ~200 words, in my words, no generic filler. Ask me the first question now.</pre>
+      </div>
+      <div class="prompt-hint"><strong>What you'll have in 10 minutes:</strong> three small text files. The rest of this guide shows you exactly where each one goes, depending on which tool you use.</div>
+    </div>
+  </div>
+</section>
+
+<!-- LANDSCAPE -->
+<section class="block">
+  <div class="container">
+    <div class="eyebrow">The Landscape in 60 Seconds</div>
+    <h2 class="title">Every AI tool you've heard of is one of three things</h2>
+    <p class="lede">Most people only ever use the first one. That's like buying a Swiss Army knife and only using the toothpick. Here's the whole knife, and you don't need to be technical to use any of it.</p>
+    <div class="spectrum">
+      <div class="icard">
+        <span class="ico">💬</span>
+        <span class="tag">The front door</span>
+        <h3>Chat &amp; Browser</h3>
+        <p>You type, it answers. Great for drafting, summarizing, and questions. It forgets everything between sessions, and that wall is where most people quietly give up on AI.</p>
+        <div class="tools">Claude.ai · ChatGPT · Gemini</div>
+      </div>
+      <div class="icard">
+        <span class="ico">⌨️</span>
+        <span class="tag">The power interface</span>
+        <h3>Terminal &amp; IDE</h3>
+        <p>It reads your files, runs commands, and does multi-step work in your real environment. Same conversational feel, except now it can actually touch your stuff.</p>
+        <div class="tools">Claude Code · Cursor · Cline</div>
+      </div>
+      <div class="icard">
+        <span class="ico">☁️</span>
+        <span class="tag">Fire &amp; forget</span>
+        <h3>Cloud Agents</h3>
+        <p>Describe a task, walk away, come back to a finished result. Works best on clear jobs you could hand to a competent junior with a short brief.</p>
+        <div class="tools">OpenAI Codex · Claude Code (background)</div>
+      </div>
+    </div>
+    <div class="spectrum-rail"><span>More hands-on</span><span class="line"></span><span>More autonomous</span></div>
+  </div>
+</section>
+
+<!-- DWM 1: CONTEXT PROFILE -->
+<section class="block alt">
+  <div class="container">
+    <div class="eyebrow">Do It With Me · Part 1</div>
+    <h2 class="title">Build your AI context profile</h2>
+    <p class="lede">This is the part that separates casual users from people who get real work done. The same model gives two people wildly different results, and the difference is almost always this: one of them set up context once, the other re-explains themselves every session.</p>
+
+    <div class="step-card">
+      <div class="step-head">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Run the interview prompt</h3>
+          <p>Open Claude or ChatGPT, paste the prompt from the top of this guide, and answer its questions like you're briefing a sharp new contractor on day one.</p>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="label">What good output looks like</div>
+        <div class="example">
+          <div class="ex-label">about-me.md — a real example</div>
+<pre><span class="h"># About Me</span>
+
+I run marketing and ops for a 12-person SaaS company. I'm not
+an engineer. I live in Notion, Gmail, Google Sheets, and our
+analytics dashboard. I write in plain English and I'm comfortable
+following step-by-step instructions, including the occasional
+terminal command if you walk me through it.
+
+<span class="h">## What I'm working on</span>
+- Q3 launch: landing page copy, email sequence, launch checklist
+- Monthly metrics report I rebuild by hand every time (hate this)
+- Keeping our help docs current as the product changes
+
+<span class="h">## What I'm not</span>
+A developer. Skip the jargon. If a task needs a tool I don't
+have open, tell me what to install and why before we start.</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-head">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Put the files where the AI will actually read them</h3>
+          <p>Same files, different homes depending on your tool. Find the row that matches how you work and follow it.</p>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="label">Where each file goes</div>
+        <div class="mini-prompt">
+          <div class="prompt-bar"><div class="dots"><i></i><i></i><i></i></div></div>
+<pre>Claude.ai     →  Create a Project, paste files into Project knowledge
+ChatGPT       →  Settings → Personalization → Custom Instructions
+Claude Code   →  Save in your working folder as CLAUDE.md
+Cursor        →  Save as .cursorrules in your project root</pre>
+        </div>
+        <div class="label mt">What good output looks like</div>
+        <div class="example">
+          <div class="ex-label">working-preferences.md — a real example</div>
+<pre><span class="h"># How I Like To Work</span>
+
+- Show me a short plan before anything multi-step. I'll say go.
+- Be blunt. If my idea is weak, say so and tell me why.
+- Keep answers tight unless I ask you to go deep.
+- Don't produce final copy. Give me two or three options.
+- When you're unsure, ask one sharp question instead of guessing.</pre>
+        </div>
+        <div class="callout"><span class="ci">💡</span><div><b>Quick win:</b> if you skipped the interview, just write three bullet points for each file by hand. A rough version beats no version. The AI fills the gaps from there.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DWM 2: CHAT SETUP -->
+<section class="block">
+  <div class="container">
+    <div class="eyebrow">Do It With Me · Part 2</div>
+    <h2 class="title">Get more out of the tool you already use</h2>
+    <p class="lede">You don't need a new tool. You need the one you have to stop forgetting who you are. This is five minutes and it changes every conversation after it.</p>
+
+    <div class="step-card">
+      <div class="step-head">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Load your profile into ChatGPT or Claude</h3>
+          <p>ChatGPT calls it Custom Instructions. Claude calls it Projects. Same idea: context that survives between chats so you stop repeating yourself.</p>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="label">Paste this if you skipped the interview</div>
+        <div class="mini-prompt">
+          <div class="prompt-bar">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <button class="copy-btn no-print" onclick="copyEl(this,'p-chat')">Copy</button>
+          </div>
+<pre id="p-chat">Here's context about me. Use it in every reply unless I say otherwise.
+
+WHO I AM: [your role, what you're responsible for]
+MY TOOLS: [the apps and files you work in]
+HOW TO HELP ME: be direct, plan before multi-step work, keep
+answers tight, give me options instead of one final version,
+ask a sharp question when you're unsure instead of guessing.
+
+Acknowledge in one line, then wait for my first real task.</pre>
+        </div>
+        <div class="label mt">What good output looks like</div>
+        <div class="example">
+          <div class="ex-label">ChatGPT Custom Instructions — filled in</div>
+<pre><span class="h">What should ChatGPT know about you?</span>
+Marketing/ops lead at a small SaaS company. Not technical.
+Work in Notion, Gmail, Sheets. Currently running a Q3 launch.
+
+<span class="h">How should ChatGPT respond?</span>
+Be direct and brief. Plan before multi-step tasks. Give 2-3
+options, not one polished answer. Plain English, no jargon.
+Ask one question if unsure instead of guessing.</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-head">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Run three real tasks this week</h3>
+          <p>Not "write me a poem." Real work builds intuition that toy prompts never will. Pick three things you actually have to do.</p>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="label">Try these</div>
+        <div class="mini-prompt">
+          <div class="prompt-bar"><div class="dots"><i></i><i></i><i></i></div></div>
+<pre>1. Paste a long doc you need to read → "Summarize this for
+   someone in my role. What needs a decision from me?"
+
+2. The email you've been avoiding → "Draft a reply. Match
+   the tone of my last message in this thread."
+
+3. Something you're learning → "Explain this like I have 15
+   minutes and a real reason to care, not a textbook."</pre>
+        </div>
+        <div class="callout"><span class="ci">💡</span><div><b>The shift to watch for:</b> the first time it answers <em>as if it already knew you</em>, you'll stop treating it like a search box. That moment is the whole point of the setup.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFIG LAYER + TABLE -->
+<section class="block alt">
+  <div class="container">
+    <div class="eyebrow">The Configuration Layer</div>
+    <h2 class="title">Soul files: the same idea, four names</h2>
+    <p class="lede">Once you move past chat, every serious tool reads a plain text file at the start of each session to learn your project. The names differ. The idea is identical: a file the AI reads so it doesn't guess.</p>
+    <table class="tbl">
+      <thead><tr><th>Tool</th><th>File name</th><th>Where it lives</th></tr></thead>
+      <tbody>
+        <tr><td>Claude Code</td><td class="f">CLAUDE.md</td><td>Root of your project</td></tr>
+        <tr><td>OpenAI Codex</td><td class="f">AGENTS.md</td><td>Root of your project</td></tr>
+        <tr><td>Cursor</td><td class="f">.cursorrules</td><td>Root of your project</td></tr>
+        <tr><td>GitHub Copilot</td><td class="f">.github/copilot-instructions.md</td><td>The .github/ folder</td></tr>
+        <tr><td>Emerging standard</td><td class="f">AGENTS.md</td><td>Root of your project</td></tr>
+      </tbody>
+    </table>
+    <div class="step-card" style="margin-top:32px;">
+      <div class="step-head">
+        <div class="step-num">✎</div>
+        <div>
+          <h3>The minimum version that already works</h3>
+          <p>Ten lines. This alone stops the most common failure: the AI producing something that technically works but ignores how you do things.</p>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="example">
+          <div class="ex-label">CLAUDE.md / AGENTS.md — minimum viable</div>
+<pre><span class="h">## Project Overview</span>
+This is a Next.js store for selling custom furniture.
+Stack: TypeScript, Tailwind, Supabase.
+
+<span class="h">## Conventions</span>
+- Named exports, not default exports
+- Tests live next to the file they test
+- Run tests with: npm test</pre>
+        </div>
+        <div class="callout"><span class="ci">📦</span><div><b>Want the templates?</b> They're part of the <b>AI Adoption Playbook</b>. The CLAUDE.md and AGENTS.md starters are free on GitHub (link at the end). Prefer the whole Playbook — every template, the AI Readiness Worksheet, and this guide as a PDF? It's one email away.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DWM 3: TERMINAL -->
+<section class="block">
+  <div class="container">
+    <div class="eyebrow">Do It With Me · Part 3</div>
+    <h2 class="title">Try a terminal agent once</h2>
+    <p class="lede">The terminal sounds intimidating. The interaction is the same as chat: you type plain English, it responds. The difference is it can read and change real files on your computer. You only have to do this once to get it.</p>
+
+    <div class="step-card">
+      <div class="step-head">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Install Claude Code</h3>
+          <p>One command. If you don't have Node or Homebrew, ask ChatGPT "how do I install Homebrew on a Mac" first and follow it.</p>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="mini-prompt">
+          <div class="prompt-bar">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <button class="copy-btn no-print" onclick="copyEl(this,'p-install')">Copy</button>
+          </div>
+<pre id="p-install">npm install -g @anthropic-ai/claude-code
+
+# or, if you use Homebrew:
+brew install claude-code</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-head">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Point it at a folder and give it a real job</h3>
+          <p>Make a folder of files you actually have (notes, a messy spreadsheet export, a pile of docs). Open it, run <code>claude</code>, and try this.</p>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="label">A good first task</div>
+        <div class="mini-prompt">
+          <div class="prompt-bar">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <button class="copy-btn no-print" onclick="copyEl(this,'p-first')">Copy</button>
+          </div>
+<pre id="p-first">Look at every file in this folder. Tell me what's here in
+plain English, flag anything that looks duplicated or out of
+date, and propose a cleaner folder structure. Show me the plan
+before you move or rename anything.</pre>
+        </div>
+        <div class="callout"><span class="ci">💡</span><div><b>Why this one:</b> it's safe (it shows a plan before touching anything), it's real, and it does something a chat window physically can't, which is the moment terminal agents click.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DWM 4: CLOUD -->
+<section class="block alt">
+  <div class="container">
+    <div class="eyebrow">Do It With Me · Part 4</div>
+    <h2 class="title">Hand a task to a cloud agent</h2>
+    <p class="lede">Cloud agents work while you do something else. The skill isn't technical. It's learning to scope a task tightly enough that a competent stranger could do it from your description alone.</p>
+
+    <div class="step-card">
+      <div class="step-head">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Learn the difference between a good and bad ask</h3>
+          <p>This single distinction is most of the value. Vague task in, mediocre result out. Every time.</p>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="example">
+          <div class="ex-label">Scope it like this</div>
+<pre><span class="h">✗ Bad:</span>  "Build me an app."
+<span class="h">✗ Bad:</span>  "Improve the signup flow."
+
+<span class="h">✓ Good:</span> "Add email-format validation to the signup
+        form. Show an inline error. Write a test for it."
+<span class="h">✓ Good:</span> "Add a dark-mode toggle to the settings
+        page. Persist the choice. Match existing styles."</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-head">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Use this hand-off template</h3>
+          <p>Paste it into Codex or push it as a background task in Claude Code. Then close the tab and come back later.</p>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="mini-prompt">
+          <div class="prompt-bar">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <button class="copy-btn no-print" onclick="copyEl(this,'p-cloud')">Copy</button>
+          </div>
+<pre id="p-cloud">TASK: [one specific, self-contained change]
+DONE WHEN: [how I'll know it worked — the visible result]
+CONSTRAINTS: [match existing patterns, don't touch X, etc.]
+IF UNSURE: stop and leave a note rather than guessing.
+
+Show the change as a pull request I can review.</pre>
+        </div>
+        <div class="callout"><span class="ci">💡</span><div><b>Mental model shift:</b> stop thinking "AI as copilot." Start thinking "AI as an async teammate you brief and review." That reframe is the whole skill.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMORY -->
+<section class="block">
+  <div class="container">
+    <div class="eyebrow">Make It Stick</div>
+    <h2 class="title">The memory problem, and the free fix</h2>
+    <p class="lede">Every tool here forgets between sessions unless you give it somewhere to remember. The fix is not a product. It's a folder of plain text files the AI can read and write directly.</p>
+    <div class="spectrum">
+      <div class="icard">
+        <span class="ico">📄</span>
+        <span class="tag">Start here</span>
+        <h3>Plain files</h3>
+        <p>A folder of markdown notes: decisions, preferences, project context. Point your AI at it. Not sophisticated. Works today, costs nothing.</p>
+        <div class="tools">Any text editor</div>
+      </div>
+      <div class="icard">
+        <span class="ico">🗂️</span>
+        <span class="tag">Be careful</span>
+        <h3>Notion / OneNote</h3>
+        <p>Fine for you, awkward for AI. The content sits in a format agents can't read directly, so you're back to copy-pasting. Friction returns.</p>
+        <div class="tools">Export step required</div>
+      </div>
+      <div class="icard">
+        <span class="ico">🧠</span>
+        <span class="tag">The recommendation</span>
+        <h3>Obsidian</h3>
+        <p>Everything is plain markdown in a local folder. No proprietary format, no export step. The agent reads and writes it natively. This is what I use.</p>
+        <div class="tools">Free · plain text</div>
+      </div>
+    </div>
+    <div class="callout"><span class="ci">🔑</span><div><b>The one principle:</b> AI tools work on text. Keep your knowledge in plain text the AI can read natively, and the integration is free and automatic. Everything else is preference.</div></div>
+  </div>
+</section>
+
+<!-- PATHS -->
+<section class="block alt">
+  <div class="container">
+    <div class="eyebrow">Pick Your Path</div>
+    <h2 class="title">Where to start, based on where you are</h2>
+    <p class="lede">You don't have to do all of this. Pick the column that sounds like you and do those three things this week.</p>
+    <div class="paths">
+      <div class="pcard"><div class="bar"></div><div class="inner">
+        <div class="emoji">🌱</div>
+        <h3>New to AI</h3>
+        <div class="who">Barely used it</div>
+        <ol>
+          <li>Open Claude.ai or ChatGPT, both free, pick either</li>
+          <li>Run the interview prompt at the top of this guide</li>
+          <li>Do three real tasks this week, not toy prompts</li>
+        </ol>
+        <a class="deeper" href="https://collinwilkins.com/articles/ai-agent-harness">Go deeper: What is a harness? →</a>
+      </div></div>
+      <div class="pcard"><div class="bar"></div><div class="inner">
+        <div class="emoji">🔧</div>
+        <h3>Technical, unconfigured</h3>
+        <div class="who">Code, but no setup</div>
+        <ol>
+          <li>Install Claude Code, run it in a real project</li>
+          <li>Add a CLAUDE.md or AGENTS.md from the templates</li>
+          <li>Create about-me.md and working-preferences.md</li>
+        </ol>
+        <a class="deeper" href="https://collinwilkins.com/articles/context-engineering-ai-coding-tools">Go deeper: Context engineering →</a>
+      </div></div>
+      <div class="pcard"><div class="bar"></div><div class="inner">
+        <div class="emoji">🚀</div>
+        <h3>Daily user</h3>
+        <div class="who">Already in deep</div>
+        <ol>
+          <li>Audit your config layer, is it current and honest?</li>
+          <li>Set up a real memory system in Obsidian</li>
+          <li>Delegate a scoped job to a cloud agent</li>
+        </ol>
+        <a class="deeper" href="https://collinwilkins.com/articles/ai-agent-workflow-claude-code">Go deeper: My daily workflow →</a>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<section class="footer-cta">
+  <div class="container">
+    <h2>Get the AI Adoption Playbook</h2>
+    <p>This guide is free to read and share, and the CLAUDE.md and AGENTS.md starters are free on GitHub. Want the whole AI Adoption Playbook emailed to you — every template, the AI Readiness Worksheet, and this guide as a PDF to keep? Drop your address below.</p>
+    <form id="playbook-form" class="email-form no-print">
+      <input type="email" name="email" placeholder="you@example.com" required>
+      <input type="hidden" name="tag" value="playbook-toolkit">
+      <button type="submit">Send me the Playbook</button>
+    </form>
+    <div class="fine no-print">No spam. The occasional practitioner note on AI tooling. Unsubscribe anytime.</div>
+    <div class="repo-cta">Just want the starters? They're free in the AI Adoption Playbook on GitHub → <a href="https://github.com/cwilkins507/ai-adoption-playbook">github.com/cwilkins507/ai-adoption-playbook</a></div>
+    <div class="pdf-note">Starters, free on GitHub: <strong>github.com/cwilkins507/ai-adoption-playbook</strong> &nbsp;·&nbsp; Full Playbook: <strong>collinwilkins.com/guides/ai-adoption-playbook</strong></div>
+    <div class="links">
+      Go deeper:
+      <a href="https://collinwilkins.com/articles/ai-agent-harness">What is a harness?</a> ·
+      <a href="https://collinwilkins.com/articles/context-engineering-ai-coding-tools">Context engineering</a> ·
+      <a href="https://collinwilkins.com/articles/ai-agent-workflow-claude-code">My daily AI workflow</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  function copyEl(btn, id){
+    var t = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(t).then(function(){
+      var o = btn.textContent;
+      btn.textContent = 'Copied ✓';
+      btn.classList.add('copied');
+      setTimeout(function(){ btn.textContent = o; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+  var pbf = document.getElementById('playbook-form');
+  if (pbf) {
+    pbf.addEventListener('submit', function(e){
+      e.preventDefault();
+      var email = pbf.querySelector('input[type="email"]').value;
+      var data = new FormData();
+      data.append('email', email);
+      data.append('tag', 'playbook-toolkit');
+      navigator.sendBeacon('https://buttondown.com/api/emails/embed-subscribe/collinwilkins', data);
+      window.location.href = '/guides/ai-adoption-playbook/thanks';
+    });
+  }
+</script>
+</body>
+</html>
