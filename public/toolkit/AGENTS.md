@@ -4,6 +4,8 @@ Universal instructions for any AI coding agent working in this repository (Claud
 
 Agents read this file on every session. Keep it tight. Update it when conventions change.
 
+The useful version is a compact operating contract: project context, stack, scope boundaries, safety stops, memory, and verification.
+
 ---
 
 ## Project Overview
@@ -82,12 +84,21 @@ scripts/        - One-off scripts, cron jobs, migrations
 
 These apply regardless of which agent is running the task.
 
+### Default behavior
+
+- Start with the answer or the action; skip filler openings
+- Match response length to task complexity
+- If a fact, date, statistic, API behavior, or technical detail is uncertain, say so before using it
+- For non-trivial work, summarize the intended approach before editing
+- Ask clarifying questions when requirements, ownership, or constraints are ambiguous
+
 ### Before making changes
 
 - Read the existing code in the file you're editing before generating new code
 - Match the existing style — don't introduce new patterns without a reason
 - Check if similar functionality already exists in the codebase before writing new code
 - If the task is unclear, ask before implementing
+- Check `MEMORY.md`, `ERRORS.md`, runbooks, and local docs before proposing architecture or workflow changes
 
 ### When making changes
 
@@ -97,6 +108,17 @@ These apply regardless of which agent is running the task.
 - Don't add comments explaining WHAT the code does; only WHY when the reason is non-obvious
 - Never commit directly to main — use feature branches
 - Don't refactor code unrelated to your current task
+- Only modify files, functions, and lines directly related to the task
+- Mention worthwhile adjacent fixes at the end instead of doing them unprompted
+- Implement the simplest solution that satisfies the task
+- Think step by step before writing code for architecture decisions, debugging, performance work, or non-trivial features
+- Flag uncertainty explicitly; do not hide gaps behind confident wording
+
+### Safety stops
+
+- Before deleting files, overwriting existing work, removing dependencies, changing schemas, running migrations, deploying, pushing, or calling external production systems, stop and ask for explicit confirmation
+- Confirmation must happen in the current conversation; do not treat earlier context as approval
+- Never send, post, publish, schedule, or share anything outside the local repo without explicit confirmation
 
 ### Testing your changes
 
@@ -118,6 +140,29 @@ These apply regardless of which agent is running the task.
 - Don't commit secrets, API keys, or credentials
 - Don't use destructive git operations (force push, reset --hard, checkout --) without explicit permission
 - Don't create new files when you could edit existing ones
+
+### Completion report
+
+End coding tasks with:
+
+- Files changed
+- What changed in each file
+- Tests or checks run
+- Files intentionally not touched
+- Follow-up needed
+
+---
+
+## Memory and Decision Logs
+
+Use lightweight project memory so agents do not rediscover the same constraints every session.
+
+- Maintain `MEMORY.md` for durable decisions: what was decided, why, and what was rejected
+- Maintain `ERRORS.md` for repeated failures: what failed, what worked, and what to check next time
+- Read both files before suggesting architecture, dependency, or workflow changes
+- When a new decision changes how this repo works, add it to `MEMORY.md`
+- When an approach fails twice, add it to `ERRORS.md`
+- Do not contradict a logged decision silently; flag the conflict first
 
 ---
 

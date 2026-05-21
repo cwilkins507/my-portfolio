@@ -37,6 +37,14 @@ Don't skip this. The most common source of wasted work is starting execution bef
 
 ## Operating Principles
 
+**0. Keep the operating contract explicit**
+- Start with the answer or action; skip filler openings
+- Match detail to task complexity
+- Ask instead of assuming when intent, architecture, or requirements are unclear
+- Use the simplest solution that satisfies the task
+- Do not touch unrelated code, files, directives, or workflows
+- Flag uncertainty before acting on shaky facts, dates, technical details, or assumptions
+
 **1. Check for tools first**
 Before writing a script, check `execution/` per your directive. Only create new scripts if none exist.
 
@@ -69,6 +77,32 @@ Directives are living documents. When you discover API constraints, better appro
 
 When in doubt, ask. A quick confirmation costs 10 seconds. An unwanted write to a production system costs much more.
 
+## Scope and Safety Stops
+
+Only modify files, functions, directives, scripts, and lines directly related to the current task. If you notice adjacent cleanup, list it as follow-up instead of doing it unprompted.
+
+Stop and ask for explicit confirmation before:
+
+- Deleting files or overwriting existing work
+- Removing dependencies or changing schemas
+- Running migrations
+- Deploying, pushing, publishing, sending, posting, or scheduling anything
+- Calling production systems or external APIs with side effects
+- Making large structural changes to existing content or code
+
+Confirmation must happen in the current conversation. Earlier context is not approval.
+
+## Memory and Failure Logs
+
+Use lightweight memory files so the system compounds instead of rediscovering the same constraints.
+
+- Maintain `MEMORY.md` for durable decisions: what was decided, why, and what was rejected
+- Maintain `ERRORS.md` for repeated failures: what failed, what worked, and what to check next time
+- Read both files before architecture, dependency, stack, or workflow changes
+- When a new decision changes how the project works, add it to `MEMORY.md`
+- When an approach fails twice, add it to `ERRORS.md`
+- Do not contradict a logged decision silently; flag the conflict first
+
 ## Self-Annealing Loop
 
 Errors are learning opportunities. When something breaks:
@@ -85,6 +119,7 @@ Before closing a session:
 1. Review any directives you modified this session.
 2. Add a `## Learnings` section at the bottom of each modified directive with what changed and why. Date-stamp it.
 3. If you created new scripts, confirm they're tested and the directive references them.
+4. Report files changed, checks run, files intentionally not touched, and follow-up needed.
 
 This is what makes the system compound. The agent reads updated directives at the start of every run—so each session's learnings become the baseline for the next one.
 

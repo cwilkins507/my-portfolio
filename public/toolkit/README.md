@@ -22,13 +22,24 @@ A diagnostic spreadsheet that scores your engineering team across 7 dimensions a
 
 A starter convention file for [Claude Code](https://claude.com/claude-code). Drop it in your repo root, fill in the project-specific sections, and Claude Code will pick up the context on every session.
 
-Structured sections: project overview, tech stack, directory structure, conventions (code style, testing, commits), workflow, common commands, gotchas, and Claude-specific instructions.
+Structured sections: project overview, tech stack, directory structure, conventions (code style, testing, commits), workflow, common commands, gotchas, memory/decision logs, safety stops, and Claude-specific operating rules.
 
 ### 3. `AGENTS.md`
 
 A universal convention file for any AI coding agent — Claude Code, Cursor, Codex, Cline, Aider, GitHub Copilot, and whatever ships next. Similar structure to CLAUDE.md but with agent-neutral language, so one file works across tools.
 
 **Using both:** You can commit both CLAUDE.md and AGENTS.md to the same repo. Claude Code reads CLAUDE.md preferentially. Other agents read AGENTS.md. Some teams put shared content in AGENTS.md and Claude-specific overrides in CLAUDE.md to avoid duplication.
+
+## What Changed in This Version
+
+The templates now include the missing operating layer:
+
+- **Default behavior:** answer directly, match detail to task complexity, and flag uncertainty before using shaky facts.
+- **Scope control:** edit only what the task requires and leave adjacent refactors as notes.
+- **Safety stops:** ask before destructive, production, publishing, deploy, schema, or external-system actions.
+- **Memory:** use `MEMORY.md` for decisions and `ERRORS.md` for repeated failures.
+- **Stack lock-in:** document the exact language, framework, database, package manager, testing, and styling choices the agent should assume.
+- **Completion report:** list files changed, checks run, intentionally untouched files, and follow-up.
 
 ## Why These Exist
 

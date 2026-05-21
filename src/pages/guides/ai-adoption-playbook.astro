@@ -14,7 +14,7 @@ const playbookSchema = {
         "url": "https://collinwilkins.com/about"
       },
       "datePublished": "2026-04-10",
-      "dateModified": "2026-04-10",
+      "dateModified": "2026-05-21",
       "publisher": {
         "@type": "Person",
         "name": "Collin Wilkins"
@@ -118,6 +118,14 @@ const playbookSchema = {
         <p>The gap between "AI tools are a novelty" and "AI tools have compounding productivity" is not a better model. It's a convention file committed to your repo, a <code>CLAUDE.md</code> that captures actual patterns, and a team habit of updating it when the answer changes.</p>
         <p>The pattern that works: treat context like production code. It's versioned, reviewed, and maintained. New engineers read it to understand how the team works. When a convention file is stale, the AI tool produces stale output. Keep it fresh the same way you keep your tests fresh.</p>
         <p>Your <code>CLAUDE.md</code> should answer three questions: what is this codebase, what are the conventions, and what are the common mistakes to avoid. Your <code>AGENTS.md</code> (or equivalent) should be agent-neutral and cover the same ground for Cursor, Codex, Cline, or whatever your team uses alongside Claude Code.</p>
+        <p>The missing layer is the operating contract. Tell the agent how to behave by default, what it must not touch, when it needs confirmation, where durable decisions live, and how it should report finished work. That turns the file from "repo background" into a repeatable team practice.</p>
+        <ul>
+          <li><strong class="text-[var(--color-text-primary)]">Defaults:</strong> answer directly, match detail to the task, and flag uncertainty before it turns into confident wrongness.</li>
+          <li><strong class="text-[var(--color-text-primary)]">Scope:</strong> edit only what the task requires; leave adjacent refactors as notes.</li>
+          <li><strong class="text-[var(--color-text-primary)]">Safety stops:</strong> ask before destructive changes, deploys, migrations, production calls, publishing, or external sends.</li>
+          <li><strong class="text-[var(--color-text-primary)]">Memory:</strong> keep <code>MEMORY.md</code> for decisions and <code>ERRORS.md</code> for repeated failures.</li>
+          <li><strong class="text-[var(--color-text-primary)]">Stack lock-in:</strong> document the language, framework, database, package manager, tests, and styling system the agent should assume.</li>
+        </ul>
         <p>Most teams skip this step because it feels like overhead. Six months later they wonder why their AI pilot plateaued. The teams that invest the day to write decent context files are still compounding output a year in.</p>
         <p>
           <a href="/articles/context-engineering-ai-coding-tools" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] font-semibold">
@@ -211,7 +219,7 @@ const playbookSchema = {
         <p>If you want to run this framework with your team, I put together supporting files:</p>
         <ul class="space-y-3 pl-5 list-disc">
           <li><strong class="text-[var(--color-text-primary)]">AI Readiness Diagnostic Worksheet</strong> (Excel / Google Sheets) &mdash; 7-dimension scoring rubric with level-based next steps. Run it in a team meeting.</li>
-          <li><strong class="text-[var(--color-text-primary)]">Convention Files Starter Pack</strong> &mdash; <code>CLAUDE.md</code> and <code>AGENTS.md</code> templates from real production usage, ready to drop into your repo.</li>
+          <li><strong class="text-[var(--color-text-primary)]">Convention Files Starter Pack</strong> &mdash; <code>CLAUDE.md</code> and <code>AGENTS.md</code> templates with project context, safety stops, memory files, stack lock-in, and completion-report rules.</li>
         </ul>
         <p>Free, no upsell. Drop your email for instant access.</p>
       </div>

@@ -100,7 +100,7 @@ const Downloads = () => {
                 </p>
 
                 <p className="text-[var(--color-text-secondary)] text-base md:text-lg leading-relaxed mb-8 font-light">
-                  Five chapters on readiness, context engineering, tool selection, failure patterns, and ROI math. The frameworks I use when I help teams roll out AI coding tools — with a downloadable toolkit (diagnostic worksheet + convention files) for running them with your team.
+                  Five chapters on readiness, context engineering, tool selection, failure patterns, and ROI math. The frameworks I use when I help teams roll out AI coding tools — with a downloadable toolkit for diagnostic scoring, convention files, safety stops, memory, and stack lock-in.
                 </p>
 
                 <div className="inline-flex items-center gap-3 px-6 py-3 bg-[var(--color-accent)] text-white rounded-full font-bold group-hover:bg-[var(--color-accent-hover)] transition-all duration-300">
@@ -141,7 +141,7 @@ const Downloads = () => {
                     </ol>
                     <div className="mt-6 pt-4 border-t border-[var(--color-border)] flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.15em] text-[var(--color-text-faint)]">
                       <span>+ Diagnostic worksheet</span>
-                      <span>+ CLAUDE.md template</span>
+                      <span>+ CLAUDE.md / AGENTS.md</span>
                     </div>
                   </div>
                 </div>
@@ -208,7 +208,7 @@ const Downloads = () => {
                       Example AGENTS.md
                     </h3>
                     <p className="text-[var(--color-text-muted)] font-light leading-relaxed">
-                      Download the AGENTS.md template I use to document and specify AI agent behaviors and safety protocols.
+                      Download the AGENTS.md template I use to document project context, agent behavior, safety stops, memory files, and verification rules.
                     </p>
                   </div>
                 </div>
