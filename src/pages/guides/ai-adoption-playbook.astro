@@ -1,6 +1,128 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
+const chapters = [
+  {
+    id: 'chapter-1',
+    number: '01',
+    title: "Figuring Out If You're Ready",
+    coreQuestion: 'Is the team ready for tooling, custom AI, or strategy work?',
+    pillar: 'Readiness',
+    readTime: '8 min',
+    href: '/articles/how-to-know-if-your-business-is-ready-for-ai',
+    takeaway: 'Do not buy AI maturity. Map the current operating level, then take the next step the team can actually absorb.',
+    summary: [
+      "Readiness is not yes or no. It is a spectrum: undefined workflows, AI-powered tools, custom AI, and AI strategy.",
+      "The trap is spending real money on AI tooling while core engineering processes still live in tribal knowledge.",
+      "A useful first pass asks who owns the rollout, what repeatable work exists, what metrics are available, and where the clearest bottleneck lives."
+    ],
+    links: [{ label: 'Read the full breakdown', href: '/articles/how-to-know-if-your-business-is-ready-for-ai' }]
+  },
+  {
+    id: 'chapter-2',
+    number: '02',
+    title: 'Why Your AI Tools Produce Bad Output',
+    coreQuestion: 'What context does the tool need before it can produce team-grade work?',
+    pillar: 'Context',
+    readTime: '10 min',
+    href: '/articles/context-engineering-ai-coding-tools',
+    takeaway: 'The model is rarely the whole problem. Teams get better output when context is versioned, reviewed, and maintained like production code.',
+    summary: [
+      "Context engineering means deliberately shaping what an AI coding tool knows before it starts working.",
+      "That includes convention files such as CLAUDE.md and AGENTS.md, scoped work sessions, safety stops, memory files, and stack-specific rules.",
+      "The teams that keep these files fresh turn individual prompting tricks into a repeatable engineering practice."
+    ],
+    links: [{ label: 'Read the full breakdown', href: '/articles/context-engineering-ai-coding-tools' }]
+  },
+  {
+    id: 'chapter-3',
+    number: '03',
+    title: 'Which AI Tools Actually Matter',
+    coreQuestion: 'How should teams choose models and route work without locking themselves in?',
+    pillar: 'Tooling',
+    readTime: '12 min',
+    href: '/articles/ai-coding-model-wars-2026',
+    takeaway: 'Tool selection is less about the highest benchmark and more about matching model cost, capability, latency, and compliance to the task.',
+    summary: [
+      "The model market keeps compressing: benchmark gaps shrink, price gaps remain large, and the best choice changes by task.",
+      "Simple classification and formatting often belong on cheaper models. Heavy reasoning and review still justify frontier models.",
+      "Once multiple services or providers are involved, a routing layer protects cost visibility, failover, and policy enforcement."
+    ],
+    links: [
+      { label: 'Read the model market analysis', href: '/articles/ai-coding-model-wars-2026' },
+      { label: 'Read the LLM gateway guide', href: '/articles/llm-gateway-architecture' }
+    ]
+  },
+  {
+    id: 'chapter-4',
+    number: '04',
+    title: 'The 5 Ways AI Pilots Die',
+    coreQuestion: 'Why do individual productivity wins fail to move team delivery metrics?',
+    pillar: 'Adoption',
+    readTime: '9 min',
+    href: '/articles/claude-code-productivity-paradox',
+    takeaway: 'AI adoption fails when it stays personal. The work has to become shared practice: conventions, measurement, review changes, and skill transfer.',
+    summary: [
+      "Most pilots die from missing convention files, missing measurement, isolated power users, review bottlenecks, or unresolved senior skepticism.",
+      "Self-reported speed is not enough. Teams need cycle time, quality, review load, and adoption telemetry.",
+      "The fix is treating AI adoption as an operating change, not a pile of individual productivity subscriptions."
+    ],
+    links: [{ label: 'Read the full breakdown', href: '/articles/claude-code-productivity-paradox' }]
+  },
+  {
+    id: 'chapter-5',
+    number: '05',
+    title: 'The Math That Makes the Decision',
+    coreQuestion: 'When is AI automation worth the money and maintenance burden?',
+    pillar: 'ROI',
+    readTime: '8 min',
+    href: '/articles/automation-cost-small-business',
+    takeaway: 'Start with the smallest stable workflow where manual cost, automated cost, and payback period are visible.',
+    summary: [
+      "Most work falls into three tiers: low-cost SaaS features, custom agents/internal tools, or integrated AI systems.",
+      "The basic payback math is manual monthly cost minus automated monthly cost, divided into the build cost.",
+      "If payback is under six months and the process is stable, build. If the process keeps changing or payback stretches past a year, wait."
+    ],
+    links: [{ label: 'Read the full breakdown', href: '/articles/automation-cost-small-business' }]
+  }
+];
+
+const resources = [
+  {
+    title: 'AI Readiness Diagnostic Worksheet',
+    label: 'Download free',
+    resource: 'ai-readiness-worksheet',
+    format: 'xlsx',
+    accessType: 'download_free',
+    href: '/toolkit/AI-Readiness-Worksheet.xlsx',
+    description: 'A 7-dimension scoring rubric for deciding whether the next move is process cleanup, AI-powered tools, custom AI, or strategy work.'
+  },
+  {
+    title: 'CLAUDE.md Template',
+    label: 'Download free',
+    resource: 'claude-md-template',
+    format: 'md',
+    accessType: 'download_free',
+    href: '/toolkit/CLAUDE.md',
+    description: 'A Claude Code convention file starter with project context, workflow rules, safety stops, memory files, and verification expectations.'
+  },
+  {
+    title: 'AGENTS.md Template',
+    label: 'Download free',
+    resource: 'agents-md-template',
+    format: 'md',
+    accessType: 'download_free',
+    href: '/toolkit/AGENTS.md',
+    description: 'An agent-neutral convention file for Cursor, Codex, Cline, Aider, Copilot, and whatever your team adds next.'
+  }
+];
+
+const relatedPaths = [
+  { pillar: 'Readiness', href: '/articles/how-to-know-if-your-business-is-ready-for-ai', label: 'Start with the readiness spectrum' },
+  { pillar: 'Context', href: '/articles/context-engineering-ai-coding-tools', label: 'Build the shared context layer' },
+  { pillar: 'ROI', href: '/articles/automation-cost-small-business', label: 'Use the cost math before you build' }
+];
+
 const playbookSchema = {
   "@context": "https://schema.org",
   "@graph": [
@@ -56,175 +178,110 @@ const playbookSchema = {
   description="A practitioner's playbook for engineering teams adopting AI coding tools. Five chapters on readiness, context engineering, tool selection, common pilot failures, and the ROI math."
   schema={playbookSchema}
 >
-  <article class="container mx-auto max-w-3xl px-4 pt-24 md:pt-32 pb-16">
+  <article class="container mx-auto max-w-5xl px-4 pt-24 md:pt-32 pb-16">
 
     <!-- ── Hero ── -->
-    <header class="mb-16 md:mb-20 text-center">
+    <header class="mx-auto mb-14 max-w-3xl text-center md:mb-16">
       <div class="text-xs uppercase tracking-[0.2em] text-moonlight-text-faint mb-4">Guide</div>
       <h1 class="text-3xl md:text-5xl font-serif font-bold text-[var(--color-text-primary)] leading-[1.15] mb-6">
         The AI Adoption Playbook for Engineering Teams
       </h1>
       <p class="text-lg md:text-xl text-moonlight-text-secondary max-w-2xl mx-auto leading-relaxed">
-        Five chapters drawn from the articles I keep writing. Ungated. No sign-up wall.
-        One optional form at the end if you want the toolkit.
+        Five problems engineering leaders hit when AI coding tools move from individual experiments to team practice.
       </p>
+      <p class="mt-4 text-sm text-moonlight-text-muted">
+        Free to read. Worksheet and templates download directly. Email is optional.
+      </p>
+      <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+        <a href="/toolkit/AI-Readiness-Worksheet.xlsx" download data-playbook-download data-resource="ai-readiness-worksheet" data-format="xlsx" data-access-type="download_free" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-[var(--color-accent)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--color-accent-hover)]">
+          Download the worksheet
+        </a>
+        <a href="#toolkit" class="inline-flex min-h-12 items-center justify-center rounded-lg border border-[var(--color-border)] px-5 py-3 text-sm font-semibold text-[var(--color-text-secondary)] transition hover:border-[var(--color-border-hover)] hover:text-[var(--color-text-primary)]">
+          Get the templates
+        </a>
+      </div>
     </header>
 
-    <!-- ── Table of Contents ── -->
-    <nav class="mb-16 p-6 md:p-8 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)]" aria-label="Table of contents">
-      <h2 class="text-sm font-semibold uppercase tracking-[0.12em] text-[var(--color-accent)] mb-4">Contents</h2>
-      <ol class="space-y-2 text-moonlight-text-secondary">
-        <li><a href="#chapter-1" class="hover:text-[var(--color-accent)] transition-colors">1. Figuring Out If You're Ready</a></li>
-        <li><a href="#chapter-2" class="hover:text-[var(--color-accent)] transition-colors">2. Why Your AI Tools Produce Bad Output</a></li>
-        <li><a href="#chapter-3" class="hover:text-[var(--color-accent)] transition-colors">3. Which AI Tools Actually Matter</a></li>
-        <li><a href="#chapter-4" class="hover:text-[var(--color-accent)] transition-colors">4. The 5 Ways AI Pilots Die</a></li>
-        <li><a href="#chapter-5" class="hover:text-[var(--color-accent)] transition-colors">5. The Math That Makes the Decision</a></li>
-        <li><a href="#toolkit" class="hover:text-[var(--color-accent)] transition-colors">Optional: Get the Toolkit</a></li>
-      </ol>
-    </nav>
-
-    <!-- ── Chapter 1 ── -->
-    <section id="chapter-1" class="mb-16 scroll-mt-24">
-      <div class="text-sm font-semibold text-[var(--color-accent)] uppercase tracking-[0.12em] mb-3">Chapter 1</div>
-      <h2 class="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-6">Figuring Out If You're Ready</h2>
-
-      <div class="prose prose-invert max-w-none text-moonlight-text-secondary leading-relaxed space-y-5">
-        <p>Every headline says AI is changing engineering. Nobody is talking to the team manager wondering if any of this applies to them yet.</p>
-        <p>Readiness isn't yes or no. It's a spectrum with four levels, and your position on it tells you what to do next.</p>
-        <p><strong class="text-[var(--color-text-primary)]">Level 1 — Not Ready Yet.</strong> Your workflows aren't defined. Things happen differently every sprint depending on who's on-call. You can't automate what you can't describe. Map your processes first; it will improve your team before any technology enters the picture.</p>
-        <p><strong class="text-[var(--color-text-primary)]">Level 2 — Ready for AI-Powered Tools.</strong> You have defined workflows. Your code review process is stable. Your test suite runs. This is where most mid-market teams sit — and where ChatGPT, Claude, and Copilot deliver real value without custom work. Turn on features in tools you already have. Budget: basically nothing.</p>
-        <p><strong class="text-[var(--color-text-primary)]">Level 3 — Ready for Custom AI.</strong> You have clean workflows, good telemetry, and clear ROI targets. You've used off-the-shelf AI and seen the gaps. Now you're ready to build convention files, custom agents, or internal tools. Budget: $10–50K plus ongoing.</p>
-        <p><strong class="text-[var(--color-text-primary)]">Level 4 — Ready for AI Strategy.</strong> AI is integrated across your SDLC. You need someone to architect the whole thing — convention file discipline, model routing, observability, cost controls — not build individual pieces.</p>
-        <p>Before you invest anything, ask five questions: Can you describe your core workflows step by step? Where is your team spending the most time on repetitive work? Do you have metrics, or are you running on gut feel? What's your realistic budget? And critically — who would own the AI rollout? Every initiative without an owner dies the same death.</p>
-        <p>The worst move is spending $50K on AI tooling while your core processes run on tribal knowledge. The best move is figuring out where you actually are, then taking the next step from there.</p>
-        <p>
-          <a href="/articles/how-to-know-if-your-business-is-ready-for-ai" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] font-semibold">
-            Read the full breakdown &rarr;
+    <section class="mb-16 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-6 md:p-8">
+      <h2 class="mb-6 text-sm font-semibold uppercase tracking-[0.12em] text-[var(--color-accent)]">Pillar Map</h2>
+      <div class="grid gap-4 md:grid-cols-5">
+        {chapters.map((chapter) => (
+          <a href={`#${chapter.id}`} data-playbook-toc data-chapter={chapter.number} data-pillar={chapter.pillar} class="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] p-4 transition hover:border-[var(--color-border-hover)]">
+            <div class="text-xs font-mono text-[var(--color-accent)]">{chapter.number}</div>
+            <div class="mt-2 text-sm font-semibold text-[var(--color-text-primary)]">{chapter.pillar}</div>
+            <div class="mt-1 text-xs leading-relaxed text-moonlight-text-muted">{chapter.title}</div>
           </a>
-        </p>
+        ))}
       </div>
     </section>
 
-    <div class="h-px bg-[var(--color-border)] my-16"></div>
-
-    <!-- ── Chapter 2 ── -->
-    <section id="chapter-2" class="mb-16 scroll-mt-24">
-      <div class="text-sm font-semibold text-[var(--color-accent)] uppercase tracking-[0.12em] mb-3">Chapter 2</div>
-      <h2 class="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-6">Why Your AI Tools Produce Bad Output</h2>
-
-      <div class="prose prose-invert max-w-none text-moonlight-text-secondary leading-relaxed space-y-5">
-        <p>Most developers blame the model when AI coding tools produce bad output. That's wrong. The real problem is context.</p>
-        <p>Context engineering is the practice of deliberately shaping what an AI agent knows before it starts working. That means writing project context files like <code>CLAUDE.md</code>, <code>AGENTS.md</code>, and <code>.cursorrules</code>. It means scoping conversations to single tasks instead of letting them sprawl. It means encoding repeatable workflows as skills and delegating subtasks to subagents with their own fresh context windows.</p>
-        <p>The gap between "AI tools are a novelty" and "AI tools have compounding productivity" is not a better model. It's a convention file committed to your repo, a <code>CLAUDE.md</code> that captures actual patterns, and a team habit of updating it when the answer changes.</p>
-        <p>The pattern that works: treat context like production code. It's versioned, reviewed, and maintained. New engineers read it to understand how the team works. When a convention file is stale, the AI tool produces stale output. Keep it fresh the same way you keep your tests fresh.</p>
-        <p>Your <code>CLAUDE.md</code> should answer three questions: what is this codebase, what are the conventions, and what are the common mistakes to avoid. Your <code>AGENTS.md</code> (or equivalent) should be agent-neutral and cover the same ground for Cursor, Codex, Cline, or whatever your team uses alongside Claude Code.</p>
-        <p>The missing layer is the operating contract. Tell the agent how to behave by default, what it must not touch, when it needs confirmation, where durable decisions live, and how it should report finished work. That turns the file from "repo background" into a repeatable team practice.</p>
-        <ul>
-          <li><strong class="text-[var(--color-text-primary)]">Defaults:</strong> answer directly, match detail to the task, and flag uncertainty before it turns into confident wrongness.</li>
-          <li><strong class="text-[var(--color-text-primary)]">Scope:</strong> edit only what the task requires; leave adjacent refactors as notes.</li>
-          <li><strong class="text-[var(--color-text-primary)]">Safety stops:</strong> ask before destructive changes, deploys, migrations, production calls, publishing, or external sends.</li>
-          <li><strong class="text-[var(--color-text-primary)]">Memory:</strong> keep <code>MEMORY.md</code> for decisions and <code>ERRORS.md</code> for repeated failures.</li>
-          <li><strong class="text-[var(--color-text-primary)]">Stack lock-in:</strong> document the language, framework, database, package manager, tests, and styling system the agent should assume.</li>
-        </ul>
-        <p>Most teams skip this step because it feels like overhead. Six months later they wonder why their AI pilot plateaued. The teams that invest the day to write decent context files are still compounding output a year in.</p>
-        <p>
-          <a href="/articles/context-engineering-ai-coding-tools" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] font-semibold">
-            Read the full breakdown &rarr;
+    <section class="mb-16">
+      <h2 class="mb-6 text-2xl font-serif font-bold text-[var(--color-text-primary)] md:text-3xl">Guide Index</h2>
+      <div class="overflow-hidden rounded-lg border border-[var(--color-border)]">
+        {chapters.map((chapter) => (
+          <a href={chapter.href} data-playbook-article data-article={chapter.href} data-chapter={chapter.number} data-pillar={chapter.pillar} class="grid gap-3 border-b border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition last:border-b-0 hover:bg-[var(--color-surface-hover)] md:grid-cols-[80px_minmax(0,1fr)_120px_90px] md:items-center">
+            <div class="font-mono text-xs text-[var(--color-accent)]">Chapter {chapter.number}</div>
+            <div>
+              <div class="font-semibold text-[var(--color-text-primary)]">{chapter.title}</div>
+              <div class="mt-1 text-sm text-moonlight-text-secondary">{chapter.coreQuestion}</div>
+            </div>
+            <div class="text-sm text-moonlight-text-muted">{chapter.pillar}</div>
+            <div class="text-sm text-moonlight-text-muted">{chapter.readTime}</div>
           </a>
-        </p>
+        ))}
       </div>
     </section>
 
-    <div class="h-px bg-[var(--color-border)] my-16"></div>
-
-    <!-- ── Chapter 3 ── -->
-    <section id="chapter-3" class="mb-16 scroll-mt-24">
-      <div class="text-sm font-semibold text-[var(--color-accent)] uppercase tracking-[0.12em] mb-3">Chapter 3</div>
-      <h2 class="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-6">Which AI Tools Actually Matter</h2>
-
-      <div class="prose prose-invert max-w-none text-moonlight-text-secondary leading-relaxed space-y-5">
-        <p>Four major coding models launched in six days earlier this year. The benchmark gap between the top proprietary model and the top open-source model is under three points. The price gap is 45x.</p>
-        <p>That's the shape of the model market in 2026. The "pick the best model" question has shifted from "which one scores highest" to "which one gives you the best cost/capability tradeoff for a given task." Classification and formatting work fine on the cheapest tier. Heavy reasoning still benefits from frontier models. Most production traffic is simpler than teams assume and runs fine on cheaper models.</p>
-        <p>That's where LLM gateway architecture comes in. The moment you're calling three or more LLM providers from multiple services with no routing layer, you're losing visibility into cost, failure modes, and performance. A gateway gives you one place to route, fail over, track spend per team or per feature, and enforce guardrails.</p>
-        <p>Teams that implement cost-based routing typically report 30–50% reduction in LLM spend. The math is straightforward: route a classification task from Opus to Sonnet and save 40% on tokens. Route it to Haiku and save 80%. Most teams are sending everything to their most expensive model by default and calling it a hard cost.</p>
-        <p>You don't need a gateway on day one. The clearest triggers: three or more services making LLM calls, monthly LLM spend above $3K, or a need for provider redundancy when a single vendor has an outage. Below those thresholds, single-provider routing with tiered models handles most use cases.</p>
-        <p>Tool selection isn't about picking the "best" model. It's about matching the model to the task and having the infrastructure to change your mind later without rewriting everything.</p>
-        <p>
-          <a href="/articles/ai-coding-model-wars-2026" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] font-semibold">
-            Read: The AI Coding Model Wars &rarr;
-          </a>
-          <br />
-          <a href="/articles/llm-gateway-architecture" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] font-semibold">
-            Read: LLM Gateway Architecture &rarr;
-          </a>
-        </p>
-      </div>
-    </section>
-
-    <div class="h-px bg-[var(--color-border)] my-16"></div>
-
-    <!-- ── Chapter 4 ── -->
-    <section id="chapter-4" class="mb-16 scroll-mt-24">
-      <div class="text-sm font-semibold text-[var(--color-accent)] uppercase tracking-[0.12em] mb-3">Chapter 4</div>
-      <h2 class="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-6">The 5 Ways AI Pilots Die</h2>
-
-      <div class="prose prose-invert max-w-none text-moonlight-text-secondary leading-relaxed space-y-5">
-        <p>Anthropic surveyed 132 of their own engineers about Claude Code. Self-reported productivity gains between 20% and 50%. Then someone checked the organizational dashboard. The delivery metrics hadn't moved.</p>
-        <p>That gap — between individual productivity and organizational delivery — is where most AI pilots die. Here are the five failure modes I keep seeing:</p>
-        <p><strong class="text-[var(--color-text-primary)]">1. No convention files.</strong> Output quality varies wildly between developers because each engineer is building their own mental model of how to prompt the tool. Without a committed context file, there's no institutional memory.</p>
-        <p><strong class="text-[var(--color-text-primary)]">2. No measurement plan.</strong> Teams adopt AI, feel faster, and never instrument anything. Six months in they can't tell leadership whether ROI is real. The only number anyone has is "68% of engineers say they're more productive" — which is exactly the number Anthropic had, and their delivery metrics didn't move.</p>
-        <p><strong class="text-[var(--color-text-primary)]">3. Individual heroes, no team practice.</strong> One engineer ships 3x because they figured out the workflow. The rest of the team is stuck. Without a deliberate effort to codify what's working, the 3x stays trapped in one person's muscle memory.</p>
-        <p><strong class="text-[var(--color-text-primary)]">4. Code review becomes the bottleneck.</strong> AI generates code faster than your review process can handle. The PR queue grows. Reviewers start rubber-stamping. Quality drops in ways that don't show up until two sprints later when a subtle bug ships to prod.</p>
-        <p><strong class="text-[var(--color-text-primary)]">5. Senior skepticism that never gets resolved.</strong> The senior engineers — the ones whose judgment you most need to trust AI tools — are also the ones most likely to notice the rough edges. If nobody takes that skepticism seriously and responds with better convention files and sharper workflows, the pilot quietly dies at the top of the org chart.</p>
-        <p>The fix for all five is the same: treat AI adoption as a team practice, not a collection of individual productivity boosters. Convention files, measurement, code review workflow changes, and deliberate skill transfer from the fastest adopters to the rest of the team.</p>
-        <p>
-          <a href="/articles/claude-code-productivity-paradox" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] font-semibold">
-            Read the full breakdown &rarr;
-          </a>
-        </p>
-      </div>
-    </section>
-
-    <div class="h-px bg-[var(--color-border)] my-16"></div>
-
-    <!-- ── Chapter 5 ── -->
-    <section id="chapter-5" class="mb-16 scroll-mt-24">
-      <div class="text-sm font-semibold text-[var(--color-accent)] uppercase tracking-[0.12em] mb-3">Chapter 5</div>
-      <h2 class="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-6">The Math That Makes the Decision</h2>
-
-      <div class="prose prose-invert max-w-none text-moonlight-text-secondary leading-relaxed space-y-5">
-        <p>Every AI adoption conversation eventually comes down to one question: is this worth it?</p>
-        <p>The math is simpler than the frameworks make it look. Three tiers cover almost everything you'd actually build:</p>
-        <p><strong class="text-[var(--color-text-primary)]">Tier 1 — $0 to $500/mo.</strong> SaaS AI features you already pay for (GitHub Copilot seats, Claude Code subscriptions) plus off-the-shelf tools. Payback is measured in weeks. The risk is almost zero. If you can't justify spending $20/developer/month on a tool that saves each developer an hour per week, something else is wrong.</p>
-        <p><strong class="text-[var(--color-text-primary)]">Tier 2 — $2K to $15K one-time plus $50–500/mo to run.</strong> Custom agents, convention file builds, internal tooling on top of existing models. Payback is measured in months. This is the tier where context engineering becomes the dominant variable — the same $10K build produces radically different outcomes depending on whether your team has good convention file habits.</p>
-        <p><strong class="text-[var(--color-text-primary)]">Tier 3 — $15K+.</strong> Integrated systems. Multi-agent workflows. Custom infrastructure. LLM gateways, observability, guardrails. Payback is measured in quarters. Only pursue this tier if you already have measurable wins in Tier 2 and a specific bottleneck Tier 2 can't solve.</p>
-        <p>The ROI math works like this: manual cost per month minus automated cost per month, divided into the one-time build cost. That gives you the payback period in months. If the number is under six and your process is stable, do it. If the number is over twelve or the process keeps changing, don't.</p>
-        <p>The single best case study I can point to: a manual vehicle audit process I helped replace at Ford Motor Company. Auditors were driving hundreds of miles to physically count cars at dealerships, discovering discrepancies weeks after the financial impact. The automation replaced that with an IoT telemetry platform tracking 450,000+ vehicles in real time. Annual savings: roughly $5 million in operational cost and interest rate carry. The build cost was a fraction of a single quarter of the manual run rate.</p>
-        <p>The worst move is spending real money on AI tooling while your core processes run on memory and sticky notes. The best move: pick the smallest problem with the clearest ROI math, ship it, measure it, and let the numbers tell you what comes next.</p>
-        <p>
-          <a href="/articles/automation-cost-small-business" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] font-semibold">
-            Read the full breakdown &rarr;
-          </a>
-        </p>
-      </div>
-    </section>
-
-    <div class="h-px bg-[var(--color-border)] my-16"></div>
+    <div class="mx-auto max-w-3xl">
+      {chapters.map((chapter) => (
+        <>
+          <section id={chapter.id} class="mb-16 scroll-mt-24">
+            <div class="mb-3 text-sm font-semibold uppercase tracking-[0.12em] text-[var(--color-accent)]">Chapter {chapter.number} · {chapter.pillar}</div>
+            <h2 class="mb-6 text-2xl font-serif font-bold text-[var(--color-text-primary)] md:text-3xl">{chapter.title}</h2>
+            <div class="mb-6 rounded-lg border border-[var(--color-accent-border)] bg-[var(--color-accent-muted)] p-5">
+              <div class="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-accent)]">Key takeaway</div>
+              <p class="text-sm leading-relaxed text-[var(--color-text-primary)]">{chapter.takeaway}</p>
+            </div>
+            <div class="prose prose-invert max-w-none text-moonlight-text-secondary leading-relaxed">
+              {chapter.summary.map((paragraph) => <p>{paragraph}</p>)}
+            </div>
+            <div class="mt-6 flex flex-col gap-2">
+              {chapter.links.map((link) => (
+                <a href={link.href} data-playbook-article data-article={link.href} data-chapter={chapter.number} data-pillar={chapter.pillar} class="font-semibold text-[var(--color-accent)] transition hover:text-[var(--color-accent-hover)]">
+                  {link.label} &rarr;
+                </a>
+              ))}
+            </div>
+          </section>
+          <div class="my-16 h-px bg-[var(--color-border)]"></div>
+        </>
+      ))}
+    </div>
 
     <!-- ── Toolkit Form ── -->
     <section id="toolkit" class="mb-16 scroll-mt-24">
       <h2 class="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-6">Get the Toolkit</h2>
 
-      <div class="text-moonlight-text-secondary leading-relaxed space-y-4 mb-8">
-        <p>If you want to run this framework with your team, I put together supporting files:</p>
-        <ul class="space-y-3 pl-5 list-disc">
-          <li><strong class="text-[var(--color-text-primary)]">AI Readiness Diagnostic Worksheet</strong> (Excel / Google Sheets) &mdash; 7-dimension scoring rubric with level-based next steps. Run it in a team meeting.</li>
-          <li><strong class="text-[var(--color-text-primary)]">Convention Files Starter Pack</strong> &mdash; <code>CLAUDE.md</code> and <code>AGENTS.md</code> templates with project context, safety stops, memory files, stack lock-in, and completion-report rules.</li>
-        </ul>
-        <p>Free, no upsell. Drop your email for instant access.</p>
+      <p class="mb-8 max-w-2xl text-moonlight-text-secondary">
+        These are direct downloads. No email required, no hidden bundle, no upsell.
+      </p>
+
+      <div class="mb-10 grid gap-4 md:grid-cols-3">
+        {resources.map((resource) => (
+          <a href={resource.href} download data-playbook-download data-resource={resource.resource} data-format={resource.format} data-access-type={resource.accessType} class="group rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition hover:border-[var(--color-border-hover)] hover:bg-[var(--color-surface-hover)]">
+            <span class="inline-flex rounded-full border border-[var(--color-border)] px-3 py-1 text-xs font-semibold text-[var(--color-text-secondary)]">{resource.label}</span>
+            <h3 class="mt-4 text-lg font-serif font-bold text-[var(--color-text-primary)] group-hover:text-[var(--color-accent)]">{resource.title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-moonlight-text-secondary">{resource.description}</p>
+            <p class="mt-4 text-xs font-mono uppercase tracking-[0.12em] text-moonlight-text-faint">{resource.format}</p>
+          </a>
+        ))}
       </div>
 
-      <div class="p-6 md:p-8 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)]">
+      <div class="p-6 md:p-8 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)]">
+        <h3 class="mb-2 text-xl font-serif font-bold text-[var(--color-text-primary)]">Email optional: future field notes</h3>
+        <p class="mb-5 text-sm leading-relaxed text-moonlight-text-secondary">
+          Subscribe if you want occasional notes on AI tooling, adoption patterns, and new resources. The downloads above work either way.
+        </p>
         <form
           id="toolkit-form"
           class="flex flex-col sm:flex-row gap-3"
@@ -242,10 +299,22 @@ const playbookSchema = {
             type="submit"
             class="px-6 py-3 bg-[var(--color-accent)] text-white font-semibold rounded-lg hover:bg-[var(--color-accent-hover)] transition-all duration-300 whitespace-nowrap"
           >
-            Get instant access
+            Subscribe
           </button>
         </form>
-        <p class="text-xs text-moonlight-text-muted mt-3">Instant access. No nurture sequence. Unsubscribe anytime.</p>
+        <p class="text-xs text-moonlight-text-muted mt-3">Newsletter subscription. Unsubscribe anytime.</p>
+      </div>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="mb-6 text-2xl font-serif font-bold text-[var(--color-text-primary)] md:text-3xl">Related Paths</h2>
+      <div class="grid gap-4 md:grid-cols-3">
+        {relatedPaths.map((path) => (
+          <a href={path.href} data-playbook-article data-article={path.href} data-chapter="related" data-pillar={path.pillar} class="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition hover:border-[var(--color-border-hover)] hover:bg-[var(--color-surface-hover)]">
+            <div class="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-accent)]">{path.pillar}</div>
+            <div class="text-sm font-semibold text-[var(--color-text-primary)]">{path.label} &rarr;</div>
+          </a>
+        ))}
       </div>
     </section>
 
@@ -253,6 +322,42 @@ const playbookSchema = {
 </Layout>
 
 <script>
+  function trackPlaybookEvent(name, props) {
+    if (typeof window !== 'undefined' && typeof window.plausible === 'function') {
+      window.plausible(name, { props });
+    }
+  }
+
+  document.querySelectorAll('[data-playbook-toc]').forEach((link) => {
+    link.addEventListener('click', () => {
+      trackPlaybookEvent('Playbook TOC Click', {
+        chapter: link.getAttribute('data-chapter'),
+        pillar: link.getAttribute('data-pillar')
+      });
+    });
+  });
+
+  document.querySelectorAll('[data-playbook-article]').forEach((link) => {
+    link.addEventListener('click', () => {
+      trackPlaybookEvent('Playbook Article Click', {
+        article: link.getAttribute('data-article'),
+        chapter: link.getAttribute('data-chapter'),
+        pillar: link.getAttribute('data-pillar'),
+        access_type: 'read_free'
+      });
+    });
+  });
+
+  document.querySelectorAll('[data-playbook-download]').forEach((link) => {
+    link.addEventListener('click', () => {
+      trackPlaybookEvent('Toolkit Download Click', {
+        resource: link.getAttribute('data-resource'),
+        format: link.getAttribute('data-format'),
+        access_type: link.getAttribute('data-access-type')
+      });
+    });
+  });
+
   const form = document.getElementById('toolkit-form');
   if (form) {
     form.addEventListener('submit', function(e) {
@@ -265,6 +370,14 @@ const playbookSchema = {
         'https://buttondown.com/api/emails/embed-subscribe/collinwilkins',
         data
       );
+      trackPlaybookEvent('Toolkit Email Submit', {
+        location: 'playbook_toolkit',
+        tag: 'playbook-toolkit',
+        access_type: 'newsletter_subscription'
+      });
+      trackPlaybookEvent('Newsletter Subscribe', {
+        location: 'playbook_toolkit'
+      });
       window.location.href = '/guides/ai-adoption-playbook/thanks';
     });
   }

@@ -1,6 +1,12 @@
 import React, { useEffect } from 'react';
 import { FileDown, BookOpen, Mail, Terminal } from 'lucide-react';
 
+const track = (name, props) => {
+  if (typeof window !== 'undefined' && typeof window.plausible === 'function') {
+    window.plausible(name, { props });
+  }
+};
+
 const Downloads = () => {
   // Scroll to top when component mounts
   useEffect(() => {
@@ -24,7 +30,7 @@ const Downloads = () => {
               Tools, frameworks, and guides I actually use.
             </h1>
             <p className="mt-6 max-w-3xl text-base leading-relaxed text-[var(--color-text-secondary)] md:text-lg">
-              Free. No email required for most of it. Built around the same patterns I use in production.
+              Read free, download free, or subscribe for future notes. Downloadable resources do not require an email.
             </p>
           </div>
         </header>
@@ -50,6 +56,9 @@ const Downloads = () => {
               target="popupwindow"
               rel="noopener noreferrer"
               className="space-y-3"
+              onSubmit={() => {
+                track('Newsletter Subscribe', { location: 'resources_index' });
+              }}
             >
               <input type="hidden" name="tag" value="resources-index" />
               <div className="flex flex-col gap-3 sm:flex-row">
@@ -82,6 +91,14 @@ const Downloads = () => {
           </h2>
           <a
             href="/guides/ai-adoption-playbook"
+            onClick={() => {
+              track('Playbook Article Click', {
+                article: '/guides/ai-adoption-playbook',
+                chapter: 'resource_index_feature',
+                pillar: 'Pillar Map',
+                access_type: 'read_free',
+              });
+            }}
             className="block bg-[var(--color-surface)] p-8 md:p-12 rounded-2xl border border-[var(--color-border)] hover:border-[var(--color-border-hover)] transition-all duration-500 group shadow-2xl relative overflow-hidden"
           >
             {/* Subtle Gradient Glow */}
@@ -108,7 +125,7 @@ const Downloads = () => {
                 </div>
 
                 <p className="text-sm text-[var(--color-text-muted)] mt-4 font-light">
-                  5 chapters · Free · No email required to read
+                  5 chapters · Read free · Downloads free
                 </p>
               </div>
 

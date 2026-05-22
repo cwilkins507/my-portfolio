@@ -519,7 +519,7 @@ Stack: TypeScript, Tailwind, Supabase.
 - Tests live next to the file they test
 - Run tests with: npm test</pre>
         </div>
-        <div class="callout"><span class="ci">📦</span><div><b>Want the templates?</b> They're part of the <b>AI Adoption Playbook</b>. The CLAUDE.md and AGENTS.md starters are free on GitHub (link at the end). Prefer the whole Playbook — every template, the AI Readiness Worksheet, and this guide as a PDF? It's one email away.</div></div>
+        <div class="callout"><span class="ci">📦</span><div><b>Want the templates?</b> They're part of the <b>AI Adoption Playbook</b>. The CLAUDE.md and AGENTS.md starters, the AI Readiness Worksheet, and this guide are free to use. No email required.</div></div>
       </div>
     </div>
   </div>
@@ -717,15 +717,15 @@ Show the change as a pull request I can review.</pre>
 <section class="footer-cta">
   <div class="container">
     <h2>Get the AI Adoption Playbook</h2>
-    <p>This guide is free to read and share, and the CLAUDE.md and AGENTS.md starters are free on GitHub. Want the whole AI Adoption Playbook emailed to you — every template, the AI Readiness Worksheet, and this guide as a PDF to keep? Drop your address below.</p>
+    <p>This guide is free to read and share. The CLAUDE.md and AGENTS.md starters, the AI Readiness Worksheet, and the full AI Adoption Playbook are free to use with no email required. Drop your address below only if you want future field notes and new resources.</p>
     <form id="playbook-form" class="email-form no-print">
       <input type="email" name="email" placeholder="you@example.com" required>
       <input type="hidden" name="tag" value="playbook-toolkit">
-      <button type="submit">Send me the Playbook</button>
+      <button type="submit">Subscribe</button>
     </form>
-    <div class="fine no-print">No spam. The occasional practitioner note on AI tooling. Unsubscribe anytime.</div>
-    <div class="repo-cta">Just want the starters? They're free in the AI Adoption Playbook on GitHub → <a href="https://github.com/cwilkins507/ai-adoption-playbook">github.com/cwilkins507/ai-adoption-playbook</a></div>
-    <div class="pdf-note">Starters, free on GitHub: <strong>github.com/cwilkins507/ai-adoption-playbook</strong> &nbsp;·&nbsp; Full Playbook: <strong>collinwilkins.com/guides/ai-adoption-playbook</strong></div>
+    <div class="fine no-print">Newsletter subscription. No spam. Unsubscribe anytime.</div>
+    <div class="repo-cta">Download the worksheet and templates directly in the AI Adoption Playbook → <a href="https://collinwilkins.com/guides/ai-adoption-playbook#toolkit">collinwilkins.com/guides/ai-adoption-playbook#toolkit</a></div>
+    <div class="pdf-note">Toolkit downloads: <strong>collinwilkins.com/guides/ai-adoption-playbook#toolkit</strong> &nbsp;·&nbsp; Playbook: <strong>collinwilkins.com/guides/ai-adoption-playbook</strong></div>
     <div class="links">
       Go deeper:
       <a href="https://collinwilkins.com/articles/ai-agent-harness">What is a harness?</a> ·
@@ -754,6 +754,10 @@ Show the change as a pull request I can review.</pre>
       data.append('email', email);
       data.append('tag', 'playbook-toolkit');
       navigator.sendBeacon('https://buttondown.com/api/emails/embed-subscribe/collinwilkins', data);
+      if (typeof window.plausible === 'function') {
+        window.plausible('Newsletter Subscribe', { props: { location: 'getting_started_footer' } });
+        window.plausible('Toolkit Email Submit', { props: { location: 'getting_started_footer', tag: 'playbook-toolkit', access_type: 'newsletter_subscription' } });
+      }
       window.location.href = '/guides/ai-adoption-playbook/thanks';
     });
   }

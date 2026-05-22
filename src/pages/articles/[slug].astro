@@ -15,6 +15,16 @@ const { article } = Astro.props;
 const { Content, frontmatter } = article;
 const slug = Astro.params.slug;
 
+const playbookArticleSources: Record<string, { pillar: string; chapter: string }> = {
+  'how-to-know-if-your-business-is-ready-for-ai': { pillar: 'Readiness', chapter: '01' },
+  'context-engineering-ai-coding-tools': { pillar: 'Context', chapter: '02' },
+  'ai-coding-model-wars-2026': { pillar: 'Tooling', chapter: '03' },
+  'llm-gateway-architecture': { pillar: 'Tooling', chapter: '03' },
+  'claude-code-productivity-paradox': { pillar: 'Adoption', chapter: '04' },
+  'automation-cost-small-business': { pillar: 'ROI', chapter: '05' },
+};
+const playbookSource = playbookArticleSources[slug];
+
 // Compute word count from raw markdown (excluding frontmatter)
 let wordCount;
 try {
@@ -202,6 +212,25 @@ const articleSchema = {
         </div>
       </div>
 
+      {playbookSource && (
+        <aside class="mt-14 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
+          <div class="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-accent)]">AI Adoption Playbook</div>
+          <p class="mb-5 text-base leading-relaxed text-moonlight-text-secondary">
+            Want the broader map? This article is one piece of my AI Adoption Playbook for engineering teams. Start with the five-pillar guide.
+          </p>
+          <a
+            href={`/guides/ai-adoption-playbook?from=${slug}`}
+            data-article-playbook-cta
+            data-article={slug}
+            data-chapter={playbookSource.chapter}
+            data-pillar={playbookSource.pillar}
+            class="inline-flex min-h-11 items-center rounded-lg bg-[var(--color-accent)] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-accent-hover)]"
+          >
+            Read the five-pillar guide
+          </a>
+        </aside>
+      )}
+
       {/* Related Articles */}
       {relatedArticles.length > 0 && (
         <div class="mt-16 border-t border-[var(--color-border)] pt-12">
@@ -233,12 +262,16 @@ const articleSchema = {
         <div class="flex flex-wrap gap-3 flex-none">
           <a
             href="/services#assessment"
+            data-services-click
+            data-location="article_footer_assessment"
             class="inline-flex items-center gap-2 min-h-11 px-5 rounded-lg bg-[var(--color-accent)] text-white text-sm font-semibold hover:bg-[var(--color-accent-hover)] transition-colors"
           >
             Book an assessment
           </a>
           <a
             href="/services"
+            data-services-click
+            data-location="article_footer_services"
             class="inline-flex items-center gap-2 min-h-11 px-5 rounded-lg border border-[var(--color-border)] text-[var(--color-text-secondary)] text-sm font-semibold hover:border-[var(--color-border-hover)] hover:text-[var(--color-text-primary)] transition-colors"
           >
             Services
@@ -248,3 +281,31 @@ const articleSchema = {
     </div>
   </div>
 </Layout>
+
+<script define:vars={{ slug }}>
+  function trackArticleEvent(name, props) {
+    if (typeof window !== 'undefined' && typeof window.plausible === 'function') {
+      window.plausible(name, { props });
+    }
+  }
+
+  document.querySelectorAll('[data-article-playbook-cta]').forEach((link) => {
+    link.addEventListener('click', () => {
+      trackArticleEvent('Playbook Article Click', {
+        article: link.getAttribute('data-article'),
+        chapter: link.getAttribute('data-chapter'),
+        pillar: link.getAttribute('data-pillar'),
+        source: 'article_cta'
+      });
+    });
+  });
+
+  document.querySelectorAll('[data-services-click]').forEach((link) => {
+    link.addEventListener('click', () => {
+      trackArticleEvent('Services Click', {
+        source_page: `/articles/${slug}`,
+        location: link.getAttribute('data-location')
+      });
+    });
+  });
+</script>
