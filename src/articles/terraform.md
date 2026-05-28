@@ -20,8 +20,6 @@ faqs:
   - q: "What common Terraform mistakes should I avoid?"
     a: "Avoid letting people make manual console changes that drift from your Terraform code, putting all resources in one massive state file, using overly clever loops that become unreadable, not pinning provider versions (which can cause unexpected resource recreation), and giving Terraform overly broad IAM permissions."
 ---
-# Terraform and IaC: The Operating System of Your Cloud
-
 Infrastructure as Code turns cloud topology into text files. That changes everything about how you ship and scale systems.
 
 I spent my first two years in cloud clicking through consoles. Then a teammate deleted our staging database by accident—thought she was in dev. We had no way to recreate the exact setup. Took us six hours to rebuild from memory and screenshots. That week I learned Terraform.

@@ -9,9 +9,6 @@ seo_title: "AI Code Quality: Bad Code Is an AI Tax"
 meta_description: "AI makes code easy to generate, but bad architecture creates review drag, retry loops, trust issues, and expensive course correction."
 target_keywords: "AI code quality, AI coding, software fundamentals, AI engineering, agentic coding, codebase architecture"
 ---
-
-# AI Code Quality: Bad Code Is an AI Tax
-
 The first wave of AI coding adoption taught a lot of teams the wrong lesson.
 
 They saw code generation get cheap and assumed software got cheap. Software is now a ubiquitous skill, right? Software engineering is "dead," everyone becomes a developer with these tools. Then the model built the wrong thing, the diff got large, and every reviewer had to reverse engineer what the agent thought it was doing.

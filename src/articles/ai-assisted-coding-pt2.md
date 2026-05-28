@@ -9,9 +9,6 @@ seo_title: "AI Coding Assistants: Trends, Limits, What's Next"
 meta_description: "How AI coding assistants evolved, where they help and hurt, and how to adopt them safely with actual guardrails and metrics."
 target_keywords: "AI coding assistants, developer productivity, code generation, LLM coding tools, secure AI adoption, software engineering best practices, pair programming AI, code review automation"
 ---
-
-# AI Coding Assistants: Current Trends and Future Implications
-
 AI coding assistants aren't new anymore. They're just... there.
 
 They're the coworker who writes first drafts, your boss's favorite productivity metric, the thing you forgot you needed six months ago. And whether you love them or tolerate them, they're part of the job now.
@@ -167,7 +164,7 @@ Want a quick win without drama? Try this:
 
 AI coding assistants are useful. They're also here to stay.
 
-Not sure where to start? I wrote a [23-page guide](https://collinwilkins.com/downloads) with an AGENTS.md template you can use.
+Not sure where to start? I wrote a [23-page guide](https://collinwilkins.com/resources) with an AGENTS.md template you can use.
 
 Pick one repo this week. Try something. See what works and what breaks. Iterate.
 

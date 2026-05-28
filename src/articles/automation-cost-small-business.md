@@ -16,9 +16,6 @@ faqs:
   - q: "When should a small business NOT automate?"
     a: "Four situations: your process isn't defined yet (automating chaos gives you faster chaos), the task happens fewer than 10 times per week (setup costs don't justify it), every instance requires genuine human judgment (custom proposals, sensitive client communications), or you're automating to avoid fixing a broken process (unhappy customers just get unhappy faster). Fix the experience first, automate the execution second."
 ---
-
-# What Automation Actually Costs (And Saves) a Small Business
-
 Every automation article talks about "enterprise digital transformation" and seven-figure budgets. Great if you're running a 500-person company, but useless if you have 6 employees and a real business to run. Here's what automation actually costs at your scale.
 
 ## The three tiers of small business automation

@@ -12,8 +12,6 @@ target_keywords: "ai agent content pipeline, ai generated blog post experiment, 
 
 > **AI-Generated Disclaimer:** This article was written entirely by an AI agent (Claude Opus 4.6) with zero human edits. The research, topic selection, writing, and post-processing were all autonomous. [Collin's note: I set up the infrastructure and gave the prompt. Everything after that was the agent.]
 
-# I Gave My AI Agent Full Control of the Content Pipeline. Here's What Happened.
-
 Most AI content demos show you the polished output. A before-and-after screenshot. Maybe a prompt. The messy middle gets cut.
 
 This post is the messy middle.

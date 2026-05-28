@@ -20,9 +20,6 @@ faqs:
   - q: "How should I use AI benchmarks when selecting a model?"
     a: "Treat benchmarks as a starting filter to identify which models are worth testing, not as a final decision. A model can top one benchmark and rank fifth on another. Always test candidates on 50 or more examples from your actual use case and measure quality, cost, and latency."
 ---
-
-# Understanding Model Intelligence and Task Complexity
-
 A developer spins up GPT-5 to format a CSV file. An engineering team routes every customer support ticket through Claude Opus 4.5. A startup burns through $50,000 in API credits using the most powerful model available for tasks that a regex could handle.
 
 I've watched this pattern repeat across dozens of teams. We have more powerful AI models than ever, yet many developers still struggle to get reliable results. The issue isn't raw intelligence. It's mismatched complexity. We're using sledgehammers for finishing nails and wondering why the woodwork looks terrible.

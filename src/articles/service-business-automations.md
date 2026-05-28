@@ -9,9 +9,6 @@ seo_title: "5 Automations Every Service Business Needs in 2026"
 meta_description: "The 5 automations that save service businesses 10+ hours/week. Concrete tools, setup times, and ROI for agencies, consultants, and studios."
 target_keywords: "service business automation, automation for agencies, automate client onboarding, automated reporting, small business automation"
 ---
-
-# 5 Automations Every Service Business Should Have by 2026
-
 You're spending 10+ hours a week on tasks a $50/month tool could handle.
 
 Sending reminders. Copying data between apps. Building the same report for the eighth client this month. You know you should automate. You just don't know where to start.

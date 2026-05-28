@@ -9,9 +9,6 @@ seo_title: "The No-Code Automation Stack for Non-Technical Founders"
 meta_description: "A practical no-code automation stack for small business founders. 8 tools in 3 layers, $9-73/month, with a complete lead-to-client workflow example."
 target_keywords: "no-code automation stack, automation tools for small business, Make.com vs Zapier, no-code workflow, business automation tools, non-technical automation"
 ---
-
-# The No-Code Automation Stack for Non-Technical Founders
-
 You don't need a developer to automate your business. You need the right tools and you need to know how they connect.
 
 Most "best tools" articles throw 30 options at you and leave it at that. Not helpful when you're running a 6-person company with maybe 4 spare hours this month to fix operations.

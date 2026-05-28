@@ -9,9 +9,6 @@ seo_title: "From Vibe Coding to Agentic Engineering: What Changed"
 meta_description: "The shift from vibe coding to agentic engineering. What 2026 model launches mean for AI coding workflows, multi-agent orchestration, and skills to learn."
 target_keywords: "agentic engineering, agentic coding, vibe coding 2026, AI coding agents, Claude agent teams, multi-agent coding, AI-assisted coding"
 ---
-
-# From Vibe Coding to Agentic Engineering: What Changed and What It Means
-
 A year ago, I was writing about 80% of my code and using AI tools for the other 20%. By December that had flipped. Now I'm not sure "writing code" describes what I do most days.
 
 I describe problems. I decompose tasks, assign agents, and review their output. Then I architect the system that builds the system.
@@ -52,7 +49,7 @@ Anthropic's 2026 Agentic Coding Trends Report found that AI is involved in rough
 
 What makes this "engineering" and not just "using AI tools" is that the same principles that make human systems reliable apply here: decomposition, contracts between components, observability at every boundary, and guardrails that constrain behavior to safe defaults. You're not prompting an AI. You're designing an agent system.
 
-If you've read my piece on [AI agent development](/articles/best-practices-for-ai-agent-development), the architectural patterns are the same: agent loops, memory management, tool design, error recovery. The difference is scale. Agentic engineering means multiple agents coordinating on a single problem, each with its own scope, tools, and constraints.
+If you've read my piece on [AI agent harnesses](/articles/ai-agent-harness), the architectural patterns are the same: agent loops, memory management, tool design, error recovery. The difference is scale. Agentic engineering means multiple agents coordinating on a single problem, each with its own scope, tools, and constraints.
 
 ## The February 2026 Model Launches Proved the Shift
 

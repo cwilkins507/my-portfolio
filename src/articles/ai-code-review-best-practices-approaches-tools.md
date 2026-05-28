@@ -9,9 +9,6 @@ seo_title: "AI Code Review: Approaches, Tools, and Best Practices (2026)"
 meta_description: "Three approaches to AI code review: local agents, CI/CD integration, and vendor tools. Best practices for signal, gating, and ownership."
 target_keywords: "AI code review, AI pull request review, LLM code review best practices, automated code review, integrate AI in CI, secure AI review workflow, developer productivity AI"
 ---
-
-# AI Code Review: Approaches, Trends, and Best Practices
-
 AI is writing more code. At one company I worked at, our engineering OKRs included a specific KR to increase engineering velocity by 15% or more through AI tooling adoption — measured by cycle time — and a separate KR targeting 25% faster PRD cycles. Those weren't stretch goals. They were what our teams were being held to.
 
 The bottleneck has shifted. Getting code written isn't the hard part anymore. Getting it designed, reviewed, understood, and safely deployed is.

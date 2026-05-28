@@ -20,9 +20,6 @@ faqs:
   - q: "Can open-source AI models compete with proprietary ones for coding?"
     a: "Yes. As of February 2026, the gap has closed dramatically. GLM-5 (open source, MIT license) scores 77.8% on SWE-bench versus Opus 4.6's 79.4%. Kimi K2.5 scores 76.8% with unique agent swarm capabilities. Open-source models now offer comparable coding performance with added benefits of self-hosting, fine-tuning on proprietary codebases, and no vendor lock-in."
 ---
-
-# The AI Coding Model Wars: How Open Source Is Closing the Gap
-
 Four major coding models launched in six days. Two proprietary. Two open source. The benchmark gap between the best and worst? 2.6 percentage points.
 
 That number is the story of February 2026. One model clearly winning? Over. What matters now is which model fits your workflow, your budget, and how much you care about keeping your code off someone else's servers.

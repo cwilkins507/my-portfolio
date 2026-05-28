@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collin Wilkins - Notes from Production</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0C0C0C;
+            --text-primary: #EBEBEB;
+            --text-secondary: #999999;
+            --text-muted: #666666;
+            --accent: #C9A96E;
+            --accent-hover: #D4B87E;
+            --border: rgba(255, 255, 255, 0.08);
+            --surface: rgba(255, 255, 255, 0.03);
+            
+            --font-serif: 'Newsreader', serif;
+            --font-sans: 'DM Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            --radius-card: 16px;
+            --radius-pill: 9999px;
+            --container-width: 1040px;
+            --container-article: 720px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            line-height: 1.2;
+            color: var(--text-primary);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--accent);
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .article-container {
+            max-width: var(--container-article);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(12, 12, 12, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 28px;
+            border-radius: var(--radius-pill);
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            color: var(--bg);
+        }
+
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--text-primary);
+            border-color: var(--border);
+            backdrop-filter: blur(8px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 0 100px;
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            letter-spacing: -0.03em;
+            margin-bottom: 32px;
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            font-size: 1.35rem;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            max-width: 580px;
+            line-height: 1.5;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+        }
+
+        .credibility-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-card);
+            padding: 36px;
+            backdrop-filter: blur(12px);
+        }
+
+        .credibility-card .avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--accent);
+        }
+
+        .credibility-card h3 {
+            font-family: var(--font-sans);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .credibility-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+
+        .stats-list {
+            list-style: none;
+        }
+
+        .stats-list li {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            line-height: 1.4;
+        }
+
+        .stats-list li::before {
+            content: '✦';
+            color: var(--accent);
+            font-size: 0.7rem;
+            margin-top: 2px;
+        }
+
+        /* Section Headers */
+        .section-header {
+            margin: 100px 0 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-header a {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Featured Articles Grid */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .article-card {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            group: card;
+        }
+
+        .card-image-placeholder {
+            aspect-ratio: 16/9;
+            background: linear-gradient(145deg, var(--surface) 0%, rgba(201, 169, 110, 0.03) 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-card);
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+
+        .article-card:hover .card-image-placeholder {
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .card-category {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            margin-bottom: 14px;
+            color: var(--text-primary);
+            transition: color 0.2s ease;
+            line-height: 1.3;
+        }
+
+        .article-card:hover .card-title {
+            color: var(--accent);
+        }
+
+        .card-blurb {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+
+        .card-link {
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            margin-top: auto;
+        }
+
+        .card-link::after {
+            content: '→';
+            transition: transform 0.2s ease;
+        }
+
+        .article-card:hover .card-link::after {
+            transform: translateX(4px);
+        }
+
+        /* Article Index Layout (Minimal List with large thumbnails) */
+        .index-list {
+            display: flex;
+            flex-direction: column;
+            gap: 56px;
+        }
+
+        .index-item {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 48px;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .index-item:hover .index-image-placeholder {
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .index-item:hover .index-title {
+            color: var(--accent);
+        }
+
+        .index-image-placeholder {
+            aspect-ratio: 4/3;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-card);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .index-image-placeholder::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(201, 169, 110, 0.05), transparent 70%);
+        }
+
+        .index-meta {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .index-meta span.tag {
+            color: var(--accent);
+            background: rgba(201, 169, 110, 0.1);
+            padding: 4px 10px;
+            border-radius: var(--radius-pill);
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .index-title {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            transition: color 0.2s ease;
+            line-height: 1.2;
+        }
+
+        .index-blurb {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        /* Sample Article Section */
+        .sample-article {
+            margin-top: 140px;
+            padding-top: 100px;
+            border-top: 1px solid var(--border);
+        }
+
+        .article-header {
+            margin-bottom: 80px;
+            text-align: center;
+        }
+
+        .article-header h1 {
+            font-size: 3.8rem;
+            margin: 32px 0;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .article-header .meta {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .prose {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .prose p {
+            margin-bottom: 32px;
+            color: rgba(235, 235, 235, 0.9);
+        }
+
+        .prose em {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--text-primary);
+        }
+
+        .prose h2 {
+            font-size: 2.2rem;
+            margin: 64px 0 32px;
+            letter-spacing: -0.01em;
+        }
+        
+        .prose code {
+            font-family: var(--font-mono);
+            font-size: 0.85em;
+            background: rgba(255,255,255,0.05);
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            color: var(--accent);
+        }
+
+        /* Mid-Article Newsletter CTA */
+        .newsletter-cta {
+            margin: 80px 0;
+            padding: 48px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-card);
+            backdrop-filter: blur(16px);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .newsletter-cta::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .newsletter-cta h3 {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .newsletter-cta p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 480px;
+            line-height: 1.6;
+        }
+
+        .subscribe-form {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+            max-width: 460px;
+        }
+
+        .subscribe-form input {
+            flex-grow: 1;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+            padding: 16px 20px;
+            border-radius: var(--radius-pill);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .subscribe-form input:focus {
+            border-color: rgba(255,255,255,0.3);
+            background: rgba(0,0,0,0.5);
+        }
+
+        .subscribe-form input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .subscribe-form .btn {
+            padding: 16px 32px;
+        }
+
+        .footer {
+            margin-top: 140px;
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 56px;
+            }
+            .credibility-card {
+                max-width: 400px;
+            }
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+            .featured-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .index-item {
+                grid-template-columns: 240px 1fr;
+                gap: 32px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+            .index-item {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .index-image-placeholder {
+                aspect-ratio: 16/9;
+            }
+            .subscribe-form {
+                flex-direction: column;
+            }
+            .article-header h1 {
+                font-size: 2.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-inner">
+            <div class="brand">Collin Wilkins</div>
+            <div class="nav-links">
+                <a href="#" class="active">Articles</a>
+                <a href="#">Resources</a>
+                <a href="#">Services</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Field notes on automation architecture and AI tools.</h1>
+                <p>I build systems that write code and automate workflows. These are my playbooks, architectural patterns, and practical guides from the trenches of production.</p>
+                <div class="hero-actions">
+                    <a href="#articles" class="btn btn-primary">Read the articles</a>
+                    <a href="#subscribe" class="btn btn-secondary">Join the newsletter</a>
+                </div>
+            </div>
+            
+            <aside class="credibility-card">
+                <div class="avatar">CW</div>
+                <h3>Collin Wilkins</h3>
+                <p>Lead Software Engineer & Automation Architect.</p>
+                <ul class="stats-list">
+                    <li>12 years at Ford & financial data orgs</li>
+                    <li>$5M+ saved via automation</li>
+                    <li>43 published articles</li>
+                    <li>Writing code that writes code</li>
+                </ul>
+            </aside>
+        </section>
+
+        <!-- Start Here Section -->
+        <section id="articles">
+            <div class="section-header">
+                <h2>Start Here</h2>
+                <a href="#">View all →</a>
+            </div>
+            
+            <div class="featured-grid">
+                <!-- Article 1 -->
+                <a href="#sample" class="article-card">
+                    <div class="card-image-placeholder"></div>
+                    <div class="card-category">AI Engineering</div>
+                    <h3 class="card-title">Context Engineering for AI Coding Tools</h3>
+                    <p class="card-blurb">Why throwing your entire codebase at an LLM fails, and how to build deterministic context pipelines instead.</p>
+                    <span class="card-link">Read article</span>
+                </a>
+                
+                <!-- Article 2 -->
+                <a href="#" class="article-card">
+                    <div class="card-image-placeholder"></div>
+                    <div class="card-category">System Design</div>
+                    <h3 class="card-title">LLM Gateway Architecture and Multi-Model Routing</h3>
+                    <p class="card-blurb">Designing a robust API gateway to handle failovers, caching, and dynamic routing across Claude, GPT-4, and local models.</p>
+                    <span class="card-link">Read article</span>
+                </a>
+                
+                <!-- Article 3 -->
+                <a href="#" class="article-card">
+                    <div class="card-image-placeholder"></div>
+                    <div class="card-category">AI Agents</div>
+                    <h3 class="card-title">The Claude Code Productivity Paradox</h3>
+                    <p class="card-blurb">How AI coding assistants actually slow down senior engineers who haven't adapted their review and validation workflows.</p>
+                    <span class="card-link">Read article</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Article Index Section -->
+        <section>
+            <div class="section-header">
+                <h2>Latest Field Notes</h2>
+                <a href="#">Browse archive →</a>
+            </div>
+
+            <div class="index-list">
+                <!-- Index Item 1 -->
+                <a href="#" class="index-item">
+                    <div class="index-image-placeholder"></div>
+                    <div class="index-content">
+                        <div class="index-meta">
+                            <span class="tag">Architecture</span>
+                            <span>Oct 12, 2025</span>
+                            <span>8 min read</span>
+                        </div>
+                        <h3 class="index-title">Building a Custom Convention File Parser</h3>
+                        <p class="index-blurb">How we structured our .cursorrules and .windsurfrules to dynamically load repository context based on the active file type, reducing hallucination rates by 40%.</p>
+                    </div>
+                </a>
+
+                <!-- Index Item 2 -->
+                <a href="#" class="index-item">
+                    <div class="index-image-placeholder"></div>
+                    <div class="index-content">
+                        <div class="index-meta">
+                            <span class="tag">Automation</span>
+                            <span>Sep 28, 2025</span>
+                            <span>12 min read</span>
+                        </div>
+                        <h3 class="index-title">Automating the Un-automatable: Legacy Mainframe Interfaces</h3>
+                        <p class="index-blurb">Lessons from mapping modern REST paradigms onto a 30-year-old financial system without bringing down the production database.</p>
+                    </div>
+                </a>
+
+                <!-- Index Item 3 -->
+                <a href="#" class="index-item">
+                    <div class="index-image-placeholder"></div>
+                    <div class="index-content">
+                        <div class="index-meta">
+                            <span class="tag">AI Engineering</span>
+                            <span>Sep 15, 2025</span>
+                            <span>6 min read</span>
+                        </div>
+                        <h3 class="index-title">Why Your RAG Pipeline is Over-Engineered</h3>
+                        <p class="index-blurb">Vector databases are great, but sometimes a simple BM25 search over well-structured markdown is all you need for an internal developer tool.</p>
+                    </div>
+                </a>
+
+                <!-- Index Item 4 -->
+                <a href="#" class="index-item">
+                    <div class="index-image-placeholder"></div>
+                    <div class="index-content">
+                        <div class="index-meta">
+                            <span class="tag">System Design</span>
+                            <span>Aug 30, 2025</span>
+                            <span>15 min read</span>
+                        </div>
+                        <h3 class="index-title">Event-Driven Microservices in a Post-Serverless World</h3>
+                        <p class="index-blurb">Reflecting on our migration away from AWS Lambda back to containerized services, and why the cold-start problem is still unsolved for synchronous APIs.</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Sample Article with Newsletter CTA -->
+    <article id="sample" class="sample-article">
+        <div class="article-container">
+            <header class="article-header">
+                <div class="meta">AI Engineering • 10 min read • Published Oct 24, 2025</div>
+                <h1>Context Engineering for AI Coding Tools</h1>
+            </header>
+
+            <div class="prose">
+                <p>The most common mistake I see engineers make when adopting AI coding tools like Claude Code, Cursor, or Copilot Workspace is treating the LLM like a mind reader. They highlight a 500-line React component, type <em>"refactor this to use the new state management library,"</em> and watch as the model confidently hallucinates dependencies that don't exist.</p>
+                
+                <p>The problem isn't the model's capability; it's the context window. While modern models boast 200k+ token windows, dumping your entire <code>src/</code> directory into the prompt degrades reasoning performance. This phenomenon, often called "Lost in the Middle," means the LLM will miss critical architectural constraints buried deep in a utility file.</p>
+                
+                <h2>Building Deterministic Context Pipelines</h2>
+                
+                <p>To fix this, we need to shift from ad-hoc prompting to <strong>Context Engineering</strong>. Instead of relying on the tool's default file-inclusion logic, you must curate exactly what the model "sees" before it writes a single line of code. We achieve this through strict convention files (like <code>.cursorrules</code>) and automated dependency mappers.</p>
+
+                <!-- Mid-Article Newsletter CTA -->
+                <aside id="subscribe" class="newsletter-cta">
+                    <h3>Notes from production.</h3>
+                    <p>Every other week: working playbooks on AI coding tools, convention files, and automation architecture.</p>
+                    <form class="subscribe-form" onsubmit="event.preventDefault();">
+                        <input type="email" placeholder="Email address" required>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </aside>
+
+                <p>For example, when working on our core API service, our convention file explicitly instructs the agent to read <code>types/api.ts</code> and <code>utils/errors.ts</code> before modifying any route handler. This guarantees the model uses our standardized error wrapping rather than inventing a new try-catch pattern for the hundredth time.</p>
+                
+                <p>The ROI on this is massive. By aggressively narrowing the context to only the relevant interfaces, schema definitions, and the specific module being edited, we reduced code review cycles from 3 rounds to 1. The model stops guessing and starts adhering to established patterns.</p>
+            </div>
+        </div>
+    </article>
+
+    <footer class="footer">
+        <div class="container">
+            &copy; 2026 Collin Wilkins. Built for technical practitioners.
+        </div>
+    </footer>
+
+</body>
+</html>

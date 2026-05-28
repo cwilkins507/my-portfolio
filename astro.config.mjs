@@ -14,27 +14,12 @@ export default defineConfig({
     redirects: {
         // Consolidate /consulting → /services (Writer Site Refresh, 2026-04-10)
         '/consulting': '/services',
-        // Old article URLs -> current lowercase slugs (from pre-rename filenames)
-        '/articles/AI-Assisted-Coding-pt2': '/articles/ai-assisted-coding-pt2',
-        '/articles/AI-Assisted-Coding': '/articles/ai-assisted-coding',
-        '/articles/Architecture-as-Code': '/articles/architecture-as-code',
-        '/articles/AWS-Lambda-Practices': '/articles/aws-lambda-practices',
-        '/articles/BGP': '/articles/bgp',
-        '/articles/Changing-landscape': '/articles/changing-landscape',
-        '/articles/CLI-Agents': '/articles/cli-agents',
-        '/articles/CRM-No-Code': '/articles/crm-no-code',
-        '/articles/Design-Patterns': '/articles/design-patterns',
-        '/articles/JPA': '/articles/jpa',
+        // Index hygiene redirects for legacy public URLs
+        '/contact': '/?modal=contact',
+        '/downloads': '/resources',
+        '/articles/best-practices-for-ai-agent-development': '/articles/ai-agent-harness',
+        // Old article URLs -> current slugs
         '/articles/lessons-learned': '/articles/lessons-learned-2025',
-        '/articles/MCP': '/articles/mcp',
-        '/articles/Microservice-Redesign': '/articles/microservice-redesign',
-        '/articles/N8n': '/articles/n8n',
-        '/articles/No-Code': '/articles/no-code',
-        '/articles/Prompt-Engineering': '/articles/prompt-engineering',
-        '/articles/SQL-Optimization': '/articles/sql-optimization',
-        '/articles/Structured-Output': '/articles/structured-output',
-        '/articles/System-Design-Best-Practices': '/articles/system-design-best-practices',
-        '/articles/Terraform': '/articles/terraform',
         '/writing': '/',
     },
     integrations: [
@@ -45,7 +30,12 @@ export default defineConfig({
         sitemap({
             filter(page) {
                 // Exclude redirect targets and internal pages from the sitemap
-                return !page.includes('/writing') && !page.includes('/consulting') && !page.includes('/preview');
+                const path = new URL(page).pathname;
+                return ![
+                    '/writing',
+                    '/consulting',
+                    '/guides/ai-adoption-playbook/thanks',
+                ].includes(path) && !path.startsWith('/preview');
             },
             serialize(item) {
                 // Use actual content dates for articles, fallback to build date for static pages

@@ -11,7 +11,6 @@ seo_title: "LLM Structured Outputs: Schema Validation for Real Pipelines (2026)"
 meta_description: "2026 best practices for LLM structured outputs across OpenAI, Claude, Gemini, and vLLM. JSON Schema, constrained decoding, Pydantic, and production patterns."
 target_keywords: "LLM structured output, structured outputs AI, JSON schema LLM, AI data pipeline, structured data extraction, constrained decoding, Pydantic LLM"
 ---
-# Structured Outputs in LLMs: Reliable Data for Real Pipelines
 LLMs speak fluent text. Data systems don't.
 Structured outputs bridge that gap by forcing an LLM to return data in a predictable shape.
 

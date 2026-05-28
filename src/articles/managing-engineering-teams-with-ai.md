@@ -6,7 +6,7 @@ excerpt: "Pull requests are up 20%. Incidents per PR are up 23.5%. The supervisi
 image: "/images/articles/managing-engineering-teams-with-ai.png"
 image_alt: "Engineering management in the AI era visual showing the supervision gap between AI output and human review."
 seo_title: "Managing Engineering Teams With AI"
-meta_description: "93% of orgs have AI tools deployed. Incidents are up 23.5%. Here's the supervision gap most managers are missing and 5 responsibilities to fix it."
+meta_description: "AI coding tools raise output, but review capacity lags. Learn the supervision gap managers miss and five responsibilities that keep teams safe."
 target_keywords: "managing engineering teams with AI, ai engineering management, ai development supervision, engineering manager ai tools"
 faqs:
   - q: "What is the supervision gap in AI-assisted engineering teams?"
@@ -16,9 +16,6 @@ faqs:
   - q: "Why do AI tools require infrastructure setup before delivering productivity gains?"
     a: "Without agent instruction files (like CLAUDE.md), guardrails, and content guidelines, engineers improvise every prompt from scratch. Teams with this foundation consistently outperform teams with better tools and no setup because the infrastructure makes AI output consistent and reviewable."
 ---
-
-# Managing Engineering Teams With AI Is Harder Than It Looks
-
 Managing engineering teams with AI has surfaced a counterintuitive pattern. At some point in the last year, most managers noticed the same thing: velocity went up, and reliability didn't follow. Pull requests per author are up 20% year over year. Incidents per PR are up 23.5%. Change failure rates jumped roughly 30%. Fifty-eight percent of engineering leaders say their confidence in AI outcomes is mostly anecdotal. They think it's working, but they can't show the data (Cortex 2026, DX Q1 2026).
 
 This isn't a tools problem. It's a management problem — specifically, a mismatch between what the job now requires and what most managers actually updated when the tools arrived.

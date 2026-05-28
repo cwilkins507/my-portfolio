@@ -18,9 +18,6 @@ faqs:
   - q: "Should I build a custom LLM routing layer or use an existing tool?"
     a: "Use an existing tool. LiteLLM in proxy mode is open source, supports 100+ providers through a unified API, and handles cost tracking, fallback, and rate limiting out of the box. Building a custom routing layer is almost never justified — routing models by task complexity is a configuration problem, not a software engineering problem. SaaS alternatives like Portkey and Helicone exist if you don't want to run the proxy yourself, but the per-request pricing adds up at scale."
 ---
-
-# LLM Gateway Architecture: When You Need One and How to Get Started
-
 The monthly invoice comes in $12K higher than expected and nobody can explain it. Engineering added Opus for a summarization feature... Product had QA testing vision with GPT-4o... the data team switched from Sonnet to a fine-tuned model on Bedrock three weeks ago and forgot to mention it.
 
 This is the database connection problem, replayed for LLMs. Every service talking directly to an external provider, no abstraction layer, no visibility, no fallback. You solved this for database connections a decade ago with connection pools. The LLM gateway is the same pattern, and most mid-market engineering teams don't have one yet.
@@ -157,7 +154,7 @@ This section matters more than the implementation playbook, because the mistakes
 
 ---
 
-If you're running a multi-model setup and want help designing the routing strategy or deploying the gateway, that's the kind of engagement I do — audit current usage, design the architecture, get it into production. Usually 2-4 weeks. [Reach out here](https://collinwilkins.com/contact) if you want to scope it.
+If you're running a multi-model setup and want help designing the routing strategy or deploying the gateway, that's the kind of engagement I do — audit current usage, design the architecture, get it into production. Usually 2-4 weeks. [Reach out here](https://collinwilkins.com/?modal=contact) if you want to scope it.
 
 *Related: [Context Engineering for AI Coding Tools](https://collinwilkins.com/articles/context-engineering) covers the upstream discipline that makes model routing effective. [Intentional AI Integration](https://collinwilkins.com/articles/intentional-ai-integration) covers the governance layer that sits above the gateway.*
 

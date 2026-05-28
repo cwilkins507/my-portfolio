@@ -6,12 +6,9 @@ excerpt: "Individual developer metrics are up. Organizational metrics are flat. 
 image: "/images/articles/claude-code-productivity-paradox.png"
 image_alt: "Productivity paradox visual contrasting faster individual AI coding with flat organizational throughput."
 seo_title: "The Claude Code Productivity Paradox"
-meta_description: "Individual developer metrics are up. Organizational metrics are flat. Here's why the gap exists and what it means for AI coding tool adoption."
+meta_description: "Individual AI coding metrics are up while delivery metrics stay flat. Here is why the Claude Code productivity gap happens and what to measure."
 target_keywords: "claude code productivity, ai coding productivity, claude code ROI, developer productivity measurement, AI coding tools team adoption, DORA metrics AI"
 ---
-
-# The Claude Code Productivity Paradox
-
 Anthropic surveyed 132 of their own engineers about Claude Code. The numbers looked incredible. 67% more merged PRs per day. Usage jumped from 28% to 59% of daily work. Self-reported productivity gains between 20% and 50%.
 
 Then someone checked the organizational dashboard. The delivery metrics hadn't moved.

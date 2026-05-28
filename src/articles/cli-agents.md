@@ -9,9 +9,6 @@ seo_title: "CLI Agents for Self-Hosting: LLM-Powered Terminal Automation"
 meta_description: "Use LLM-powered CLI agents to automate self-hosting tasks. Covers Docker Compose deployment, homelab automation, and guardrails for safe terminal AI agents."
 target_keywords: "CLI agents, LLM terminal tools, self-hosting automation, Docker Compose AI, homelab automation"
 ---
-
-# CLI Agents for Self‑Hosting: How LLMs in Your Terminal Boost Productivity
-
 Self‑hosting has friction. SSH sessions, Docker Compose files, logs that scroll forever, config files you edited six months ago and now have no idea what they do.
 
 CLI agents help with this.

@@ -23,8 +23,6 @@ faqs:
     a: "Watch for hallucinated imports that don't exist in your codebase, confident logic errors in edge cases, unnecessary abstractions you didn't ask for, silent behavior changes to function signatures or defaults, and stale context artifacts. If a diff looks right but you can't explain why, slow down and read line by line."
 
 ---
-# Context Engineering: The Skill That Makes AI Coding Tools Actually Work
-
 A developer opens Cursor, types a comment describing a function, and waits for autocomplete to fill in the blanks. Another developer copies a stack trace into ChatGPT, reads the response, copies the fix, pastes it into their editor, realizes the fix references a file ChatGPT never saw, and starts the cycle again. A third asks Copilot to refactor a module. It changes 3 files correctly and breaks 2 others because it couldn't see the import graph.
 
 I've been all three of those developers. The pattern is always the same: we have AI tools that can reason about code, but we keep using them through interfaces that strip away the context they need. We feed them fragments and expect systems in return.

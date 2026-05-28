@@ -1,10 +1,17 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
-const allArticles = await Astro.glob('../../articles/*.md');
+const articleModules = import.meta.glob('../../articles/*.md', { eager: true });
+const allArticles = Object.entries(articleModules).map(([file, article]) => ({
+  ...article,
+  file,
+}));
 
 export async function getStaticPaths() {
-  const articles = await Astro.glob('../../articles/*.md');
+  const articles = Object.entries(import.meta.glob('../../articles/*.md', { eager: true })).map(([file, article]) => ({
+    ...article,
+    file,
+  }));
   return articles.map(article => ({
     params: { slug: article.file.split('/').pop().replace('.md', '') },
     props: { article },

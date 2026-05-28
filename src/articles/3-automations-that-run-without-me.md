@@ -9,9 +9,6 @@ seo_title: "3 Automations I Built That Run Without Me"
 meta_description: "Three real automations I use daily: PandaDoc proposals, a GitHub Actions trend scanner, and automated onboarding. Tools, code, and results."
 target_keywords: "automation examples small business, PandaDoc API automation, GitHub Actions automation, ClickUp CRM automation, real automation examples"
 ---
-
-# 3 Automations I Built That Run Without Me
-
 The best automation is the one you forget exists.
 
 These are three systems I actually run. Each one replaced something I was doing by hand, and each one still runs today.

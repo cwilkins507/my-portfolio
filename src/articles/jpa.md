@@ -9,7 +9,6 @@ seo_title: "JPA and Hibernate Best Practices: Data Access That Scales"
 meta_description: "Pragmatic JPA/Hibernate guide covering N+1 queries, lazy loading pitfalls, native SQL fallbacks, and Spring Data patterns for production Java applications."
 target_keywords: "JPA best practices, Hibernate performance, Spring Data JPA, ORM optimization, Java data access patterns"
 ---
-# JPA/Hibernate: Pragmatic Data Access That Scales
 If your dev team is like mine, Java is the opinionated back-end language. We've recently refactored how the teams access data to become more consistent and use ORM. Below are some lessons learned.
 
 JPA/Hibernate through Spring gives you productive data access. It maps objects to tables, tracks changes, and writes SQL. This saves time. It also hides costs that show up in production.

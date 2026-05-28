@@ -25,9 +25,6 @@ faqs:
   - q: "How do DeepSeek V4 and GPT-5.5 change this comparison?"
     a: "They make the routing argument stronger. DeepSeek V4-Pro adds a 1M-context, MIT-licensed open-weight option at $1.74 input / $3.48 output per 1M tokens on OpenRouter, with strong SWE Verified and Terminal-Bench signals. GPT-5.5 pushes the closed frontier price ceiling to $5 input / $30 output per 1M tokens when API access opens. That doesn't make either one the automatic winner. It means teams need to test price, review burden, context behavior, and workflow fit together."
 ---
-
-# Coding Wars 2.0: The Definitive Comparison of Kimi K2.6, GLM-5.1, and Claude Opus 4.7
-
 We're back for Coding Wars 2.0.
 
 ![Kimi K2.6 vs GLM-5.1 vs Claude Opus 4.7 benchmark and pricing comparison chart](/images/coding-wars-2-0-model-comparison.png)

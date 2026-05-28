@@ -8,7 +8,7 @@ excerpt: "Most developers over-invest in prompt engineering and ignore context. 
 image: "/images/articles/context-engineering.png"
 image_alt: "Four-layer context engineering stack for better AI coding sessions."
 seo_title: "Context Engineering: The Four-Layer Framework for AI Coding Tools"
-meta_description: "Most developers over-invest in prompt engineering and ignore context. Here's the four-layer framework that makes every AI coding session better."
+meta_description: "Most developers over-invest in prompts and ignore context. Use this four-layer framework to make AI coding sessions more reliable."
 target_keywords: "CLAUDE.md best practices, codebase structure AI coding, AI coding context window, context window management, context engineering four layers, primacy problem AI, CLAUDE md instruction file"
 faqs:
   - q: "What is the primacy problem in AI context windows?"
@@ -21,8 +21,6 @@ faqs:
     a: "Skills are lightweight instruction files loaded at session start — they tell the agent how to do something with a fixed context cost paid once. MCP (Model Context Protocol) connects the agent to real-time external services mid-session, with variable cost paid per call. Use MCP when you genuinely need live data that can't be pre-written. Use skills for repeatable workflows. Every unnecessary MCP call is a context tax paid on every execution."
 
 ---
-# Context Engineering for AI Coding Tools: Why Your Codebase Structure Matters More Than Your Prompts
-
 This one is long and a more detailed follow up to my [first article on the topic](https://collinwilkins.com/articles/context-engineering-ai-coding-tools) on this
 
 Two things before we get into it: first, you'll walk away with at least one thing you can apply this week to get more consistent results from your AI coding tool. Second, the examples throughout use Claude Code — that's my daily stack, not an endorsement. Every principle here applies to Cursor, Copilot, or whatever you're running. The mechanics differ. The discipline doesn't.

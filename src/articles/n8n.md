@@ -9,8 +9,6 @@ seo_title: "n8n Automation Guide: Open-Source Workflow Patterns"
 meta_description: "n8n workflow automation with practical patterns. Self-hosting, API integrations, marketing automation, and a free RSS-to-Slack example to get started."
 target_keywords: "n8n automation, n8n workflow, open source automation, n8n tutorial, workflow automation tool"
 ---
-# n8n: Open Automation Engineers and Teams Can Trust
-
 n8n is a workflow automation tool that connects APIs, databases, and services. Think Zapier, but open source and way more flexible.
 
 Engineers skip the integration busywork and leaders get visibility into what's running. Marketing can build their own automations without filing a ticket.

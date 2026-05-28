@@ -20,8 +20,6 @@ faqs:
   - q: "What is bisect_batch_on_function_error and when should I use it?"
     a: "It automatically splits a failed batch in half and retries each half separately, continuing to bisect until the poison pill message is isolated. Enable it alongside ReportBatchItemFailures to prevent a single bad message from blocking an entire batch."
 ---
-# AWS Messaging & Compute: SNS, SQS, Lambda Production Patterns
-
 Congrats! You just finished a phase 1 for an Event-driven Architecture refactor you are leading. Your team set up SQS for events, lambdas for serverless functions, and SNS for notifications. You run your first full runthrough in UAT and **POOF** 
 
 Your service feels sluggish, you gained a cold start problem, you invoked triple the lambdas, a growing DLQ, and a forecasted AWS bill for the month above what you projected after promising the leadership team the exact opposite. Now what...?

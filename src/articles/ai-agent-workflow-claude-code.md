@@ -9,9 +9,6 @@ seo_title: "How I Use AI Agents Every Day: Claude Code, Agent Files, and Context
 meta_description: "How I run AI agents daily: Claude Code CLI, markdown agent definitions, Obsidian as a knowledge layer, and file-backed context across sessions."
 target_keywords: "AI agent development, Claude Code agents, AI workflow, file-backed context, agent files, AI productivity workflow, Claude Code daily use"
 ---
-
-# How I Actually Use AI Agents Every Day
-
 Most posts about AI agent development show you how to build agents. Write the Python loop. Define the tool schemas. Set up the vector database. Wire up the observability stack. All of that is real and useful if you're shipping agent products. It's not what I do.
 
 I use AI agents to run two businesses, produce content across two domains, write and ship code, and manage a knowledge base as a solo operator. In the last two months: 44 published posts across both domains, an automation pipeline (LeadSync) built and shipped in a weekend, and a SaaS beta in market. No custom inference loops. No database-backed memory. No LLM observability dashboards.

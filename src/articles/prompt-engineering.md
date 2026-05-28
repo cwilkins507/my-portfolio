@@ -20,8 +20,6 @@ faqs:
   - q: "What are common prompt engineering mistakes to avoid?"
     a: "Avoid conflicting instructions like 'detailed summary,' vague output formats, missing context, no role assignment, and ambiguous language. These lead to inconsistent and unreliable outputs. Be explicit about everything — the model should never have to guess what you want."
 ---
-
-# Prompt Engineering That Scales: A Pragmatic Guide for Tech Leaders
 Prompt engineering is just interface design for systems that don't always do what you want. You're trying to turn "make this work" into something that actually works the same way twice.
 
 I've wasted hours on prompts that seemed great until they didn't. 

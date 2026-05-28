@@ -9,8 +9,6 @@ seo_title: "Postgres SQL Optimization: EXPLAIN, Indexing, and VACUUM Guide"
 meta_description: "Optimize Postgres queries using DBeaver. Learn EXPLAIN ANALYZE, index strategies, VACUUM tuning, and AI-assisted query optimization for production databases."
 target_keywords: "Postgres optimization, SQL EXPLAIN ANALYZE, DBeaver query tuning, PostgreSQL indexing, database performance optimization"
 ---
-# Postgres/SQL Optimization in Local Tools like DBeaver
-
 You're debugging an API endpoint, everything looks fine, then one query tanks your CPU. Someone says "the database is slow today." 
 
 It's not the database. It's your query. Or maybe the test environment is running on half the resources of prod because someone wanted to save $200/month.

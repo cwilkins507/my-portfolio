@@ -20,9 +20,6 @@ faqs:
   - q: "How should I introduce design patterns into an existing codebase?"
     a: "Introduce patterns iteratively: write a failing test for the new requirement, extract a seam around the unstable behavior, apply the pattern at the seam, rename for clarity, and delete dead code. This keeps changes localized and avoids risky rewrites."
 ---
-
-# Modern Design Patterns: Beyond the Bookmarks
-
 A copy of *Head First Design Patterns* still sits on my bookshelf. The cover is falling off and there are coffee stains on the Observer pattern chapter. It was the first book I actually finished when I moved into software development, and for a long time, it was my entire personality.
 
 I learned the hard way that patterns aren't just academic exercises. At Ford, I watched a 30-day update process cost us $2M in opportunity because the system was too "sticky" to change. 

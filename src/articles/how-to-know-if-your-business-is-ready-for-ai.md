@@ -10,8 +10,6 @@ seo_title: "How to Know If Your Business Is Ready for AI"
 meta_description: "A 2-minute AI readiness quiz for engineering leaders. Five questions, four maturity levels, and what to do next at each stage."
 target_keywords: "is my business ready for AI, is my engineering team ready for AI, AI readiness engineering teams, Claude Code rollout, convention files, when to use AI coding tools"
 ---
-# How to Know If Your Business Is Ready for AI
-
 Your team just started using Claude Code, ChatGPT, or Gemini for a few months now. Output quality swings wildly between people, so you are starting to ask whether any of this is actually working. Leadership keeps nodding at the demos, but velocity hasn't moved in a way anyone can prove.
 
 That's the question nobody wants to ask out loud: are we actually ready for this, or did we skip a step?

@@ -10,9 +10,6 @@ seo_title: "Is the DOE Framework Still Relevant in the Age of Claude Skills?"
 meta_description: "Does the DOE framework still apply with Claude Skills, Managed Agents, and Cowork? What each replaces and what it doesn't."
 target_keywords: "claude skills orchestration, doe framework, claude managed agents, claude cowork, claude routines, agent self-annealing, sub-agent delegation, claude code sub-agents"
 ---
-
-# Is the DOE Framework Still Relevant in the Age of Claude Skills?
-
 A reader (shout out Maurizio!) emailed me a few days ago with a fair question. He'd been running the DOE framework from the appendix of an older post and wanted to know if it still held up. Skills exist now, Managed Agents exist, Cowork ships features every few weeks. Why would anyone still roll their own directive layer?
 
 The timing was good. Claude Opus 4.7 officially shipped yesterday, and every new release is the kind of moment that makes anyone running their own stack ask whether the shape still fits.

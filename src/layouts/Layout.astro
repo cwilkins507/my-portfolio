@@ -13,6 +13,7 @@ interface Props {
 	publishedTime?: string;
 	schema?: object | object[];
 	hideFooterNewsletter?: boolean;
+	robots?: string;
 }
 
 const {
@@ -23,6 +24,7 @@ const {
 	publishedTime,
 	schema,
 	hideFooterNewsletter = false,
+	robots = 'index, follow',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname.toLowerCase().replace(/\.html$/, ''), Astro.site);
@@ -50,7 +52,7 @@ const currentYear = new Date().getFullYear();
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
-		<meta name="robots" content="index, follow" />
+		<meta name="robots" content={robots} />
 		<meta name="google-site-verification" content="p-TMFQiYQvWsK5Tn417NrhsVXZUOlO0riWjvgMm-zSI" />
 		
 		<!-- Open Graph / Facebook -->
@@ -90,6 +92,17 @@ const currentYear = new Date().getFullYear();
 		<!-- Anti-FOUC: Apply theme before paint -->
 		<script is:inline>
 			(function(){try{var s=JSON.parse(localStorage.getItem('theme-storage'));if(s&&s.state&&s.state.theme==='light'){document.documentElement.classList.add('light')}}catch(e){}})();
+		</script>
+
+		<!-- Static-host fallback for legacy mixed-case and .html URLs -->
+		<script is:inline>
+			(function(){
+				var path = window.location.pathname;
+				var canonicalPath = path.replace(/\.html$/, '').toLowerCase();
+				if (canonicalPath !== path) {
+					window.location.replace(canonicalPath + window.location.search + window.location.hash);
+				}
+			})();
 		</script>
 
 		<!-- Plausible Analytics -->

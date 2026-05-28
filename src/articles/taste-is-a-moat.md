@@ -6,7 +6,7 @@ excerpt: "Taste isn't mystical. It's System 2 thinking, run on the same decision
 image: "/images/articles/taste-is-a-moat.png"
 image_alt: "Taste is a moat visual representing human judgment, craft, and selection in an AI-heavy world."
 seo_title: "Taste Is a Moat: Why AI Can't Replicate Judgment"
-meta_description: "Taste isn't about output — it's about the chooser. Why AI slop feels low intelligence, what taste actually is, and why lived judgment is the real moat."
+meta_description: "Taste is earned judgment, not polish. Why AI slop feels thin, what craft really means, and why lived calibration remains a durable moat."
 target_keywords: "taste is a moat, AI slop, why AI can't replicate taste, lived judgment, craft as moat, Kahneman system 1 system 2, AI taste vs human taste"
 faqs:
   - q: "What does \"taste is a moat\" mean?"
@@ -16,9 +16,6 @@ faqs:
   - q: "How is taste formed?"
     a: "Taste is what happens when System 2 thinking — slow, deliberate, conscious — runs so often on the same kind of decision that it drops into System 1. The choice stops being conscious. You just know."
 ---
-
-# Taste Is a Moat
-
 "Taste is a moat." "Avoid AI slop." You see those lines everywhere right now.
 
 But what do they actually mean? How is taste determined, and why does it matter so much?

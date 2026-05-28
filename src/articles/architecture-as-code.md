@@ -9,8 +9,6 @@ seo_title: "Architecture as Code: Diagrams-as-Code Adoption Guide"
 meta_description: "Adopt architecture as code with diagrams-as-code tools. Pros, cons, and tools for version-controlled architecture diagrams that evolve with your codebase."
 target_keywords: "architecture as code, diagrams as code, architecture documentation, system design diagrams, Structurizr, Mermaid diagrams"
 ---
-
-# Architecture as Code: The Senior Engineer's Edge in an AI Era #
 We live in a world of AI. New model update every two weeks, the countdown until the death of the software engineer creeping ever closer. So you can stop reading here.
 
 ## Why It Matters for Tech Leadership, Engineers, and Recruiters ##

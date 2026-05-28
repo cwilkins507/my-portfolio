@@ -20,8 +20,6 @@ faqs:
   - q: "What are common MCP implementation pitfalls?"
     a: "Avoid overbroad capabilities by splitting tools by action and resource instead of building 'do everything' servers. Don't inline massive data in responses — use streaming with explicit limits. Always pin tool contracts to documented invariants so prompts don't break when implementations change."
 ---
-# MCP for Software Engineers and Tech Leaders
-
 Model Context Protocol (MCP) standardizes how AI systems discover tools, read resources, and invoke actions. Instead of writing custom adapters for every AI integration, you get typed interfaces and guardrails that work across different clients.
 
 I spent three weeks implementing MCP servers before I really understood why this matters. Here's what I learned about the protocol, its design patterns, and how to ship your first server without getting lost in abstraction.

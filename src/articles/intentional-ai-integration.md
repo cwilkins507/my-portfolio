@@ -16,9 +16,6 @@ faqs:
   - q: "How do you review AI-generated code differently from human-written code?"
     a: "Add three questions to standard code review: Can a teammate who didn't write this explain the approach in 60 seconds? Does it follow your team's blessed patterns or introduce a new one? If you deleted it and asked a different AI to rebuild from the same spec, would the structure be similar? These add about 5 minutes per review and catch drift that standard 'does it work' review misses."
 ---
-
-# Intentional AI Integration: How to Adopt AI Coding Tools Without Wrecking Your Codebase
-
 Ben Swerdlow published a piece called [AI Code](https://aicode.swerdlow.dev/) that [hit the Hacker News front page](https://news.ycombinator.com/item?id=47446373) with 170 points and 103 comments. The core argument: the design rules that keep a human-authored codebase healthy are the same rules that keep an AI-assisted codebase healthy. And AI tools break them faster than humans do if nobody's paying attention.
 
 Swerdlow lays out a framework that's worth knowing even if you never read the full piece. Code should be self-documenting. Functions fall into two categories: **semantic functions** (pure, testable, self-documenting through naming and structure) and **pragmatic functions** (production wrappers that handle the messy real-world logic). Models should prevent impossible states — every optional field you add is a question the rest of the codebase has to answer every time it touches that data. And the degradation pattern is predictable: semantic functions gradually accumulate side effects until they become pragmatic ones, and models accumulate optional fields until they're a loose bag of half-related data where every consumer has to guess which fields are actually set.

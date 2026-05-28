@@ -9,9 +9,6 @@ seo_title: "What Is an AI Agent Harness?"
 meta_description: "A plain-English breakdown of AI agent harnesses: tools, memory, permissions, and verification. The model gives capability — the harness determines trust."
 target_keywords: "AI agent harness, harness engineering, AI agent architecture, CLAUDE.md, AGENTS.md, AI agent tools"
 ---
-
-# What Is an AI Agent Harness?
-
 If you keep hearing people say "agent harness" and quietly think, *cool, another term I am supposed to pretend I understand*, this is the useful version.
 
 This is for people trying to understand the weird infrastructure now sitting around models: Claude Code, Codex, Cursor, LangGraph, MCP servers, custom skills, repo instructions, permissions, hooks, and all the new agent plumbing that suddenly matters.

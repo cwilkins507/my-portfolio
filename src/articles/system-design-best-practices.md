@@ -20,9 +20,6 @@ faqs:
   - q: "What are SLIs, SLOs, and error budgets in system design?"
     a: "SLIs (Service Level Indicators) measure what users feel, such as availability and latency. SLOs (Service Level Objectives) set targets with time windows. Error budgets represent the allowed failure you can spend on change — when you burn through your budget, you slow down releases to protect reliability."
 ---
-
-# Best Practices for System Design: Lessons from Real-World Applications
-
 I've seen too many systems fall apart not because the code was bad, but because nobody thought through the boundaries. Or the failure modes. Or how you'd even know when things went sideways.
 
 Cloud-native makes this worse—more services means more ways to fail, and when you do, the blast radius is bigger. But we've got decades of production lessons from companies that figured this out the hard way. Amazon, Google, Netflix, LinkedIn, Stripe—they all hit the same walls and lived to document it.
