@@ -41,7 +41,7 @@ const latestArticles = articles.slice(0, 5);
 const totalArticles = articles.length;
 
 const credibilitySignals = [
-  `12 years at Ford & enterprise financial data`,
+  `12 years across Ford & Morningstar`,
   '$5M saved via connected-vehicle automation',
   `${totalArticles} published articles`,
   'Lead Engineer, currently shipping production AI',
@@ -62,7 +62,7 @@ const websiteSchema = {
   name: 'Collin Wilkins',
   url: 'https://collinwilkins.com',
   description:
-    'Practitioner notes on AI coding tools, convention files, and automation architecture from a Lead Software Engineer with 12 years across Ford Motor Company and enterprise financial data.',
+    'Practitioner notes on AI coding tools, convention files, and automation architecture from a Lead Software Engineer with 12 years across Ford Motor Company and Morningstar.',
   author: {
     '@type': 'Person',
     name: 'Collin Wilkins',
@@ -108,7 +108,7 @@ const personSchema = {
   ],
   worksFor: {
     '@type': 'Organization',
-    name: 'Morningstar',
+    name: 'Morningstar, Inc.',
   },
 };
 
@@ -138,7 +138,7 @@ const faqSchema = {
 
 <Layout
   title="Collin Wilkins | AI Tools, Automation Architecture, and Convention Files"
-  description="Practitioner notes on AI coding tools, convention files, and automation architecture. Lead Software Engineer with 12 years across Ford Motor Company and enterprise financial data."
+  description="Practitioner notes on AI coding tools, convention files, and automation architecture. Lead Software Engineer with 12 years across Ford Motor Company and Morningstar."
   schema={[websiteSchema, personSchema, faqSchema]}
   hideFooterNewsletter={true}
 >
@@ -162,7 +162,7 @@ const faqSchema = {
                 Practitioner notes on AI tools, convention files, and automation architecture.
               </h1>
               <p class="mt-7 max-w-[560px] text-lg leading-relaxed text-[var(--color-text-secondary)] md:text-xl">
-                Lead Software Engineer with 12 years across Ford Motor Company and enterprise financial data. I write about what actually works when engineering teams adopt AI coding tools, and what breaks when they don't set up the context layer first.
+                Lead Software Engineer at Morningstar with 12 years across Ford Motor Company and enterprise software. I write about what actually works when engineering teams adopt AI coding tools, and what breaks when they don't set up the context layer first.
               </p>
 
               <div class="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
