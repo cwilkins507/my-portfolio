@@ -1,0 +1,60 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A focused agent skills directory beside an open SKILL.md file with scoped frontmatter and a hard stop.">
+  <style>
+    :root { --accent: #38bdf8; --muted: rgba(255,255,255,0.28); }
+    svg { font-family: "DM Sans", Arial, sans-serif; }
+  </style>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="48%" r="58%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#38bdf8" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#08111f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="rgba(255,255,255,0.16)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0.03)"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#08111f"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <path d="M0 540 C190 475 330 605 520 535 C720 460 850 520 1200 410 L1200 630 L0 630Z" fill="rgba(255,255,255,0.035)"/>
+  <path d="M110 110 H1090 V520" fill="none" stroke="url(#edge)" stroke-width="2"/>
+  <text x="110" y="86" fill="#38bdf8" font-size="24" font-weight="700" letter-spacing="0">AI Agents in Practice</text>
+  <text x="110" y="580" fill="rgba(255,255,255,0.82)" font-size="34" font-weight="700" letter-spacing="0">Agent Skills That Hold</text>
+  <g transform="translate(165 164)">
+        <rect x="0" y="0" width="350" height="340" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2"/>
+        <rect x="0" y="0" width="350" height="56" rx="18" fill="rgba(56,189,248,0.11)"/>
+        <path d="M0 56 H350" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>
+        <text x="24" y="36" fill="#7dd3fc" font-size="21" font-weight="700" letter-spacing="0">.agents / skills</text>
+        <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+          <text x="28" y="96" fill="rgba(255,255,255,0.86)" font-size="18" font-weight="700" letter-spacing="0">wrapup/</text>
+          <text x="52" y="126" fill="#7dd3fc" font-size="17" font-weight="700" letter-spacing="0">SKILL.md</text>
+          <text x="28" y="174" fill="rgba(255,255,255,0.86)" font-size="18" font-weight="700" letter-spacing="0">polish/</text>
+          <text x="52" y="204" fill="#7dd3fc" font-size="17" font-weight="700" letter-spacing="0">SKILL.md</text>
+          <text x="28" y="252" fill="rgba(255,255,255,0.32)" font-size="18" font-weight="700" letter-spacing="0">unused-skill/</text>
+          <text x="52" y="282" fill="rgba(255,255,255,0.22)" font-size="17" font-weight="700" letter-spacing="0">SKILL.md</text>
+        </g>
+        <path d="M292 238 L318 264 M318 238 L292 264" stroke="#fb7185" stroke-width="5" stroke-linecap="round" opacity="0.8"/>
+        <text x="28" y="320" fill="#94a3b8" font-size="16" font-weight="700" letter-spacing="0">keep only what earns its context</text>
+
+        <line x1="350" y1="170" x2="425" y2="170" stroke="#38bdf8" stroke-width="4" stroke-linecap="round" opacity="0.78"/><polyline points="411.49075319196777,178.57322871966394 425,170 411.49075319196777,161.42677128033606" fill="none" stroke="#38bdf8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/>
+
+        <rect x="425" y="0" width="450" height="340" rx="18" fill="rgba(255,255,255,0.07)" stroke="#38bdf8" stroke-width="2"/>
+        <rect x="425" y="0" width="450" height="56" rx="18" fill="rgba(56,189,248,0.14)"/>
+        <path d="M425 56 H875" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>
+        <text x="450" y="36" fill="#e0f2fe" font-size="21" font-weight="700" letter-spacing="0">SKILL.md</text>
+        <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+          <text x="450" y="88" fill="#64748b" font-size="16" font-weight="600" letter-spacing="0">---</text>
+          <text x="450" y="114" fill="#7dd3fc" font-size="16" font-weight="700" letter-spacing="0">name:</text>
+          <text x="515" y="114" fill="rgba(255,255,255,0.78)" font-size="16" font-weight="600" letter-spacing="0">wrapup</text>
+          <text x="450" y="140" fill="#7dd3fc" font-size="16" font-weight="700" letter-spacing="0">description:</text>
+          <text x="580" y="140" fill="rgba(255,255,255,0.78)" font-size="16" font-weight="600" letter-spacing="0">Run at session end</text>
+          <text x="450" y="166" fill="#64748b" font-size="16" font-weight="600" letter-spacing="0">---</text>
+          <text x="450" y="208" fill="#4ade80" font-size="16" font-weight="800" letter-spacing="0">DO</text>
+          <text x="490" y="208" fill="rgba(255,255,255,0.78)" font-size="16" font-weight="600" letter-spacing="0">repeatable workflow</text>
+          <text x="450" y="244" fill="#fb7185" font-size="16" font-weight="800" letter-spacing="0">STOP</text>
+          <text x="505" y="244" fill="rgba(255,255,255,0.78)" font-size="16" font-weight="600" letter-spacing="0">outside assigned scope</text>
+        </g>
+        <rect x="450" y="278" width="386" height="38" rx="9" fill="rgba(56,189,248,0.1)" stroke="rgba(56,189,248,0.55)" stroke-width="2"/>
+        <text x="470" y="303" fill="#bae6fd" font-size="16" font-weight="700" letter-spacing="0">scoped trigger + hard stop</text>
+      </g>
+</svg>
