@@ -373,6 +373,14 @@ const covers = [
     accent: '#f43f5e',
     motif: 'loops',
   },
+  {
+    slug: 'building-production-ready-ai-agent-skills',
+    pillar: 'AI Agents in Practice',
+    title: 'Agent Skills That Hold',
+    alt: 'A focused agent skills directory beside an open SKILL.md file with scoped frontmatter and a hard stop.',
+    accent: '#38bdf8',
+    motif: 'terminal',
+  },
 ];
 
 function node(x, y, r, color = 'var(--accent)') {
@@ -454,6 +462,44 @@ function conceptArrow(x1, y1, x2, y2, color = 'var(--accent)', width = 4) {
 
 function concept(cover) {
   switch (cover.slug) {
+    case 'building-production-ready-ai-agent-skills':
+      return `<g transform="translate(165 164)">
+        <rect x="0" y="0" width="350" height="340" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2"/>
+        <rect x="0" y="0" width="350" height="56" rx="18" fill="rgba(56,189,248,0.11)"/>
+        <path d="M0 56 H350" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>
+        ${label(24, 36, '.agents / skills', 21, '#7dd3fc')}
+        <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+          ${label(28, 96, 'wrapup/', 18, 'rgba(255,255,255,0.86)', 700)}
+          ${label(52, 126, 'SKILL.md', 17, '#7dd3fc', 700)}
+          ${label(28, 174, 'polish/', 18, 'rgba(255,255,255,0.86)', 700)}
+          ${label(52, 204, 'SKILL.md', 17, '#7dd3fc', 700)}
+          ${label(28, 252, 'unused-skill/', 18, 'rgba(255,255,255,0.32)', 700)}
+          ${label(52, 282, 'SKILL.md', 17, 'rgba(255,255,255,0.22)', 700)}
+        </g>
+        <path d="M292 238 L318 264 M318 238 L292 264" stroke="#fb7185" stroke-width="5" stroke-linecap="round" opacity="0.8"/>
+        ${smallLabel(28, 320, 'keep only what earns its context', '#94a3b8')}
+
+        ${conceptArrow(350, 170, 425, 170, '#38bdf8', 4)}
+
+        <rect x="425" y="0" width="450" height="340" rx="18" fill="rgba(255,255,255,0.07)" stroke="#38bdf8" stroke-width="2"/>
+        <rect x="425" y="0" width="450" height="56" rx="18" fill="rgba(56,189,248,0.14)"/>
+        <path d="M425 56 H875" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>
+        ${label(450, 36, 'SKILL.md', 21, '#e0f2fe')}
+        <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+          ${label(450, 88, '---', 16, '#64748b', 600)}
+          ${label(450, 114, 'name:', 16, '#7dd3fc', 700)}
+          ${label(515, 114, 'wrapup', 16, 'rgba(255,255,255,0.78)', 600)}
+          ${label(450, 140, 'description:', 16, '#7dd3fc', 700)}
+          ${label(580, 140, 'Run at session end', 16, 'rgba(255,255,255,0.78)', 600)}
+          ${label(450, 166, '---', 16, '#64748b', 600)}
+          ${label(450, 208, 'DO', 16, '#4ade80', 800)}
+          ${label(490, 208, 'repeatable workflow', 16, 'rgba(255,255,255,0.78)', 600)}
+          ${label(450, 244, 'STOP', 16, '#fb7185', 800)}
+          ${label(505, 244, 'outside assigned scope', 16, 'rgba(255,255,255,0.78)', 600)}
+        </g>
+        <rect x="450" y="278" width="386" height="38" rx="9" fill="rgba(56,189,248,0.1)" stroke="rgba(56,189,248,0.55)" stroke-width="2"/>
+        ${label(470, 303, 'scoped trigger + hard stop', 16, '#bae6fd', 700)}
+      </g>`;
     case 'context-engineering':
       return `<g transform="translate(245 192)">
         ${['Layer 4: Session Context', 'Layer 3: File-Level Docs', 'Layer 2: Instruction Files', 'Layer 1: Project Structure'].map((title, i) => {
