@@ -4,7 +4,7 @@ date: "2026-04-07"
 tags: ["Lessons Learned", "Software Engineering", "Mindset", "AI", "Career"]
 excerpt: "A generalist's field notes from 2026. AI changed the game, execution still wins, and the engineers who connect dots nobody else sees are the ones getting ahead."
 image: "/images/articles/lessons-learned-2026.png"
-image_alt: "Engineering leadership lessons visual showing connected decisions, reflection, and accumulated judgment."
+image_alt: "A dated 2026 field notebook mapping AI, engineering, and business signals into the generalist advantage."
 seo_title: "Lessons Learned in 2026: A Generalist Engineer's Field Notes"
 meta_description: "Hard-won lessons from a senior engineer on AI, career growth, and the generalist advantage in 2026."
 target_keywords: "software engineering lessons 2026, developer lessons learned, generalist engineer, AI coding tools, career growth software engineering"

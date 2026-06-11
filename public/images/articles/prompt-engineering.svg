@@ -1,4 +1,4 @@
-<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Prompt engineering visual showing instructions, examples, constraints, and model output flowing together.">
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A vague request transformed into a constrained prompt contract that produces validated JSON output.">
   <style>
     :root { --accent: #7dd3fc; --muted: rgba(255,255,255,0.28); }
     svg { font-family: "DM Sans", Arial, sans-serif; }
@@ -20,5 +20,27 @@
   <path d="M110 110 H1090 V520" fill="none" stroke="url(#edge)" stroke-width="2"/>
   <text x="110" y="86" fill="#7dd3fc" font-size="24" font-weight="700" letter-spacing="0">AI-Powered Engineering Teams</text>
   <text x="110" y="580" fill="rgba(255,255,255,0.82)" font-size="34" font-weight="700" letter-spacing="0">Prompt Engineering</text>
-  <rect x="250" y="330" width="130" height="92" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" /><rect x="440" y="400" width="130" height="92" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" /><line x1="440" y1="446" x2="380" y2="376" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><rect x="630" y="330" width="130" height="92" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" /><line x1="630" y1="376" x2="570" y2="446" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><rect x="820" y="400" width="130" height="92" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2" /><line x1="820" y1="446" x2="760" y2="376" stroke="var(--muted)" stroke-width="4" stroke-linecap="round" opacity="0.75"/><path d="M285 575 C480 650 750 650 965 555" fill="none" stroke="var(--accent)" stroke-width="6" opacity="0.8"/>
+  <g transform="translate(105 190)">
+        <rect x="0" y="30" width="250" height="250" rx="18" fill="rgba(251,113,133,0.08)" stroke="#fb7185" stroke-width="2"/>
+        <text x="30" y="70" fill="#fda4af" font-size="20" font-weight="700" letter-spacing="0">VAGUE REQUEST</text>
+        <text x="30" y="112" fill="rgba(255,255,255,0.78)" font-size="19" font-weight="700" letter-spacing="0">"Make it detailed</text>
+        <text x="30" y="140" fill="rgba(255,255,255,0.78)" font-size="19" font-weight="700" letter-spacing="0">but also short..."</text>
+        <path d="M30 178 H198 M30 208 H160 M30 238 H215" stroke="rgba(255,255,255,0.2)" stroke-width="6" stroke-linecap="round"/>
+        <path d="M190 188 L220 218 M220 188 L190 218" stroke="#fb7185" stroke-width="6" stroke-linecap="round"/>
+        <line x1="250" y1="155" x2="345" y2="155" stroke="#7dd3fc" stroke-width="5" stroke-linecap="round" opacity="0.78"/><polyline points="331.49075319196777,163.57322871966394 345,155 331.49075319196777,146.42677128033606" fill="none" stroke="#7dd3fc" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/>
+        <rect x="345" y="0" width="320" height="310" rx="18" fill="rgba(125,211,252,0.1)" stroke="#7dd3fc" stroke-width="3"/>
+        <text x="380" y="42" fill="#bae6fd" font-size="21" font-weight="700" letter-spacing="0">PROMPT CONTRACT</text>
+        <rect x="380" y="70" width="250" height="38" rx="9" fill="rgba(255,255,255,0.06)" stroke="rgba(125,211,252,0.55)" stroke-width="2"/><text x="398" y="96" fill="rgba(255,255,255,0.84)" font-size="17" font-weight="700" letter-spacing="0">Context</text><rect x="380" y="122" width="250" height="38" rx="9" fill="rgba(255,255,255,0.06)" stroke="rgba(125,211,252,0.55)" stroke-width="2"/><text x="398" y="148" fill="rgba(255,255,255,0.84)" font-size="17" font-weight="700" letter-spacing="0">Instructions</text><rect x="380" y="174" width="250" height="38" rx="9" fill="rgba(255,255,255,0.06)" stroke="#4ade80" stroke-width="2"/><text x="398" y="200" fill="rgba(255,255,255,0.84)" font-size="17" font-weight="700" letter-spacing="0">Output schema</text><rect x="380" y="226" width="250" height="38" rx="9" fill="rgba(255,255,255,0.06)" stroke="rgba(125,211,252,0.55)" stroke-width="2"/><text x="398" y="252" fill="rgba(255,255,255,0.84)" font-size="17" font-weight="700" letter-spacing="0">Rules + example</text>
+        <line x1="665" y1="155" x2="755" y2="155" stroke="#4ade80" stroke-width="5" stroke-linecap="round" opacity="0.78"/><polyline points="741.4907531919678,163.57322871966394 755,155 741.4907531919678,146.42677128033606" fill="none" stroke="#4ade80" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/>
+        <rect x="755" y="30" width="250" height="250" rx="18" fill="rgba(74,222,128,0.08)" stroke="#4ade80" stroke-width="2"/>
+        <text x="790" y="70" fill="#bbf7d0" font-size="20" font-weight="700" letter-spacing="0">VALIDATED JSON</text>
+        <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+          <text x="790" y="112" fill="#86efac" font-size="22" font-weight="700" letter-spacing="0">{</text>
+          <text x="812" y="142" fill="rgba(255,255,255,0.76)" font-size="15" font-weight="600" letter-spacing="0">"components": [...],</text>
+          <text x="812" y="172" fill="rgba(255,255,255,0.76)" font-size="15" font-weight="600" letter-spacing="0">"risks": [...],</text>
+          <text x="812" y="202" fill="rgba(255,255,255,0.76)" font-size="15" font-weight="600" letter-spacing="0">"tests": [...]</text>
+          <text x="790" y="232" fill="#86efac" font-size="22" font-weight="700" letter-spacing="0">}</text>
+        </g>
+        <path d="M930 222 L950 242 L985 198" fill="none" stroke="#4ade80" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
 </svg>

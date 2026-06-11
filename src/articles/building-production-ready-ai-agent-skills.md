@@ -2,14 +2,16 @@
 title: "How to Build AI Agent Skills That Actually Hold Up in Production"
 date: "2026-06-09T12:00:00Z"
 tags: ["AI Agents", "Claude Code", "Agent Skills", "Developer Productivity", "AI Engineering"]
-excerpt: "A skill should earn its place by capturing repeated behavior or preventing a repeated failure. How to build useful skills and remove the ones creating context bloat."
+excerpt: "A skill should earn its place by capturing repeated behavior or preventing a repeated failure. How to build AI agent skills that hold up under pressure and remove the ones creating context bloat."
 image: "/images/articles/building-production-ready-ai-agent-skills.png"
 image_alt: "A focused agent skills directory beside an open SKILL.md file with scoped frontmatter and a hard stop."
-seo_title: "Building Production-Ready AI Agent Skills"
-meta_description: "How to build reusable AI agent skills with scoped triggers, hard stops, and verifiable behavior, then audit unused skills creating context bloat."
-target_keywords: "building ai agent skills, reusable ai agent skills, ai agent skill library, claude code skills, agent skill design patterns, production ai agent skills, AI agent workflow"
+seo_title: "How to Build Production-Ready AI Agent Skills (2026 Guide)"
+meta_description: "Learn to build AI agent skills that work in production. Use scoped triggers, hard stops, and verification, then audit unused skills creating context bloat."
+target_keywords: "how to build ai agent skills, production-ready ai agent skills, reusable ai agent skills, ai agent skill library, claude code skills, agent skill design patterns, ai agent workflow"
 related_articles: ["context-engineering-ai-coding-tools", "ai-agent-workflow-claude-code", "doe-framework-claude-skills"]
 ---
+
+Building AI agent skills feels productive until half the library hasn't been used in a month. The ones that hold up in production usually do one of two jobs: capture repeated behavior or prevent a repeated failure. Everything else is often a prompt getting promoted too early.
 
 One of the first rules I learned in software development was YAGNI: **You Aren't Gonna Need It**.
 
@@ -17,7 +19,9 @@ One of the first rules I learned in software development was YAGNI: **You Aren't
 
 I forgot that rule when I started building agent skills.
 
-Last month, I hit 51 skills and realized I couldn't tell you what half of them did. Skills are easy to install and satisfying to write, so the library quietly grows. I'll see something trending on Reddit, X, or YouTube, add it, and now the agent has one more choice to make in every relevant session. A few libraries I liked:
+Last month, I hit 51 skills and realized I couldn't tell you what half of them did. Skills are easy to install and satisfying to write, so the library quietly grows. I'll see something trending on Reddit, X, or YouTube, add it, and now the agent has one more choice to make in every relevant session.
+
+This is one small part of the broader [context engineering](/articles/context-engineering-ai-coding-tools) problem. A few libraries I liked:
 
 - [Corey Haines' marketing skills](https://github.com/coreyhaines31/marketingskills)
 - [Matt Pocock's skills](https://github.com/mattpocock/skills)
@@ -33,7 +37,20 @@ When I audited my skills, many hadn't been used more than once in the previous 3
 
 My opinion now is simple: **a skill should earn its place by capturing repeated behavior or preventing a repeated failure.** Until then, it is probably a prompt you should keep using manually.
 
-## What Deserves to Become a Skill?
+## TL;DR
+
+If you want to build AI agent skills that actually hold up in production, keep the bar high:
+
+1. Turn repeated work or repeated failure into a skill.
+2. Give the skill a tight trigger and narrow authority.
+3. Add hard stops, not just positive instructions.
+4. Leave proof that the skill ran.
+5. Test it on happy, ambiguous, and pressure paths.
+6. Audit the library regularly and archive unused skills.
+
+That keeps the skill library small enough to stay useful and predictable.
+
+## When Should You Build a Custom AI Agent Skill?
 
 A prompt helps the agent complete a task. A skill preserves a decision you don't want to make again.
 
@@ -43,24 +60,21 @@ I use a loose rule of three: if I've manually asked for the same behavior across
 
 The best candidates tend to come from one of two places:
 
-- **Repeated work:** a sequence you keep explaining, such as researching a topic before drafting or updating a vault at the end of a session.
+- **Repeated work:** a sequence you keep explaining in your [AI agent workflow](/articles/ai-agent-workflow-claude-code), such as researching a topic before drafting or updating a vault at the end of a session.
 - **Repeated failure:** a constraint the agent keeps dropping, such as editing content outside its assigned scope or skipping a required verification step.
 
 My `wrapup` skill came from both. I repeatedly needed session recaps, topic-map updates, and index maintenance. I also needed the agent to stop "helpfully" rewriting content or fixing links during that maintenance. The skill preserves the workflow and the boundary.
 
-## What a Skill That Holds Is Made Of
+## The 4 Parts of a Production-Ready AI Agent Skill
 
-A skill that survives repeated use needs four parts:
+A production-ready skill needs four parts:
 
 ![The anatomy of a skill that holds: a scoped trigger, role and authority, positive instructions, and hard stops](/images/skill-anatomy-four-components.png)
 
-**A scoped trigger** tells the agent exactly when to load it. "When I say wrap up this session" is useful. "For maintenance" is vague enough to fire at the wrong time or never fire at all.
-
-**A role** defines the judgment the agent should apply. `wrapup` is a session-maintenance agent for my Obsidian vault, not a general assistant with permission to improve anything it notices.
-
-**Positive instructions** define what the skill does. This is the obvious part, and usually the most over-written.
-
-**Hard stops** define what the skill must never do. These matter more than people think because an agent is balancing the current request, conversation history, project rules, and every other loaded instruction. A clear prohibition cuts through that noise.
+1. **A scoped trigger** tells the agent exactly when to load it. "When I say wrap up this session" is useful. "For maintenance" is vague enough to fire at the wrong time or never fire at all.
+2. **A role and authority boundary** defines the judgment the agent should apply. `wrapup` is a session-maintenance agent for my Obsidian vault, not a general assistant with permission to improve anything it notices.
+3. **Positive instructions** define what the skill does. This is the obvious part, and usually the most over-written.
+4. **Hard stops** define what the skill must never do. These matter more than people think because an agent is balancing the current request, conversation history, project rules, and every other loaded instruction. A clear prohibition cuts through that noise.
 
 The file itself is mostly trigger, workflow, and limits:
 
@@ -93,7 +107,7 @@ There is one more requirement sitting above those four parts: you need evidence 
 
 ## Narrow Skills Work Better
 
-The skills I kept after the audit fall into three broad types:
+The skills I kept after the audit fall into three broad types of AI agent skills:
 
 | Type | Examples | What It Constrains |
 |---|---|---|
@@ -101,7 +115,7 @@ The skills I kept after the audit fall into three broad types:
 | **Domain** | `brand-voice`, `content-strategy` | Audience, terminology, and project rules |
 | **Workflow** | `wrapup`, `research`, `seo-audit` | Steps, output format, and required checks |
 
-Their shared trait is narrow authority.
+These three patterns cover most production use cases because their shared trait is narrow authority.
 
 A voice skill can edit how something reads without inventing new claims. A domain skill can enforce project-specific language without leaking those rules into unrelated work. A workflow skill can require a sequence without deciding what the final answer should say.
 
@@ -109,11 +123,11 @@ This is where I disagree with the instinct to install a full marketplace and sor
 
 Overlapping skills are especially expensive. If two can fire on the same task, they need distinct scopes or one needs to call the other deliberately. Otherwise the agent spends context and judgment reconciling instructions that were supposed to make its work more deterministic.
 
-## Test the Boundary, Not the Demo
+## How to Test AI Agent Skills Under Pressure
 
 The first run of a skill is usually flattering. You wrote it for the task in front of you, so of course it works on that task.
 
-The useful test is whether the boundary holds when following it becomes inconvenient:
+The useful test is whether the boundary holds when following it becomes inconvenient. I use a simple three-path test:
 
 1. **Happy path:** run a normal, clearly in-scope task.
 2. **Ambiguous path:** run something near the edge of the trigger.

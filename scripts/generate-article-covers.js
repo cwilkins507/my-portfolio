@@ -73,7 +73,7 @@ const covers = [
     slug: 'taste-is-a-moat',
     pillar: 'Engineering Leadership',
     title: 'Taste Is a Moat',
-    alt: 'Taste is a moat visual representing human judgment, craft, and selection in an AI-heavy world.',
+    alt: 'Lived feedback calibrates a human chooser to reject plausible AI imitation and keep the detail that survives judgment.',
     accent: '#e879f9',
     motif: 'spectrum',
   },
@@ -121,7 +121,7 @@ const covers = [
     slug: 'ai-agent-content-pipeline-experiment',
     pillar: 'AI Agents in Practice',
     title: 'Agent Content Pipeline',
-    alt: 'AI content pipeline moving from research to drafting, polishing, scoring, and publishing.',
+    alt: 'Autonomous AI content experiment moving through research, writing, and processing before receiving an honest 7 out of 10 score.',
     accent: '#f472b6',
     motif: 'pipeline',
   },
@@ -265,7 +265,7 @@ const covers = [
     slug: 'crm-no-code',
     pillar: 'Automation Architecture',
     title: 'CRM Integration',
-    alt: 'No-code CRM integration pattern connecting forms, contacts, enrichment, and follow-up systems.',
+    alt: 'No-code CRM integration loop that normalizes a lead, upserts the CRM by email, triggers follow-up, and writes the CRM ID back.',
     accent: '#fb7185',
     motif: 'workflow',
   },
@@ -281,7 +281,7 @@ const covers = [
     slug: 'enterprise-best-practices',
     pillar: 'AI-Powered Engineering Teams',
     title: 'Enterprise AI Practices',
-    alt: 'Enterprise AI engineering practice stack showing prompts, reviews, guardrails, and delivery controls.',
+    alt: 'Enterprise AI delivery path requiring proposal, human review, tests, security checks, and an audit trail before execution.',
     accent: '#2dd4bf',
     motif: 'guardrails',
   },
@@ -296,16 +296,16 @@ const covers = [
   {
     slug: 'lessons-learned-2025',
     pillar: 'Engineering Leadership',
-    title: 'Lessons Learned',
-    alt: 'Engineering lessons visual showing a path of decisions, feedback loops, and accumulated judgment.',
+    title: 'Lessons Learned: 2025',
+    alt: 'A dated 2025 mentor notebook showing communication, writing, and craft compounding into stronger engineering judgment.',
     accent: '#e879f9',
     motif: 'loops',
   },
   {
     slug: 'lessons-learned-2026',
     pillar: 'Engineering Leadership',
-    title: 'Lessons Learned',
-    alt: 'Engineering leadership lessons visual showing connected decisions, reflection, and accumulated judgment.',
+    title: 'Lessons Learned: 2026',
+    alt: 'A dated 2026 field notebook mapping AI, engineering, and business signals into the generalist advantage.',
     accent: '#f472b6',
     motif: 'loops',
   },
@@ -337,7 +337,7 @@ const covers = [
     slug: 'prompt-engineering',
     pillar: 'AI-Powered Engineering Teams',
     title: 'Prompt Engineering',
-    alt: 'Prompt engineering visual showing instructions, examples, constraints, and model output flowing together.',
+    alt: 'A vague request transformed into a constrained prompt contract that produces validated JSON output.',
     accent: '#7dd3fc',
     motif: 'pipeline',
   },
@@ -462,6 +462,138 @@ function conceptArrow(x1, y1, x2, y2, color = 'var(--accent)', width = 4) {
 
 function concept(cover) {
   switch (cover.slug) {
+    case 'how-to-know-if-your-business-is-ready-for-ai':
+      return `<g transform="translate(145 190)">
+        <rect x="0" y="0" width="910" height="315" rx="20" fill="rgba(125,211,252,0.06)" stroke="rgba(125,211,252,0.42)" stroke-width="2"/>
+        ${smallLabel(38, 42, 'AI READINESS REQUIRES A FOUNDATION', '#bae6fd')}
+        ${[
+          ['1', 'Experiment', 'individual use', 65, 150, '#64748b'],
+          ['2', 'Standardize', 'shared context', 265, 125, '#60a5fa'],
+          ['3', 'Measure', 'owned ROI', 465, 100, '#2dd4bf'],
+          ['4', 'Govern', 'multi-team systems', 665, 75, '#7dd3fc'],
+        ].map(([n, title, detail, x, y, color]) => `<rect x="${x}" y="${y}" width="170" height="${250 - y}" rx="14" fill="rgba(255,255,255,0.055)" stroke="${color}" stroke-width="2"/><circle cx="${x + 28}" cy="${y + 28}" r="18" fill="${color}" opacity="0.95"/>${label(x + 22, y + 34, n, 17, '#08111f', 800)}${label(x + 18, y + 68, title, 18, 'rgba(255,255,255,0.88)')}${smallLabel(x + 18, y + 92, detail, 'rgba(255,255,255,0.56)')}`).join('')}
+        ${conceptArrow(235, 195, 265, 170, '#7dd3fc', 3)}
+        ${conceptArrow(435, 170, 465, 145, '#7dd3fc', 3)}
+        ${conceptArrow(635, 145, 665, 120, '#7dd3fc', 3)}
+        ${smallLabel(63, 288, 'tools alone', '#94a3b8')}
+        ${smallLabel(700, 288, 'governed adoption', '#bae6fd')}
+      </g>`;
+    case 'enterprise-best-practices':
+      return `<g transform="translate(135 178)">
+        <rect x="0" y="0" width="930" height="330" rx="20" fill="rgba(45,212,191,0.06)" stroke="#2dd4bf" stroke-width="2"/>
+        <rect x="35" y="28" width="860" height="48" rx="12" fill="rgba(45,212,191,0.12)" stroke="rgba(45,212,191,0.5)" stroke-width="2"/>
+        ${label(70, 59, 'APPROVED CONTEXT + POLICY', 18, '#99f6e4')}
+        ${smallLabel(625, 59, 'scope / permissions / source files', '#99f6e4')}
+        ${conceptBox(55, 120, 205, 82, '1. Ask', 'proposal only', '#60a5fa')}
+        ${conceptArrow(260, 161, 365, 161, '#2dd4bf', 4)}
+        ${conceptBox(365, 106, 220, 110, '2. Human Review', 'scope, risk, intent', '#fbbf24', 'rgba(251,191,36,0.1)')}
+        ${conceptArrow(585, 161, 690, 161, '#2dd4bf', 4)}
+        ${conceptBox(690, 120, 185, 82, '3. Execute', 'small, traced diff', '#4ade80')}
+        <path d="M158 202 V238 H782 V202" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="3" stroke-dasharray="8 7"/>
+        ${conceptBox(245, 238, 440, 76, 'Release Gate', 'tests / security / audit trail', '#2dd4bf', 'rgba(45,212,191,0.1)')}
+        <path d="M270 106 C310 72 640 72 680 106" fill="none" stroke="#fb7185" stroke-width="3" stroke-dasharray="8 7" opacity="0.8"/>
+        <path d="M458 78 L478 98 M478 78 L458 98" stroke="#fb7185" stroke-width="5" stroke-linecap="round"/>
+        ${smallLabel(385, 68, 'unreviewed autonomy blocked', '#fda4af')}
+      </g>`;
+    case 'crm-no-code':
+      return `<g transform="translate(105 184)">
+        ${conceptBox(0, 76, 170, 76, 'Lead Form', 'new contact', '#94a3b8')}
+        ${conceptArrow(170, 114, 250, 114, '#fb7185', 4)}
+        ${conceptBox(250, 76, 190, 76, 'Normalize', 'email / phone / fields', '#fbbf24')}
+        ${conceptArrow(440, 114, 520, 114, '#fb7185', 4)}
+        <rect x="520" y="32" width="245" height="164" rx="20" fill="rgba(251,113,133,0.14)" stroke="#fb7185" stroke-width="3"/>
+        ${label(585, 76, 'CRM UPSERT', 23, '#fecdd3')}
+        ${label(562, 112, 'find by email', 17, 'rgba(255,255,255,0.72)', 700)}
+        <path d="M560 132 H725" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+        ${label(562, 162, 'update or create', 17, 'rgba(255,255,255,0.88)', 700)}
+        ${conceptArrow(765, 114, 845, 114, '#fb7185', 4)}
+        ${conceptBox(845, 76, 170, 76, 'Follow-Up', 'task + notification', '#4ade80')}
+        <path d="M930 152 V318 H642 V196" fill="none" stroke="#60a5fa" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline points="630,210 642,196 654,210" fill="none" stroke="#60a5fa" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="300" y="226" width="375" height="64" rx="14" fill="rgba(96,165,250,0.1)" stroke="#60a5fa" stroke-width="2"/>
+        ${label(332, 254, 'Write CRM ID back', 20, '#bfdbfe')}
+        ${smallLabel(332, 277, 'prevents duplicates and makes retries safe', '#93c5fd')}
+      </g>`;
+    case 'lessons-learned-2025':
+      return `<g transform="translate(205 168)">
+        <rect x="0" y="0" width="420" height="350" rx="20" fill="rgba(255,255,255,0.065)" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+        <rect x="305" y="-12" width="92" height="54" rx="10" fill="rgba(232,121,249,0.18)" stroke="#e879f9" stroke-width="2"/>
+        ${label(325, 23, '2025', 22, '#f5d0fe')}
+        ${label(34, 48, 'MENTOR NOTES', 19, '#f0abfc')}
+        <path d="M34 68 H380" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+        ${['Communication', 'Write it down', 'Small-problem craft'].map((t, i) => `<circle cx="50" cy="${112 + i * 70}" r="12" fill="#e879f9" opacity="${0.95 - i * 0.12}"/>${label(82, 120 + i * 70, t, 20, 'rgba(255,255,255,0.84)')}<path d="M82 ${136 + i * 70} H350" stroke="rgba(255,255,255,0.17)" stroke-width="3" stroke-linecap="round"/>`).join('')}
+        ${smallLabel(34, 326, 'foundations worth keeping', '#d8b4fe')}
+        ${conceptArrow(420, 176, 510, 176, '#e879f9', 5)}
+        <rect x="510" y="35" width="330" height="280" rx="20" fill="rgba(232,121,249,0.07)" stroke="rgba(232,121,249,0.45)" stroke-width="2"/>
+        ${smallLabel(548, 75, 'small habits', '#d8b4fe')}
+        ${smallLabel(635, 304, 'compounding judgment', '#f5d0fe')}
+        <path d="M552 254 C610 244 635 224 660 194 S700 126 790 88" fill="none" stroke="#e879f9" stroke-width="8" stroke-linecap="round"/>
+        ${node(552, 254, 14, '#e879f9')}
+        ${node(660, 194, 18, '#e879f9')}
+        ${node(790, 88, 24, '#e879f9')}
+        <path d="M548 270 H800 M548 270 V88" stroke="rgba(255,255,255,0.18)" stroke-width="3" stroke-linecap="round"/>
+      </g>`;
+    case 'lessons-learned-2026':
+      return `<g transform="translate(180 168)">
+        <rect x="0" y="0" width="390" height="350" rx="20" fill="rgba(255,255,255,0.065)" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+        <rect x="275" y="-12" width="92" height="54" rx="10" fill="rgba(244,114,182,0.18)" stroke="#f472b6" stroke-width="2"/>
+        ${label(295, 23, '2026', 22, '#fce7f3')}
+        ${label(34, 48, 'FIELD NOTES', 19, '#f9a8d4')}
+        <path d="M34 68 H350" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+        ${['AI became a coworker', 'Old playbooks cracked', 'Execution still wins'].map((t, i) => `<circle cx="50" cy="${112 + i * 70}" r="12" fill="#f472b6" opacity="${0.95 - i * 0.12}"/>${label(82, 120 + i * 70, t, 19, 'rgba(255,255,255,0.84)')}<path d="M82 ${136 + i * 70} H330" stroke="rgba(255,255,255,0.17)" stroke-width="3" stroke-linecap="round"/>`).join('')}
+        ${smallLabel(34, 326, 'rules changed; connect the signals', '#fbcfe8')}
+        ${conceptArrow(390, 176, 480, 176, '#f472b6', 5)}
+        <rect x="480" y="35" width="390" height="280" rx="20" fill="rgba(244,114,182,0.07)" stroke="rgba(244,114,182,0.45)" stroke-width="2"/>
+        ${smallLabel(605, 70, 'THE GENERALIST MAP', '#fbcfe8')}
+        ${conceptBox(515, 100, 130, 76, 'AI', 'leverage', '#c084fc', 'rgba(192,132,252,0.1)')}
+        ${conceptBox(705, 100, 130, 76, 'Business', 'outcomes', '#fbbf24', 'rgba(251,191,36,0.1)')}
+        ${conceptBox(610, 218, 130, 76, 'Engineering', 'systems', '#60a5fa', 'rgba(96,165,250,0.1)')}
+        ${conceptArrow(645, 134, 675, 190, '#f472b6', 3)}
+        ${conceptArrow(705, 134, 675, 190, '#f472b6', 3)}
+        ${conceptArrow(675, 218, 675, 190, '#f472b6', 3)}
+        <circle cx="675" cy="190" r="27" fill="#f472b6" opacity="0.95"/>
+        ${label(648, 195, 'connect', 13, '#08111f', 800)}
+      </g>`;
+    case 'prompt-engineering':
+      return `<g transform="translate(105 190)">
+        <rect x="0" y="30" width="250" height="250" rx="18" fill="rgba(251,113,133,0.08)" stroke="#fb7185" stroke-width="2"/>
+        ${label(30, 70, 'VAGUE REQUEST', 20, '#fda4af')}
+        ${label(30, 112, '"Make it detailed', 19, 'rgba(255,255,255,0.78)', 700)}
+        ${label(30, 140, 'but also short..."', 19, 'rgba(255,255,255,0.78)', 700)}
+        <path d="M30 178 H198 M30 208 H160 M30 238 H215" stroke="rgba(255,255,255,0.2)" stroke-width="6" stroke-linecap="round"/>
+        <path d="M190 188 L220 218 M220 188 L190 218" stroke="#fb7185" stroke-width="6" stroke-linecap="round"/>
+        ${conceptArrow(250, 155, 345, 155, '#7dd3fc', 5)}
+        <rect x="345" y="0" width="320" height="310" rx="18" fill="rgba(125,211,252,0.1)" stroke="#7dd3fc" stroke-width="3"/>
+        ${label(380, 42, 'PROMPT CONTRACT', 21, '#bae6fd')}
+        ${['Context', 'Instructions', 'Output schema', 'Rules + example'].map((t, i) => `<rect x="380" y="${70 + i * 52}" width="250" height="38" rx="9" fill="rgba(255,255,255,0.06)" stroke="${i === 2 ? '#4ade80' : 'rgba(125,211,252,0.55)'}" stroke-width="2"/>${label(398, 96 + i * 52, t, 17, 'rgba(255,255,255,0.84)')}`).join('')}
+        ${conceptArrow(665, 155, 755, 155, '#4ade80', 5)}
+        <rect x="755" y="30" width="250" height="250" rx="18" fill="rgba(74,222,128,0.08)" stroke="#4ade80" stroke-width="2"/>
+        ${label(790, 70, 'VALIDATED JSON', 20, '#bbf7d0')}
+        <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+          ${label(790, 112, '{', 22, '#86efac')}
+          ${label(812, 142, '"components": [...],', 15, 'rgba(255,255,255,0.76)', 600)}
+          ${label(812, 172, '"risks": [...],', 15, 'rgba(255,255,255,0.76)', 600)}
+          ${label(812, 202, '"tests": [...]', 15, 'rgba(255,255,255,0.76)', 600)}
+          ${label(790, 232, '}', 22, '#86efac')}
+        </g>
+        <path d="M930 222 L950 242 L985 198" fill="none" stroke="#4ade80" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>`;
+    case 'taste-is-a-moat':
+      return `<g transform="translate(125 180)">
+        <rect x="0" y="32" width="285" height="270" rx="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.16)" stroke-width="2"/>
+        ${label(34, 72, 'IMITATION', 23, 'rgba(255,255,255,0.68)')}
+        ${[0, 1, 2, 3].map((i) => `<rect x="${35 + (i % 2) * 115}" y="${105 + Math.floor(i / 2) * 82}" width="90" height="56" rx="12" fill="rgba(232,121,249,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="2"/><path d="M${52 + (i % 2) * 115} ${125 + Math.floor(i / 2) * 82} H${108 + (i % 2) * 115} M${52 + (i % 2) * 115} ${143 + Math.floor(i / 2) * 82} H${92 + (i % 2) * 115}" stroke="rgba(255,255,255,0.3)" stroke-width="4" stroke-linecap="round"/>`).join('')}
+        <path d="M330 32 C285 82 285 252 330 302 M665 32 C710 82 710 252 665 302" fill="none" stroke="#e879f9" stroke-width="8" stroke-linecap="round"/>
+        ${label(420, 48, 'LIVED FEEDBACK', 22, '#f0abfc')}
+        ${['feedback', 'consequences', 'repetition'].map((t, i) => `<circle cx="498" cy="${98 + i * 70}" r="${18 + i * 5}" fill="rgba(232,121,249,${0.18 + i * 0.08})" stroke="#e879f9" stroke-width="2"/>${smallLabel(535, 104 + i * 70, t, '#f5d0fe')}`).join('')}
+        ${conceptArrow(665, 167, 750, 167, '#e879f9', 5)}
+        <rect x="740" y="72" width="270" height="190" rx="20" fill="rgba(232,121,249,0.1)" stroke="#e879f9" stroke-width="3"/>
+        ${label(790, 112, 'CHOOSER', 23, '#f5d0fe')}
+        <rect x="820" y="140" width="110" height="72" rx="14" fill="rgba(232,121,249,0.18)" stroke="#e879f9" stroke-width="3"/>
+        <path d="M845 166 H905 M845 188 H890" stroke="#f5d0fe" stroke-width="5" stroke-linecap="round"/>
+        <path d="M765 220 L785 240 M785 220 L765 240 M965 220 L985 240 M985 220 L965 240" stroke="#fb7185" stroke-width="5" stroke-linecap="round"/>
+        ${smallLabel(802, 248, 'keep one', '#f5d0fe')}
+      </g>`;
     case 'building-production-ready-ai-agent-skills':
       return `<g transform="translate(165 164)">
         <rect x="0" y="0" width="350" height="340" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2"/>
@@ -530,29 +662,29 @@ function concept(cover) {
         <path d="M800 178 L925 178 M800 202 L890 202" stroke="#38bdf8" stroke-width="6" stroke-linecap="round" opacity="0.75"/>
       </g>`;
     case 'llm-gateway-architecture':
-      return `<g transform="translate(145 190)">
-        ${['Service A', 'Service B', 'Service C'].map((t, i) => conceptBox(0, i * 92, 165, 58, t, '', '#94a3b8', 'rgba(255,255,255,0.05)')).join('')}
-        ${[0, 1, 2].map((i) => conceptArrow(165, i * 92 + 29, 365, 120, '#22d3ee', 3)).join('')}
-        <rect x="365" y="40" width="230" height="160" rx="18" fill="rgba(34,211,238,0.16)" stroke="#22d3ee" stroke-width="3"/>
-        ${label(425, 95, 'LLM Gateway', 25)}
-        ${label(418, 128, 'routing', 15, 'rgba(255,255,255,0.58)', 700)}
-        ${label(418, 152, 'policy + fallback', 15, 'rgba(255,255,255,0.58)', 700)}
-        ${label(418, 176, 'cost + observability', 15, 'rgba(255,255,255,0.58)', 700)}
-        ${['Anthropic', 'OpenAI', 'Bedrock', 'Azure'].map((t, i) => conceptBox(780, i * 72, 180, 52, t, '', '#94a3b8', 'rgba(255,255,255,0.05)')).join('')}
-        ${[0, 1, 2, 3].map((i) => conceptArrow(595, 120, 780, i * 72 + 26, '#22d3ee', 3)).join('')}
+      return `<g transform="translate(125 190)">
+        ${['Service A', 'Service B', 'Service C'].map((t, i) => conceptBox(0, i * 92, 160, 58, t, '', '#94a3b8', 'rgba(255,255,255,0.05)')).join('')}
+        ${[0, 1, 2].map((i) => conceptArrow(160, i * 92 + 29, 350, 120, '#22d3ee', 3)).join('')}
+        <rect x="350" y="40" width="220" height="160" rx="18" fill="rgba(34,211,238,0.16)" stroke="#22d3ee" stroke-width="3"/>
+        ${label(402, 95, 'LLM Gateway', 25)}
+        ${label(402, 128, 'routing', 15, 'rgba(255,255,255,0.58)', 700)}
+        ${label(402, 152, 'policy + fallback', 15, 'rgba(255,255,255,0.58)', 700)}
+        ${label(402, 176, 'cost + observability', 15, 'rgba(255,255,255,0.58)', 700)}
+        ${['Anthropic', 'OpenAI', 'Bedrock', 'Azure'].map((t, i) => conceptBox(760, i * 72, 165, 52, t, '', '#94a3b8', 'rgba(255,255,255,0.05)')).join('')}
+        ${[0, 1, 2, 3].map((i) => conceptArrow(570, 120, 760, i * 72 + 26, '#22d3ee', 3)).join('')}
       </g>`;
     case 'claude-code-productivity-paradox':
       return `<g transform="translate(230 195)">
         <rect x="0" y="0" width="760" height="310" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>
         ${conceptLine(70, 255, 700, 255, 'rgba(255,255,255,0.25)', 3)}
         ${conceptLine(70, 255, 70, 40, 'rgba(255,255,255,0.25)', 3)}
-        <path d="M90 235 C205 214 305 160 420 92 S612 45 690 34" fill="none" stroke="#60a5fa" stroke-width="8" stroke-linecap="round"/>
-        <path d="M90 220 C232 218 366 218 505 218 S625 218 690 218" fill="none" stroke="#fbbf24" stroke-width="8" stroke-linecap="round"/>
-        <rect x="470" y="122" width="148" height="118" rx="12" fill="rgba(251,191,36,0.14)" stroke="#fbbf24" stroke-width="2"/>
-        ${label(492, 168, 'review', 22, '#fde68a')}
-        ${label(492, 196, 'bottleneck', 22, '#fde68a')}
-        ${smallLabel(145, 78, 'individual output', '#93c5fd')}
-        ${smallLabel(140, 206, 'team throughput', '#fde68a')}
+        <path d="M95 220 C205 205 315 158 425 90 S610 46 690 38 L690 218 C555 218 410 218 95 220Z" fill="rgba(251,191,36,0.08)"/>
+        <path d="M95 220 C205 205 315 158 425 90 S610 46 690 38" fill="none" stroke="#60a5fa" stroke-width="8" stroke-linecap="round"/>
+        <path d="M95 220 C255 218 430 218 690 218" fill="none" stroke="#fbbf24" stroke-width="8" stroke-linecap="round"/>
+        <rect x="465" y="128" width="170" height="58" rx="12" fill="rgba(251,191,36,0.16)" stroke="#fbbf24" stroke-width="2"/>
+        ${label(490, 164, 'speedup gets stuck', 18, '#fde68a')}
+        ${label(105, 76, 'Individual output rises', 18, '#93c5fd')}
+        ${label(105, 202, 'Team throughput stays flat', 18, '#fde68a')}
       </g>`;
     case 'ai-agent-harness':
       return `<g transform="translate(150 174)">
@@ -581,14 +713,14 @@ function concept(cover) {
         <rect x="0" y="0" width="760" height="320" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>
         ${conceptLine(70, 260, 700, 260, 'rgba(255,255,255,0.25)', 3)}
         ${conceptLine(70, 260, 70, 50, 'rgba(255,255,255,0.25)', 3)}
-        <path d="M95 238 C200 215 322 170 425 100 S615 42 690 34" fill="none" stroke="#f472b6" stroke-width="8" stroke-linecap="round"/>
-        <path d="M95 238 C245 232 390 227 690 220" fill="none" stroke="#4ade80" stroke-width="8" stroke-linecap="round"/>
-        <path d="M560 60 L560 220" stroke="#fbbf24" stroke-width="3" stroke-dasharray="8 7"/>
-        <rect x="585" y="106" width="130" height="84" rx="12" fill="rgba(251,191,36,0.14)" stroke="#fbbf24" stroke-width="2"/>
-        ${label(604, 140, 'review', 20, '#fde68a')}
-        ${label(604, 166, 'debt', 20, '#fde68a')}
-        ${smallLabel(120, 82, 'AI output', '#f9a8d4')}
-        ${smallLabel(120, 220, 'review capacity', '#86efac')}
+        <path d="M95 230 C210 210 315 170 425 102 S610 48 690 38 L690 218 C510 224 330 228 95 230Z" fill="rgba(244,114,182,0.12)" stroke="none"/>
+        <path d="M95 230 C210 210 315 170 425 102 S610 48 690 38" fill="none" stroke="#f472b6" stroke-width="8" stroke-linecap="round"/>
+        <path d="M95 230 C260 228 450 225 690 218" fill="none" stroke="#4ade80" stroke-width="8" stroke-linecap="round"/>
+        <rect x="490" y="128" width="160" height="62" rx="12" fill="rgba(244,114,182,0.18)" stroke="#f472b6" stroke-width="2"/>
+        ${label(512, 154, 'SUPERVISION', 17, '#fbcfe8')}
+        ${label(548, 178, 'GAP', 20, '#fbcfe8')}
+        ${label(105, 78, 'AI output accelerates', 18, '#f9a8d4')}
+        ${label(105, 210, 'Human review stays scarce', 18, '#86efac')}
       </g>`;
     case 'doe-framework-claude-skills':
       return `<g transform="translate(170 185)">
@@ -643,20 +775,39 @@ function concept(cover) {
         ${smallLabel(640, 58, 'harder, smarter', '#99f6e4')}
       </g>`;
     case 'intentional-ai-integration':
-      return `<g transform="translate(205 178)">
+      return `<g transform="translate(100 188)">
         ${['AI generates code', 'PR review approves', 'Merged as pattern', 'Next AI session copies it'].map((t, i) => {
-          const x = [330, 590, 330, 70][i];
-          const y = [0, 130, 260, 130][i];
-          return conceptBox(x, y, 210, 70, t, '', ['#22d3ee', '#fbbf24', '#4ade80', '#fb7185'][i]);
+          const x = [250, 500, 250, 0][i];
+          const y = [0, 110, 220, 110][i];
+          return conceptBox(x, y, 220, 64, t, '', ['#22d3ee', '#fbbf24', '#4ade80', '#fb7185'][i]);
         }).join('')}
-        ${conceptArrow(540, 35, 590, 160, '#22d3ee', 3)}
-        ${conceptArrow(590, 200, 540, 295, '#fbbf24', 3)}
-        ${conceptArrow(330, 295, 280, 165, '#4ade80', 3)}
-        ${conceptArrow(280, 130, 330, 35, '#fb7185', 3)}
-        <rect x="705" y="85" width="230" height="160" rx="18" fill="rgba(34,211,238,0.1)" stroke="#22d3ee" stroke-width="3"/>
-        ${label(742, 136, 'Convention File', 24)}
-        ${label(746, 172, 'blessed patterns', 16, 'rgba(255,255,255,0.54)', 700)}
-        ${label(746, 198, 'anti-patterns', 16, 'rgba(255,255,255,0.54)', 700)}
+        ${conceptArrow(470, 32, 500, 142, '#22d3ee', 3)}
+        ${conceptArrow(610, 174, 470, 252, '#fbbf24', 3)}
+        ${conceptArrow(250, 252, 110, 174, '#4ade80', 3)}
+        ${conceptArrow(110, 110, 250, 32, '#fb7185', 3)}
+        <rect x="760" y="70" width="230" height="180" rx="18" fill="rgba(34,211,238,0.1)" stroke="#22d3ee" stroke-width="3"/>
+        ${label(785, 104, 'CONSTRAINS GENERATION', 14, '#67e8f9', 700)}
+        ${label(785, 144, 'Convention File', 24)}
+        ${label(785, 180, 'blessed patterns', 16, 'rgba(255,255,255,0.54)', 700)}
+        ${label(785, 206, 'anti-patterns', 16, 'rgba(255,255,255,0.54)', 700)}
+        ${conceptArrow(760, 160, 470, 32, '#22d3ee', 4)}
+      </g>`;
+    case 'ai-agent-content-pipeline-experiment':
+      return `<g transform="translate(125 192)">
+        <rect x="0" y="0" width="950" height="300" rx="20" fill="rgba(244,114,182,0.07)" stroke="rgba(244,114,182,0.45)" stroke-width="2"/>
+        ${smallLabel(34, 42, 'AUTONOMOUS RUN  |  HUMAN EDITS: 0', '#f9a8d4')}
+        ${[
+          ['Research', 'sources + topic', '#60a5fa'],
+          ['Write', 'agent draft', '#c084fc'],
+          ['Process', 'voice + patterns', '#f472b6'],
+        ].map(([title, detail, color], i) => `${conceptBox(34 + i * 210, 92, 170, 88, title, detail, color)}${i ? conceptArrow(4 + i * 210, 136, 34 + i * 210, 136, color, 3) : ''}`).join('')}
+        ${conceptArrow(624, 136, 690, 136, '#f472b6', 4)}
+        <rect x="690" y="70" width="220" height="150" rx="18" fill="rgba(244,114,182,0.16)" stroke="#f472b6" stroke-width="3"/>
+        ${smallLabel(744, 105, 'HONEST RESULT', '#f9a8d4')}
+        ${label(756, 170, '7/10', 54, '#fbcfe8', 800)}
+        ${smallLabel(718, 202, 'infrastructure != editor', 'rgba(255,255,255,0.58)')}
+        <rect x="34" y="238" width="876" height="2" fill="rgba(255,255,255,0.12)"/>
+        ${smallLabel(34, 272, 'the system handled mechanics; judgment still broke', 'rgba(255,255,255,0.62)')}
       </g>`;
     case 'structured-output':
       return `<g transform="translate(105 230)">

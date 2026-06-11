@@ -1,4 +1,4 @@
-<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Engineering leadership lessons visual showing connected decisions, reflection, and accumulated judgment.">
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A dated 2026 field notebook mapping AI, engineering, and business signals into the generalist advantage.">
   <style>
     :root { --accent: #f472b6; --muted: rgba(255,255,255,0.28); }
     svg { font-family: "DM Sans", Arial, sans-serif; }
@@ -19,6 +19,31 @@
   <path d="M0 540 C190 475 330 605 520 535 C720 460 850 520 1200 410 L1200 630 L0 630Z" fill="rgba(255,255,255,0.035)"/>
   <path d="M110 110 H1090 V520" fill="none" stroke="url(#edge)" stroke-width="2"/>
   <text x="110" y="86" fill="#f472b6" font-size="24" font-weight="700" letter-spacing="0">Engineering Leadership</text>
-  <text x="110" y="580" fill="rgba(255,255,255,0.82)" font-size="34" font-weight="700" letter-spacing="0">Lessons Learned</text>
-  <path d="M350 360 C250 430 300 560 420 540 C535 520 540 365 425 355" fill="none" stroke="var(--accent)" stroke-width="7" opacity="0.9"/><circle cx="425" cy="355" r="20" fill="var(--accent)" opacity="0.95"/><path d="M530 360 C430 430 480 560 600 540 C715 520 720 365 605 355" fill="none" stroke="var(--accent)" stroke-width="7" opacity="0.75"/><circle cx="605" cy="355" r="20" fill="var(--accent)" opacity="0.95"/><path d="M710 360 C610 430 660 560 780 540 C895 520 900 365 785 355" fill="none" stroke="var(--accent)" stroke-width="7" opacity="0.6000000000000001"/><circle cx="785" cy="355" r="20" fill="var(--accent)" opacity="0.95"/>
+  <text x="110" y="580" fill="rgba(255,255,255,0.82)" font-size="34" font-weight="700" letter-spacing="0">Lessons Learned: 2026</text>
+  <g transform="translate(180 168)">
+        <rect x="0" y="0" width="390" height="350" rx="20" fill="rgba(255,255,255,0.065)" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+        <rect x="275" y="-12" width="92" height="54" rx="10" fill="rgba(244,114,182,0.18)" stroke="#f472b6" stroke-width="2"/>
+        <text x="295" y="23" fill="#fce7f3" font-size="22" font-weight="700" letter-spacing="0">2026</text>
+        <text x="34" y="48" fill="#f9a8d4" font-size="19" font-weight="700" letter-spacing="0">FIELD NOTES</text>
+        <path d="M34 68 H350" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+        <circle cx="50" cy="112" r="12" fill="#f472b6" opacity="0.95"/><text x="82" y="120" fill="rgba(255,255,255,0.84)" font-size="19" font-weight="700" letter-spacing="0">AI became a coworker</text><path d="M82 136 H330" stroke="rgba(255,255,255,0.17)" stroke-width="3" stroke-linecap="round"/><circle cx="50" cy="182" r="12" fill="#f472b6" opacity="0.83"/><text x="82" y="190" fill="rgba(255,255,255,0.84)" font-size="19" font-weight="700" letter-spacing="0">Old playbooks cracked</text><path d="M82 206 H330" stroke="rgba(255,255,255,0.17)" stroke-width="3" stroke-linecap="round"/><circle cx="50" cy="252" r="12" fill="#f472b6" opacity="0.71"/><text x="82" y="260" fill="rgba(255,255,255,0.84)" font-size="19" font-weight="700" letter-spacing="0">Execution still wins</text><path d="M82 276 H330" stroke="rgba(255,255,255,0.17)" stroke-width="3" stroke-linecap="round"/>
+        <text x="34" y="326" fill="#fbcfe8" font-size="16" font-weight="700" letter-spacing="0">rules changed; connect the signals</text>
+        <line x1="390" y1="176" x2="480" y2="176" stroke="#f472b6" stroke-width="5" stroke-linecap="round" opacity="0.78"/><polyline points="466.49075319196777,184.57322871966394 480,176 466.49075319196777,167.42677128033606" fill="none" stroke="#f472b6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/>
+        <rect x="480" y="35" width="390" height="280" rx="20" fill="rgba(244,114,182,0.07)" stroke="rgba(244,114,182,0.45)" stroke-width="2"/>
+        <text x="605" y="70" fill="#fbcfe8" font-size="16" font-weight="700" letter-spacing="0">THE GENERALIST MAP</text>
+        <rect x="515" y="100" width="130" height="76" rx="14" fill="rgba(192,132,252,0.1)" stroke="#c084fc" stroke-width="2" opacity="0.95"/>
+  <text x="535" y="134" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">AI</text>
+  <text x="535" y="162" fill="rgba(255,255,255,0.48)" font-size="14" font-weight="600" letter-spacing="0">leverage</text>
+        <rect x="705" y="100" width="130" height="76" rx="14" fill="rgba(251,191,36,0.1)" stroke="#fbbf24" stroke-width="2" opacity="0.95"/>
+  <text x="725" y="134" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">Business</text>
+  <text x="725" y="162" fill="rgba(255,255,255,0.48)" font-size="14" font-weight="600" letter-spacing="0">outcomes</text>
+        <rect x="610" y="218" width="130" height="76" rx="14" fill="rgba(96,165,250,0.1)" stroke="#60a5fa" stroke-width="2" opacity="0.95"/>
+  <text x="630" y="252" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">Engineering</text>
+  <text x="630" y="280" fill="rgba(255,255,255,0.48)" font-size="14" font-weight="600" letter-spacing="0">systems</text>
+        <line x1="645" y1="134" x2="675" y2="190" stroke="#f472b6" stroke-width="3" stroke-linecap="round" opacity="0.78"/><polyline points="661.0635149954323,182.14033170436178 675,190 676.1777737851509,174.04340735272686" fill="none" stroke="#f472b6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/>
+        <line x1="705" y1="134" x2="675" y2="190" stroke="#f472b6" stroke-width="3" stroke-linecap="round" opacity="0.78"/><polyline points="673.8222262148491,174.04340735272686 675,190 688.9364850045677,182.14033170436178" fill="none" stroke="#f472b6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/>
+        <line x1="675" y1="218" x2="675" y2="190" stroke="#f472b6" stroke-width="3" stroke-linecap="round" opacity="0.78"/><polyline points="683.5732287196639,203.50924680803223 675,190 666.4267712803361,203.50924680803223" fill="none" stroke="#f472b6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/>
+        <circle cx="675" cy="190" r="27" fill="#f472b6" opacity="0.95"/>
+        <text x="648" y="195" fill="#08111f" font-size="13" font-weight="800" letter-spacing="0">connect</text>
+      </g>
 </svg>

@@ -4,7 +4,7 @@ date: "2026-04-23"
 tags: ["Essays", "Taste", "Craft", "AI", "Judgment", "Mindset"]
 excerpt: "Taste isn't mystical. It's System 2 thinking, run on the same decision so many times it drops into System 1. That's why AI can't get there — and why it's a moat."
 image: "/images/articles/taste-is-a-moat.png"
-image_alt: "Taste is a moat visual representing human judgment, craft, and selection in an AI-heavy world."
+image_alt: "Lived feedback calibrates a human chooser to reject plausible AI imitation and keep the detail that survives judgment."
 seo_title: "Taste Is a Moat: Why AI Can't Replicate Judgment"
 meta_description: "Taste is earned judgment, not polish. Why AI slop feels thin, what craft really means, and why lived calibration remains a durable moat."
 target_keywords: "taste is a moat, AI slop, why AI can't replicate taste, lived judgment, craft as moat, Kahneman system 1 system 2, AI taste vs human taste"
