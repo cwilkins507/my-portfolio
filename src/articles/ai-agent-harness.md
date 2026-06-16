@@ -2,13 +2,27 @@
 title: "What Is an AI Agent Harness?"
 date: "2026-05-06"
 tags: ["AI Agents", "Claude Code", "AGENTS.md", "CLAUDE.md", "Harness Engineering", "AI Engineering"]
-excerpt: "The model is the brain. The harness is the operating environment that makes the brain useful. A plain-English breakdown of agent loops, tools, permissions, memory, verification, and why harness design matters more than model choice."
+excerpt: "The model is the brain. The harness is the operating environment that makes the brain useful. A plain-English breakdown of the instructions, tools, permissions, memory, and verification around an agent."
 image: "/images/articles/ai-agent-harness.png"
 image_alt: "AI agent harness diagram showing guides, sensors, tools, memory, and verification around a language model."
 seo_title: "What Is an AI Agent Harness?"
-meta_description: "A plain-English breakdown of AI agent harnesses: tools, memory, permissions, and verification. The model gives capability — the harness determines trust."
+meta_description: "A plain-English breakdown of AI agent harnesses: the instructions, tools, permissions, memory, and verification that make agent work more reliable."
 target_keywords: "AI agent harness, harness engineering, AI agent architecture, CLAUDE.md, AGENTS.md, AI agent tools"
+related_articles: ["building-production-ready-ai-agent-skills", "ai-code-quality-bad-code-tax", "ai-agent-workflow-claude-code"]
+faqs:
+  - q: "What is an AI agent harness?"
+    a: "A harness is the operating environment around a model: the instructions, tools, permissions, memory, and verification that turn raw capability into reliable work. The model generates answers; the harness generates trust."
+  - q: "What is the difference between a harness and a framework?"
+    a: "A framework like LangGraph or LangChain gives you parts to assemble an agent. A harness is the working operating environment that already runs the loop, exposes tools, injects context, enforces permissions, and verifies output. You can build a harness with a framework, but the framework is not automatically the harness."
+  - q: "Is a CLAUDE.md file the same as a harness?"
+    a: "No. A CLAUDE.md or AGENTS.md file is one guide inside the harness. It carries project context across sessions but only guides behavior; it does not enforce it. Enforcement comes from settings, permissions, tests, hooks, and human review."
+  - q: "What is the minimum viable AI agent harness?"
+    a: "Four things: instructions (CLAUDE.md or AGENTS.md), one or two tools the agent actually needs, a verification step like a test or lint check, and a memory note so the next session does not start cold. That is already a harness even if it is one markdown file and one test command."
 ---
+LangChain kept the model fixed and changed the harness around its coding agent. Its Terminal Bench 2.0 score moved from `52.8` to `66.5`.
+
+Same model, better operating environment.
+
 If you keep hearing people say "agent harness" and quietly think, *cool, another term I am supposed to pretend I understand*, this is the useful version.
 
 This is for people trying to understand the weird infrastructure now sitting around models: Claude Code, Codex, Cursor, LangGraph, MCP servers, custom skills, repo instructions, permissions, hooks, and all the new agent plumbing that suddenly matters.
@@ -42,7 +56,7 @@ That loop can be a few dozen lines of code or a whole product with permissions, 
 
 The easiest mistake to make with agents is blaming the model for everything.
 
-Sometimes the model really is the problem. Most of the time, it isn't.
+Sometimes the model really is the problem. In my own work, the setup around it is often the bigger source of avoidable failure.
 
 The same model and task can produce wildly different output because the environment around the model changes what it sees, what it can do, how it gets checked, and when it is allowed to stop.
 
@@ -86,7 +100,7 @@ That distinction matters for teams. If you buy or build a framework, you still o
 
 Claude Code is a useful doorway into this idea because the harness is visible.
 
-Every serious Claude Code setup eventually has a `CLAUDE.md` file. The cross-tool version of the same idea is often `AGENTS.md`. Anthropic's docs describe memory as persistent instruction Claude reads at the start of a session. It carries project context across fresh conversations: build commands, folder structure, testing rules, coding standards, workflow preferences, and the mistakes Claude should stop repeating. That's harness work.
+Many Claude Code setups use a `CLAUDE.md` file. The cross-tool version of the same idea is often `AGENTS.md`. Anthropic's docs describe memory as persistent instruction Claude reads at the start of a session. It carries project context across fresh conversations: build commands, folder structure, testing rules, coding standards, and workflow preferences. That's harness work.
 
 Your `CLAUDE.md` isn't the agent or the model. It's one guide inside the harness.
 
@@ -127,6 +141,10 @@ Framework, language, database, deployment target.
 
 That file doesn't make the model smarter. It makes the environment stricter and gives the model fewer ways to wander off.
 
+Treat the file like a brief for a sharp contractor, not a wish list. Include critical commands, the architecture map, hard rules, workflow preferences, and anything that is out of scope. "Be a senior engineer" is mostly wasted space. "Run `npm test -- path/to/file` before reporting done" changes behavior you can check.
+
+A `CLAUDE.md` guides behavior; it does not enforce it. For enforcement, use settings, permissions, tests, hooks, or human review.
+
 Here's the shape of the whole thing:
 
 ![Harness architecture: agent loop on the left with user request, agent loop, model, tools, and observation — harness components on the right with instructions, permissions, verification, and memory feeding into the loop](/images/harness-architecture.svg)
@@ -162,25 +180,11 @@ Take note of the last arrow. A harness controls how the agent acts this time and
 
 Once you move past the plain-English version, a modern harness starts to look like a small control plane for agent work.
 
-The Arize infographic is useful here because it shows the nine pieces as one system, not a loose checklist.
+The Arize infographic is useful because it shows the pieces as one system, not a loose checklist.
 
 [![Arize infographic showing the nine components of the Harness 1.0 architecture: outer iteration loop, context management, skills and tools, sub-agent management, built-in skills, session persistence, system prompt assembly, lifecycle hooks, and permission and safety](/images/arize-harness-nine-components.png)](https://arize.com/what-is-a-AI-harness.pdf)
 
-You can open the [full Arize visual primer](https://arize.com/what-is-a-AI-harness.pdf) if you want the original context. My translation for an engineering team:
-
-| Harness piece | What it decides |
-|---|---|
-| Outer iteration loop | How the agent acts, observes, and keeps going until the task is done |
-| Context management | What enters context, what gets compressed, and what gets left out |
-| Tools and skills registry | Which actions the agent can take, and how those actions are described |
-| Built-in skills | The default moves the agent should know, like reading files, editing code, running tests, or preparing a PR |
-| System prompt assembly | How project instructions, environment details, git state, and tool rules get stitched together |
-| Permission and safety layer | What the agent can touch without asking, what requires approval, and what is blocked |
-| Lifecycle hooks | What custom policy runs before or after tool use, such as audit logging or secret checks |
-| Session persistence | What survives a crash, compaction, handoff, or tomorrow's fresh session |
-| Sub-agent management | When focused child agents can be spawned, what they can access, and how their results come back |
-
-That is the part that makes this more than prompt engineering. A prompt can ask the model to be careful. A harness can route the model through tools, checks, permissions, and recovery paths that make care more likely.
+The full system decides what enters context, which tools the agent can use, what requires approval, what survives the session, and which checks run before the work is accepted. That is what makes this more than prompt engineering.
 
 The best harnesses push judgment to the model where judgment belongs, but keep control in the system where control belongs. The model can decide which files matter. The harness decides whether it is allowed to delete them.
 
@@ -188,7 +192,7 @@ The best harnesses push judgment to the model where judgment belongs, but keep c
 
 This isn't just semantics.
 
-LangChain published a useful example in February 2026. They kept the model fixed and changed the harness around their coding agent. The score moved from `52.8` to `66.5` on Terminal Bench 2.0.
+LangChain published a useful example in February 2026. They kept `gpt-5.2-codex` fixed and changed the harness around their coding agent. The score moved from `52.8` to `66.5` on Terminal Bench 2.0.
 
 Same model improved ~14 points from changing the harness.
 
@@ -264,56 +268,11 @@ Not a giant platform on day one. More like a shared operating agreement for how 
 
 That is the consulting problem hiding underneath the terminology. Most teams don't need a lecture about autonomous agents. They need a sane way to let agents touch real work without turning every session into a cleanup bill.
 
-## How to write the instruction file
-
-The blunder with `CLAUDE.md` is treating it like a wish list.
-
-"Be a senior engineer."
-
-"Think step by step."
-
-"Write clean code."
-
-That's fine but it's also mostly wasted space. Use the file for things the agent would otherwise get wrong.
-
-The five useful sections are:
-
-1. **Critical commands**
-   How to build, test, lint, type check, and run one file.
-
-2. **Architecture map**
-   Where things live and what belongs where.
-
-3. **Hard rules**
-   The specific mistakes the agent must not make.
-
-4. **Workflow preferences**
-   When to ask, when to act, how much to change, how to verify.
-
-5. **Out of scope**
-   Files, systems, or integrations the agent should not touch.
-
-Keep it short.
-
-Anthropic's current memory docs emphasize hierarchy, imports, recursive lookup, and specific instructions over vague guidance. That last part matters. A `CLAUDE.md` shapes behavior. It doesn't physically prevent bad actions.
-
-For enforcement, you need settings, permissions, tests, hooks, or human review. That's the difference between a guide and a guardrail.
-
 ## Where tools fit
 
 Tools are the agent's hands.
 
-They're how the model does things it can't do from text alone:
-
-- search files
-- run shell commands
-- query an API
-- calculate something
-- open a browser
-- read a spreadsheet
-- edit a document
-
-The common mistake is thinking more tools equals a smarter agent. Usually it means a more confused one. There's measurement behind that: tool-selection accuracy drops from around 43% to under 14% as the tool count grows, and every tool definition sits idle in the context window at roughly 300–1,400 tokens whether it gets used or not. The Claude Code team holds about twenty tools and is constantly looking to cut, for one stated reason: every new tool is one more option the model has to reason about before it can act.
+They're how the model searches files, runs commands, opens a browser, queries an API, or edits a document. The common mistake is thinking more tools equals a smarter agent. Usually it means more options to describe, select, secure, and maintain.
 
 Start with the smallest tool set that can do the job. If the task is rewriting a paragraph, it probably needs no tools. If the task is fixing a bug, it needs file access and a test command. If the task is researching current prices, it needs web search or an API.
 
@@ -337,17 +296,7 @@ The tool description matters too. "Calculator tool" is weak. "Use this tool when
 
 ## Where memory fits
 
-Memory is where people make this sound harder than it needs to be.
-
-There are two simple versions:
-
-1. **Conversation memory**
-   What has been said in this session.
-
-2. **Longer-term memory**
-   What should survive across sessions.
-
-Early on, longer-term memory can be boring markdown:
+Memory is where people make this sound harder than it needs to be. Early on, anything that should survive the current conversation can be boring markdown:
 
 - what changed
 - what is still broken
@@ -415,36 +364,9 @@ You don't need that full setup for your first harness. But the principle scales 
 
 The point isn't "use three agents." The point is simpler: don't let the same session that made the thing be the only judge of whether the thing is good.
 
-## What not to overbuild
-
-Don't turn your first harness into a platform.
-
-You probably don't need:
-
-- vector search
-- twenty tools
-- custom dashboards
-- multi-agent routing
-- long-term autonomous memory
-- complex eval pipelines
-- a new framework for every task
-
-Start with:
-
-- one job
-- one agent
-- one clear instruction file
-- one or two tools
-- one verification step
-- five to ten messy test prompts
-
-Then watch where it fails.
-
-When the same failure repeats, improve the harness. That's the loop.
-
 ## The practical build path
 
-If you want to build your first harness today, do this:
+Don't turn your first harness into a platform. Build one job around one agent, the tools it needs, and one verification path:
 
 1. Write one sentence describing the agent's job.
 2. List the tools it truly needs.
@@ -489,7 +411,7 @@ Agent = Role + Goal + Tools + Rules + Output format
 Harness = Instructions + Tools + Verification + Memory
 ```
 
-That's enough to start.
+That's enough to start. Test it on five to ten messy examples, then improve the harness when the same failure repeats.
 
 This is also why I built a simple [Agent Harness Builder](https://collinwilkins.com/resources/agent-harness-builder): answer a short quiz, get a paste-ready starter kit for `AGENTS.md`, `RUNBOOK.md`, and the first verification path.
 
@@ -505,7 +427,7 @@ It's the operating environment: the instructions, tools, tests, memory, permissi
 
 The model gives you capability. The harness decides whether you can trust it.
 
-Not all of it lasts. Some of the harness is durable: verification discipline, context preparation, the rule about running tests before calling something done. Some is scaffolding that dissolves as models get better at managing themselves. Anthropic's team removed the need for context resets entirely when Opus 4.5 landed. A task list that once kept the agent on track became a constraint. Know which half you're building on.
+Not all of it lasts. Some of the harness is durable: verification discipline, context preparation, and the rule about running tests before calling something done. Some is scaffolding that dissolves as models get better at managing themselves. Anthropic's team removed the need for context resets when Opus 4.5 landed. Know which half you're building on.
 
 ## Sources
 

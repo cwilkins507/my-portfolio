@@ -1,274 +1,146 @@
 ---
-title: "Coding Wars 2.0: The Definitive Comparison of Kimi K2.6, GLM-5.1, and Claude Opus 4.7"
+title: "The Coding Model Leaderboard Already Moved Again"
 date: "2026-04-23"
 slug: "kimi-k2-6-vs-glm-5-1-vs-claude-opus-4-7"
 tags: ["AI", "Software Engineering", "AI Coding Models", "Open Source", "Developer Tools", "Claude Code"]
-excerpt: "The gap between Kimi K2.6 and GLM-5.1 on public coding benchmarks is basically noise. The real decision is when to route work to them versus Claude Opus 4.7."
+excerpt: "A definitive coding-model comparison lasted less than two months. Benchmark winners expire; a reusable task packet, review-burden score, and escalation rule survive the next release."
 image: "/images/articles/kimi-k2-6-vs-glm-5-1-vs-claude-opus-4-7.png"
 image_alt: "Coding model comparison visual for Kimi K2.6, GLM-5.1, and Claude Opus 4.7."
-seo_title: "Kimi K2.6 vs GLM-5.1 vs Claude Opus 4.7: Coding Wars 2.0"
-meta_description: "Kimi K2.6, GLM-5.1, and Claude Opus 4.7 compared on SWE-Bench, pricing, context, and workflow fit. When to use each and where they break."
-target_keywords: "kimi k2.6, kimi k2.6 review, kimi k2.6 benchmarks, glm-5.1, glm 5.1, glm-5.1 review, glm-5.1 coding model, claude opus 4.7, opus 4.7 coding, opus 4.7 benchmarks, kimi k2.6 vs glm-5.1, kimi 2.6 vs glm5.1, glm-5.1 vs opus 4.7, kimi k2.6 vs opus 4.7, deepseek v4 coding model, gpt-5.5 coding model, best open source coding model 2026, best coding llm 2026"
+seo_title: "Kimi K2.6 vs GLM-5.1 vs Claude Opus 4.7: A Dated Comparison"
+meta_description: "The coding model leaderboard moves too fast for definitive rankings. Build a reusable evaluation loop based on workflow fit, failure cost, and review burden."
+target_keywords: "kimi k2.6 vs glm-5.1, coding model evaluation, ai coding model comparison, coding model routing"
+related_articles: ["llm-gateway-architecture", "ai-model-selection", "claude-code-productivity-paradox"]
 faqs:
-  - q: "What's the difference between Kimi K2.6 and GLM-5.1 for coding?"
-    a: "On SWE-Bench Pro, Kimi K2.6 scores 58.6 and GLM-5.1 scores 58.4 — a 0.2-point gap that is effectively noise. The real differences are architecture and pricing: Kimi K2.6 is a 1T-parameter MoE with 32B active, a 400M vision encoder, and an agent-swarm runtime aimed at visual and frontend work. GLM-5.1 is MIT-licensed open weights tuned for long-running coding agents (hundreds of rounds, thousands of tool calls) and costs $1.40 input / $4.40 output per 1M tokens vs Kimi's $0.95 / $4."
-  - q: "Is Claude Opus 4.7 worth the price over Kimi K2.6 or GLM-5.1?"
-    a: "Only for high-stakes work. Opus 4.7 costs $5 input / $25 output per 1M tokens — roughly 3.6x more on input and 5.7x more on output than GLM-5.1. It earns that premium on architecture decisions, security-sensitive review, multi-file refactors with subtle system boundaries, and failure analysis where the obvious fix already failed. For routine refactors, test scaffolding, or boilerplate, it's wasted spend."
-  - q: "When was Claude Opus 4.7 released and what changed from 4.6?"
-    a: "Anthropic released Claude Opus 4.7 on April 16, 2026. Pricing stayed the same ($5 input / $25 output per 1M tokens) and the context window remained 1M, though on 4.6 that was beta and on 4.7 it's the default. Anthropic positions 4.7 as stronger on advanced software engineering; Cursor reports a 13% lift on its own 93-task coding benchmark, with stronger long-run follow-through and fewer tool errors."
-  - q: "What is the best open source coding model in 2026?"
-    a: "As of April 2026, it depends on the workflow. GLM-5.1 is the best open-weight choice for long-running coding agents, privacy-sensitive codebases, and high-volume routine engineering — it's MIT-licensed with local serving via SGLang, vLLM, xLLM, Transformers, or KTransformers. Kimi K2.6 is the better first test for visual, frontend, or design-to-code work given its 400M vision encoder and agent-swarm architecture (300 sub-agents, 4,000 coordinated steps)."
-  - q: "Should I use one AI coding model or route between multiple?"
-    a: "Route between multiple. The best teams don't standardize on one model — they standardize on an evaluation loop. Use GLM-5.1 or Kimi K2.6 for routine refactors, test scaffolding, and first-pass implementation. Escalate to Claude Opus 4.7 only for architecture review, hard debugging, security-sensitive changes, and final review before risky merges. Pick the cheapest model that handles the task; escalate when a wrong answer is expensive."
-  - q: "Can I run Kimi K2.6 or GLM-5.1 locally?"
-    a: "Both support local serving, but practicality differs. GLM-5.1 is tuned for local deployment and lists support via SGLang, vLLM, xLLM, Transformers, and KTransformers — it's the more obvious choice if self-hosting is the goal. Kimi K2.6 supports vLLM, SGLang, and KTransformers too, but its 1T-parameter MoE size means most users run it through Moonshot's stack or a serious inference cluster rather than on a laptop. Weights being open doesn't mean serving is free: you trade token bills for infra, latency, monitoring, and maintenance."
-  - q: "How do DeepSeek V4 and GPT-5.5 change this comparison?"
-    a: "They make the routing argument stronger. DeepSeek V4-Pro adds a 1M-context, MIT-licensed open-weight option at $1.74 input / $3.48 output per 1M tokens on OpenRouter, with strong SWE Verified and Terminal-Bench signals. GPT-5.5 pushes the closed frontier price ceiling to $5 input / $30 output per 1M tokens when API access opens. That doesn't make either one the automatic winner. It means teams need to test price, review burden, context behavior, and workflow fit together."
+  - q: "How should teams compare AI coding models?"
+    a: "Run the models against the same small set of real repository tasks, then score correctness, edit discipline, convention fit, test quality, and human review burden."
+  - q: "Why are public coding benchmarks not enough?"
+    a: "Public benchmarks are useful filters, but harnesses, tool access, task mix, and review standards differ from your codebase. They also become stale quickly as new model versions ship."
+  - q: "Should a team use one AI coding model or route between several?"
+    a: "Start with the simplest setup that works. Add routing only when repeated evaluations show that different models earn distinct jobs or escalation lanes."
 ---
-We're back for Coding Wars 2.0.
+A comparison I published on April 23 called Kimi K2.6, GLM-5.1, and Claude Opus 4.7 the definitive coding-model matchup.
+
+By June 15, Anthropic had released Opus 4.8 and Moonshot had released Kimi K2.7 Code. The definitive comparison lasted less than two months.
 
 ![Kimi K2.6 vs GLM-5.1 vs Claude Opus 4.7 benchmark and pricing comparison chart](/images/coding-wars-2-0-model-comparison.png)
 
-The public benchmark gap between Kimi K2.6 and GLM-5.1 on SWE-Bench Pro is 0.2 points.
+That is the useful lesson. A benchmark winner expires. A repeatable task packet, a review-burden score, and a rule for escalating risky work survive the next release.
 
-Anthropic's current flagship, Claude Opus 4.7, shipped on April 16, 2026. That's close enough, and recent enough, that "which model is best?" stops being a useful question.
+## The April snapshot is already history
 
-Of the open source models, Kimi K2.6 is the better first test when the job is visual, frontend-heavy, or built around parallel agent swarms and you have the hosted setup or compute to use it well. GLM-5.1 is the better first test when you want open weights, a more controlled deployment path, and a serious long-running coding agent. Claude Opus 4.7 is the premium escalation lane for high-risk review, architecture, and hard debugging where a bad answer costs more than the token bill.
+The original comparison was reasonable for its date. Kimi K2.6 and GLM-5.1 published nearly identical SWE-Bench Pro scores, while Opus 4.7 occupied the expensive managed lane. Kimi emphasized multimodal design work and swarm orchestration. GLM emphasized open-weight deployment and long-running agentic engineering. Opus emphasized advanced software engineering inside Anthropic's managed workflow.
 
-If you're coming from older Opus 4.6 comparisons, the current Anthropic version is Opus 4.7.
+Then the model names changed again.
 
-> Note: I've actually switched back to 4.6 from 4.7 in some of my own flows because I didn't see enough lift to justify the 1.3-1.4x [token premium](https://simonwillison.net/2026/apr/20/claude-token-counts/).
-
-> **Updated April 24, 2026:** DeepSeek V4 and GPT-5.5 both landed after this article went live. I wouldn't rename the comparison around them, but they matter for the price pressure story. DeepSeek V4-Pro adds another open weight 1M context option at $1.74 input and $3.48 output per 1M tokens on OpenRouter. GPT-5.5 moves the closed frontier price ceiling higher at $5 input and $30 output per 1M tokens when API access opens. The practical read is the same: route by workflow, and stop paying premium model prices for work a cheaper model can handle.
-
-## The Short Version
-
-| If the job is... | Start with... | Why |
+| Model in the April comparison | What its vendor emphasized | What changed by June 15 |
 |---|---|---|
-| Frontend build, design-to-code, visual product work | Kimi K2.6 | Best fit when you have hosted access or enough compute for its multimodal and interface-generation strengths |
-| Large parallel agent experiment | Kimi K2.6 | Best fit if you actually have the infra to run swarm-style workloads |
-| Long-running coding agent | GLM-5.1 | Built around sustained agentic engineering and a more controlled deployment path |
-| Privacy-sensitive codebase | GLM-5.1 | MIT license, open weights, and local serving support |
-| Claude Code-native agent teams | Opus 4.7 | Best fit if you already live in Claude Code and Anthropic's agent workflow |
-| Architecture review or high-risk code review | Opus 4.7 | You pay for stronger judgment when a wrong answer is expensive |
-| Routine refactors, test scaffolding, boilerplate | GLM-5.1 or Kimi K2.6 | Don't burn Opus money formatting code or writing first-pass tests |
+| Kimi K2.6 | Multimodal agent work, coding-driven design, swarm orchestration | Moonshot released Kimi K2.7 Code |
+| GLM-5.1 | Open-weight agentic engineering and long coding runs | Still a relevant comparison candidate, but no longer part of a complete frontier snapshot |
+| Claude Opus 4.7 | Advanced software engineering and managed agent workflows | Anthropic released Claude Opus 4.8 |
 
-## Why This Comparison Matters Now
+The table is still useful as a dated market snapshot. It is not a buying recommendation for today, and adding every new launch would turn the article into a changelog with opinions.
 
-The first "AI Coding Model Wars" post worked because February 2026 had a clean story: proprietary models still had the polish, open models were closing the gap fast, and the benchmark spread was getting too tight for a single-model worldview.
+Public leaderboards have the same problem. They help you build a shortlist, but different harnesses, tools, effort settings, and graders move the scores. METR found in March 2026 that many pull requests which passed SWE-Bench's automated grader still would not be merged by maintainers. Passing the benchmark did not settle whether the change was good engineering work.
 
-That story is messier now, but more useful. The question isn't which company wins. It's which model you actually put in the workflow for a given task. Anthropic also moved from Opus 4.6 to Opus 4.7 on April 16, 2026, so any comparison still anchored on 4.6 is already one version behind.
+## What survives the next model release
 
-## Release Timing and Runtime Modes
+Model selection gets easier when you stop asking for the universal winner and write down the constraints of the job.
 
-These models are close enough that release timing and how you run them matter more than they used to.
+| Constraint | Question to answer |
+|---|---|
+| Workflow fit | Does the task require visual input, long autonomous runs, code review, or fast routine edits? |
+| Deployment | Can code leave the environment? Do you need open weights or managed availability? |
+| Failure cost | What happens if the model is wrong: a discarded prototype, a broken test, or a bad migration? |
+| Review burden | How much human time does the output require before it can merge? |
+| Operating cost | What do tokens, infrastructure, latency, monitoring, and maintenance cost together? |
 
-| Model | Public release date | How people usually run it | What that implies |
-|---|---|---|---|
-| Kimi K2.6 | April 20, 2026 | Kimi.com, Kimi App, API, Kimi Code; open deployment via vLLM, SGLang, or KTransformers | Open model, but usually experienced through Moonshot's own stack or custom inference infra rather than as a casual laptop model |
-| GLM-5.1 | April 7, 2026 | Z.ai API or local deployment via SGLang, vLLM, xLLM, Transformers, or KTransformers; tuned for Claude Code and OpenClaw workflows | The most obvious open-weight backend in this set for long-running coding agents |
-| Claude Opus 4.7 | April 16, 2026 | Claude products, Anthropic API, Amazon Bedrock, Google Cloud Vertex AI, or Microsoft Foundry | Managed premium lane. You buy workflow and availability, not weights |
+The review-burden line is the one people skip. A model that drafts a change in 90 seconds and creates 45 minutes of cleanup did not save 45 minutes. It moved the work into review, where polished code can make mistakes harder to notice.
 
-That split matters. Kimi and GLM can turn into infra work. Opus is a service you buy. Similar benchmark range, different ownership model.
+Open weights do not make serving free either. They replace some token spend with infrastructure, deployment, monitoring, and maintenance. That can be the right trade for a regulated platform team and a terrible one for a solo developer. The constraint decides.
 
-One trust caveat: self-hosting and API use are different bets. Kimi's API terms are looser on using inputs and outputs for service optimization. Z.ai says API content is processed in real time and not stored. If the code matters, read the terms or self-host.
+## Build a task packet before you build routing
 
-## Benchmark Snapshot
+You do not need a giant evaluation platform. Five real tasks from your own repository are enough to learn more than another afternoon on a leaderboard:
 
-As of April 24, 2026, the public model pages put Kimi K2.6 and GLM-5.1 close enough that the benchmark table should not be the only thing making the decision.
-
-| Model | Access / license | Deployment / context | Published pricing | Selected coding signals |
-|---|---|---:|---|---|
-| Kimi K2.6 | Open weights, Modified MIT | ~256K context | $0.95 input cache miss, $0.16 cached input, $4 output per 1M tokens | SWE-Bench Pro 58.6, SWE-Bench Verified 80.2, Terminal-Bench 2.0 66.7 |
-| GLM-5.1 | Open weights, MIT | Local serving via SGLang, vLLM, xLLM, Transformers, KTransformers | $1.40 input, $0.26 cached input, $4.40 output per 1M tokens | SWE-Bench Pro 58.4, Terminal-Bench 2.0 63.5, CyberGym 68.7 |
-| Claude Opus 4.7 | Proprietary | 1M context window | $5 input, $25 output per 1M tokens | Anthropic positions it as stronger for advanced software engineering; Cursor reports a 13% lift on its own 93-task coding benchmark |
-
-Sources: [Kimi K2.6 model card](https://huggingface.co/moonshotai/Kimi-K2.6), [Kimi K2.6 pricing](https://www.kimi.com/resources/kimi-k2-6-pricing), [GLM-5.1 model card](https://huggingface.co/zai-org/GLM-5.1), [GLM-5.1 release notes](https://docs.z.ai/release-notes/new-released), [Z.ai pricing](https://docs.z.ai/guides/overview/pricing), [Anthropic Opus 4.7 release](https://www.anthropic.com/news/claude-opus-4-7).
-
-Don't over-read the 58.6 vs. 58.4 gap on SWE-Bench Pro. That's not a product strategy. It's basically noise until you run both models against your own repo, your own prompts, and your own definition of "good enough."
-
-Vendor benchmark tables don't always line up perfectly either. Different harnesses, settings, tool access, effort levels, and reporting choices move the number. That doesn't make the numbers useless. It means they're a starting filter, not the final answer.
-
-## April 24 Update: DeepSeek V4 and GPT-5.5 Raise the Price Pressure
-
-DeepSeek V4 doesn't replace the Kimi-vs-GLM question. It makes the question more annoying, which is usually how model selection gets more honest.
-
-DeepSeek's official Hugging Face card lists V4-Pro as a 1.6T-parameter MoE model with 49B active parameters, MIT-licensed weights, and a 1M-token context window. OpenRouter lists the hosted V4-Pro price at $1.74 input and $3.48 output per 1M tokens. That's not cheaper than GLM-5.1 on input, but it is cheaper than GLM on output and far below Opus-class output pricing.
-
-OpenAI moved the other direction with GPT-5.5. Its launch page says the API will be $5 input and $30 output per 1M tokens, with a 1M context window. OpenAI also says GPT-5.5 is more token-efficient than GPT-5.4 in Codex, so the real bill may not scale linearly from the headline rate. Fine. Still: $30/M output changes how you think about agent loops, especially when coding agents can burn through long reasoning traces and multi-file diffs without asking you first.
-
-| Model | What changed | Selected coding signals |
-|---|---|---|
-| DeepSeek V4-Pro | Open-weight 1M-context model with cheaper output than GLM-5.1 and far cheaper output than Opus/GPT-5.5 | SWE-Bench Pro 55.4, SWE Verified 80.6, Terminal-Bench 2.0 67.9 |
-| GPT-5.5 | Closed frontier model pushes output pricing to $30/M, with OpenAI claiming better token efficiency in Codex | OpenAI reports SWE-Bench Pro 58.6 and Terminal-Bench 2.0 82.7 |
-
-This is why I don't like absolute "best model" takes. GPT-5.5 may be the right answer when its token efficiency and Codex integration pay for themselves. DeepSeek V4-Pro may be the right answer when you need 1M context, open weights, and cheap output. Kimi may still be the right first swing for design-to-code. GLM may still be the cleaner open-weight backend for long-running coding agents.
-
-## Kimi K2.6: The Swarm and Design-to-Code Bet
-
-Kimi K2.6 matters most if your coding work touches interfaces, visual inputs, or large parallel agent runs.
-
-On paper, Kimi is a 1T MoE model with 32B active parameters, a roughly 256K context window, a 400M vision encoder, and image and video input. Moonshot's own pages bounce between `256K` and `262,144` tokens, so I would just treat it as "about 256K." The part that matters is simpler: this model is built for multimodal agent work. Build the UI, read the screenshot, split up the work, keep the run moving.
-
-The standout claim is the agent swarm system: 300 sub-agents and 4,000 coordinated steps. I wouldn't build a production workflow around that number just because it's in a model card. But it does tell you what Moonshot is optimizing for: messy, multi-surface jobs where the model needs to build the interface, read the screenshot, coordinate subtasks, and keep the run moving.
-
-That makes Kimi K2.6 a better first test for frontend and design-to-code work than a backend-only benchmark would suggest.
-
-Where I would be cautious: using Kimi as the default for backend-heavy refactors before testing it on your own codebase. The swarm story is attractive, but swarm coordination can hide failure. You get a lot of motion, a lot of files touched, and a polished-looking result. Then the real review starts.
-
-For Kimi, I would measure edit quality hard:
-
-- Did it make fewer changes than necessary?
-- Did it preserve existing conventions?
-- Did it produce tests that catch real failure modes?
-- Did the output look better than it behaved?
-
-That last one is the risk with design-capable models. A good-looking interface can make weak system boundaries feel more complete than they are. Ask anyone who's reviewed a slick demo with a sad backend behind it.
-
-## GLM-5.1: The Long-Horizon Agentic Engineering Bet
-
-GLM-5.1 is less flashy than Kimi, but it may be more useful for teams. Z.ai positions it for longer coding runs: break the problem down, run experiments, read the results, find blockers, revise the plan, and keep going for hundreds of rounds and thousands of tool calls.
-
-That's exactly where most AI coding workflows break. A lot of models look good for the first 20 minutes, then fall apart once the easy path fails.
-
-GLM-5.1 also has a setup Kimi and Opus don't share in the same way. Z.ai lists local serving support through SGLang, vLLM, xLLM, Transformers, and KTransformers. The model is MIT licensed. The API pricing is materially lower than Opus 4.7: $1.40 input and $4.40 output per million tokens, compared with Opus at $5 and $25. That's about 3.6x cheaper on input and 5.7x cheaper on output before caching or batch discounts.
-
-That gives GLM-5.1 three obvious lanes:
-
-- privacy-sensitive codebases where cloud proprietary models are a non-starter
-- high-volume routine coding where Opus pricing is wasteful
-- long-running local or semi-local agents where control matters as much as raw score
-
-If I were setting this up for a team, GLM-5.1 is the open model I'd test first for backend work. Not because it "wins" every benchmark. Because it gives you a serious coding model with better control over where and how you run it.
-
-But here's the tradeoff. Local serving a large model isn't free just because the weights are available. You're swapping token bills for infra, latency, deployment, monitoring, and maintenance. That's a good trade for some teams and a terrible trade for others.
-
-If you're a solo developer, the managed API is probably the pragmatic path. If you're a regulated team or a platform group with real volume, the local deployment option is the point.
-
-## Claude Opus 4.7: The Expensive Escalation Lane
-
-Anthropic's current Claude comparison target is Opus 4.7, released on April 16, 2026.
-
-The context-window story is cleaner than some third-party leaderboard summaries make it look. Anthropic's current public Opus page markets Opus 4.7 with a **1M context window**. Opus 4.6 also had 1M, but Anthropic introduced it there as a beta capability. So if you're comparing the models today, the right mental model is simple: Opus 4.7 is the current 1M-context Claude flagship.
-
-The pricing didn't change: $5 input and $25 output per million tokens. The capability story did. Anthropic positions Opus 4.7 as stronger on advanced software engineering than Opus 4.6. The release post also includes Cursor's report of a 13% lift on its own 93-task coding benchmark, and the current Opus page leans on partner and customer reports for the longer-run follow-through, fewer tool errors, and stronger code-review claims.
-
-Opus 4.7 is still the premium lane: closed, expensive, and wasted on routine scaffolding.
-
-Anthropic's advantage is the surrounding workflow: Claude Code, agent teams, effort controls, compaction, and long-context behavior. For a lot of real engineering work, that matters more than one benchmark line.
-
-The place Opus earns its cost is expensive judgment:
-
-- architecture decisions
-- unfamiliar codebase exploration
-- multi-file refactors with subtle system boundaries
-- security-sensitive review
-- failure analysis where the obvious fix already failed
-- final review before a risky merge
-
-This is the line I use in my own work: cheap models can draft the change; expensive models should review the risk.
-
-That doesn't mean Opus should always be the reviewer. It means the premium lane should be reserved for decisions where the model's extra reasoning has somewhere to pay for itself. If the task is "write five unit tests for this validation function," Opus is overkill. If the task is "review this migration for data loss, rollback gaps, and cross-service contract breakage," now the price starts to make sense.
-
-The earlier [AI Coding Model Wars](/articles/ai-coding-model-wars-2026) post was anchored on Opus 4.6. For an actual buying decision in late April 2026, use Opus 4.7 as the Claude comparison point.
-
-## The Decision Framework
-
-Here's the cleaner way to choose.
-
-| Workflow | First model to test | Escalation path | What to watch |
-|---|---|---|---|
-| UI generation from visual input | Kimi K2.6 | Opus if reasoning fails | Pretty output hiding weak state/data logic |
-| Frontend component build | Kimi K2.6 | GLM-5.1 for refactor pass, Opus for review | CSS churn, accessibility gaps, over-built abstractions |
-| Backend bug fix | GLM-5.1 | Opus for hard root-cause analysis | Surface fix without understanding failure path |
-| Test generation | GLM-5.1 | Opus for high-risk domains | Tests that assert implementation instead of behavior |
-| Local/private coding agent | GLM-5.1 | None, unless policy allows cloud escalation | Infrastructure cost and context-management discipline |
-| Large swarm experiment | Kimi K2.6 | Opus for architectural review | Parallel agents stepping on each other's assumptions |
-| Architecture review | Opus 4.7 | Human review | Confident but under-sourced tradeoffs |
-| Code review before merge | Opus for risky changes, GLM for routine | Human reviewer | False positives and missed system-level issues |
-
-The better question is where each model fails, and whether that failure is cheap. Kimi failing on a visual prototype is usually cheap. Kimi failing on a payment migration isn't. GLM failing on a routine refactor is manageable if tests exist. Opus failing is expensive in a different way because you paid more, trusted more, and probably gave it the harder task.
-
-## The Workflow Test I Would Run
-
-Don't pick from benchmark tables alone. Build a small internal eval.
-
-Five tasks is enough to start:
-
-1. A real bug fix from your repo history.
-2. A test-generation task where you already know the edge cases.
-3. A refactor with existing conventions the model must preserve.
+1. A bug fix from repo history where you know the root cause.
+2. A test-generation task with known edge cases.
+3. A refactor that must preserve existing conventions.
 4. A UI task with a screenshot or visual requirement.
-5. A code review task on a risky diff.
+5. A code-review task on a risky diff.
 
-Run Kimi K2.6, GLM-5.1, and Opus against the same task packet. Keep it in a markdown file so you can re-run it when the next version drops, because it will:
+Give every model the same packet:
 
-- the same repo context
+- the same repository context
 - the same constraints
 - the same success criteria
 - the same time or token budget
-- the same review rubric
+- the same verification commands
 
-Score the result on five things:
+Keep the packet in a markdown file and rerun it when a model changes. Otherwise each comparison becomes a fresh argument based on whatever task someone happened to try that week.
+
+## Score the output like work, not a demo
+
+The result needs to work, fit the codebase, and leave a reasonable review bill.
 
 | Score | What it measures |
 |---|---|
-| Correctness | Did the change actually work? |
+| Correctness | Did the change solve the task and pass verification? |
 | Edit discipline | Did it touch the smallest reasonable surface area? |
 | Convention fit | Did it follow the codebase's existing patterns? |
-| Test quality | Did tests catch behavior or just mirror the implementation? |
-| Review burden | How much human cleanup did it need? |
+| Test quality | Did tests check behavior or mirror the implementation? |
+| Review burden | How much human investigation and cleanup did it require? |
 
-The review burden score is the one people skip. It's also the one that matters.
+I would also record failure shape. One model may stop early and ask for help. Another may confidently touch twelve files. The second result can look more impressive while creating more risk.
 
-A model that finishes in 90 seconds but leaves you with 45 minutes of cleanup didn't save you 45 minutes. It just moved the work into review, where the mistakes are harder to notice because the code already looks finished.
+This is where model routing becomes useful. Routing should encode evidence from repeated work, not a vendor launch post:
 
-This is why I keep coming back to [routing](/articles/llm-gateway-architecture). The best teams won't standardize on one model. They'll standardize on an evaluation loop.
+| Observed result | Possible routing rule |
+|---|---|
+| A cheaper model handles routine refactors with low review burden | Use it as the default for that task class |
+| A visual model consistently produces better UI work but weak backend changes | Route visual tasks there and keep backend work elsewhere |
+| A premium model catches migration or security risks the default misses | Use it as an escalation reviewer for high-risk diffs |
+| No model shows a meaningful advantage | Keep one default and avoid routing complexity |
 
-## My Recommendation
+That last row matters. Multi-model routing is infrastructure. It has to earn its place.
 
-If I were choosing today:
+## Separate vendor claims from your evidence
 
-Use **Kimi K2.6** first for visual, frontend, and swarm-heavy workflows. Its multimodal and agent-swarm direction is the differentiator. Make it prove itself on backend work before trusting it broadly.
+The April comparison leaned too hard on vendor-reported strengths. Those reports are useful for deciding what to test, but they do not prove what will work in your environment.
 
-Use **GLM-5.1** first for open, local, privacy-sensitive, and long-running coding-agent workflows. It's the model I'd pressure test hardest for routine engineering work where cost and control matter.
+Kimi K2.6's model card made it an obvious candidate for visual and parallel-agent tasks. GLM-5.1's model card made it worth testing for open-weight, long-running coding work. Anthropic's Opus 4.7 release made it a candidate for difficult software-engineering tasks. Those are test hypotheses, not universal routing rules.
 
-Use **Opus 4.7** as the premium escalation lane. Architecture, hard debugging, high-risk review, weird cross-file reasoning. Don't waste it on boilerplate. That's how you end up with a very expensive autocomplete.
+The same applies to current releases. Opus 4.8 and Kimi K2.7 Code belong in a fresh evaluation because their vendors report improvements relevant to coding. I would not replace the old winners in a table and call the article current again. Run the packet.
 
-Add **DeepSeek V4-Pro** to the eval set if your workflow is long-context, output-heavy, or price-sensitive. I wouldn't crown it from launch-day charts. I would run it against the same task packet as GLM and Kimi, then watch review burden closely. Cheap output is only cheap if the cleanup doesn't eat the savings.
+## Use failure cost as the escalation rule
 
-Treat **GPT-5.5** like the expensive frontier lane it is. If Codex gets more done with fewer tokens, great. Measure that. But don't assume a higher ceiling model belongs in every loop just because it shipped yesterday.
+The cheapest capable model is a good default when the failure is easy to detect and reverse. Routine scaffolding, small refactors, and first-pass tests can often live there if verification is strong.
 
-Pick the cheapest model that handles the task. Escalate when the mistake would be expensive. Measure review burden. Keep the routing rules somewhere explicit instead of scattered through human habit.
+Escalate when a mistake is expensive:
 
-I'm also testing what local self-hosting actually looks like on an M1 Air with 16 GB, because a lot of "just run it locally" advice gets vague fast once the hardware is real.
+- architecture decisions with long-lived consequences
+- unfamiliar codebase exploration
+- security-sensitive changes
+- data migrations and rollback plans
+- cross-service contract changes
+- final review before a risky merge
 
-That's the kind of thing benchmark tables miss.
+The model does not remove the need for human ownership. A high-priced answer can still be wrong, and paying more can make people trust it more than they should.
 
----
+## The durable recommendation
 
-If you want the broader model-routing architecture, read [LLM Gateway Architecture and Multi-Model Routing](/articles/llm-gateway-architecture). For the original comparison that led to this update, read [The AI Coding Model Wars](/articles/ai-coding-model-wars-2026).
+Do not standardize on a leaderboard winner. Standardize on a small evaluation loop.
 
-I write about AI engineering, coding agents, and the boring workflow layer that makes the models useful. [Subscribe here](https://buttondown.com/collinwilkins) if that's your thing.
+Start with one model and five real tasks. Measure correctness and review burden. Add a second model only when it repeatedly earns a distinct job, and reserve premium escalation for mistakes that would be expensive to unwind.
 
----
+The leaderboard will move again. Your task packet should be ready when it does.
 
-## Sources Checked
+For the architecture behind routing, read [You Probably Don't Need an LLM Gateway Yet](/articles/llm-gateway-architecture). For the organizational cost of pushing generation faster than review, read [The Claude Code Productivity Paradox](/articles/claude-code-productivity-paradox).
 
-- [Kimi K2.6 model card - Moonshot AI on Hugging Face](https://huggingface.co/moonshotai/Kimi-K2.6)
-- [Kimi research index - Moonshot AI](https://www.kimi.com/blog/kimi-k2.5)
-- [Kimi K2.6 tech blog - Moonshot AI](https://www.kimi.com/blog/kimi-k2-6)
-- [Kimi K2.6 pricing - Kimi](https://www.kimi.com/resources/kimi-k2-6-pricing)
-- [Kimi Open Platform Service Agreement](https://platform.kimi.com/docs/agreement/modeluse)
-- [GLM-5.1 model card - Z.ai on Hugging Face](https://huggingface.co/zai-org/GLM-5.1)
-- [GLM-5.1 release notes - Z.ai](https://docs.z.ai/release-notes/new-released)
-- [GLM-5.1 overview - Z.ai](https://docs.z.ai/guides/llm/glm-5.1)
-- [Z.ai terms of use](https://docs.z.ai/legal-agreement/terms-of-use)
-- [Z.ai privacy policy / DPA](https://docs.z.ai/legal-agreement/privacy-policy)
-- [Z.ai pricing docs](https://docs.z.ai/guides/overview/pricing)
-- [Claude Opus 4.7 release - Anthropic](https://www.anthropic.com/news/claude-opus-4-7)
-- [Claude Opus page - Anthropic](https://www.anthropic.com/claude/opus)
-- [DeepSeek V4-Pro model card - DeepSeek on Hugging Face](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro)
-- [DeepSeek V4 collection - DeepSeek on Hugging Face](https://huggingface.co/collections/deepseek-ai/deepseek-v4)
-- [DeepSeek V4-Pro pricing - OpenRouter](https://openrouter.ai/deepseek/deepseek-v4-pro)
-- [GPT-5.5 release - OpenAI](https://openai.com/index/introducing-gpt-5-5/)
+## Sources checked June 15, 2026
+
+- Moonshot AI, [Kimi K2.6 model card](https://huggingface.co/moonshotai/Kimi-K2.6)
+- Moonshot AI, [Kimi K2.7 Code model card](https://huggingface.co/moonshotai/Kimi-K2.7-Code)
+- Z.ai, [GLM-5.1 model card](https://huggingface.co/zai-org/GLM-5.1)
+- Anthropic, [Introducing Claude Opus 4.7](https://www.anthropic.com/news/claude-opus-4-7)
+- Anthropic, [Introducing Claude Opus 4.8](https://www.anthropic.com/news/claude-opus-4-8)
+- METR, [Many SWE-bench-Passing PRs Would Not Be Merged into Main](https://metr.org/notes/2026-03-10-many-swe-bench-passing-prs-would-not-be-merged-into-main/)

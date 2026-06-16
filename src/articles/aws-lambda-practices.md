@@ -1,488 +1,203 @@
 ---
-title: "AWS Lambda Practices: Messaging & Compute Best Practices"
+title: "The SQS-to-Lambda Settings That Prevent Retry Storms"
 date: "2025-12-09"
-tags: ["AWS", "Lambda", "SQS", "Serverless", "Distributed Systems", "DevOps", "SNS"]
-excerpt: "A breakdown of production-ready AWS Lambda and SQS configurations, covering visibility timeouts, batch sizes, failure handling, and idempotency strategies."
+tags: ["AWS", "Lambda", "SQS", "Serverless", "Distributed Systems", "DevOps"]
+excerpt: "A fact-checked guide to SQS-triggered Lambda functions: visibility timeouts, partial batch responses, DLQs, concurrency caps, idempotency, and load tests."
 image: "/images/articles/aws-lambda-practices.png"
 image_alt: "Serverless architecture pattern showing event queues, Lambda compute, retries, and failure handling."
 seo_title: "AWS Lambda and SQS Best Practices for Production Systems"
-meta_description: "Production-ready AWS Lambda and SQS patterns. Learn visibility timeouts, batch processing, dead letter queues, idempotency, and SNS fan-out configurations."
+meta_description: "Configure SQS-triggered Lambda functions with correct visibility timeouts, partial batch responses, DLQs, concurrency controls, idempotency, and load tests."
 target_keywords: "AWS Lambda best practices, SQS configuration, Lambda SQS integration, serverless best practices, AWS messaging patterns"
+related_articles: ["microservice-redesign", "architecture-as-code", "bgp"]
 faqs:
   - q: "What should the SQS visibility timeout be relative to the Lambda timeout?"
-    a: "The visibility timeout should be at least 6 times the Lambda timeout. This covers retries, cold starts, and jitter, preventing duplicate message pickup and rapid retry loops that exhaust retries and flood your DLQ."
-  - q: "How do you calculate the optimal batch size for SQS to Lambda?"
-    a: "Use the formula: Batch Size <= (Lambda timeout * 0.8) / p95 per-message processing time. The 0.8 factor provides a 20% safety margin, and using p95 instead of average prevents skew from outlier messages."
-  - q: "What is ReportBatchItemFailures and why should I enable it?"
-    a: "ReportBatchItemFailures lets your Lambda return only the IDs of failed messages instead of failing the entire batch. If 1 out of 10 messages fails, only that 1 is retried, avoiding unnecessary reprocessing of successful messages."
-  - q: "How do you implement idempotency in AWS Lambda with SQS?"
-    a: "Store an idempotency key (preferably a business key like order_id, or the SQS MessageId) in DynamoDB before processing. Check for the key at the start of each handler invocation and skip duplicates. AWS Lambda Powertools also provides a built-in idempotency decorator."
-  - q: "What is bisect_batch_on_function_error and when should I use it?"
-    a: "It automatically splits a failed batch in half and retries each half separately, continuing to bisect until the poison pill message is isolated. Enable it alongside ReportBatchItemFailures to prevent a single bad message from blocking an entire batch."
+    a: "AWS recommends at least six times the Lambda function timeout, plus MaximumBatchingWindowInSeconds when a batching window is configured."
+  - q: "What does ReportBatchItemFailures do?"
+    a: "It lets a Lambda function report individual failed SQS messages so successfully processed messages in the same batch are not retried."
+  - q: "Should I use bisect_batch_on_function_error with SQS?"
+    a: "No. BisectBatchOnFunctionError applies to stream event sources such as Kinesis and DynamoDB Streams, not SQS. For SQS, use partial batch responses and a dead-letter queue."
+  - q: "How should I choose an SQS-to-Lambda batch size?"
+    a: "Start small, then load test with real message sizes and processing times. Choose a batch that finishes comfortably inside the function timeout and does not overload downstream systems."
+  - q: "Why must an SQS Lambda consumer be idempotent?"
+    a: "SQS and Lambda event source mappings process messages at least once, so duplicate delivery and retries are expected behavior."
 ---
-Congrats! You just finished a phase 1 for an Event-driven Architecture refactor you are leading. Your team set up SQS for events, lambdas for serverless functions, and SNS for notifications. You run your first full runthrough in UAT and **POOF** 
+The first full UAT run of a new SQS-to-Lambda pipeline can look fine for a few minutes. Then one slow dependency turns a batch into retries, successful messages run again, queue age climbs, and the dead-letter queue starts collecting evidence.
 
-Your service feels sluggish, you gained a cold start problem, you invoked triple the lambdas, a growing DLQ, and a forecasted AWS bill for the month above what you projected after promising the leadership team the exact opposite. Now what...?
+The wiring was not the hard part. The settings were.
 
-Modern serverless pipelines don’t magically hum along just because you wired SNS → SQS → Lambda in the “right” order. Dialing in timeouts, DLQs, retries, and concurrency is where the real work starts. 
+SQS-triggered Lambda functions are at-least-once systems. Messages can be delivered more than once, a failed record can cause successful neighbors to retry, and Lambda can scale faster than the database or API behind it. Production reliability comes from making those behaviors explicit.
 
-_Note: This specifically applies to **Messaging.** Keep an eye out for a future write-up for API Gateway Triggered AWS Services_
+This article covers SQS event source mappings. Kinesis and DynamoDB Streams have different failure controls, and mixing their settings into SQS guidance creates configurations that look plausible but do nothing.
 
-## Configuring for Production
+## Start with the correct visibility timeout
 
-Agenda:
-- **SQS Visibility Timeout** — the 6× rule
-- **Batch size calculation** — formula and example
-- **DLQ and retry strategy** — maxReceiveCount
-- **Queue configuration** — long polling, retention, delays
-- **Failure handling** — partial batches and poison pills
-- **Performance testing** — load test setup
-- **Takeaways**
+When Lambda receives an SQS batch, the messages remain in the queue but become hidden for the visibility timeout. Lambda deletes them after successful processing. If processing fails or times out, the messages become visible again and can be retried.
 
-## Lambda Timeout Constraints
+[AWS recommends](https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-configure.html) setting the queue visibility timeout to:
 
-**Hard limits**:
-- Maximum Lambda timeout: 15 minutes (900 seconds)
-- Cannot be increased beyond this limit
-- Applies to all Lambda functions
+```text
+visibility timeout >= 6 * Lambda function timeout + MaximumBatchingWindowInSeconds
+```
 
-**If 15 min isn’t enough**:
-- Step Functions — orchestrate multiple Lambda invocations (up to 1 year)
-- ECS/Fargate — for long-running processes (hours/days)
-- Batch jobs — AWS Batch for compute-intensive workloads
-- Break into smaller chunks — process in stages, store intermediate state in S3/DynamoDB
-
-**For SQS → Lambda**:
-- Most message processing should complete in seconds to low minutes
-- If approaching 15 min, consider architectural changes
-- Visibility timeout can be up to 12 hours (43,200 seconds)
-
-## Visibility Timeout ≥ 6× Lambda Timeout
-
-**Why 6×**: Covers retries, cold starts, and jitter without duplicate pickup.
-
-Visibility timeout formula:
-V ≥ max(6 × Tλ, R × Tλ + W + S)
-
-Where:
-- Tλ = Lambda timeout (seconds), max 900s
-- R = Max retry attempts (2–3 typical)
-- W = Batching window (0–5s)
-- S = Startup safety (5–10s)
+The six-times recommendation gives Lambda room to retry when an invocation is throttled. Lambda also requires the function timeout to be less than or equal to the queue visibility timeout.
 
 Example:
-- Lambda timeout = 900s
-- V ≥ 6 × 900 = 5400s (90 minutes)
 
-What happens if V = Tλ?
-- V = Tλ = 900s: message becomes visible the instant Lambda times out
-- No gap for backoff, jitter, or cold start delays
-- Message immediately re-picked by any available Lambda
-- Rapid retry loop exhausts retries quickly → DLQ
-- Real problem: zero retry spacing wastes invocations and prevents transient recovery
+- Lambda timeout: `60 seconds`
+- Maximum batching window: `5 seconds`
+- Minimum recommended visibility timeout: `365 seconds`
 
-## Concurrency, Visibility, and Batch Sizing
+Do not treat six times as proof that the function is healthy. It is a retry allowance, not a performance target. If normal processing regularly approaches the function timeout, fix the slow work, reduce the batch, or move long-running coordination into a better-fitting service.
 
-**Key**: A long visibility timeout doesn't block other messages; it isolates retry chains.
+Lambda functions have a maximum timeout of 15 minutes. SQS visibility timeout can be configured up to 12 hours, but increasing it does not turn Lambda into a good long-running worker.
 
-### Batch Size Calculation
+## Partial batch responses are the SQS poison-pill control
 
-Formula:
-Batch Size ≤ (Tλ × (1 − M)) / Tm
+By default, one failed message causes the entire SQS batch to return to the queue after the visibility timeout. That means nine successful records can run again because the tenth failed.
 
-Where:
-- Tλ = Lambda timeout (seconds)
-- Tm = per-message processing time (use p95)
-- M = safety margin (fraction), e.g., 0.2 → use 80% of timeout
+Enable `ReportBatchItemFailures` on the event source mapping and return the IDs of failed messages:
 
-### Understanding Percentiles vs Average
-
-10 messages: 3s, 4s, 4s, 4s, 5s, 5s, 6s, 6s, 7s, 28s (1 outlier)
-
-- Average = 7.2s (skewed by 28s)
-  - Bad batch size: (900 × 0.8) / 7.2 ≈ 100 → too many
-- p95 = 7s (reflects typical behavior)
-  - Better batch size: (900 × 0.8) / 7 ≈ 102 → accurate
-- p99 = 28s (slowest 1%)
-  - Use for max timeout or DLQ investigation, not batch sizing
-
-**Why p95 for Tm**: prevents over-provisioning and batch size errors from outliers.
-
-### How to Get Message Time (Tm)
-
-**CloudWatch Logs Insights**:
-```sql
-fields @timestamp, @message
-| filter @message like /processing message/
-| parse @message "processing message * took *ms" as messageId, durationMs
-| stats
-    avg(durationMs) as avgMs,
-    percentile(durationMs, 95) as p95,
-    percentile(durationMs, 99) as p99
-```
-
-**Custom CloudWatch Metrics (per batch)**:
 ```python
-cloudwatch.put_metric_data(
-    Namespace="SQS/Lambda",
-    MetricData=[{
-        "MetricName": "MessagesProcessed",
-        "Value": len(batch)
-    }]
-)
-# Metric Math: Lambda Duration / MessagesProcessed
+def lambda_handler(event, context):
+    failures = []
+
+    for record in event["Records"]:
+        try:
+            process(record)
+        except Exception:
+            failures.append({"itemIdentifier": record["messageId"]})
+
+    return {"batchItemFailures": failures}
 ```
 
-_Use p95 or p99, not average._
-
-## DLQ and maxReceiveCount
-
-For 3 retries: set maxReceiveCount = 4 (1 initial + 3 retries).
-
-### Queue Configuration Essentials
-
-| Setting | Value | Benefit |
-| --- | --- | --- |
-| receive_message_wait_time_seconds | 10–20s | Long polling reduces cost |
-| message_retention_period | 3–7 days | Post-incident investigation |
-| delivery_delay | 0–300s | Smooth bursty traffic |
-| maximum_message_size | 256 KB | Use S3 pointer for larger |
-
-_Long polling reduces empty receives by ~90%._
-
-## Failure Handling Flow
-
-Config: enable ReportBatchItemFailures (RBF) + bisect_batch_on_function_error (BB) in Event Source Mapping (ESM); set DLQ on the source queue with maxReceiveCount = 4.
-
-### Lambda Event Source Mapping Settings
-
-| Setting | Value | Benefit |
-| --- | --- | --- |
-| batch_size | Messages per invocation | Calc: (Tλ × 0.8) / Tm |
-| maximum_batching_window_in_seconds | Accumulation delay | 0–5s (latency) or 10–30s (cost) |
-| maximum_concurrency | Cap Lambda scaling | Protect downstream systems |
-| bisect_batch_on_function_error | Poison pill isolation | true |
-| function_response_types | ["ReportBatchItemFailures"] | Partial retry |
-| report_batch_item_failures | Partial retry protocol | Return failed IDs only |
-
-### 1. Event Source Mapping (ESM)
-
-**What**: the bridge connecting SQS queue to Lambda function.  
-**Where**: AWS Console → Lambda → Function → Triggers → SQS.
-
-Terraform:
 ```hcl
 resource "aws_lambda_event_source_mapping" "sqs_trigger" {
-  event_source_arn                   = aws_sqs_queue.my_queue.arn
-  function_name                      = aws_lambda_function.processor.arn
-  batch_size                         = 10
-  enabled                            = true
-  function_response_types            = ["ReportBatchItemFailures"] # RBF
-  bisect_batch_on_function_error     = true                        # BB
+  event_source_arn        = aws_sqs_queue.main.arn
+  function_name           = aws_lambda_function.processor.arn
+  batch_size              = 10
+  maximum_batching_window_in_seconds = 5
+  function_response_types = ["ReportBatchItemFailures"]
+
+  scaling_config {
+    maximum_concurrency = 25
+  }
 }
 ```
 
-### 2(a). report_batch_item_failures (RBF)
+There is no `bisect_batch_on_function_error` in that configuration. The setting applies to stream event sources, not SQS. SQS isolates failed records through partial batch responses and eventually a dead-letter queue.
 
-**What**: Lambda returns partial failures instead of all-or-nothing.  
-**Why**: if 1 out of 10 fails, only retry that 1.
+One more edge case matters: if the function throws an unhandled exception, Lambda treats the whole batch as failed. Catch record-level failures and return them in `batchItemFailures`, or use the [AWS Lambda Powertools Batch utility](https://docs.aws.amazon.com/powertools/python/latest/utilities/batch/).
 
-Lambda must return:
-```python
-return {
-  "batchItemFailures": [
-    {"itemIdentifier": message["messageId"]}  # Failed message ID
-  ]
-}
-```
+For FIFO queues, stop after the first failure and return the failed plus unprocessed records. Continuing can break the ordering guarantee. AWS documents this behavior in its [SQS error-handling guidance](https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-errorhandling.html).
 
-Config: set function_response_types = ["ReportBatchItemFailures"] in ESM.  
+## Use a DLQ, but do not rush messages into it
 
-_Important: only failed messages return to the queue; they aren't mixed into new batches._
+Configure the dead-letter queue on the source SQS queue through a redrive policy. AWS recommends setting `maxReceiveCount` to at least `5`, which gives Lambda several chances to process a transient failure before moving the message.
 
-### 2(b). RBF Retry Behavior
-
-Failed messages retry separately, not mixed with new messages.
-
-### 3. bisect_batch_on_function_error (BB)
-
-**What**: auto-split batches when the Lambda crashes or times out.  
-**Why**: isolate poison pills so one bad message doesn’t block many.
-
-How it works:
-- Batch of 10 fails → split into 2 batches of 5
-- Failing batch of 5 → split into 2–3
-- Continue until bad message isolated or batch size = 1
-
-### 4. Dead Letter Queue (DLQ)
-
-**What**: SQS queue for messages that exceed maxReceiveCount.  
-**Why**: isolate poison pills for investigation without blocking the main queue.
-
-Setup:
-- Create separate SQS queue: my-queue-dlq
-- Configure DLQ on the source queue (not on Lambda)
-
-Terraform:
 ```hcl
 resource "aws_sqs_queue" "dlq" {
-  name = "my-queue-dlq"
+  name = "orders-dlq"
 }
 
 resource "aws_sqs_queue" "main" {
-  name = "my-queue"
+  name                       = "orders"
+  visibility_timeout_seconds = 365
+  receive_wait_time_seconds  = 20
+
   redrive_policy = jsonencode({
     deadLetterTargetArn = aws_sqs_queue.dlq.arn
-    maxReceiveCount     = 4 # 1 original + 3 retries
+    maxReceiveCount     = 5
   })
 }
 ```
 
-## Performance Testing Strategy
+A DLQ is not a trash can. Alarm on new messages, preserve enough retention for investigation, and define how a message gets inspected, fixed, and redriven. Blindly replaying a poison pill is just a retry storm with extra steps.
 
-Test scenarios:
-| Scenario | Rate | Concurrency | Batch | Duration | Purpose |
-| --- | --- | --- | --- | --- | --- |
-| Baseline | 100 msg/s | 5 | 10 | 10 min | Normal operations benchmark |
-| Peak Load | 500 msg/s | 25 | 20 | 5 min | Business-hour capacity |
-| Spike | 2000 msg/s | 100 | 10 | 2 min | Burst resilience |
-| Soak | 200 msg/s | 10 | 10 | 60 min | Memory leaks, connection exhaustion |
-| Failure | 50 msg/s (10% bad) | 5 | 10 | 10 min | DLQ flow, partial retries |
+## Cap concurrency around the downstream system
 
-**Why these parameters**:
+Lambda polls standard SQS queues and scales concurrent invocations as work arrives. That is useful until the consumer opens more database connections, API requests, or file handles than the downstream system can support.
 
-1. Baseline (100 msg/s, Concurrency=5)
-- Establish steady-state metrics (p95 latency, Lambda duration, queue depth)
-- Low concurrency approximates off-peak; validates per-instance throughput
+Use `maximum_concurrency` on the event source mapping to place a ceiling on that queue's consumer. The right number comes from the downstream capacity and observed processing time, not a generic serverless rule.
 
-2. Peak Load (500 msg/s, Concurrency=25, Batch=20)
-- Establish daytime capacity
-- Higher concurrency keeps per-instance rate constant
-- Larger batch reduces invocation cost; tests batch limits
+For FIFO queues, concurrency is also limited by the number of message group IDs. One busy message group remains sequential even when the function has more concurrency available.
 
-3. Spike (2000 msg/s, Concurrency=100, Batch=10)
-- Validate burst scaling and recovery
-- Keep batch constant to compare processing time
-- Short duration reflects real spikes
-- Note: ensure reserved concurrency or account limit supports 100
+Watch these signals together:
 
-4. Soak (200 msg/s, Concurrency=10, 60 min)
-- Detect memory growth, connection pool issues, gradual degradation
-- Sustained above-baseline stress without peak extremes
+- `ApproximateAgeOfOldestMessage`
+- visible and not-visible message counts
+- Lambda duration, errors, throttles, and concurrency
+- DLQ message count
+- downstream latency, saturation, and error rate
 
-5. Failure (50 msg/s with 10% bad, Concurrency=5)
-- Validate error handling, DLQ flow, and partial retry correctness
-- Focus on failure behavior over throughput
+Queue depth alone can mislead you. A growing queue may mean the consumer is under-provisioned, intentionally capped to protect a dependency, or stuck retrying failures. The surrounding metrics tell you which one.
 
-## Concurrency Logic Explained
+## Choose batch size with a load test, not a neat formula
 
-Scale concurrency proportionally (5 → 25 → 100) to maintain constant ~20 msg/s per Lambda.
+A batch has to fit inside Lambda's synchronous invocation payload limit and finish before the function timeout. Standard queues support a larger configured batch size than FIFO queues, and batch sizes above `10` require a batching window of at least one second.
 
-## Performance Baselines to Capture
+Those are service limits, not recommendations.
 
-| Metric | Target | Actual |
-| --- | --- | --- |
-| End-to-end latency (p95) | < 5s | ___ |
-| Lambda duration (p95) | < 80% of timeout | ___ |
-| Lambda error rate | < 1% | ___ |
-| SQS queue depth (max) | < 1000 | ___ |
-| DLQ message count | 0 | ___ |
-| Downstream latency (p95) | < 500ms | ___ |
+Start with a small batch, then test real messages and real dependencies. Increase it only while:
 
-**Key observations**:
-- Cold starts spike on first invocations
-- Memory growth over time (soak test)
-- Visibility timeout races under error load
+- the batch finishes comfortably inside the timeout
+- partial failures behave correctly
+- memory use stays controlled
+- downstream systems remain healthy
+- the larger batch improves cost or throughput enough to matter
 
-**CloudWatch alarms — _must have_**:
+A simple throughput estimate can help plan a test:
 
-SQS:
-- ApproximateNumberOfMessagesVisible > threshold
-- AgeOfOldestMessage approaching retention
-- ApproximateNumberOfMessagesNotVisible unexpected spike
-- DLQ message count > 0
-
-Lambda:
-- Concurrency utilization > 80%
-- Throttles > 0
-- Error percentage > 1%
-- Duration approaching timeout
-
-## Idempotency: Why and How
-
-**Why**:
-- Standard SQS provides at-least-once delivery (duplicates possible)
-- Visibility races, network retries, and Lambda retries can reprocess messages
-- Without idempotency: double charges, duplicate inventory deduction, repeated emails
-
-**Where**:
-- Before external side effects (DB writes, API calls, payments)
-- At message processing entry point (start of handler)
-
-## Idempotency Strategies
-
-### 1. Idempotency Key in Database
-
-**Pattern**: store unique message ID before processing.
-```python
-import time
-import boto3
-
-dynamodb = boto3.resource("dynamodb")
-table = dynamodb.Table("IdempotencyStore")
-
-def process_message(message):
-    message_id = message["messageId"]
-
-    # Check if already processed
-    existing = table.get_item(Key={"MessageId": message_id})
-    if "Item" in existing:
-        print(f"Duplicate: {message_id} already processed")
-        return  # Skip processing
-
-    # Store idempotency key with TTL (e.g., 7 days)
-    now = int(time.time())
-    table.put_item(Item={
-        "MessageId": message_id,
-        "ProcessedAt": now,
-        "TTL": now + 604800  # 7 days
-    })
-
-    # Process message (DB write, API call, etc.)
-    process_business_logic(message)
+```text
+messages per second ~= batch size * concurrent invocations / batch duration
 ```
-**Where**: DynamoDB table with MessageId as partition key and TTL enabled.
 
-### 2. Conditional Writes (Database-Level)
+Use the measured duration of the whole batch. Dividing Lambda duration by message count only makes sense when records run sequentially and have similar work; parallel processing and uneven messages break that shortcut.
 
-**Pattern**: use database constraints to prevent duplicates.
+## Make side effects idempotent
+
+[AWS documents SQS event processing as at least once](https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html). Duplicate delivery is not an edge case you can tune away.
+
+Use a stable business key such as `order_id`, `payment_id`, or `event_id` when the producer can provide one. An SQS `MessageId` identifies a queue message, but a producer retry that sends the same business event again receives a new message ID.
+
+The idempotency check and the protected side effect must also work together under concurrency. A read-then-write sequence can race:
+
 ```python
-# PostgreSQL example with unique constraint on order_id
-def process_order(order_id, amount):
-    try:
-        cursor.execute("""
-            INSERT INTO orders (order_id, amount, status, created_at)
-            VALUES (%s, %s, 'processed', NOW())
-        """, (order_id, amount))
-        conn.commit()
-    except psycopg2.IntegrityError:
-        # Duplicate order_id - already processed
-        print(f"Duplicate order: {order_id}")
-        conn.rollback()
-        return
+existing = table.get_item(Key={"Id": event_id})
+if "Item" not in existing:
+    table.put_item(Item={"Id": event_id})
+    charge_customer()
 ```
-_Idempotent: no double processing when the unique constraint is present._
 
-### 3. AWS Lambda Powertools Idempotency
+Two invocations can both pass the read before either writes. Use a conditional write, a database uniqueness constraint, or the [AWS Lambda Powertools Idempotency utility](https://docs.aws.amazon.com/powertools/python/latest/utilities/idempotency/), which handles concurrent requests and repeated calls.
 
-**Pattern**: built-in decorator with DynamoDB persistence.
-```python
-import json
-from aws_lambda_powertools.utilities.idempotency import (
-    IdempotencyConfig, DynamoDBPersistenceLayer, idempotent
-)
+Place the guard before irreversible side effects and decide how long the idempotency record must live. The retention window should match how long duplicates can still matter to the business action.
 
-persistence_layer = DynamoDBPersistenceLayer(table_name="IdempotencyTable")
-config = IdempotencyConfig(expires_after_seconds=3600)  # 1 hour TTL
+## Test the failures you expect to survive
 
-@idempotent(config=config, persistence_store=persistence_layer)
-def process_payment(payment_data):
-    charge_customer(payment_data["customer_id"], payment_data["amount"])
-    send_receipt(payment_data["email"])
-    return {"status": "success"}
+Do not copy round-number load-test rates from somebody else's architecture. Derive scenarios from your traffic, service quotas, downstream capacity, and failure budget.
 
-def lambda_handler(event, context):
-    for record in event["Records"]:
-        message = json.loads(record["body"])
-        process_payment(message)  # Automatic deduplication
-```
-Docs: https://docs.powertools.aws.dev/lambda/python/latest/utilities/idempotency/
+At minimum, test:
 
-## Idempotency Rules
+1. **Normal load:** expected message mix and steady arrival rate.
+2. **Peak and burst:** the highest credible arrival rate and recovery time.
+3. **Slow dependency:** downstream latency approaching the Lambda timeout.
+4. **Poison message:** one record fails repeatedly inside a mixed batch.
+5. **Throttling:** maximum concurrency protects the dependency while queue age grows.
+6. **Duplicate delivery:** the same business event arrives more than once.
+7. **DLQ redrive:** operators can inspect and safely replay a corrected message.
 
-| Strategy | Benefit |
-| --- | --- |
-| Use SQS MessageId | Built-in unique identifier per message |
-| Add TTL to idempotency store | Prevent unbounded table growth (7–14 days) |
-| Idempotency key = business key | Use order_id or transaction_id where possible |
-| Check before side effects | DB writes, payments, emails, external APIs |
-| Handle check failures gracefully | Network errors during check → safe retry |
-| Consider FIFO queues | Exactly-once within constraints (300 msg/s limit) |
+The pass condition is not "Lambda scaled." It is that the pipeline protects downstream systems, retries only what should retry, preserves required ordering, and makes failed work visible.
 
-Idempotency key sources (preference order):
-- Business key (order_id, transaction_id)
-- SQS MessageId
-- Hash of message body
+## Production checklist
 
-## Architecture Anti-Patterns
+- [ ] Visibility timeout is at least `6 * function timeout + batching window`
+- [ ] `ReportBatchItemFailures` is enabled and implemented
+- [ ] FIFO consumers stop after the first failed record
+- [ ] Source queue has a DLQ with an intentional `maxReceiveCount`
+- [ ] DLQ arrival and queue age have alarms
+- [ ] Event source mapping concurrency protects downstream capacity
+- [ ] Side effects are idempotent under concurrent retries
+- [ ] Batch size and timeout were load tested with real messages
+- [ ] Redrive procedure was tested
 
-| Anti-pattern | Alternative |
-| --- | --- |
-| V < Tλ or V = Tλ | V ≥ 6 × Tλ |
-| Large batch + slow processing | Right-size batch with margin |
-| No DLQ or no DLQ alarms | DLQ + alarms + isolation |
-| Redrive all without triage | Throttled redrive + validation |
-| Unbounded Lambda concurrency | maximum_concurrency cap |
-| No idempotency | Idempotency keys/checks (DynamoDB or DB constraints) |
-
-## Takeaways
-
-- Visibility timeout = 6× Lambda timeout to avoid duplicate pickup
-- Batch size formula: (Tλ × 0.8) / Tm; use p95 message time
-- maxReceiveCount = 1 + retries (e.g., 4 for 3 retries)
-- Enable partial retries: ReportBatchItemFailures + bisect_batch_on_function_error
-- DLQ alarms must exist; silent failures are production killers
-- Load test before production: baseline → peak → spike → soak
-- Always implement idempotency; SQS can deliver duplicates
-
-## Resources and Next Steps
-
-**Tools**:
-- CloudWatch Logs Insights — per-message timing
-- CloudWatch Dashboards — real-time monitoring
-- X-Ray — end-to-end tracing
-- AWS Lambda Powertools — structured logging and metrics
-
-**Testing**:
-- Run baseline load test (100 msg/s, 10 min)
-- Establish p95/p99 baselines for key metrics
-- Schedule weekly soak tests
-
-**Configuration review checklist**:
-- [ ] Visibility timeout ≥ 6× Lambda timeout
-- [ ] Batch size validated with formula
-- [ ] DLQ + alarms configured
-- [ ] ReportBatchItemFailures enabled
-- [ ] Load test completed
-
-## Detailed Throughput Calculation
-
-Throughput = (Batch Size × Concurrency) / Avg Processing Time
-
-Example:
-- Batch Size = 20
-- Concurrency = 10 Lambda instances
-- Avg processing time per message = 2s
-
-Throughput = (20 × 10) / 2 = 100 messages/second
-
-Constraints:
-- Lambda account concurrency limit
-- Downstream throttling (DB connections, API rate limits)
-- SQS FIFO limit: 300 msg/s per API action
-
-## S3 Pointer Pattern for Large Messages
-
-**Pattern**: store payload in S3, send a reference in SQS (< 256 KB). Retrieve from S3 in the consumer Lambda.
-
-
-
-## Conclusion
-
-Production-grade messaging on AWS rewards careful math and tight guardrails. 
-
-Tune timeouts, cap concurrency, and measure with percentiles. 
-
-Prove behavior under load before deploying. 
-
-Run the checklist today and harden one pipeline end-to-end—then scale the pattern across your stack.
+SQS and Lambda are reliable when the failure behavior is designed, not assumed. Configure the retry envelope, isolate failed records, cap the blast radius, and prove the pipeline under load before production does it for you.
