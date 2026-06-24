@@ -106,11 +106,16 @@ export default function AnimatedHero({
 
           {/* Profile photo — accent, not focal point */}
           <div className="hidden lg:block flex-none">
-            <img
-              src="/images/profile_photo.png"
-              alt="Collin Wilkins"
-              className="w-28 h-28 xl:w-32 xl:h-32 rounded-full object-cover border border-[var(--color-border-hover)] opacity-90"
-            />
+            <picture>
+              <source srcSet="/images/profile_photo.webp" type="image/webp" />
+              <img
+                src="/images/profile_photo.png"
+                alt="Collin Wilkins"
+                width={128}
+                height={128}
+                className="w-28 h-28 xl:w-32 xl:h-32 rounded-full object-cover border border-[var(--color-border-hover)] opacity-90"
+              />
+            </picture>
           </div>
 
         </div>

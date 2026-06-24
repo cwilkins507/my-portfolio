@@ -89,11 +89,16 @@ const About = () => {
           </div>
 
           <aside className="col-start-2 pt-2 text-[var(--color-text-secondary)] lg:col-start-auto lg:border-l lg:border-[var(--color-accent-border)] lg:pl-6">
-            <img
-              src="/images/profile_photo.png"
-              alt="Collin Wilkins"
-              className="mb-6 hidden h-32 w-32 rounded-full border border-[var(--color-border)] object-cover lg:block"
-            />
+            <picture>
+              <source srcSet="/images/profile_photo.webp" type="image/webp" />
+              <img
+                src="/images/profile_photo.png"
+                alt="Collin Wilkins"
+                width={128}
+                height={128}
+                className="mb-6 hidden h-32 w-32 rounded-full border border-[var(--color-border)] object-cover lg:block"
+              />
+            </picture>
             <p className="text-sm leading-relaxed">
               Lead Software Engineer at Morningstar. Previously Ford. Comfortable somewhere between finance, field ops, Python, and the system everyone is annoyed by but nobody has had time to fix.
             </p>
