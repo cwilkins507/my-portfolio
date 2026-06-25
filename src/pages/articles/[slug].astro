@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import BookCTA from '../../components/BookCTA.astro';
+import { getCategoryForArticle } from '../../data/categories.js';
 
 const articleModules = import.meta.glob('../../articles/*.md', { eager: true });
 const allArticles = Object.entries(articleModules).map(([file, article]) => ({
@@ -22,30 +24,20 @@ const { article } = Astro.props;
 const { Content, frontmatter } = article;
 const slug = Astro.params.slug;
 
-const playbookArticleSources: Record<string, { pillar: string; chapter: string }> = {
-  'how-to-know-if-your-business-is-ready-for-ai': { pillar: 'Readiness', chapter: '01' },
-  'context-engineering-ai-coding-tools': { pillar: 'Context', chapter: '02' },
-  'ai-coding-model-wars-2026': { pillar: 'Tooling', chapter: '03' },
-  'llm-gateway-architecture': { pillar: 'Tooling', chapter: '03' },
-  'claude-code-productivity-paradox': { pillar: 'Adoption', chapter: '04' },
-  'automation-cost-small-business': { pillar: 'ROI', chapter: '05' },
-};
-const playbookSource = playbookArticleSources[slug];
-
-// Compute word count from raw markdown (excluding frontmatter)
-let wordCount;
+// Word count + reading time
+let wordCount: number | undefined;
+let readMins: number = 5;
 try {
   const raw = typeof article.rawContent === 'function' ? article.rawContent() : '';
   if (raw) {
     wordCount = raw.trim().split(/\s+/).filter(Boolean).length;
+    readMins = Math.max(1, Math.round(wordCount / 225));
   }
-} catch (e) {
-  wordCount = undefined;
-}
+} catch {}
 
-// Related articles: use manual override from frontmatter, fall back to tag-based matching
+// Related articles
 const manualRelatedSlugs: string[] = frontmatter.related_articles || [];
-let relatedArticles: { slug: string; title: string; excerpt: string; date: string; sharedCount: number }[];
+let relatedArticles: { slug: string; title: string; excerpt: string; date: string; category: string }[];
 
 if (manualRelatedSlugs.length > 0) {
   relatedArticles = manualRelatedSlugs
@@ -57,129 +49,88 @@ if (manualRelatedSlugs.length > 0) {
         title: match.frontmatter.title,
         excerpt: match.frontmatter.excerpt,
         date: match.frontmatter.date,
-        sharedCount: 0,
+        category: getCategoryForArticle(match.frontmatter.tags),
       };
     })
     .filter((a): a is NonNullable<typeof a> => a !== null);
 } else {
   const currentTags = frontmatter.tags || [];
   relatedArticles = allArticles
-    .filter(a => {
-      const aSlug = a.file.split('/').pop().replace('.md', '');
-      return aSlug !== slug;
-    })
-    .map(a => {
-      const aTags = a.frontmatter.tags || [];
-      const sharedTags = currentTags.filter(tag => aTags.includes(tag));
-      return {
-        slug: a.file.split('/').pop().replace('.md', ''),
-        title: a.frontmatter.title,
-        excerpt: a.frontmatter.excerpt,
-        date: a.frontmatter.date,
-        sharedCount: sharedTags.length,
-      };
-    })
+    .filter(a => a.file.split('/').pop().replace('.md', '') !== slug)
+    .map(a => ({
+      slug: a.file.split('/').pop().replace('.md', ''),
+      title: a.frontmatter.title,
+      excerpt: a.frontmatter.excerpt,
+      date: a.frontmatter.date,
+      category: getCategoryForArticle(a.frontmatter.tags),
+      sharedCount: (currentTags as string[]).filter(t => (a.frontmatter.tags || []).includes(t)).length,
+    }))
     .filter(a => a.sharedCount > 0)
     .sort((a, b) => b.sharedCount - a.sharedCount || new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 3);
 }
 
-// Use SEO-specific frontmatter if available, fallback to defaults
 const pageTitle = frontmatter.seo_title || frontmatter.title;
 const pageDescription = frontmatter.meta_description || frontmatter.excerpt;
 const imageUrl = frontmatter.image ? new URL(frontmatter.image, Astro.site).toString() : undefined;
 const imageAlt = frontmatter.image_alt || frontmatter.title;
+const category = getCategoryForArticle(frontmatter.tags);
 
-// Article structured data for SEO
-const articleEntity = {
-  "@type": "Article",
-  "headline": frontmatter.title,
-  "description": pageDescription,
-  "datePublished": frontmatter.date,
-  "dateModified": frontmatter.updated || frontmatter.date,
-  "inLanguage": "en-US",
-  "isAccessibleForFree": true,
-  "author": {
-    "@type": "Person",
-    "name": "Collin Wilkins",
-    "url": "https://collinwilkins.com/about",
-    "sameAs": [
-      "https://www.linkedin.com/in/collin-wilkins-1020215a/",
-      "https://github.com/cwilkins507"
-    ]
+const pubDate = new Date(frontmatter.date).toLocaleDateString('en-US', {
+  year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC',
+});
+
+const articleEntity: Record<string, unknown> = {
+  '@type': 'Article',
+  headline: frontmatter.title,
+  description: pageDescription,
+  datePublished: frontmatter.date,
+  dateModified: frontmatter.updated || frontmatter.date,
+  inLanguage: 'en-US',
+  isAccessibleForFree: true,
+  author: {
+    '@type': 'Person',
+    name: 'Collin Wilkins',
+    url: 'https://collinwilkins.com/about',
+    sameAs: ['https://www.linkedin.com/in/collin-wilkins-1020215a/'],
   },
-  "publisher": {
-    "@type": "Person",
-    "name": "Collin Wilkins",
-    "url": "https://collinwilkins.com"
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": `https://collinwilkins.com/articles/${slug}`
-  }
+  publisher: { '@type': 'Person', name: 'Collin Wilkins', url: 'https://collinwilkins.com' },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': `https://collinwilkins.com/articles/${slug}` },
 };
-
-if (imageUrl) {
-  articleEntity.image = imageUrl;
-}
+if (imageUrl) articleEntity.image = imageUrl;
 if (wordCount) {
   articleEntity.wordCount = wordCount;
-  // Estimate reading time at 225 words per minute, ISO 8601 duration
-  articleEntity.timeRequired = `PT${Math.max(1, Math.round(wordCount / 225))}M`;
+  articleEntity.timeRequired = `PT${readMins}M`;
 }
-if (frontmatter.target_keywords) {
-  articleEntity.keywords = frontmatter.target_keywords;
-}
-if (frontmatter.tags && frontmatter.tags.length > 0) {
+if (frontmatter.target_keywords) articleEntity.keywords = frontmatter.target_keywords;
+if (frontmatter.tags?.length) {
   articleEntity.articleSection = frontmatter.tags[0];
-  articleEntity.about = frontmatter.tags.map(tag => ({ "@type": "Thing", "name": tag }));
+  articleEntity.about = frontmatter.tags.map((t: string) => ({ '@type': 'Thing', name: t }));
 }
 
-const graphItems = [
+const graphItems: unknown[] = [
   articleEntity,
   {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://collinwilkins.com"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Articles",
-        "item": "https://collinwilkins.com/articles"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": frontmatter.title
-      }
-    ]
-  }
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://collinwilkins.com' },
+      { '@type': 'ListItem', position: 2, name: 'Articles', item: 'https://collinwilkins.com/articles' },
+      { '@type': 'ListItem', position: 3, name: frontmatter.title },
+    ],
+  },
 ];
-
-// Add FAQPage schema if article has FAQs defined in frontmatter
-if (frontmatter.faqs && frontmatter.faqs.length > 0) {
+if (frontmatter.faqs?.length) {
   graphItems.push({
-    "@type": "FAQPage",
-    "mainEntity": frontmatter.faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.q,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.a
-      }
-    }))
+    '@type': 'FAQPage',
+    mainEntity: frontmatter.faqs.map((faq: { q: string; a: string }) => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: { '@type': 'Answer', text: faq.a },
+    })),
   });
 }
 
-const articleSchema = {
-  "@context": "https://schema.org",
-  "@graph": graphItems
-};
+const articleSchema = { '@context': 'https://schema.org', '@graph': graphItems };
 ---
 
 <Layout
@@ -189,130 +140,512 @@ const articleSchema = {
   publishedTime={frontmatter.date}
   image={frontmatter.image}
   schema={articleSchema}
+  hideFooterNewsletter={true}
 >
-  <div class="container mx-auto px-4 py-16">
-    <div class="max-w-3xl mx-auto">
-      <a href="/articles" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] mb-8 inline-block text-sm">
-        ← All articles
-      </a>
-      <h1 class="text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-4">{frontmatter.title}</h1>
-      <article class="text-moonlight-text-secondary mb-4">
-        {new Date(frontmatter.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
-      </article>
-      <div class="flex flex-wrap gap-2 mb-8">
-        {frontmatter.tags?.map(tag => (
-          <span class="bg-[var(--color-surface)] text-[var(--color-text-secondary)] text-sm px-3 py-1 rounded-full border border-[var(--color-border)]">
-            {tag}
-          </span>
+
+<!-- Reading progress bar -->
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<article>
+  <!-- ── Article header ── -->
+  <div class="wrap">
+    <header class="post-head">
+      <span class="label" style="color:var(--accent-text);display:inline-block;margin-bottom:26px;">{category}</span>
+      <h1 class="post-title">{frontmatter.title}</h1>
+      {frontmatter.excerpt && (
+        <p class="post-dek">{frontmatter.excerpt}</p>
+      )}
+      <div class="byline">
+        <strong>Collin Wilkins</strong>
+        <span class="dot"></span>
+        <span>{pubDate}</span>
+        <span class="dot"></span>
+        <span>{readMins} min read</span>
+      </div>
+    </header>
+
+    {frontmatter.image ? (
+      <figure class="cover">
+        <img src={frontmatter.image} alt={imageAlt} class="cover-img" loading="eager" />
+      </figure>
+    ) : (
+      <div class="cover">
+        <div class="ph" style="aspect-ratio:16/8;"><span>cover</span></div>
+      </div>
+    )}
+  </div>
+
+  <!-- ── 3-column reading grid ── -->
+  <div class="read-wrap">
+    <div class="read-grid">
+      <!-- TOC (desktop only, populated by JS) -->
+      <aside class="toc" aria-label="Table of contents">
+        <span class="label" style="color:var(--ink-faint);display:block;padding-bottom:12px;border-bottom:1px solid var(--rule);margin-bottom:14px;">On this page</span>
+        <ol id="toc-list"></ol>
+      </aside>
+
+      <!-- Article body -->
+      <div class="body" id="article-body">
+        <Content />
+      </div>
+
+      <!-- Share rail (desktop only) -->
+      <aside class="share" aria-label="Share">
+        <span class="label" style="color:var(--ink-faint);display:block;margin-bottom:14px;">Share</span>
+        <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://collinwilkins.com/articles/${slug}`)}`} target="_blank" rel="noopener" id="share-linkedin" style="display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;padding:9px 0;border-bottom:1px solid var(--rule);transition:.15s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">LinkedIn<span>↗</span></a>
+        <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(`https://collinwilkins.com/articles/${slug}`)}&text=${encodeURIComponent(frontmatter.title)}`} target="_blank" rel="noopener" id="share-x" style="display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;padding:9px 0;border-bottom:1px solid var(--rule);transition:.15s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">X / Twitter<span>↗</span></a>
+        <button id="copy-link" style="display:flex;justify-content:space-between;align-items:center;width:100%;font-family:var(--mono);font-size:12px;color:var(--ink-soft);background:none;border:none;border-bottom:1px solid var(--rule);padding:9px 0;cursor:pointer;transition:.15s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">Copy link<span>⧉</span></button>
+      </aside>
+    </div>
+  </div>
+
+  <!-- ── End matter ── -->
+  <div class="wrap" style="max-width:calc(var(--measure) + 48px);">
+    <!-- Tags -->
+    {frontmatter.tags && frontmatter.tags.length > 0 && (
+      <div class="tags" style="margin-top:clamp(36px,5vw,52px);padding-top:clamp(36px,5vw,52px);border-top:1px solid var(--rule);">
+        {frontmatter.tags.map((tag: string) => (
+          <a href={`/articles?cat=${encodeURIComponent(getCategoryForArticle([tag]))}`}>{tag}</a>
         ))}
       </div>
-      {frontmatter.image && (
-        <figure class="mb-12 overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]">
-          <img src={frontmatter.image} alt={imageAlt} class="aspect-[7/4] w-full object-cover" loading="eager" />
-        </figure>
-      )}
-      
-      <div class="flex gap-5 md:gap-8">
-        <div class="flex-none w-px self-stretch bg-gradient-to-b from-[var(--color-accent)] via-[var(--color-accent-muted)] to-transparent" aria-hidden="true"></div>
-        <div class="prose prose-invert max-w-none min-w-0 prose-headings:font-serif prose-headings:text-[var(--color-text-primary)] prose-p:text-moonlight-text-secondary prose-a:text-[var(--color-accent)] prose-strong:text-[var(--color-text-primary)] prose-code:text-[var(--color-text-secondary)] prose-pre:bg-[var(--color-surface)] prose-pre:border prose-pre:border-[var(--color-border)] prose-img:mx-auto prose-img:w-full prose-img:rounded-lg prose-img:my-10 [&>h1:first-child]:hidden">
-          <Content />
-        </div>
+    )}
+
+    <!-- Author card -->
+    <div class="author">
+      <div class="pic">
+        <img src="/images/profile_photo.webp" alt="Collin Wilkins" width="60" height="60" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'" />
       </div>
-
-      {playbookSource && (
-        <aside class="mt-14 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
-          <div class="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-accent)]">AI Adoption Playbook</div>
-          <p class="mb-5 text-base leading-relaxed text-moonlight-text-secondary">
-            Want the broader map? This article is one piece of my AI Adoption Playbook for engineering teams. Start with the five-pillar guide.
-          </p>
-          <a
-            href={`/guides/ai-adoption-playbook?from=${slug}`}
-            data-article-playbook-cta
-            data-article={slug}
-            data-chapter={playbookSource.chapter}
-            data-pillar={playbookSource.pillar}
-            class="inline-flex min-h-11 items-center rounded-lg bg-[var(--color-accent)] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-accent-hover)]"
-          >
-            Read the five-pillar guide
-          </a>
-        </aside>
-      )}
-
-      {/* Related Articles */}
-      {relatedArticles.length > 0 && (
-        <div class="mt-16 border-t border-[var(--color-border)] pt-12">
-          <h2 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-8">Related Articles</h2>
-          <div class="grid gap-6 md:grid-cols-3">
-            {relatedArticles.map(related => (
-              <a
-                href={`/articles/${related.slug}`}
-                class="bg-[var(--color-surface)] rounded-xl p-6 hover:bg-[var(--color-surface-hover)] transition duration-300 border border-[var(--color-border)] hover:border-[var(--color-border-hover)] group"
-              >
-                <h3 class="text-lg font-serif font-bold text-[var(--color-text-primary)] mb-2 group-hover:text-[var(--color-text-primary)] transition leading-tight">
-                  {related.title}
-                </h3>
-                <p class="text-moonlight-text-muted text-sm mb-3">
-                  {new Date(related.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}
-                </p>
-                <p class="text-moonlight-text-secondary text-sm line-clamp-2">{related.excerpt}</p>
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Article Footer CTA */}
-      <div class="mt-20 border-t border-[var(--color-border)] pt-12 flex flex-col sm:flex-row sm:items-center gap-6">
-        <p class="flex-1 text-base text-moonlight-text-secondary leading-relaxed">
-          If you're wrestling with AI adoption, convention files, or automation architecture, the assessment is the fastest way to get a concrete answer.
-        </p>
-        <div class="flex flex-wrap gap-3 flex-none">
-          <a
-            href="/services#assessment"
-            data-services-click
-            data-location="article_footer_assessment"
-            class="inline-flex items-center gap-2 min-h-11 px-5 rounded-lg bg-[var(--color-accent)] text-white text-sm font-semibold hover:bg-[var(--color-accent-hover)] transition-colors"
-          >
-            Book an assessment
-          </a>
-          <a
-            href="/services"
-            data-services-click
-            data-location="article_footer_services"
-            class="inline-flex items-center gap-2 min-h-11 px-5 rounded-lg border border-[var(--color-border)] text-[var(--color-text-secondary)] text-sm font-semibold hover:border-[var(--color-border-hover)] hover:text-[var(--color-text-primary)] transition-colors"
-          >
-            Services
-          </a>
+      <div>
+        <div class="a-name">Collin Wilkins</div>
+        <div class="a-role">Lead Engineer · AI & Automation</div>
+        <div class="a-bio">Lead Software Engineer at Morningstar with 12 years across Ford and enterprise software. I write about what actually works when engineering teams adopt AI — and what breaks when they don't set up the context layer first.</div>
+        <div class="cta-row">
+          <BookCTA label="Book an intro call →" />
+          <a href="/services" class="btn btn-ghost">View services</a>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- ── Newsletter ── -->
+  <div class="news" style="margin-top:clamp(48px,7vw,80px);">
+    <h3>Notes from production.</h3>
+    <p>Every other week: working playbooks on AI coding tools, convention files, and automation architecture.</p>
+    <form action="https://buttondown.com/api/emails/embed-subscribe/collinwilkins" method="post" target="popupwindow">
+      <input type="email" name="email" placeholder="you@company.com" aria-label="Email address" />
+      <button class="btn btn-solid" type="submit">Subscribe</button>
+    </form>
+    <div class="fine">No spam. Unsubscribe anytime.</div>
+  </div>
+
+  <!-- ── Related articles ── -->
+  {relatedArticles.length > 0 && (
+    <div class="wrap" style="padding-top:clamp(48px,7vw,80px);padding-bottom:clamp(40px,6vw,64px);">
+      <span class="label" style="color:var(--ink-faint);display:block;text-align:center;margin-bottom:24px;">Related Articles</span>
+      <div class="rel-grid">
+        {relatedArticles.map(r => (
+          <a href={`/articles/${r.slug}`} class="rel-card">
+            <div class="rc-cat">{r.category}</div>
+            <div class="rc-title">{r.title}</div>
+            <div class="rc-date">{new Date(r.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', timeZone: 'UTC' })}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  )}
+</article>
+
 </Layout>
 
-<script define:vars={{ slug }}>
-  function trackArticleEvent(name, props) {
-    if (typeof window !== 'undefined' && typeof window.plausible === 'function') {
-      window.plausible(name, { props });
-    }
+<style>
+/* ── Post header ── */
+.post-head {
+  padding: clamp(48px, 8vw, 96px) 0 0;
+  text-align: center;
+  max-width: var(--measure);
+  margin: 0 auto;
+}
+.post-title {
+  font-size: clamp(30px, 4.8vw, 50px);
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: -.018em;
+  text-wrap: balance;
+}
+.post-dek {
+  font-style: italic;
+  font-size: clamp(18px, 2.2vw, 21px);
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 18px auto 0;
+  max-width: 34rem;
+  text-wrap: pretty;
+}
+.byline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 34px;
+  color: var(--ink-faint);
+  font-family: var(--mono);
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+.byline strong { color: var(--ink); font-weight: 600; font-family: var(--serif); }
+.dot { width: 3px; height: 3px; border-radius: 50%; background: var(--ink-faint); flex-shrink: 0; }
+
+/* ── Cover image ── */
+.cover {
+  margin: clamp(40px, 6vw, 68px) auto 0;
+  max-width: var(--measure);
+}
+.cover-img {
+  width: 100%;
+  aspect-ratio: 16/8;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+  display: block;
+}
+
+/* ── 3-column reading grid ── */
+.read-wrap {
+  padding: clamp(40px, 6vw, 64px) clamp(20px, 5vw, 48px) 0;
+}
+.read-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: calc(200px + var(--measure) + 168px + 92px);
+  margin: 0 auto;
+}
+@media (min-width: 1080px) {
+  .read-grid {
+    grid-template-columns: 200px minmax(0, var(--measure)) 168px;
+    gap: 46px;
+    align-items: start;
+  }
+}
+
+/* ── TOC ── */
+.toc { display: none; }
+@media (min-width: 1080px) {
+  .toc { display: block; position: sticky; top: 80px; }
+}
+:global(#toc-list) { list-style: none; display: flex; flex-direction: column; gap: 1px; }
+:global(#toc-list a) {
+  display: block;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  text-decoration: none;
+  padding: 7px 0 7px 12px;
+  border-left: 2px solid var(--rule);
+  transition: .15s;
+  letter-spacing: .01em;
+}
+:global(#toc-list a:hover) { color: var(--ink); }
+:global(#toc-list a.active) { color: var(--accent-text); border-left-color: var(--accent); font-weight: 500; }
+
+/* ── Share rail ── */
+.share { display: none; }
+@media (min-width: 1080px) {
+  .share { display: block; position: sticky; top: 80px; }
+}
+
+/* ── Article body prose ── */
+.body {
+  min-width: 0;
+  font-size: 19px;
+  line-height: 1.65;
+  color: var(--ink);
+}
+.body :global(p) { margin: 0 0 1.35em; text-wrap: pretty; }
+.body :global(h2) {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(22px, 2.8vw, 28px);
+  line-height: 1.2;
+  letter-spacing: -.01em;
+  margin: 2em 0 .55em;
+  padding-top: .4em;
+  position: relative;
+  scroll-margin-top: 80px;
+}
+.body :global(h2::before) {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 36px; height: 2px;
+  background: var(--accent);
+}
+.body :global(h3) {
+  font-weight: 600;
+  font-size: clamp(18px, 2.2vw, 21px);
+  line-height: 1.3;
+  margin: 1.6em 0 .4em;
+  letter-spacing: -.01em;
+}
+.body :global(em) { font-style: italic; }
+.body :global(strong) { font-weight: 600; color: var(--ink); }
+.body :global(a) { color: var(--accent-text); text-decoration: underline; text-underline-offset: 3px; }
+.body :global(a:hover) { color: var(--accent-deep); }
+.body :global(code) {
+  font-family: var(--mono);
+  font-size: .82em;
+  background: var(--paper-2);
+  padding: .1em .35em;
+  border-radius: 4px;
+  color: var(--ink);
+}
+.body :global(pre) {
+  background: oklch(0.255 0.012 60);
+  color: oklch(0.92 0.01 78);
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.7;
+  padding: 20px 22px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1.8em 0;
+}
+.body :global(pre code) { background: none; padding: 0; font-size: inherit; color: inherit; }
+.body :global(blockquote) {
+  margin: 1.8em 0;
+  padding: .2em 0 .2em 24px;
+  border-left: 3px solid var(--accent);
+  font-style: italic;
+  color: var(--ink-soft);
+}
+.body :global(ul) { margin: 0 0 1.35em; padding-left: 1.1em; list-style: none; }
+.body :global(ul li) { position: relative; margin: 0 0 .6em; padding-left: .5em; text-wrap: pretty; }
+.body :global(ul li::before) {
+  content: "";
+  position: absolute;
+  left: -.7em; top: .6em;
+  width: 5px; height: 5px;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+.body :global(ol) { margin: 0 0 1.35em; padding-left: 1.4em; }
+.body :global(ol li) { margin: 0 0 .6em; }
+.body :global(table) { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.5; margin: 1.9em 0; }
+.body :global(th) {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--ink-soft);
+  padding: 0 16px 10px 0;
+  border-bottom: 1px solid var(--ink);
+}
+.body :global(td) { padding: 12px 16px 12px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.body :global(hr) { border: none; border-top: 1px solid var(--rule); margin: 2em 0; }
+.body :global(img) { width: 100%; border-radius: 6px; margin: 1.4em 0; border: 1px solid var(--rule); display: block; }
+
+/* ── Author card ── */
+.author {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+  padding: clamp(28px, 4vw, 40px) 0;
+  border-top: 1px solid var(--rule);
+  margin-top: clamp(36px, 5vw, 52px);
+}
+.pic {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1px solid var(--rule);
+  background: var(--paper-2);
+}
+.a-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 3px;
+  font-family: var(--serif);
+}
+.a-role {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 10px;
+}
+.a-bio {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 52ch;
+  margin-bottom: 14px;
+  font-family: var(--serif);
+}
+.cta-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ── Newsletter strip ── */
+.news {
+  background: var(--paper-2);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: clamp(40px, 6vw, 64px) clamp(20px, 5vw, 48px);
+  text-align: center;
+  margin-top: clamp(40px, 6vw, 64px);
+}
+.news h3 {
+  font-size: clamp(20px, 2.8vw, 26px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -.01em;
+  margin: 0 0 10px;
+}
+.news p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 46ch;
+  margin: 0 auto 22px;
+}
+.news form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.news input[type="email"] {
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 11px 18px;
+  background: var(--paper);
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink);
+  width: min(240px, 80vw);
+  outline: none;
+  transition: border-color .15s;
+}
+.news input[type="email"]:focus { border-color: var(--accent); }
+.fine {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+  margin-top: 14px;
+  letter-spacing: .04em;
+}
+
+/* ── Related articles ── */
+.rel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1px;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--rule);
+}
+.rel-card {
+  display: block;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--paper);
+  padding: 22px;
+  transition: background .12s;
+}
+.rel-card:hover { background: var(--paper-2); }
+.rc-cat {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 3px 9px;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+.rel-card:hover .rc-cat { background: var(--paper-3); border-color: var(--ink-faint); }
+.rc-title {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -.01em;
+  margin-bottom: 10px;
+  color: var(--ink);
+}
+.rel-card:hover .rc-title { color: var(--accent-text); }
+.rc-date {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+}
+</style>
+
+<script define:vars={{ slug, frontmatter }}>
+  // Reading progress
+  const prog = document.getElementById('progress');
+  if (prog) {
+    addEventListener('scroll', () => {
+      const h = document.documentElement;
+      prog.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+    }, { passive: true });
   }
 
-  document.querySelectorAll('[data-article-playbook-cta]').forEach((link) => {
-    link.addEventListener('click', () => {
-      trackArticleEvent('Playbook Article Click', {
-        article: link.getAttribute('data-article'),
-        chapter: link.getAttribute('data-chapter'),
-        pillar: link.getAttribute('data-pillar'),
-        source: 'article_cta'
-      });
+  // Build TOC from H2s in the article body
+  const body = document.getElementById('article-body');
+  const tocList = document.getElementById('toc-list');
+  if (body && tocList) {
+    const heads = [...body.querySelectorAll('h2')];
+    heads.forEach((h, i) => {
+      if (!h.id) h.id = 'section-' + i;
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = '#' + h.id;
+      a.textContent = h.textContent;
+      li.appendChild(a);
+      tocList.appendChild(li);
     });
-  });
 
-  document.querySelectorAll('[data-services-click]').forEach((link) => {
-    link.addEventListener('click', () => {
-      trackArticleEvent('Services Click', {
-        source_page: `/articles/${slug}`,
-        location: link.getAttribute('data-location')
+    // Scroll-spy
+    const links = [...tocList.querySelectorAll('a')];
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const id = e.target.id;
+          links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+        }
       });
+    }, { rootMargin: '-100px 0px -68% 0px' });
+    heads.forEach(h => obs.observe(h));
+  }
+
+  // Share rail
+  const url = window.location.href;
+  const title = encodeURIComponent(document.title);
+
+  const li = document.getElementById('share-linkedin');
+  if (li) li.href = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${title}`;
+
+  const sx = document.getElementById('share-x');
+  if (sx) sx.href = `https://x.com/intent/tweet?url=${encodeURIComponent(url)}&text=${title}`;
+
+  const cl = document.getElementById('copy-link');
+  if (cl) {
+    cl.addEventListener('click', async () => {
+      await navigator.clipboard.writeText(url).catch(() => {});
+      cl.textContent = 'Copied!';
+      setTimeout(() => { cl.innerHTML = 'Copy link<span>⧉</span>'; }, 2000);
     });
-  });
+  }
 </script>

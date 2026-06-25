@@ -1,8 +1,5 @@
 ---
-import { Linkedin, Github, BadgeDollarSign } from 'lucide-react';
-import ContactModalWrapper from '../components/ContactModalWrapper';
-import Navigation from '../components/Navigation';
-import NewsletterSignup from '../components/NewsletterSignup.astro';
+import Navigation from '../components/Navigation.jsx';
 import '../index.css';
 
 interface Props {
@@ -18,7 +15,7 @@ interface Props {
 
 const {
 	title,
-	description = "Lead Software Engineer specializing in Python Automation, AI Integration, and AWS Serverless Architecture.",
+	description = "Lead Software Engineer specializing in AI engineering, automation architecture, and production AI systems.",
 	image,
 	type = 'website',
 	publishedTime,
@@ -34,7 +31,6 @@ const portfolioData = {
   name: "Collin Wilkins",
   email: "wilkins507@gmail.com",
   linkedin: "https://www.linkedin.com/in/collin-wilkins-1020215a/",
-  upwork: "https://www.upwork.com/freelancers/~014ffbc17b83da9407",
   github: "https://github.com/cwilkins507"
 };
 
@@ -54,8 +50,8 @@ const currentYear = new Date().getFullYear();
 		<meta name="description" content={description} />
 		<meta name="robots" content={robots} />
 		<meta name="google-site-verification" content="p-TMFQiYQvWsK5Tn417NrhsVXZUOlO0riWjvgMm-zSI" />
-		
-		<!-- Open Graph / Facebook -->
+
+		<!-- Open Graph -->
 		<meta property="og:type" content={type} />
 		<meta property="og:url" content={canonicalURL} />
 		<meta property="og:title" content={title} />
@@ -73,10 +69,10 @@ const currentYear = new Date().getFullYear();
 
 		<link rel="canonical" href={canonicalURL} />
 
-		<!-- Google Fonts -->
+		<!-- Google Fonts: Newsreader + IBM Plex Mono -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
 		<!-- JSON-LD Structured Data -->
 		{schema && (
@@ -89,18 +85,13 @@ const currentYear = new Date().getFullYear();
 			)
 		)}
 
-		<!-- Anti-FOUC: Apply theme before paint -->
-		<script is:inline>
-			(function(){try{var s=JSON.parse(localStorage.getItem('theme-storage'));if(s&&s.state&&s.state.theme==='light'){document.documentElement.classList.add('light')}}catch(e){}})();
-		</script>
-
-		<!-- Static-host fallback for legacy mixed-case and .html URLs -->
+		<!-- URL normalisation: strip .html, lowercase -->
 		<script is:inline>
 			(function(){
 				var path = window.location.pathname;
-				var canonicalPath = path.replace(/\.html$/, '').toLowerCase();
-				if (canonicalPath !== path) {
-					window.location.replace(canonicalPath + window.location.search + window.location.hash);
+				var canonical = path.replace(/\.html$/, '').toLowerCase();
+				if (canonical !== path) {
+					window.location.replace(canonical + window.location.search + window.location.hash);
 				}
 			})();
 		</script>
@@ -109,34 +100,84 @@ const currentYear = new Date().getFullYear();
 		<script async src="https://plausible.io/js/pa-CmOP0LRtv6tlswXjVukB6.js"></script>
 		<script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
 	</head>
-	<body class="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)] font-sans leading-normal tracking-normal antialiased">
-		<!-- Navigation with Scroll-Triggered Blur -->
+	<body>
 		<Navigation portfolioData={portfolioData} client:load />
 
-		<main>
+		<main id="page-content">
 			<slot />
 		</main>
 
 		<!-- Footer -->
-		<footer class="bg-[var(--color-bg)] p-6 pt-10 border-t border-[var(--color-border)]">
-			<div class="container mx-auto text-center text-theme-text-muted px-4">
-				{!hideFooterNewsletter && <NewsletterSignup variant="footer" />}
-				<p class="text-sm">&copy; {currentYear} {portfolioData.name}. All Rights Reserved.</p>
-				<div class="flex justify-center space-x-6 mt-3 text-lg">
-					<a href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-text-primary)] transition" aria-label="LinkedIn">
-						<Linkedin className="w-6 h-6" />
-					</a>
-					<a href={portfolioData.upwork} target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-text-primary)] transition" aria-label="Upwork Profile">
-						<BadgeDollarSign className="w-6 h-6" />
-					</a>
-					<a href={portfolioData.github} target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-text-primary)] transition" aria-label="GitHub">
-						<Github className="w-6 h-6" />
-					</a>
+		<footer style="border-top: 1px solid var(--rule);">
+			<!-- Newsletter strip (footer-only) -->
+			{!hideFooterNewsletter && (
+				<div style="background: var(--paper-2); border-bottom: 1px solid var(--rule);">
+					<div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding-top:22px;padding-bottom:22px;">
+						<p style="font-size:15px;line-height:1.5;color:var(--ink-soft);max-width:54ch;">
+							Not ready to talk? <strong style="color:var(--ink);font-weight:600;">Read along.</strong> Practical AI engineering — patterns, trade-offs, and the occasional self-hosting experiment.
+						</p>
+						<form
+							action="https://buttondown.com/api/emails/embed-subscribe/collinwilkins"
+							method="post"
+							target="popupwindow"
+							style="display:flex;gap:10px;flex-shrink:0;"
+						>
+							<input
+								type="email"
+								name="email"
+								placeholder="you@company.com"
+								aria-label="Email address"
+								style="border:1px solid var(--rule);border-radius:999px;padding:11px 18px;background:var(--paper);font-family:var(--mono);font-size:13px;color:var(--ink);width:min(220px,55vw);outline:none;"
+							/>
+							<button type="submit" class="btn btn-ghost">Subscribe</button>
+						</form>
+					</div>
+				</div>
+			)}
+
+			<!-- 4-column footer links -->
+			<div style={`max-width:var(--maxw);margin:0 auto;padding:clamp(36px,5vw,52px) clamp(20px,5vw,48px) 0;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:24px;`}>
+				<div>
+					<div style="font-size:18px;font-weight:600;letter-spacing:-.01em;">{portfolioData.name}</div>
+					<p style="font-size:13.5px;line-height:1.5;color:var(--ink-soft);max-width:32ch;margin-top:10px;">
+						AI engineering training, workshops, and advisory for teams shipping in high-stakes environments.
+					</p>
+				</div>
+				<div>
+					<h4 style="font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:15px;">Work</h4>
+					<ul style="list-style:none;">
+						<li style="margin-bottom:10px;"><a href="/services" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">Training</a></li>
+						<li style="margin-bottom:10px;"><a href="/services" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">Advisory</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4 style="font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:15px;">Writing</h4>
+					<ul style="list-style:none;">
+						<li style="margin-bottom:10px;"><a href="/articles" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">Articles</a></li>
+						<li style="margin-bottom:10px;"><a href="https://buttondown.com/collinwilkins" target="_blank" rel="noopener noreferrer" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">Newsletter</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4 style="font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:15px;">Elsewhere</h4>
+					<ul style="list-style:none;">
+						<li style="margin-bottom:10px;"><a href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">LinkedIn</a></li>
+						<li style="margin-bottom:10px;"><a href={portfolioData.github} target="_blank" rel="noopener noreferrer" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">GitHub</a></li>
+						<li style="margin-bottom:10px;"><a href="https://x.com/CollinWilkins7" target="_blank" rel="noopener noreferrer" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">Twitter / X</a></li>
+					</ul>
 				</div>
 			</div>
-		</footer>
 
-		<!-- Contact Modal -->
-		<ContactModalWrapper email={portfolioData.email} client:load />
+			<div style={`max-width:var(--maxw);margin:0 auto;padding:28px clamp(20px,5vw,48px) 20px;font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.04em;`}>
+				© {currentYear} Collin Wilkins · Detroit, MI
+			</div>
+		</footer>
 	</body>
 </html>
+
+<style>
+	@media (max-width: 760px) {
+		footer > div:first-child + div {
+			grid-template-columns: 1fr 1fr !important;
+		}
+	}
+</style>

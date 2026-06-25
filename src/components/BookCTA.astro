@@ -1,0 +1,10 @@
+---
+import { BOOKING_HREF } from '../data/site.js';
+
+interface Props {
+  label?: string;
+  class?: string;
+}
+const { label = 'Book an intro call →', class: cls = '' } = Astro.props;
+---
+<a href={BOOKING_HREF} class={`btn btn-solid ${cls}`}>{label}</a>

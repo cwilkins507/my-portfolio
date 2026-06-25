@@ -50,9 +50,9 @@ export default {
       },
       fontFamily: {
         serif: ['Newsreader', 'Georgia', 'serif'],
-        sans: ['DM Sans', 'Inter', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
-        display: ['DM Sans', 'Inter', 'sans-serif'],
+        sans: ['Newsreader', 'Georgia', 'serif'],
+        mono: ['IBM Plex Mono', 'ui-monospace', 'monospace'],
+        display: ['Newsreader', 'Georgia', 'serif'],
       },
       letterSpacing: {
         'tight-headline': '-0.01em',
