@@ -112,8 +112,8 @@ const Navigation = ({ portfolioData }) => {
                     transition: 'color .15s',
                     whiteSpace: 'nowrap',
                   }}
-                  onMouseEnter={e => e.target.style.color = 'var(--accent)'}
-                  onMouseLeave={e => e.target.style.color = 'var(--ink-soft)'}
+                  onMouseEnter={e => e.currentTarget.style.color = 'var(--accent)'}
+                  onMouseLeave={e => e.currentTarget.style.color = 'var(--ink-soft)'}
                 >
                   {label}
                 </a>
@@ -132,8 +132,8 @@ const Navigation = ({ portfolioData }) => {
                   transition: 'border-color .15s',
                   whiteSpace: 'nowrap',
                 }}
-                onMouseEnter={e => e.target.style.borderColor = 'var(--accent)'}
-                onMouseLeave={e => e.target.style.borderColor = 'var(--rule)'}
+                onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--accent)'}
+                onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--rule)'}
               >
                 Book a call
               </a>

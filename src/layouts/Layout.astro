@@ -137,7 +137,7 @@ const currentYear = new Date().getFullYear();
 			)}
 
 			<!-- 4-column footer links -->
-			<div style={`max-width:var(--maxw);margin:0 auto;padding:clamp(36px,5vw,52px) clamp(20px,5vw,48px) 0;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:24px;`}>
+			<div class="footer-grid" style={`max-width:var(--maxw);margin:0 auto;padding:clamp(36px,5vw,52px) clamp(20px,5vw,48px) 0;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:24px;`}>
 				<div>
 					<div style="font-size:18px;font-weight:600;letter-spacing:-.01em;">{portfolioData.name}</div>
 					<p style="font-size:13.5px;line-height:1.5;color:var(--ink-soft);max-width:32ch;margin-top:10px;">
@@ -177,7 +177,7 @@ const currentYear = new Date().getFullYear();
 
 <style>
 	@media (max-width: 760px) {
-		footer > div:first-child + div {
+		.footer-grid {
 			grid-template-columns: 1fr 1fr !important;
 		}
 	}

@@ -598,7 +598,8 @@ const articleSchema = { '@context': 'https://schema.org', '@graph': graphItems }
   if (prog) {
     addEventListener('scroll', () => {
       const h = document.documentElement;
-      prog.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+      const scrollable = h.scrollHeight - h.clientHeight;
+      prog.style.width = (scrollable > 0 ? h.scrollTop / scrollable * 100 : 0) + '%';
     }, { passive: true });
   }
 
@@ -643,9 +644,14 @@ const articleSchema = { '@context': 'https://schema.org', '@graph': graphItems }
   const cl = document.getElementById('copy-link');
   if (cl) {
     cl.addEventListener('click', async () => {
-      await navigator.clipboard.writeText(url).catch(() => {});
-      cl.textContent = 'Copied!';
-      setTimeout(() => { cl.innerHTML = 'Copy link<span>⧉</span>'; }, 2000);
+      try {
+        await navigator.clipboard.writeText(url);
+        cl.textContent = 'Copied!';
+        setTimeout(() => { cl.innerHTML = 'Copy link<span>⧉</span>'; }, 2000);
+      } catch {
+        cl.textContent = 'Copy failed';
+        setTimeout(() => { cl.innerHTML = 'Copy link<span>⧉</span>'; }, 2000);
+      }
     });
   }
 </script>
