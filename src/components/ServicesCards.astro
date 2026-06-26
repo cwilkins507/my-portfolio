@@ -1,0 +1,52 @@
+---
+/* Dormant — renders only when FUNNEL_MODE === 'full'. Built for B-graduation. */
+import BookCTA from './BookCTA.astro';
+---
+<section id="services" style="padding:clamp(52px,7vw,84px) 0;">
+  <div class="wrap">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;padding-bottom:24px;border-bottom:1px solid var(--ink);margin-bottom:clamp(28px,3.5vw,44px);">
+      <h2 style="font-size:clamp(28px,4vw,46px);font-weight:500;letter-spacing:-.015em;line-height:1.04;text-wrap:balance;">How teams work with me</h2>
+      <span class="label" style="color:var(--ink-faint);">Two ways in</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1.12fr 1fr;gap:18px;">
+      <!-- Lead card -->
+      <div style="border:1px solid var(--accent);border-radius:12px;padding:clamp(26px,3vw,36px);background:var(--paper-2);display:flex;flex-direction:column;">
+        <span style="align-self:flex-start;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:5px 11px;margin-bottom:24px;">Primary · Most teams start here</span>
+        <h3 style="font-size:clamp(24px,2.8vw,30px);font-weight:600;line-height:1.08;letter-spacing:-.01em;">Training &amp; workshops</h3>
+        <p style="font-size:16px;line-height:1.55;color:var(--ink-soft);margin-top:13px;">Hands-on sessions for your engineers, run against your codebase and your real constraints — not slideware. Built for teams shipping in regulated, high-stakes environments.</p>
+        <ul style="list-style:none;margin-top:20px;padding-top:20px;border-top:1px solid var(--rule);display:flex;flex-direction:column;gap:10px;">
+          {['Applied LLM patterns: RAG, evals, agentic workflows','Prompt and context engineering for production','Cost, latency, and compute trade-offs','Half-day intensives or multi-week cohorts'].map(item => (
+            <li style="font-size:15px;line-height:1.45;padding-left:20px;position:relative;color:var(--ink);">
+              <span style="position:absolute;left:0;top:.52em;width:6px;height:6px;background:var(--accent);transform:rotate(45deg);display:inline-block;"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <div style="margin-top:20px;font-size:15.5px;line-height:1.5;color:var(--ink);background:var(--paper);border-radius:8px;padding:14px 16px;">
+          <b style="color:var(--accent);font-weight:500;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:6px;">What you get</b>
+          Your engineers leave able to ship and maintain AI features on your codebase — without me in the room.
+        </div>
+        <div style="margin-top:24px;"><BookCTA /></div>
+      </div>
+      <!-- Secondary card -->
+      <div style="border:1px solid var(--rule);border-radius:12px;padding:clamp(26px,3vw,36px);background:var(--paper);display:flex;flex-direction:column;">
+        <span style="align-self:flex-start;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);border:1px solid var(--rule);border-radius:999px;padding:5px 11px;margin-bottom:24px;">Secondary</span>
+        <h3 style="font-size:clamp(24px,2.8vw,30px);font-weight:600;line-height:1.08;letter-spacing:-.01em;">Advisory</h3>
+        <p style="font-size:16px;line-height:1.55;color:var(--ink-soft);margin-top:13px;">Ongoing architecture and strategy support for leaders making AI build-vs-buy calls — including self-hosting, local inference, and data-privacy decisions procurement can stand behind.</p>
+        <ul style="list-style:none;margin-top:20px;padding-top:20px;border-top:1px solid var(--rule);display:flex;flex-direction:column;gap:10px;">
+          {['Architecture & vendor review','Roadmap pressure-testing','On-call for the hard calls'].map(item => (
+            <li style="font-size:15px;line-height:1.45;padding-left:20px;position:relative;color:var(--ink);">
+              <span style="position:absolute;left:0;top:.52em;width:6px;height:6px;background:var(--accent);transform:rotate(45deg);display:inline-block;"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <div style="margin-top:20px;font-size:15.5px;line-height:1.5;color:var(--ink);background:var(--paper-3);border-radius:8px;padding:14px 16px;">
+          <b style="color:var(--accent);font-weight:500;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:6px;">What you get</b>
+          Build-vs-buy and architecture calls made with someone who's shipped them in production — not just advised on them.
+        </div>
+        <a href="/services" class="btn btn-ghost" style="align-self:flex-start;margin-top:24px;">See advisory →</a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,93 +1,235 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import ArticleList from '../../components/Articles';
+import { getCategoryForArticle, CATEGORIES } from '../../data/categories.js';
 
 const articleModules = import.meta.glob('../../articles/*.md', { eager: true });
 const articles = Object.entries(articleModules).map(([file, article]) => ({
   slug: file.split('/').pop().replace('.md', ''),
   ...article.frontmatter,
+  category: getCategoryForArticle(article.frontmatter.tags),
 })).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-const START_HERE = [
-  {
-    slug: 'context-engineering-ai-coding-tools',
-    blurb: "Why AI tools produce bad output isn't the model, it's the context.",
-  },
-  {
-    slug: 'llm-gateway-architecture',
-    blurb: "When you need a gateway, when you don't, and how to avoid lock-in.",
-  },
-  {
-    slug: 'claude-code-productivity-paradox',
-    blurb: "Individual metrics are up. Organizational metrics are flat. Here's why.",
-  },
-  {
-    slug: 'lessons-learned-2026',
-    blurb: "32 lessons from the last year of building with AI coding tools.",
-  },
-  {
-    slug: 'how-to-know-if-your-business-is-ready-for-ai',
-    blurb: "The readiness question most teams skip, and why it matters.",
-  },
-];
+const totalArticles = articles.length;
+const featured = articles[0];
+const rest = articles.slice(1);
 
-const startHereArticles = START_HERE
-  .map(entry => {
-    const article = articles.find(a => a.slug === entry.slug);
-    return article ? { ...article, blurb: entry.blurb } : null;
-  })
-  .filter(Boolean);
+const categoryNames = ['All', ...Object.keys(CATEGORIES)];
+
+const formatDate = (d: string) =>
+  new Date(d).toLocaleDateString('en-US', { year: 'numeric', month: 'short', timeZone: 'UTC' });
 
 const collectionSchema = {
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Technical Articles on AI, AWS & Software Architecture",
-  "description": "In-depth technical articles on Python automation, AWS serverless patterns, AI integration, system design, and software engineering best practices.",
-  "url": "https://collinwilkins.com/articles",
-  "author": {
-    "@type": "Person",
-    "name": "Collin Wilkins",
-    "url": "https://collinwilkins.com/about"
-  },
-  "hasPart": articles.slice(0, 10).map(article => ({
-    "@type": "Article",
-    "headline": article.title,
-    "url": `https://collinwilkins.com/articles/${article.slug}`,
-    "datePublished": article.date,
-    ...(article.image ? { "image": new URL(article.image, Astro.site).toString() } : {})
-  }))
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Articles — Collin Wilkins',
+  description: 'Long-form articles on AI engineering, automation architecture, and production software from a Lead Software Engineer.',
+  url: 'https://collinwilkins.com/articles',
+  author: { '@type': 'Person', name: 'Collin Wilkins', url: 'https://collinwilkins.com' },
+  hasPart: articles.slice(0, 10).map(a => ({
+    '@type': 'Article',
+    headline: a.title,
+    url: `https://collinwilkins.com/articles/${a.slug}`,
+    datePublished: a.date,
+  })),
 };
 ---
 
-<Layout title="Technical Articles on AI, AWS & Software Architecture | Collin Wilkins" description="In-depth technical articles on Python automation, AWS serverless patterns, AI integration, system design, and software engineering best practices." schema={collectionSchema}>
-	<section class="container mx-auto max-w-5xl px-4 pt-24 md:pt-32 pb-12">
-		<h2 class="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Start Here</h2>
-		<p class="text-[var(--color-text-secondary)] mb-8 max-w-2xl">
-			Not sure where to begin? These are the articles that best represent my work and the direction I'm writing toward.
-		</p>
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-			{startHereArticles.map(article => (
-				<a
-					href={`/articles/${article.slug}`}
-					class="group flex flex-col rounded-2xl p-6 border border-[var(--color-border)] bg-[var(--color-surface)] hover:bg-[var(--color-surface-hover)] hover:border-[var(--color-border-hover)] hover:shadow-card hover:-translate-y-0.5 will-change-transform transition-all duration-300"
-				>
-					{article.image && (
-						<div class="aspect-video rounded-lg overflow-hidden mb-4 border border-[var(--color-border)]">
-							<img src={article.image} alt={article.image_alt || article.title} class="w-full h-full object-cover" loading="lazy" />
-						</div>
-					)}
-					<h3 class="text-lg font-serif font-bold text-[var(--color-text-primary)] mb-3 leading-snug group-hover:text-[var(--color-accent)] transition-colors">
-						{article.title}
-					</h3>
-					<p class="text-[var(--color-text-secondary)] text-sm leading-relaxed flex-grow mb-4">
-						{article.blurb}
-					</p>
-					<span class="text-[var(--color-accent)] text-sm font-semibold inline-flex items-center gap-2">
-						Read article <span aria-hidden="true">&rarr;</span>
-					</span>
-				</a>
-			))}
-		</div>
-	</section>
-	<ArticleList articles={articles} client:load />
+<Layout
+  title="Articles — AI Engineering, Automation Architecture | Collin Wilkins"
+  description="Long-form articles on AI engineering, automation architecture, and production software from a Lead Software Engineer at Morningstar."
+  schema={collectionSchema}
+>
+
+<div style="padding:clamp(52px,7vw,84px) 0 0;">
+  <div class="wrap">
+    <!-- Page header -->
+    <div style="text-align:center;max-width:var(--measure);margin:0 auto;">
+      <span class="label" style="color:var(--ink-faint);display:block;margin-bottom:18px;">The Archive</span>
+      <h1 style="font-size:clamp(40px,6vw,64px);font-weight:500;letter-spacing:-.02em;line-height:1.04;">Articles</h1>
+      <p style="font-size:clamp(17px,2vw,20px);line-height:1.5;color:var(--ink-soft);margin-top:18px;text-wrap:pretty;">
+        {totalArticles} articles on AI engineering, automation architecture, and production software.
+      </p>
+    </div>
+
+    <!-- Category filter chips -->
+    <div id="filter-bar" style="display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin-top:clamp(32px,4vw,48px);">
+      {categoryNames.map(cat => (
+        <button
+          class="filter-chip"
+          data-cat={cat}
+          aria-pressed="false"
+          style="font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:999px;border:1px solid var(--rule);background:none;color:var(--ink-soft);cursor:pointer;transition:.15s;"
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <!-- Featured article -->
+  <div class="wrap" style="margin-top:clamp(40px,5vw,60px);">
+    <a
+      id="featured-card"
+      href={`/articles/${featured.slug}`}
+      data-cat={featured.category}
+      style="display:grid;grid-template-columns:1fr;border:1px solid var(--rule);border-radius:12px;overflow:hidden;text-decoration:none;color:var(--ink);transition:background .15s;background:var(--paper);"
+      onmouseover="this.style.background='var(--paper-2)'"
+      onmouseout="this.style.background='var(--paper)'"
+    >
+      {featured.image ? (
+        <img src={featured.image} alt={featured.image_alt || featured.title} style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;" loading="eager" />
+      ) : (
+        <div class="ph" style="aspect-ratio:16/9;"><span>Featured cover</span></div>
+      )}
+      <div style="padding:clamp(24px,3vw,36px);">
+        <div style="display:flex;gap:14px;align-items:center;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;">
+          <span style="color:var(--accent-text);">{featured.category}</span>
+          <span style="color:var(--ink-faint);">{formatDate(featured.date)}</span>
+        </div>
+        <h2 style="font-size:clamp(24px,3.6vw,38px);font-weight:500;line-height:1.1;letter-spacing:-.015em;">{featured.title}</h2>
+        <p style="font-size:17px;line-height:1.5;color:var(--ink-soft);margin-top:14px;max-width:60ch;">{featured.excerpt}</p>
+        <span style="font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--ink);display:inline-block;margin-top:22px;">Read →</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- Dense article list -->
+  <div class="wrap" style="margin-top:clamp(32px,4vw,48px);padding-bottom:clamp(52px,7vw,84px);">
+    <div id="article-list">
+      {rest.map(article => (
+        <a
+          href={`/articles/${article.slug}`}
+          data-cat={article.category}
+          class="article-row"
+        >
+          <span class="row-cat">{article.category}</span>
+          <span class="row-title">{article.title}</span>
+          <span class="row-date">{formatDate(article.date)}</span>
+        </a>
+      ))}
+    </div>
+
+    <!-- Empty state (shown when filter has no results) -->
+    <p id="empty-state" style="display:none;text-align:center;padding:40px 0;font-family:var(--mono);font-size:13px;color:var(--ink-faint);">
+      No articles in this category yet.
+    </p>
+  </div>
+</div>
+
 </Layout>
+
+<style>
+.article-row {
+  display: grid;
+  grid-template-columns: 160px 1fr auto;
+  gap: clamp(16px, 2.5vw, 32px);
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+  color: var(--ink);
+  transition: background .12s;
+}
+.article-row:hover { background: var(--paper-2); }
+.article-row:hover .row-title { color: var(--accent); }
+
+.row-cat {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 4px 10px;
+  white-space: nowrap;
+  justify-self: start;
+}
+.article-row:hover .row-cat {
+  background: var(--paper-3);
+  border-color: var(--ink-faint);
+}
+
+.row-title {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -.01em;
+  transition: color .12s;
+}
+
+.row-date {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
+#article-list { border-top: 1px solid var(--rule); }
+
+@media (max-width: 620px) {
+  .article-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 14px 0;
+  }
+  .row-date { display: none; }
+}
+</style>
+
+<script define:vars={{ categoryNames }}>
+  const chips = document.querySelectorAll('.filter-chip');
+  const rows = document.querySelectorAll('#article-list a[data-cat]');
+  const featured = document.getElementById('featured-card');
+  const empty = document.getElementById('empty-state');
+
+  // Read initial category from URL param; fall back to All for unknown values
+  const params = new URLSearchParams(window.location.search);
+  const rawCat = params.get('cat');
+  let activeCat = (rawCat && categoryNames.includes(rawCat)) ? rawCat : 'All';
+
+  function setActiveChip(cat) {
+    chips.forEach(c => {
+      const isActive = c.dataset.cat === cat;
+      c.style.background = isActive ? 'var(--ink)' : 'none';
+      c.style.color = isActive ? 'var(--paper)' : 'var(--ink-soft)';
+      c.style.borderColor = isActive ? 'var(--ink)' : 'var(--rule)';
+      c.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+  }
+
+  function applyFilter(cat) {
+    activeCat = cat;
+    setActiveChip(cat);
+
+    // Update URL without reload
+    const url = new URL(window.location.href);
+    if (cat === 'All') url.searchParams.delete('cat');
+    else url.searchParams.set('cat', cat);
+    history.replaceState(null, '', url.toString());
+
+    // Filter featured
+    if (featured) {
+      const show = cat === 'All' || featured.dataset.cat === cat;
+      featured.style.display = show ? '' : 'none';
+    }
+
+    // Filter rows
+    let visible = 0;
+    rows.forEach(row => {
+      const show = cat === 'All' || row.dataset.cat === cat;
+      row.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+
+    if (empty) empty.style.display = visible === 0 ? '' : 'none';
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => applyFilter(chip.dataset.cat));
+  });
+
+  // Apply on load
+  applyFilter(activeCat);
+</script>

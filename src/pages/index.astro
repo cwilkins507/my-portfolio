@@ -1,44 +1,27 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import StartHere from '../components/StartHere';
-import { CATEGORIES, getCategoryForArticle } from '../data/categories';
+import ClosingCTA from '../components/ClosingCTA.astro';
+import BookCTA from '../components/BookCTA.astro';
+import { FUNNEL_MODE, BOOKING_HREF } from '../data/site.js';
+import { getCategoryForArticle } from '../data/categories.js';
 
 const articleModules = import.meta.glob('../articles/*.md', { eager: true });
-const articles = Object.entries(articleModules).map(([file, article]) => ({
+const allArticles = Object.entries(articleModules).map(([file, article]) => ({
   slug: file.split('/').pop().replace('.md', ''),
   ...article.frontmatter,
 })).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-const START_HERE_SLUGS = [
-  {
-    slug: 'context-engineering-ai-coding-tools',
-    blurb: "Why AI tools produce bad output isn't the model, it's the context. Convention files are how you turn AI coding tools from novelty into compounding productivity.",
-  },
-  {
-    slug: 'llm-gateway-architecture',
-    blurb: "When you need a gateway, when you don't, and how to avoid lock-in. The routing layer most teams skip until it's too late.",
-  },
-  {
-    slug: 'claude-code-productivity-paradox',
-    blurb: "Individual metrics are up. Organizational metrics are flat. The gap between 'developer goes faster' and 'team ships more' is where most AI pilots die.",
-  },
+const totalArticles = allArticles.length;
+
+// Featured 3 for "Selected writing" section
+const FEATURED_SLUGS = [
+  'context-engineering-ai-coding-tools',
+  'llm-gateway-architecture',
+  'claude-code-productivity-paradox',
 ];
-
-const startHereArticles = START_HERE_SLUGS
-  .map(entry => {
-    const article = articles.find(a => a.slug === entry.slug);
-    if (!article) return null;
-    return {
-      ...article,
-      blurb: entry.blurb,
-      category: getCategoryForArticle(article.tags),
-    };
-  })
+const featuredArticles = FEATURED_SLUGS
+  .map(slug => allArticles.find(a => a.slug === slug))
   .filter(Boolean);
-
-const latestArticles = articles.slice(0, 5);
-
-const totalArticles = articles.length;
 
 const credibilitySignals = [
   `12 years across Ford & Morningstar`,
@@ -47,27 +30,13 @@ const credibilitySignals = [
   'Lead Engineer, currently shipping production AI',
 ];
 
-const formatDate = (dateString) => {
-  return new Date(dateString).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    timeZone: 'UTC'
-  });
-};
-
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'Collin Wilkins',
   url: 'https://collinwilkins.com',
-  description:
-    'Practitioner notes on AI coding tools, convention files, and automation architecture from a Lead Software Engineer with 12 years across Ford Motor Company and Morningstar.',
-  author: {
-    '@type': 'Person',
-    name: 'Collin Wilkins',
-    url: 'https://collinwilkins.com/about',
-  },
+  description: 'AI engineering training, workshops, and advisory for teams shipping AI in regulated, high-stakes environments.',
+  author: { '@type': 'Person', name: 'Collin Wilkins', url: 'https://collinwilkins.com' },
 };
 
 const personSchema = {
@@ -75,260 +44,412 @@ const personSchema = {
   '@type': 'Person',
   name: 'Collin Wilkins',
   jobTitle: 'Lead Software Engineer',
-  description:
-    'Lead Software Engineer with 12 years across Ford Motor Company and Morningstar. Writes about AI coding tools, convention files, automation architecture, and production software.',
+  description: 'Lead Software Engineer with 12 years across Ford Motor Company and Morningstar. AI engineering training, workshops, and advisory.',
   url: 'https://collinwilkins.com',
   image: 'https://collinwilkins.com/images/profile_photo.png',
   sameAs: [
     'https://www.linkedin.com/in/collin-wilkins-1020215a/',
     'https://github.com/cwilkins507',
-    'https://www.upwork.com/freelancers/~014ffbc17b83da9407',
   ],
-  knowsAbout: [
-    'Python',
-    'AWS',
-    'AI Automation',
-    'Serverless Architecture',
-    'Software Engineering',
-    'IoT',
-    'AI Agents',
-    'Claude Code',
-    'AGENTS.md',
-    'CLAUDE.md',
-    'Convention Files',
-    'LLM Gateway Architecture',
-    'Event-Driven Architecture',
-    'Context Engineering',
-  ],
-  alumniOf: [
-    {
-      '@type': 'Organization',
-      name: 'Ford Motor Company',
-    },
-  ],
-  worksFor: {
-    '@type': 'Organization',
-    name: 'Morningstar, Inc.',
-  },
 };
 
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'Who is Collin Wilkins?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Collin Wilkins is a Lead Software Engineer at Morningstar with 12 years across engineering, finance, pricing, sales, and operations. He previously worked on Ford connected vehicle systems, including telemetry and automation work tied to approximately $5 million in annual savings.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What topics does collinwilkins.com cover?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'The site covers AI coding tool adoption, context engineering, convention files, LLM gateway architecture, AWS Lambda automation patterns, Python automation, system design, and production-grade infrastructure from a practitioner perspective.',
-      },
-    },
-  ],
-};
+const LOGOS = [
+  { cls: 'l-morningstar', mk: 'circle', name: 'Morningstar' },
+  { cls: 'l-ford', mk: 'none', name: 'Ford', italic: true },
+  { cls: 'l-finimbus', mk: 'diamond', name: 'FiNimbus' },
+  { cls: 'l-connected', mk: 'dashed', name: 'Connected Vehicle' },
+  { cls: 'l-cw', mk: 'square', name: 'collinwilkins.com', mono: true },
+];
+
+function readTime(article) {
+  return article.readTime || '5 min';
+}
 ---
 
 <Layout
-  title="Collin Wilkins | AI Tools, Automation Architecture, and Convention Files"
-  description="Practitioner notes on AI coding tools, convention files, and automation architecture. Lead Software Engineer with 12 years across Ford Motor Company and Morningstar."
-  schema={[websiteSchema, personSchema, faqSchema]}
-  hideFooterNewsletter={true}
+  title="Collin Wilkins — AI Engineering Training, Workshops & Advisory"
+  description="AI engineering training, workshops, and advisory for teams putting AI into production in regulated, high-stakes environments. Lead Software Engineer at Morningstar."
+  schema={[websiteSchema, personSchema]}
+  hideFooterNewsletter={false}
 >
-  <div class="min-h-screen bg-[var(--color-bg)] tracking-normal">
 
-    <!-- ============ HERO ============ -->
-    <section class="relative isolate overflow-hidden border-b border-[var(--color-border)] pt-24 pb-16 md:pt-32 md:pb-20">
-      <div class="home-grid pointer-events-none absolute inset-0 opacity-80" aria-hidden="true"></div>
-      <div class="pointer-events-none absolute -left-36 top-20 h-80 w-80 rounded-full bg-[var(--color-blur-primary)] blur-3xl" aria-hidden="true"></div>
-      <div class="pointer-events-none absolute right-[-12rem] top-12 h-[28rem] w-[28rem] rounded-full bg-[var(--color-blur-secondary)] blur-3xl" aria-hidden="true"></div>
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-main">
+      <span class="eyebrow">Training · Workshops · Advisory</span>
+      <h1>Ship AI features your team can actually maintain.</h1>
+      <p class="hero-sub">
+        Hands-on training, workshops, and advisory for engineering teams putting AI into production in regulated, high-stakes environments.
+        I'm Collin Wilkins — a lead engineer who ships this work himself, then gets <em>your</em> engineers doing it on <em>your</em> codebase.
+      </p>
+      <div class="hero-actions">
+        <BookCTA />
+        <a href="#writing" class="btn btn-ghost">See my writing</a>
+      </div>
+      <p class="hero-reassure">A 30-minute call. We'll figure out whether we're a good fit, and you'll leave with your highest-leverage AI use case mapped.</p>
+    </div>
 
-      <div class="relative mx-auto max-w-6xl px-6 md:px-8">
-        <div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start">
-          <div class="min-w-0 flex items-start gap-7 md:gap-9">
-            <div class="hidden md:block flex-none w-px self-stretch bg-gradient-to-b from-[var(--color-accent)] via-[var(--color-accent-border)] to-transparent mt-1" aria-hidden="true"></div>
-            <div class="flex-1 min-w-0">
-              <p class="ink-label mb-5 font-mono text-[11px] text-[var(--color-accent)]">
-                Collin Wilkins / AI systems / practical automation
-              </p>
-              <h1 class="max-w-[640px] font-serif text-4xl font-bold leading-[1.08] tracking-tight text-[var(--color-text-primary)] sm:text-5xl md:text-[3.5rem]">
-                Practitioner notes on AI tools, convention files, and automation architecture.
-              </h1>
-              <p class="mt-7 max-w-[560px] text-lg leading-relaxed text-[var(--color-text-secondary)] md:text-xl">
-                Lead Software Engineer at Morningstar with 12 years across Ford Motor Company and enterprise software. I write about what actually works when engineering teams adopt AI coding tools, and what breaks when they don't set up the context layer first.
-              </p>
-
-              <div class="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <a
-                  href="#start-here"
-                  class="inline-flex min-h-12 items-center justify-center rounded-full bg-[var(--color-accent)] px-6 text-sm font-bold text-white shadow-[0_16px_50px_rgba(201,169,110,0.22)] transition-all hover:-translate-y-0.5 hover:bg-[var(--color-accent-hover)]"
-                >
-                  Start here <span class="ml-2" aria-hidden="true">&rarr;</span>
-                </a>
-                <a
-                  href="/resources"
-                  class="inline-flex min-h-12 items-center justify-center rounded-full border border-[var(--color-border-hover)] bg-[var(--color-surface-glass)] px-6 text-sm font-bold text-[var(--color-text-primary)] backdrop-blur transition-all hover:-translate-y-0.5 hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
-                >
-                  Browse resources
-                </a>
-                <a
-                  href="#newsletter"
-                  class="inline-flex min-h-12 items-center justify-center rounded-full border border-transparent px-5 text-sm font-bold text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-text-primary)]"
-                >
-                  Subscribe to the newsletter
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <aside class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8 backdrop-blur-xl" aria-label="About the author">
-            <div class="flex items-center gap-4 mb-5">
-              <picture>
-                <source srcset="/images/profile_photo.webp" type="image/webp" />
-                <img
-                  src="/images/profile_photo.png"
-                  alt="Collin Wilkins"
-                  width="128"
-                  height="128"
-                  class="h-16 w-16 flex-none rounded-full border border-[var(--color-border-hover)] object-cover"
-                />
-              </picture>
-              <div>
-                <p class="font-sans text-[1.1rem] font-semibold text-[var(--color-text-primary)]">
-                  Collin Wilkins
-                </p>
-                <p class="text-[0.95rem] text-[var(--color-text-secondary)]">
-                  Business operator turned software engineer.
-                </p>
-              </div>
-            </div>
-
-            <ul class="space-y-3.5">
-              {credibilitySignals.map(signal => (
-                <li class="flex items-start gap-2.5 font-mono text-[0.82rem] leading-[1.45] text-[var(--color-text-muted)]">
-                  <span class="text-[var(--color-accent)] text-xs mt-0.5 flex-shrink-0" aria-hidden="true">/</span>
-                  {signal}
-                </li>
-              ))}
-            </ul>
-          </aside>
+    <aside class="hilite" aria-label="About the author">
+      <div class="hi-top">
+        <div class="hi-pic">
+          <img
+            src="/images/profile_photo.webp"
+            alt="Collin Wilkins"
+            width="64"
+            height="64"
+            style="width:100%;height:100%;object-fit:cover;border-radius:50%;"
+            onerror="this.style.display='none'"
+          />
+        </div>
+        <div>
+          <div class="hi-name">Collin Wilkins</div>
+          <div class="hi-tag">Business operator turned software engineer.</div>
         </div>
       </div>
-    </section>
-
-    <!-- ============ START HERE ============ -->
-    <section id="start-here" class="mx-auto max-w-6xl px-6 py-16 md:px-8 md:py-20">
-      <div class="flex items-baseline justify-between border-b border-[var(--color-border)] pb-5 mb-12">
-        <h2 class="font-serif text-2xl font-bold tracking-tight text-[var(--color-text-primary)] md:text-[2rem]">
-          Start Here
-        </h2>
-        <a href="/articles" class="font-mono text-[0.82rem] uppercase tracking-[0.05em] text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors">
-          View all {totalArticles} articles &rarr;
-        </a>
-      </div>
-
-      <StartHere articles={startHereArticles} />
-    </section>
-
-    <!-- ============ LATEST ARTICLES ============ -->
-    <section class="mx-auto max-w-6xl px-6 pb-20 md:px-8 md:pb-24">
-      <div class="flex items-baseline justify-between border-b border-[var(--color-border)] pb-5 mb-12">
-        <h2 class="font-serif text-2xl font-bold tracking-tight text-[var(--color-text-primary)] md:text-[2rem]">
-          Latest
-        </h2>
-        <a href="/articles" class="font-mono text-[0.82rem] uppercase tracking-[0.05em] text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors">
-          Browse archive &rarr;
-        </a>
-      </div>
-
-      <div class="flex flex-col gap-14">
-        {latestArticles.map(article => (
-          <a
-            href={`/articles/${article.slug}`}
-            class="group grid gap-5 items-center md:grid-cols-[260px_1fr] md:gap-12"
-          >
-            <div class="aspect-video rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] overflow-hidden transition-all duration-300 group-hover:border-[var(--color-border-hover)] flex items-center justify-center relative">
-              {article.image ? (
-                <img
-                  src={article.image}
-                  alt={article.title}
-                  class="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              ) : (
-                <span class="font-mono text-[9px] uppercase tracking-[0.1em] text-[var(--color-text-faint)]">
-                  Hero image
-                </span>
-              )}
-              <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(201,169,110,0.04),transparent_70%)]" aria-hidden="true"></div>
-            </div>
-
-            <div>
-              <div class="flex items-center gap-4 font-mono text-[0.82rem] text-[var(--color-text-muted)] mb-3.5">
-                <span class="text-[var(--color-accent)] bg-[var(--color-accent-muted)] px-2.5 py-0.5 rounded-full text-[0.72rem] uppercase tracking-[0.05em]">
-                  {getCategoryForArticle(article.tags)}
-                </span>
-                <span>{formatDate(article.date)}</span>
-              </div>
-              <h3 class="font-serif text-[1.75rem] font-bold leading-[1.2] tracking-tight text-[var(--color-text-primary)] mb-3 transition-colors group-hover:text-[var(--color-accent)]">
-                {article.title}
-              </h3>
-              <p class="text-base leading-relaxed text-[var(--color-text-secondary)] max-w-[560px]">
-                {article.excerpt}
-              </p>
-            </div>
-          </a>
+      <ul class="hi-stats">
+        {credibilitySignals.map(signal => (
+          <li><span class="s">/</span><span>{signal}</span></li>
         ))}
-      </div>
-    </section>
-
-    <!-- ============ NEWSLETTER CTA ============ -->
-    <section id="newsletter" class="border-t border-[var(--color-border)] px-6 py-16 md:px-8 md:py-24">
-      <div class="mx-auto max-w-2xl text-center">
-        <div class="relative rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-10 md:p-12 backdrop-blur-xl overflow-hidden">
-          <div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[var(--color-accent)] to-transparent" aria-hidden="true"></div>
-
-          <h2 class="font-serif text-2xl font-bold text-[var(--color-text-primary)] mb-3 md:text-[1.8rem]">
-            Notes from production.
-          </h2>
-          <p class="text-[1.05rem] text-[var(--color-text-secondary)] leading-relaxed mb-8">
-            Every other week: working playbooks on AI coding tools, convention files, and automation architecture.
-          </p>
-
-          <form
-            action="https://buttondown.com/api/emails/embed-subscribe/collinwilkins"
-            method="post"
-            target="popupwindow"
-            class="flex flex-col sm:flex-row gap-3 w-full"
-          >
-            <input
-              type="email"
-              name="email"
-              placeholder="your@email.com"
-              required
-              class="flex-1 min-h-12 px-5 py-3 text-[0.95rem] bg-[rgba(0,0,0,0.3)] border border-[var(--color-border)] rounded-full text-[var(--color-text-primary)] placeholder-[var(--color-text-muted)] focus:outline-none focus:border-[rgba(255,255,255,0.25)] focus:bg-[rgba(0,0,0,0.5)] transition-all font-sans"
-            />
-            <button
-              type="submit"
-              class="inline-flex items-center justify-center min-h-12 px-7 rounded-full bg-[var(--color-accent)] text-white font-semibold text-[0.95rem] transition-all hover:bg-[var(--color-accent-hover)] hover:-translate-y-0.5 shadow-[0_16px_50px_rgba(201,169,110,0.18)]"
-            >
-              Subscribe
-            </button>
-          </form>
-
-          <p class="text-xs text-[var(--color-text-muted)] mt-4">
-            No spam. Unsubscribe anytime.
-          </p>
-        </div>
-      </div>
-    </section>
-
+      </ul>
+    </aside>
   </div>
+</header>
+
+<!-- ══════════════════════════════════════
+     LOGO STRIP
+══════════════════════════════════════ -->
+<div class="logos">
+  <div class="cap">Built &amp; shipped at</div>
+  <div class="marquee">
+    <div class="track" aria-hidden="false">
+      <span class="logo-img"><img src="/images/logos/morningstar.svg" alt="Morningstar" class="logo-asset" /></span>
+      <span class="logo-img"><img src="/images/logos/ford-credit.png" alt="Ford Credit" class="logo-asset logo-asset-light-bg" /></span>
+      <span class="logo-img"><img src="/images/logos/finimbus.png" alt="FiNimbus" class="logo-asset logo-asset-light-bg" /></span>
+      <span class="logo l-connected"><span class="mk mk-dashed"></span>Connected Vehicle</span>
+    </div>
+    <div class="track" aria-hidden="true">
+      <span class="logo-img"><img src="/images/logos/morningstar.svg" alt="Morningstar" class="logo-asset" /></span>
+      <span class="logo-img"><img src="/images/logos/ford-credit.png" alt="Ford Credit" class="logo-asset logo-asset-light-bg" /></span>
+      <span class="logo-img"><img src="/images/logos/finimbus.png" alt="FiNimbus" class="logo-asset logo-asset-light-bg" /></span>
+      <span class="logo l-connected"><span class="mk mk-dashed"></span>Connected Vehicle</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SELECTED WRITING
+══════════════════════════════════════ -->
+<section class="band" id="writing">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Selected writing</h2>
+      <a href="/articles" class="label" style="color:var(--ink-faint);text-decoration:none;">All {totalArticles} articles →</a>
+    </div>
+    <div class="articles-grid">
+      {featuredArticles.map(article => (
+        <a href={`/articles/${article.slug}`} class="article">
+          <div class="meta">
+            <span class="cat">{getCategoryForArticle(article.tags)}</span>
+            <span class="min">{readTime(article)}</span>
+          </div>
+          <h3>{article.title}</h3>
+          <p>{article.excerpt}</p>
+          <span class="read">Read →</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ABOUT
+══════════════════════════════════════ -->
+<section class="band" id="about">
+  <div class="wrap about-grid">
+    <h2>I've shipped this work, not just talked about it.</h2>
+    <div class="about-body">
+      <p>I'm a lead engineer at Morningstar working in regulated financial services, where AI features have to be correct, explainable, and maintainable.</p>
+      <p>Before that I spent three years on Ford's connected-vehicle team and came up through a leadership development program with a background spanning sales and operations. That mix is why I run training the way I do: technical depth, always tied to the business call underneath it.</p>
+      <p>I write about AI engineering at collinwilkins.com, and I work with a small number of teams at a time so the engagement stays hands-on.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CLOSING CTA (hybrid: soft variant)
+══════════════════════════════════════ -->
+<ClosingCTA variant="soft" />
+
 </Layout>
+
+<style>
+/* ---- Hero ---- */
+.hero {
+  padding: clamp(52px, 7vw, 92px) 0 clamp(40px, 5vw, 60px);
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(36px, 5vw, 56px);
+  align-items: center;
+}
+@media (min-width: 940px) {
+  .hero-grid {
+    grid-template-columns: minmax(0, 1.32fr) minmax(310px, .86fr);
+    gap: clamp(40px, 5vw, 68px);
+  }
+}
+.eyebrow {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 8px 15px;
+  margin-bottom: 28px;
+  background: var(--paper-2);
+}
+.hero h1 {
+  font-size: clamp(36px, 5.6vw, 64px);
+  line-height: 1.02;
+  font-weight: 500;
+  letter-spacing: -.02em;
+  max-width: 14ch;
+  text-wrap: balance;
+}
+.hero-sub {
+  font-size: clamp(17px, 2vw, 20px);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 52ch;
+  margin-top: 26px;
+  text-wrap: pretty;
+}
+.hero-sub em { font-style: italic; color: var(--ink); }
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+.hero-reassure {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-faint);
+  margin-top: 18px;
+  letter-spacing: .01em;
+}
+.hero-reassure::before { content: "→ "; color: var(--accent); }
+
+/* Highlights card */
+.hilite {
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  background: var(--paper);
+  padding: 28px;
+  box-shadow: 0 1px 2px rgba(40,30,15,.04), 0 16px 40px -12px rgba(40,30,15,.12);
+}
+.hi-top { display: flex; gap: 16px; align-items: center; }
+.hi-pic {
+  width: 64px; height: 64px; flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--rule);
+  background: repeating-linear-gradient(135deg, var(--paper-2) 0 6px, transparent 6px 12px), var(--paper-3);
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 9px; color: var(--ink-faint);
+}
+.hi-name { font-size: 19px; font-weight: 600; letter-spacing: -.01em; }
+.hi-tag { font-size: 15px; font-style: italic; color: var(--ink-soft); margin-top: 3px; line-height: 1.35; }
+.hi-stats {
+  list-style: none;
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  display: flex; flex-direction: column; gap: 15px;
+}
+.hi-stats li {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  gap: 11px;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+.hi-stats .s { color: var(--accent); }
+
+/* Logo strip */
+.logos {
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 30px 0;
+}
+.cap {
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 22px;
+}
+.marquee {
+  position: relative;
+  overflow: hidden;
+  display: flex; /* tracks sit side-by-side in one row */
+}
+.marquee::before,
+.marquee::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; width: 84px; z-index: 2; pointer-events: none;
+}
+.marquee::before { left: 0; background: linear-gradient(90deg, var(--paper), transparent); }
+.marquee::after  { right: 0; background: linear-gradient(270deg, var(--paper), transparent); }
+.track {
+  display: flex;
+  align-items: center;
+  gap: clamp(32px, 5vw, 64px);
+  flex-shrink: 0;
+  min-width: 100%;
+  animation: marquee-scroll 28s linear infinite;
+}
+@keyframes marquee-scroll { to { transform: translateX(-100%); } }
+@media (prefers-reduced-motion: reduce) {
+  .marquee { display: block; }
+  .track { animation: none; width: 100%; min-width: 0; justify-content: space-around; }
+  .track[aria-hidden="true"] { display: none; }
+}
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -.01em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+@media (min-width: 680px) {
+  .logo { font-size: 21px; gap: 9px; }
+}
+.mk { width: 11px; height: 11px; flex-shrink: 0; border: 1.5px solid var(--accent); display: inline-block; }
+.mk-circle { border-radius: 50%; }
+.mk-diamond { transform: rotate(45deg); background: var(--accent); border: none; }
+.mk-dashed { border-radius: 50%; border-style: dashed; }
+.mk-square { border-radius: 3px; background: var(--accent); border: none; }
+.l-cw { font-family: var(--mono); font-weight: 500; font-size: 16px; color: var(--ink-soft); letter-spacing: 0; }
+
+/* Real logo images */
+.logo-img {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.logo-asset {
+  height: 22px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(1) brightness(0.25);
+  opacity: 0.85;
+}
+/* Light-background logos — multiply blends white into paper, grayscale tints to ink */
+.logo-asset-light-bg {
+  filter: grayscale(1) contrast(1.2);
+  mix-blend-mode: multiply;
+  opacity: 0.82;
+  height: 34px;
+}
+@media (min-width: 680px) {
+  .logo-asset { height: 28px; }
+  .logo-asset-light-bg { height: 40px; }
+}
+
+/* Band sections */
+.band { padding: clamp(52px, 7vw, 84px) 0; }
+.band + .band { border-top: 1px solid var(--rule); }
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--ink);
+  margin-bottom: clamp(28px, 3.5vw, 44px);
+}
+.section-head h2 {
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 500;
+  letter-spacing: -.015em;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+.section-head a:hover { color: var(--accent) !important; }
+
+/* Articles grid */
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  overflow: hidden;
+}
+@media (max-width: 760px) { .articles-grid { grid-template-columns: 1fr; } }
+.article {
+  background: var(--paper);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--ink);
+  transition: background .15s;
+}
+.article:hover { background: var(--paper-2); }
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.cat { color: var(--accent); }
+.min { color: var(--ink-faint); }
+.article h3 { font-size: 22px; font-weight: 500; line-height: 1.18; letter-spacing: -.01em; }
+.article > p { font-size: 15px; line-height: 1.5; color: var(--ink-soft); margin-top: 12px; }
+.read { font-family: var(--mono); font-size: 11px; letter-spacing: .05em; color: var(--ink); margin-top: 22px; }
+
+/* About */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 56px);
+  align-items: start;
+}
+@media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; gap: 24px; } }
+.about-grid h2 {
+  font-size: clamp(30px, 4.2vw, 48px);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -.015em;
+  text-wrap: balance;
+}
+.about-body p { font-size: 17.5px; line-height: 1.55; color: var(--ink-soft); margin-bottom: 18px; text-wrap: pretty; }
+.about-body p:last-child { margin-bottom: 0; }
+.about-body strong { color: var(--ink); font-weight: 600; }
+</style>

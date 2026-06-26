@@ -112,6 +112,12 @@ export default defineConfig({
             alias: {
                 buffer: 'buffer'
             }
+        },
+        server: {
+            fs: {
+                // Allow parent project root so worktree dev server can reach node_modules
+                allow: [process.cwd(), new URL('.', import.meta.url).pathname]
+            }
         }
     }
 });

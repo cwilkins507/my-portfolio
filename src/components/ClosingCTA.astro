@@ -1,0 +1,28 @@
+---
+import BookCTA from './BookCTA.astro';
+import { BOOKING_HREF } from '../data/site.js';
+
+interface Props {
+  variant: 'soft' | 'full';
+}
+const { variant } = Astro.props;
+---
+
+<section id="book" style="padding:clamp(60px,8vw,100px) 0;text-align:center;border-top:1px solid var(--rule);">
+  <div class="wrap">
+    <p class="label" style="color:var(--accent);margin-bottom:20px;">Work with me</p>
+    <h2 style="font-size:clamp(30px,4.8vw,54px);font-weight:500;letter-spacing:-.015em;line-height:1.02;max-width:17ch;margin:0 auto;text-wrap:balance;">
+      Adopt AI without changing how you do business.
+    </h2>
+    <p style="font-size:clamp(16px,1.9vw,18px);line-height:1.55;color:var(--ink-soft);max-width:52ch;margin:20px auto 0;text-wrap:pretty;">
+     A 30-minute intro call. We'll pin down where AI is worth your team's time, and whether I'm the right person to help.
+      {variant === 'full' && <span> I take a small number of teams at a time.</span>}
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px;">
+      <BookCTA />
+      {variant === 'full' && (
+        <a href="/services" class="btn btn-ghost">See services &amp; pricing</a>
+      )}
+    </div>
+  </div>
+</section>
