@@ -176,10 +176,7 @@ const ContactForm = ({ email, initialService = '', onSuccess }) => {
       </button>
 
       <p className="text-center text-[var(--color-text-muted)] mt-4 text-sm">
-        Or email me directly at{' '}
-        <a href={`mailto:${email}`} className="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition">
-          {email}
-        </a>
+        I'll get back to you by email, usually within a day or two.
       </p>
     </form>
   );
