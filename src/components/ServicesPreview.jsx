@@ -1,6 +1,7 @@
 import React from 'react';
 import ServiceCards from './ServiceCards';
 import ServicesFAQ from './ServicesFAQ';
+import { ASSESSMENT_HREF } from '../data/site.js';
 
 const cardSets = {
   deliverable: {
@@ -116,7 +117,9 @@ const ServicesPreview = ({ variant = 'deliverable' }) => {
             </li>
           </ul>
           <a
-            href={`${previewPath}?modal=contact&service=ai-strategy`}
+            href={ASSESSMENT_HREF}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block px-6 py-3 text-sm font-semibold rounded-lg bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] transition-colors"
           >
             Book an assessment →
