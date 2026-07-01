@@ -155,6 +155,6 @@ Figure out your level. Do the one thing that matches. The worst move right now i
 
 ---
 
-Want a practitioner read on where your team actually sits? I'm running the first 5 AI readiness assessments at $99 (normally $250) to build out case studies. You get a 1-hour working call, a written action plan with 3-4 highest-ROI next steps, a custom AI Adoption Playbook adapted to your stack, and a ready-to-commit AGENTS.md for your main repo. **[Book one →](/services#assessment)**
+Want a practitioner read on where your team actually sits? I'm running the first 5 AI readiness assessments at $99 (normally $250) to build out case studies. You get a 1-hour working call, a written action plan with 3-4 highest-ROI next steps, a custom AI Adoption Playbook adapted to your stack, and a ready-to-commit AGENTS.md for your main repo. **[Book one →](https://cal.com/collinwilkins/assessment)**
 
 Or read the public framework: **[AI Adoption Playbook →](/guides/ai-adoption-playbook)** — this post is Chapter 1. The playbook walks through the other four.

@@ -66,7 +66,7 @@ const Services = () => {
           </ul>
           <div className="flex flex-wrap items-center gap-4">
             <a
-              href="/services?modal=contact&service=ai-strategy"
+              href="https://cal.com/collinwilkins/assessment"
               className="inline-block px-6 py-3 text-sm font-semibold rounded-lg bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] transition-colors"
             >
               Book an assessment →
