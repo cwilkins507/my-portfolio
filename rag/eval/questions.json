@@ -1,0 +1,19 @@
+[
+  {"question":"What four layers make up context engineering?","expected_slugs":["context-engineering"]},
+  {"question":"What is the minimum viable AI agent harness?","expected_slugs":["ai-agent-harness"]},
+  {"question":"Why can bad code become an AI tax?","expected_slugs":["ai-code-quality-bad-code-tax"]},
+  {"question":"When do you probably not need an LLM gateway?","expected_slugs":["llm-gateway-architecture"]},
+  {"question":"How does Collin use AI agents in his daily workflow?","expected_slugs":["ai-agent-workflow-claude-code"]},
+  {"question":"What are three approaches to AI code review?","expected_slugs":["ai-code-review-best-practices-approaches-tools"]},
+  {"question":"What is the Claude Code productivity paradox?","expected_slugs":["claude-code-productivity-paradox"]},
+  {"question":"How can a business assess whether it is ready for AI?","expected_slugs":["how-to-know-if-your-business-is-ready-for-ai"]},
+  {"question":"What changed from vibe coding to agentic engineering?","expected_slugs":["from-vibe-coding-to-agentic-engineering"]},
+  {"question":"What does intentional AI integration require from a codebase?","expected_slugs":["intentional-ai-integration"]},
+  {"question":"What are examples of automations Collin runs without manual work?","expected_slugs":["3-automations-that-run-without-me"]},
+  {"question":"How should teams choose between coding models?","expected_slugs":["ai-model-selection","ai-coding-model-wars-2026"]},
+  {"question":"What is the DOE framework and how do Claude Skills affect it?","expected_slugs":["doe-framework-claude-skills"]},
+  {"question":"What practices help engineering teams adopt AI safely?","expected_slugs":["enterprise-best-practices"]},
+  {"question":"How should structured LLM output be validated?","expected_slugs":["structured-output"]},
+  {"question":"What makes an AI agent skill production-ready?","expected_slugs":["building-production-ready-ai-agent-skills"]},
+  {"question":"What is the best recipe for Detroit-style pizza?","expected_slugs":[],"expect_refusal":true}
+]

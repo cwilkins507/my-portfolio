@@ -1,13 +1,14 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AskBlog from '../../components/AskBlog';
 import { getCategoryForArticle, CATEGORIES } from '../../data/categories.js';
+import { articleFromModule } from '../../utils/articleData.js';
+import { buildSearchDocuments } from '../../utils/buildSearchDocuments.js';
 
 const articleModules = import.meta.glob('../../articles/*.md', { eager: true });
-const articles = Object.entries(articleModules).map(([file, article]) => ({
-  slug: file.split('/').pop().replace('.md', ''),
-  ...article.frontmatter,
-  category: getCategoryForArticle(article.frontmatter.tags),
-})).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+const articles = Object.entries(articleModules).map(([file, article]) => articleFromModule(file, article))
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+const searchDocuments = buildSearchDocuments(articles);
 
 const totalArticles = articles.length;
 const featured = articles[0];
@@ -63,6 +64,10 @@ const collectionSchema = {
           {cat}
         </button>
       ))}
+    </div>
+    <div style="margin-top:clamp(42px,6vw,68px);padding:clamp(24px,4vw,42px);background:var(--paper-2);border:1px solid var(--rule);border-radius:12px;">
+      <AskBlog compact documents={searchDocuments} articleCount={totalArticles} client:load />
+      <p style="text-align:center;margin-top:20px;font-family:var(--mono);font-size:11px;color:var(--ink-faint);">Prefer to browse questions? <a href="/faq">Open the public FAQ →</a></p>
     </div>
   </div>
 
