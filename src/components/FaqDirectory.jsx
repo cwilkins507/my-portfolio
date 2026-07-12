@@ -7,7 +7,10 @@ export default function FaqDirectory({ faqs = [] }) {
     const phrase = normalizeSearchText(query);
     if (phrase.length < 2) return faqs;
     const terms = phrase.split(' ').filter(term => term.length > 1);
-    return faqs.filter(faq => terms.some(term => normalizeSearchText(`${faq.q} ${faq.a} ${faq.articleTitle} ${faq.category}`).includes(term)));
+    return faqs.filter(faq => {
+      const searchableText = normalizeSearchText(`${faq.q} ${faq.a} ${faq.articleTitle} ${faq.category}`);
+      return terms.some(term => searchableText.includes(term));
+    });
   }, [faqs, query]);
 
   return <>

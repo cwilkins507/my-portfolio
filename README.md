@@ -48,7 +48,7 @@ No LangChain or LangGraph is used.
 
 ## Local setup
 
-Requires Node 20+ and Python 3.9+ (Modal runs Python 3.12).
+Requires Node 20+ and Python 3.10+ (Modal runs Python 3.12).
 
 ```bash
 npm ci
