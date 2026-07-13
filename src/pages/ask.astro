@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AskBlog from '../components/AskBlog';
+import { articleFromModule } from '../utils/articleData.js';
+import { buildSearchDocuments } from '../utils/buildSearchDocuments.js';
+
+const articleModules = import.meta.glob('../articles/*.md', { eager: true });
+const articles = Object.entries(articleModules).map(([file, article]) => articleFromModule(file, article));
+const searchDocuments = buildSearchDocuments(articles);
+---
+<Layout title="Ask My Blog | Collin Wilkins" description="Ask questions across Collin Wilkins's public articles and get citation-grounded answers.">
+  <div class="wrap" style="padding-top:clamp(64px,9vw,110px);padding-bottom:clamp(64px,9vw,110px);">
+    <AskBlog documents={searchDocuments} articleCount={articles.length} client:load />
+  </div>
+</Layout>

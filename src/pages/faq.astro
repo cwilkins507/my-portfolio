@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FaqDirectory from '../components/FaqDirectory';
+import { articleFromModule } from '../utils/articleData.js';
+import { faqAnchor } from '../utils/contentSearch.js';
+
+const modules = import.meta.glob('../articles/*.md', { eager: true });
+const articles = Object.entries(modules).map(([file, article]) => articleFromModule(file, article));
+const faqs = articles.flatMap(article => (article.faqs || []).map(faq => ({
+  ...faq,
+  articleTitle: article.title,
+  category: article.category,
+  url: `/articles/${article.slug}#${faqAnchor(faq.q)}`,
+}))).sort((a, b) => a.q.localeCompare(b.q));
+---
+<Layout title="Frequently Asked Questions | Collin Wilkins" description="Answers drawn from Collin Wilkins's public writing on AI engineering, automation, architecture, and production software.">
+  <div class="wrap" style="max-width:var(--measure);padding-top:clamp(64px,9vw,110px);padding-bottom:clamp(64px,9vw,110px);">
+    <span class="label" style="color:var(--accent-text);">From the article archive</span>
+    <h1 style="font-size:clamp(40px,6vw,60px);font-weight:500;line-height:1.05;margin-top:12px;">Frequently asked questions</h1>
+    <p style="font-size:18px;line-height:1.6;color:var(--ink-soft);margin:16px 0 30px;">Short answers pulled from the longer articles. Search by the problem you're trying to solve.</p>
+    <FaqDirectory faqs={faqs} client:load />
+  </div>
+</Layout>

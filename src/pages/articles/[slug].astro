@@ -2,6 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 import BookCTA from '../../components/BookCTA.astro';
 import { getCategoryForArticle } from '../../data/categories.js';
+import { faqAnchor } from '../../utils/contentSearch.js';
+import { articleFromModule } from '../../utils/articleData.js';
 
 const articleModules = import.meta.glob('../../articles/*.md', { eager: true });
 const allArticles = Object.entries(articleModules).map(([file, article]) => ({
@@ -23,6 +25,8 @@ export async function getStaticPaths() {
 const { article } = Astro.props;
 const { Content, frontmatter } = article;
 const slug = Astro.params.slug;
+const normalizedArticle = articleFromModule(article.file, article);
+const faqs = normalizedArticle.faqs || [];
 
 // Word count + reading time
 let wordCount: number | undefined;
@@ -119,10 +123,10 @@ const graphItems: unknown[] = [
     ],
   },
 ];
-if (frontmatter.faqs?.length) {
+if (faqs.length) {
   graphItems.push({
     '@type': 'FAQPage',
-    mainEntity: frontmatter.faqs.map((faq: { q: string; a: string }) => ({
+    mainEntity: faqs.map((faq: { q: string; a: string }) => ({
       '@type': 'Question',
       name: faq.q,
       acceptedAnswer: { '@type': 'Answer', text: faq.a },
@@ -201,6 +205,20 @@ const articleSchema = { '@context': 'https://schema.org', '@graph': graphItems }
 
   <!-- ── End matter ── -->
   <div class="wrap" style="max-width:calc(var(--measure) + 48px);">
+    {faqs.length > 0 && (
+      <section class="article-faq" aria-labelledby="article-faq-title">
+        <span class="label" style="color:var(--ink-faint);">Questions this article answers</span>
+        <h2 id="article-faq-title">Frequently asked questions</h2>
+        <div class="faq-list">
+          {faqs.map((faq: { q: string; a: string }) => (
+            <details id={faqAnchor(faq.q)} class="faq-item">
+              <summary>{faq.q}<span aria-hidden="true">+</span></summary>
+              <p>{faq.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+    )}
     <!-- Tags -->
     {frontmatter.tags && frontmatter.tags.length > 0 && (
       <div class="tags" style="margin-top:clamp(36px,5vw,52px);padding-top:clamp(36px,5vw,52px);border-top:1px solid var(--rule);">
@@ -258,6 +276,15 @@ const articleSchema = { '@context': 'https://schema.org', '@graph': graphItems }
 </Layout>
 
 <style>
+.article-faq { margin-top:clamp(42px,6vw,68px);padding-top:clamp(36px,5vw,52px);border-top:1px solid var(--rule); }
+.article-faq h2 { font-size:clamp(28px,4vw,38px);font-weight:500;margin-top:10px; }
+.faq-list { margin-top:24px;border-top:1px solid var(--rule); }
+.faq-item { border-bottom:1px solid var(--rule);scroll-margin-top:90px; }
+.faq-item summary { display:flex;justify-content:space-between;gap:20px;align-items:center;padding:18px 0;cursor:pointer;font-size:18px;font-weight:600;list-style:none; }
+.faq-item summary::-webkit-details-marker { display:none; }
+.faq-item summary span { font-family:var(--mono);font-size:20px;color:var(--accent-text);transition:transform .15s; }
+.faq-item[open] summary span { transform:rotate(45deg); }
+.faq-item p { color:var(--ink-soft);font-size:17px;line-height:1.65;padding:0 34px 20px 0; }
 /* ── Post header ── */
 .post-head {
   padding: clamp(48px, 8vw, 96px) 0 0;
