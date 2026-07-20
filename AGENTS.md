@@ -1,0 +1,126 @@
+# AGENTS.md — collinwilkins.com
+
+## Repository purpose
+
+This Astro site has two jobs:
+
+1. Establish Collin Wilkins as an engineering practitioner writing about production AI, automation, and agent systems.
+2. Convert a small number of qualified visitors into consulting conversations.
+
+The prepared local funnel makes the AI-Assisted Delivery Pilot primary. The public AI Workflow Opportunity Assessment remains a separate SMB route. This branch is not authorization to deploy either change.
+
+## Stack and commands
+
+- Astro 5 static site
+- React 19 islands
+- Tailwind CSS and shared CSS variables
+- GitHub Pages deployment
+- Plausible analytics
+
+Use the locked install and existing scripts:
+
+```bash
+npm ci
+npm run dev -- --host 127.0.0.1
+npm run test:content-search
+npm run build
+npm run test:built-faqs
+npm run preview
+```
+
+`npm run test:rag` is required only when RAG source or its contract changes.
+
+## Source precedence
+
+For this implementation:
+
+1. Current user task
+2. This root contract
+3. `Founder Intelligence System/Current Bet.md` for commercial authority only
+4. `Personal/Strategy/AI Delivery Kit Pilot - Planning Package Index.md`
+5. `Personal/Strategy/Handoff - Implement AI Delivery Kit Pilot and Engineering Funnel.md`
+6. Current repository source
+
+The planning package is provisional site design. It does not replace the Current Bet, authorize deployment, or create market evidence. If the vault is unavailable, stop rather than inventing business decisions.
+
+## Offer and routing invariants
+
+- Engineering offer: AI-Assisted Delivery Pilot.
+- Asset: AI Delivery Kit.
+- Scope: one team, one repository, one real backlog item.
+- Founding price: $1,500.
+- Delivery: approximately 10 business days, async-first.
+- Engineering fit calls use `https://cal.com/collinwilkins/intro` only while its public contract remains compatible.
+- Direct pilot intake is site-owned, collects no payment, and precedes scope acceptance and manual payment.
+- SMB assessment stays separate: $99, 60 minutes, Workflow Opportunity Map within 48 hours, booked at `/assessment`.
+- Never route an engineering CTA to the SMB assessment.
+- Preserve the financial-services exclusion.
+- Do not add service categories without evidence or explicit instruction.
+- Do not advertise voice-agent delivery experience.
+
+Centralized offer, newsletter, booking, and analytics objects in `src/data/site.js` are the implementation source of truth. Visible copy, metadata, JSON-LD, links, and analytics labels must agree.
+
+## Claims and proof
+
+- Never invent clients, testimonials, statistics, quotes, prices, availability, or outcomes.
+- Use Ford and Morningstar outcomes only in their verified wording and employment context.
+- Label employment proof: `Outcomes from full-time engineering roles, not consulting clients.`
+- Treat examples as synthetic or redacted when applicable.
+- Never attribute combined defect or cycle-time outcomes to AI, `AGENTS.md`, or one model alone.
+- Do not imply public preview material is an installable starter.
+- No fake scarcity, synthetic review cards, or unsupported counters.
+
+## Public/private boundary
+
+Public pages may show a lifecycle map, file tree, synthetic issue, redacted usage summary, human-control table, and generic repository-instruction excerpt. Never publish a runnable ZIP, complete workflow, complete issue template, scripts, skills, adapter code, credentials, customer data, private paths, or private repository links.
+
+## Editorial-print design
+
+- Preserve Newsreader, IBM Plex Mono, paper/ink/gold tokens, and existing spacing utilities.
+- Reuse current components and tokens before adding primitives.
+- Avoid a generic SaaS palette, decorative dashboard cards, or a new motion system.
+- Maintain responsive readability, semantic headings and landmarks, keyboard access, visible focus, contrast, and reduced-motion behavior.
+- Check 1440×1000, 768×1024, and 390×844.
+- A passing build is not visual QA; use a real browser.
+
+## Conversion and analytics
+
+- A CTA click is not a booking, purchase, or confirmed subscriber.
+- Use the existing Plausible integration and stable centralized event names.
+- Every CTA event includes an explicit location.
+- Newsletter submit is intent because the cross-origin Buttondown result is not observable.
+- Cal.com and external payment systems remain authoritative for completed bookings and payments.
+- A price, destination, audience, or deliverable change must update visible copy, FAQ, metadata, schema, and analytics in the same change.
+
+## Worktree safety
+
+- Inspect `git status --short --branch` before editing.
+- Existing changes and untracked files belong to the user.
+- Work only in this isolated worktree for this funnel.
+- Do not reset, clean, stash, pull, merge, switch another checkout, or overwrite unrelated work.
+- Do not push, open a pull request, deploy, configure a remote, or change external accounts.
+- Local focused commits are authorized for the approved implementation only.
+
+## Workflow
+
+1. Read the approved implementation task and cited authority.
+2. Search for existing patterns before creating components.
+3. Define route and conversion-event behavior before editing.
+4. Make the smallest coherent change.
+5. Run focused checks and the production build.
+6. Exercise changed paths in a browser, including forms with intercepted requests.
+7. Inspect responsive, keyboard, print, metadata, schema, and analytics behavior.
+8. Confirm no private asset or unsupported claim crossed the public boundary.
+9. Record limitations and external actions that still need approval.
+
+## Done criteria
+
+- Locked install and relevant test scripts pass.
+- Production build passes; changed routes render without console errors.
+- Engineering and SMB links remain distinct and accurate.
+- Intake success and failure states work without creating a production lead.
+- Desktop, tablet, mobile, keyboard, focus, headings, landmarks, overflow, and reduced motion are checked.
+- Capability brief exports as one readable US Letter page with production-absolute PDF links.
+- Plausible events and explicit locations are verified when touched.
+- Metadata and structured data match visible content.
+- No new public private-kit source or unauthorized external action exists.
