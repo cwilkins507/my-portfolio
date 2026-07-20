@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useReducedMotion } from '../hooks/useReducedMotion';
-import { BOOKING_HREF } from '../data/site.js';
+import { ENGINEERING_PILOT } from '../data/site.js';
 
 const NAV_LINKS = [
   { href: '/articles', label: 'Articles' },
@@ -119,7 +119,7 @@ const Navigation = ({ portfolioData }) => {
                 </a>
               ))}
               <a
-                href={BOOKING_HREF}
+                href={ENGINEERING_PILOT.fitCallHref}
                 style={{
                   fontFamily: 'var(--mono)',
                   fontSize: '12px',
@@ -135,7 +135,7 @@ const Navigation = ({ portfolioData }) => {
                 onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--accent)'}
                 onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--rule)'}
               >
-                Book a call
+                {ENGINEERING_PILOT.fitCallLabel}
               </a>
             </div>
 
@@ -236,12 +236,12 @@ const Navigation = ({ portfolioData }) => {
               </a>
             ))}
             <a
-              href={BOOKING_HREF}
+              href={ENGINEERING_PILOT.fitCallHref}
               onClick={close}
               className="btn btn-solid"
               style={{ marginTop: '8px' }}
             >
-              Book a call
+              {ENGINEERING_PILOT.fitCallLabel}
             </a>
           </motion.div>
         )}

@@ -1,0 +1,41 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { ENGINEERING_PILOT } from '../../data/site.js';
+const schema = {
+  '@context': 'https://schema.org', '@type': ['Service', 'Offer'],
+  name: ENGINEERING_PILOT.name, description: ENGINEERING_PILOT.description,
+  audience: { '@type': 'Audience', audienceType: ENGINEERING_PILOT.audience },
+  price: ENGINEERING_PILOT.priceUsd, priceCurrency: 'USD', url: ENGINEERING_PILOT.slug,
+};
+const included = ['Structured issue intake and readiness gate','Repository instructions and protected-path policy','A bounded coding-agent adapter','Existing CI and verification integration','Human review and approval controls','Normalized model-usage evidence'];
+---
+<Layout title={`${ENGINEERING_PILOT.name} | Collin Wilkins`} description={ENGINEERING_PILOT.description} schema={schema}>
+  <article class="offer wrap">
+    <header class="hero">
+      <p class="eyebrow">{ENGINEERING_PILOT.name}</p>
+      <h1>{ENGINEERING_PILOT.lead}</h1>
+      <p class="lede">{ENGINEERING_PILOT.description}</p>
+      <p class="contract"><strong>{ENGINEERING_PILOT.priceLabel}</strong> · {ENGINEERING_PILOT.deliveryWindow} · {ENGINEERING_PILOT.deliveryMode}</p>
+      <p>{ENGINEERING_PILOT.scope}</p>
+      <div class="actions"><a class="btn btn-primary" href={ENGINEERING_PILOT.intakeHref}>{ENGINEERING_PILOT.intakeLabel}</a><a class="btn btn-ghost" href={ENGINEERING_PILOT.fitCallHref}>{ENGINEERING_PILOT.fitCallLabel}</a></div>
+    </header>
+    <section aria-labelledby="flow"><h2 id="flow">The operating path</h2><div class="pipeline" aria-label="Delivery flow"><span>issue</span><b>→</b><span>bounded agent</span><b>→</b><span>draft PR</span><b>→</b><span>CI</span><b>→</b><span>human approval</span></div></section>
+    <section><h2>What the pilot installs</h2><ul class="columns">{included.map(item => <li>{item}</li>)}</ul></section>
+    <section><h2>Public proof preview</h2><p>The installable package stays private. This preview explains the control model without distributing runnable client assets.</p><div class="preview"><div><h3>Private package tree</h3><pre>AGENTS.md
+.ai-sdlc/
+  protected-paths.txt
+  models.yml
+  verify.local.sh
+adapters/codex/</pre></div><div><h3>Synthetic issue</h3><p><strong>Example only:</strong> add validation to a sample invoice parser while leaving authentication, payments, and production infrastructure untouched.</p><h3>Redacted usage summary</h3><p>Model: configured adapter · tokens: unavailable · cost: unavailable · verification: passed.</p></div></div>
+      <table><caption>Human control and protected work</caption><thead><tr><th>Agent may</th><th>Human retains</th></tr></thead><tbody><tr><td>Draft changes on an agent-owned branch</td><td>Scope, protected paths, approval, and merge</td></tr><tr><td>Run existing checks after path review</td><td>Credentials, production, payments, destructive migrations</td></tr></tbody></table>
+      <blockquote><code>AGENTS.md</code> excerpt: “Do not touch protected paths. Run repository verification. Stop for human review before merge.”</blockquote>
+    </section>
+    <section><h2>Best fit—and not fit</h2><div class="split"><div><h3>Best fit</h3><p>Small engineering teams already using AI coding tools, with a real backlog item, an existing repository, and a human owner ready to review.</p></div><div><h3>Not fit</h3><p>Greenfield platform builds, autonomous production access, replacement CI, multi-agent platforms, or financial-services work.</p></div></div></section>
+    <section><h2>Qualified proof</h2><p class="qualifier">Outcomes from full-time engineering roles, not consulting clients.</p><ul><li>Ford work associated with approximately $5M in annual savings across systems supporting 450K+ vehicles.</li><li>Platforms handling 600K+ events/day and integrations serving 23+ enterprise recordkeepers.</li><li>Approximately 90% less processing volume/time plus a 35% throughput/latency improvement.</li><li>Led a broader AI-adoption and delivery-hardening initiative associated with 42% fewer defects and approximately 20% shorter cycle time.</li></ul></section>
+    <section><h2>Delivery and confidentiality</h2><p>Work is async-first inside the customer’s repository and existing checks. Customer code, credentials, and installable assets remain private. Calls are recorded for notes by default; clients can opt out before the session.</p></section>
+    <section><h2>Next steps</h2><ol><li>Submit the no-payment intake or book a free fit call.</li><li>Confirm the issue, protected areas, verification, and human owner.</li><li>Accept scope and arrange payment before installation begins.</li></ol><div class="actions"><a class="btn btn-primary" href={ENGINEERING_PILOT.intakeHref}>{ENGINEERING_PILOT.intakeLabel}</a><a class="btn btn-ghost" href={ENGINEERING_PILOT.fitCallHref}>{ENGINEERING_PILOT.fitCallLabel}</a><a href={ENGINEERING_PILOT.capabilityBriefHref}>View the AI Delivery capability brief →</a></div></section>
+  </article>
+</Layout>
+<style>
+.offer{max-width:980px;padding-top:clamp(70px,10vw,130px);padding-bottom:90px}.hero{max-width:850px}.eyebrow,.qualifier{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}h1{font-size:clamp(42px,7vw,76px);line-height:.98;margin:18px 0}.lede{font-size:clamp(20px,2.4vw,28px);color:var(--ink-soft);max-width:70ch}.contract{font-family:var(--mono);margin:28px 0}.actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:28px}section{padding:56px 0;border-top:1px solid var(--rule)}h2{font-size:clamp(30px,4vw,46px);margin-bottom:22px}h3{font-size:22px;margin-bottom:10px}.pipeline{display:flex;gap:13px;align-items:center;flex-wrap:wrap;font-family:var(--mono);font-size:13px}.pipeline span{padding:12px 16px;border:1px solid var(--rule);background:var(--paper-2)}.columns,.split,.preview{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.columns li,.preview>div,.split>div{padding:20px;border:1px solid var(--rule);background:var(--paper-2)}pre{white-space:pre-wrap;font-size:13px}table{width:100%;border-collapse:collapse;margin:24px 0}caption{text-align:left;font-family:var(--mono);margin-bottom:10px}th,td{text-align:left;vertical-align:top;border:1px solid var(--rule);padding:14px}blockquote{border-left:3px solid var(--accent);padding:12px 18px;background:var(--paper-2)}@media(max-width:640px){.columns,.split,.preview{grid-template-columns:1fr}h1{overflow-wrap:anywhere}}
+</style>

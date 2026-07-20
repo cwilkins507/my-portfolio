@@ -1,0 +1,12 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { SMB_ASSESSMENT } from '../../data/site.js';
+const schema={'@context':'https://schema.org','@type':['Service','Offer'],name:SMB_ASSESSMENT.name,description:SMB_ASSESSMENT.description,price:SMB_ASSESSMENT.priceUsd,priceCurrency:'USD',url:SMB_ASSESSMENT.slug};
+---
+<Layout title={`${SMB_ASSESSMENT.name} | Collin Wilkins`} description={SMB_ASSESSMENT.description} schema={schema}>
+<article class="wrap assessment"><header><p class="eyebrow">For small-business owners and operators</p><h1>Choose the first recurring workflow worth improving.</h1><p class="lede">{SMB_ASSESSMENT.description}</p><p class="contract"><strong>$99</strong> · {SMB_ASSESSMENT.durationMinutes} minutes · {SMB_ASSESSMENT.deliverable} {SMB_ASSESSMENT.deliveryWindow}</p><a class="btn btn-primary" href={SMB_ASSESSMENT.bookingHref}>{SMB_ASSESSMENT.bookingLabel}</a></header>
+<section><h2>What you leave with</h2><ul><li>Up to three ranked workflow opportunities</li><li>One recommended first system</li><li>A 14-day action plan</li><li>A practical choice: self-serve, work together, or request a proposal</li></ul></section>
+<section><h2>Who it is for</h2><p>{SMB_ASSESSMENT.audience}. Bring one recurring workflow that consumes time, creates handoff errors, or makes customer follow-up inconsistent. This assessment is not offered for financial-services work.</p></section>
+<section><h2>Prefer a conversation first?</h2><p>The paid assessment is the direct path. If you are still deciding whether a focused working session fits, use the separate free introduction.</p><a href={SMB_ASSESSMENT.introHref}>{SMB_ASSESSMENT.introLabel} →</a></section></article>
+</Layout>
+<style>.assessment{max-width:850px;padding-top:clamp(70px,10vw,130px);padding-bottom:90px}.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}h1{font-size:clamp(42px,7vw,76px);line-height:.98;margin:18px 0}.lede{font-size:clamp(20px,2.4vw,28px);color:var(--ink-soft)}.contract{font-family:var(--mono);margin:28px 0}section{padding:48px 0;border-top:1px solid var(--rule)}h2{font-size:clamp(30px,4vw,44px)}li{margin:10px 0}</style>
