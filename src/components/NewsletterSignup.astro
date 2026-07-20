@@ -1,75 +1,14 @@
 ---
-interface Props {
-  variant?: 'inline' | 'footer';
-  title?: string;
-  description?: string;
-  buttonLabel?: string;
-  tag?: string;
-  note?: string;
-}
-
-const {
-  variant = 'inline',
-  title = 'Notes from production.',
-  description = 'Working playbooks and field notes for learning by doing. AI coding, convention files, automation architecture, and the production details that decide whether the work survives past the demo.',
-  buttonLabel = 'Subscribe',
-  tag,
-  note = 'No spam. Unsubscribe anytime.',
-} = Astro.props;
+import { NEWSLETTER, ANALYTICS_EVENTS } from '../data/site.js';
+interface Props { variant?: 'inline' | 'footer'; title?: string; description?: string; buttonLabel?: string; tag?: string; note?: string; location: string; }
+const { variant='inline', title=NEWSLETTER.name, description=NEWSLETTER.promise, buttonLabel='Subscribe', tag, note='Subscription events measure intent; Buttondown confirms the subscriber.', location }=Astro.props;
+if(!location) throw new Error('NewsletterSignup requires a location prop');
 ---
-
-{variant === 'inline' ? (
-  <div class="mt-16 mb-4 p-8 md:p-12 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)]">
-    <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-2">{title}</h3>
-    <p class="text-moonlight-text-secondary mb-6">{description}</p>
-    <form
-      action="https://buttondown.com/api/emails/embed-subscribe/collinwilkins"
-      method="post"
-      target="popupwindow"
-      rel="noopener noreferrer"
-      class="flex flex-col sm:flex-row gap-3"
-    >
-      {tag && <input type="hidden" name="tag" value={tag} />}
-      <input
-        type="email"
-        name="email"
-        placeholder="your@email.com"
-        required
-        class="flex-1 min-h-14 px-5 py-4 text-base bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-[var(--color-text-primary)] placeholder:text-[var(--color-text-faint)] focus:outline-none focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] transition"
-      />
-      <button
-        type="submit"
-        class="min-h-14 px-7 py-4 text-base bg-[var(--color-accent)] text-white font-semibold rounded-lg hover:bg-[var(--color-accent-hover)] transition-all duration-300 whitespace-nowrap"
-      >
-        {buttonLabel}
-      </button>
-    </form>
-    <p class="text-xs text-moonlight-text-muted mt-3">{note}</p>
-  </div>
-) : (
-  <div class="max-w-md mx-auto mb-6">
-    <p class="text-sm text-moonlight-text-secondary mb-3">Every other week, I send notes on AI tools and automation systems that run without you.</p>
-    <form
-      action="https://buttondown.com/api/emails/embed-subscribe/collinwilkins"
-      method="post"
-      target="popupwindow"
-      rel="noopener noreferrer"
-      class="flex gap-2"
-    >
-      {tag && <input type="hidden" name="tag" value={tag} />}
-      <input
-        type="email"
-        name="email"
-        placeholder="your@email.com"
-        required
-        class="flex-1 px-3 py-2 text-sm bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-[var(--color-text-primary)] placeholder:text-[var(--color-text-faint)] focus:outline-none focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] transition"
-      />
-      <button
-        type="submit"
-        class="px-4 py-2 text-sm bg-[var(--color-accent)] text-white font-semibold rounded-lg hover:bg-[var(--color-accent-hover)] transition-all duration-300 whitespace-nowrap"
-      >
-        {buttonLabel}
-      </button>
-    </form>
-  </div>
-)}
+<div class:list={[variant==='inline'?'newsletter-inline':'newsletter-footer']}>
+  <h3>{title}</h3><p>{description}</p>
+  <form action={NEWSLETTER.subscribeAction} method="post" target="popupwindow" rel="noopener noreferrer" data-newsletter-event={ANALYTICS_EVENTS.newsletterSubscribe} data-location={location}>
+    {tag&&<input type="hidden" name="tag" value={tag}/>}<label><span>Email address</span><input type="email" name="email" placeholder="you@company.com" required/></label><button type="submit" class="btn btn-primary">{buttonLabel}</button>
+  </form><p class="note">{note}</p>
+</div>
+<script>document.addEventListener('submit',(event)=>{const form=event.target.closest('[data-newsletter-event]');if(form&&window.plausible)window.plausible(form.dataset.newsletterEvent,{props:{location:form.dataset.location,measurement:'intent'}});});</script>
+<style>.newsletter-inline{padding:clamp(26px,4vw,42px);border:1px solid var(--rule);background:var(--paper-2)}h3{font-size:clamp(26px,4vw,38px);margin-bottom:8px}.newsletter-inline>p,.newsletter-footer>p{color:var(--ink-soft)}form{display:flex;gap:10px;align-items:end;flex-wrap:wrap;margin-top:18px}label{display:grid;gap:6px;font-family:var(--mono);font-size:11px;flex:1;min-width:230px}input{width:100%;padding:12px 15px;border:1px solid var(--rule);background:var(--paper);color:var(--ink);font-size:16px}.note{font-size:12px;margin-top:8px}</style>

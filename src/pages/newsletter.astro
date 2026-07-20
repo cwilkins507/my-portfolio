@@ -3,17 +3,17 @@ import Layout from '../layouts/Layout.astro';
 import NewsletterSignup from '../components/NewsletterSignup.astro';
 ---
 
-<Layout title="Newsletter | Collin Wilkins" description="Every other week, I send practical notes on AI tools, automation, and systems that run without you.">
-	<main class="max-w-[960px] mx-auto px-6 pt-32 pb-20">
+<Layout title="Notes from Production | Collin Wilkins" description="One field note every other Tuesday for engineering leaders turning AI coding tools into repeatable team practice." hideFooterNewsletter={true}>
+	<section class="max-w-[960px] mx-auto px-6 pt-32 pb-20">
 		<div class="max-w-2xl mx-auto text-center mb-12">
-			<h1 class="text-4xl md:text-5xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Newsletter</h1>
+			<h1 class="text-4xl md:text-5xl font-serif font-bold text-[var(--color-text-primary)] mb-4">Notes from Production</h1>
 			<p class="text-lg text-moonlight-text-secondary leading-relaxed">
-				Every other week, I send practical notes on AI tools, automation, and systems that run without you.
+				One field note every other Tuesday for engineering leaders turning AI coding tools into repeatable team practice.
 			</p>
 		</div>
 
 		<div class="max-w-xl mx-auto">
-			<NewsletterSignup variant="inline" />
+			<NewsletterSignup variant="inline" location="newsletter-page" />
 		</div>
 
 		<div class="text-center mt-12">
@@ -26,5 +26,5 @@ import NewsletterSignup from '../components/NewsletterSignup.astro';
 				Read past issues →
 			</a>
 		</div>
-	</main>
+	</section>
 </Layout>

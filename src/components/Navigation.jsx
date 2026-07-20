@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useReducedMotion } from '../hooks/useReducedMotion';
-import { ENGINEERING_PILOT } from '../data/site.js';
+import { ENGINEERING_PILOT, ANALYTICS_EVENTS } from '../data/site.js';
+import { trackEvent } from '../utils/analytics.js';
 
 const NAV_LINKS = [
   { href: '/articles', label: 'Articles' },
@@ -120,6 +121,7 @@ const Navigation = ({ portfolioData }) => {
               ))}
               <a
                 href={ENGINEERING_PILOT.fitCallHref}
+                onClick={() => trackEvent(ANALYTICS_EVENTS.bookingPageOpen, { location: 'navigation' })}
                 style={{
                   fontFamily: 'var(--mono)',
                   fontSize: '12px',
@@ -237,7 +239,7 @@ const Navigation = ({ portfolioData }) => {
             ))}
             <a
               href={ENGINEERING_PILOT.fitCallHref}
-              onClick={close}
+              onClick={() => { trackEvent(ANALYTICS_EVENTS.bookingPageOpen, { location: 'navigation-mobile' }); close(); }}
               className="btn btn-solid"
               style={{ marginTop: '8px' }}
             >
