@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { ENGINEERING_PILOT } from '../../data/site.js';
+import { ENGINEERING_PILOT, ANALYTICS_EVENTS } from '../../data/site.js';
 const schema = {
   '@context': 'https://schema.org', '@type': ['Service', 'Offer'],
   name: ENGINEERING_PILOT.name, description: ENGINEERING_PILOT.description,
@@ -17,7 +17,7 @@ const included = ['Structured issue intake and readiness gate','Repository instr
       <p class="lede">{ENGINEERING_PILOT.description}</p>
       <p class="contract"><strong>{ENGINEERING_PILOT.priceLabel}</strong> · {ENGINEERING_PILOT.deliveryWindow} · {ENGINEERING_PILOT.deliveryMode}</p>
       <p>{ENGINEERING_PILOT.scope}</p>
-      <div class="actions"><a class="btn btn-primary" href={ENGINEERING_PILOT.intakeHref}>{ENGINEERING_PILOT.intakeLabel}</a><a class="btn btn-ghost" href={ENGINEERING_PILOT.fitCallHref}>{ENGINEERING_PILOT.fitCallLabel}</a></div>
+      <div class="actions"><a class="btn btn-primary" href={ENGINEERING_PILOT.intakeHref} data-analytics-event={ANALYTICS_EVENTS.pilotCtaClick} data-analytics-location="offer-hero-intake">{ENGINEERING_PILOT.intakeLabel}</a><a class="btn btn-ghost" href={ENGINEERING_PILOT.fitCallHref} data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen} data-analytics-location="offer-hero-fit-call">{ENGINEERING_PILOT.fitCallLabel}</a></div>
     </header>
     <section aria-labelledby="flow"><h2 id="flow">The operating path</h2><div class="pipeline" aria-label="Delivery flow"><span>issue</span><b>→</b><span>bounded agent</span><b>→</b><span>draft PR</span><b>→</b><span>CI</span><b>→</b><span>human approval</span></div></section>
     <section><h2>What the pilot installs</h2><ul class="columns">{included.map(item => <li>{item}</li>)}</ul></section>
@@ -33,7 +33,7 @@ adapters/codex/</pre></div><div><h3>Synthetic issue</h3><p><strong>Example only:
     <section><h2>Best fit—and not fit</h2><div class="split"><div><h3>Best fit</h3><p>Small engineering teams already using AI coding tools, with a real backlog item, an existing repository, and a human owner ready to review.</p></div><div><h3>Not fit</h3><p>Greenfield platform builds, autonomous production access, replacement CI, multi-agent platforms, or financial-services work.</p></div></div></section>
     <section><h2>Qualified proof</h2><p class="qualifier">Outcomes from full-time engineering roles, not consulting clients.</p><ul><li>Ford work associated with approximately $5M in annual savings across systems supporting 450K+ vehicles.</li><li>Platforms handling 600K+ events/day and integrations serving 23+ enterprise recordkeepers.</li><li>Approximately 90% less processing volume/time plus a 35% throughput/latency improvement.</li><li>Led a broader AI-adoption and delivery-hardening initiative associated with 42% fewer defects and approximately 20% shorter cycle time.</li></ul></section>
     <section><h2>Delivery and confidentiality</h2><p>Work is async-first inside the customer’s repository and existing checks. Customer code, credentials, and installable assets remain private. Calls are recorded for notes by default; clients can opt out before the session.</p></section>
-    <section><h2>Next steps</h2><ol><li>Submit the no-payment intake or book a free fit call.</li><li>Confirm the issue, protected areas, verification, and human owner.</li><li>Accept scope and arrange payment before installation begins.</li></ol><div class="actions"><a class="btn btn-primary" href={ENGINEERING_PILOT.intakeHref}>{ENGINEERING_PILOT.intakeLabel}</a><a class="btn btn-ghost" href={ENGINEERING_PILOT.fitCallHref}>{ENGINEERING_PILOT.fitCallLabel}</a><a href={ENGINEERING_PILOT.capabilityBriefHref}>View the AI Delivery capability brief →</a></div></section>
+    <section><h2>Next steps</h2><ol><li>Submit the no-payment intake or book a free fit call.</li><li>Confirm the issue, protected areas, verification, and human owner.</li><li>Accept scope and arrange payment before installation begins.</li></ol><div class="actions"><a class="btn btn-primary" href={ENGINEERING_PILOT.intakeHref} data-analytics-event={ANALYTICS_EVENTS.pilotCtaClick} data-analytics-location="offer-close-intake">{ENGINEERING_PILOT.intakeLabel}</a><a class="btn btn-ghost" href={ENGINEERING_PILOT.fitCallHref} data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen} data-analytics-location="offer-close-fit-call">{ENGINEERING_PILOT.fitCallLabel}</a><a href={ENGINEERING_PILOT.capabilityBriefHref} data-analytics-event={ANALYTICS_EVENTS.capabilityBriefView} data-analytics-location="offer-close">View the AI Delivery capability brief →</a></div></section>
   </article>
 </Layout>
 <style>

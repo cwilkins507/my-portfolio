@@ -2,6 +2,7 @@
 import Navigation from '../components/Navigation.jsx';
 import ContactModalWrapper from '../components/ContactModalWrapper';
 import '../index.css';
+import { NEWSLETTER, ANALYTICS_EVENTS } from '../data/site.js';
 
 interface Props {
 	title: string;
@@ -116,12 +117,14 @@ const currentYear = new Date().getFullYear();
 				<div style="background: var(--paper-2); border-bottom: 1px solid var(--rule);">
 					<div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding-top:22px;padding-bottom:22px;">
 						<p style="font-size:15px;line-height:1.5;color:var(--ink-soft);max-width:54ch;">
-							Not ready to talk? <strong style="color:var(--ink);font-weight:600;">Read along.</strong> Practical AI engineering — patterns, trade-offs, and the occasional self-hosting experiment.
+							<strong style="color:var(--ink);font-weight:600;">{NEWSLETTER.name}.</strong> {NEWSLETTER.promise}
 						</p>
 						<form
-							action="https://buttondown.com/api/emails/embed-subscribe/collinwilkins"
+							action={NEWSLETTER.subscribeAction}
 							method="post"
 							target="popupwindow"
+							data-newsletter-event={ANALYTICS_EVENTS.newsletterSubscribe}
+							data-location="footer"
 							style="display:flex;gap:10px;flex-shrink:0;"
 						>
 							<input
@@ -157,7 +160,7 @@ const currentYear = new Date().getFullYear();
 					<ul style="list-style:none;">
 						<li style="margin-bottom:10px;"><a href="/articles" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">Articles</a></li>
 						<li style="margin-bottom:10px;"><a href="/faq" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">FAQ</a></li>
-						<li style="margin-bottom:10px;"><a href="https://buttondown.com/collinwilkins" target="_blank" rel="noopener noreferrer" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">Newsletter</a></li>
+						<li style="margin-bottom:10px;"><a href={NEWSLETTER.archiveHref} target="_blank" rel="noopener noreferrer" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">{NEWSLETTER.name}</a></li>
 					</ul>
 				</div>
 				<div>
@@ -177,6 +180,8 @@ const currentYear = new Date().getFullYear();
 
 		<!-- Contact Modal -->
 		<ContactModalWrapper email={portfolioData.email} client:only="react" />
+		<script is:inline>document.addEventListener('submit',function(event){var form=event.target.closest('[data-newsletter-event]');if(form&&window.plausible)window.plausible(form.dataset.newsletterEvent,{props:{location:form.dataset.location,measurement:'intent'}});});</script>
+		<script is:inline>document.addEventListener('click',function(event){var link=event.target.closest('[data-analytics-event][data-analytics-location]');if(link&&window.plausible)window.plausible(link.dataset.analyticsEvent,{props:{location:link.dataset.analyticsLocation}});});</script>
 	</body>
 </html>
 

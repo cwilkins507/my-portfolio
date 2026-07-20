@@ -72,17 +72,17 @@ const About = () => {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
-                href="/case-studies"
+                href="/services/ai-delivery-kit/capability-brief"
                 className="inline-flex min-h-11 items-center justify-center rounded-lg bg-[var(--color-accent)] px-5 text-sm font-bold text-white transition-colors hover:bg-[var(--color-accent-hover)]"
               >
-                View the work
+                View the AI Delivery capability brief
                 <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </a>
               <a
                 href="/Collin-Wilkins-Resume.pdf"
                 className="inline-flex min-h-11 items-center justify-center rounded-lg border border-[var(--color-border-hover)] bg-[var(--color-surface)] px-5 text-sm font-bold text-[var(--color-text-primary)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
               >
-                Download CV
+                Recruiting? Download résumé
                 <Download className="ml-2 h-4 w-4" aria-hidden="true" />
               </a>
             </div>

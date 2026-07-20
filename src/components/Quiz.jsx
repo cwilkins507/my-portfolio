@@ -106,10 +106,11 @@ Quiz Results:
       <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)] flex flex-col items-center justify-center p-6 font-sans">
         <div className="max-w-2xl w-full text-center space-y-6">
           <h1 className="text-3xl md:text-4xl font-serif font-bold">Got it!</h1>
-          <p className="text-xl text-[var(--color-text-secondary)]">I'll review your answers and send a quick analysis to {email}.</p>
+          <p className="text-xl text-[var(--color-text-secondary)]">Your answers were submitted for the small-business automation quiz.</p>
           <div className="bg-[var(--color-surface)] p-8 rounded-2xl border border-[var(--color-border)]">
             <Check className="w-16 h-16 text-green-400 mx-auto mb-4" />
-            <p>If automation makes sense for your situation, I'll include rough pricing and next steps.</p>
+            <p>The next structured step is the $99 AI Workflow Opportunity Assessment: a 60-minute working session and Workflow Opportunity Map within 48 hours.</p>
+            <a href="/services/ai-workflow-assessment" className="inline-block mt-5 text-[var(--color-accent)] underline">View the $99 assessment →</a>
           </div>
           <button
             onClick={() => {
@@ -223,7 +224,7 @@ Quiz Results:
                       Based on your answers, automation could help.
                     </h2>
                     <p className="text-[var(--color-text-secondary)] text-lg">
-                      I'll send you a quick analysis of where you're losing time and what it might cost to fix.
+                      Submit your answers, then choose whether the separate $99 Workflow Opportunity Assessment is the right next step.
                     </p>
                   </div>
 
@@ -270,7 +271,7 @@ Quiz Results:
                       disabled={isSubmitting || !firstName || !lastName || !email}
                       className="w-full bg-[var(--color-accent)] text-white text-xl py-4 rounded font-medium hover:bg-[var(--color-accent-hover)] transition-colors shadow-lg active:scale-[0.98] transform disabled:opacity-50"
                     >
-                      {isSubmitting ? 'Sending...' : 'Get My Results'}
+                      {isSubmitting ? 'Sending...' : 'Submit My Answers'}
                     </button>
                   </form>
                 </div>
