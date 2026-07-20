@@ -1,11 +1,11 @@
 ---
 import BookCTA from './BookCTA.astro';
-import { BOOKING_HREF } from '../data/site.js';
 
 interface Props {
   variant: 'soft' | 'full';
+  location: string;
 }
-const { variant } = Astro.props;
+const { variant, location } = Astro.props;
 ---
 
 <section id="book" style="padding:clamp(60px,8vw,100px) 0;text-align:center;border-top:1px solid var(--rule);">
@@ -19,7 +19,7 @@ const { variant } = Astro.props;
       {variant === 'full' && <span> I take a small number of teams at a time.</span>}
     </p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px;">
-      <BookCTA />
+      <BookCTA location={location} />
       {variant === 'full' && (
         <a href="/services" class="btn btn-ghost">See services &amp; pricing</a>
       )}
