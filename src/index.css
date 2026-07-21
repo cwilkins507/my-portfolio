@@ -10,11 +10,11 @@
   --paper-3:  oklch(0.944 0.011 90);
   --ink:      oklch(0.235 0.009 80);
   --ink-soft: oklch(0.44 0.011 80);
-  --ink-faint:oklch(0.63 0.01 82);
+  --ink-faint:#716d66;
   --rule:     oklch(0.885 0.012 88);
   --accent:      oklch(0.595 0.118 80); /* decorative: borders, marks, bg tints */
   --accent-btn:  oklch(0.645 0.118 80); /* button bg — lighter so ink text passes AA */
-  --accent-text: oklch(0.475 0.118 80); /* text on paper — darker so passes AA */
+  --accent-text: #8f650f; /* text on paper — darker so passes AA */
   --accent-deep: oklch(0.50 0.105 76);  /* btn hover — darkened to pass 4.5:1 on --on-accent */
   --on-accent:   oklch(0.235 0.009 80);
   --serif:    "Newsreader", Georgia, serif;
@@ -34,8 +34,8 @@
   --color-text-primary:    var(--ink);
   --color-text-secondary:  var(--ink-soft);
   --color-text-muted:      var(--ink-faint);
-  --color-text-faint:      oklch(0.78 0.008 86);
-  --color-accent:          var(--accent);
+  --color-text-faint:      var(--ink-faint);
+  --color-accent:          #805a0d;
   --color-accent-hover:    var(--accent-deep);
   /* approximate rgb for rgba() usage in older components */
   --color-accent-rgb:      176, 138, 46;
@@ -60,6 +60,16 @@ html {
 }
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 body {

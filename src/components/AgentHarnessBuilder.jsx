@@ -784,7 +784,7 @@ function generateFiles(answers, archetype) {
 
 function ButtonIcon({ checked }) {
   return (
-    <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded border ${checked ? 'border-[var(--color-accent)] bg-[var(--color-accent)] text-[#111]' : 'border-[var(--color-border-hover)] text-transparent'}`}>
+    <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded border ${checked ? 'border-[var(--color-accent)] bg-[var(--color-accent)] text-white' : 'border-[var(--color-border-hover)] text-transparent'}`}>
       <Check className="h-3.5 w-3.5" />
     </span>
   );
@@ -1085,7 +1085,7 @@ function AgentHarnessBuilder() {
                 <button
                   type="button"
                   onClick={goNext}
-                  className="rounded-lg bg-[var(--color-accent)] px-5 py-2 text-sm font-bold text-[#111] transition hover:bg-[var(--color-accent-hover)]"
+                  className="rounded-lg bg-[var(--color-accent)] px-5 py-2 text-sm font-bold text-white transition hover:bg-[var(--color-accent-hover)]"
                 >
                   {currentQuestion === questionCount - 1 ? 'Generate kit' : 'Next'}
                 </button>
@@ -1141,7 +1141,7 @@ function AgentHarnessBuilder() {
                 <button
                   type="button"
                   onClick={downloadZip}
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--color-accent)] px-3 py-2 text-sm font-bold text-[#111] transition hover:bg-[var(--color-accent-hover)]"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--color-accent)] px-3 py-2 text-sm font-bold text-white transition hover:bg-[var(--color-accent-hover)]"
                 >
                   <Download className="h-4 w-4" />
                   {zipStatus || 'Download zip'}
@@ -1189,7 +1189,7 @@ function AgentHarnessBuilder() {
                   />
                   <button
                     type="submit"
-                    className="min-h-10 rounded-lg bg-[var(--color-accent)] px-4 py-2 text-sm font-semibold text-[#111] transition hover:bg-[var(--color-accent-hover)]"
+                    className="min-h-10 rounded-lg bg-[var(--color-accent)] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[var(--color-accent-hover)]"
                   >
                     Subscribe
                   </button>
