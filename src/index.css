@@ -88,9 +88,11 @@ body {
   color: var(--ink);
 }
 
+:focus,
 :focus-visible {
-  outline: 2px solid oklch(0.595 0.118 80 / 0.75);
-  outline-offset: 4px;
+  outline: 2px solid oklch(0.475 0.118 80) !important;
+  outline-offset: 4px !important;
+  transition-property: background, border-color, color, box-shadow !important;
 }
 
 /* ---- Editorial shared utilities ---- */
@@ -123,12 +125,14 @@ body {
   cursor: pointer;
 }
 
-.btn-solid {
+.btn-solid,
+.btn-primary {
   background: var(--accent-btn);
   color: var(--on-accent);
   border: 1px solid var(--accent-btn);
 }
-.btn-solid:hover {
+.btn-solid:hover,
+.btn-primary:hover {
   background: var(--accent-deep);
   border-color: var(--accent-deep);
 }

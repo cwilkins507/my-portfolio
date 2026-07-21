@@ -72,7 +72,7 @@ async function verifyKeyboard(browser) {
   const results = [];
   for (const route of routes) {
     await page.goto(`${baseURL}${route}`, { waitUntil: 'networkidle' });
-    const focusables = await page.locator('a[href],button:not([disabled]),input:not([disabled]):not([type="hidden"]),textarea:not([disabled]),select:not([disabled]),[tabindex]:not([tabindex="-1"])').evaluateAll(elements => {
+    const focusables = await page.locator('a[href],button:not([disabled]),input:not([disabled]):not([type="hidden"]),textarea:not([disabled]),select:not([disabled]),summary,[tabindex]:not([tabindex="-1"])').evaluateAll(elements => {
       const visible = elements.filter(element => {
         const style = getComputedStyle(element);
         const rect = element.getBoundingClientRect();
@@ -80,14 +80,16 @@ async function verifyKeyboard(browser) {
       });
       return visible.map((element, index) => {
         element.dataset.regressionFocusIndex = String(index);
-        return { key: String(index), label: `${element.tagName}:${element.getAttribute('href') || element.getAttribute('name') || element.textContent?.trim().slice(0, 40) || 'unlabeled'}` };
+        return { key: String(index), label: `${element.tagName}:${element.textContent?.trim().slice(0, 40) || element.getAttribute('name') || 'unlabeled'}:${element.getAttribute('href') || ''}` };
       });
     });
     const expected = focusables.length;
     const reached = new Set();
     const indicators = new Set();
+    const missingIndicatorDetails = new Map();
     for (let index = 0; index < expected + 20; index += 1) {
       await page.keyboard.press('Tab');
+      await page.waitForTimeout(20);
       const focus = await page.evaluate(() => {
         const element = document.activeElement;
         if (!element || element === document.body) return null;
@@ -96,15 +98,17 @@ async function verifyKeyboard(browser) {
         return {
           key: element.dataset.regressionFocusIndex,
           visible: rect.width > 0 && rect.height > 0,
-          indicator: style.outlineStyle !== 'none' || style.boxShadow !== 'none' || style.borderColor !== 'rgba(0, 0, 0, 0)',
+          indicator: (style.outlineStyle !== 'none' && style.outlineWidth !== '0px') || style.boxShadow !== 'none',
+          detail: `${style.outlineStyle}/${style.outlineWidth}/${style.boxShadow}`,
         };
       });
       if (focus?.visible && focus.key !== undefined) reached.add(focus.key);
       if (focus?.indicator && focus.key !== undefined) indicators.add(focus.key);
+      if (!focus?.indicator && focus?.key !== undefined) missingIndicatorDetails.set(focus.key, focus.detail);
       if (reached.size >= expected) break;
     }
     assert(reached.size === expected, `${route}: keyboard reached ${reached.size}/${expected} visible controls; missed ${focusables.filter(item => !reached.has(item.key)).map(item => item.label).join(', ')}`);
-    assert(indicators.size === expected, `${route}: ${expected - indicators.size} controls lacked a visible focus indicator`);
+    assert(indicators.size === expected, `${route}: ${expected - indicators.size} controls lacked a visible focus indicator: ${focusables.filter(item => !indicators.has(item.key)).map(item => `${item.label} (${missingIndicatorDetails.get(item.key) || 'not observed'})`).join(', ')}`);
     results.push({ route, controls: expected, reached: reached.size, focusIndicators: indicators.size });
   }
   await context.close();

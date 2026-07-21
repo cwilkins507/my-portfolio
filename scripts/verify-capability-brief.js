@@ -7,6 +7,7 @@ if (!fs.existsSync(pdf)) throw new Error(`Missing PDF: ${pdf}`);
 
 function run(command, args) {
   const result = spawnSync(command, args, { encoding: 'utf8' });
+  if (result.error) throw new Error(`${command} is required for PDF verification: ${result.error.message}`);
   if (result.status !== 0) throw new Error(`${command} failed: ${result.stderr || result.stdout}`);
   return result.stdout;
 }
@@ -40,6 +41,7 @@ const meaningfulSizes = [...xml.matchAll(/<text[^>]*font="(\d+)"[^>]*>([\s\S]*?)
   .map(match => ({ size: fontSizes.get(match[1]), text: match[2].replace(/<[^>]+>/g, '').trim() }))
   .filter(item => /[A-Za-z0-9]/.test(item.text))
   .map(item => item.size);
+assert(meaningfulSizes.length > 0, 'pdftohtml returned no meaningful text/font records');
 const minimumMeaningfulFontSize = Math.min(...meaningfulSizes);
 assert(minimumMeaningfulFontSize >= 9, `minimum meaningful PDF font is ${minimumMeaningfulFontSize}pt; expected at least 9pt`);
 
