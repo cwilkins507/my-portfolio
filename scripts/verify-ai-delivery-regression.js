@@ -45,7 +45,8 @@ function slug(route) {
 }
 
 async function inspectRoute(page, route, viewport) {
-  await page.goto(`${baseURL}${route}`, { waitUntil: 'networkidle' });
+  const response = await page.goto(`${baseURL}${route}`, { waitUntil: 'networkidle' });
+  assert(response?.ok(), `${route} at ${viewport.name}: expected HTTP 2xx, received ${response?.status() ?? 'no response'}`);
   const structure = await page.evaluate(() => ({
     h1: document.querySelectorAll('h1').length,
     main: document.querySelectorAll('main').length,
