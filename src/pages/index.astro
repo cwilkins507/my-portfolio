@@ -1,14 +1,1071 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { ENGINEERING_PILOT, SMB_ASSESSMENT, NEWSLETTER, ANALYTICS_EVENTS } from '../data/site.js';
+import { ENGINEERING_PILOT, SMB_QUIZ, NEWSLETTER, ANALYTICS_EVENTS } from '../data/site.js';
+
+const pageTitle = 'AI-Assisted Delivery Pilot for Engineering Teams | Collin Wilkins';
+const pageDescription = 'A five-business-day, fixed-scope AI-assisted delivery pilot: one repository, one approved issue, a verified draft pull request, existing CI, and human approval.';
+
+const homepageSchema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Collin Wilkins',
+    url: 'https://collinwilkins.com',
+    description: pageDescription,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: ENGINEERING_PILOT.name,
+    description: pageDescription,
+    url: `https://collinwilkins.com${ENGINEERING_PILOT.slug}`,
+    provider: {
+      '@type': 'Person',
+      name: 'Collin Wilkins',
+      jobTitle: 'Lead Software Engineer',
+      url: 'https://collinwilkins.com/about',
+    },
+    offers: {
+      '@type': 'Offer',
+      price: ENGINEERING_PILOT.priceUsd,
+      priceCurrency: 'USD',
+      url: `https://collinwilkins.com${ENGINEERING_PILOT.intakeHref}`,
+    },
+  },
+];
+
+const proofItems = [
+  {
+    value: '450K+ vehicles',
+    detail: 'Ford work associated with approximately $5M in annual savings.',
+  },
+  {
+    value: '600K+ events/day',
+    detail: 'Connected-vehicle systems operating at production scale.',
+  },
+  {
+    value: '42% fewer defects',
+    detail: 'A broader AI-adoption and delivery-hardening initiative also associated with approximately 20% shorter cycle time.',
+  },
+];
+
+const workflowSymptoms = [
+  {
+    label: 'Context',
+    title: 'Every developer starts from a different codebase.',
+    detail: 'Repository rules live in prompts, Slack, and memory instead of one load-bearing source the whole team can review.',
+  },
+  {
+    label: 'Review',
+    title: 'Senior engineers absorb the inconsistency.',
+    detail: 'Generated code arrives faster, but review churn and architectural drift surface after the work is already in a pull request.',
+  },
+  {
+    label: 'Evidence',
+    title: 'Tool usage rises. Defensible ROI does not.',
+    detail: 'License counts and anecdotes cannot show which workflow improved, where quality moved, or whether the change should scale.',
+  },
+];
+
+const pilotSteps = [
+  {
+    number: '01',
+    label: 'Map',
+    title: 'Confirm the outcome and readiness gate.',
+    detail: 'Fix the issue, non-goals, protected paths, acceptance checks, access, verification baseline, and accountable reviewers in writing.',
+  },
+  {
+    number: '02',
+    label: 'Install',
+    title: 'Install one customer-owned delivery contract.',
+    detail: 'Connect structured intake, repository context, the bounded coding agent, existing CI, model usage, and human-only decisions.',
+  },
+  {
+    number: '03',
+    label: 'Prove',
+    title: 'Prove it and hand it off.',
+    detail: 'Run one approved issue to a verified draft PR, pass the agreed checks, and have a customer engineer run the documented path.',
+  },
+];
+
+const faqItems = [
+  {
+    question: 'What exactly is accepted on business day five?',
+    answer: 'The agreed repository assets are installed; protected paths fail closed; the existing verification path and five smoke cases pass; one approved issue reaches a verified draft pull request with usage evidence; and a customer engineer runs the documented non-production path without Collin driving.',
+  },
+  {
+    question: 'When does the five-day clock start?',
+    answer: 'After written scope, least-privilege access, one approved low-risk issue, a passing baseline, an authenticated coding agent, working CI and draft-PR path, a named technical owner and reviewer, the $500 first installment, and a confirmed start date are ready.',
+  },
+  {
+    question: 'What if acceptance misses business day five?',
+    answer: ENGINEERING_PILOT.riskReversal,
+  },
+  {
+    question: 'What does “founding price” mean?',
+    answer: ENGINEERING_PILOT.foundingBoundary,
+  },
+];
 ---
-<Layout title="AI-Assisted Delivery Pilot | Collin Wilkins" description={ENGINEERING_PILOT.description} hideFooterNewsletter={true}>
-<section class="hero wrap"><p class="eyebrow">For {ENGINEERING_PILOT.audience.toLowerCase()}</p><h1>{ENGINEERING_PILOT.lead}</h1><p class="lede">{ENGINEERING_PILOT.description}</p><p class="contract">{ENGINEERING_PILOT.priceLabel} · {ENGINEERING_PILOT.deliveryWindow} · {ENGINEERING_PILOT.deliveryMode}</p><div class="actions"><a class="btn btn-primary" href={ENGINEERING_PILOT.intakeHref} data-analytics-event={ANALYTICS_EVENTS.pilotCtaClick} data-analytics-location="homepage-hero-intake">{ENGINEERING_PILOT.intakeLabel}</a><a class="btn btn-ghost" href={ENGINEERING_PILOT.fitCallHref} data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen} data-analytics-location="homepage-hero-fit-call">{ENGINEERING_PILOT.fitCallLabel}</a></div></section>
-<section class="signature"><div class="wrap pipeline"><span>approved issue</span><b>→</b><span>bounded agent</span><b>→</b><span>draft PR</span><b>→</b><span>CI</span><b>→</b><span>human approval</span></div></section>
-<section class="wrap block"><p class="eyebrow">Selected employment proof</p><h2>Production engineering, with the context kept intact.</h2><p class="qualifier">Outcomes from full-time engineering roles, not consulting clients.</p><div class="proof"><p><strong>450K+ vehicles</strong><br/>Ford work associated with approximately $5M in annual savings.</p><p><strong>600K+ events/day</strong><br/>Connected-vehicle systems at production scale.</p><p><strong>23+ recordkeepers</strong><br/>Secure AWS service delivery.</p><p><strong>42% fewer defects</strong><br/>A broader AI-adoption and delivery-hardening initiative also associated with approximately 20% shorter cycle time.</p></div></section>
-<section class="wrap block"><p class="eyebrow">What the pilot installs</p><h2>A governed path inside the repository you already use.</h2><div class="proof"><p>Structured intake and repository context</p><p>Protected paths and human-only boundaries</p><p>Existing verification and optional read-only review</p><p>Visible model configuration and usage evidence</p></div><div class="actions"><a href={ENGINEERING_PILOT.capabilityBriefHref} data-analytics-event={ANALYTICS_EVENTS.capabilityBriefView} data-analytics-location="homepage-install">View the capability brief →</a><a href={ENGINEERING_PILOT.slug} data-analytics-event={ANALYTICS_EVENTS.pilotCtaClick} data-analytics-location="homepage-install">Read the complete offer →</a></div></section>
-<section class="wrap block"><p class="eyebrow">Selected writing and resources</p><h2>Field notes from production work.</h2><ul class="links"><li><a href="/articles/managing-engineering-teams-with-ai">Managing Engineering Teams With AI</a></li><li><a href="/articles/context-engineering-ai-coding-tools">Context Engineering for AI Coding Tools</a></li><li><a href="/resources/agent-harness-builder">Agent Harness Builder</a></li><li><a href="/articles">Browse all articles</a></li></ul></section>
-<section class="notes"><div class="wrap"><p class="eyebrow">{NEWSLETTER.name}</p><h2>{NEWSLETTER.promise}</h2><p>{NEWSLETTER.cadence}. Subscription events measure intent because Buttondown confirmation is cross-origin.</p><form action={NEWSLETTER.subscribeAction} method="post" target="popupwindow" data-newsletter-event={ANALYTICS_EVENTS.newsletterSubscribe} data-location="homepage-notes"><label>Email address<input type="email" name="email" required placeholder="you@company.com"/></label><button class="btn btn-primary">Subscribe</button></form><a href={NEWSLETTER.archiveHref}>Read the archive →</a></div></section>
-<section class="wrap smb"><p class="eyebrow">Small-business automation</p><h2>Not leading an engineering team?</h2><p>The separate {SMB_ASSESSMENT.name} helps owners and operators choose one recurring workflow worth improving.</p><a href={SMB_ASSESSMENT.slug} data-analytics-event={ANALYTICS_EVENTS.smbAssessmentOpen} data-analytics-location="homepage-smb-bridge">View the $99 assessment →</a></section>
+
+<Layout title={pageTitle} description={pageDescription} schema={homepageSchema} hideFooterNewsletter={true}>
+  <section class="hero" data-homepage-hero aria-labelledby="hero-title">
+    <div class="wrap hero-inner">
+      <p class="eyebrow">For engineering leaders already using Claude Code, Cursor, or Copilot</p>
+
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1 id="hero-title">Your team adopted AI coding. <em>The workflow didn’t.</em></h1>
+          <p class="hero-lede">
+            The <strong>{ENGINEERING_PILOT.name}</strong> installs a customer-owned path from a qualified issue to a verified draft pull request, then proves it on one approved backlog item.
+          </p>
+
+          <div class="hero-actions">
+            <a
+              class="btn btn-solid hero-primary"
+              href={ENGINEERING_PILOT.intakeHref}
+              data-analytics-event={ANALYTICS_EVENTS.pilotCtaClick}
+              data-analytics-location="homepage-hero-scope-review"
+            >
+              Request a pilot scope review <span aria-hidden="true">→</span>
+            </a>
+            <a
+              class="hero-secondary"
+              href={ENGINEERING_PILOT.capabilityBriefHref}
+              data-analytics-event={ANALYTICS_EVENTS.capabilityBriefView}
+              data-analytics-location="homepage-hero-capability-brief"
+            >
+              View the capability brief
+            </a>
+          </div>
+
+          <p class="hero-note">No payment at intake. $500 follows written scope acceptance; $1,000 is due only after the acceptance criteria pass.</p>
+        </div>
+
+        <aside class="pilot-docket" aria-label="Pilot at a glance">
+          <div class="docket-topline">
+            <span>Engagement / 01</span>
+            <span>Fixed scope</span>
+          </div>
+          <p class="docket-name">AI-Assisted Delivery Pilot</p>
+          <h2>One issue. A working delivery path.</h2>
+
+          <dl class="docket-facts">
+            <div>
+              <dt>Scope</dt>
+              <dd>One team · one repository · one real backlog item</dd>
+            </div>
+            <div>
+              <dt>Delivery</dt>
+              <dd>5 business days after readiness · async-first</dd>
+            </div>
+            <div>
+              <dt>Payment</dt>
+              <dd>$500 to start · $1,000 after acceptance</dd>
+            </div>
+            <div>
+              <dt>Founding price</dt>
+              <dd>$1,500 · first 3 accepted pilots</dd>
+            </div>
+          </dl>
+
+          <ol class="docket-flow" aria-label="Simplified pilot flow">
+            <li>Map</li>
+            <li>Install</li>
+            <li>Prove</li>
+          </ol>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="credibility-strip" aria-labelledby="credibility-title">
+    <div class="wrap credibility-inner">
+      <p id="credibility-title" class="credibility-label">Built &amp; shipped at</p>
+      <div class="credibility-logos" role="list" aria-label="Organizations and products">
+        <span class="credibility-mark" role="listitem">
+          <img src="/images/logos/morningstar.svg" alt="Morningstar" class="credibility-logo" />
+        </span>
+        <span class="credibility-mark" role="listitem">
+          <img src="/images/logos/ford.webp" alt="Ford Motor Company" class="credibility-logo credibility-ford" />
+        </span>
+        <span class="credibility-mark" role="listitem">
+          <img src="/images/logos/finimbus.png" alt="FiNimbus" class="credibility-logo credibility-finimbus" />
+        </span>
+        <span class="credibility-mark credibility-connected" role="listitem">
+          <span class="connected-icon" aria-hidden="true"></span>
+          Connected Vehicle
+        </span>
+      </div>
+      <p class="credibility-qualifier">Full-time employment and founder-owned product work, not consulting-client logos.</p>
+    </div>
+  </section>
+
+  <section class="problem-section" aria-labelledby="problem-title">
+    <div class="wrap section-inner">
+      <div class="section-intro">
+        <p class="eyebrow">The workflow gap</p>
+        <h2 id="problem-title">What inconsistency looks like by sprint three.</h2>
+        <p>Buying the tools is the easy part. Shared context, review boundaries, and evidence are the engineering system around them.</p>
+      </div>
+
+      <div class="symptom-grid">
+        {workflowSymptoms.map(symptom => (
+          <article>
+            <p class="symptom-label">{symptom.label}</p>
+            <h3>{symptom.title}</h3>
+            <p>{symptom.detail}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="pilot-section" aria-labelledby="process-title">
+    <div class="wrap section-inner">
+      <div class="section-intro">
+        <p class="eyebrow">How the pilot works</p>
+        <h2 id="process-title">From one approved issue to a path the customer can run.</h2>
+        <p>The pilot keeps your issue tracker, coding tool, CI, and deployment path. It installs and proves the missing operating contract around them in five business days after readiness.</p>
+      </div>
+
+      <div class="process-grid">
+        {pilotSteps.map(step => (
+          <article>
+            <p class="step-number">{step.number} / {step.label}</p>
+            <h3>{step.title}</h3>
+            <p>{step.detail}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="section-actions">
+        <a
+          href={ENGINEERING_PILOT.slug}
+          data-analytics-event={ANALYTICS_EVENTS.pilotCtaClick}
+          data-analytics-location="homepage-process-complete-offer"
+        >
+          Read the complete offer →
+        </a>
+        <a
+          href={ENGINEERING_PILOT.capabilityBriefHref}
+          data-analytics-event={ANALYTICS_EVENTS.capabilityBriefView}
+          data-analytics-location="homepage-process-capability-brief"
+        >
+          Open the one-page capability brief →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof-band" aria-labelledby="proof-title">
+    <div class="wrap section-inner">
+      <div class="section-intro">
+        <p class="eyebrow">Qualified engineering proof</p>
+        <h2 id="proof-title">Production experience behind a bounded pilot.</h2>
+        <p>Relevant outcomes from full-time engineering roles, shown after the offer is clear—not before the buyer’s problem.</p>
+      </div>
+
+      <div class="proof-ledger">
+        {proofItems.map(item => (
+          <article>
+            <strong>{item.value}</strong>
+            <p>{item.detail}</p>
+          </article>
+        ))}
+      </div>
+      <p class="proof-qualifier">Full-time employment outcomes, not consulting-client results.</p>
+    </div>
+  </section>
+
+  <section class="faq-section" aria-labelledby="faq-title">
+    <div class="wrap section-inner faq-layout">
+      <div>
+        <p class="eyebrow">Before the scope review</p>
+        <h2 id="faq-title">The practical questions.</h2>
+        <p class="faq-intro">Four operational terms fixed before the first installment.</p>
+      </div>
+
+      <div class="faq-list">
+        {faqItems.map((item, index) => (
+          <details open={index === 0}>
+            <summary>{item.question}</summary>
+            <p>{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="close-section" aria-labelledby="close-title">
+    <div class="wrap close-inner">
+      <div>
+        <p class="eyebrow">Five business days after readiness</p>
+        <h2 id="close-title">Own a delivery path your team can run.</h2>
+      </div>
+
+      <div class="close-actions">
+        <a
+          class="btn btn-solid"
+          href={ENGINEERING_PILOT.intakeHref}
+          data-analytics-event={ANALYTICS_EVENTS.pilotCtaClick}
+          data-analytics-location="homepage-final-scope-review"
+        >
+          Request a pilot scope review <span aria-hidden="true">→</span>
+        </a>
+        <a
+          class="close-secondary"
+          href={ENGINEERING_PILOT.fitCallHref}
+          data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen}
+          data-analytics-location="homepage-final-fit-call"
+        >
+          Prefer to talk first? Book a pilot fit call
+        </a>
+        <p class="close-note">$1,500 fixed founding price · $500 to start · $1,000 after acceptance</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="utility-section" aria-label="Secondary resources">
+    <div class="wrap utility-grid">
+      <article>
+        <p class="eyebrow">Writing and tools</p>
+        <a href="/articles">Practical guides for AI-assisted delivery →</a>
+        <p>Articles and the Agent Harness Builder remain available without interrupting the offer.</p>
+      </article>
+      <article>
+        <p class="eyebrow">{NEWSLETTER.name}</p>
+        <a href="/newsletter">Get the field note every other Tuesday →</a>
+        <p>{NEWSLETTER.promise}</p>
+      </article>
+      <article>
+        <p class="eyebrow">Small-business automation</p>
+        <a
+          href={SMB_QUIZ.slug}
+          data-analytics-event={ANALYTICS_EVENTS.smbQuizStart}
+          data-analytics-location="homepage-footer-smb-quiz"
+        >
+          {SMB_QUIZ.ctaLabel} →
+        </a>
+        <p>The Quiz stays discoverable while remaining outside the engineering conversion path.</p>
+      </article>
+    </div>
+  </section>
 </Layout>
-<style>.hero{padding-top:clamp(90px,13vw,160px);padding-bottom:60px;max-width:1050px}.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}h1{font-size:clamp(46px,8vw,88px);line-height:.94;max-width:13ch;margin:18px 0}.lede{font-size:clamp(20px,2.4vw,28px);max-width:68ch;color:var(--ink-soft)}.contract{font-family:var(--mono);font-size:13px;margin-top:25px}.actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:28px}.signature,.notes{background:var(--paper-2);border-block:1px solid var(--rule)}.pipeline{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding-block:20px;font-family:var(--mono);font-size:12px}.pipeline span{padding:9px 12px;border:1px solid var(--rule);background:var(--paper)}.block,.smb{padding-block:clamp(60px,8vw,100px);border-bottom:1px solid var(--rule)}h2{font-size:clamp(32px,5vw,54px);max-width:20ch;margin:12px 0 25px}.qualifier{font-style:italic}.proof{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}.proof p{background:var(--paper);margin:0;padding:24px}.links{font-size:20px;line-height:2}.notes{padding-block:70px}.notes form{display:flex;gap:12px;align-items:end;flex-wrap:wrap;margin:24px 0}.notes label{display:grid;gap:7px;font-family:var(--mono);font-size:11px}.notes input{padding:12px 15px;border:1px solid var(--rule);background:var(--paper);font-size:16px;min-width:270px}.smb{max-width:820px}@media(max-width:620px){.proof{grid-template-columns:1fr}h1{overflow-wrap:anywhere}}</style>
+
+<style>
+  .eyebrow {
+    margin: 0;
+    color: var(--accent-text);
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .14em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .hero,
+  .credibility-strip,
+  .problem-section,
+  .pilot-section,
+  .proof-band,
+  .faq-section,
+  .utility-section {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .hero-inner {
+    padding-block: clamp(58px, 8vw, 96px);
+  }
+
+  .hero-inner > .eyebrow {
+    max-width: 72ch;
+    margin-bottom: clamp(22px, 3vw, 34px);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.18fr) minmax(340px, .82fr);
+    gap: clamp(46px, 7vw, 88px);
+    align-items: center;
+  }
+
+  .hero h1 {
+    max-width: 10.8ch;
+    margin: 0;
+    font-size: clamp(52px, 6.6vw, 86px);
+    font-weight: 500;
+    letter-spacing: -.045em;
+    line-height: .9;
+    text-wrap: balance;
+  }
+
+  .hero h1 em {
+    color: var(--accent-text);
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .hero-lede {
+    max-width: 32rem;
+    margin-top: 24px;
+    color: var(--ink-soft);
+    font-size: clamp(20px, 2vw, 25px);
+    line-height: 1.38;
+    text-wrap: pretty;
+  }
+
+  .hero-lede strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 24px;
+    align-items: center;
+    margin-top: 28px;
+  }
+
+  .hero-primary {
+    min-height: 46px;
+    padding-inline: 20px;
+    font-weight: 500;
+  }
+
+  .hero-secondary,
+  .section-actions a,
+  .close-secondary {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-underline-offset: 5px;
+  }
+
+  .hero-secondary,
+  .section-actions a {
+    color: var(--ink);
+  }
+
+  .hero-secondary:hover,
+  .section-actions a:hover {
+    color: var(--accent-text);
+  }
+
+  .hero-note {
+    max-width: 48ch;
+    margin-top: 18px;
+    color: var(--ink-faint);
+    font-family: var(--mono);
+    font-size: 10px;
+    line-height: 1.55;
+  }
+
+  .pilot-docket {
+    position: relative;
+    padding: clamp(26px, 3vw, 38px);
+    border: 1px solid var(--ink);
+    background: var(--paper-2);
+    box-shadow: 12px 12px 0 var(--paper-3);
+  }
+
+  .pilot-docket::before {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 62px;
+    height: 4px;
+    background: var(--accent);
+    content: '';
+  }
+
+  .docket-topline {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink-faint);
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .docket-name {
+    margin-top: 20px;
+    color: var(--accent-text);
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+  }
+
+  .pilot-docket h2 {
+    max-width: 12ch;
+    margin-top: 7px;
+    font-size: clamp(31px, 3vw, 42px);
+    font-weight: 500;
+    letter-spacing: -.025em;
+    line-height: .98;
+  }
+
+  .docket-facts {
+    margin-top: 23px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .docket-facts > div {
+    display: grid;
+    grid-template-columns: 75px 1fr;
+    gap: 16px;
+    padding-block: 13px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .docket-facts dt {
+    color: var(--ink-faint);
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+  }
+
+  .docket-facts dd {
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.3;
+  }
+
+  .docket-flow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    margin-top: 18px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .docket-flow li {
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 9px;
+  }
+
+  .docket-flow li:not(:last-child)::after {
+    margin-left: 18px;
+    color: var(--accent-text);
+    content: '→';
+  }
+
+  .credibility-inner {
+    padding-block: 27px 24px;
+  }
+
+  .credibility-label,
+  .credibility-qualifier {
+    margin: 0;
+    text-align: center;
+    font-family: var(--mono);
+  }
+
+  .credibility-label {
+    margin-bottom: 18px;
+    color: var(--accent-text);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+  }
+
+  .credibility-logos {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(22px, 4vw, 58px);
+    align-items: center;
+  }
+
+  .credibility-mark {
+    display: flex;
+    min-width: 0;
+    min-height: 42px;
+    align-items: center;
+    justify-content: center;
+    filter: grayscale(1) contrast(1.15);
+    opacity: .82;
+  }
+
+  .credibility-logo {
+    width: auto;
+    max-width: 145px;
+    height: 28px;
+    object-fit: contain;
+  }
+
+  .credibility-ford {
+    height: 34px;
+  }
+
+  .credibility-finimbus {
+    height: 54px;
+    mix-blend-mode: multiply;
+  }
+
+  .credibility-connected {
+    gap: 8px;
+    color: var(--ink);
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .connected-icon {
+    width: 14px;
+    height: 14px;
+    border: 1px dashed var(--accent-text);
+    border-radius: 50%;
+  }
+
+  .credibility-qualifier {
+    margin-top: 14px;
+    color: var(--ink-faint);
+    font-size: 8px;
+    letter-spacing: .04em;
+  }
+
+  .section-inner {
+    padding-block: clamp(66px, 9vw, 108px);
+  }
+
+  .section-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, .78fr);
+    gap: 24px clamp(42px, 7vw, 90px);
+    align-items: end;
+    margin-bottom: 42px;
+  }
+
+  .section-intro .eyebrow {
+    grid-column: 1 / -1;
+  }
+
+  .section-intro h2 {
+    max-width: 16ch;
+    margin: 0;
+    font-size: clamp(39px, 5vw, 64px);
+    font-weight: 500;
+    letter-spacing: -.035em;
+    line-height: .96;
+    text-wrap: balance;
+  }
+
+  .section-intro > p:last-child {
+    margin: 0 0 4px;
+    color: var(--ink-soft);
+    font-size: 18px;
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+
+  .symptom-grid,
+  .process-grid,
+  .proof-ledger {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .symptom-grid {
+    border: 1px solid var(--rule);
+  }
+
+  .symptom-grid article {
+    min-height: 235px;
+    padding: clamp(24px, 3vw, 32px);
+  }
+
+  .symptom-grid article + article,
+  .process-grid article + article,
+  .proof-ledger article + article {
+    border-left: 1px solid var(--rule);
+  }
+
+  .symptom-label,
+  .step-number {
+    color: var(--accent-text);
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .symptom-grid h3 {
+    margin-top: 44px;
+    font-size: clamp(24px, 2.5vw, 31px);
+    font-weight: 500;
+    letter-spacing: -.015em;
+    line-height: 1.05;
+  }
+
+  .symptom-grid article > p:last-child,
+  .process-grid article > p:last-child,
+  .proof-ledger p {
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  .symptom-grid article > p:last-child,
+  .process-grid article > p:last-child {
+    margin-top: 14px;
+  }
+
+  .pilot-section,
+  .faq-section {
+    background: var(--paper-2);
+  }
+
+  .process-grid {
+    border-block: 1px solid var(--ink);
+  }
+
+  .process-grid article {
+    padding: 30px clamp(22px, 3vw, 34px) 34px;
+  }
+
+  .process-grid h3 {
+    margin-top: 52px;
+    font-size: 29px;
+    font-weight: 500;
+    line-height: 1.05;
+  }
+
+  .section-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 26px;
+    margin-top: 30px;
+  }
+
+  .proof-ledger {
+    border-block: 1px solid var(--ink);
+  }
+
+  .proof-ledger article {
+    min-height: 180px;
+    padding: 26px clamp(22px, 3vw, 34px);
+  }
+
+  .proof-ledger strong {
+    display: block;
+    color: var(--ink);
+    font-size: clamp(27px, 3vw, 37px);
+    font-weight: 500;
+    letter-spacing: -.025em;
+    line-height: 1;
+  }
+
+  .proof-ledger p {
+    margin-top: 16px;
+  }
+
+  .proof-qualifier {
+    margin-top: 20px;
+    color: var(--ink-faint);
+    font-family: var(--mono);
+    font-size: 9px;
+  }
+
+  .faq-layout {
+    display: grid;
+    grid-template-columns: minmax(250px, .7fr) minmax(0, 1.3fr);
+    gap: clamp(48px, 8vw, 110px);
+  }
+
+  .faq-section h2 {
+    max-width: 11ch;
+    margin-top: 12px;
+    font-size: clamp(42px, 5vw, 64px);
+    font-weight: 500;
+    letter-spacing: -.035em;
+    line-height: .96;
+    text-wrap: balance;
+  }
+
+  .faq-intro {
+    margin-top: 16px;
+    color: var(--ink-soft);
+    font-size: 17px;
+  }
+
+  .faq-list {
+    border-top: 1px solid var(--ink);
+  }
+
+  .faq-list details {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .faq-list summary {
+    position: relative;
+    padding: 22px 42px 22px 0;
+    cursor: pointer;
+    font-size: 21px;
+    font-weight: 500;
+    list-style: none;
+  }
+
+  .faq-list summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-list summary::after {
+    position: absolute;
+    right: 2px;
+    font-family: var(--mono);
+    content: '+';
+  }
+
+  .faq-list details[open] summary::after {
+    content: '−';
+  }
+
+  .faq-list details p {
+    max-width: 60ch;
+    margin: -5px 0 23px;
+    color: var(--ink-soft);
+    font-size: 16px;
+  }
+
+  .close-section {
+    border-bottom: 1px solid color-mix(in oklch, var(--paper) 20%, transparent);
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .close-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 40px 80px;
+    align-items: end;
+    padding-block: clamp(70px, 9vw, 108px);
+  }
+
+  .close-section .eyebrow {
+    color: color-mix(in oklch, var(--accent-btn) 86%, white);
+  }
+
+  .close-section h2 {
+    max-width: 18ch;
+    margin-top: 14px;
+    font-size: clamp(42px, 5.5vw, 70px);
+    font-weight: 500;
+    letter-spacing: -.04em;
+    line-height: .95;
+    text-wrap: balance;
+  }
+
+  .close-actions {
+    min-width: 310px;
+  }
+
+  .close-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .close-secondary {
+    display: block;
+    margin-top: 18px;
+    color: var(--paper);
+    text-align: center;
+  }
+
+  .close-note {
+    margin-top: 16px;
+    color: color-mix(in oklch, var(--paper) 70%, transparent);
+    font-family: var(--mono);
+    font-size: 9px;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .utility-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding-block: 34px;
+  }
+
+  .utility-grid article {
+    padding-inline: clamp(0px, 3vw, 34px);
+  }
+
+  .utility-grid article:first-child {
+    padding-left: 0;
+  }
+
+  .utility-grid article + article {
+    border-left: 1px solid var(--rule);
+  }
+
+  .utility-grid .eyebrow {
+    margin-bottom: 10px;
+  }
+
+  .utility-grid a {
+    color: var(--ink);
+    font-size: 18px;
+    line-height: 1.25;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 5px;
+  }
+
+  .utility-grid a:hover {
+    color: var(--accent-text);
+  }
+
+  .utility-grid article > p:last-child {
+    margin-top: 8px;
+    color: var(--ink-soft);
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 980px) {
+    .hero-grid,
+    .section-intro,
+    .faq-layout,
+    .close-inner {
+      grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+      max-width: 13ch;
+    }
+
+    .pilot-docket {
+      max-width: 660px;
+    }
+
+    .section-intro .eyebrow {
+      grid-column: 1;
+    }
+
+    .close-actions {
+      min-width: 0;
+      max-width: 420px;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .credibility-logos {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px 24px;
+    }
+
+    .credibility-logo {
+      max-width: 122px;
+    }
+
+    .symptom-grid,
+    .process-grid,
+    .proof-ledger,
+    .utility-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .symptom-grid article,
+    .process-grid article,
+    .proof-ledger article {
+      min-height: 0;
+    }
+
+    .symptom-grid article + article,
+    .process-grid article + article,
+    .proof-ledger article + article,
+    .utility-grid article + article {
+      border-top: 1px solid var(--rule);
+      border-left: 0;
+    }
+
+    .symptom-grid h3,
+    .process-grid h3 {
+      margin-top: 26px;
+    }
+
+    .utility-grid article {
+      padding: 22px 0;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .hero-inner {
+      padding-block: 48px 62px;
+    }
+
+    .hero-inner > .eyebrow {
+      margin-bottom: 20px;
+    }
+
+    .hero-grid {
+      gap: 38px;
+    }
+
+    .hero h1 {
+      max-width: none;
+      font-size: clamp(48px, 14vw, 66px);
+      line-height: .9;
+    }
+
+    .hero-lede {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+
+    .hero-actions {
+      gap: 13px 18px;
+      margin-top: 24px;
+    }
+
+    .hero-primary {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .hero-secondary {
+      margin-inline: auto;
+    }
+
+    .pilot-docket {
+      margin-right: 8px;
+      padding: 23px 20px;
+      box-shadow: 8px 8px 0 var(--paper-3);
+    }
+
+    .pilot-docket h2 {
+      font-size: 32px;
+    }
+
+    .section-inner {
+      padding-block: 62px;
+    }
+
+    .section-intro {
+      margin-bottom: 30px;
+    }
+
+    .section-intro h2,
+    .faq-section h2 {
+      font-size: 43px;
+    }
+
+    .close-inner {
+      padding-block: 62px;
+    }
+
+    .close-section h2 {
+      font-size: 46px;
+    }
+  }
+</style>

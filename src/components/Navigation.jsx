@@ -122,22 +122,10 @@ const Navigation = ({ portfolioData }) => {
               <a
                 href={ENGINEERING_PILOT.fitCallHref}
                 onClick={() => trackEvent(ANALYTICS_EVENTS.bookingPageOpen, { location: 'navigation' })}
-                style={{
-                  fontFamily: 'var(--mono)',
-                  fontSize: '12px',
-                  letterSpacing: '.05em',
-                  textDecoration: 'none',
-                  color: 'var(--ink)',
-                  border: '1px solid var(--rule)',
-                  borderRadius: '999px',
-                  padding: '7px 15px',
-                  transition: 'border-color .15s',
-                  whiteSpace: 'nowrap',
-                }}
-                onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--accent)'}
-                onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--rule)'}
+                className="btn btn-solid"
+                style={{ padding: '8px 16px', whiteSpace: 'nowrap' }}
               >
-                {ENGINEERING_PILOT.fitCallLabel}
+                {ENGINEERING_PILOT.navigationLabel}
               </a>
             </div>
 
@@ -243,7 +231,7 @@ const Navigation = ({ portfolioData }) => {
               className="btn btn-solid"
               style={{ marginTop: '8px' }}
             >
-              {ENGINEERING_PILOT.fitCallLabel}
+              {ENGINEERING_PILOT.navigationLabel}
             </a>
           </motion.div>
         )}
