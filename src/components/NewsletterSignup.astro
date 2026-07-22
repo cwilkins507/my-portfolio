@@ -10,5 +10,4 @@ if(!location) throw new Error('NewsletterSignup requires a location prop');
     {tag&&<input type="hidden" name="tag" value={tag}/>}<label><span>Email address</span><input type="email" name="email" placeholder="you@company.com" required/></label><button type="submit" class="btn btn-primary">{buttonLabel}</button>
   </form><p class="note">{note}</p>
 </div>
-<script>document.addEventListener('submit',(event)=>{const form=event.target.closest('[data-newsletter-event]');if(form&&window.plausible)window.plausible(form.dataset.newsletterEvent,{props:{location:form.dataset.location,measurement:'intent'}});});</script>
 <style>.newsletter-inline{padding:clamp(26px,4vw,42px);border:1px solid var(--rule);background:var(--paper-2)}h3{font-size:clamp(26px,4vw,38px);margin-bottom:8px}.newsletter-inline>p,.newsletter-footer>p{color:var(--ink-soft)}form{display:flex;gap:10px;align-items:end;flex-wrap:wrap;margin-top:18px}label{display:grid;gap:6px;font-family:var(--mono);font-size:11px;flex:1;min-width:230px}input{width:100%;padding:12px 15px;border:1px solid var(--rule);background:var(--paper);color:var(--ink);font-size:16px}.note{font-size:12px;margin-top:8px}</style>
