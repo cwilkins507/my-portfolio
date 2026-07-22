@@ -19,13 +19,18 @@ const info = run('pdfinfo', [pdf]);
 assert(/^Pages:\s+1$/m.test(info), 'capability brief must be exactly one page');
 assert(/^Page size:\s+612 x 792 pts/m.test(info), 'capability brief must use Letter geometry');
 const text = run('pdftotext', [pdf, '-']);
-const normalizedText = text.toLowerCase();
+const normalizedText = text.toLowerCase().replace(/\s+/g, ' ').trim();
 for (const phrase of [
-  'turn one approved issue into a governed, reviewable change.',
-  '$1,500',
-  'human review',
+  'own a governed ai delivery path, proven on one real issue.',
+  '$1,500 fixed founding price',
+  '5 business days after readiness',
+  'verified draft pull request',
+  '$500 follows written scope acceptance',
+  '$1,000 balance is due only after every agreed acceptance criterion passes',
+  'no additional charge until the criteria pass',
+  'first three clients who accept written scope and pay $500',
   'production credentials are not accepted',
-]) assert(normalizedText.includes(phrase.toLowerCase()), `PDF text is missing: ${phrase}`);
+]) assert(normalizedText.includes(phrase), `PDF text is missing: ${phrase}`);
 
 const urls = run('pdfinfo', ['-url', pdf]);
 for (const url of [
