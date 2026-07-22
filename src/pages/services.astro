@@ -1,9 +1,154 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { ENGINEERING_PILOT, SMB_ASSESSMENT } from '../data/site.js';
-const schema={'@context':'https://schema.org','@type':'OfferCatalog',name:'Services',itemListElement:[{'@type':'Offer',price:ENGINEERING_PILOT.priceUsd,priceCurrency:'USD',itemOffered:{'@type':'Service',name:ENGINEERING_PILOT.name,description:ENGINEERING_PILOT.description,url:ENGINEERING_PILOT.slug}},{'@type':'Offer',price:SMB_ASSESSMENT.priceUsd,priceCurrency:'USD',itemOffered:{'@type':'Service',name:SMB_ASSESSMENT.name,description:SMB_ASSESSMENT.description,url:SMB_ASSESSMENT.slug}}]};
+import { ANALYTICS_EVENTS, ENGINEERING_PILOT, SMB_ASSESSMENT, SMB_QUIZ } from '../data/site.js';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'OfferCatalog',
+  name: 'Services',
+  itemListElement: [
+    {
+      '@type': 'Offer',
+      price: ENGINEERING_PILOT.priceUsd,
+      priceCurrency: 'USD',
+      itemOffered: {
+        '@type': 'Service',
+        name: ENGINEERING_PILOT.name,
+        description: ENGINEERING_PILOT.description,
+        url: ENGINEERING_PILOT.slug,
+      },
+    },
+    {
+      '@type': 'Offer',
+      price: SMB_ASSESSMENT.priceUsd,
+      priceCurrency: 'USD',
+      itemOffered: {
+        '@type': 'Service',
+        name: SMB_ASSESSMENT.name,
+        description: SMB_ASSESSMENT.description,
+        url: SMB_ASSESSMENT.slug,
+      },
+    },
+  ],
+};
 ---
-<Layout title="Services | Collin Wilkins" description="A governed AI-assisted delivery pilot for engineering teams, plus a separate workflow assessment for small businesses." schema={schema}>
-<article class="wrap services"><header><p class="eyebrow">One bounded engineering pilot</p><h1>{ENGINEERING_PILOT.lead}</h1><p class="lede">{ENGINEERING_PILOT.description}</p></header><section class="primary"><p class="eyebrow">{ENGINEERING_PILOT.name}</p><h2>{ENGINEERING_PILOT.scope}</h2><p class="contract">{ENGINEERING_PILOT.priceLabel} · {ENGINEERING_PILOT.deliveryWindow} · {ENGINEERING_PILOT.deliveryMode}</p><p>The fit call is a conversation. The direct intake is a no-payment scope review. Payment follows written acceptance.</p><div class="actions"><a class="btn btn-primary" href={ENGINEERING_PILOT.intakeHref}>{ENGINEERING_PILOT.intakeLabel}</a><a class="btn btn-ghost" href={ENGINEERING_PILOT.fitCallHref}>{ENGINEERING_PILOT.fitCallLabel}</a><a href={ENGINEERING_PILOT.slug}>See the complete offer →</a></div></section><aside><p class="eyebrow">Separate small-business route</p><h2>{SMB_ASSESSMENT.name}</h2><p>{SMB_ASSESSMENT.description}</p><a href={SMB_ASSESSMENT.slug}>View the $99 assessment →</a></aside></article>
+
+<Layout
+  title="Services | Collin Wilkins"
+  description="A governed AI-assisted delivery pilot for engineering teams, plus a free workflow quiz and separate assessment for small businesses."
+  schema={schema}
+>
+  <article class="wrap services">
+    <header>
+      <p class="eyebrow">One bounded engineering pilot</p>
+      <h1>{ENGINEERING_PILOT.lead}</h1>
+      <p class="lede">{ENGINEERING_PILOT.description}</p>
+    </header>
+
+    <section class="primary">
+      <p class="eyebrow">{ENGINEERING_PILOT.name}</p>
+      <h2>{ENGINEERING_PILOT.scope}</h2>
+      <p class="contract">{ENGINEERING_PILOT.priceLabel} · {ENGINEERING_PILOT.deliveryWindow} · {ENGINEERING_PILOT.deliveryMode}</p>
+      <p>The free fit call is optional. Direct intake is a no-payment scope review. Pay $500 after written scope acceptance and $1,000 only after the acceptance criteria pass.</p>
+      <p>{ENGINEERING_PILOT.foundingBoundary}</p>
+      <div class="actions">
+        <a class="btn btn-primary" href={ENGINEERING_PILOT.intakeHref}>{ENGINEERING_PILOT.intakeLabel}</a>
+        <a class="btn btn-ghost" href={ENGINEERING_PILOT.fitCallHref}>{ENGINEERING_PILOT.fitCallLabel}</a>
+        <a href={ENGINEERING_PILOT.slug}>See the complete offer →</a>
+      </div>
+    </section>
+
+    <aside>
+      <p class="eyebrow">Separate small-business route</p>
+      <h2>Find one workflow worth improving.</h2>
+      <p>{SMB_QUIZ.description} Start there for a free, no-booking first step, or go directly to the {SMB_ASSESSMENT.name} if you already know where the drag is.</p>
+      <div class="actions">
+        <a
+          class="btn btn-ghost"
+          href={SMB_QUIZ.slug}
+          data-analytics-event={ANALYTICS_EVENTS.smbQuizStart}
+          data-analytics-location="services-smb-quiz"
+        >
+          {SMB_QUIZ.ctaLabel}
+        </a>
+        <a
+          href={SMB_ASSESSMENT.slug}
+          data-analytics-event={ANALYTICS_EVENTS.smbAssessmentOpen}
+          data-analytics-location="services-smb-assessment"
+        >
+          View the $99 assessment →
+        </a>
+      </div>
+    </aside>
+  </article>
 </Layout>
-<style>.services{max-width:940px;padding-top:clamp(90px,12vw,150px);padding-bottom:100px}.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-text)}h1{font-size:clamp(44px,7vw,78px);line-height:.97;margin:16px 0}.lede{font-size:clamp(20px,2.5vw,28px);color:var(--ink-soft)}.primary,aside{margin-top:55px;padding:40px;border:1px solid var(--rule)}.primary{background:var(--paper-2);border-top:4px solid var(--accent)}h2{font-size:clamp(30px,4vw,48px)}.contract{font-family:var(--mono)}.actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:25px}aside h2{font-size:30px}aside p{color:var(--ink-soft)}@media(max-width:640px){.primary,aside{padding:26px}}</style>
+
+<style>
+  .services {
+    max-width: 940px;
+    padding-top: clamp(90px, 12vw, 150px);
+    padding-bottom: 100px;
+  }
+
+  .eyebrow {
+    color: var(--accent-text);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 16px 0;
+    font-size: clamp(44px, 7vw, 78px);
+    line-height: .97;
+  }
+
+  .lede {
+    color: var(--ink-soft);
+    font-size: clamp(20px, 2.5vw, 28px);
+  }
+
+  .primary,
+  aside {
+    margin-top: 55px;
+    padding: 40px;
+    border: 1px solid var(--rule);
+  }
+
+  .primary {
+    border-top: 4px solid var(--accent);
+    background: var(--paper-2);
+  }
+
+  h2 {
+    font-size: clamp(30px, 4vw, 48px);
+  }
+
+  .contract {
+    font-family: var(--mono);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    margin-top: 25px;
+  }
+
+  aside h2 {
+    font-size: 30px;
+  }
+
+  aside p {
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 640px) {
+    .primary,
+    aside {
+      padding: 26px;
+    }
+  }
+</style>

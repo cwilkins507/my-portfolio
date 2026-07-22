@@ -1,58 +1,28 @@
 ---
+import Layout from '../layouts/Layout.astro';
 import Quiz from '../components/Quiz';
-import '../index.css';
+import { SITE_URL, SMB_ASSESSMENT, SMB_QUIZ } from '../data/site.js';
 
-// No layout - clean quiz experience
+const pageTitle = `${SMB_QUIZ.name} | Collin Wilkins`;
+const pageDescription = `${SMB_QUIZ.description} No booking or payment is created; the separate $${SMB_ASSESSMENT.priceUsd} ${SMB_ASSESSMENT.name} remains the structured next step.`;
+const quizSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'WebPage',
+	name: SMB_QUIZ.name,
+	description: pageDescription,
+	url: `${SITE_URL}${SMB_QUIZ.slug}`,
+	audience: {
+		'@type': 'Audience',
+		audienceType: SMB_ASSESSMENT.audience,
+	},
+	author: {
+		'@type': 'Person',
+		name: 'Collin Wilkins',
+		url: 'https://collinwilkins.com/about',
+	},
+};
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
-		<title>AI Automation Quiz | Collin Wilkins</title>
-		<meta name="description" content="Discover which AI automation solution fits your business. Get a personalized action plan." />
-		<link rel="canonical" href="https://collinwilkins.com/quiz" />
-
-		<!-- Open Graph / Facebook -->
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://collinwilkins.com/quiz" />
-		<meta property="og:title" content="AI Automation Quiz | Collin Wilkins" />
-		<meta property="og:description" content="Discover which AI automation solution fits your business. Get a personalized action plan." />
-		<meta property="og:image" content="https://collinwilkins.com/images/og-default.png" />
-
-		<!-- Twitter -->
-		<meta property="twitter:card" content="summary_large_image" />
-		<meta name="twitter:site" content="@CollinWilkins7" />
-		<meta name="twitter:creator" content="@CollinWilkins7" />
-		<meta property="twitter:title" content="AI Automation Quiz | Collin Wilkins" />
-		<meta property="twitter:description" content="Discover which AI automation solution fits your business. Get a personalized action plan." />
-		<meta property="twitter:image" content="https://collinwilkins.com/images/og-default.png" />
-
-		<meta name="robots" content="index, follow" />
-		<meta name="google-site-verification" content="p-TMFQiYQvWsK5Tn417NrhsVXZUOlO0riWjvgMm-zSI" />
-
-		<!-- JSON-LD Structured Data -->
-		<script type="application/ld+json" set:html={JSON.stringify({
-			"@context": "https://schema.org",
-			"@type": "WebPage",
-			"name": "AI Automation Quiz",
-			"description": "Discover which AI automation solution fits your business. Get a personalized action plan.",
-			"url": "https://collinwilkins.com/quiz",
-			"author": {
-				"@type": "Person",
-				"name": "Collin Wilkins",
-				"url": "https://collinwilkins.com/about"
-			}
-		})} />
-
-		<!-- Google Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-	</head>
-	<body>
-		<Quiz client:load />
-	</body>
-</html>
+<Layout title={pageTitle} description={pageDescription} schema={quizSchema} hideFooterNewsletter={true}>
+	<Quiz client:load />
+</Layout>

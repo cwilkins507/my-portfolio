@@ -48,10 +48,14 @@ The planning package is provisional site design. It does not replace the Current
 - Engineering offer: AI-Assisted Delivery Pilot.
 - Asset: AI Delivery Kit.
 - Scope: one team, one repository, one real backlog item.
-- Founding price: $1,500.
-- Delivery: approximately 10 business days, async-first.
-- Engineering fit calls use `https://cal.com/collinwilkins/intro` only while its public contract remains compatible.
-- Direct pilot intake is site-owned, collects no payment, and precedes scope acceptance and manual payment.
+- Founding price: $1,500 for the first three clients whose written scope is accepted and $500 first installment is paid; accepted pilots keep that price.
+- Delivery: five business days after the full readiness gate passes, async-first.
+- Readiness requires written scope, one approved low-risk issue, least-privilege access, a passing agreed baseline, authenticated agent access, working CI/draft-PR/branch protection, a named technical owner and reviewer, the $500 first installment, and a confirmed start date.
+- Acceptance requires the agreed customer-owned assets, passing existing verification and five smoke cases, fail-closed protected paths, one approved issue at a verified draft PR with normalized usage evidence, retained human approval, and a customer engineer completing the documented non-production path without Collin driving.
+- Payment: $500 after written scope acceptance; $1,000 only after acceptance passes.
+- Risk reversal: if a ready environment misses acceptance by business day five, the final installment is not due and Collin corrects the agreed in-scope installation at no additional charge until acceptance passes. Customer delays pause the clock; scope changes and pre-existing failures are re-scoped.
+- Engineering fit calls use `https://cal.com/collinwilkins/intro` only while its public contract remains compatible; the fit call is optional.
+- Direct pilot intake is site-owned, collects no payment, and precedes written scope acceptance.
 - SMB assessment stays separate: $99, 60 minutes, Workflow Opportunity Map within 48 hours, booked at `/assessment`.
 - Never route an engineering CTA to the SMB assessment.
 - Preserve the financial-services exclusion.

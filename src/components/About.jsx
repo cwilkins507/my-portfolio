@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Download } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const background = [
   {
@@ -80,10 +80,10 @@ const About = () => {
               </a>
               <a
                 href="/Collin-Wilkins-Resume.pdf"
+                download="collin-wilkins-resume.pdf"
                 className="inline-flex min-h-11 items-center justify-center rounded-lg border border-[var(--color-border-hover)] bg-[var(--color-surface)] px-5 text-sm font-bold text-[var(--color-text-primary)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
               >
-                Recruiting? Download résumé
-                <Download className="ml-2 h-4 w-4" aria-hidden="true" />
+                Download my resume
               </a>
             </div>
           </div>
