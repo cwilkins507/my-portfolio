@@ -45,6 +45,10 @@ The planning package is provisional site design. It does not replace the Current
 
 ## Offer and routing invariants
 
+- Umbrella message: help business owners and engineering leaders turn AI experiments and manual workflows into systems their teams can use and maintain.
+- The site exposes four service paths: AI readiness assessment, AI-Assisted Delivery Pilot, technical advisory, and hands-on backend/automation work.
+- Advisory and hands-on work are scoped through the free 30-minute intro; do not invent fixed prices, delivery windows, or guarantees for them.
+
 - Engineering offer: AI-Assisted Delivery Pilot.
 - Asset: AI Delivery Kit.
 - Scope: one team, one repository, one real backlog item.
@@ -54,7 +58,7 @@ The planning package is provisional site design. It does not replace the Current
 - Acceptance requires the agreed customer-owned assets, passing existing verification and five smoke cases, fail-closed protected paths, one approved issue at a verified draft PR with normalized usage evidence, retained human approval, and a customer engineer completing the documented non-production path without Collin driving.
 - Payment: $500 after written scope acceptance; $1,000 only after acceptance passes.
 - Risk reversal: if a ready environment misses acceptance by business day five, the final installment is not due and Collin corrects the agreed in-scope installation at no additional charge until acceptance passes. Customer delays pause the clock; scope changes and pre-existing failures are re-scoped.
-- Engineering fit calls use `https://cal.com/collinwilkins/intro` only while its public contract remains compatible; the fit call is optional.
+- General intro calls use `https://cal.com/collinwilkins/intro`; the call is free, 30 minutes, and optional. It may route to an assessment, pilot, advisory need, hands-on build, or no engagement.
 - Direct pilot intake is site-owned, collects no payment, and precedes written scope acceptance.
 - SMB assessment stays separate: $99, 60 minutes, Workflow Opportunity Map within 48 hours, booked at `/assessment`.
 - Never route an engineering CTA to the SMB assessment.
@@ -62,7 +66,7 @@ The planning package is provisional site design. It does not replace the Current
 - Do not add service categories without evidence or explicit instruction.
 - Do not advertise voice-agent delivery experience.
 
-Centralized offer, newsletter, booking, and analytics objects in `src/data/site.js` are the implementation source of truth. Visible copy, metadata, JSON-LD, links, and analytics labels must agree.
+Centralized consulting overview, offer, newsletter, booking, and analytics objects in `src/data/site.js` are the implementation source of truth. Visible copy, metadata, JSON-LD, links, and analytics labels must agree.
 
 ## Claims and proof
 

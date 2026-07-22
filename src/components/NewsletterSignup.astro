@@ -1,7 +1,7 @@
 ---
 import { NEWSLETTER, ANALYTICS_EVENTS } from '../data/site.js';
 interface Props { variant?: 'inline' | 'footer'; title?: string; description?: string; buttonLabel?: string; tag?: string; note?: string; location: string; }
-const { variant='inline', title=NEWSLETTER.name, description=NEWSLETTER.promise, buttonLabel='Subscribe', tag, note='Subscription events measure intent; Buttondown confirms the subscriber.', location }=Astro.props;
+const { variant='inline', title=NEWSLETTER.name, description=NEWSLETTER.promise, buttonLabel='Subscribe', tag, note='No spam. Unsubscribe anytime.', location }=Astro.props;
 if(!location) throw new Error('NewsletterSignup requires a location prop');
 ---
 <div class:list={[variant==='inline'?'newsletter-inline':'newsletter-footer']}>

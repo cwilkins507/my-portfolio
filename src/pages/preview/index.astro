@@ -4,6 +4,7 @@ import ArticleList from '../../components/Articles';
 import AnimatedHero from '../../components/AnimatedHero';
 import GlowDivider from '../../components/GlowDivider';
 import StatStrip from '../../components/StatStrip';
+import { NEWSLETTER } from '../../data/site.js';
 
 const articleModules = import.meta.glob('../../articles/*.md', { eager: true });
 const articles = Object.entries(articleModules).map(([file, article]) => ({
@@ -92,9 +93,9 @@ const featuredArticles = FEATURED_SLUGS
 		<div class="flex flex-col lg:flex-row lg:items-center gap-8 p-8 md:p-10 lg:p-12 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] relative overflow-hidden">
 			<div class="pointer-events-none absolute right-0 top-0 w-64 h-full rounded-r-2xl" style="background: radial-gradient(ellipse at top right, rgba(201,169,110,0.06) 0%, transparent 70%);" aria-hidden="true"></div>
 			<div class="flex-1 relative z-[1]">
-				<p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-accent)] mb-3">Newsletter · Every other week</p>
-				<h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-2">Notes from production.</h3>
-				<p class="text-base text-[var(--color-text-secondary)] leading-relaxed">Working playbooks and field notes for learning by doing. AI coding, convention files, automation architecture, and the production details that decide whether the work survives past the demo.</p>
+				<p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-accent)] mb-3">Newsletter · {NEWSLETTER.cadence}</p>
+				<h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-2">{NEWSLETTER.name}.</h3>
+				<p class="text-base text-[var(--color-text-secondary)] leading-relaxed">{NEWSLETTER.promise}</p>
 			</div>
 			<form
 				action="https://buttondown.com/api/emails/embed-subscribe/collinwilkins"

@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import { NEWSLETTER } from '../../../data/site.js';
 
 const downloads = [
   {
@@ -86,8 +87,8 @@ const downloads = [
     <div class="h-px bg-[var(--color-border)] my-12"></div>
 
     <p class="text-moonlight-text-secondary mb-12">
-      Want occasional essays on AI tooling, agents, and automation? I publish about every other week at
-      <a href="https://collinwilkins.com" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors">collinwilkins.com</a>. No spam, unsubscribe anytime.
+      Want the next issue of {NEWSLETTER.name}? {NEWSLETTER.promise}
+      <a href="/newsletter" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors">Subscribe here</a>. No spam; unsubscribe anytime.
     </p>
 
     <a

@@ -2,8 +2,10 @@ export const SITE_URL = 'https://collinwilkins.com';
 export const INTRO_CALL = Object.freeze({
   href: 'https://cal.com/collinwilkins/intro',
   durationMinutes: 30,
-  engineeringLabel: 'Book a free fit call',
-  smbLabel: 'Book a free intro call',
+  navigationLabel: 'Book a free call',
+  bookingLabel: 'Book a free 30-minute call',
+  engineeringLabel: 'Book a free 30-minute fit call',
+  smbLabel: 'Book a free 30-minute intro',
 });
 const engineeringPilotReadiness = Object.freeze([
   'Written scope names one approved low-risk issue, its non-goals, protected areas, and acceptance checks.',
@@ -39,7 +41,6 @@ export const ENGINEERING_PILOT = Object.freeze({
   capabilityBriefPdfHref: '/AI-Delivery-Kit-Capability-Brief.pdf',
   fitCallHref: INTRO_CALL.href,
   fitCallLabel: INTRO_CALL.engineeringLabel,
-  navigationLabel: 'Book a pilot fit call',
   intakeLabel: 'Request a pilot scope review',
   priceUsd: 1500,
   priceLabel: '$1,500 fixed founding price',
@@ -74,8 +75,8 @@ export const SMB_QUIZ = Object.freeze({
   ctaLabel: 'Take the free 5-question workflow quiz',
 });
 export const NEWSLETTER = Object.freeze({
-  name: 'Notes from Production',
-  promise: 'One field note every other Tuesday for engineering leaders turning AI coding tools into repeatable team practice.',
+  name: "Collin's Thoughts",
+  promise: 'Every other Tuesday, I share what I have been building, what I learned along the way, and a few articles or findings worth your time.',
   cadence: 'Every other Tuesday',
   archiveHref: 'https://buttondown.com/collinwilkins/archive/',
   subscribeAction: 'https://buttondown.com/api/emails/embed-subscribe/collinwilkins',
@@ -89,4 +90,64 @@ export const ANALYTICS_EVENTS = Object.freeze({
   capabilityBriefView: 'Capability Brief View',
   capabilityBriefDownload: 'Capability Brief PDF Download',
   newsletterSubscribe: 'Newsletter Subscribe',
+});
+
+export const CONSULTING_OVERVIEW = Object.freeze({
+  lead: 'I help companies turn AI and automation experiments into systems their teams can use and maintain.',
+  background: 'I bring lead software engineering experience at Morningstar and Ford, plus earlier work in finance, pricing, sales, and operations. That helps me judge both how to build the system and whether it solves a real business problem.',
+  paths: Object.freeze([
+    Object.freeze({
+      id: 'assessment',
+      label: '01 / Diagnose',
+      name: 'AI readiness assessment',
+      description: 'Choose the first recurring workflow worth improving before spending more on tools or implementation. Leave with a Workflow Opportunity Map and a clear implement, defer, or stop decision.',
+      href: SMB_ASSESSMENT.slug,
+      cta: 'See the $99 assessment',
+      analyticsEvent: ANALYTICS_EVENTS.smbAssessmentOpen,
+    }),
+    Object.freeze({
+      id: 'pilot',
+      label: '02 / Govern',
+      name: ENGINEERING_PILOT.name,
+      description: 'Turn one approved engineering issue into a governed, customer-owned delivery path with existing CI, human approval, and visible model usage.',
+      href: ENGINEERING_PILOT.slug,
+      cta: 'See the fixed-scope pilot',
+      analyticsEvent: ANALYTICS_EVENTS.pilotCtaClick,
+    }),
+    Object.freeze({
+      id: 'advisory',
+      label: '03 / Decide',
+      name: 'Technical advisory',
+      description: 'Work through architecture, AI adoption, delivery controls, system boundaries, or implementation sequencing before a team commits to a build.',
+      href: INTRO_CALL.href,
+      cta: 'Discuss an advisory need',
+      analyticsEvent: ANALYTICS_EVENTS.bookingPageOpen,
+    }),
+    Object.freeze({
+      id: 'automation',
+      label: '04 / Build',
+      name: 'Hands-on backend and automation work',
+      description: 'Build a maintainable workflow such as speed-to-lead routing, rules-based quoting, an internal knowledge system, a system integration, or a bounded agent for one repeatable job.',
+      href: INTRO_CALL.href,
+      cta: 'Discuss a workflow build',
+      analyticsEvent: ANALYTICS_EVENTS.bookingPageOpen,
+    }),
+  ]),
+  referralSignals: Object.freeze([
+    Object.freeze({
+      label: 'Engineering team',
+      title: '“We bought Claude Code, Cursor, or Copilot. Results still depend on who is using it.”',
+      detail: 'The missing layer is usually shared context, review boundaries, verification, and a delivery path the team can repeat.',
+    }),
+    Object.freeze({
+      label: 'Owner or operator',
+      title: '“We know AI could help, but we do not know where to start.”',
+      detail: 'Start with one recurring workflow, the business cost of the current process, and a decision about whether AI belongs in the solution.',
+    }),
+    Object.freeze({
+      label: 'Operational bottleneck',
+      title: '“This still runs through spreadsheets, repeated data entry, disconnected systems, or one person’s memory.”',
+      detail: 'That is often a backend and workflow-design problem before it is an AI problem—and that is my bread and butter.',
+    }),
+  ]),
 });
