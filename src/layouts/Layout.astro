@@ -2,6 +2,7 @@
 import Navigation from '../components/Navigation.jsx';
 import ContactModalWrapper from '../components/ContactModalWrapper';
 import '../index.css';
+import { ENGINEERING_PILOT, NEWSLETTER, ANALYTICS_EVENTS } from '../data/site.js';
 
 interface Props {
 	title: string;
@@ -70,11 +71,11 @@ const currentYear = new Date().getFullYear();
 
 		<link rel="canonical" href={canonicalURL} />
 
-		<!-- Google Fonts: Newsreader + IBM Plex Mono — loaded async to avoid render-blocking -->
+		<!-- Google Fonts: Newsreader + IBM Plex Mono — async and optional to avoid render blocking and late layout shifts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link rel="preload" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-		<noscript><link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
+		<link rel="preload" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+		<noscript><link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=optional" rel="stylesheet" /></noscript>
 
 		<!-- JSON-LD Structured Data -->
 		{schema && (
@@ -116,12 +117,14 @@ const currentYear = new Date().getFullYear();
 				<div style="background: var(--paper-2); border-bottom: 1px solid var(--rule);">
 					<div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding-top:22px;padding-bottom:22px;">
 						<p style="font-size:15px;line-height:1.5;color:var(--ink-soft);max-width:54ch;">
-							Not ready to talk? <strong style="color:var(--ink);font-weight:600;">Read along.</strong> Practical AI engineering — patterns, trade-offs, and the occasional self-hosting experiment.
+							<strong style="color:var(--ink);font-weight:600;">{NEWSLETTER.name}.</strong> {NEWSLETTER.promise}
 						</p>
 						<form
-							action="https://buttondown.com/api/emails/embed-subscribe/collinwilkins"
+							action={NEWSLETTER.subscribeAction}
 							method="post"
 							target="popupwindow"
+							data-newsletter-event={ANALYTICS_EVENTS.newsletterSubscribe}
+							data-location="footer"
 							style="display:flex;gap:10px;flex-shrink:0;"
 						>
 							<input
@@ -142,26 +145,26 @@ const currentYear = new Date().getFullYear();
 				<div>
 					<div style="font-size:18px;font-weight:600;letter-spacing:-.01em;">{portfolioData.name}</div>
 					<p style="font-size:13.5px;line-height:1.5;color:var(--ink-soft);max-width:32ch;margin-top:10px;">
-						AI engineering training, workshops, and advisory for teams shipping in high-stakes environments.
+						AI-assisted delivery systems for engineering teams using AI coding tools.
 					</p>
 				</div>
 				<div>
-					<h4 style="font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:15px;">Work</h4>
+					<h2 style="font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:15px;">Work</h2>
 					<ul style="list-style:none;">
-						<li style="margin-bottom:10px;"><a href="/services" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">Training</a></li>
-						<li style="margin-bottom:10px;"><a href="/services" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">Advisory</a></li>
+						<li style="margin-bottom:10px;"><a href={ENGINEERING_PILOT.slug} data-analytics-event={ANALYTICS_EVENTS.pilotCtaClick} data-analytics-location="footer-work-pilot" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">Delivery pilot</a></li>
+						<li style="margin-bottom:10px;"><a href={ENGINEERING_PILOT.capabilityBriefHref} data-analytics-event={ANALYTICS_EVENTS.capabilityBriefView} data-analytics-location="footer-work-capability-brief" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">Capability brief</a></li>
 					</ul>
 				</div>
 				<div>
-					<h4 style="font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:15px;">Writing</h4>
+					<h2 style="font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:15px;">Writing</h2>
 					<ul style="list-style:none;">
 						<li style="margin-bottom:10px;"><a href="/articles" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">Articles</a></li>
 						<li style="margin-bottom:10px;"><a href="/faq" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">FAQ</a></li>
-						<li style="margin-bottom:10px;"><a href="https://buttondown.com/collinwilkins" target="_blank" rel="noopener noreferrer" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">Newsletter</a></li>
+						<li style="margin-bottom:10px;"><a href={NEWSLETTER.archiveHref} target="_blank" rel="noopener noreferrer" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">{NEWSLETTER.name}</a></li>
 					</ul>
 				</div>
 				<div>
-					<h4 style="font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:15px;">Elsewhere</h4>
+					<h2 style="font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:15px;">Elsewhere</h2>
 					<ul style="list-style:none;">
 						<li style="margin-bottom:10px;"><a href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">LinkedIn</a></li>
 						<li style="margin-bottom:10px;"><a href={portfolioData.github} target="_blank" rel="noopener noreferrer" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">GitHub</a></li>
@@ -177,6 +180,8 @@ const currentYear = new Date().getFullYear();
 
 		<!-- Contact Modal -->
 		<ContactModalWrapper email={portfolioData.email} client:only="react" />
+		<script is:inline>document.addEventListener('submit',function(event){var form=event.target.closest('[data-newsletter-event]');if(form&&window.plausible)window.plausible(form.dataset.newsletterEvent,{props:{location:form.dataset.location,measurement:'intent'}});});</script>
+		<script is:inline>document.addEventListener('click',function(event){var link=event.target.closest('[data-analytics-event][data-analytics-location]');if(link&&window.plausible)window.plausible(link.dataset.analyticsEvent,{props:{location:link.dataset.analyticsLocation}});});</script>
 	</body>
 </html>
 

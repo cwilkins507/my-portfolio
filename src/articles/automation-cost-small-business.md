@@ -97,7 +97,7 @@ That $18,200/year number from earlier doesn't shrink because you're busy — it 
 
 ---
 
-Not sure where to start? I do free 15-minute automation audits for small businesses. No pitch, just an honest look at your processes and what's worth automating. [Get in touch →](/?modal=contact)
+Not sure where to start? The [$99 AI Workflow Opportunity Assessment](/services/ai-workflow-assessment) helps choose the first recurring workflow worth improving and produces a Workflow Opportunity Map within 48 hours.
 
 ---
 

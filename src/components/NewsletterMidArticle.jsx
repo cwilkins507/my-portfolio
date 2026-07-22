@@ -1,4 +1,5 @@
 import React from 'react';
+import { NEWSLETTER } from '../data/site.js';
 
 const NewsletterMidArticle = () => {
   return (
@@ -9,10 +10,10 @@ const NewsletterMidArticle = () => {
       />
 
       <h3 className="font-serif text-2xl font-bold text-[var(--color-text-primary)] mb-3 md:text-[1.8rem]">
-        Notes from production.
+        {NEWSLETTER.name}.
       </h3>
       <p className="text-[1.05rem] text-[var(--color-text-secondary)] leading-relaxed max-w-[460px] mb-8">
-        Every other week: working playbooks on AI coding tools, convention files, and automation architecture. The production details that decide whether the work survives past the demo.
+        {NEWSLETTER.promise}
       </p>
 
       <form

@@ -12,7 +12,10 @@
     "astro": "astro",
     "test:rag": "python -m pytest rag/tests",
     "test:content-search": "node scripts/validate-faq-search.js",
-    "test:built-faqs": "node scripts/verify-built-faqs.js"
+    "test:built-faqs": "node scripts/verify-built-faqs.js",
+    "export:capability-brief": "node scripts/export-capability-brief.js",
+    "verify:ai-delivery": "node scripts/verify-ai-delivery-regression.js",
+    "verify:capability-brief": "node scripts/verify-capability-brief.js"
   },
   "dependencies": {
     "@astrojs/react": "^4.4.2",
@@ -34,6 +37,7 @@
     "zustand": "^5.0.2"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
     "@eslint/js": "^9.36.0",
     "@tailwindcss/postcss": "^4.1.14",
     "@types/react": "^19.1.16",

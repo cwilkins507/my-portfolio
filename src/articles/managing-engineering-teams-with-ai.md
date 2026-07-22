@@ -72,4 +72,4 @@ The job didn't get easier. The ceiling got higher. Managers who get the infrastr
 
 ---
 
-If you're thinking through where your team's AI adoption actually stands, I put together a framework for that. You can [book an AI Readiness Assessment](https://cal.com/collinwilkins/assessment). Or subscribe to the newsletter. I write about building AI-native engineering practices every two weeks.
+If you want to turn one approved issue into a governed, reviewable change, see the [AI-Assisted Delivery Pilot](/services/ai-delivery-kit). Or subscribe to [Collin's Thoughts](/newsletter) for what I am building, lessons from the work, and a few worthwhile articles and findings every other Tuesday.

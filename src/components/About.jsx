@@ -1,5 +1,6 @@
 import React from 'react';
-import { ArrowRight, Download } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { ANALYTICS_EVENTS, INTRO_CALL } from '../data/site.js';
 
 const background = [
   {
@@ -68,22 +69,31 @@ const About = () => {
               Most engineers start with "Hello World." Mine starts with a $2 million pricing problem.
             </h1>
             <p className="mt-7 max-w-3xl text-lg leading-relaxed text-[var(--color-text-secondary)] md:text-xl">
-              Before engineering, I worked in finance, pricing, sales, and field roles at Ford. That matters because I still see software through the business process it's supposed to fix: who touches it, where it stalls, and what the delay costs.
+              I help companies turn AI and automation experiments into systems their teams can use and maintain. My path through Ford finance, sales, operations, connected vehicles, and software engineering means I look at both how to build the system and whether it solves a real business problem.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
-                href="/case-studies"
+                href={INTRO_CALL.href}
+                data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen}
+                data-analytics-location="about-booking"
                 className="inline-flex min-h-11 items-center justify-center rounded-lg bg-[var(--color-accent)] px-5 text-sm font-bold text-white transition-colors hover:bg-[var(--color-accent-hover)]"
               >
-                View the work
+                {INTRO_CALL.bookingLabel}
+                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+              </a>
+              <a
+                href="/services/ai-delivery-kit/capability-brief"
+                className="inline-flex min-h-11 items-center justify-center rounded-lg border border-[var(--color-border-hover)] bg-[var(--color-surface)] px-5 text-sm font-bold text-[var(--color-text-primary)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+              >
+                View the AI Delivery capability brief
                 <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </a>
               <a
                 href="/Collin-Wilkins-Resume.pdf"
+                download="collin-wilkins-resume.pdf"
                 className="inline-flex min-h-11 items-center justify-center rounded-lg border border-[var(--color-border-hover)] bg-[var(--color-surface)] px-5 text-sm font-bold text-[var(--color-text-primary)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
               >
-                Download CV
-                <Download className="ml-2 h-4 w-4" aria-hidden="true" />
+                Download my resume
               </a>
             </div>
           </div>

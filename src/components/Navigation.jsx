@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useReducedMotion } from '../hooks/useReducedMotion';
-import { BOOKING_HREF } from '../data/site.js';
+import { INTRO_CALL, ANALYTICS_EVENTS } from '../data/site.js';
+import { trackEvent } from '../utils/analytics.js';
 
 const NAV_LINKS = [
   { href: '/articles', label: 'Articles' },
@@ -119,23 +120,12 @@ const Navigation = ({ portfolioData }) => {
                 </a>
               ))}
               <a
-                href={BOOKING_HREF}
-                style={{
-                  fontFamily: 'var(--mono)',
-                  fontSize: '12px',
-                  letterSpacing: '.05em',
-                  textDecoration: 'none',
-                  color: 'var(--ink)',
-                  border: '1px solid var(--rule)',
-                  borderRadius: '999px',
-                  padding: '7px 15px',
-                  transition: 'border-color .15s',
-                  whiteSpace: 'nowrap',
-                }}
-                onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--accent)'}
-                onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--rule)'}
+                href={INTRO_CALL.href}
+                onClick={() => trackEvent(ANALYTICS_EVENTS.bookingPageOpen, { location: 'navigation' })}
+                className="btn btn-solid"
+                style={{ padding: '8px 16px', whiteSpace: 'nowrap' }}
               >
-                Book a call
+                {INTRO_CALL.navigationLabel}
               </a>
             </div>
 
@@ -236,12 +226,12 @@ const Navigation = ({ portfolioData }) => {
               </a>
             ))}
             <a
-              href={BOOKING_HREF}
-              onClick={close}
+              href={INTRO_CALL.href}
+              onClick={() => { trackEvent(ANALYTICS_EVENTS.bookingPageOpen, { location: 'navigation-mobile' }); close(); }}
               className="btn btn-solid"
               style={{ marginTop: '8px' }}
             >
-              Book a call
+              {INTRO_CALL.navigationLabel}
             </a>
           </motion.div>
         )}

@@ -1,10 +1,8 @@
 ---
-import { BOOKING_HREF } from '../data/site.js';
-
-interface Props {
-  label?: string;
-  class?: string;
-}
-const { label = 'Book an intro call →', class: cls = '' } = Astro.props;
+import { ENGINEERING_PILOT, ANALYTICS_EVENTS } from '../data/site.js';
+interface Props { location: string; label?: string; href?: string; class?: string; }
+const { location, label = ENGINEERING_PILOT.fitCallLabel, href = ENGINEERING_PILOT.fitCallHref, class: cls = '' } = Astro.props;
+if (!location) throw new Error('BookCTA requires a location prop');
 ---
-<a href={BOOKING_HREF} class={`btn btn-solid ${cls}`}>{label}</a>
+<a href={href} class={`btn btn-solid ${cls}`} data-event={ANALYTICS_EVENTS.bookingPageOpen} data-location={location}>{label}</a>
+<script>document.addEventListener('click',(event)=>{const link=event.target.closest('[data-event][data-location]');if(link&&window.plausible)window.plausible(link.dataset.event,{props:{location:link.dataset.location}});});</script>

@@ -4,6 +4,7 @@ import BookCTA from '../../components/BookCTA.astro';
 import { getCategoryForArticle } from '../../data/categories.js';
 import { faqAnchor } from '../../utils/contentSearch.js';
 import { articleFromModule } from '../../utils/articleData.js';
+import { NEWSLETTER } from '../../data/site.js';
 
 const articleModules = import.meta.glob('../../articles/*.md', { eager: true });
 const allArticles = Object.entries(articleModules).map(([file, article]) => ({
@@ -238,7 +239,7 @@ const articleSchema = { '@context': 'https://schema.org', '@graph': graphItems }
         <div class="a-role">Lead Engineer · AI & Automation</div>
         <div class="a-bio">Lead Software Engineer at Morningstar with 12 years across Ford and enterprise software. I write about what actually works when engineering teams adopt AI — and what breaks when they don't set up the context layer first.</div>
         <div class="cta-row">
-          <BookCTA label="Book an intro call →" />
+          <BookCTA location={`article-${slug}`} />
           <a href="/services" class="btn btn-ghost">View services</a>
         </div>
       </div>
@@ -247,8 +248,8 @@ const articleSchema = { '@context': 'https://schema.org', '@graph': graphItems }
 
   <!-- ── Newsletter ── -->
   <div class="news" style="margin-top:clamp(48px,7vw,80px);">
-    <h3>Notes from production.</h3>
-    <p>Every other week: working playbooks on AI coding tools, convention files, and automation architecture.</p>
+    <h3>{NEWSLETTER.name}.</h3>
+    <p>{NEWSLETTER.promise}</p>
     <form action="https://buttondown.com/api/emails/embed-subscribe/collinwilkins" method="post" target="popupwindow">
       <input type="email" name="email" placeholder="you@company.com" aria-label="Email address" />
       <button class="btn btn-solid" type="submit">Subscribe</button>
@@ -469,6 +470,13 @@ const articleSchema = { '@context': 'https://schema.org', '@graph': graphItems }
   border-bottom: 1px solid var(--ink);
 }
 .body :global(td) { padding: 12px 16px 12px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+@media (max-width: 640px) {
+  .body :global(table) {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
 .body :global(hr) { border: none; border-top: 1px solid var(--rule); margin: 2em 0; }
 .body :global(img) { width: 100%; border-radius: 6px; margin: 1.4em 0; border: 1px solid var(--rule); display: block; }
 
