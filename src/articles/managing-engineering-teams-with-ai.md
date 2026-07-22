@@ -72,4 +72,4 @@ The job didn't get easier. The ceiling got higher. Managers who get the infrastr
 
 ---
 
-If you want to turn one approved issue into a governed, reviewable change, see the [AI-Assisted Delivery Pilot](/services/ai-delivery-kit). Or subscribe to Notes from Production for field notes on building repeatable AI-native engineering practices.
+If you want to turn one approved issue into a governed, reviewable change, see the [AI-Assisted Delivery Pilot](/services/ai-delivery-kit). Or subscribe to [Collin's Thoughts](/newsletter) for what I am building, lessons from the work, and a few worthwhile articles and findings every other Tuesday.

@@ -1,9 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { ENGINEERING_PILOT, SMB_QUIZ, NEWSLETTER, ANALYTICS_EVENTS } from '../data/site.js';
+import { CONSULTING_OVERVIEW, ENGINEERING_PILOT, INTRO_CALL, SMB_QUIZ, NEWSLETTER, ANALYTICS_EVENTS } from '../data/site.js';
 
-const pageTitle = 'AI-Assisted Delivery Pilot for Engineering Teams | Collin Wilkins';
-const pageDescription = 'A five-business-day, fixed-scope AI-assisted delivery pilot: one repository, one approved issue, a verified draft pull request, existing CI, and human approval.';
+const pageTitle = 'AI Systems and Automation Consulting | Collin Wilkins';
+const pageDescription = 'I help business owners and engineering leaders turn AI experiments and manual workflows into maintainable backend systems, automation, and governed delivery paths.';
 
 const homepageSchema = [
   {
@@ -17,7 +17,7 @@ const homepageSchema = [
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: ENGINEERING_PILOT.name,
-    description: pageDescription,
+    description: ENGINEERING_PILOT.description,
     url: `https://collinwilkins.com${ENGINEERING_PILOT.slug}`,
     provider: {
       '@type': 'Person',
@@ -49,23 +49,6 @@ const proofItems = [
   },
 ];
 
-const workflowSymptoms = [
-  {
-    label: 'Context',
-    title: 'Every developer starts from a different codebase.',
-    detail: 'Repository rules live in prompts, Slack, and memory instead of one load-bearing source the whole team can review.',
-  },
-  {
-    label: 'Review',
-    title: 'Senior engineers absorb the inconsistency.',
-    detail: 'Generated code arrives faster, but review churn and architectural drift surface after the work is already in a pull request.',
-  },
-  {
-    label: 'Evidence',
-    title: 'Tool usage rises. Defensible ROI does not.',
-    detail: 'License counts and anecdotes cannot show which workflow improved, where quality moved, or whether the change should scale.',
-  },
-];
 
 const pilotSteps = [
   {
@@ -111,40 +94,35 @@ const faqItems = [
 <Layout title={pageTitle} description={pageDescription} schema={homepageSchema} hideFooterNewsletter={true}>
   <section class="hero" data-homepage-hero aria-labelledby="hero-title">
     <div class="wrap hero-inner">
-      <p class="eyebrow">For engineering leaders already using Claude Code, Cursor, or Copilot</p>
+      <p class="eyebrow">AI systems, backend automation, and technical advisory</p>
 
       <div class="hero-grid">
         <div class="hero-copy">
-          <h1 id="hero-title">Your team adopted AI coding. <em>The workflow didn’t.</em></h1>
+          <h1 id="hero-title">Turn AI experiments and manual work into systems your team can run.</h1>
           <p class="hero-lede">
-            The <strong>{ENGINEERING_PILOT.name}</strong> installs a customer-owned path from a qualified issue to a verified draft pull request, then proves it on one approved backlog item.
+            {CONSULTING_OVERVIEW.lead} My bread and butter is backend systems and workflow automation: lead routing, quote workflows, knowledge systems, integrations, and bounded agents.
           </p>
 
           <div class="hero-actions">
             <a
               class="btn btn-solid hero-primary"
-              href={ENGINEERING_PILOT.intakeHref}
-              data-analytics-event={ANALYTICS_EVENTS.pilotCtaClick}
-              data-analytics-location="homepage-hero-scope-review"
+              href={INTRO_CALL.href}
+              data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen}
+              data-analytics-location="homepage-hero-booking"
             >
-              Request a pilot scope review <span aria-hidden="true">→</span>
+              {INTRO_CALL.bookingLabel} <span aria-hidden="true">→</span>
             </a>
-            <a
-              class="hero-secondary"
-              href={ENGINEERING_PILOT.capabilityBriefHref}
-              data-analytics-event={ANALYTICS_EVENTS.capabilityBriefView}
-              data-analytics-location="homepage-hero-capability-brief"
-            >
-              View the capability brief
+            <a class="hero-secondary" href="/services">
+              See the four ways I can help
             </a>
           </div>
 
-          <p class="hero-note">No payment at intake. $500 follows written scope acceptance; $1,000 is due only after the acceptance criteria pass.</p>
+          <p class="hero-note">Bring one workflow, delivery bottleneck, or AI-adoption problem. No hard sell; we will decide whether there is a useful next step.</p>
         </div>
 
-        <aside class="pilot-docket" aria-label="Pilot at a glance">
+        <aside class="pilot-docket" aria-label="Featured pilot at a glance">
           <div class="docket-topline">
-            <span>Engagement / 01</span>
+            <span>Featured engagement</span>
             <span>Fixed scope</span>
           </div>
           <p class="docket-name">AI-Assisted Delivery Pilot</p>
@@ -201,20 +179,47 @@ const faqItems = [
     </div>
   </section>
 
+  <section class="overview-section" id="services-overview" aria-labelledby="overview-title">
+    <div class="wrap section-inner">
+      <div class="section-intro">
+        <p class="eyebrow">What I offer</p>
+        <h2 id="overview-title">The 30-second overview.</h2>
+        <p>{CONSULTING_OVERVIEW.background}</p>
+      </div>
+
+      <div class="offer-grid">
+        {CONSULTING_OVERVIEW.paths.map(path => (
+          <article>
+            <p class="offer-label">{path.label}</p>
+            <h3>{path.name}</h3>
+            <p>{path.description}</p>
+            <a
+              href={path.href}
+              data-analytics-event={path.analyticsEvent}
+              data-analytics-location={`homepage-offer-${path.id}`}
+            >
+              {path.cta} →
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section class="problem-section" aria-labelledby="problem-title">
     <div class="wrap section-inner">
       <div class="section-intro">
-        <p class="eyebrow">The workflow gap</p>
-        <h2 id="problem-title">What inconsistency looks like by sprint three.</h2>
-        <p>Buying the tools is the easy part. Shared context, review boundaries, and evidence are the engineering system around them.</p>
+        <p class="eyebrow">A useful referral</p>
+        <h2 id="problem-title">Three sentences that should make you think of me.</h2>
+        <p>I work with business owners and engineering leaders who can name a real workflow or delivery problem—not teams shopping for AI theater.</p>
       </div>
 
       <div class="symptom-grid">
-        {workflowSymptoms.map(symptom => (
+        {CONSULTING_OVERVIEW.referralSignals.map(signal => (
           <article>
-            <p class="symptom-label">{symptom.label}</p>
-            <h3>{symptom.title}</h3>
-            <p>{symptom.detail}</p>
+            <p class="symptom-label">{signal.label}</p>
+            <h3>{signal.title}</h3>
+            <p>{signal.detail}</p>
           </article>
         ))}
       </div>
@@ -300,28 +305,28 @@ const faqItems = [
   <section class="close-section" aria-labelledby="close-title">
     <div class="wrap close-inner">
       <div>
-        <p class="eyebrow">Five business days after readiness</p>
-        <h2 id="close-title">Own a delivery path your team can run.</h2>
+        <p class="eyebrow">A free 30-minute first step</p>
+        <h2 id="close-title">Bring one workflow. Leave with the right next step.</h2>
       </div>
 
       <div class="close-actions">
         <a
           class="btn btn-solid"
+          href={INTRO_CALL.href}
+          data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen}
+          data-analytics-location="homepage-final-booking"
+        >
+          {INTRO_CALL.bookingLabel} <span aria-hidden="true">→</span>
+        </a>
+        <a
+          class="close-secondary"
           href={ENGINEERING_PILOT.intakeHref}
           data-analytics-event={ANALYTICS_EVENTS.pilotCtaClick}
           data-analytics-location="homepage-final-scope-review"
         >
-          Request a pilot scope review <span aria-hidden="true">→</span>
+          Already know you want the pilot? Request a scope review
         </a>
-        <a
-          class="close-secondary"
-          href={ENGINEERING_PILOT.fitCallHref}
-          data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen}
-          data-analytics-location="homepage-final-fit-call"
-        >
-          Prefer to talk first? Book a pilot fit call
-        </a>
-        <p class="close-note">$1,500 fixed founding price · $500 to start · $1,000 after acceptance</p>
+        <p class="close-note">We will choose the assessment, pilot, advisory, hands-on build, or no engagement based on the problem—not force every conversation into one offer.</p>
       </div>
     </div>
   </section>
@@ -335,7 +340,7 @@ const faqItems = [
       </article>
       <article>
         <p class="eyebrow">{NEWSLETTER.name}</p>
-        <a href="/newsletter">Get the field note every other Tuesday →</a>
+        <a href="/newsletter">Get the next issue →</a>
         <p>{NEWSLETTER.promise}</p>
       </article>
       <article>
@@ -347,7 +352,7 @@ const faqItems = [
         >
           {SMB_QUIZ.ctaLabel} →
         </a>
-        <p>The Quiz stays discoverable while remaining outside the engineering conversion path.</p>
+        <p>Start here when the problem is operational drag rather than an engineering delivery path.</p>
       </article>
     </div>
   </section>
@@ -367,6 +372,7 @@ const faqItems = [
 
   .hero,
   .credibility-strip,
+  .overview-section,
   .problem-section,
   .pilot-section,
   .proof-band,
@@ -666,6 +672,58 @@ const faqItems = [
     font-size: 18px;
     line-height: 1.5;
     text-wrap: pretty;
+  }
+
+  .offer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .offer-grid article {
+    display: flex;
+    min-height: 285px;
+    flex-direction: column;
+    padding: clamp(24px, 3vw, 34px);
+    border: 1px solid var(--rule);
+    background: var(--paper-2);
+  }
+
+  .offer-label {
+    color: var(--accent-text);
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .offer-grid h3 {
+    max-width: 18ch;
+    margin-top: 28px;
+    font-size: clamp(27px, 3vw, 36px);
+    font-weight: 500;
+    line-height: 1.03;
+  }
+
+  .offer-grid article > p:nth-of-type(2) {
+    margin-top: 16px;
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .offer-grid a {
+    margin-top: auto;
+    padding-top: 24px;
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 11px;
+    text-underline-offset: 5px;
+  }
+
+  .offer-grid a:hover {
+    color: var(--accent-text);
   }
 
   .symptom-grid,
@@ -968,6 +1026,7 @@ const faqItems = [
       max-width: 122px;
     }
 
+    .offer-grid,
     .symptom-grid,
     .process-grid,
     .proof-ledger,

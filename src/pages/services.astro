@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { ANALYTICS_EVENTS, ENGINEERING_PILOT, SMB_ASSESSMENT, SMB_QUIZ } from '../data/site.js';
+import { ANALYTICS_EVENTS, CONSULTING_OVERVIEW, ENGINEERING_PILOT, INTRO_CALL, SMB_ASSESSMENT, SMB_QUIZ } from '../data/site.js';
 
 const schema = {
   '@context': 'https://schema.org',
@@ -34,99 +34,150 @@ const schema = {
 ---
 
 <Layout
-  title="Services | Collin Wilkins"
-  description="A governed AI-assisted delivery pilot for engineering teams, plus a free workflow quiz and separate assessment for small businesses."
+  title="AI Systems and Automation Services | Collin Wilkins"
+  description="AI readiness assessments, a governed AI delivery pilot, technical advisory, and hands-on backend automation for business owners and engineering leaders."
   schema={schema}
 >
   <article class="wrap services">
     <header>
-      <p class="eyebrow">One bounded engineering pilot</p>
-      <h1>{ENGINEERING_PILOT.lead}</h1>
-      <p class="lede">{ENGINEERING_PILOT.description}</p>
-    </header>
-
-    <section class="primary">
-      <p class="eyebrow">{ENGINEERING_PILOT.name}</p>
-      <h2>{ENGINEERING_PILOT.scope}</h2>
-      <p class="contract">{ENGINEERING_PILOT.priceLabel} · {ENGINEERING_PILOT.deliveryWindow} · {ENGINEERING_PILOT.deliveryMode}</p>
-      <p>The free fit call is optional. Direct intake is a no-payment scope review. Pay $500 after written scope acceptance and $1,000 only after the acceptance criteria pass.</p>
-      <p>{ENGINEERING_PILOT.foundingBoundary}</p>
+      <p class="eyebrow">AI systems, backend automation, and technical advisory</p>
+      <h1>Turn one real workflow problem into a system your team can use.</h1>
+      <p class="lede">{CONSULTING_OVERVIEW.lead}</p>
       <div class="actions">
-        <a class="btn btn-primary" href={ENGINEERING_PILOT.intakeHref}>{ENGINEERING_PILOT.intakeLabel}</a>
-        <a class="btn btn-ghost" href={ENGINEERING_PILOT.fitCallHref}>{ENGINEERING_PILOT.fitCallLabel}</a>
-        <a href={ENGINEERING_PILOT.slug}>See the complete offer →</a>
-      </div>
-    </section>
-
-    <aside>
-      <p class="eyebrow">Separate small-business route</p>
-      <h2>Find one workflow worth improving.</h2>
-      <p>{SMB_QUIZ.description} Start there for a free, no-booking first step, or go directly to the {SMB_ASSESSMENT.name} if you already know where the drag is.</p>
-      <div class="actions">
+        <a
+          class="btn btn-primary"
+          href={INTRO_CALL.href}
+          data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen}
+          data-analytics-location="services-hero-booking"
+        >
+          {INTRO_CALL.bookingLabel}
+        </a>
         <a
           class="btn btn-ghost"
           href={SMB_QUIZ.slug}
           data-analytics-event={ANALYTICS_EVENTS.smbQuizStart}
-          data-analytics-location="services-smb-quiz"
+          data-analytics-location="services-hero-smb-quiz"
         >
           {SMB_QUIZ.ctaLabel}
         </a>
-        <a
-          href={SMB_ASSESSMENT.slug}
-          data-analytics-event={ANALYTICS_EVENTS.smbAssessmentOpen}
-          data-analytics-location="services-smb-assessment"
-        >
-          View the $99 assessment →
-        </a>
       </div>
-    </aside>
+      <p class="note">Bring one workflow, delivery bottleneck, or AI-adoption problem. We will choose the right next step—or decide there is not one.</p>
+      <p class="background">{CONSULTING_OVERVIEW.background}</p>
+    </header>
+
+    <section aria-labelledby="service-paths-title">
+      <div class="section-heading">
+        <p class="eyebrow">Four ways I help</p>
+        <h2 id="service-paths-title">Diagnose, govern, advise, or build.</h2>
+      </div>
+      <div class="service-grid">
+        {CONSULTING_OVERVIEW.paths.map(path => (
+          <article>
+            <p class="path-label">{path.label}</p>
+            <h3>{path.name}</h3>
+            <p>{path.description}</p>
+            <a
+              href={path.href}
+              data-analytics-event={path.analyticsEvent}
+              data-analytics-location={`services-path-${path.id}`}
+            >
+              {path.cta} →
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section aria-labelledby="backend-title">
+      <div class="section-heading">
+        <p class="eyebrow">Backend systems are the bread and butter</p>
+        <h2 id="backend-title">Concrete workflow work—not an “AI strategy” slide deck.</h2>
+      </div>
+      <ul class="example-grid">
+        <li><strong>Speed-to-lead systems</strong><span>Capture, qualify, route, and follow up without copying the same information across tools.</span></li>
+        <li><strong>Rules-based quote workflows</strong><span>Generate a draft from clear pricing rules while keeping a person responsible for approval.</span></li>
+        <li><strong>Internal knowledge systems</strong><span>Give employees and agents one maintained source for procedures, decisions, and recurring questions.</span></li>
+        <li><strong>System integrations</strong><span>Connect the CRM, forms, spreadsheets, reporting, and operational systems that currently drift apart.</span></li>
+        <li><strong>Bounded internal agents</strong><span>Give one repeatable job to an agent with defined inputs, tools, verification, and a human decision boundary.</span></li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="referral-title">
+      <div class="section-heading">
+        <p class="eyebrow">A useful referral</p>
+        <h2 id="referral-title">Listen for one of these sentences.</h2>
+      </div>
+      <div class="referral-list">
+        {CONSULTING_OVERVIEW.referralSignals.map(signal => (
+          <article>
+            <p>{signal.label}</p>
+            <h3>{signal.title}</h3>
+            <span>{signal.detail}</span>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="close" aria-labelledby="services-close-title">
+      <div>
+        <p class="eyebrow">Not sure which path fits?</p>
+        <h2 id="services-close-title">Start with a free 30-minute conversation.</h2>
+        <p>No hard sell. We will name the problem, the next useful decision, and whether I am the right person to help.</p>
+      </div>
+      <div class="actions">
+        <a
+          class="btn btn-primary"
+          href={INTRO_CALL.href}
+          data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen}
+          data-analytics-location="services-final-booking"
+        >
+          {INTRO_CALL.bookingLabel}
+        </a>
+        <a href={ENGINEERING_PILOT.intakeHref}>Already want the pilot? Request a scope review →</a>
+      </div>
+    </section>
   </article>
 </Layout>
 
 <style>
   .services {
-    max-width: 940px;
-    padding-top: clamp(90px, 12vw, 150px);
+    max-width: 1040px;
+    padding-top: clamp(58px, 8vw, 96px);
     padding-bottom: 100px;
   }
 
-  .eyebrow {
+  .eyebrow,
+  .path-label,
+  .referral-list article > p {
     color: var(--accent-text);
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: .1em;
     text-transform: uppercase;
   }
 
+  header {
+    max-width: 880px;
+  }
+
   h1 {
+    max-width: 13ch;
     margin: 16px 0;
-    font-size: clamp(44px, 7vw, 78px);
-    line-height: .97;
+    font-size: clamp(46px, 7vw, 80px);
+    line-height: .96;
   }
 
   .lede {
+    max-width: 36ch;
     color: var(--ink-soft);
-    font-size: clamp(20px, 2.5vw, 28px);
+    font-size: clamp(21px, 2.5vw, 29px);
+    line-height: 1.4;
   }
 
-  .primary,
-  aside {
-    margin-top: 55px;
-    padding: 40px;
-    border: 1px solid var(--rule);
-  }
-
-  .primary {
-    border-top: 4px solid var(--accent);
-    background: var(--paper-2);
-  }
-
-  h2 {
-    font-size: clamp(30px, 4vw, 48px);
-  }
-
-  .contract {
-    font-family: var(--mono);
+  .background {
+    max-width: 68ch;
+    margin-top: 22px;
+    line-height: 1.6;
   }
 
   .actions {
@@ -134,21 +185,189 @@ const schema = {
     flex-wrap: wrap;
     gap: 14px;
     align-items: center;
-    margin-top: 25px;
+    margin-top: 28px;
   }
 
-  aside h2 {
-    font-size: 30px;
+  .note {
+    max-width: 70ch;
+    margin-top: 16px;
+    color: var(--ink-faint);
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.5;
   }
 
-  aside p {
+  section {
+    padding-block: clamp(62px, 9vw, 96px);
+    border-top: 1px solid var(--rule);
+  }
+
+  header + section {
+    margin-top: clamp(70px, 10vw, 120px);
+  }
+
+  .section-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, .8fr);
+    gap: 18px 60px;
+    align-items: end;
+    margin-bottom: 34px;
+  }
+
+  .section-heading .eyebrow {
+    grid-column: 1 / -1;
+    margin: 0;
+  }
+
+  h2 {
+    max-width: 16ch;
+    margin: 0;
+    font-size: clamp(34px, 4.5vw, 54px);
+    line-height: 1;
+  }
+
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .service-grid article {
+    display: flex;
+    min-height: 300px;
+    flex-direction: column;
+    padding: clamp(26px, 4vw, 38px);
+    border: 1px solid var(--rule);
+    background: var(--paper-2);
+  }
+
+  .service-grid h3 {
+    max-width: 18ch;
+    margin-top: 24px;
+    font-size: clamp(27px, 3vw, 36px);
+    line-height: 1.05;
+  }
+
+  .service-grid article > p:nth-of-type(2) {
+    margin-top: 16px;
     color: var(--ink-soft);
+    line-height: 1.55;
   }
 
-  @media (max-width: 640px) {
-    .primary,
-    aside {
-      padding: 26px;
+  .service-grid a {
+    margin-top: auto;
+    padding-top: 24px;
+    font-family: var(--mono);
+    font-size: 11px;
+    text-underline-offset: 5px;
+  }
+
+  .example-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--rule);
+    list-style: none;
+  }
+
+  .example-grid li {
+    display: grid;
+    gap: 8px;
+    padding: 22px 20px 22px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .example-grid li:nth-child(even) {
+    padding-right: 0;
+    padding-left: 20px;
+    border-left: 1px solid var(--rule);
+  }
+
+  .example-grid strong {
+    font-size: 21px;
+  }
+
+  .example-grid span,
+  .referral-list span {
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .referral-list {
+    border-top: 1px solid var(--rule);
+  }
+
+  .referral-list article {
+    display: grid;
+    grid-template-columns: 140px minmax(260px, .9fr) minmax(280px, 1.1fr);
+    gap: 24px;
+    padding-block: 24px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .referral-list article > p,
+  .referral-list h3,
+  .referral-list span {
+    margin: 0;
+  }
+
+  .referral-list h3 {
+    font-size: 23px;
+    line-height: 1.2;
+  }
+
+  .close {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, .7fr);
+    gap: 50px;
+    padding: clamp(34px, 5vw, 52px);
+    border: 1px solid var(--rule);
+    background: var(--paper-2);
+  }
+
+  .close h2 {
+    margin-top: 12px;
+  }
+
+  .close > div > p:last-child {
+    max-width: 60ch;
+    margin-top: 16px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  .close .actions {
+    align-content: start;
+    margin-top: 0;
+  }
+
+  @media (max-width: 760px) {
+    .section-heading,
+    .service-grid,
+    .example-grid,
+    .referral-list article,
+    .close {
+      grid-template-columns: 1fr;
+    }
+
+    .section-heading .eyebrow {
+      grid-column: 1;
+    }
+
+    .service-grid article {
+      min-height: 0;
+    }
+
+    .example-grid li,
+    .example-grid li:nth-child(even) {
+      padding: 20px 0;
+      border-left: 0;
+    }
+
+    .referral-list article {
+      gap: 12px;
     }
   }
 </style>

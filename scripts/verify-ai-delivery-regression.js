@@ -51,15 +51,31 @@ function slug(route) {
 async function inspectRoute(page, route, viewport) {
   const response = await page.goto(`${baseURL}${route}`, { waitUntil: 'networkidle' });
   assert(response?.ok(), `${route} at ${viewport.name}: expected HTTP 2xx, received ${response?.status() ?? 'no response'}`);
-  const structure = await page.evaluate(() => ({
-    h1: document.querySelectorAll('h1').length,
-    main: document.querySelectorAll('main').length,
-    forms: document.querySelectorAll('form').length,
-    overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
-  }));
+  const structure = await page.evaluate(() => {
+    const clientWidth = document.documentElement.clientWidth;
+    const overflowElements = [...document.querySelectorAll('body *')]
+      .map(element => {
+        const rect = element.getBoundingClientRect();
+        return {
+          selector: element.id ? `#${element.id}` : `${element.tagName.toLowerCase()}${typeof element.className === 'string' && element.className ? `.${element.className.trim().replaceAll(/\s+/g, '.')}` : ''}`,
+          left: Math.round(rect.left),
+          right: Math.round(rect.right),
+          width: Math.round(rect.width),
+        };
+      })
+      .filter(element => element.left < 0 || element.right > clientWidth)
+      .slice(0, 8);
+    return {
+      h1: document.querySelectorAll('h1').length,
+      main: document.querySelectorAll('main').length,
+      forms: document.querySelectorAll('form').length,
+      overflow: document.documentElement.scrollWidth - clientWidth,
+      overflowElements,
+    };
+  });
   assert(structure.h1 === 1, `${route} at ${viewport.name}: expected one h1, found ${structure.h1}`);
   assert(structure.main === 1, `${route} at ${viewport.name}: expected one main, found ${structure.main}`);
-  assert(structure.overflow <= 0, `${route} at ${viewport.name}: horizontal overflow ${structure.overflow}px`);
+  assert(structure.overflow <= 0, `${route} at ${viewport.name}: horizontal overflow ${structure.overflow}px from ${JSON.stringify(structure.overflowElements)}`);
   if (['/newsletter', '/resources', '/resources/agent-harness-builder', '/about'].includes(route)) {
     assert(structure.forms === 1, `${route} at ${viewport.name}: expected one form, found ${structure.forms}`);
   }
@@ -337,28 +353,49 @@ try {
     mainForms: document.querySelectorAll('main form').length,
     faqCount: document.querySelectorAll('.faq-list details').length,
     utilityLabels: [...document.querySelectorAll('.utility-section .eyebrow')].map(label => label.textContent.trim()),
+    offerPathCount: document.querySelectorAll('.offer-grid article').length,
+    referralSignalCount: document.querySelectorAll('.symptom-grid article').length,
   }));
-  assert(homepageStructure.heading === 'Your team adopted AI coding. The workflow didn’t.', `homepage heading is "${homepageStructure.heading}"`);
+  assert(homepageStructure.heading === 'Turn AI experiments and manual work into systems your team can run.', `homepage heading is "${homepageStructure.heading}"`);
   assert(
-    homepageStructure.sectionOrder.join('|') === 'hero|credibility-strip|problem-section|pilot-section|proof-band|faq-section|close-section|utility-section',
+    homepageStructure.sectionOrder.join('|') === 'hero|credibility-strip|overview-section|problem-section|pilot-section|proof-band|faq-section|close-section|utility-section',
     `homepage section order is ${homepageStructure.sectionOrder.join(' -> ')}`,
   );
   assert(homepageStructure.mainForms === 0, `homepage should not interrupt the offer with a form; found ${homepageStructure.mainForms}`);
   assert(homepageStructure.faqCount === 4, `homepage expected four scope-review questions, found ${homepageStructure.faqCount}`);
   assert(
-    homepageStructure.utilityLabels.join('|') === 'Writing and tools|Notes from Production|Small-business automation',
+    homepageStructure.utilityLabels.join('|') === "Writing and tools|Collin's Thoughts|Small-business automation",
     `homepage utility labels are ${homepageStructure.utilityLabels.join(', ')}`,
   );
-  const heroScopeReview = page.locator('[data-analytics-location="homepage-hero-scope-review"]');
+  assert(homepageStructure.offerPathCount === 4, `homepage expected four service paths, found ${homepageStructure.offerPathCount}`);
+  assert(homepageStructure.referralSignalCount === 3, `homepage expected three referral signals, found ${homepageStructure.referralSignalCount}`);
+  const heroBooking = page.locator('[data-analytics-location="homepage-hero-booking"]');
+  const finalBooking = page.locator('[data-analytics-location="homepage-final-booking"]');
   const finalScopeReview = page.locator('[data-analytics-location="homepage-final-scope-review"]');
-  assert(await heroScopeReview.getAttribute('href') === '/services/ai-delivery-kit/intake', 'Homepage hero scope-review CTA mismatch');
+  assert(await heroBooking.getAttribute('href') === 'https://cal.com/collinwilkins/intro', 'Homepage hero booking CTA mismatch');
+  assert(await heroBooking.getAttribute('data-analytics-event') === 'Booking Page Open', 'Homepage hero booking analytics mismatch');
+  assert(await finalBooking.getAttribute('href') === 'https://cal.com/collinwilkins/intro', 'Homepage final booking CTA mismatch');
   assert(await finalScopeReview.getAttribute('href') === '/services/ai-delivery-kit/intake', 'Homepage final scope-review CTA mismatch');
   const secondFaq = page.locator('.faq-list details').nth(1);
   await secondFaq.locator('summary').click();
   assert(await secondFaq.evaluate(details => details.open), 'Homepage FAQ disclosure did not open');
+  await page.goto(`${baseURL}/services`, { waitUntil: 'networkidle' });
+  const servicesStructure = await page.evaluate(() => ({
+    heading: document.querySelector('main h1')?.textContent.replace(/\s+/g, ' ').trim(),
+    servicePathCount: document.querySelectorAll('.service-grid article').length,
+    backendExampleCount: document.querySelectorAll('.example-grid li').length,
+    referralSignalCount: document.querySelectorAll('.referral-list article').length,
+    bookingHrefs: [...document.querySelectorAll('main [data-analytics-event="Booking Page Open"]')].map(link => link.getAttribute('href')),
+  }));
+  assert(servicesStructure.heading === 'Turn one real workflow problem into a system your team can use.', `services heading is "${servicesStructure.heading}"`);
+  assert(servicesStructure.servicePathCount === 4, `services expected four paths, found ${servicesStructure.servicePathCount}`);
+  assert(servicesStructure.backendExampleCount === 5, `services expected five backend examples, found ${servicesStructure.backendExampleCount}`);
+  assert(servicesStructure.referralSignalCount === 3, `services expected three referral signals, found ${servicesStructure.referralSignalCount}`);
+  assert(servicesStructure.bookingHrefs.length >= 4 && servicesStructure.bookingHrefs.every(href => href === 'https://cal.com/collinwilkins/intro'), 'services booking paths are incomplete or inconsistent');
   const offerContract = await verifyOfferContract(page);
   await page.goto(`${baseURL}/about`, { waitUntil: 'networkidle' });
   assert(await page.locator('main').getByRole('link', { name: /capability brief/i }).getAttribute('href') === '/services/ai-delivery-kit/capability-brief', 'About capability CTA mismatch');
+  assert(await page.locator('main').getByRole('link', { name: 'Book a free 30-minute call' }).getAttribute('href') === 'https://cal.com/collinwilkins/intro', 'About booking CTA mismatch');
   const resumeLink = page.locator('main').getByRole('link', { name: 'Download my resume' });
   assert(await resumeLink.getAttribute('href') === '/Collin-Wilkins-Resume.pdf', 'About resume link missing');
   assert(await resumeLink.getAttribute('download') === 'collin-wilkins-resume.pdf', 'About resume download filename mismatch');
@@ -367,7 +404,7 @@ try {
   const reducedMotion = await verifyReducedMotion(browser);
   const intake = await verifyIntake(browser);
   const quiz = await verifyQuiz(browser);
-  const report = { baseURL, generatedAt: new Date().toISOString(), engineeringCTA, homepageStructure, offerContract, quizEntryPoints, routeResults, keyboard, reducedMotion, intake, quiz };
+  const report = { baseURL, generatedAt: new Date().toISOString(), engineeringCTA, homepageStructure, servicesStructure, offerContract, quizEntryPoints, routeResults, keyboard, reducedMotion, intake, quiz };
   fs.writeFileSync(path.join(outputDirectory, 'regression-results.json'), `${JSON.stringify(report, null, 2)}\n`);
   console.log(`AI Delivery regression passed: ${routeResults.length} route/viewport checks, ${keyboard.length} keyboard routes, ${reducedMotion.length} reduced-motion routes.`);
 } finally {
