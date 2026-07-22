@@ -27,7 +27,7 @@ for (const file of files) {
   }
 }
 
-assert.equal(files.length, 47, 'public article inventory changed; review FAQ coverage and count copy');
+assert.equal(files.length, 48, 'public article inventory changed; review FAQ coverage and count copy');
 assert.equal(searchDocuments([{ id:'1',type:'Article',title:'Agent harness',searchable:'agent harness tools' }], '').length, 0);
 assert.equal(searchDocuments([{ id:'1',type:'Article',title:'Agent harness',searchable:'agent harness tools' }], 'a').length, 0);
 assert.equal(searchDocuments([{ id:'1',type:'Article',title:'Agent harness',searchable:'agent harness tools' }], 'harness').length, 1);

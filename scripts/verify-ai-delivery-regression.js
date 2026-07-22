@@ -20,6 +20,7 @@ const routes = [
   '/services/ai-delivery-kit/intake',
   '/services/ai-delivery-kit/capability-brief',
   '/services/ai-workflow-assessment',
+  '/quiz',
 ];
 const viewports = [
   { name: 'desktop', width: 1440, height: 1000 },
@@ -27,14 +28,17 @@ const viewports = [
   { name: 'mobile', width: 390, height: 844 },
 ];
 const screenshotRoutes = new Set([
+  '/',
   '/newsletter',
   '/resources',
   '/resources/agent-harness-builder',
   '/about',
   '/articles/managing-engineering-teams-with-ai',
   '/articles/automation-cost-small-business',
+  '/services/ai-delivery-kit',
   '/services/ai-delivery-kit/intake',
   '/services/ai-delivery-kit/capability-brief',
+  '/quiz',
 ]);
 
 function assert(condition, message) {
@@ -142,6 +146,10 @@ async function verifyIntake(browser) {
     await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ success: true }) });
   });
   await page.goto(`${baseURL}/services/ai-delivery-kit/intake`, { waitUntil: 'networkidle' });
+  const requiredFieldNames = await page.locator('.intake-form [required][name]').evaluateAll(elements => elements.map(element => element.name));
+  for (const requiredName of ['candidateIssue', 'verification', 'technicalOwner', 'agentAccess']) {
+    assert(requiredFieldNames.includes(requiredName), `intake is missing readiness field ${requiredName}`);
+  }
   await page.evaluate(() => {
     window.__capturedPlausibleEvents = [];
     window.plausible = (name, options) => window.__capturedPlausibleEvents.push({ name, options });
@@ -159,8 +167,143 @@ async function verifyIntake(browser) {
   assert(events.some(event => event.name === 'Pilot Intake Submit' && event.options?.props?.location === 'pilot-intake'), 'intake success did not emit the expected Plausible event');
   const success = await page.locator('.intake-success').innerText();
   assert(/No payment has been collected/.test(success), 'intake success state lost the no-payment boundary');
+  assert(/\$500 first installment/.test(success) && /\$1,000 balance is due only after acceptance/.test(success), 'intake success state lost the accepted payment schedule');
   await context.close();
-  return { posted, events, noPaymentBoundary: true };
+  return { posted, events, requiredFieldNames, noPaymentBoundary: true, paymentScheduleBoundary: true };
+}
+
+async function verifyOfferContract(page) {
+  const inspectSections = () => page.evaluate(() => {
+    const sections = [...document.querySelectorAll('main section')];
+    const byHeading = heading => {
+      const section = sections.find(candidate => candidate.querySelector('h2')?.textContent.trim() === heading);
+      return section ? { text: section.innerText, items: section.querySelectorAll('li').length } : null;
+    };
+    return {
+      body: document.querySelector('main')?.innerText || '',
+      readiness: byHeading('The five-day clock starts only when the environment is ready.'),
+      acceptance: byHeading('Acceptance is observable and agreed before payment.'),
+      timeline: byHeading('Map, install, prove, and hand off.'),
+      payment: byHeading('$500 to start. $1,000 only after acceptance.'),
+      installedAssets: byHeading('Installed assets'),
+      qualifiedProof: byHeading('Qualified proof'),
+      nextSteps: byHeading('Next steps'),
+      contractMarkers: document.querySelectorAll('.contract-list .list-marker').length,
+      nextStepMarkers: document.querySelectorAll('.next-steps .next-step-number').length,
+    };
+  });
+
+  await page.goto(`${baseURL}/`, { waitUntil: 'networkidle' });
+  const homepage = await page.locator('main').innerText();
+  assert(/5 business days after readiness/.test(homepage), 'homepage lost the readiness-gated five-day promise');
+  assert(/\$500 to start · \$1,000 after acceptance/.test(homepage), 'homepage lost the accepted payment schedule');
+  assert(/\$1,500 · first 3 accepted pilots/.test(homepage), 'homepage lost the founding-price boundary');
+  assert(!/approximately 10 business days/i.test(homepage), 'homepage still exposes the retired delivery window');
+
+  await page.goto(`${baseURL}/services/ai-delivery-kit`, { waitUntil: 'networkidle' });
+  const offer = await inspectSections();
+  assert(offer.readiness?.items === 7, `offer readiness gate has ${offer.readiness?.items ?? 0}/7 conditions`);
+  assert(offer.acceptance?.items === 5, `offer acceptance section has ${offer.acceptance?.items ?? 0}/5 criteria`);
+  assert(offer.timeline?.items === 5, `offer timeline has ${offer.timeline?.items ?? 0}/5 business days`);
+  assert(offer.installedAssets?.items === 8, `offer installed-assets grid has ${offer.installedAssets?.items ?? 0}/8 assets`);
+  assert(offer.qualifiedProof?.items === 4, `offer proof list has ${offer.qualifiedProof?.items ?? 0}/4 outcomes`);
+  assert(offer.nextSteps?.items === 3, `offer next-steps section has ${offer.nextSteps?.items ?? 0}/3 decisions`);
+  assert(offer.contractMarkers === 12, `offer readiness and acceptance lists have ${offer.contractMarkers}/12 scan markers`);
+  assert(offer.nextStepMarkers === 3, `offer next-step cards have ${offer.nextStepMarkers}/3 scan markers`);
+  assert(/final installment is not due/.test(offer.payment?.text || '') && /at no additional charge until those criteria pass/.test(offer.payment?.text || ''), 'offer lost the accepted risk reversal');
+  assert(/first three clients whose written scope is accepted and \$500 first installment is paid/.test(offer.payment?.text || ''), 'offer lost the enforceable founding-price boundary');
+  assert(!/approximately 10 business days/i.test(offer.body), 'offer still exposes the retired delivery window');
+
+  await page.goto(`${baseURL}/services/ai-delivery-kit/capability-brief`, { waitUntil: 'networkidle' });
+  const brief = await page.evaluate(() => ({
+    text: document.querySelector('main')?.innerText || '',
+    acceptanceItems: document.querySelectorAll('main ol li').length,
+    readinessItems: document.querySelectorAll('main .grid section:nth-child(2) > ul li').length,
+  }));
+  assert(brief.acceptanceItems === 5, `capability brief has ${brief.acceptanceItems}/5 acceptance criteria`);
+  assert(brief.readinessItems === 7, `capability brief has ${brief.readinessItems}/7 readiness conditions`);
+  assert(/One optional fit call. One required working handoff./.test(brief.text), 'capability brief lost the meeting boundary');
+  assert(/\$500 follows written scope acceptance/.test(brief.text) && /\$1,000 balance is due only after every agreed acceptance criterion passes/.test(brief.text), 'capability brief lost the payment boundary');
+
+  return {
+    homepageFiveDayPromise: true,
+    readinessConditions: offer.readiness.items,
+    acceptanceCriteria: offer.acceptance.items,
+    deliveryDays: offer.timeline.items,
+    installedAssets: offer.installedAssets.items,
+    qualifiedProofItems: offer.qualifiedProof.items,
+    nextStepDecisions: offer.nextSteps.items,
+    contractScanMarkers: offer.contractMarkers,
+    riskReversal: true,
+    foundingBoundary: true,
+    capabilityBriefSynchronized: true,
+  };
+}
+
+async function verifyQuiz(browser) {
+  const context = await browser.newContext({ viewport: viewports[0] });
+  const page = await context.newPage();
+  let postedPayload;
+  await page.route('https://api.web3forms.com/submit', async route => {
+    postedPayload = route.request().postDataJSON();
+    await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ success: true }) });
+  });
+  await page.goto(`${baseURL}/quiz`, { waitUntil: 'networkidle' });
+  const description = await page.locator('meta[name="description"]').getAttribute('content');
+  assert(!/personalized action plan/i.test(description || ''), 'quiz metadata still promises a personalized action plan');
+  const observedAnswers = [];
+  for (let step = 1; step <= 5; step += 1) {
+    const question = await page.locator('main h2').innerText();
+    const option = page.locator('main button[aria-pressed]').first();
+    const answer = await option.innerText();
+    observedAnswers.push({ question, answer });
+    await option.click();
+    if (step < 5) {
+      await page.waitForFunction(
+        expected => Number(document.querySelector('[role="progressbar"]')?.getAttribute('aria-valuenow')) === expected,
+        step + 1
+      );
+    }
+  }
+  await page.getByRole('heading', { name: 'Your workflow snapshot is ready to send.' }).waitFor();
+  const leadBoundary = await page.locator('main').innerText();
+  assert(/does not book or purchase anything/i.test(leadBoundary), 'quiz lead step lost the no-booking/no-purchase boundary');
+  await page.evaluate(() => {
+    window.__capturedPlausibleEvents = [];
+    window.plausible = (name, options) => window.__capturedPlausibleEvents.push({ name, options });
+  });
+  await page.getByLabel('First name').fill('Regression');
+  await page.getByLabel('Last name').fill('Test');
+  await page.getByLabel('Email address').fill('test@example.com');
+  await page.getByRole('button', { name: 'Send my quiz answers' }).click();
+  await page.getByRole('heading', { name: 'Answers received.' }).waitFor();
+  assert(postedPayload, 'quiz success path did not send a POST');
+  assert(
+    observedAnswers.every(({ question, answer }) => postedPayload.message.includes(question) && postedPayload.message.includes(answer)),
+    'quiz submission did not preserve the questions and selected answers'
+  );
+  const successBoundary = await page.locator('main').innerText();
+  assert(/No assessment was booked and no payment was collected/i.test(successBoundary), 'quiz success state lost the booking/payment boundary');
+  const assessmentLink = page.getByRole('link', { name: 'View the $99 assessment' });
+  assert(await assessmentLink.getAttribute('href') === '/services/ai-workflow-assessment', 'quiz completion CTA does not route to the SMB assessment page');
+  const events = await page.evaluate(() => {
+    const link = document.querySelector('[data-analytics-location="quiz-complete-assessment"]');
+    link.addEventListener('click', event => event.preventDefault(), { once: true });
+    link.click();
+    return window.__capturedPlausibleEvents;
+  });
+  assert(
+    events.some(event => event.name === 'SMB Assessment Open' && event.options?.props?.location === 'quiz-complete-assessment'),
+    'quiz completion CTA did not emit the expected Plausible event'
+  );
+  await context.close();
+  return {
+    posted: true,
+    answersPreserved: true,
+    noBookingOrPaymentBoundary: true,
+    assessmentHref: '/services/ai-workflow-assessment',
+    events,
+  };
 }
 
 const browser = await chromium.launch({ headless: true });
@@ -177,14 +320,54 @@ try {
   await page.goto(`${baseURL}/articles/managing-engineering-teams-with-ai`, { waitUntil: 'networkidle' });
   const engineeringCTA = await page.getByRole('link', { name: 'AI-Assisted Delivery Pilot' }).getAttribute('href');
   assert(engineeringCTA === '/services/ai-delivery-kit', `engineering CTA points to ${engineeringCTA}`);
+  const quizEntryPoints = [];
+  for (const route of ['/', '/services', '/services/ai-workflow-assessment']) {
+    await page.goto(`${baseURL}${route}`, { waitUntil: 'networkidle' });
+    const quizEntry = page.locator('main').getByRole('link', { name: /Take the free 5-question workflow quiz/ }).first();
+    const href = await quizEntry.getAttribute('href');
+    const event = await quizEntry.getAttribute('data-analytics-event');
+    assert(href === '/quiz', `${route} Quiz entry points to ${href}`);
+    assert(event === 'SMB Quiz Start', `${route} Quiz entry lost its analytics event`);
+    quizEntryPoints.push({ route, href, event });
+  }
+  await page.goto(baseURL, { waitUntil: 'networkidle' });
+  const homepageStructure = await page.evaluate(() => ({
+    heading: document.querySelector('main h1')?.textContent.replace(/\s+/g, ' ').trim(),
+    sectionOrder: [...document.querySelectorAll('main > section')].map(section => section.className),
+    mainForms: document.querySelectorAll('main form').length,
+    faqCount: document.querySelectorAll('.faq-list details').length,
+    utilityLabels: [...document.querySelectorAll('.utility-section .eyebrow')].map(label => label.textContent.trim()),
+  }));
+  assert(homepageStructure.heading === 'Your team adopted AI coding. The workflow didn’t.', `homepage heading is "${homepageStructure.heading}"`);
+  assert(
+    homepageStructure.sectionOrder.join('|') === 'hero|credibility-strip|problem-section|pilot-section|proof-band|faq-section|close-section|utility-section',
+    `homepage section order is ${homepageStructure.sectionOrder.join(' -> ')}`,
+  );
+  assert(homepageStructure.mainForms === 0, `homepage should not interrupt the offer with a form; found ${homepageStructure.mainForms}`);
+  assert(homepageStructure.faqCount === 4, `homepage expected four scope-review questions, found ${homepageStructure.faqCount}`);
+  assert(
+    homepageStructure.utilityLabels.join('|') === 'Writing and tools|Notes from Production|Small-business automation',
+    `homepage utility labels are ${homepageStructure.utilityLabels.join(', ')}`,
+  );
+  const heroScopeReview = page.locator('[data-analytics-location="homepage-hero-scope-review"]');
+  const finalScopeReview = page.locator('[data-analytics-location="homepage-final-scope-review"]');
+  assert(await heroScopeReview.getAttribute('href') === '/services/ai-delivery-kit/intake', 'Homepage hero scope-review CTA mismatch');
+  assert(await finalScopeReview.getAttribute('href') === '/services/ai-delivery-kit/intake', 'Homepage final scope-review CTA mismatch');
+  const secondFaq = page.locator('.faq-list details').nth(1);
+  await secondFaq.locator('summary').click();
+  assert(await secondFaq.evaluate(details => details.open), 'Homepage FAQ disclosure did not open');
+  const offerContract = await verifyOfferContract(page);
   await page.goto(`${baseURL}/about`, { waitUntil: 'networkidle' });
-  assert(await page.getByRole('link', { name: /capability brief/i }).getAttribute('href') === '/services/ai-delivery-kit/capability-brief', 'About capability CTA mismatch');
-  assert(await page.getByRole('link', { name: /résumé/i }).getAttribute('href') === '/Collin-Wilkins-Resume.pdf', 'About résumé link missing');
+  assert(await page.locator('main').getByRole('link', { name: /capability brief/i }).getAttribute('href') === '/services/ai-delivery-kit/capability-brief', 'About capability CTA mismatch');
+  const resumeLink = page.locator('main').getByRole('link', { name: 'Download my resume' });
+  assert(await resumeLink.getAttribute('href') === '/Collin-Wilkins-Resume.pdf', 'About resume link missing');
+  assert(await resumeLink.getAttribute('download') === 'collin-wilkins-resume.pdf', 'About resume download filename mismatch');
   await context.close();
   const keyboard = await verifyKeyboard(browser);
   const reducedMotion = await verifyReducedMotion(browser);
   const intake = await verifyIntake(browser);
-  const report = { baseURL, generatedAt: new Date().toISOString(), engineeringCTA, routeResults, keyboard, reducedMotion, intake };
+  const quiz = await verifyQuiz(browser);
+  const report = { baseURL, generatedAt: new Date().toISOString(), engineeringCTA, homepageStructure, offerContract, quizEntryPoints, routeResults, keyboard, reducedMotion, intake, quiz };
   fs.writeFileSync(path.join(outputDirectory, 'regression-results.json'), `${JSON.stringify(report, null, 2)}\n`);
   console.log(`AI Delivery regression passed: ${routeResults.length} route/viewport checks, ${keyboard.length} keyboard routes, ${reducedMotion.length} reduced-motion routes.`);
 } finally {
