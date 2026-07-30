@@ -3,22 +3,49 @@ import { ArrowRight } from 'lucide-react';
 
 const problemCategories = [
   {
-    title: 'AI coding tools are installed but inconsistent',
+    title: 'A recurring workflow is creating operational drag',
     description:
-      "Your team has Claude Code, Cursor, or Copilot licenses, but output quality varies wildly between developers, senior engineers are skeptical, and nobody can prove ROI. I help you standardize tool selection, build a rollout plan, and run a practitioner workshop against your actual codebase.",
-    signal: 'Convention files, rollout plans, practitioner workshops',
+      "Leads wait, reports require repeated cleanup, or important handoffs live in someone's head. I map the workflow, identify the expensive failure point, and determine whether a conventional automation or a supervised AI system is justified.",
+    signal: 'Workflow mapping, opportunity ranking, implementation decision',
   },
   {
-    title: 'Manual work that should have died years ago',
+    title: 'An AI workflow needs reliable boundaries',
     description:
-      "If a team is still clicking through Postman, copying CSVs, or babysitting runs by hand, there's probably a better system hiding in there. Python, APIs, Lambda, queues, n8n when it fits. Production-grade systems with error handling, logging, and monitoring.",
-    signal: 'Python, APIs, Lambda, queues, event-driven systems',
+      "A useful agent needs more than a prompt. I define the context it can trust, the systems it can reach, the actions it can take, and the moments when a person must approve or intervene.",
+    signal: 'Operating contract, permissions, integrations, escalation',
   },
   {
-    title: 'A system decision everyone keeps politely avoiding',
+    title: 'A prototype needs to become an operable system',
     description:
-      "Some problems don't need a giant platform. They need someone to map the workflow, find the expensive part, build the right slice, and leave the decision trail somewhere better than Slack. Architecture plus implementation, not just a deck.",
-    signal: 'Architecture, implementation, decision support',
+      "I build the smallest production-ready slice: one workflow, only the integrations it needs, observable execution, and a clean handoff. Authority expands only after the results support it.",
+    signal: 'Backend implementation, logging, runbooks, measured rollout',
+  },
+];
+
+const engagementSteps = [
+  {
+    number: '01',
+    title: 'Map the workflow',
+    description:
+      'Start with the $99 AI Workflow Opportunity Assessment. We identify the recurring work, its consequence, and the highest-leverage first system.',
+  },
+  {
+    number: '02',
+    title: 'Define the operating contract',
+    description:
+      'If implementation is justified, I specify the context, tools, permissions, approval thresholds, and failure path before granting the system authority.',
+  },
+  {
+    number: '03',
+    title: 'Pilot one supervised workflow',
+    description:
+      'The first build stays narrow: one workflow, limited integrations, customer-owned credentials, and human review for consequential actions.',
+  },
+  {
+    number: '04',
+    title: 'Measure before expanding',
+    description:
+      'We review completed work, interventions, errors, latency, and operating cost. Broader autonomy follows evidence, not enthusiasm.',
   },
 ];
 
@@ -37,48 +64,78 @@ const Services = () => {
               Services
             </p>
             <h1 className="max-w-3xl font-serif text-3xl font-bold leading-[1.1] text-[var(--color-text-primary)] md:text-4xl lg:text-5xl">
-              I take on a small amount of independent work each week.
+              Two focused ways to make AI useful in real work.
             </h1>
             <p className="mt-6 max-w-3xl text-base leading-relaxed text-[var(--color-text-secondary)] md:text-lg">
-              If your team is drowning in manual work, unsure how to standardize AI coding tools, or shipping inconsistent output because nobody's written the convention files yet, this is the right page.
+              For owners, I identify the right workflow to fix. For engineering leaders, I install a governed AI-assisted delivery path in one repository. Both start narrow, keep consequential decisions human-controlled, and produce customer-owned operating assets.
             </p>
           </div>
         </header>
 
-        <section id="assessment" className="mb-16 border border-[var(--color-accent)] rounded-lg p-6 md:p-8 bg-[var(--color-accent-muted)]">
-          <h2 className="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-4">
-            AI Readiness Assessment
-          </h2>
-          <p className="text-base md:text-lg text-[var(--color-text-secondary)] leading-relaxed mb-6">
-            A 1-hour working call plus a 3-artifact deliverable bundle: written action plan, adapted playbook, and custom AGENTS.md committed to your repo.
-          </p>
-          <p className="text-sm font-semibold text-[var(--color-text-primary)] mb-3">What you get:</p>
-          <ul className="space-y-3 pl-5 list-disc marker:text-[var(--color-accent)] text-[var(--color-text-secondary)] leading-relaxed mb-6">
-            <li>
-              <strong className="text-[var(--color-text-primary)]">Written action plan.</strong> Your team's diagnosed readiness level and the 3-4 highest-ROI next steps, with effort and expected outcome per action.
-            </li>
-            <li>
-              <strong className="text-[var(--color-text-primary)]">Custom AI Adoption Playbook.</strong> My public playbook adapted to your stack, scale, and level. Examples use your domain, not generic SaaS.
-            </li>
-            <li>
-              <strong className="text-[var(--color-text-primary)]">Custom AGENTS.md.</strong> Ready to commit to your main repo. Tailored to your codebase structure, conventions, and stack.
-            </li>
-          </ul>
-          <div className="flex flex-wrap items-center gap-4">
-            <a
-              href="https://cal.com/collinwilkins/assessment"
-              className="inline-block px-6 py-3 text-sm font-semibold rounded-lg bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] transition-colors"
-            >
-              Book an assessment →
-            </a>
-            <a
-              href="/resources/ai-readiness-assessment-sample.pdf"
-              target="_blank"
-              rel="noopener"
-              className="inline-block text-sm font-semibold text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] underline underline-offset-4 transition-colors"
-            >
-              See a sample (PDF) →
-            </a>
+        <section aria-labelledby="starting-point" className="mb-16">
+          <div className="mb-8">
+            <p className="mb-3 font-mono text-xs uppercase tracking-[0.16em] text-[var(--color-accent)]">Choose by problem</p>
+            <h2 id="starting-point" className="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)]">
+              Two starting points. Neither hides behind a discovery retainer.
+            </h2>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-2">
+            <article id="engineering-pilot" className="flex h-full flex-col rounded-2xl border border-[var(--color-accent)] bg-[var(--color-accent-muted)] p-6 md:p-7">
+              <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-accent)]">For engineering leaders</p>
+              <h3 className="font-serif text-2xl font-bold leading-tight text-[var(--color-text-primary)]">
+                AI-Assisted Delivery Pilot
+              </h3>
+              <p className="mt-2 font-mono text-sm text-[var(--color-text-primary)]">$1,500 founding price · first three clients</p>
+              <p className="mt-5 text-[var(--color-text-secondary)] leading-relaxed">
+                In five business days after readiness, your team owns a repository-native AI delivery path proven on one approved low-risk issue.
+              </p>
+              <ul className="my-6 space-y-3 pl-5 list-disc marker:text-[var(--color-accent)] text-sm text-[var(--color-text-secondary)] leading-relaxed">
+                <li>One team, repository, intake system, and coding-agent adapter</li>
+                <li>Repository rules, protected paths, model configuration, and five smoke cases</li>
+                <li>Verified draft pull request plus a customer-run working handoff</li>
+                <li>$500 after scope acceptance; $1,000 only after acceptance passes</li>
+              </ul>
+              <div className="mt-auto space-y-3">
+                <a
+                  href="/services?modal=contact&service=ai-delivery-pilot"
+                  className="block w-full rounded-lg bg-[var(--color-accent)] px-5 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-[var(--color-accent-hover)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+                >
+                  Request a pilot scope review →
+                </a>
+                <a href="https://cal.com/collinwilkins/intro" className="block text-center text-sm font-semibold text-[var(--color-accent)] underline underline-offset-4 hover:text-[var(--color-accent-hover)]">
+                  Or book a free fit call
+                </a>
+              </div>
+            </article>
+
+            <article id="workflow-assessment" className="flex h-full flex-col rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-glass)] p-6 md:p-7">
+              <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-text-muted)]">For owners and operators</p>
+              <h3 className="font-serif text-2xl font-bold leading-tight text-[var(--color-text-primary)]">
+                AI Workflow Opportunity Assessment
+              </h3>
+              <p className="mt-2 font-mono text-sm text-[var(--color-text-primary)]">$99 · delivered within 48 hours</p>
+              <p className="mt-5 text-[var(--color-text-secondary)] leading-relaxed">
+                A focused 60-minute working session on one recurring workflow, followed by a concise Workflow Opportunity Map.
+              </p>
+              <ul className="my-6 space-y-3 pl-5 list-disc marker:text-[var(--color-accent)] text-sm text-[var(--color-text-secondary)] leading-relaxed">
+                <li>Up to three ranked workflow opportunities</li>
+                <li>One recommended first system</li>
+                <li>Where AI helps, where conventional automation is safer, and where a person stays in control</li>
+                <li>A 14-day action plan with self-serve and implementation paths</li>
+              </ul>
+              <div className="mt-auto space-y-3">
+                <a
+                  href="https://cal.com/collinwilkins/assessment"
+                  className="block w-full rounded-lg border border-[var(--color-accent)] px-5 py-3 text-center text-sm font-semibold text-[var(--color-accent)] transition-colors hover:bg-[var(--color-accent-muted)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+                >
+                  Book the assessment →
+                </a>
+                <a href="https://cal.com/collinwilkins/intro" className="block text-center text-sm font-semibold text-[var(--color-accent)] underline underline-offset-4 hover:text-[var(--color-accent-hover)]">
+                  Or start with a free intro call
+                </a>
+              </div>
+            </article>
           </div>
         </section>
 
@@ -113,16 +170,22 @@ const Services = () => {
 
         <section className="mb-16">
           <h2 className="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] mb-8">
-            How engagements work
+            From workflow to supervised operator
           </h2>
-          <div className="text-[var(--color-text-secondary)] leading-relaxed space-y-4">
-            <p>
-              Every engagement starts with a short async brief describing the problem, your stack, and what you've already tried. I read it ahead of a 45-minute call, and within 48 hours you get a written action plan: what I'd do, in what order, with rough scope. Yours to keep whether or not we work together.
-            </p>
-            <p>
-              Build is async-first with weekly check-ins. Production-grade code with error handling, logging, and monitoring. Handoff includes documentation, runbooks, and 30 days of support.
-            </p>
+          <div className="space-y-6">
+            {engagementSteps.map(step => (
+              <div key={step.number} className="grid grid-cols-[44px_minmax(0,1fr)] gap-4 border-t border-[var(--color-border)] pt-5">
+                <span className="font-mono text-xs text-[var(--color-accent)]">{step.number}</span>
+                <div>
+                  <h3 className="font-serif text-xl font-bold text-[var(--color-text-primary)] mb-2">{step.title}</h3>
+                  <p className="text-[var(--color-text-secondary)] leading-relaxed">{step.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
+          <p className="mt-8 text-[var(--color-text-secondary)] leading-relaxed">
+            The deliverable is not a general-purpose “AI employee.” It is the minimum reliable system for one business outcome, with explicit authority, observable execution, and a handoff your team can operate.
+          </p>
         </section>
 
         <section className="mb-16">
@@ -134,7 +197,7 @@ const Services = () => {
               I can't take work in investment management, wealth advisory, retirement solutions, ESG data, credit ratings, or compliance software for financial services. Conflict with my current employer.
             </p>
             <p>
-              I also don't work well with teams that want a six-month discovery phase before anyone touches code, need daytime or business-hours coverage, or expect me to compete in a formal RFP with a scoring rubric.
+              I also don't take open-ended “AI employee” builds, unrestricted purchasing or customer commitments, business-hours support, or projects that require broad access before a narrow workflow proves itself.
             </p>
           </div>
         </section>
@@ -142,13 +205,13 @@ const Services = () => {
         <section id="intake">
           <div className="border-t border-[var(--color-border)] pt-12">
             <p className="text-lg text-[var(--color-text-secondary)] leading-relaxed mb-8">
-              If any of this sounds like your team, send a short note describing the problem. I read every submission and respond within 48 hours with either a scoping proposal or an honest "I'm not the right fit for this."
+              Not sure which path fits? Use the free 30-minute call. We'll identify the problem, confirm the boundary, and choose the smaller credible next step.
             </p>
             <a
-              href="/services?modal=contact"
+              href="https://cal.com/collinwilkins/intro"
               className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-lg bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] transition-colors"
             >
-              Start the conversation
+              Book a free fit call
               <ArrowRight className="w-4 h-4" />
             </a>
           </div>
