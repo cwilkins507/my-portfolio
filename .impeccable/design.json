@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-02T18:50:00Z",
+  "title": "Design System: CollinWilkins.com Editorial Gold",
+  "extensions": {
+    "colorMeta": {
+      "paper": {"role":"neutral","displayName":"Warm Paper","canonical":"oklch(0.987 0.005 95)","tonalRamp":["oklch(0.15 0.005 95)","oklch(0.27 0.005 95)","oklch(0.39 0.005 95)","oklch(0.51 0.005 95)","oklch(0.63 0.005 95)","oklch(0.75 0.005 95)","oklch(0.87 0.005 95)","oklch(0.95 0.005 95)"]},
+      "ink": {"role":"neutral","displayName":"Near-Black Ink","canonical":"oklch(0.235 0.009 80)","tonalRamp":["oklch(0.15 0.009 80)","oklch(0.27 0.009 80)","oklch(0.39 0.009 80)","oklch(0.51 0.009 80)","oklch(0.63 0.009 80)","oklch(0.75 0.009 80)","oklch(0.87 0.009 80)","oklch(0.95 0.009 80)"]},
+      "ledger-gold": {"role":"primary","displayName":"Ledger Gold","canonical":"oklch(0.595 0.118 80)","tonalRamp":["oklch(0.15 0.08 80)","oklch(0.27 0.10 80)","oklch(0.39 0.118 80)","oklch(0.51 0.118 80)","oklch(0.63 0.108 80)","oklch(0.75 0.09 80)","oklch(0.87 0.06 80)","oklch(0.95 0.03 80)"]}
+    },
+    "typographyMeta": {
+      "display": {"displayName":"Editorial Display","purpose":"Singular propositions and homepage statements."},
+      "headline": {"displayName":"Section Headline","purpose":"Section arguments and closing calls."},
+      "body": {"displayName":"Reading Body","purpose":"Explanatory prose and long-form reading."},
+      "label": {"displayName":"Ledger Label","purpose":"Evidence, state, measurement, metadata, and compact controls."}
+    },
+    "shadows": [],
+    "motion": [
+      {"name":"state-fast","value":"150ms ease","purpose":"Button, rule, border, and text state changes."}
+    ],
+    "breakpoints": [
+      {"name":"narrow","value":"760px"},
+      {"name":"intermediate","value":"900px"},
+      {"name":"wide","value":"1180px"}
+    ]
+  },
+  "components": [
+    {
+      "name":"Primary Button",
+      "kind":"button",
+      "refersTo":"button-primary",
+      "description":"The principal action on a surface; gold remains scarce.",
+      "html":"<button class=\"ds-btn-primary\">BOOK A FREE CALL</button>",
+      "css":".ds-btn-primary{font-family:var(--mono);font-size:12px;letter-spacing:.05em;padding:11px 19px;border:1px solid var(--accent-btn);border-radius:999px;background:var(--accent-btn);color:var(--on-accent);cursor:pointer;transition:background .15s,border-color .15s}.ds-btn-primary:hover{background:var(--accent-deep);border-color:var(--accent-deep)}.ds-btn-primary:focus-visible{outline:2px solid oklch(0.475 0.118 80);outline-offset:4px}"
+    },
+    {
+      "name":"Ghost Button",
+      "kind":"button",
+      "refersTo":"button-ghost",
+      "description":"A secondary action that remains on the paper surface.",
+      "html":"<button class=\"ds-btn-ghost\">READ HOW I WORK</button>",
+      "css":".ds-btn-ghost{font-family:var(--mono);font-size:12px;letter-spacing:.05em;padding:11px 19px;border:1px solid var(--rule);border-radius:999px;background:transparent;color:var(--ink);cursor:pointer;transition:border-color .15s}.ds-btn-ghost:hover{border-color:var(--ink)}.ds-btn-ghost:focus-visible{outline:2px solid oklch(0.475 0.118 80);outline-offset:4px}"
+    },
+    {
+      "name":"Search Field",
+      "kind":"input",
+      "refersTo":"input",
+      "description":"A ruled paper field for search and compact form entry.",
+      "html":"<input class=\"ds-input\" type=\"search\" placeholder=\"Search articles by topic…\">",
+      "css":".ds-input{width:100%;padding:13px 19px;border:1px solid var(--rule);border-radius:999px;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:15px}.ds-input:focus-visible{outline:2px solid oklch(0.475 0.118 80);outline-offset:4px}"
+    },
+    {
+      "name":"Topic Tag",
+      "kind":"chip",
+      "description":"Compact categorization and filtering metadata.",
+      "html":"<a class=\"ds-tag\" href=\"#\">AGENT SYSTEMS</a>",
+      "css":".ds-tag{display:inline-block;padding:6px 13px;border:1px solid var(--rule);border-radius:999px;color:var(--ink-soft);font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;transition:border-color .15s,color .15s}.ds-tag:hover{border-color:var(--accent);color:var(--accent-text)}.ds-tag:focus-visible{outline:2px solid oklch(0.475 0.118 80);outline-offset:4px}"
+    },
+    {
+      "name":"Ledger Route",
+      "kind":"custom",
+      "description":"A bounded audience route expressed as a ruled record rather than a floating card.",
+      "html":"<a class=\"ds-ledger-route\" href=\"#\"><small>SMALL-TEAM OWNERS</small><strong>Find the workflow worth fixing →</strong><span>Start with the recurring work creating the most drag.</span></a>",
+      "css":".ds-ledger-route{display:grid;gap:12px;padding:24px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);color:var(--ink);text-decoration:none}.ds-ledger-route small{color:var(--accent-text);font-family:var(--mono);font-size:9px;letter-spacing:.1em}.ds-ledger-route strong{font-family:var(--serif);font-size:27px;font-weight:500;line-height:1.05}.ds-ledger-route span{color:var(--ink-soft);font-family:var(--serif);font-size:16px;line-height:1.45}.ds-ledger-route:hover{border-color:var(--accent)}.ds-ledger-route:focus-visible{outline:2px solid oklch(0.475 0.118 80);outline-offset:4px}"
+    }
+  ],
+  "narrative": {
+    "northStar":"The Working Ledger",
+    "overview":"The system combines an authored editorial voice with the exactness of an engineering record. It should feel like a practitioner has assembled evidence, decisions, and next actions on warm paper—not like a software company has decorated a conversion template. The atmosphere is authored and exact: human in tone, rigorous in structure, and confident without promotional spectacle.",
+    "keyCharacteristics":["Warm paper, near-black ink, and sparingly used ledger gold.","Newsreader supplies authored authority; IBM Plex Mono labels evidence, state, and measurement.","Flat, ruled surfaces with hierarchy produced through spacing and contrast.","Asymmetric editorial compositions balanced by precise alignment.","Claims remain attached to inspectable evidence and explicit boundaries."],
+    "rules":[
+      {"name":"The Scarce Gold Rule","body":"Gold identifies a decision, active state, or primary action; it never washes an entire page in decoration.","section":"colors"},
+      {"name":"The Ink Carries Authority Rule","body":"High-emphasis surfaces invert to ink and paper before introducing a new color or effect.","section":"colors"},
+      {"name":"The Two-Voice Rule","body":"Newsreader explains and persuades; IBM Plex Mono identifies, measures, and controls.","section":"typography"},
+      {"name":"The Flat Ledger Rule","body":"A surface earns separation through spacing, a paper tone, or a one-pixel rule before it earns elevation.","section":"elevation"}
+    ],
+    "dos":["Do use one strong editorial move per major surface, then quiet its supporting elements.","Do attach claims to evidence, scope, or source boundaries.","Do use ink inversion for decisive emphasis.","Do preserve readable measures, visible focus, reduced-motion behavior, and DOM-order responsive stacking.","Do use Ledger Gold sparingly for state, rules, and primary action."],
+    "donts":["Don't introduce generic SaaS gradients, glossy dashboards, or interchangeable icon-card grids.","Don't use IBM Plex Mono for ordinary explanatory prose.","Don't round every container; pills are a control pattern, not the page skeleton.","Don't use shadows when spacing, paper tone, or a one-pixel rule can express the hierarchy.","Don't let visual theater outrun the evidence available on the page."]
+  }
+}

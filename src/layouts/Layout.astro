@@ -2,7 +2,7 @@
 import Navigation from '../components/Navigation.jsx';
 import ContactModalWrapper from '../components/ContactModalWrapper';
 import '../index.css';
-import { ENGINEERING_PILOT, NEWSLETTER, ANALYTICS_EVENTS } from '../data/site.js';
+import { SMB_ASSESSMENT, NEWSLETTER, ANALYTICS_EVENTS } from '../data/site.js';
 
 interface Props {
 	title: string;
@@ -145,30 +145,30 @@ const currentYear = new Date().getFullYear();
 				<div>
 					<div style="font-size:18px;font-weight:600;letter-spacing:-.01em;">{portfolioData.name}</div>
 					<p style="font-size:13.5px;line-height:1.5;color:var(--ink-soft);max-width:32ch;margin-top:10px;">
-						AI-assisted delivery systems for engineering teams using AI coding tools.
+						Practical workflow automation for owner-operated teams, grounded in engineering evidence.
 					</p>
 				</div>
 				<div>
 					<h2 style="font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:15px;">Work</h2>
 					<ul style="list-style:none;">
-						<li style="margin-bottom:10px;"><a href={ENGINEERING_PILOT.slug} data-analytics-event={ANALYTICS_EVENTS.pilotCtaClick} data-analytics-location="footer-work-pilot" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">Delivery pilot</a></li>
-						<li style="margin-bottom:10px;"><a href={ENGINEERING_PILOT.capabilityBriefHref} data-analytics-event={ANALYTICS_EVENTS.capabilityBriefView} data-analytics-location="footer-work-capability-brief" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">Capability brief</a></li>
+						<li><a class="footer-link" href={SMB_ASSESSMENT.slug} data-analytics-event={ANALYTICS_EVENTS.smbAssessmentOpen} data-analytics-location="footer-work-assessment">Workflow assessment</a></li>
+						<li><a class="footer-link" href="/services">All services</a></li>
 					</ul>
 				</div>
 				<div>
 					<h2 style="font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:15px;">Writing</h2>
 					<ul style="list-style:none;">
-						<li style="margin-bottom:10px;"><a href="/articles" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">Articles</a></li>
-						<li style="margin-bottom:10px;"><a href="/faq" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">FAQ</a></li>
-						<li style="margin-bottom:10px;"><a href={NEWSLETTER.archiveHref} target="_blank" rel="noopener noreferrer" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">{NEWSLETTER.name}</a></li>
+						<li><a class="footer-link" href="/articles">Articles</a></li>
+						<li><a class="footer-link" href="/faq">FAQ</a></li>
+						<li><a class="footer-link" href={NEWSLETTER.archiveHref} target="_blank" rel="noopener noreferrer">{NEWSLETTER.name}</a></li>
 					</ul>
 				</div>
 				<div>
 					<h2 style="font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:15px;">Elsewhere</h2>
 					<ul style="list-style:none;">
-						<li style="margin-bottom:10px;"><a href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">LinkedIn</a></li>
-						<li style="margin-bottom:10px;"><a href={portfolioData.github} target="_blank" rel="noopener noreferrer" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">GitHub</a></li>
-						<li style="margin-bottom:10px;"><a href="https://x.com/CollinWilkins7" target="_blank" rel="noopener noreferrer" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;letter-spacing:.02em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">Twitter / X</a></li>
+						<li><a class="footer-link" href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+						<li><a class="footer-link" href={portfolioData.github} target="_blank" rel="noopener noreferrer">GitHub</a></li>
+						<li><a class="footer-link" href="https://x.com/CollinWilkins7" target="_blank" rel="noopener noreferrer">Twitter / X</a></li>
 					</ul>
 				</div>
 			</div>
@@ -182,10 +182,25 @@ const currentYear = new Date().getFullYear();
 		<ContactModalWrapper email={portfolioData.email} client:only="react" />
 		<script is:inline>document.addEventListener('submit',function(event){var form=event.target.closest('[data-newsletter-event]');if(form&&window.plausible)window.plausible(form.dataset.newsletterEvent,{props:{location:form.dataset.location,measurement:'intent'}});});</script>
 		<script is:inline>document.addEventListener('click',function(event){var link=event.target.closest('[data-analytics-event][data-analytics-location]');if(link&&window.plausible)window.plausible(link.dataset.analyticsEvent,{props:{location:link.dataset.analyticsLocation}});});</script>
-	</body>
+</body>
 </html>
 
 <style>
+	.footer-link {
+		display: flex;
+		min-height: 44px;
+		align-items: center;
+		color: var(--ink-soft);
+		font-family: var(--mono);
+		font-size: 12px;
+		letter-spacing: .02em;
+		text-decoration: none;
+	}
+
+	.footer-link:hover {
+		color: var(--accent);
+	}
+
 	@media (max-width: 760px) {
 		.footer-grid {
 			grid-template-columns: 1fr 1fr !important;
