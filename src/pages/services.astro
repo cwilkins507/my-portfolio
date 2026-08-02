@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Services from '../components/Services';
+import { ANALYTICS_EVENTS, CONSULTING_OVERVIEW, ENGINEERING_PILOT, INTRO_CALL, SMB_ASSESSMENT, SMB_QUIZ } from '../data/site.js';
 
 const servicesSchema = {
 	"@context": "https://schema.org",
@@ -109,7 +109,105 @@ const pilotSteps = [
 	description="Two fixed-scope AI consulting paths: a $99 workflow assessment for owners and a $1,500 AI-Assisted Delivery Pilot for engineering teams."
 	schema={[servicesSchema, servicesFaqSchema]}
 >
-	<Services />
+  <article class="wrap services">
+    <header>
+      <p class="eyebrow">AI systems, backend automation, and technical advisory</p>
+      <h1>Turn one real workflow problem into a system your team can use.</h1>
+      <p class="lede">{CONSULTING_OVERVIEW.lead}</p>
+      <div class="actions">
+        <a
+          class="btn btn-primary"
+          href={INTRO_CALL.href}
+          data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen}
+          data-analytics-location="services-hero-booking"
+        >
+          {INTRO_CALL.bookingLabel}
+        </a>
+        <a
+          class="btn btn-ghost"
+          href={SMB_QUIZ.slug}
+          data-analytics-event={ANALYTICS_EVENTS.smbQuizStart}
+          data-analytics-location="services-hero-smb-quiz"
+        >
+          {SMB_QUIZ.ctaLabel}
+        </a>
+      </div>
+      <p class="note">Bring one workflow, delivery bottleneck, or AI-adoption problem. We will choose the right next step—or decide there is not one.</p>
+      <p class="background">{CONSULTING_OVERVIEW.background}</p>
+    </header>
+
+    <section aria-labelledby="service-paths-title">
+      <div class="section-heading">
+        <p class="eyebrow">Four ways I help</p>
+        <h2 id="service-paths-title">Diagnose, govern, advise, or build.</h2>
+      </div>
+      <div class="service-grid">
+        {CONSULTING_OVERVIEW.paths.map(path => (
+          <article>
+            <p class="path-label">{path.label}</p>
+            <h3>{path.name}</h3>
+            <p>{path.description}</p>
+            <a
+              href={path.href}
+              data-analytics-event={path.analyticsEvent}
+              data-analytics-location={`services-path-${path.id}`}
+            >
+              {path.cta} →
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section aria-labelledby="backend-title">
+      <div class="section-heading">
+        <p class="eyebrow">Backend systems are the bread and butter</p>
+        <h2 id="backend-title">Concrete workflow work—not an “AI strategy” slide deck.</h2>
+      </div>
+      <ul class="example-grid">
+        <li><strong>Speed-to-lead systems</strong><span>Capture, qualify, route, and follow up without copying the same information across tools.</span></li>
+        <li><strong>Rules-based quote workflows</strong><span>Generate a draft from clear pricing rules while keeping a person responsible for approval.</span></li>
+        <li><strong>Internal knowledge systems</strong><span>Give employees and agents one maintained source for procedures, decisions, and recurring questions.</span></li>
+        <li><strong>System integrations</strong><span>Connect the CRM, forms, spreadsheets, reporting, and operational systems that currently drift apart.</span></li>
+        <li><strong>Bounded internal agents</strong><span>Give one repeatable job to an agent with defined inputs, tools, verification, and a human decision boundary.</span></li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="referral-title">
+      <div class="section-heading">
+        <p class="eyebrow">A useful referral</p>
+        <h2 id="referral-title">Listen for one of these sentences.</h2>
+      </div>
+      <div class="referral-list">
+        {CONSULTING_OVERVIEW.referralSignals.map(signal => (
+          <article>
+            <p>{signal.label}</p>
+            <h3>{signal.title}</h3>
+            <span>{signal.detail}</span>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="close" aria-labelledby="services-close-title">
+      <div>
+        <p class="eyebrow">Not sure which path fits?</p>
+        <h2 id="services-close-title">Start with a free 30-minute conversation.</h2>
+        <p>No hard sell. We will name the problem, the next useful decision, and whether I am the right person to help.</p>
+      </div>
+      <div class="actions">
+        <a
+          class="btn btn-primary"
+          href={INTRO_CALL.href}
+          data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen}
+          data-analytics-location="services-final-booking"
+        >
+          {INTRO_CALL.bookingLabel}
+        </a>
+        <a href={ENGINEERING_PILOT.intakeHref}>Already want the pilot? Request a scope review →</a>
+      </div>
+    </section>
+  </article>
 </Layout>
 
 <style>
@@ -277,7 +375,6 @@ const pilotSteps = [
     font-family: var(--mono);
     font-size: 11px;
   }
-
   .example-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -381,7 +478,6 @@ const pilotSteps = [
       border-top: 1px solid var(--rule);
       border-left: 0;
     }
-
     .example-grid li,
     .example-grid li:nth-child(even) {
       padding: 20px 0;
