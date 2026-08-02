@@ -2,41 +2,112 @@
 import Layout from '../layouts/Layout.astro';
 import { ANALYTICS_EVENTS, CONSULTING_OVERVIEW, ENGINEERING_PILOT, INTRO_CALL, SMB_ASSESSMENT, SMB_QUIZ } from '../data/site.js';
 
-const schema = {
-  '@context': 'https://schema.org',
-  '@type': 'OfferCatalog',
-  name: 'Services',
-  itemListElement: [
-    {
-      '@type': 'Offer',
-      price: ENGINEERING_PILOT.priceUsd,
-      priceCurrency: 'USD',
-      itemOffered: {
-        '@type': 'Service',
-        name: ENGINEERING_PILOT.name,
-        description: ENGINEERING_PILOT.description,
-        url: ENGINEERING_PILOT.slug,
-      },
-    },
-    {
-      '@type': 'Offer',
-      price: SMB_ASSESSMENT.priceUsd,
-      priceCurrency: 'USD',
-      itemOffered: {
-        '@type': 'Service',
-        name: SMB_ASSESSMENT.name,
-        description: SMB_ASSESSMENT.description,
-        url: SMB_ASSESSMENT.slug,
-      },
-    },
-  ],
+const servicesSchema = {
+	"@context": "https://schema.org",
+	"@type": "WebPage",
+	"name": "AI Workflow Assessment & Engineering Pilot | Collin Wilkins",
+	"description": "Two fixed-scope AI consulting paths: a $99 workflow assessment for owners and a $1,500 AI-Assisted Delivery Pilot for engineering teams.",
+	"url": "https://collinwilkins.com/services",
+	"provider": {
+		"@type": "Person",
+		"name": "Collin Wilkins",
+		"url": "https://collinwilkins.com/about"
+	},
+	"hasOfferCatalog": {
+		"@type": "OfferCatalog",
+		"name": "AI workflow consulting",
+		"itemListElement": [
+			{
+				"@type": "Offer",
+				"price": "99",
+				"priceCurrency": "USD",
+				"url": "https://cal.com/collinwilkins/assessment",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "AI Workflow Opportunity Assessment",
+					"description": "A 60-minute working session on one recurring workflow, followed within 48 hours by a Workflow Opportunity Map with up to three ranked opportunities, one recommended first system, and a 14-day action plan."
+				}
+			},
+			{
+				"@type": "Offer",
+				"price": "1500",
+				"priceCurrency": "USD",
+				"url": "https://collinwilkins.com/services?modal=contact&service=ai-delivery-pilot",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "AI-Assisted Delivery Pilot",
+					"description": "A five-business-day, fixed-scope installation of a governed AI-assisted delivery path in one repository, proven on one approved low-risk issue. The $1,500 founding price is split into $500 after scope acceptance and $1,000 after acceptance passes."
+				}
+			}
+		]
+	}
 };
+
+const servicesFaqSchema = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	"mainEntity": [
+		{
+			"@type": "Question",
+			"name": "What's the AI Workflow Opportunity Assessment?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "A focused 60-minute working session on one recurring workflow. Within 48 hours you receive a Workflow Opportunity Map with up to three ranked opportunities, one recommended first system, a 14-day action plan, and clear self-serve or implementation paths."
+			}
+		},
+		{
+			"@type": "Question",
+			"name": "What's included in the AI-Assisted Delivery Pilot?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "One team, one repository, one intake system, one coding-agent adapter, and one approved low-risk issue. The customer receives repository-specific rules, protected-path controls, versioned model configuration, five smoke cases, a verified draft pull request, and a working handoff. The $1,500 founding price is $500 after scope acceptance and $1,000 only after acceptance passes."
+			}
+		},
+		{
+			"@type": "Question",
+			"name": "Do you build general-purpose AI employees?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "No. The goal is the minimum reliable system for one business outcome, with limited integrations, explicit authority, observable execution, and a handoff the customer can operate."
+			}
+		},
+		{
+			"@type": "Question",
+			"name": "What kinds of workflows are a fit?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Recurring workflows that waste time, delay follow-up, create reporting burden, or cause inconsistent execution. Financial-services engagements are excluded because of a conflict with my current employer."
+			}
+		}
+	]
+};
+
+const pilotSteps = [
+  {
+    number: '01',
+    label: 'Map',
+    title: 'Confirm the outcome and readiness gate.',
+    detail: 'Fix the issue, non-goals, protected paths, acceptance checks, access, verification baseline, and accountable reviewers in writing.',
+  },
+  {
+    number: '02',
+    label: 'Install',
+    title: 'Install one customer-owned delivery contract.',
+    detail: 'Connect structured intake, repository context, the bounded coding agent, existing CI, model usage, and human-only decisions.',
+  },
+  {
+    number: '03',
+    label: 'Prove',
+    title: 'Prove it and hand it off.',
+    detail: 'Run one approved issue to a verified draft PR, pass the agreed checks, and have a customer engineer run the documented path.',
+  },
+];
 ---
 
 <Layout
-  title="AI Systems and Automation Services | Collin Wilkins"
-  description="AI readiness assessments, a governed AI delivery pilot, technical advisory, and hands-on backend automation for business owners and engineering leaders."
-  schema={schema}
+	title="AI Workflow Assessment & Engineering Pilot | Collin Wilkins"
+	description="Two fixed-scope AI consulting paths: a $99 workflow assessment for owners and a $1,500 AI-Assisted Delivery Pilot for engineering teams."
+	schema={[servicesSchema, servicesFaqSchema]}
 >
   <article class="wrap services">
     <header>
@@ -262,6 +333,48 @@ const schema = {
     text-underline-offset: 5px;
   }
 
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-block: 1px solid var(--ink);
+  }
+
+  .process-grid article {
+    padding: 28px clamp(20px, 3vw, 30px) 32px;
+  }
+
+  .process-grid article + article {
+    border-left: 1px solid var(--rule);
+  }
+
+  .process-label {
+    color: var(--accent-text);
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  .process-grid h3 {
+    margin-top: 38px;
+    font-size: clamp(24px, 2.5vw, 31px);
+    line-height: 1.06;
+  }
+
+  .process-grid article > p:last-child {
+    margin-top: 14px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .process-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 26px;
+    margin-top: 26px;
+    font-family: var(--mono);
+    font-size: 11px;
+  }
   .example-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -346,6 +459,7 @@ const schema = {
   @media (max-width: 760px) {
     .section-heading,
     .service-grid,
+    .process-grid,
     .example-grid,
     .referral-list article,
     .close {
@@ -360,6 +474,10 @@ const schema = {
       min-height: 0;
     }
 
+    .process-grid article + article {
+      border-top: 1px solid var(--rule);
+      border-left: 0;
+    }
     .example-grid li,
     .example-grid li:nth-child(even) {
       padding: 20px 0;

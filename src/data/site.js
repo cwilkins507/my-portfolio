@@ -99,7 +99,7 @@ export const CONSULTING_OVERVIEW = Object.freeze({
     Object.freeze({
       id: 'assessment',
       label: '01 / Diagnose',
-      name: 'AI readiness assessment',
+      name: SMB_ASSESSMENT.name,
       description: 'Choose the first recurring workflow worth improving before spending more on tools or implementation. Leave with a Workflow Opportunity Map and a clear implement, defer, or stop decision.',
       href: SMB_ASSESSMENT.slug,
       cta: 'See the $99 assessment',

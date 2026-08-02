@@ -1,9 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { CONSULTING_OVERVIEW, ENGINEERING_PILOT, INTRO_CALL, SMB_QUIZ, NEWSLETTER, ANALYTICS_EVENTS } from '../data/site.js';
+import { INTRO_CALL, SMB_ASSESSMENT, SMB_QUIZ, NEWSLETTER, ANALYTICS_EVENTS } from '../data/site.js';
 
-const pageTitle = 'AI Systems and Automation Consulting | Collin Wilkins';
-const pageDescription = 'I help business owners and engineering leaders turn AI experiments and manual workflows into maintainable backend systems, automation, and governed delivery paths.';
+const pageTitle = 'AI Workflow Assessment for Small Teams | Collin Wilkins';
+const pageDescription = 'I help owner-operators choose the first recurring workflow worth improving, then leave with ranked opportunities and a practical 14-day plan.';
 
 const homepageSchema = [
   {
@@ -16,9 +16,9 @@ const homepageSchema = [
   {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: ENGINEERING_PILOT.name,
-    description: ENGINEERING_PILOT.description,
-    url: `https://collinwilkins.com${ENGINEERING_PILOT.slug}`,
+    name: SMB_ASSESSMENT.name,
+    description: SMB_ASSESSMENT.description,
+    url: `https://collinwilkins.com${SMB_ASSESSMENT.slug}`,
     provider: {
       '@type': 'Person',
       name: 'Collin Wilkins',
@@ -27,9 +27,9 @@ const homepageSchema = [
     },
     offers: {
       '@type': 'Offer',
-      price: ENGINEERING_PILOT.priceUsd,
+      price: SMB_ASSESSMENT.priceUsd,
       priceCurrency: 'USD',
-      url: `https://collinwilkins.com${ENGINEERING_PILOT.intakeHref}`,
+      url: `https://collinwilkins.com${SMB_ASSESSMENT.slug}`,
     },
   },
 ];
@@ -50,43 +50,23 @@ const proofItems = [
 ];
 
 
-const pilotSteps = [
-  {
-    number: '01',
-    label: 'Map',
-    title: 'Confirm the outcome and readiness gate.',
-    detail: 'Fix the issue, non-goals, protected paths, acceptance checks, access, verification baseline, and accountable reviewers in writing.',
-  },
-  {
-    number: '02',
-    label: 'Install',
-    title: 'Install one customer-owned delivery contract.',
-    detail: 'Connect structured intake, repository context, the bounded coding agent, existing CI, model usage, and human-only decisions.',
-  },
-  {
-    number: '03',
-    label: 'Prove',
-    title: 'Prove it and hand it off.',
-    detail: 'Run one approved issue to a verified draft PR, pass the agreed checks, and have a customer engineer run the documented path.',
-  },
-];
 
 const faqItems = [
   {
-    question: 'What exactly is accepted on business day five?',
-    answer: 'The agreed repository assets are installed; protected paths fail closed; the existing verification path and five smoke cases pass; one approved issue reaches a verified draft pull request with usage evidence; and a customer engineer runs the documented non-production path without Collin driving.',
+    question: 'Who is the assessment for?',
+    answer: 'Owner-operators of non-financial-services small teams with one recurring workflow that wastes time, delays customers, or depends too heavily on manual handoffs. Financial-services businesses are not eligible.',
   },
   {
-    question: 'When does the five-day clock start?',
-    answer: 'After written scope, least-privilege access, one approved low-risk issue, a passing baseline, an authenticated coding agent, working CI and draft-PR path, a named technical owner and reviewer, the $500 first installment, and a confirmed start date are ready.',
+    question: 'What happens after the free introduction?',
+    answer: 'If the workflow is a good fit, we can book a separate 60-minute AI Workflow Opportunity Assessment for $99. The introduction is a no-pressure conversation, not a commitment to the assessment.',
   },
   {
-    question: 'What if acceptance misses business day five?',
-    answer: ENGINEERING_PILOT.riskReversal,
+    question: 'What do I receive?',
+    answer: 'Within 48 hours, you receive a concise Workflow Opportunity Map with up to three ranked opportunities, one recommended first system, and a 14-day action plan.',
   },
   {
-    question: 'What does “founding price” mean?',
-    answer: ENGINEERING_PILOT.foundingBoundary,
+    question: 'What if the workflow is not worth automating?',
+    answer: 'That is a useful outcome. The recommendation can be to implement, defer, simplify the process first, or stop—without forcing AI into work where it does not belong.',
   },
 ];
 ---
@@ -94,64 +74,33 @@ const faqItems = [
 <Layout title={pageTitle} description={pageDescription} schema={homepageSchema} hideFooterNewsletter={true}>
   <section class="hero" data-homepage-hero aria-labelledby="hero-title">
     <div class="wrap hero-inner">
-      <p class="eyebrow">AI systems, backend automation, and technical advisory</p>
+      <p class="eyebrow">Workflow automation for owner-operated teams</p>
 
       <div class="hero-grid">
         <div class="hero-copy">
-          <h1 id="hero-title">Turn AI experiments and manual work into systems your team can run.</h1>
+          <h1 id="hero-title">Find the workflow worth fixing first.</h1>
           <p class="hero-lede">
-            {CONSULTING_OVERVIEW.lead} My bread and butter is backend systems and workflow automation: lead routing, quote workflows, knowledge systems, integrations, and bounded agents.
+            Bring one recurring workflow that wastes time or slows customers down. I’ll help you decide whether to automate it, improve the process first, or leave it alone.
           </p>
 
           <div class="hero-actions">
-            <a
-              class="btn btn-solid hero-primary"
-              href={INTRO_CALL.href}
-              data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen}
-              data-analytics-location="homepage-hero-booking"
-            >
-              {INTRO_CALL.bookingLabel} <span aria-hidden="true">→</span>
-            </a>
-            <a class="hero-secondary" href="/services">
-              See the four ways I can help
-            </a>
+            <a class="btn btn-solid hero-primary" href={INTRO_CALL.href} data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen} data-analytics-location="homepage-hero-booking">Bring me the stuck workflow <span aria-hidden="true">→</span></a>
+            <a class="hero-secondary" href={SMB_ASSESSMENT.slug} data-analytics-event={ANALYTICS_EVENTS.smbAssessmentOpen} data-analytics-location="homepage-hero-assessment">See the $99 assessment</a>
           </div>
 
-          <p class="hero-note">Bring one workflow, delivery bottleneck, or AI-adoption problem. No hard sell; we will decide whether there is a useful next step.</p>
+          <p class="hero-note">Start with a free 30-minute introduction. If the workflow is a fit, the assessment is the next step—not a required commitment.</p>
         </div>
 
-        <aside class="pilot-docket" aria-label="Featured pilot at a glance">
-          <div class="docket-topline">
-            <span>Featured engagement</span>
-            <span>Fixed scope</span>
-          </div>
-          <p class="docket-name">AI-Assisted Delivery Pilot</p>
-          <h2>One issue. A working delivery path.</h2>
-
+        <aside class="offer-docket" aria-label="AI Workflow Opportunity Assessment">
+          <p class="docket-name">$99 AI Workflow Opportunity Assessment</p>
+          <h2>One workflow. A clear first move.</h2>
+          <p class="docket-summary">A focused 60-minute working session for eligible owner-operators, followed by a concise Workflow Opportunity Map within 48 hours.</p>
           <dl class="docket-facts">
-            <div>
-              <dt>Scope</dt>
-              <dd>One team · one repository · one real backlog item</dd>
-            </div>
-            <div>
-              <dt>Delivery</dt>
-              <dd>5 business days after readiness · async-first</dd>
-            </div>
-            <div>
-              <dt>Payment</dt>
-              <dd>$500 to start · $1,000 after acceptance</dd>
-            </div>
-            <div>
-              <dt>Founding price</dt>
-              <dd>$1,500 · first 3 accepted pilots</dd>
-            </div>
+            <div><dt>01</dt><dd>Rank up to three opportunities</dd></div>
+            <div><dt>02</dt><dd>Choose one first system</dd></div>
+            <div><dt>03</dt><dd>Leave with a 14-day plan</dd></div>
           </dl>
-
-          <ol class="docket-flow" aria-label="Simplified pilot flow">
-            <li>Map</li>
-            <li>Install</li>
-            <li>Prove</li>
-          </ol>
+          <a class="docket-link" href={SMB_ASSESSMENT.slug} data-analytics-event={ANALYTICS_EVENTS.smbAssessmentOpen} data-analytics-location="homepage-docket-assessment">Review the assessment →</a>
         </aside>
       </div>
     </div>
@@ -182,113 +131,45 @@ const faqItems = [
   <section class="overview-section" id="services-overview" aria-labelledby="overview-title">
     <div class="wrap section-inner">
       <div class="section-intro">
-        <p class="eyebrow">What I offer</p>
-        <h2 id="overview-title">The 30-second overview.</h2>
-        <p>{CONSULTING_OVERVIEW.background}</p>
+        <p class="eyebrow">The recommended first step</p>
+        <h2 id="overview-title">Decide before you build.</h2>
+        <p>The assessment turns one recurring workflow into a bounded decision: implement, defer, simplify, or stop.</p>
       </div>
 
-      <div class="offer-grid">
-        {CONSULTING_OVERVIEW.paths.map(path => (
-          <article>
-            <p class="offer-label">{path.label}</p>
-            <h3>{path.name}</h3>
-            <p>{path.description}</p>
-            <a
-              href={path.href}
-              data-analytics-event={path.analyticsEvent}
-              data-analytics-location={`homepage-offer-${path.id}`}
-            >
-              {path.cta} →
-            </a>
-          </article>
-        ))}
+      <div class="assessment-ledger">
+        <article><p class="offer-label">Session</p><h3>60 focused minutes</h3><p>Map the current workflow, its cost, constraints, and the outcome that would make a change worthwhile.</p></article>
+        <article><p class="offer-label">Deliverable</p><h3>Within 48 hours</h3><p>Receive up to three ranked opportunities, one recommended first system, and a practical 14-day action plan.</p></article>
+        <article><p class="offer-label">Boundary</p><h3>No forced implementation</h3><p>The answer may be implement, defer, improve the process first, or stop. Financial-services businesses are not eligible.</p></article>
+      </div>
+      <div class="overview-actions">
+        <a class="btn btn-outline" href={SMB_ASSESSMENT.slug} data-analytics-event={ANALYTICS_EVENTS.smbAssessmentOpen} data-analytics-location="homepage-assessment-details">See assessment details →</a>
+        <a href="/services">Need a different kind of help? See all services</a>
       </div>
     </div>
   </section>
 
-  <section class="problem-section" aria-labelledby="problem-title">
-    <div class="wrap section-inner">
-      <div class="section-intro">
-        <p class="eyebrow">A useful referral</p>
-        <h2 id="problem-title">Three sentences that should make you think of me.</h2>
-        <p>I work with business owners and engineering leaders who can name a real workflow or delivery problem—not teams shopping for AI theater.</p>
-      </div>
-
-      <div class="symptom-grid">
-        {CONSULTING_OVERVIEW.referralSignals.map(signal => (
-          <article>
-            <p class="symptom-label">{signal.label}</p>
-            <h3>{signal.title}</h3>
-            <p>{signal.detail}</p>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="pilot-section" aria-labelledby="process-title">
-    <div class="wrap section-inner">
-      <div class="section-intro">
-        <p class="eyebrow">How the pilot works</p>
-        <h2 id="process-title">From one approved issue to a path the customer can run.</h2>
-        <p>The pilot keeps your issue tracker, coding tool, CI, and deployment path. It installs and proves the missing operating contract around them in five business days after readiness.</p>
-      </div>
-
-      <div class="process-grid">
-        {pilotSteps.map(step => (
-          <article>
-            <p class="step-number">{step.number} / {step.label}</p>
-            <h3>{step.title}</h3>
-            <p>{step.detail}</p>
-          </article>
-        ))}
-      </div>
-
-      <div class="section-actions">
-        <a
-          href={ENGINEERING_PILOT.slug}
-          data-analytics-event={ANALYTICS_EVENTS.pilotCtaClick}
-          data-analytics-location="homepage-process-complete-offer"
-        >
-          Read the complete offer →
-        </a>
-        <a
-          href={ENGINEERING_PILOT.capabilityBriefHref}
-          data-analytics-event={ANALYTICS_EVENTS.capabilityBriefView}
-          data-analytics-location="homepage-process-capability-brief"
-        >
-          Open the one-page capability brief →
-        </a>
-      </div>
-    </div>
-  </section>
 
   <section class="proof-band" aria-labelledby="proof-title">
-    <div class="wrap section-inner">
-      <div class="section-intro">
-        <p class="eyebrow">Qualified engineering proof</p>
-        <h2 id="proof-title">Production experience behind a bounded pilot.</h2>
-        <p>Relevant outcomes from full-time engineering roles, shown after the offer is clear—not before the buyer’s problem.</p>
+      <div class="wrap section-inner" style="padding-block: clamp(48px, 6vw, 72px);">
+          <div class="section-intro proof-intro" style="margin-bottom: 28px;">
+            <p class="eyebrow">Selected outcomes</p>
+            <h2 id="proof-title">Proof before promises.</h2>
+            <p>Production results from full-time roles—not claims about consulting clients.</p>
+          </div>
+        <div class="proof-ledger">
+          {proofItems.map(item => (
+            <article><strong>{item.value}</strong><p>{item.detail}</p></article>
+          ))}
+        </div>
       </div>
-
-      <div class="proof-ledger">
-        {proofItems.map(item => (
-          <article>
-            <strong>{item.value}</strong>
-            <p>{item.detail}</p>
-          </article>
-        ))}
-      </div>
-      <p class="proof-qualifier">Full-time employment outcomes, not consulting-client results.</p>
-    </div>
   </section>
 
   <section class="faq-section" aria-labelledby="faq-title">
     <div class="wrap section-inner faq-layout">
       <div>
-        <p class="eyebrow">Before the scope review</p>
+        <p class="eyebrow">Before you book</p>
         <h2 id="faq-title">The practical questions.</h2>
-        <p class="faq-intro">Four operational terms fixed before the first installment.</p>
+        <p class="faq-intro">Eligibility, price, timing, and what you receive.</p>
       </div>
 
       <div class="faq-list">
@@ -303,30 +184,31 @@ const faqItems = [
   </section>
 
   <section class="close-section" aria-labelledby="close-title">
-    <div class="wrap close-inner">
-      <div>
-        <p class="eyebrow">A free 30-minute first step</p>
-        <h2 id="close-title">Bring one workflow. Leave with the right next step.</h2>
-      </div>
-
-      <div class="close-actions">
+    <div class="wrap close-inner close-inner--ledger">
+      <div class="close-ledger-primary">
+        <div>
+          <p class="eyebrow">Next decision</p>
+          <h2 id="close-title">Bring one workflow. We’ll name the right next step.</h2>
+        </div>
         <a
-          class="btn btn-solid"
+          class="btn btn-solid close-ledger-button"
           href={INTRO_CALL.href}
           data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen}
           data-analytics-location="homepage-final-booking"
         >
           {INTRO_CALL.bookingLabel} <span aria-hidden="true">→</span>
         </a>
+      </div>
+      <div class="close-actions close-ledger-secondary">
         <a
           class="close-secondary"
-          href={ENGINEERING_PILOT.intakeHref}
-          data-analytics-event={ANALYTICS_EVENTS.pilotCtaClick}
-          data-analytics-location="homepage-final-scope-review"
+          href={SMB_ASSESSMENT.slug}
+          data-analytics-event={ANALYTICS_EVENTS.smbAssessmentOpen}
+          data-analytics-location="homepage-final-assessment"
         >
-          Already know you want the pilot? Request a scope review
+          See what the $99 assessment includes
         </a>
-        <p class="close-note">We will choose the assessment, pilot, advisory, hands-on build, or no engagement based on the problem—not force every conversation into one offer.</p>
+        <p class="close-note">One workflow, one grounded recommendation, and no pressure to implement.</p>
       </div>
     </div>
   </section>
@@ -363,7 +245,7 @@ const faqItems = [
     margin: 0;
     color: var(--accent-text);
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: .14em;
     line-height: 1.5;
@@ -373,16 +255,11 @@ const faqItems = [
   .hero,
   .credibility-strip,
   .overview-section,
-  .problem-section,
-  .pilot-section,
+
   .proof-band,
   .faq-section,
   .utility-section {
     border-bottom: 1px solid var(--rule);
-  }
-
-  .hero-inner {
-    padding-block: clamp(58px, 8vw, 96px);
   }
 
   .hero-inner > .eyebrow {
@@ -398,12 +275,12 @@ const faqItems = [
   }
 
   .hero h1 {
-    max-width: 10.8ch;
+    max-width: 13.5ch;
     margin: 0;
-    font-size: clamp(52px, 6.6vw, 86px);
+    font-size: clamp(48px, 5.4vw, 72px);
     font-weight: 500;
-    letter-spacing: -.045em;
-    line-height: .9;
+    letter-spacing: -.04em;
+    line-height: .94;
     text-wrap: balance;
   }
 
@@ -412,7 +289,6 @@ const faqItems = [
     font-style: italic;
     font-weight: 500;
   }
-
   .hero-lede {
     max-width: 32rem;
     margin-top: 24px;
@@ -426,6 +302,7 @@ const faqItems = [
     color: var(--ink);
     font-weight: 500;
   }
+
 
   .hero-actions {
     display: flex;
@@ -442,20 +319,21 @@ const faqItems = [
   }
 
   .hero-secondary,
-  .section-actions a,
+
   .close-secondary {
     font-family: var(--mono);
     font-size: 11px;
     text-underline-offset: 5px;
   }
 
-  .hero-secondary,
-  .section-actions a {
+  .hero-secondary {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
     color: var(--ink);
   }
 
-  .hero-secondary:hover,
-  .section-actions a:hover {
+  .hero-secondary:hover {
     color: var(--accent-text);
   }
 
@@ -464,11 +342,11 @@ const faqItems = [
     margin-top: 18px;
     color: var(--ink-faint);
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 11px;
     line-height: 1.55;
   }
 
-  .pilot-docket {
+  .offer-docket {
     position: relative;
     padding: clamp(26px, 3vw, 38px);
     border: 1px solid var(--ink);
@@ -476,7 +354,7 @@ const faqItems = [
     box-shadow: 12px 12px 0 var(--paper-3);
   }
 
-  .pilot-docket::before {
+  .offer-docket::before {
     position: absolute;
     top: -1px;
     left: -1px;
@@ -486,36 +364,31 @@ const faqItems = [
     content: '';
   }
 
-  .docket-topline {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    padding-bottom: 18px;
-    border-bottom: 1px solid var(--rule);
-    color: var(--ink-faint);
-    font-family: var(--mono);
-    font-size: 8px;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-  }
 
   .docket-name {
-    margin-top: 20px;
+    margin: 0;
     color: var(--accent-text);
     font-family: var(--mono);
-    font-size: 9px;
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: .09em;
     text-transform: uppercase;
   }
 
-  .pilot-docket h2 {
-    max-width: 12ch;
-    margin-top: 7px;
-    font-size: clamp(31px, 3vw, 42px);
+  .offer-docket h2 {
+    max-width: 13ch;
+    margin-top: 6px;
+    font-size: clamp(27px, 2.5vw, 36px);
     font-weight: 500;
     letter-spacing: -.025em;
-    line-height: .98;
+    line-height: 1;
+  }
+
+  .docket-summary {
+    margin-top: 20px;
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.5;
   }
 
   .docket-facts {
@@ -534,7 +407,7 @@ const faqItems = [
   .docket-facts dt {
     color: var(--ink-faint);
     font-family: var(--mono);
-    font-size: 8px;
+    font-size: 11px;
     letter-spacing: .09em;
     text-transform: uppercase;
   }
@@ -545,25 +418,19 @@ const faqItems = [
     line-height: 1.3;
   }
 
-  .docket-flow {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 18px;
-    margin-top: 18px;
-    padding: 0;
-    list-style: none;
-  }
-
-  .docket-flow li {
+  .docket-link {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    margin-top: 12px;
     color: var(--ink);
     font-family: var(--mono);
-    font-size: 9px;
+    font-size: 11px;
+    text-underline-offset: 5px;
   }
 
-  .docket-flow li:not(:last-child)::after {
-    margin-left: 18px;
+  .docket-link:hover {
     color: var(--accent-text);
-    content: '→';
   }
 
   .credibility-inner {
@@ -580,7 +447,7 @@ const faqItems = [
   .credibility-label {
     margin-bottom: 18px;
     color: var(--accent-text);
-    font-size: 9px;
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: .15em;
     text-transform: uppercase;
@@ -636,7 +503,7 @@ const faqItems = [
   .credibility-qualifier {
     margin-top: 14px;
     color: var(--ink-faint);
-    font-size: 8px;
+    font-size: 11px;
     letter-spacing: .04em;
   }
 
@@ -674,137 +541,85 @@ const faqItems = [
     text-wrap: pretty;
   }
 
-  .offer-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
-  }
 
-  .offer-grid article {
-    display: flex;
-    min-height: 285px;
-    flex-direction: column;
-    padding: clamp(24px, 3vw, 34px);
-    border: 1px solid var(--rule);
-    background: var(--paper-2);
-  }
 
   .offer-label {
     color: var(--accent-text);
     font-family: var(--mono);
-    font-size: 9px;
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: .12em;
     text-transform: uppercase;
   }
 
-  .offer-grid h3 {
-    max-width: 18ch;
-    margin-top: 28px;
-    font-size: clamp(27px, 3vw, 36px);
-    font-weight: 500;
-    line-height: 1.03;
+  .assessment-ledger {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-block: 1px solid var(--ink);
   }
 
-  .offer-grid article > p:nth-of-type(2) {
-    margin-top: 16px;
+  .assessment-ledger article {
+    padding: clamp(24px, 3vw, 36px);
+  }
+
+  .assessment-ledger article + article {
+    border-left: 1px solid var(--rule);
+  }
+
+  .assessment-ledger h3 {
+    margin-top: 26px;
+    font-size: clamp(24px, 2.2vw, 31px);
+    font-weight: 500;
+    line-height: 1.1;
+  }
+
+  .assessment-ledger article > p:last-child {
+    margin-top: 20px;
     color: var(--ink-soft);
     font-size: 15px;
-    line-height: 1.5;
+    line-height: 1.55;
   }
 
-  .offer-grid a {
-    margin-top: auto;
-    padding-top: 24px;
-    color: var(--ink);
+  .overview-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px 28px;
+    align-items: center;
+    margin-top: 28px;
+  }
+
+  .overview-actions > a:last-child {
+    min-height: 44px;
+    padding-block: 12px;
+    color: var(--ink-soft);
     font-family: var(--mono);
     font-size: 11px;
     text-underline-offset: 5px;
   }
 
-  .offer-grid a:hover {
-    color: var(--accent-text);
-  }
-
-  .symptom-grid,
-  .process-grid,
   .proof-ledger {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .symptom-grid {
-    border: 1px solid var(--rule);
-  }
 
-  .symptom-grid article {
-    min-height: 235px;
-    padding: clamp(24px, 3vw, 32px);
-  }
-
-  .symptom-grid article + article,
-  .process-grid article + article,
   .proof-ledger article + article {
     border-left: 1px solid var(--rule);
   }
 
-  .symptom-label,
-  .step-number {
-    color: var(--accent-text);
-    font-family: var(--mono);
-    font-size: 9px;
-    font-weight: 500;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-  }
 
-  .symptom-grid h3 {
-    margin-top: 44px;
-    font-size: clamp(24px, 2.5vw, 31px);
-    font-weight: 500;
-    letter-spacing: -.015em;
-    line-height: 1.05;
-  }
-
-  .symptom-grid article > p:last-child,
-  .process-grid article > p:last-child,
   .proof-ledger p {
     color: var(--ink-soft);
     font-size: 15px;
     line-height: 1.45;
   }
 
-  .symptom-grid article > p:last-child,
-  .process-grid article > p:last-child {
-    margin-top: 14px;
-  }
 
-  .pilot-section,
   .faq-section {
     background: var(--paper-2);
   }
 
-  .process-grid {
-    border-block: 1px solid var(--ink);
-  }
 
-  .process-grid article {
-    padding: 30px clamp(22px, 3vw, 34px) 34px;
-  }
-
-  .process-grid h3 {
-    margin-top: 52px;
-    font-size: 29px;
-    font-weight: 500;
-    line-height: 1.05;
-  }
-
-  .section-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px 26px;
-    margin-top: 30px;
-  }
 
   .proof-ledger {
     border-block: 1px solid var(--ink);
@@ -832,7 +647,7 @@ const faqItems = [
     margin-top: 20px;
     color: var(--ink-faint);
     font-family: var(--mono);
-    font-size: 9px;
+    font-size: 11px;
   }
 
   .faq-layout {
@@ -944,11 +759,55 @@ const faqItems = [
     margin-top: 16px;
     color: color-mix(in oklch, var(--paper) 70%, transparent);
     font-family: var(--mono);
-    font-size: 9px;
+    font-size: 11px;
     line-height: 1.5;
     text-align: center;
   }
 
+  .close-inner--ledger {
+    grid-template-columns: 1fr;
+  }
+
+  .close-ledger-primary {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    align-items: end;
+    padding-bottom: 28px;
+    border-bottom: 1px solid color-mix(in srgb, var(--paper) 28%, transparent);
+  }
+
+  .close-ledger-button {
+    width: auto !important;
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .close-ledger-secondary {
+    display: flex;
+    min-width: 0;
+    max-width: none;
+    justify-content: space-between;
+    gap: 28px;
+    align-items: center;
+  }
+
+  .close-ledger-secondary .close-secondary,
+  .close-ledger-secondary .close-note {
+    margin-top: 0;
+  }
+
+  .close-ledger-secondary .close-secondary {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    text-align: left;
+  }
+
+  .close-ledger-secondary .close-note {
+    max-width: 52ch;
+    text-align: right;
+  }
   .utility-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -967,6 +826,11 @@ const faqItems = [
     border-left: 1px solid var(--rule);
   }
 
+  .utility-grid article > a {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+  }
   .utility-grid .eyebrow {
     margin-bottom: 10px;
   }
@@ -1002,7 +866,7 @@ const faqItems = [
       max-width: 13ch;
     }
 
-    .pilot-docket {
+    .offer-docket {
       max-width: 660px;
     }
 
@@ -1017,6 +881,27 @@ const faqItems = [
   }
 
   @media (max-width: 760px) {
+    .close-ledger-primary,
+    .close-ledger-secondary {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .close-ledger-primary {
+      gap: 28px;
+    }
+
+    .close-ledger-button {
+      width: 100% !important;
+      white-space: normal;
+    }
+
+    .close-ledger-secondary .close-note {
+      text-align: left;
+    }
+  }
+
+  @media (max-width: 760px) {
     .credibility-logos {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px 24px;
@@ -1026,32 +911,25 @@ const faqItems = [
       max-width: 122px;
     }
 
-    .offer-grid,
-    .symptom-grid,
-    .process-grid,
+
     .proof-ledger,
     .utility-grid {
       grid-template-columns: 1fr;
     }
 
-    .symptom-grid article,
-    .process-grid article,
+
     .proof-ledger article {
       min-height: 0;
     }
 
-    .symptom-grid article + article,
-    .process-grid article + article,
+
     .proof-ledger article + article,
     .utility-grid article + article {
       border-top: 1px solid var(--rule);
       border-left: 0;
     }
 
-    .symptom-grid h3,
-    .process-grid h3 {
-      margin-top: 26px;
-    }
+
 
     .utility-grid article {
       padding: 22px 0;
@@ -1082,6 +960,7 @@ const faqItems = [
       font-size: 20px;
     }
 
+
     .hero-actions {
       gap: 13px 18px;
       margin-top: 24px;
@@ -1096,16 +975,24 @@ const faqItems = [
       margin-inline: auto;
     }
 
-    .pilot-docket {
+    .offer-docket {
       margin-right: 8px;
       padding: 23px 20px;
       box-shadow: 8px 8px 0 var(--paper-3);
     }
 
-    .pilot-docket h2 {
+    .offer-docket h2 {
       font-size: 32px;
     }
 
+    .assessment-ledger {
+      grid-template-columns: 1fr;
+    }
+
+    .assessment-ledger article + article {
+      border-top: 1px solid var(--rule);
+      border-left: 0;
+    }
     .section-inner {
       padding-block: 62px;
     }

@@ -3,9 +3,10 @@ import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 
 const SERVICE_OPTIONS = [
   { value: '', label: 'No preference / general inquiry' },
-  { value: 'ai-strategy', label: 'AI Strategy for Engineering Teams' },
-  { value: 'convention-files', label: 'Convention Files & Context Engineering' },
-  { value: 'automation-architecture', label: 'Automation Architecture' },
+  { value: 'ai-delivery-pilot', label: 'AI-Assisted Delivery Pilot' },
+  { value: 'workflow-assessment', label: 'AI Workflow Opportunity Assessment' },
+  { value: 'technical-advisory', label: 'Technical Advisory' },
+  { value: 'automation-architecture', label: 'Backend & Automation Implementation' },
 ];
 
 const ContactForm = ({ email, initialService = '', onSuccess }) => {

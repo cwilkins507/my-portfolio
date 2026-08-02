@@ -6,7 +6,6 @@ import { trackEvent } from '../utils/analytics.js';
 
 const NAV_LINKS = [
   { href: '/articles', label: 'Articles' },
-  { href: '/resources', label: 'Resources' },
   { href: '/services', label: 'Services' },
   { href: '/about', label: 'About' },
 ];
@@ -140,7 +139,9 @@ const Navigation = ({ portfolioData }) => {
                 background: 'none',
                 border: 'none',
                 cursor: 'pointer',
-                padding: '6px',
+                padding: '12px',
+                minWidth: '44px',
+                minHeight: '44px',
                 display: 'none',
               }}
             >
@@ -200,10 +201,12 @@ const Navigation = ({ portfolioData }) => {
                 background: 'none',
                 border: 'none',
                 cursor: 'pointer',
-                padding: '6px',
+                padding: '10px',
                 color: 'var(--ink)',
                 fontSize: '24px',
                 lineHeight: 1,
+                minWidth: '44px',
+                minHeight: '44px',
               }}
             >
               ✕

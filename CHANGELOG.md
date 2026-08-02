@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+- Reframed consulting services around bounded, human-controlled AI systems while preserving two distinct entry points.
+- Presented the $1,500 AI-Assisted Delivery Pilot for engineering leaders alongside the $99 AI Workflow Opportunity Assessment for owners, with separate scope-review and booking paths.
+- Added above-the-fold, audience-specific starting actions for engineering leaders and small-team owners, with distinct routes and analytics locations.
+- Added a noindex five-layout homepage reduction study with Editorial Gold, Rosé Pine Dawn, Rosé Pine, Rosé Pine Moon, and Everforest palettes; the studies move detailed pilot and referral content off the landing-page concept.
+
 ## [1.0.0] - 2026-01-20
 
 ### 🎉 Stable Release
