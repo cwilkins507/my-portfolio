@@ -211,10 +211,10 @@ async function verifyOfferContract(page) {
 
   await page.goto(`${baseURL}/`, { waitUntil: 'networkidle' });
   const homepage = await page.locator('main').innerText();
-  assert(/5 business days after readiness/.test(homepage), 'homepage lost the readiness-gated five-day promise');
-  assert(/\$500 to start · \$1,000 after acceptance/.test(homepage), 'homepage lost the accepted payment schedule');
-  assert(/\$1,500 · first 3 accepted pilots/.test(homepage), 'homepage lost the founding-price boundary');
-  assert(!/approximately 10 business days/i.test(homepage), 'homepage still exposes the retired delivery window');
+  assert(/Find the workflow worth fixing first\./.test(homepage), 'homepage lost the owner-operator assessment promise');
+  assert(/\$99 assessment/i.test(homepage), 'homepage lost the assessment price');
+  assert(/14-day plan/i.test(homepage), 'homepage lost the assessment deliverable');
+  assert(!/\$1,500 fixed founding price|first 3 accepted pilots/i.test(homepage), 'homepage incorrectly promotes pilot pricing');
 
   await page.goto(`${baseURL}/services/ai-delivery-kit`, { waitUntil: 'networkidle' });
   const offer = await inspectSections();
@@ -353,29 +353,29 @@ try {
     mainForms: document.querySelectorAll('main form').length,
     faqCount: document.querySelectorAll('.faq-list details').length,
     utilityLabels: [...document.querySelectorAll('.utility-section .eyebrow')].map(label => label.textContent.trim()),
-    offerPathCount: document.querySelectorAll('.offer-grid article').length,
-    referralSignalCount: document.querySelectorAll('.symptom-grid article').length,
+    offerPathCount: document.querySelectorAll('.assessment-ledger article').length,
+    referralSignalCount: document.querySelectorAll('.proof-ledger article').length,
   }));
-  assert(homepageStructure.heading === 'Turn AI experiments and manual work into systems your team can run.', `homepage heading is "${homepageStructure.heading}"`);
+  assert(homepageStructure.heading === 'Find the workflow worth fixing first.', `homepage heading is "${homepageStructure.heading}"`);
   assert(
-    homepageStructure.sectionOrder.join('|') === 'hero|credibility-strip|overview-section|problem-section|pilot-section|proof-band|faq-section|close-section|utility-section',
+    homepageStructure.sectionOrder.join('|') === 'hero|credibility-strip|overview-section|proof-band|faq-section|close-section|utility-section',
     `homepage section order is ${homepageStructure.sectionOrder.join(' -> ')}`,
   );
   assert(homepageStructure.mainForms === 0, `homepage should not interrupt the offer with a form; found ${homepageStructure.mainForms}`);
-  assert(homepageStructure.faqCount === 4, `homepage expected four scope-review questions, found ${homepageStructure.faqCount}`);
+  assert(homepageStructure.faqCount === 4, `homepage expected four assessment questions, found ${homepageStructure.faqCount}`);
   assert(
     homepageStructure.utilityLabels.join('|') === "Writing and tools|Collin's Thoughts|Small-business automation",
     `homepage utility labels are ${homepageStructure.utilityLabels.join(', ')}`,
   );
-  assert(homepageStructure.offerPathCount === 4, `homepage expected four service paths, found ${homepageStructure.offerPathCount}`);
-  assert(homepageStructure.referralSignalCount === 3, `homepage expected three referral signals, found ${homepageStructure.referralSignalCount}`);
+  assert(homepageStructure.offerPathCount === 3, `homepage expected three assessment outcome cards, found ${homepageStructure.offerPathCount}`);
+  assert(homepageStructure.referralSignalCount === 3, `homepage expected three proof records, found ${homepageStructure.referralSignalCount}`);
   const heroBooking = page.locator('[data-analytics-location="homepage-hero-booking"]');
   const finalBooking = page.locator('[data-analytics-location="homepage-final-booking"]');
-  const finalScopeReview = page.locator('[data-analytics-location="homepage-final-scope-review"]');
+  const finalAssessment = page.locator('[data-analytics-location="homepage-final-assessment"]');
   assert(await heroBooking.getAttribute('href') === 'https://cal.com/collinwilkins/intro', 'Homepage hero booking CTA mismatch');
   assert(await heroBooking.getAttribute('data-analytics-event') === 'Booking Page Open', 'Homepage hero booking analytics mismatch');
   assert(await finalBooking.getAttribute('href') === 'https://cal.com/collinwilkins/intro', 'Homepage final booking CTA mismatch');
-  assert(await finalScopeReview.getAttribute('href') === '/services/ai-delivery-kit/intake', 'Homepage final scope-review CTA mismatch');
+  assert(await finalAssessment.getAttribute('href') === '/services/ai-workflow-assessment', 'Homepage final assessment CTA mismatch');
   const secondFaq = page.locator('.faq-list details').nth(1);
   await secondFaq.locator('summary').click();
   assert(await secondFaq.evaluate(details => details.open), 'Homepage FAQ disclosure did not open');
