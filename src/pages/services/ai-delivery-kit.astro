@@ -25,39 +25,97 @@ const deliveryDays = [
   ['Day 5', 'Correct in-scope findings, run the working handoff, and evaluate acceptance.'],
 ];
 ---
-<Layout title={`${ENGINEERING_PILOT.name} | Collin Wilkins`} description={ENGINEERING_PILOT.description} schema={schema}>
+<Layout title={`${ENGINEERING_PILOT.name} | Collin Wilkins`} description={ENGINEERING_PILOT.description} schema={schema} hideFooterNewsletter={true}>
   <article class="offer wrap">
     <header class="hero">
       <p class="eyebrow">{ENGINEERING_PILOT.name}</p>
       <h1>{ENGINEERING_PILOT.lead}</h1>
       <p class="lede">{ENGINEERING_PILOT.description}</p>
       <p class="contract"><strong>{ENGINEERING_PILOT.priceLabel}</strong> · {ENGINEERING_PILOT.deliveryWindow} · {ENGINEERING_PILOT.deliveryMode}</p>
-      <p>{ENGINEERING_PILOT.scope}</p>
-      <div class="actions"><a class="btn btn-primary" href={ENGINEERING_PILOT.intakeHref} data-analytics-event={ANALYTICS_EVENTS.pilotCtaClick} data-analytics-location="offer-hero-intake">{ENGINEERING_PILOT.intakeLabel}</a><a class="btn btn-ghost" href={ENGINEERING_PILOT.fitCallHref} data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen} data-analytics-location="offer-hero-fit-call">{ENGINEERING_PILOT.fitCallLabel}</a></div>
-      <p class="qualifier">The fit call is optional. Intake collects no payment.</p>
+      <div class="actions"><a class="btn btn-primary" href={ENGINEERING_PILOT.intakeHref} data-analytics-event={ANALYTICS_EVENTS.pilotCtaClick} data-analytics-location="offer-hero-intake">{ENGINEERING_PILOT.intakeLabel}</a><a class="btn btn-ghost" href={ENGINEERING_PILOT.fitCallHref} data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen} data-analytics-location="offer-hero-fit-call">{ENGINEERING_PILOT.fitCallLabel}</a><a class="brief-link" href={ENGINEERING_PILOT.capabilityBriefHref} data-analytics-event={ANALYTICS_EVENTS.capabilityBriefView} data-analytics-location="offer-hero-brief">View the one-page capability brief →</a></div>
+      <p class="scope">{ENGINEERING_PILOT.scope}</p>
+      <p class="hero-guidance">The fit call is optional. Intake collects no payment. Have the issue, repository, CI baseline, access boundaries, and named owner/reviewer details ready; the form checks every readiness gate.</p>
     </header>
     <section aria-labelledby="outcome"><p class="eyebrow">Outcome</p><h2 id="outcome">A customer-owned path—not a demonstration.</h2><p class="lede">{ENGINEERING_PILOT.outcome}</p></section>
     <section aria-labelledby="flow"><h2 id="flow">The operating path</h2><div class="pipeline" aria-label="Delivery flow"><span>qualified issue</span><b>→</b><span>bounded agent</span><b>→</b><span>verified draft PR</span><b>→</b><span>existing CI</span><b>→</b><span>human approval</span></div></section>
-    <section><h2>Installed assets</h2><p>These are the core delivery—not add-on bonuses. The customer owns the adapted files after handoff.</p><ul class="asset-grid">{installedAssets.map(item => <li>{item}</li>)}</ul></section>
-    <section><p class="eyebrow">Readiness gate</p><h2>The five-day clock starts only when the environment is ready.</h2><ul class="contract-list">{ENGINEERING_PILOT.readiness.map((item, index) => <li><span class="list-marker" aria-hidden="true">R{index + 1}</span><span>{item}</span></li>)}</ul><p class="qualifier">Customer-caused access or review delays pause the clock. A changed issue or expanded scope requires a new written scope.</p></section>
+    <details class="detail-section"><summary><span>Installed assets</span><small>8 customer-owned files and controls</small></summary><div class="detail-body"><p>These are the core delivery—not add-on bonuses. The customer owns the adapted files after handoff.</p><ul class="asset-grid">{installedAssets.map(item => <li>{item}</li>)}</ul></div></details>
+    <details class="detail-section"><summary><span>Readiness gate</span><small>7 conditions before the five-day clock starts</small></summary><div class="detail-body"><ul class="contract-list">{ENGINEERING_PILOT.readiness.map((item, index) => <li><span class="list-marker" aria-hidden="true">R{index + 1}</span><span>{item}</span></li>)}</ul><p class="qualifier">Customer-caused access or review delays pause the clock. A changed issue or expanded scope requires a new written scope.</p></div></details>
     <section><p class="eyebrow">Five business days</p><h2>Map, install, prove, and hand off.</h2><ol class="timeline">{deliveryDays.map(([day, detail]) => <li><strong>{day}</strong><span>{detail}</span></li>)}</ol></section>
-    <section><p class="eyebrow">Acceptance criteria</p><h2>Acceptance is observable and agreed before payment.</h2><ol class="contract-list">{ENGINEERING_PILOT.acceptance.map((item, index) => <li><span class="list-marker" aria-hidden="true">A{index + 1}</span><span>{item}</span></li>)}</ol></section>
+    <details class="detail-section"><summary><span>Acceptance criteria</span><small>5 observable checks before final payment</small></summary><div class="detail-body"><ol class="contract-list">{ENGINEERING_PILOT.acceptance.map((item, index) => <li><span class="list-marker" aria-hidden="true">A{index + 1}</span><span>{item}</span></li>)}</ol></div></details>
     <section><p class="eyebrow">Payment and risk reversal</p><h2>$500 to start. $1,000 only after acceptance.</h2><div class="split"><div><h3>Payment</h3><p>{ENGINEERING_PILOT.paymentLabel}. The written scope fixes the issue, boundaries, readiness gate, and acceptance criteria before the first installment.</p></div><div><h3>If acceptance misses day five</h3><p>{ENGINEERING_PILOT.riskReversal}</p></div></div><p class="founding-boundary">{ENGINEERING_PILOT.foundingBoundary}</p></section>
-    <section><h2>Public proof preview</h2><p>The installable package stays private. This preview explains the control model without distributing runnable client assets.</p><div class="preview"><div><h3>Private package tree</h3><pre>AGENTS.md
+    <details class="detail-section"><summary><span>Public proof preview</span><small>Synthetic and redacted control-model evidence</small></summary><div class="detail-body"><p>The installable package stays private. This preview explains the control model without distributing runnable client assets.</p><div class="preview"><div><h3>Private package tree</h3><pre>AGENTS.md
 .ai-sdlc/
   protected-paths.txt
   models.yml
   verify.local.sh
 adapters/codex/</pre></div><div><h3>Synthetic issue</h3><p><strong>Example only:</strong> add validation to a sample invoice parser while leaving authentication, payments, and production infrastructure untouched.</p><h3>Redacted usage summary</h3><p>Model: configured adapter · tokens: unavailable · cost: unavailable · verification: passed.</p></div></div>
       <table><caption>Human control and protected work</caption><thead><tr><th>Agent may</th><th>Human retains</th></tr></thead><tbody><tr><td>Draft changes on an agent-owned branch</td><td>Scope, protected paths, approval, and merge</td></tr><tr><td>Run existing checks after path review</td><td>Credentials, production, payments, destructive migrations</td></tr></tbody></table>
-      <blockquote><code>AGENTS.md</code> excerpt: “Do not touch protected paths. Run repository verification. Stop for human review before merge.”</blockquote>
-    </section>
+      <blockquote><code>AGENTS.md</code> excerpt: “Do not touch protected paths. Run repository verification. Stop for human review before merge.”</blockquote></div></details>
     <section><h2>Best fit—and not fit</h2><div class="split"><div><h3>Best fit</h3><p>Small engineering teams already using AI coding tools, with one low-risk backlog item, a working repository and CI baseline, and a named technical owner and reviewer.</p></div><div><h3>Not fit</h3><p>Greenfield platform builds, autonomous production access, replacement CI, multi-agent platforms, an issue that requires protected production-sensitive paths, or financial-services work.</p></div></div></section>
-    <section><h2>Qualified proof</h2><p class="qualifier">Outcomes from full-time engineering roles, not consulting clients.</p><ul class="proof-list"><li>Ford work associated with approximately $5M in annual savings across systems supporting 450K+ vehicles.</li><li>Platforms handling 600K+ events/day and integrations serving 23+ enterprise recordkeepers.</li><li>Approximately 90% less processing volume/time plus a 35% throughput/latency improvement.</li><li>Led a broader AI-adoption and delivery-hardening initiative associated with 42% fewer defects and approximately 20% shorter cycle time.</li></ul></section>
-    <section><h2>Working model and confidentiality</h2><p>{ENGINEERING_PILOT.handoff} There is no standing kickoff or status meeting. Work is async-first inside the customer’s repository and existing checks.</p><p>Customer code, credentials, and installable assets remain private. Production credentials are not accepted. Calls are recorded for notes by default; clients can opt out before the session.</p></section>
+    <details class="detail-section"><summary><span>Qualified proof</span><small>Employment outcomes, not consulting-client claims</small></summary><div class="detail-body"><p class="qualifier">Outcomes from full-time engineering roles, not consulting clients.</p><ul class="proof-list"><li>Ford work associated with approximately $5M in annual savings across systems supporting 450K+ vehicles.</li><li>Platforms handling 600K+ events/day and integrations serving 23+ enterprise recordkeepers.</li><li>Approximately 90% less processing volume/time plus a 35% throughput/latency improvement.</li><li>Led a broader AI-adoption and delivery-hardening initiative associated with 42% fewer defects and approximately 20% shorter cycle time.</li></ul></div></details>
+    <details class="detail-section"><summary><span>Working model and confidentiality</span><small>Async-first, private, no production credentials</small></summary><div class="detail-body"><p>{ENGINEERING_PILOT.handoff} There is no standing kickoff or status meeting. Work is async-first inside the customer’s repository and existing checks.</p><p>Customer code, credentials, and installable assets remain private. Production credentials are not accepted. Calls are recorded for notes by default; clients can opt out before the session.</p></div></details>
     <section><h2>Next steps</h2><p class="section-lede">Three decisions move the pilot from scope review to an accepted delivery path.</p><ol class="next-steps"><li><span class="next-step-number" aria-hidden="true">01</span><div><h3>Request a scope review.</h3><p>Submit the no-payment intake. Use the optional free fit call first only if a conversation would help.</p></div></li><li><span class="next-step-number" aria-hidden="true">02</span><div><h3>Confirm scope and readiness.</h3><p>Review the written scope and acceptance checklist. Pay $500 after accepting the scope; the five-day clock starts when every readiness condition is met.</p></div></li><li><span class="next-step-number" aria-hidden="true">03</span><div><h3>Review and accept the path.</h3><p>Review the draft pull request by day four and join the day-five working handoff. The $1,000 balance is due only after acceptance passes.</p></div></li></ol><div class="actions"><a class="btn btn-primary" href={ENGINEERING_PILOT.intakeHref} data-analytics-event={ANALYTICS_EVENTS.pilotCtaClick} data-analytics-location="offer-close-intake">{ENGINEERING_PILOT.intakeLabel}</a><a class="btn btn-ghost" href={ENGINEERING_PILOT.fitCallHref} data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen} data-analytics-location="offer-close-fit-call">{ENGINEERING_PILOT.fitCallLabel}</a><a href={ENGINEERING_PILOT.capabilityBriefHref} data-analytics-event={ANALYTICS_EVENTS.capabilityBriefView} data-analytics-location="offer-close">View the AI Delivery capability brief →</a></div></section>
   </article>
 </Layout>
 <style>
 .offer{max-width:980px;padding-top:clamp(70px,10vw,130px);padding-bottom:90px}.hero{max-width:850px}.eyebrow,.qualifier{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-text)}h1{font-size:clamp(42px,7vw,76px);line-height:.98;margin:18px 0}.lede{font-size:clamp(20px,2.4vw,28px);color:var(--ink-soft);max-width:70ch}.contract{font-family:var(--mono);margin:28px 0}.actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:28px}section{padding:56px 0;border-top:1px solid var(--rule)}section>p:not(.eyebrow):not(.qualifier):not(.founding-boundary){max-width:70ch;line-height:1.6}h2{font-size:clamp(30px,4vw,46px);margin-bottom:22px}h3{font-size:22px;margin-bottom:10px}.pipeline{display:flex;gap:13px;align-items:center;flex-wrap:wrap;font-family:var(--mono);font-size:13px}.pipeline span{padding:9px 11px;border:1px solid var(--rule);background:var(--paper)}.asset-grid,.contract-list,.proof-list,.next-steps{list-style:none;padding:0}.asset-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:28px 0 0}.asset-grid li{position:relative;padding:16px 18px 16px 42px;border:1px solid var(--rule);background:var(--paper);line-height:1.45}.asset-grid li::before{content:"";position:absolute;left:18px;top:24px;width:8px;height:8px;background:var(--accent)}.contract-list{margin:28px 0 0;border-top:1px solid var(--rule);max-width:850px}.contract-list li{display:grid;grid-template-columns:50px minmax(0,1fr);gap:18px;padding:18px 0;border-bottom:1px solid var(--rule);line-height:1.55}.list-marker,.next-step-number{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-text)}.list-marker{padding-top:4px}.preview,.split{display:grid;grid-template-columns:1fr 1fr;gap:26px}.preview>div,.split>div{padding:24px;border:1px solid var(--rule);background:var(--paper)}pre{overflow:auto;font-size:13px}table{width:100%;border-collapse:collapse;margin:28px 0}th,td{border:1px solid var(--rule);padding:14px;text-align:left;vertical-align:top}blockquote{border-left:3px solid var(--accent);padding-left:18px}.timeline{display:grid;gap:0;list-style:none;padding:0;margin:28px 0 0}.timeline li{display:grid;grid-template-columns:90px 1fr;gap:20px;padding:18px 0;border-top:1px solid var(--rule);line-height:1.55}.timeline li:last-child{border-bottom:1px solid var(--rule)}.timeline strong{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em}.timeline span{color:var(--ink-soft)}.proof-list{margin:24px 0 0;border-top:1px solid var(--rule);max-width:780px}.proof-list li{padding:16px 0;border-bottom:1px solid var(--rule);line-height:1.55}.section-lede{color:var(--ink-soft);margin-top:-8px}.next-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:28px 0 0}.next-steps li{padding:22px;border:1px solid var(--rule);background:var(--paper)}.next-steps h3{margin:14px 0 8px;font-size:20px;line-height:1.2}.next-steps p{margin:0;color:var(--ink-soft);line-height:1.55}.founding-boundary{margin-top:24px;padding:18px;border-left:3px solid var(--accent);background:var(--paper);line-height:1.55}@media(max-width:700px){.asset-grid,.preview,.split,.next-steps{grid-template-columns:1fr}.contract-list li{grid-template-columns:40px minmax(0,1fr);gap:12px}.timeline li{grid-template-columns:1fr;gap:4px}.next-steps li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px}.next-steps h3{margin-top:0}}
+@media(max-width:900px){.next-steps{grid-template-columns:1fr}.next-steps li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px}.next-steps h3{margin-top:0}}
+</style>
+<style>
+  .offer { padding-top: clamp(40px, 7vw, 88px); }
+  .hero .contract { margin: 20px 0 0; }
+  .hero .actions { margin-top: 18px; }
+  .hero .scope { margin-top: 18px; font-weight: 600; }
+  .hero-guidance { max-width: 72ch; margin-top: 12px; color: var(--ink-soft); font-size: 14px; line-height: 1.55; }
+  .actions > a {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+  }
+  .brief-link { font-family: var(--mono); font-size: 11px; }
+  .detail-section {
+    border-top: 1px solid var(--rule);
+  }
+  .detail-section summary {
+    position: relative;
+    display: flex;
+    min-height: 76px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    cursor: pointer;
+    list-style: none;
+  }
+  .detail-section summary::-webkit-details-marker { display: none; }
+  .detail-section summary::after {
+    content: "Open";
+    color: var(--accent-text);
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+  .detail-section[open] summary::after { content: "Close"; }
+  .detail-section summary span {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 500;
+  }
+  .detail-section summary small {
+    margin-left: auto;
+    color: var(--ink-faint);
+    font-family: var(--mono);
+    font-size: 11px;
+    text-align: right;
+  }
+  .detail-body { padding: 8px 0 48px; }
+  @media (max-width: 900px) {
+    .next-steps { grid-template-columns: 1fr; }
+    .next-steps li { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; }
+    .next-steps h3 { margin-top: 0; }
+  }
+  @media (max-width: 520px) {
+    .detail-section summary { align-items: flex-start; flex-wrap: wrap; gap: 6px 16px; padding: 16px 0; }
+    .detail-section summary small { width: calc(100% - 32px); margin-left: 0; text-align: left; }
+    .detail-section summary::after { position: absolute; right: 20px; }
+  }
 </style>

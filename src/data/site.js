@@ -99,6 +99,7 @@ export const CONSULTING_OVERVIEW = Object.freeze({
     Object.freeze({
       id: 'assessment',
       label: '01 / Diagnose',
+      audience: 'Owners and operators',
       name: SMB_ASSESSMENT.name,
       description: 'Choose the first recurring workflow worth improving before spending more on tools or implementation. Leave with a Workflow Opportunity Map and a clear implement, defer, or stop decision.',
       href: SMB_ASSESSMENT.slug,
@@ -108,6 +109,7 @@ export const CONSULTING_OVERVIEW = Object.freeze({
     Object.freeze({
       id: 'pilot',
       label: '02 / Govern',
+      audience: 'Engineering teams',
       name: ENGINEERING_PILOT.name,
       description: 'Turn one approved engineering issue into a governed, customer-owned delivery path with existing CI, human approval, and visible model usage.',
       href: ENGINEERING_PILOT.slug,
@@ -117,6 +119,7 @@ export const CONSULTING_OVERVIEW = Object.freeze({
     Object.freeze({
       id: 'advisory',
       label: '03 / Decide',
+      audience: 'Engineering leaders and operators',
       name: 'Technical advisory',
       description: 'Work through architecture, AI adoption, delivery controls, system boundaries, or implementation sequencing before a team commits to a build.',
       href: INTRO_CALL.href,
@@ -126,6 +129,7 @@ export const CONSULTING_OVERVIEW = Object.freeze({
     Object.freeze({
       id: 'automation',
       label: '04 / Build',
+      audience: 'Teams with a defined workflow',
       name: 'Hands-on backend and automation work',
       description: 'Build a maintainable workflow such as speed-to-lead routing, rules-based quoting, an internal knowledge system, a system integration, or a bounded agent for one repeatable job.',
       href: INTRO_CALL.href,

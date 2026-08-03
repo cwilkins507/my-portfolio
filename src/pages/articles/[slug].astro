@@ -4,7 +4,7 @@ import BookCTA from '../../components/BookCTA.astro';
 import { getCategoryForArticle } from '../../data/categories.js';
 import { faqAnchor } from '../../utils/contentSearch.js';
 import { articleFromModule } from '../../utils/articleData.js';
-import { NEWSLETTER } from '../../data/site.js';
+import { NEWSLETTER, ANALYTICS_EVENTS } from '../../data/site.js';
 
 const articleModules = import.meta.glob('../../articles/*.md', { eager: true });
 const allArticles = Object.entries(articleModules).map(([file, article]) => ({
@@ -199,7 +199,7 @@ const articleSchema = { '@context': 'https://schema.org', '@graph': graphItems }
         <span class="label" style="color:var(--ink-faint);display:block;margin-bottom:14px;">Share</span>
         <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://collinwilkins.com/articles/${slug}`)}`} target="_blank" rel="noopener" id="share-linkedin" style="display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;padding:9px 0;border-bottom:1px solid var(--rule);transition:.15s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">LinkedIn<span>↗</span></a>
         <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(`https://collinwilkins.com/articles/${slug}`)}&text=${encodeURIComponent(frontmatter.title)}`} target="_blank" rel="noopener" id="share-x" style="display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-decoration:none;padding:9px 0;border-bottom:1px solid var(--rule);transition:.15s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">X / Twitter<span>↗</span></a>
-        <button id="copy-link" style="display:flex;justify-content:space-between;align-items:center;width:100%;font-family:var(--mono);font-size:12px;color:var(--ink-soft);background:none;border:none;border-bottom:1px solid var(--rule);padding:9px 0;cursor:pointer;transition:.15s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">Copy link<span>⧉</span></button>
+        <button id="copy-link" aria-live="polite" style="display:flex;justify-content:space-between;align-items:center;width:100%;font-family:var(--mono);font-size:12px;color:var(--ink-soft);background:none;border:none;border-bottom:1px solid var(--rule);padding:9px 0;cursor:pointer;transition:.15s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink-soft)'">Copy link<span>⧉</span></button>
       </aside>
     </div>
   </div>
@@ -224,7 +224,7 @@ const articleSchema = { '@context': 'https://schema.org', '@graph': graphItems }
     {frontmatter.tags && frontmatter.tags.length > 0 && (
       <div class="tags" style="margin-top:clamp(36px,5vw,52px);padding-top:clamp(36px,5vw,52px);border-top:1px solid var(--rule);">
         {frontmatter.tags.map((tag: string) => (
-          <a href={`/articles?cat=${encodeURIComponent(getCategoryForArticle([tag]))}`}>{tag}</a>
+          <span>{tag}</span>
         ))}
       </div>
     )}
@@ -238,9 +238,10 @@ const articleSchema = { '@context': 'https://schema.org', '@graph': graphItems }
         <div class="a-name">Collin Wilkins</div>
         <div class="a-role">Lead Engineer · AI & Automation</div>
         <div class="a-bio">Lead Software Engineer at Morningstar with 12 years across Ford and enterprise software. I write about what actually works when engineering teams adopt AI — and what breaks when they don't set up the context layer first.</div>
+        <p class="cta-context">Evaluating a low-risk AI delivery path for one engineering team and one real backlog item?</p>
         <div class="cta-row">
-          <BookCTA location={`article-${slug}`} />
-          <a href="/services" class="btn btn-ghost">View services</a>
+          <BookCTA location={`article-${slug}`} label="See if the engineering pilot fits" />
+          <a href="/services" class="btn btn-ghost">Compare service paths</a>
         </div>
       </div>
     </div>
@@ -250,8 +251,8 @@ const articleSchema = { '@context': 'https://schema.org', '@graph': graphItems }
   <div class="news" style="margin-top:clamp(48px,7vw,80px);">
     <h3>{NEWSLETTER.name}.</h3>
     <p>{NEWSLETTER.promise}</p>
-    <form action="https://buttondown.com/api/emails/embed-subscribe/collinwilkins" method="post" target="popupwindow">
-      <input type="email" name="email" placeholder="you@company.com" aria-label="Email address" />
+    <form action={NEWSLETTER.subscribeAction} method="post" target="popupwindow" data-newsletter-event={ANALYTICS_EVENTS.newsletterSubscribe} data-location={`article-${slug}`}>
+      <input type="email" name="email" placeholder="you@company.com" aria-label="Email address" required />
       <button class="btn btn-solid" type="submit">Subscribe</button>
     </form>
     <div class="fine">No spam. Unsubscribe anytime.</div>
@@ -344,7 +345,7 @@ const articleSchema = { '@context': 'https://schema.org', '@graph': graphItems }
 .read-grid {
   display: grid;
   grid-template-columns: 1fr;
-  max-width: calc(200px + var(--measure) + 168px + 92px);
+  max-width: var(--measure);
   margin: 0 auto;
 }
 @media (min-width: 1080px) {
@@ -353,12 +354,15 @@ const articleSchema = { '@context': 'https://schema.org', '@graph': graphItems }
     gap: 46px;
     align-items: start;
   }
+  .read-grid {
+    max-width: calc(200px + var(--measure) + 168px + 92px);
+  }
 }
 
 /* ── TOC ── */
 .toc { display: none; }
 @media (min-width: 1080px) {
-  .toc { display: block; position: sticky; top: 80px; }
+  .toc { display: block; position: sticky; top: 80px; max-height: calc(100vh - 120px); overflow-y: auto; overscroll-behavior: contain; }
 }
 :global(#toc-list) { list-style: none; display: flex; flex-direction: column; gap: 1px; }
 :global(#toc-list a) {
@@ -377,9 +381,18 @@ const articleSchema = { '@context': 'https://schema.org', '@graph': graphItems }
 :global(#toc-list a.active) { color: var(--accent-text); border-left-color: var(--accent); font-weight: 500; }
 
 /* ── Share rail ── */
-.share { display: none; }
+.share {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 16px;
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+}
+.share > :global(a),
+.share > :global(button) { min-height: 44px; flex: 1 1 140px; }
 @media (min-width: 1080px) {
-  .share { display: block; position: sticky; top: 80px; }
+  .share { display: block; position: sticky; top: 80px; margin-top: 0; padding-top: 0; border-top: 0; }
 }
 
 /* ── Article body prose ── */
@@ -456,8 +469,10 @@ const articleSchema = { '@context': 'https://schema.org', '@graph': graphItems }
   background: var(--accent);
   transform: rotate(45deg);
 }
-.body :global(ol) { margin: 0 0 1.35em; padding-left: 1.4em; }
-.body :global(ol li) { margin: 0 0 .6em; }
+.body :global(ol) { margin: 0 0 1.35em; padding-left: 1.6em; list-style: decimal; }
+.body :global(ol ol) { list-style: lower-alpha; margin-top: .6em; }
+.body :global(ol li) { margin: 0 0 .6em; padding-left: .2em; }
+.body :global(ol li::marker) { color: var(--accent-text); font-family: var(--mono); font-size: .8em; }
 .body :global(table) { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.5; margin: 1.9em 0; }
 .body :global(th) {
   font-family: var(--mono);
@@ -520,6 +535,22 @@ const articleSchema = { '@context': 'https://schema.org', '@graph': graphItems }
   max-width: 52ch;
   margin-bottom: 14px;
   font-family: var(--serif);
+}
+.cta-context {
+  max-width: 54ch;
+  margin: 0 0 14px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.tags span {
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 6px 13px;
+  color: var(--ink-soft);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
 }
 .cta-row {
   display: flex;
@@ -584,7 +615,7 @@ const articleSchema = { '@context': 'https://schema.org', '@graph': graphItems }
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1px;
   border: 1px solid var(--rule);
-  border-radius: 8px;
+  border-radius: 0;
   overflow: hidden;
   background: var(--rule);
 }
@@ -628,14 +659,19 @@ const articleSchema = { '@context': 'https://schema.org', '@graph': graphItems }
 </style>
 
 <script define:vars={{ slug, frontmatter }}>
-  // Reading progress
+  // Reading progress tracks the article argument, not newsletter and footer chrome
   const prog = document.getElementById('progress');
-  if (prog) {
-    addEventListener('scroll', () => {
-      const h = document.documentElement;
-      const scrollable = h.scrollHeight - h.clientHeight;
-      prog.style.width = (scrollable > 0 ? h.scrollTop / scrollable * 100 : 0) + '%';
-    }, { passive: true });
+  const articleBody = document.getElementById('article-body');
+  if (prog && articleBody) {
+    const updateProgress = () => {
+      const start = articleBody.offsetTop;
+      const end = start + articleBody.offsetHeight - innerHeight;
+      const progress = end > start ? (scrollY - start) / (end - start) : 0;
+      prog.style.width = Math.max(0, Math.min(1, progress)) * 100 + '%';
+    };
+    addEventListener('scroll', updateProgress, { passive: true });
+    addEventListener('resize', updateProgress, { passive: true });
+    updateProgress();
   }
 
   // Build TOC from H2s in the article body

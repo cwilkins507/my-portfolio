@@ -59,6 +59,7 @@ const ContactModal = ({ isOpen, onClose, initialService, email }) => {
       {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-200"
+        onClick={onClose}
         aria-hidden="true"
       />
 

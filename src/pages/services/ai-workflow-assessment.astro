@@ -3,27 +3,54 @@ import Layout from '../../layouts/Layout.astro';
 import { SMB_ASSESSMENT, SMB_QUIZ, ANALYTICS_EVENTS } from '../../data/site.js';
 const schema={'@context':'https://schema.org','@type':['Service','Offer'],name:SMB_ASSESSMENT.name,description:SMB_ASSESSMENT.description,price:SMB_ASSESSMENT.priceUsd,priceCurrency:'USD',url:SMB_ASSESSMENT.slug};
 ---
-<Layout title={`${SMB_ASSESSMENT.name} | Collin Wilkins`} description={SMB_ASSESSMENT.description} schema={schema}>
-<article class="wrap assessment"><header><p class="eyebrow">For small-business owners and operators</p><h1>Choose the first recurring workflow worth improving.</h1><p class="lede">{SMB_ASSESSMENT.description}</p><p class="contract"><strong>$99</strong> · {SMB_ASSESSMENT.durationMinutes} minutes · {SMB_ASSESSMENT.deliverable} {SMB_ASSESSMENT.deliveryWindow}</p><a class="btn btn-primary" href={SMB_ASSESSMENT.bookingHref} data-analytics-event={ANALYTICS_EVENTS.smbAssessmentOpen} data-analytics-location="smb-assessment-hero">{SMB_ASSESSMENT.bookingLabel}</a></header>
-<section><h2>What you leave with</h2><ul><li>Up to three ranked workflow opportunities</li><li>One recommended first system</li><li>A 14-day action plan</li><li>A practical choice: self-serve, work together, or request a proposal</li></ul></section>
-<section><h2>Who it is for</h2><p>{SMB_ASSESSMENT.audience}. Bring one recurring workflow that consumes time, creates handoff errors, or makes customer follow-up inconsistent. This assessment is not offered for financial-services work.</p></section>
-<section>
-  <h2>Not ready to book?</h2>
-  <p>Use the free five-question quiz to name the recurring work and send a concise workflow snapshot without booking or paying. If you would rather talk it through, use the separate free introduction.</p>
-  <div class="choices">
-    <a href={SMB_QUIZ.slug} data-analytics-event={ANALYTICS_EVENTS.smbQuizStart} data-analytics-location="smb-assessment-quiz">{SMB_QUIZ.ctaLabel} →</a>
-    <a href={SMB_ASSESSMENT.introHref} data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen} data-analytics-location="smb-assessment-intro">{SMB_ASSESSMENT.introLabel} →</a>
-  </div>
-</section></article>
+<Layout title={`${SMB_ASSESSMENT.name} | Collin Wilkins`} description={SMB_ASSESSMENT.description} schema={schema} hideFooterNewsletter={true}>
+<article class="wrap assessment">
+  <header>
+    <p class="eyebrow">{SMB_ASSESSMENT.name}</p>
+    <h1>Choose the first recurring workflow worth improving.</h1>
+    <p class="lede">{SMB_ASSESSMENT.description}</p>
+    <p class="contract"><strong>$99</strong> · {SMB_ASSESSMENT.durationMinutes} minutes · {SMB_ASSESSMENT.deliverable} {SMB_ASSESSMENT.deliveryWindow}</p>
+    <p class="eligibility">For {SMB_ASSESSMENT.audience}. This assessment is not offered for financial-services work.</p>
+    <a class="btn btn-primary primary-action" href={SMB_ASSESSMENT.bookingHref} data-analytics-event={ANALYTICS_EVENTS.smbAssessmentOpen} data-analytics-location="smb-assessment-hero">Book the $99 assessment on Cal.com</a>
+    <p class="handoff-note">Scheduling and payment continue on Cal.com.</p>
+  </header>
+  <section><h2>What you leave with</h2><ul><li>Up to three ranked workflow opportunities</li><li>One recommended first system</li><li>A 14-day action plan</li><li>A practical choice: implement, defer, or stop</li></ul></section>
+  <section aria-labelledby="session-title">
+    <h2 id="session-title">How the session works</h2>
+    <ol class="session-ledger">
+      <li><strong>Before</strong><span>Bring one recurring workflow that consumes time, creates handoff errors, or makes customer follow-up inconsistent.</span></li>
+      <li><strong>During</strong><span>Map the current process, rank up to three opportunities, and identify whether AI or conventional automation belongs in the first system.</span></li>
+      <li><strong>After</strong><span>Receive the Workflow Opportunity Map within 48 hours. A defer or stop recommendation is a valid outcome.</span></li>
+    </ol>
+  </section>
+  <section><h2>Who it is for</h2><p>{SMB_ASSESSMENT.audience}. The assessment is designed for one concrete workflow—not a general AI strategy discussion. Financial-services work remains excluded.</p></section>
+  <section>
+    <h2>Not ready to book?</h2>
+    <p>Use the free five-question quiz to name the recurring work and send a concise workflow snapshot without booking or paying. If you would rather talk it through, use the separate free introduction.</p>
+    <div class="choices">
+      <a href={SMB_QUIZ.slug} data-analytics-event={ANALYTICS_EVENTS.smbQuizStart} data-analytics-location="smb-assessment-quiz">{SMB_QUIZ.ctaLabel} →</a>
+      <a href={SMB_ASSESSMENT.introHref} data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen} data-analytics-location="smb-assessment-intro">{SMB_ASSESSMENT.introLabel} →</a>
+    </div>
+  </section>
+</article>
 </Layout>
 <style>
-  .assessment{max-width:850px;padding-top:clamp(70px,10vw,130px);padding-bottom:90px}
-  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-text)}
+  .assessment{max-width:calc(38rem + 80px);padding-top:clamp(70px,10vw,130px);padding-bottom:90px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-text)}
   h1{font-size:clamp(42px,7vw,76px);line-height:.98;margin:18px 0}
-  .lede{font-size:clamp(20px,2.4vw,28px);color:var(--ink-soft)}
-  .contract{font-family:var(--mono);margin:28px 0}
+  .lede{font-size:clamp(20px,2.4vw,28px);color:var(--ink-soft);max-width:38rem}
+  .contract{font-family:var(--mono);margin:28px 0 14px}
+  .eligibility{max-width:38rem;color:var(--ink-soft);line-height:1.5}
+  .primary-action{display:inline-flex;min-height:44px;align-items:center;margin-top:18px}
+  .handoff-note{margin-top:10px;color:var(--ink-faint);font-family:var(--mono);font-size:11px}
   section{padding:48px 0;border-top:1px solid var(--rule)}
-  h2{font-size:clamp(30px,4vw,44px)}
+  h2{font-size:clamp(30px,4vw,44px);line-height:1.05}
+  section>p,section>ul,section>ol{max-width:38rem}
   li{margin:10px 0}
-  .choices{display:flex;flex-wrap:wrap;gap:14px 28px;margin-top:20px}
-</style>
+  .session-ledger{margin:24px 0 0;padding:0;list-style:none;border-top:1px solid var(--rule)}
+  .session-ledger li{display:grid;grid-template-columns:90px 1fr;gap:20px;margin:0;padding:18px 0;border-bottom:1px solid var(--rule)}
+  .session-ledger strong{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent-text)}
+  .session-ledger span{color:var(--ink-soft);line-height:1.5}
+  .choices{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:20px}
+  .choices a{display:inline-flex;min-height:44px;align-items:center}
+  @media(max-width:520px){.session-ledger li{grid-template-columns:1fr;gap:8px}}

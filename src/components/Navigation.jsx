@@ -6,16 +6,22 @@ import { trackEvent } from '../utils/analytics.js';
 
 const NAV_LINKS = [
   { href: '/articles', label: 'Articles' },
+  { href: '/resources', label: 'Resources' },
   { href: '/services', label: 'Services' },
   { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 const Navigation = ({ portfolioData }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [currentPath, setCurrentPath] = useState('');
   const prefersReducedMotion = useReducedMotion();
   const hamburgerRef = useRef(null);
   const menuRef = useRef(null);
 
+  useEffect(() => {
+    setCurrentPath(window.location.pathname);
+  }, []);
   useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = 'hidden';
@@ -87,6 +93,9 @@ const Navigation = ({ portfolioData }) => {
             style={{
               fontSize: '19px',
               fontWeight: 600,
+              display: 'inline-flex',
+              minHeight: '44px',
+              alignItems: 'center',
               letterSpacing: '-.01em',
               textDecoration: 'none',
               color: 'var(--ink)',
@@ -99,30 +108,40 @@ const Navigation = ({ portfolioData }) => {
           {/* Desktop nav */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '26px' }}>
             <div className="nav-desktop-links" style={{ display: 'flex', alignItems: 'center', gap: '26px' }}>
-              {NAV_LINKS.map(({ href, label }) => (
-                <a
-                  key={href}
-                  href={href}
-                  style={{
-                    fontFamily: 'var(--mono)',
-                    fontSize: '12px',
-                    letterSpacing: '.05em',
-                    textDecoration: 'none',
-                    color: 'var(--ink-soft)',
-                    transition: 'color .15s',
-                    whiteSpace: 'nowrap',
-                  }}
-                  onMouseEnter={e => e.currentTarget.style.color = 'var(--accent)'}
-                  onMouseLeave={e => e.currentTarget.style.color = 'var(--ink-soft)'}
-                >
-                  {label}
-                </a>
-              ))}
+              {NAV_LINKS.map(({ href, label }) => {
+                const isCurrent = currentPath === href || currentPath.startsWith(`${href}/`);
+                return (
+                  <a
+                    key={href}
+                    href={href}
+                    aria-current={isCurrent ? 'page' : undefined}
+                    style={{
+                      fontFamily: 'var(--mono)',
+                      display: 'inline-flex',
+                      minHeight: '44px',
+                      minWidth: '44px',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      fontSize: '12px',
+                      letterSpacing: '.05em',
+                      textDecoration: isCurrent ? 'underline' : 'none',
+                      textUnderlineOffset: '6px',
+                      color: isCurrent ? 'var(--ink)' : 'var(--ink-soft)',
+                      transition: 'color .15s',
+                      whiteSpace: 'nowrap',
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.color = 'var(--accent)'}
+                    onMouseLeave={e => e.currentTarget.style.color = isCurrent ? 'var(--ink)' : 'var(--ink-soft)'}
+                  >
+                    {label}
+                  </a>
+                );
+              })}
               <a
                 href={INTRO_CALL.href}
                 onClick={() => trackEvent(ANALYTICS_EVENTS.bookingPageOpen, { location: 'navigation' })}
                 className="btn btn-solid"
-                style={{ padding: '8px 16px', whiteSpace: 'nowrap' }}
+                style={{ minHeight: '44px', padding: '8px 16px', whiteSpace: 'nowrap' }}
               >
                 {INTRO_CALL.navigationLabel}
               </a>
@@ -211,28 +230,36 @@ const Navigation = ({ portfolioData }) => {
             >
               ✕
             </button>
-            {NAV_LINKS.map(({ href, label }) => (
-              <a
-                key={href}
-                href={href}
-                onClick={close}
-                style={{
-                  fontSize: '28px',
-                  fontWeight: 500,
-                  letterSpacing: '-.01em',
-                  textDecoration: 'none',
-                  color: 'var(--ink)',
-                  fontFamily: 'var(--serif)',
-                }}
-              >
-                {label}
-              </a>
-            ))}
+            {NAV_LINKS.map(({ href, label }) => {
+              const isCurrent = currentPath === href || currentPath.startsWith(`${href}/`);
+              return (
+                <a
+                  key={href}
+                  href={href}
+                  aria-current={isCurrent ? 'page' : undefined}
+                  onClick={close}
+                  style={{
+                    fontSize: '28px',
+                    fontWeight: 500,
+                    letterSpacing: '-.01em',
+                    textDecoration: isCurrent ? 'underline' : 'none',
+                    display: 'flex',
+                    minHeight: '44px',
+                    alignItems: 'center',
+                    textUnderlineOffset: '8px',
+                    color: 'var(--ink)',
+                    fontFamily: 'var(--serif)',
+                  }}
+                >
+                  {label}
+                </a>
+              );
+            })}
             <a
               href={INTRO_CALL.href}
               onClick={() => { trackEvent(ANALYTICS_EVENTS.bookingPageOpen, { location: 'navigation-mobile' }); close(); }}
               className="btn btn-solid"
-              style={{ marginTop: '8px' }}
+              style={{ minHeight: '44px', marginTop: '8px' }}
             >
               {INTRO_CALL.navigationLabel}
             </a>
@@ -241,7 +268,7 @@ const Navigation = ({ portfolioData }) => {
       </AnimatePresence>
 
       <style>{`
-        @media (max-width: 680px) {
+        @media (max-width: 980px) {
           .nav-desktop-links { display: none !important; }
           .nav-hamburger { display: block !important; }
         }
