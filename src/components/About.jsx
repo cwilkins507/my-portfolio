@@ -45,8 +45,6 @@ const standards = [
 ];
 
 const personalNotes = [
-  'I taught myself engineering from the business side inward. Java made me slow down. Python made me dangerous enough to automate things. React made me respect state more than I wanted to.',
-  'Recursion was the first CS concept that made my brain need a new gear. It clicked when I stopped treating it like syntax and started seeing trees, sorts, and repeated structures.',
   'I have lived in Dallas, Atlanta, Denver, Boston, and Detroit. Moving that much gives you a useful read on incentives, communication styles, and how quickly headquarters assumptions get weird in the field.',
   'Outside work: gym 3-5 times a week for years, nutrition tracking, country music, and 2000s rock. Creed and Nickelback are OK by me. I said what I said.',
 ];
@@ -71,42 +69,41 @@ const About = () => {
             <p className="mt-7 max-w-3xl text-lg leading-relaxed text-[var(--color-text-secondary)] md:text-xl">
               I help companies turn AI and automation experiments into systems their teams can use and maintain. My path through Ford finance, sales, operations, connected vehicles, and software engineering means I look at both how to build the system and whether it solves a real business problem.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <a
-                href={INTRO_CALL.href}
-                data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen}
-                data-analytics-location="about-booking"
-                className="inline-flex min-h-11 items-center justify-center rounded-lg bg-[var(--color-accent)] px-5 text-sm font-bold text-white transition-colors hover:bg-[var(--color-accent-hover)]"
-              >
-                {INTRO_CALL.bookingLabel}
-                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-              </a>
-              <a
-                href="/services/ai-delivery-kit/capability-brief"
-                className="inline-flex min-h-11 items-center justify-center rounded-lg border border-[var(--color-border-hover)] bg-[var(--color-surface)] px-5 text-sm font-bold text-[var(--color-text-primary)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
-              >
-                View the AI Delivery capability brief
-                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-              </a>
-              <a
-                href="/Collin-Wilkins-Resume.pdf"
-                download="collin-wilkins-resume.pdf"
-                className="inline-flex min-h-11 items-center justify-center rounded-lg border border-[var(--color-border-hover)] bg-[var(--color-surface)] px-5 text-sm font-bold text-[var(--color-text-primary)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
-              >
-                Download my resume
-              </a>
+            <div className="mt-8 grid max-w-3xl gap-4 sm:grid-cols-2">
+              <div>
+                <p className="mb-2 font-mono text-[11px] uppercase tracking-wide text-[var(--color-text-muted)]">Owners, operators, or unsure where to start</p>
+                <a
+                  href={INTRO_CALL.href}
+                  data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen}
+                  data-analytics-location="about-booking"
+                  className="inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-[var(--color-accent)] px-5 text-sm font-bold text-white transition-colors hover:bg-[var(--color-accent-hover)]"
+                >
+                  {INTRO_CALL.bookingLabel}
+                  <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                </a>
+              </div>
+              <div>
+                <p className="mb-2 font-mono text-[11px] uppercase tracking-wide text-[var(--color-text-muted)]">Engineering leaders with a ready repository</p>
+                <a
+                  href="/services/ai-delivery-kit/capability-brief"
+                  className="inline-flex min-h-11 w-full items-center justify-center rounded-lg border border-[var(--color-border-hover)] bg-[var(--color-surface)] px-5 text-center text-sm font-bold text-[var(--color-text-primary)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+                >
+                  Review the AI Delivery Pilot brief
+                  <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
+                </a>
+              </div>
             </div>
           </div>
 
-          <aside className="col-start-2 pt-2 text-[var(--color-text-secondary)] lg:col-start-auto lg:border-l lg:border-[var(--color-accent-border)] lg:pl-6">
-            <picture>
+          <aside className="col-start-2 flex items-center gap-4 pt-2 text-[var(--color-text-secondary)] lg:col-start-auto lg:block lg:border-l lg:border-[var(--color-accent-border)] lg:pl-6">
+            <picture className="shrink-0">
               <source srcSet="/images/profile_photo.webp" type="image/webp" />
               <img
                 src="/images/profile_photo.png"
                 alt="Collin Wilkins"
                 width={128}
                 height={128}
-                className="mb-6 hidden h-32 w-32 rounded-full border border-[var(--color-border)] object-cover lg:block"
+                className="h-20 w-20 rounded-full border border-[var(--color-border)] object-cover sm:h-24 sm:w-24 lg:mb-6 lg:h-32 lg:w-32"
               />
             </picture>
             <p className="text-sm leading-relaxed">
@@ -138,6 +135,11 @@ const About = () => {
             <p>
               That was the point where software stopped feeling like another department and started feeling like another tool I needed to be useful.
             </p>
+            <aside className="mt-8 border-l-2 border-[var(--color-accent)] bg-[var(--color-surface)] px-5 py-4 text-sm">
+              <p className="font-mono text-[11px] uppercase tracking-wide text-[var(--color-accent)]">Employment context</p>
+              <p className="mt-2">This pricing story comes from a full-time Ford finance role, not a consulting engagement. The cost is a directional estimate from that workflow; no public client artifact is available.</p>
+              <a className="mt-3 inline-flex min-h-11 items-center font-bold text-[var(--color-accent)] underline underline-offset-4" href="/Collin-Wilkins-Resume.pdf" download="collin-wilkins-resume.pdf">Download the resume for role history →</a>
+            </aside>
           </div>
         </section>
 
@@ -185,28 +187,6 @@ const About = () => {
           </div>
         </section>
 
-        <section className="grid gap-10 border-b border-[var(--color-border)] py-14 md:grid-cols-[280px_minmax(0,1fr)] md:py-20">
-          <div>
-            <p className="font-mono text-xs uppercase text-[var(--color-accent)]">
-              Production scars
-            </p>
-            <h2 className="mt-4 font-serif text-3xl font-bold leading-tight text-[var(--color-text-primary)] md:text-4xl">
-              The database was empty, but the job said success.
-            </h2>
-          </div>
-
-          <div className="max-w-3xl space-y-5 text-base leading-relaxed text-[var(--color-text-secondary)] md:text-lg">
-            <p>
-              Early in my automation career, a workflow reported success while the target database stayed empty. It took about 24 hours to find the real issue: DevOps had failed us over to us-west-2, while part of the application still pointed at us-east-1.
-            </p>
-            <p>
-              Nobody was trying to be careless. The system just had enough hidden assumptions to lie convincingly. That one stuck.
-            </p>
-            <p>
-              Now I care a lot about boring things: logs that show the actual outcome, alerts on the result instead of the attempt, config that lives in code, and docs that tell the next person where the trap doors are. Glamorous? No. Useful? Very.
-            </p>
-          </div>
-        </section>
 
         <section className="grid gap-10 border-b border-[var(--color-border)] py-14 md:grid-cols-[280px_minmax(0,1fr)] md:py-20">
           <div>
@@ -240,6 +220,13 @@ const About = () => {
                 </div>
               </div>
             ))}
+            <a
+              href="/Collin-Wilkins-Resume.pdf"
+              download="collin-wilkins-resume.pdf"
+              className="mt-5 inline-flex min-h-11 items-center font-bold text-[var(--color-accent)] underline underline-offset-4"
+            >
+              Download the full resume →
+            </a>
           </div>
         </section>
 

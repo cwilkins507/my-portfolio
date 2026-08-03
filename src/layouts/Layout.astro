@@ -104,9 +104,10 @@ const currentYear = new Date().getFullYear();
 		<script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
 	</head>
 	<body>
+		<a class="skip-link" href="#page-content">Skip to content</a>
 		<Navigation portfolioData={portfolioData} client:load />
 
-		<main id="page-content">
+		<main id="page-content" tabindex="-1">
 			<slot />
 		</main>
 
@@ -132,6 +133,7 @@ const currentYear = new Date().getFullYear();
 								name="email"
 								placeholder="you@company.com"
 								aria-label="Email address"
+								required
 								style="border:1px solid var(--rule);border-radius:999px;padding:11px 18px;background:var(--paper);font-family:var(--mono);font-size:13px;color:var(--ink);width:min(220px,55vw);outline:none;"
 							/>
 							<button type="submit" class="btn btn-ghost">Subscribe</button>
@@ -153,6 +155,7 @@ const currentYear = new Date().getFullYear();
 					<ul style="list-style:none;">
 						<li><a class="footer-link" href={SMB_ASSESSMENT.slug} data-analytics-event={ANALYTICS_EVENTS.smbAssessmentOpen} data-analytics-location="footer-work-assessment">Workflow assessment</a></li>
 						<li><a class="footer-link" href="/services">All services</a></li>
+						<li><a class="footer-link" href="/contact">Contact form</a></li>
 					</ul>
 				</div>
 				<div>
@@ -160,6 +163,7 @@ const currentYear = new Date().getFullYear();
 					<ul style="list-style:none;">
 						<li><a class="footer-link" href="/articles">Articles</a></li>
 						<li><a class="footer-link" href="/faq">FAQ</a></li>
+						<li><a class="footer-link" href="/resources">Free resources</a></li>
 						<li><a class="footer-link" href={NEWSLETTER.archiveHref} target="_blank" rel="noopener noreferrer">{NEWSLETTER.name}</a></li>
 					</ul>
 				</div>
@@ -186,6 +190,24 @@ const currentYear = new Date().getFullYear();
 </html>
 
 <style>
+	.skip-link {
+		position: fixed;
+		top: 12px;
+		left: 12px;
+		z-index: 100;
+		transform: translateY(-160%);
+		border: 1px solid var(--ink);
+		padding: 10px 16px;
+		background: var(--paper);
+		color: var(--ink);
+		font-family: var(--mono);
+		font-size: 11px;
+		text-decoration: none;
+	}
+
+	.skip-link:focus {
+		transform: translateY(0);
+	}
 	.footer-link {
 		display: flex;
 		min-height: 44px;

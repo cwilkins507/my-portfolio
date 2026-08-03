@@ -19,68 +19,30 @@ const servicesSchema = {
 		"itemListElement": [
 			{
 				"@type": "Offer",
-				"price": "99",
+				"price": String(SMB_ASSESSMENT.priceUsd),
 				"priceCurrency": "USD",
-				"url": "https://cal.com/collinwilkins/assessment",
+				"url": SMB_ASSESSMENT.bookingHref,
 				"itemOffered": {
 					"@type": "Service",
-					"name": "AI Workflow Opportunity Assessment",
-					"description": "A 60-minute working session on one recurring workflow, followed within 48 hours by a Workflow Opportunity Map with up to three ranked opportunities, one recommended first system, and a 14-day action plan."
+					"name": SMB_ASSESSMENT.name,
+					"description": SMB_ASSESSMENT.description
 				}
 			},
 			{
 				"@type": "Offer",
-				"price": "1500",
+				"price": String(ENGINEERING_PILOT.priceUsd),
 				"priceCurrency": "USD",
-				"url": "https://collinwilkins.com/services?modal=contact&service=ai-delivery-pilot",
+				"url": `https://collinwilkins.com${ENGINEERING_PILOT.slug}`,
 				"itemOffered": {
 					"@type": "Service",
-					"name": "AI-Assisted Delivery Pilot",
-					"description": "A five-business-day, fixed-scope installation of a governed AI-assisted delivery path in one repository, proven on one approved low-risk issue. The $1,500 founding price is split into $500 after scope acceptance and $1,000 after acceptance passes."
+					"name": ENGINEERING_PILOT.name,
+					"description": ENGINEERING_PILOT.description
 				}
 			}
 		]
 	}
 };
 
-const servicesFaqSchema = {
-	"@context": "https://schema.org",
-	"@type": "FAQPage",
-	"mainEntity": [
-		{
-			"@type": "Question",
-			"name": "What's the AI Workflow Opportunity Assessment?",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "A focused 60-minute working session on one recurring workflow. Within 48 hours you receive a Workflow Opportunity Map with up to three ranked opportunities, one recommended first system, a 14-day action plan, and clear self-serve or implementation paths."
-			}
-		},
-		{
-			"@type": "Question",
-			"name": "What's included in the AI-Assisted Delivery Pilot?",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "One team, one repository, one intake system, one coding-agent adapter, and one approved low-risk issue. The customer receives repository-specific rules, protected-path controls, versioned model configuration, five smoke cases, a verified draft pull request, and a working handoff. The $1,500 founding price is $500 after scope acceptance and $1,000 only after acceptance passes."
-			}
-		},
-		{
-			"@type": "Question",
-			"name": "Do you build general-purpose AI employees?",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "No. The goal is the minimum reliable system for one business outcome, with limited integrations, explicit authority, observable execution, and a handoff the customer can operate."
-			}
-		},
-		{
-			"@type": "Question",
-			"name": "What kinds of workflows are a fit?",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "Recurring workflows that waste time, delay follow-up, create reporting burden, or cause inconsistent execution. Financial-services engagements are excluded because of a conflict with my current employer."
-			}
-		}
-	]
-};
 
 const pilotSteps = [
   {
@@ -107,7 +69,7 @@ const pilotSteps = [
 <Layout
 	title="AI Workflow Assessment & Engineering Pilot | Collin Wilkins"
 	description="Two fixed-scope AI consulting paths: a $99 workflow assessment for owners and a $1,500 AI-Assisted Delivery Pilot for engineering teams."
-	schema={[servicesSchema, servicesFaqSchema]}
+	schema={servicesSchema}
 >
   <article class="wrap services">
     <header>
@@ -129,7 +91,7 @@ const pilotSteps = [
           data-analytics-event={ANALYTICS_EVENTS.smbQuizStart}
           data-analytics-location="services-hero-smb-quiz"
         >
-          {SMB_QUIZ.ctaLabel}
+          Owners/operators: take the free workflow quiz
         </a>
       </div>
       <p class="note">Bring one workflow, delivery bottleneck, or AI-adoption problem. We will choose the right next step—or decide there is not one.</p>
@@ -139,14 +101,15 @@ const pilotSteps = [
     <section aria-labelledby="service-paths-title">
       <div class="section-heading">
         <p class="eyebrow">Four ways I help</p>
-        <h2 id="service-paths-title">Diagnose, govern, advise, or build.</h2>
+        <h2 id="service-paths-title">Choose by team and problem.</h2>
       </div>
       <div class="service-grid">
         {CONSULTING_OVERVIEW.paths.map(path => (
           <article>
+            <p class="audience-label">{path.audience}</p>
             <p class="path-label">{path.label}</p>
             <h3>{path.name}</h3>
-            <p>{path.description}</p>
+            <p class="path-description">{path.description}</p>
             <a
               href={path.href}
               data-analytics-event={path.analyticsEvent}
@@ -157,6 +120,13 @@ const pilotSteps = [
           </article>
         ))}
       </div>
+      <aside class="proof-ledger" aria-label="Inspect the work before booking">
+        <p><strong>Inspect before you book.</strong> Review the public engineering capability brief or read the article archive.</p>
+        <div>
+          <a href={ENGINEERING_PILOT.capabilityBriefHref}>Engineering capability brief →</a>
+          <a href="/articles">Public article archive →</a>
+        </div>
+      </aside>
     </section>
 
     <section aria-labelledby="backend-title">
@@ -204,7 +174,8 @@ const pilotSteps = [
         >
           {INTRO_CALL.bookingLabel}
         </a>
-        <a href={ENGINEERING_PILOT.intakeHref}>Already want the pilot? Request a scope review →</a>
+        <a href={SMB_ASSESSMENT.slug}>Owner/operator: review the $99 assessment →</a>
+        <a href={ENGINEERING_PILOT.intakeHref}>Engineering team: request a pilot scope review →</a>
       </div>
     </section>
   </article>
@@ -219,10 +190,11 @@ const pilotSteps = [
 
   .eyebrow,
   .path-label,
+  .audience-label,
   .referral-list article > p {
     color: var(--accent-text);
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: .1em;
     text-transform: uppercase;
   }
@@ -232,10 +204,12 @@ const pilotSteps = [
   }
 
   h1 {
-    max-width: 13ch;
+    max-width: 13.5ch;
     margin: 16px 0;
-    font-size: clamp(46px, 7vw, 80px);
-    line-height: .96;
+    font-size: clamp(48px, 5.4vw, 72px);
+    font-weight: 500;
+    letter-spacing: -.04em;
+    line-height: .94;
   }
 
   .lede {
@@ -257,6 +231,11 @@ const pilotSteps = [
     gap: 14px;
     align-items: center;
     margin-top: 28px;
+  }
+  .actions a {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
   }
 
   .note {
@@ -311,6 +290,14 @@ const pilotSteps = [
     border: 1px solid var(--rule);
     background: var(--paper-2);
   }
+  .audience-label {
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+
+  .path-label {
+    color: var(--ink-faint);
+  }
 
   .service-grid h3 {
     max-width: 18ch;
@@ -319,18 +306,44 @@ const pilotSteps = [
     line-height: 1.05;
   }
 
-  .service-grid article > p:nth-of-type(2) {
+  .service-grid .path-description {
     margin-top: 16px;
     color: var(--ink-soft);
     line-height: 1.55;
   }
 
   .service-grid a {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
     margin-top: auto;
     padding-top: 24px;
     font-family: var(--mono);
     font-size: 11px;
     text-underline-offset: 5px;
+  }
+  .proof-ledger {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    margin-top: 18px;
+    padding: 20px 0;
+    border-block: 1px solid var(--rule);
+    color: var(--ink-soft);
+  }
+
+  .proof-ledger div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    font-family: var(--mono);
+    font-size: 11px;
+  }
+
+  .proof-ledger a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
   }
 
   .process-grid {
@@ -456,7 +469,7 @@ const pilotSteps = [
     margin-top: 0;
   }
 
-  @media (max-width: 760px) {
+  @media (max-width: 900px) {
     .section-heading,
     .service-grid,
     .process-grid,
@@ -464,6 +477,13 @@ const pilotSteps = [
     .referral-list article,
     .close {
       grid-template-columns: 1fr;
+    }
+    .proof-ledger {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    section {
+      padding-block: 48px;
     }
 
     .section-heading .eyebrow {

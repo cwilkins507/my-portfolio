@@ -16,7 +16,7 @@ try {
       anchor.href = new URL(anchor.getAttribute('href'), siteUrl).href;
     }
   }, SITE_URL);
-  await page.pdf({ path: output, format: 'Letter', printBackground: true, preferCSSPageSize: true });
+  await page.pdf({ path: output, format: 'Letter', printBackground: true, preferCSSPageSize: true, tagged: true });
   console.log(`Wrote ${output}`);
 } finally {
   await browser.close();
