@@ -31,6 +31,28 @@ typography:
     fontSize: "21px"
     fontWeight: 400
     lineHeight: 1.62
+  page-statement:
+    fontFamily: "Newsreader, Georgia, serif"
+    fontSize: "clamp(2rem, 4.5vw, 3.1rem)"
+    fontWeight: 500
+    lineHeight: 1.03
+    letterSpacing: "-0.03em"
+  record-title:
+    fontFamily: "Newsreader, Georgia, serif"
+    fontSize: "19px"
+    fontWeight: 500
+    lineHeight: 1.3
+    letterSpacing: "-0.01em"
+  compact-title:
+    fontFamily: "Newsreader, Georgia, serif"
+    fontSize: "17px"
+    fontWeight: 500
+    lineHeight: 1.35
+  annotation:
+    fontFamily: "Newsreader, Georgia, serif"
+    fontSize: "15px"
+    fontWeight: 400
+    lineHeight: 1.55
   label:
     fontFamily: "IBM Plex Mono, ui-monospace, monospace"
     fontSize: "11px"
@@ -123,14 +145,20 @@ Paper, ink, and ledger gold form the complete visual argument. Gold is rare enou
 **Character:** Newsreader makes the site feel authored rather than assembled. IBM Plex Mono is reserved for labels, evidence, state, measurements, and compact controls; it is not a technical costume for ordinary prose.
 
 ### Hierarchy
-- **Display** (500, fluid 42–96px, approximately 0.98 line-height): Homepage propositions and singular page statements.
+- **Display** (500, fluid 42–96px, approximately 0.98 line-height): The homepage proposition. Reserved for the one statement that opens the site.
+- **Page Statement** (500, fluid 32–49.6px, 1.03 line-height, -0.03em): The opening claim on an interior page. Deliberately below Display so an interior page never competes with the homepage proposition, and constrained to roughly a 33ch measure so it reads as a composed shape rather than a paragraph.
 - **Headline** (500, fluid 30–54px, approximately 1.02 line-height): Section arguments and closing calls.
 - **Body** (400, 21px, 1.62 line-height): Long-form reading and explanatory prose, normally constrained to the established 38rem measure.
+- **Record Title** (500, 19px, 1.3 line-height, -0.01em): Role and item names inside a ledger or record. One line at every supported width; if it wraps, the record is too wide or the name too long.
+- **Compact Title** (500, 17px, 1.35 line-height): The same role in a denser tabulated context, where a column header already supplies the field name.
+- **Annotation** (400, 15px, 1.55 line-height): Copy that describes or qualifies a record rather than narrating — record details, evidence notes, and closing asides. Annotation never carries the reading path; Body does.
 - **Label** (500, 11px, 0.18em tracking, uppercase): Evidence types, navigation labels, state, and metadata.
 
 ### Named Rules
 
 **The Two-Voice Rule.** Newsreader explains and persuades; IBM Plex Mono identifies, measures, and controls.
+
+**The Annotation Tier Rule.** Records and asides sit one step below Body. Setting a record detail at Body size makes three annotations occupy more page than the story they annotate; setting narrative prose at Annotation size makes the argument look like a footnote.
 
 ## Layout
 
