@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Presented the $1,500 AI-Assisted Delivery Pilot for engineering leaders alongside the $99 AI Workflow Opportunity Assessment for owners, with separate scope-review and booking paths.
 - Added above-the-fold, audience-specific starting actions for engineering leaders and small-team owners, with distinct routes and analytics locations.
 - Added a noindex five-layout homepage reduction study with Editorial Gold, Rosé Pine Dawn, Rosé Pine, Rosé Pine Moon, and Everforest palettes; the studies move detailed pilot and referral content off the landing-page concept.
+- Prepared “Stop Calling AI Subscriptions Subsidized” with source-backed revisions, a new editorial cover, and four polished evidence images.
 
 ## [1.0.0] - 2026-01-20
 
