@@ -98,6 +98,21 @@ const pilotSteps = [
       <p class="background">{CONSULTING_OVERVIEW.background}</p>
     </header>
 
+    <section class="recognition" aria-labelledby="recognition-title">
+      <div class="section-heading">
+        <h2 id="recognition-title">Does one of these sound familiar?</h2>
+      </div>
+      <div class="recognition-list">
+        {CONSULTING_OVERVIEW.referralSignals.map(signal => (
+          <article>
+            <p>{signal.label}</p>
+            <h3>{signal.title}</h3>
+          </article>
+        ))}
+      </div>
+      <p class="recognition-next">Choose the path that best matches the problem.</p>
+    </section>
+
     <section aria-labelledby="service-paths-title">
       <div class="section-heading">
         <p class="eyebrow">Four ways I help</p>
@@ -143,21 +158,6 @@ const pilotSteps = [
       </ul>
     </section>
 
-    <section aria-labelledby="referral-title">
-      <div class="section-heading">
-        <p class="eyebrow">A useful referral</p>
-        <h2 id="referral-title">Listen for one of these sentences.</h2>
-      </div>
-      <div class="referral-list">
-        {CONSULTING_OVERVIEW.referralSignals.map(signal => (
-          <article>
-            <p>{signal.label}</p>
-            <h3>{signal.title}</h3>
-            <span>{signal.detail}</span>
-          </article>
-        ))}
-      </div>
-    </section>
 
     <section class="close" aria-labelledby="services-close-title">
       <div>
@@ -177,6 +177,12 @@ const pilotSteps = [
         <a href={SMB_ASSESSMENT.slug}>Owner/operator: review the $99 assessment →</a>
         <a href={ENGINEERING_PILOT.intakeHref}>Engineering team: request a pilot scope review →</a>
       </div>
+      <aside class="referral-close" aria-labelledby="referral-title">
+        <p class="eyebrow">A useful referral</p>
+        <h3 id="referral-title">Know an owner or engineering leader saying one of those things?</h3>
+        <p>Send them this page or introduce us directly. I’ll help them name the problem and decide whether there is a useful next step—without forcing a project.</p>
+        <a href="/contact">Introduce us →</a>
+      </aside>
     </section>
   </article>
 </Layout>
@@ -191,7 +197,7 @@ const pilotSteps = [
   .eyebrow,
   .path-label,
   .audience-label,
-  .referral-list article > p {
+  .recognition-list article > p {
     color: var(--accent-text);
     font-family: var(--mono);
     font-size: 11px;
@@ -309,6 +315,7 @@ const pilotSteps = [
   .service-grid .path-description {
     margin-top: 16px;
     color: var(--ink-soft);
+    font-size: 18px;
     line-height: 1.55;
   }
 
@@ -329,6 +336,7 @@ const pilotSteps = [
     margin-top: 18px;
     padding: 20px 0;
     border-block: 1px solid var(--rule);
+    font-size: 17px;
     color: var(--ink-soft);
   }
 
@@ -377,6 +385,7 @@ const pilotSteps = [
   .process-grid article > p:last-child {
     margin-top: 14px;
     color: var(--ink-soft);
+    font-size: 18px;
     line-height: 1.5;
   }
 
@@ -412,36 +421,45 @@ const pilotSteps = [
   }
 
   .example-grid strong {
-    font-size: 21px;
+    font-size: 20px;
   }
 
-  .example-grid span,
-  .referral-list span {
+  .example-grid span {
     color: var(--ink-soft);
+    font-size: 18px;
     line-height: 1.5;
   }
 
-  .referral-list {
-    border-top: 1px solid var(--rule);
+  .recognition-list {
+    border-top: 1px solid var(--ink);
   }
 
-  .referral-list article {
+  .recognition-list article {
     display: grid;
-    grid-template-columns: 140px minmax(260px, .9fr) minmax(280px, 1.1fr);
+    grid-template-columns: 140px minmax(0, 1fr);
     gap: 24px;
-    padding-block: 24px;
+    padding-block: 22px;
     border-bottom: 1px solid var(--rule);
   }
 
-  .referral-list article > p,
-  .referral-list h3,
-  .referral-list span {
+  .recognition-list article > p,
+  .recognition-list h3 {
     margin: 0;
   }
 
-  .referral-list h3 {
-    font-size: 23px;
-    line-height: 1.2;
+  .recognition-list h3 {
+    max-width: 38ch;
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .recognition-next {
+    margin-top: 22px;
+    color: var(--ink-faint);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .04em;
   }
 
   .close {
@@ -461,6 +479,7 @@ const pilotSteps = [
     max-width: 60ch;
     margin-top: 16px;
     color: var(--ink-soft);
+    font-size: 18px;
     line-height: 1.55;
   }
 
@@ -469,13 +488,57 @@ const pilotSteps = [
     margin-top: 0;
   }
 
+  .close .actions a:not(.btn) {
+    font-size: 18px;
+  }
+
+  .referral-close {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 140px minmax(0, 1fr) auto;
+    gap: 14px 28px;
+    align-items: start;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .referral-close .eyebrow,
+  .referral-close h3,
+  .referral-close p {
+    margin: 0;
+  }
+
+  .referral-close h3 {
+    max-width: 27ch;
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .referral-close > p:last-of-type {
+    max-width: 58ch;
+    color: var(--ink-soft);
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
+  .referral-close > a {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
   @media (max-width: 900px) {
     .section-heading,
     .service-grid,
     .process-grid,
     .example-grid,
-    .referral-list article,
-    .close {
+    .recognition-list article,
+    .close,
+    .referral-close {
       grid-template-columns: 1fr;
     }
     .proof-ledger {
@@ -504,7 +567,8 @@ const pilotSteps = [
       border-left: 0;
     }
 
-    .referral-list article {
+    .recognition-list article,
+    .referral-close {
       gap: 12px;
     }
   }
