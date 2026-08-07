@@ -1,0 +1,45 @@
+{
+  "title": "A bounded AI-assisted change with an inspectable delivery trace",
+  "disclosure": "Run against a private synthetic repository. No customer code, credentials, production systems, or deployment path were involved.",
+  "problem": "A placeholder JavaScript function needed deterministic title-to-slug normalization.",
+  "contract": {
+    "approved_implementation_files": 2,
+    "acceptance": [
+      "Normalize title casing and whitespace into a lowercase hyphenated slug.",
+      "Collapse repeated whitespace.",
+      "Avoid leading and trailing hyphens caused by whitespace.",
+      "Preserve an existing lowercase word.",
+      "Pass the repository test suite."
+    ]
+  },
+  "execution": {
+    "adapter": "Local Codex adapter",
+    "model": "gpt-5.6-terra",
+    "latency_seconds": 31.57,
+    "input_tokens": 50251,
+    "cached_input_tokens": 41216,
+    "output_tokens": 599,
+    "estimated_cost_usd": 0.04,
+    "changed_implementation_files": 2,
+    "out_of_scope_files": 0
+  },
+  "verification": {
+    "local_tests_passed": 19,
+    "local_tests_failed": 0,
+    "protected_path_gate": "passed",
+    "usage_schema": "passed",
+    "github_actions": "passed",
+    "draft_pull_request": "created and left for human review"
+  },
+  "negative_proof": {
+    "attempt": "Approve a protected authentication path.",
+    "result": "Rejected during contract preflight before any model execution.",
+    "commit_created": false,
+    "pull_request_created": false
+  },
+  "public_boundary": {
+    "show": ["Contract shape", "Execution timeline", "Aggregate token and cost figures", "Verification results", "Redacted issue and pull-request evidence"],
+    "withhold": ["Adapter source", "Installation scripts", "Private workflow implementation", "Raw model JSONL", "Private repository URLs", "Authentication details"]
+  },
+  "status": "Awaiting explicit human review; not merged or deployed."
+}
