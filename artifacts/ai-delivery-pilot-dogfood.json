@@ -41,5 +41,9 @@
     "show": ["Contract shape", "Execution timeline", "Aggregate token and cost figures", "Verification results", "Redacted issue and pull-request evidence"],
     "withhold": ["Adapter source", "Installation scripts", "Private workflow implementation", "Raw model JSONL", "Private repository URLs", "Authentication details"]
   },
-  "status": "Awaiting explicit human review; not merged or deployed."
+  "status": "Human-reviewed and merged after all local and GitHub verification passed. No deployment path was involved.",
+  "merge": {
+    "completed_at": "2026-08-07T12:39:06Z",
+    "source_issue_reconciled": "done"
+  }
 }
