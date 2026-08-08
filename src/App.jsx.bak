@@ -10,7 +10,7 @@ import Services from './components/Services';
 // Minimal portfolio data for Layout component (name and email)
 const portfolioData = {
   name: "Collin Wilkins",
-  email: "wilkins507@gmail.com",
+  email: "collin@collinwilkins.com",
   linkedin: "https://www.linkedin.com/in/collin-wilkins-1020215a/",
   upwork: "https://www.upwork.com/freelancers/~014ffbc17b83da9407",
   github: "https://github.com/cwilkins507"

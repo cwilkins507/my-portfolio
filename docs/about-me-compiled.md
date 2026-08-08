@@ -77,4 +77,4 @@ I am currently open to **consulting engagements** and **contract roles** focused
 
 I work best with teams that value **clear communication**, **autonomy**, and **results**. If you have a gnarly technical problem that needs a business-minded engineer, let's connect.
 
-[**Email Me**](mailto:wilkins507@gmail.com) • [**LinkedIn**](https://www.linkedin.com/in/collin-wilkins-1020215a/) • [**Upwork**](https://www.upwork.com/freelancers/~014ffbc17b83da9407)
+[**Email Me**](mailto:collin@collinwilkins.com) • [**LinkedIn**](https://www.linkedin.com/in/collin-wilkins-1020215a/) • [**Upwork**](https://www.upwork.com/freelancers/~014ffbc17b83da9407)
