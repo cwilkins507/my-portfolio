@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A browser-only demonstration of a small repository used as an AI knowledge base.">
+  <title>Harbor Repository Knowledge Test</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap');
+    :root{--paper:#fbfaf6;--paper-2:#f2efe7;--ink:#302e2a;--soft:#666159;--faint:#777168;--rule:#dfdbd0;--gold:#a97818;--gold-deep:#78520c;--white:#fff;--max:1184px}
+    *{box-sizing:border-box}
+    html{color-scheme:light;scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:Newsreader,Georgia,serif;font-size:21px;line-height:1.62}
+    button,input{font:inherit}
+    button{cursor:pointer}
+    a{color:inherit;text-underline-offset:4px}
+    :focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+    .shell{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+    header{border-bottom:1px solid var(--rule);padding:18px 0}
+    .header-row{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase}
+    .privacy{color:var(--soft);font-family:"IBM Plex Mono",monospace;font-size:11px}
+    main{padding:56px 0 80px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(260px,.55fr);gap:64px;align-items:end;padding-bottom:44px;border-bottom:1px solid var(--rule)}
+    h1{font-size:clamp(42px,7vw,96px);font-weight:500;letter-spacing:-.04em;line-height:.94;max-width:780px;margin:0;text-wrap:balance}
+    .lede{margin:0;color:var(--soft);font-size:21px;max-width:34ch}
+    .workspace{display:grid;grid-template-columns:320px minmax(0,1fr);min-height:630px;border-bottom:1px solid var(--rule)}
+    .corpus{grid-column:1;grid-row:1;padding:30px 28px 36px 0;border-right:1px solid var(--rule)}
+    .label{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+    .file-list{list-style:none;padding:0;margin:22px 0 0}
+    .file-button{width:100%;display:grid;grid-template-columns:22px 1fr;gap:10px;text-align:left;border:0;border-top:1px solid var(--rule);background:transparent;padding:13px 4px;color:var(--ink)}
+    .file-button:last-child{border-bottom:1px solid var(--rule)}
+    .file-button:hover,.file-button[aria-current="true"]{color:var(--gold-deep);background:linear-gradient(90deg,rgba(169,120,24,.08),transparent 75%)}
+    .branch{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--gold)}
+    .file-name{font-family:"IBM Plex Mono",monospace;font-size:11px;overflow-wrap:anywhere}
+    .file-preview{margin-top:30px;padding:18px;background:var(--paper-2);border:1px solid var(--rule);font-size:15px;color:var(--soft)}
+    .file-preview strong{display:block;color:var(--ink);font-weight:500;margin-bottom:8px}
+    .query-area{grid-column:2;grid-row:1;padding:30px 0 36px 38px}
+    .presets{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 24px}
+    .preset{border:1px solid var(--rule);border-radius:999px;background:transparent;color:var(--ink);padding:8px 13px;font-family:"IBM Plex Mono",monospace;font-size:11px}
+    .preset:hover,.preset[aria-pressed="true"]{border-color:var(--gold);color:var(--gold-deep);background:var(--paper-2)}
+    .query-form{display:grid;grid-template-columns:1fr auto;gap:10px}
+    .query-form input{min-width:0;border:1px solid var(--ink);border-radius:999px;background:var(--white);color:var(--ink);padding:13px 18px}
+    .query-form button{border:1px solid var(--gold);border-radius:999px;background:var(--gold);color:#15130f;padding:12px 20px;font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.12em}
+    .query-form button:hover{background:var(--gold-deep);border-color:var(--gold-deep);color:var(--white)}
+    .status{min-height:28px;margin:14px 0 0;color:var(--soft);font-family:"IBM Plex Mono",monospace;font-size:11px}
+    .result{margin-top:28px;border-top:1px solid var(--ink)}
+    .answer{padding:26px 0 28px;display:grid;grid-template-columns:132px minmax(0,1fr);gap:24px;border-bottom:1px solid var(--rule)}
+    .answer h2{margin:0;font-size:clamp(30px,3vw,54px);font-weight:500;line-height:1.05;letter-spacing:-.025em}
+    .answer p{margin:10px 0 0;max-width:64ch}
+    .answer.unsupported h2{color:var(--gold-deep)}
+    .sources{display:grid;gap:0}
+    .source{display:grid;grid-template-columns:70px 190px minmax(0,1fr);gap:20px;padding:20px 0;border-bottom:1px solid var(--rule);align-items:start}
+    .score{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--gold-deep)}
+    .source-path{font-family:"IBM Plex Mono",monospace;font-size:11px;overflow-wrap:anywhere}
+    .source blockquote{margin:0;color:var(--soft);font-size:15px}
+    .method{display:grid;grid-template-columns:1fr 1fr;gap:64px;padding:48px 0 0}
+    .method h2{font-size:clamp(30px,4.8vw,54px);font-weight:500;letter-spacing:-.025em;line-height:1.05;margin:0}
+    .method p{color:var(--soft);max-width:54ch;margin:14px 0 0}
+    .checks{margin:0;padding:0;list-style:none;border-top:1px solid var(--rule)}
+    .checks li{display:grid;grid-template-columns:34px 1fr;gap:12px;padding:13px 0;border-bottom:1px solid var(--rule)}
+    .checks span{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--gold-deep)}
+    footer{border-top:1px solid var(--rule);padding:26px 0 40px;color:var(--soft);font-size:15px}
+    @media(max-width:820px){.intro{grid-template-columns:1fr;gap:24px}.workspace{grid-template-columns:1fr}.corpus,.query-area{grid-column:1}.query-area{grid-row:1;padding-left:0}.corpus{grid-row:2;border-right:0;border-bottom:1px solid var(--rule);padding-right:0}.method{grid-template-columns:1fr;gap:32px}.source{grid-template-columns:58px 1fr}.source blockquote{grid-column:1/-1}.answer{grid-template-columns:1fr;gap:8px}}
+    @media(max-width:540px){.shell{width:min(100% - 28px,var(--max))}.privacy{display:none}main{padding-top:38px}.query-form{grid-template-columns:1fr}.query-form button{width:100%}.presets{align-items:stretch}.preset{text-align:left;width:100%;border-radius:0}.source{grid-template-columns:1fr;gap:8px}.answer{padding-top:22px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <!--
+  THESIS: A repository proves its value by narrowing a question to inspectable evidence; this refuses the dashboard-card demo.
+  OWN-WORLD: Warm paper, ink, one scarce ledger-gold index, square ruled evidence, and two editorial voices.
+  STORY: Inspect the synthetic corpus, run three query types, then see whether each answer is actually supported.
+  FIRST VIEWPORT: A large repository claim sits above a split tree-and-query workspace; the query action is visible without scrolling.
+  FORM: Working ledger extension, direct local composition, seed key KB-REPO-2026.
+  FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+  -->
+  <header>
+    <div class="shell header-row">
+      <div class="brand">Harbor / repository knowledge test</div>
+      <div class="privacy">Synthetic corpus · runs locally · no model call</div>
+    </div>
+  </header>
+  <main class="shell">
+    <section class="intro" aria-labelledby="page-title">
+      <h1 id="page-title">Can the repository support the answer?</h1>
+      <p class="lede">Five small files. Three query types. The useful result is not the most fluent answer. It is the one the sources can actually defend.</p>
+    </section>
+
+    <section class="workspace" aria-label="Repository knowledge-base demonstration">
+
+      <div class="query-area">
+        <div class="label">Ask the repository</div>
+        <div class="presets" aria-label="Example queries">
+          <button class="preset" type="button" data-query="How long can a failed Harbor release remain open before rollback begins?">Known answer</button>
+          <button class="preset" type="button" data-query="Explain Harbor's event flow and the first release checks.">Multi-source</button>
+          <button class="preset" type="button" data-query="What is Harbor's approved biometric data-retention policy?">Unsupported</button>
+        </div>
+        <form class="query-form" id="query-form">
+          <label class="sr-only" for="query" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">Question</label>
+          <input id="query" name="query" value="How long can a failed Harbor release remain open before rollback begins?" autocomplete="off" aria-describedby="status" aria-invalid="false">
+          <button type="submit">Search files</button>
+        </form>
+        <p class="status" id="status" role="status" aria-live="polite">Ready. Search is deterministic and browser-only.</p>
+        <div class="result" id="result" aria-live="polite"></div>
+      </div>
+      <aside class="corpus" aria-labelledby="corpus-label">
+        <div class="label" id="corpus-label">Synthetic repository / 5 files</div>
+        <ul class="file-list" id="file-list"></ul>
+        <div class="file-preview" id="file-preview" aria-live="polite"></div>
+      </aside>
+    </section>
+
+    <section class="method" aria-labelledby="method-title">
+      <div>
+        <h2 id="method-title">Retrieval before generation.</h2>
+        <p>This example uses a fixed evaluation set rather than pretending to be an AI model. It exposes the more important contract: find the relevant files, preserve their paths, and decline a claim the corpus does not support.</p>
+      </div>
+      <ol class="checks">
+        <li><span>01</span><div>Known fact from one authoritative file</div></li>
+        <li><span>02</span><div>Answer assembled from two source paths</div></li>
+        <li><span>03</span><div>Unsupported request refused without filler</div></li>
+      </ol>
+    </section>
+  </main>
+  <footer>
+    <div class="shell">Companion asset for <a href="/articles/github-repository-ai-knowledge-base">Your GitHub Repository Is Already an AI Knowledge Base</a>.</div>
+  </footer>
+
+  <script>
+    const files = [
+      {path:'README.md',title:'Harbor knowledge map',body:'Current guidance lives in docs/. Historical rationale lives in decisions/. Every factual answer should cite a repository-relative path.'},
+      {path:'AGENTS.md',title:'Repository knowledge rules',body:'Search only the folders relevant to the question. Cite factual answers. If no source supports a claim, say it is not documented.'},
+      {path:'docs/architecture.md',title:'Event flow',body:'Harbor receives signed webhook events, validates the signature, writes an immutable envelope, then dispatches normalized events to the workflow queue.'},
+      {path:'docs/release-runbook.md',title:'Release checks and rollback',body:'Before release, verify queue depth, webhook signature tests, and the migration dry run. A failed release can remain open for 15 minutes before rollback begins.'},
+      {path:'decisions/0001-event-storage.md',title:'Event storage decision',body:'The team chose immutable object storage for raw event envelopes and Postgres for normalized workflow state. This preserves replay evidence without forcing every query through object storage.'}
+    ];
+
+    const cases = [
+      {
+        match: q => /how long|rollback|failed.*release/i.test(q),
+        kind:'Supported by one file',
+        answer:'Rollback begins after a failed release has remained open for 15 minutes.',
+        sources:[{path:'docs/release-runbook.md',score:'96%',quote:'A failed release can remain open for 15 minutes before rollback begins.'}]
+      },
+      {
+        match: q => /(event flow|architecture).*(release|checks)|(release|checks).*(event flow|architecture)/i.test(q),
+        kind:'Supported by two files',
+        answer:'Harbor validates signed webhook events, stores an immutable envelope, and dispatches normalized events to a workflow queue. Before release, the team checks queue depth, signature tests, and the migration dry run.',
+        sources:[
+          {path:'docs/architecture.md',score:'92%',quote:'Harbor receives signed webhook events, validates the signature, writes an immutable envelope, then dispatches normalized events to the workflow queue.'},
+          {path:'docs/release-runbook.md',score:'88%',quote:'Before release, verify queue depth, webhook signature tests, and the migration dry run.'}
+        ]
+      },
+      {
+        match: q => /biometric|retention|quantum|approved.*policy/i.test(q),
+        kind:'Not supported',
+        answer:'The repository does not document an approved policy for that request. No answer should be inferred from the available files.',
+        sources:[]
+      }
+    ];
+
+    const fileList = document.querySelector('#file-list');
+    const preview = document.querySelector('#file-preview');
+    const result = document.querySelector('#result');
+    const status = document.querySelector('#status');
+    const input = document.querySelector('#query');
+
+    function showFile(index){
+      const file=files[index];
+      document.querySelectorAll('.file-button').forEach((button,i)=>button.setAttribute('aria-current',i===index?'true':'false'));
+      preview.innerHTML=`<strong>${file.title}</strong>${file.body}`;
+    }
+
+    files.forEach((file,index)=>{
+      const li=document.createElement('li');
+      const button=document.createElement('button');
+      button.type='button';
+      button.className='file-button';
+      button.innerHTML=`<span class="branch">${index===files.length-1?'└':'├'}</span><span class="file-name">${file.path}</span>`;
+      button.addEventListener('click',()=>showFile(index));
+      li.appendChild(button);
+      fileList.appendChild(li);
+    });
+
+    function renderCase(testCase){
+      const unsupported=testCase.sources.length===0;
+      const sources=testCase.sources.map(source=>`<article class="source"><div class="score">${source.score} match</div><div class="source-path">${source.path}</div><blockquote>${source.quote}</blockquote></article>`).join('');
+      result.innerHTML=`<div class="answer${unsupported?' unsupported':''}"><div class="label">${testCase.kind}</div><div><h2>${unsupported?'Evidence boundary':'Grounded answer'}</h2><p>${testCase.answer}</p></div></div><div class="sources">${sources}</div>`;
+      status.textContent=unsupported?'0 supporting sources. The corpus boundary is the result.':`${testCase.sources.length} supporting source${testCase.sources.length>1?'s':''} retrieved.`;
+    }
+
+    document.querySelector('#query-form').addEventListener('submit',event=>{
+      event.preventDefault();
+      const query=input.value.trim();
+      if(!query){status.textContent='Enter a question to search the repository.';input.setAttribute('aria-invalid','true');input.focus();return;}
+      input.setAttribute('aria-invalid','false');
+      const testCase=cases.find(item=>item.match(query))||{kind:'No evaluation case',answer:'This small demonstration has no verified answer for that question. Inspect the five source files rather than treating a generated guess as repository knowledge.',sources:[]};
+      document.querySelectorAll('.preset').forEach(button=>button.setAttribute('aria-pressed',button.dataset.query===query?'true':'false'));
+      renderCase(testCase);
+    });
+
+    document.querySelectorAll('.preset').forEach(button=>button.addEventListener('click',()=>{
+      input.value=button.dataset.query;
+      document.querySelector('#query-form').requestSubmit();
+    }));
+
+    showFile(0);
+    document.querySelector('.preset').setAttribute('aria-pressed','true');
+    renderCase(cases[0]);
+  </script>
+</body>
+</html>

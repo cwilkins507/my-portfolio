@@ -1,0 +1,61 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="GitHub repository files flowing into a focused agent context with cited source paths.">
+  <style>
+    :root { --accent: #d6b164; --muted: rgba(255,255,255,0.28); }
+    svg { font-family: "DM Sans", Arial, sans-serif; }
+  </style>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="48%" r="58%">
+      <stop offset="0%" stop-color="#d6b164" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#d6b164" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#08111f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="rgba(255,255,255,0.16)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0.03)"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#08111f"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <path d="M0 540 C190 475 330 605 520 535 C720 460 850 520 1200 410 L1200 630 L0 630Z" fill="rgba(255,255,255,0.035)"/>
+  <path d="M110 110 H1090 V520" fill="none" stroke="url(#edge)" stroke-width="2"/>
+  <text x="110" y="86" fill="#d6b164" font-size="24" font-weight="700" letter-spacing="0">Knowledge Bases for AI · Part 1</text>
+  <text x="110" y="580" fill="rgba(255,255,255,0.82)" font-size="34" font-weight="700" letter-spacing="0">GitHub as a Knowledge Base</text>
+  <g transform="translate(135 148)">
+        <circle cx="126" cy="164" r="112" fill="rgba(214,177,100,0.1)" stroke="#d6b164" stroke-width="3"/>
+        <g transform="translate(56 94) scale(5.8)" fill="none" stroke="#f8fafc" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+          <path d="M9 18c-4.51 2-5-2-7-2"/>
+        </g>
+        <text x="61" y="316" fill="#d6b164" font-size="16" font-weight="700" letter-spacing="0">VERSIONED SOURCE</text>
+
+        <line x1="248" y1="164" x2="338" y2="164" stroke="#d6b164" stroke-width="4" stroke-linecap="round" opacity="0.78"/><polyline points="324.49075319196777,172.57322871966394 338,164 324.49075319196777,155.42677128033606" fill="none" stroke="#d6b164" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/>
+
+        <g transform="translate(338 18)">
+          <rect x="0" y="0" width="250" height="66" rx="14" fill="rgba(255,255,255,0.06)" stroke="#94a3b8" stroke-width="2" opacity="0.95"/>
+  <text x="20" y="34" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">README.md</text>
+  <text x="20" y="62" fill="rgba(255,255,255,0.48)" font-size="14" font-weight="600" letter-spacing="0">map + authority</text>
+          <rect x="0" y="88" width="250" height="66" rx="14" fill="rgba(214,177,100,0.1)" stroke="#d6b164" stroke-width="2" opacity="0.95"/>
+  <text x="20" y="122" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">docs/faq.md</text>
+  <text x="20" y="150" fill="rgba(255,255,255,0.48)" font-size="14" font-weight="600" letter-spacing="0">approved answers</text>
+          <rect x="0" y="176" width="250" height="66" rx="14" fill="rgba(214,177,100,0.1)" stroke="#d6b164" stroke-width="2" opacity="0.95"/>
+  <text x="20" y="210" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">schema/reports.md</text>
+  <text x="20" y="238" fill="rgba(255,255,255,0.48)" font-size="14" font-weight="600" letter-spacing="0">domain language</text>
+          <rect x="0" y="264" width="250" height="66" rx="14" fill="rgba(255,255,255,0.06)" stroke="#94a3b8" stroke-width="2" opacity="0.95"/>
+  <text x="20" y="298" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">AGENTS.md</text>
+  <text x="20" y="326" fill="rgba(255,255,255,0.48)" font-size="14" font-weight="600" letter-spacing="0">retrieval rules</text>
+        </g>
+
+        <line x1="588" y1="164" x2="688" y2="164" stroke="#d6b164" stroke-width="4" stroke-linecap="round" opacity="0.78"/><polyline points="674.4907531919678,172.57322871966394 688,164 674.4907531919678,155.42677128033606" fill="none" stroke="#d6b164" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/>
+
+        <g transform="translate(688 46)">
+          <rect x="0" y="0" width="260" height="236" rx="18" fill="rgba(214,177,100,0.1)" stroke="#d6b164" stroke-width="3"/>
+          <text x="28" y="48" fill="#f8fafc" font-size="25" font-weight="700" letter-spacing="0">Agent Context</text>
+          <path d="M28 72 H232" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+          <text x="28" y="112" fill="rgba(255,255,255,0.66)" font-size="17" font-weight="600" letter-spacing="0">Which table tracks</text>
+          <text x="28" y="136" fill="rgba(255,255,255,0.66)" font-size="17" font-weight="600" letter-spacing="0">failed deliveries?</text>
+          <rect x="28" y="164" width="204" height="42" rx="8" fill="rgba(214,177,100,0.13)" stroke="rgba(214,177,100,0.6)" stroke-width="2"/>
+          <text x="44" y="191" fill="#fde68a" font-size="14" font-weight="700" letter-spacing="0">report_generation_log</text>
+        </g>
+        <text x="719" y="316" fill="#d6b164" font-size="16" font-weight="700" letter-spacing="0">ANSWER + SOURCE</text>
+      </g>
+</svg>

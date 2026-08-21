@@ -381,6 +381,14 @@ const covers = [
     accent: '#38bdf8',
     motif: 'terminal',
   },
+  {
+    slug: 'github-repository-ai-knowledge-base',
+    pillar: 'Knowledge Bases for AI · Part 1',
+    title: 'GitHub as a Knowledge Base',
+    alt: 'GitHub repository files flowing into a focused agent context with cited source paths.',
+    accent: '#d6b164',
+    motif: 'knowledge-repository',
+  },
 ];
 
 function node(x, y, r, color = 'var(--accent)') {
@@ -462,6 +470,37 @@ function conceptArrow(x1, y1, x2, y2, color = 'var(--accent)', width = 4) {
 
 function concept(cover) {
   switch (cover.slug) {
+    case 'github-repository-ai-knowledge-base':
+      return `<g transform="translate(135 148)">
+        <circle cx="126" cy="164" r="112" fill="rgba(214,177,100,0.1)" stroke="#d6b164" stroke-width="3"/>
+        <g transform="translate(56 94) scale(5.8)" fill="none" stroke="#f8fafc" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+          <path d="M9 18c-4.51 2-5-2-7-2"/>
+        </g>
+        ${smallLabel(61, 316, 'VERSIONED SOURCE', '#d6b164')}
+
+        ${conceptArrow(248, 164, 338, 164, '#d6b164', 4)}
+
+        <g transform="translate(338 18)">
+          ${conceptBox(0, 0, 250, 66, 'README.md', 'map + authority', '#94a3b8')}
+          ${conceptBox(0, 88, 250, 66, 'docs/faq.md', 'approved answers', '#d6b164', 'rgba(214,177,100,0.1)')}
+          ${conceptBox(0, 176, 250, 66, 'schema/reports.md', 'domain language', '#d6b164', 'rgba(214,177,100,0.1)')}
+          ${conceptBox(0, 264, 250, 66, 'AGENTS.md', 'retrieval rules', '#94a3b8')}
+        </g>
+
+        ${conceptArrow(588, 164, 688, 164, '#d6b164', 4)}
+
+        <g transform="translate(688 46)">
+          <rect x="0" y="0" width="260" height="236" rx="18" fill="rgba(214,177,100,0.1)" stroke="#d6b164" stroke-width="3"/>
+          ${label(28, 48, 'Agent Context', 25, '#f8fafc')}
+          <path d="M28 72 H232" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+          ${label(28, 112, 'Which table tracks', 17, 'rgba(255,255,255,0.66)', 600)}
+          ${label(28, 136, 'failed deliveries?', 17, 'rgba(255,255,255,0.66)', 600)}
+          <rect x="28" y="164" width="204" height="42" rx="8" fill="rgba(214,177,100,0.13)" stroke="rgba(214,177,100,0.6)" stroke-width="2"/>
+          ${label(44, 191, 'report_generation_log', 14, '#fde68a', 700)}
+        </g>
+        ${smallLabel(719, 316, 'ANSWER + SOURCE', '#d6b164')}
+      </g>`;
     case 'building-production-ready-ai-agent-skills':
       return `<g transform="translate(165 164)">
         <rect x="0" y="0" width="350" height="340" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2"/>
