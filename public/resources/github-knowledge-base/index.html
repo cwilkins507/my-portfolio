@@ -21,9 +21,8 @@
     .brand{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase}
     .privacy{color:var(--soft);font-family:"IBM Plex Mono",monospace;font-size:11px}
     main{padding:56px 0 80px}
-    .intro{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(260px,.55fr);gap:64px;align-items:end;padding-bottom:44px;border-bottom:1px solid var(--rule)}
+    .intro{padding-bottom:44px;border-bottom:1px solid var(--rule)}
     h1{font-size:clamp(42px,7vw,96px);font-weight:500;letter-spacing:-.04em;line-height:.94;max-width:780px;margin:0;text-wrap:balance}
-    .lede{margin:0;color:var(--soft);font-size:21px;max-width:34ch}
     .workspace{display:grid;grid-template-columns:320px minmax(0,1fr);min-height:630px;border-bottom:1px solid var(--rule)}
     .corpus{grid-column:1;grid-row:1;padding:30px 28px 36px 0;border-right:1px solid var(--rule)}
     .label{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
@@ -84,7 +83,6 @@
   <main class="shell">
     <section class="intro" aria-labelledby="page-title">
       <h1 id="page-title">Can the repository support the answer?</h1>
-      <p class="lede">Five small files. Three query types. The useful result is not the most fluent answer. It is the one the sources can actually defend.</p>
     </section>
 
     <section class="workspace" aria-label="Repository knowledge-base demonstration">
@@ -114,7 +112,7 @@
     <section class="method" aria-labelledby="method-title">
       <div>
         <h2 id="method-title">Retrieval before generation.</h2>
-        <p>This example uses a fixed evaluation set rather than pretending to be an AI model. It exposes the more important contract: find the relevant files, preserve their paths, and decline a claim the corpus does not support.</p>
+        <p>This example uses a fixed evaluation set. There is no AI model connection. It is meant to illustrate the three tests a knowledge base should pass.</p>
       </div>
       <ol class="checks">
         <li><span>01</span><div>Known fact from one authoritative file</div></li>
