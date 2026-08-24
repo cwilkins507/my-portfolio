@@ -9,6 +9,13 @@ seo_title: "Use a GitHub Repository as an AI Knowledge Base"
 meta_description: "Build a simple AI knowledge base with GitHub, Markdown, HTML artifacts, repository instructions, source-aware prompts, and three practical retrieval tests."
 target_keywords: "GitHub AI knowledge base, repository as knowledge base, AI agent context files, AGENTS.md knowledge base, Markdown AI context, context engineering repository"
 related_articles: ["context-engineering-ai-coding-tools", "building-production-ready-ai-agent-skills", "mcp"]
+faqs:
+  - q: "Can a GitHub repository serve as an AI knowledge base?"
+    a: "Yes. A repository already provides versioned files, access controls, and direct search. It works best when the source material is organized, current, and specific enough for an agent to cite instead of guessing."
+  - q: "What files should a GitHub AI knowledge base include?"
+    a: "Start with a README that explains the repository, an AGENTS.md file that tells an agent where to search and what to cite, current documentation, and decision records. Add an FAQ when it contains real questions the agent should answer consistently."
+  - q: "How do I test a repository as an AI knowledge base?"
+    a: "Use three questions: one with a known answer, one that requires more than one source file, and one the repository cannot support. The agent should cite repository-relative paths and say when the source does not document the answer."
 ---
 
 **This is part one of a series about building knowledge bases for AI.** I’ll cover the options in order: GitHub paired with an agent, OneNote with Microsoft 365 Copilot, an Obsidian vault, and finally a managed AWS knowledge base using vectors and RAG. I’ll add links as each article is published. At the bare minimum, a knowledge base only needs two things: a file system the assistant can access and an LLM that can read what it finds.
