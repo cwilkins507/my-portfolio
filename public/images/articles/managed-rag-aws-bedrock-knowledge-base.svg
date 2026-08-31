@@ -1,0 +1,62 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Amazon Bedrock Knowledge Bases architecture showing approved documents flowing through S3 and managed retrieval into a grounded answer.">
+  <style>
+    :root { --accent: #ff9900; --muted: rgba(255,255,255,0.28); }
+    svg { font-family: "DM Sans", Arial, sans-serif; }
+  </style>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="48%" r="58%">
+      <stop offset="0%" stop-color="#ff9900" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#ff9900" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#08111f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="rgba(255,255,255,0.16)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0.03)"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#08111f"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <path d="M0 540 C190 475 330 605 520 535 C720 460 850 520 1200 410 L1200 630 L0 630Z" fill="rgba(255,255,255,0.035)"/>
+  <path d="M110 110 H1090 V520" fill="none" stroke="url(#edge)" stroke-width="2"/>
+  <text x="110" y="86" fill="#ff9900" font-size="24" font-weight="700" letter-spacing="0">Knowledge Bases for AI · Part 4</text>
+  <text x="110" y="580" fill="rgba(255,255,255,0.82)" font-size="34" font-weight="700" letter-spacing="0">Managed RAG on AWS</text>
+  <g transform="translate(128 148)">
+        <circle cx="112" cy="164" r="112" fill="rgba(255,153,0,0.1)" stroke="#ff9900" stroke-width="3"/>
+        <g transform="translate(50 92)">
+          <rect x="0" y="0" width="124" height="124" rx="20" fill="#ff9900"/>
+          <path d="M34 42 L62 26 L90 42 L62 58Z M34 46 L62 62 L90 46 L90 78 L62 94 L34 78Z" fill="none" stroke="#ffffff" stroke-width="6" stroke-linejoin="round"/>
+          <path d="M62 62 V94" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+        </g>
+        <text x="38" y="316" fill="#ffb84d" font-size="16" font-weight="700" letter-spacing="0">AWS BEDROCK KB</text>
+
+        <line x1="224" y1="164" x2="286" y2="164" stroke="#ff9900" stroke-width="4" stroke-linecap="round" opacity="0.78"/><polyline points="272.49075319196777,172.57322871966394 286,164 272.49075319196777,155.42677128033606" fill="none" stroke="#ff9900" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/>
+
+        <g transform="translate(286 18)">
+          <rect x="0" y="0" width="224" height="66" rx="14" fill="rgba(255,255,255,0.06)" stroke="#94a3b8" stroke-width="2" opacity="0.95"/>
+  <text x="20" y="34" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">Approved docs</text>
+  <text x="20" y="62" fill="rgba(255,255,255,0.48)" font-size="14" font-weight="600" letter-spacing="0">bounded source set</text>
+          <rect x="0" y="88" width="224" height="66" rx="14" fill="rgba(255,153,0,0.1)" stroke="#ff9900" stroke-width="2" opacity="0.95"/>
+  <text x="20" y="122" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">Amazon S3</text>
+  <text x="20" y="150" fill="rgba(255,255,255,0.48)" font-size="14" font-weight="600" letter-spacing="0">private source files</text>
+          <rect x="0" y="176" width="224" height="66" rx="14" fill="rgba(255,153,0,0.1)" stroke="#ff9900" stroke-width="2" opacity="0.95"/>
+  <text x="20" y="210" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">Bedrock KB</text>
+  <text x="20" y="238" fill="rgba(255,255,255,0.48)" font-size="14" font-weight="600" letter-spacing="0">ingest + retrieve</text>
+          <rect x="0" y="264" width="224" height="66" rx="14" fill="rgba(255,255,255,0.06)" stroke="#94a3b8" stroke-width="2" opacity="0.95"/>
+  <text x="20" y="298" fill="rgba(255,255,255,0.86)" font-size="19" font-weight="700" letter-spacing="0">AgentCore</text>
+  <text x="20" y="326" fill="rgba(255,255,255,0.48)" font-size="14" font-weight="600" letter-spacing="0">controlled MCP tool</text>
+        </g>
+
+        <line x1="510" y1="164" x2="594" y2="164" stroke="#ff9900" stroke-width="4" stroke-linecap="round" opacity="0.78"/><polyline points="580.4907531919678,172.57322871966394 594,164 580.4907531919678,155.42677128033606" fill="none" stroke="#ff9900" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/>
+
+        <g transform="translate(594 46)">
+          <rect x="0" y="0" width="320" height="236" rx="18" fill="rgba(255,153,0,0.09)" stroke="#ff9900" stroke-width="3"/>
+          <text x="28" y="48" fill="#f8fafc" font-size="25" font-weight="700" letter-spacing="0">Grounded Answer</text>
+          <path d="M28 72 H292" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+          <text x="28" y="108" fill="#ffb84d" font-size="16" font-weight="700" letter-spacing="0">RETRIEVED PASSAGES</text>
+          <text x="28" y="140" fill="rgba(255,255,255,0.72)" font-size="17" font-weight="600" letter-spacing="0">answer supported</text>
+          <text x="28" y="180" fill="#ffb84d" font-size="16" font-weight="700" letter-spacing="0">SOURCE REFERENCES</text>
+          <text x="28" y="212" fill="rgba(255,255,255,0.72)" font-size="16" font-weight="600" letter-spacing="0">filename + evidence</text>
+        </g>
+        <text x="642" y="316" fill="#ffb84d" font-size="16" font-weight="700" letter-spacing="0">ANSWER + SOURCES</text>
+      </g>
+</svg>

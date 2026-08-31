@@ -389,6 +389,22 @@ const covers = [
     accent: '#d6b164',
     motif: 'knowledge-repository',
   },
+  {
+    slug: 'markdown-vault-ai-context-layer',
+    pillar: 'Knowledge Bases for AI · Part 3',
+    title: 'Markdown as Durable AI Context',
+    alt: 'Markdown notes, topic maps, and session recaps narrowing through scoped retrieval into a sourced agent context.',
+    accent: '#a78bfa',
+    motif: 'knowledge-vault',
+  },
+  {
+    slug: 'managed-rag-aws-bedrock-knowledge-base',
+    pillar: 'Knowledge Bases for AI · Part 4',
+    title: 'Managed RAG on AWS',
+    alt: 'Amazon Bedrock Knowledge Bases architecture showing approved documents flowing through S3 and managed retrieval into a grounded answer.',
+    accent: '#ff9900',
+    motif: 'knowledge-aws',
+  },
 ];
 
 function node(x, y, r, color = 'var(--accent)') {
@@ -500,6 +516,71 @@ function concept(cover) {
           ${label(44, 191, 'report_generation_log', 14, '#fde68a', 700)}
         </g>
         ${smallLabel(719, 316, 'ANSWER + SOURCE', '#d6b164')}
+      </g>`;
+    case 'markdown-vault-ai-context-layer':
+      return `<g transform="translate(128 148)">
+        <circle cx="112" cy="164" r="112" fill="rgba(167,139,250,0.1)" stroke="#a78bfa" stroke-width="3"/>
+        <g transform="translate(54 76) scale(0.29)">
+          <path d="M382.3 475.6c-3.1 23.4-26 41.6-48.7 35.3-32.4-8.9-69.9-22.8-103.6-25.4l-51.7-4a34 34 0 0 1-22-10.2l-89-91.7a34 34 0 0 1-6.7-37.7s55-121 57.1-127.3c2-6.3 9.6-61.2 14-90.6 1.2-7.9 5-15 11-20.3L248 8.9a34.1 34.1 0 0 1 49.6 4.3L386 125.6a37 37 0 0 1 7.6 22.4c0 21.3 1.8 65 13.6 93.2 11.5 27.3 32.5 57 43.5 71.5a17.3 17.3 0 0 1 1.3 19.2 1494 1494 0 0 1-44.8 70.6c-15 22.3-21.9 49.9-25 73.1z" fill="#7c3aed"/>
+          <path d="M165.9 478.3c41.4-84 40.2-144.2 22.6-187-16.2-39.6-46.3-64.5-70-80-.6 2.3-1.3 4.4-2.2 6.5L60.6 342a34 34 0 0 0 6.6 37.7l89.1 91.7a34 34 0 0 0 9.6 7z" fill="#c4b5fd" opacity="0.55"/>
+          <path d="M278.4 307.8c-19.7-49.4-25.8-86.4-24.5-115.9a171 171 0 0 1 19.4-71c2.3-4.8 4.8-9.5 7.2-14.1 7.1-13.9 14-27 17.6-41.4a96 96 0 0 0-2-54A34.1 34.1 0 0 0 248 9l-105.4 94.8a34.1 34.1 0 0 0-10.9 20.3l-12.8 85-.5 2.3c23.8 15.5 54 40.4 70.1 80a147 147 0 0 1 7.8 24.8c28-6.8 55.7-11 82.1-8.3z" fill="#ddd6fe" opacity="0.68"/>
+          <path d="M333.6 511c22.7 6.2 45.6-12 48.7-35.4a187 187 0 0 1 19.4-63.9c-25.6-55-56.5-83.6-90.4-96.3-36-13.4-75.2-9-115 .7 8.9 40.4 3.6 93.3-30.4 162.2 4 1.8 8.1 3 12.5 3.3 0 0 24.4 2 53.6 4.1 29 2 72.4 17.1 101.6 25.2z" fill="#4c1d95" opacity="0.8"/>
+        </g>
+        ${smallLabel(55, 316, 'PLAIN-TEXT VAULT', '#a78bfa')}
+
+        ${conceptArrow(224, 164, 294, 164, '#a78bfa', 4)}
+
+        <g transform="translate(294 18)">
+          ${conceptBox(0, 0, 246, 66, 'VAULT-INDEX.md', 'orientation', '#94a3b8')}
+          ${conceptBox(0, 88, 246, 66, 'Topic Map', 'scope + current state', '#a78bfa', 'rgba(167,139,250,0.11)')}
+          ${conceptBox(0, 176, 246, 66, 'Source Notes', 'evidence + decisions', '#a78bfa', 'rgba(167,139,250,0.11)')}
+          ${conceptBox(0, 264, 246, 66, 'Session Recap', 'continuity', '#94a3b8')}
+        </g>
+
+        ${conceptArrow(540, 164, 620, 164, '#a78bfa', 4)}
+
+        <g transform="translate(620 46)">
+          <rect x="0" y="0" width="294" height="236" rx="18" fill="rgba(167,139,250,0.1)" stroke="#a78bfa" stroke-width="3"/>
+          ${label(28, 48, 'Scoped Agent Context', 23, '#f8fafc')}
+          <path d="M28 72 H266" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+          ${smallLabel(28, 108, 'CURRENT STATE', '#c4b5fd')}
+          ${label(28, 140, 'Decision + rationale', 17, 'rgba(255,255,255,0.72)', 600)}
+          ${smallLabel(28, 180, 'SOURCE PATHS', '#c4b5fd')}
+          ${label(28, 212, 'note + recent recap', 16, 'rgba(255,255,255,0.72)', 600)}
+        </g>
+        ${smallLabel(654, 316, 'ANSWER + SOURCES', '#a78bfa')}
+      </g>`;
+    case 'managed-rag-aws-bedrock-knowledge-base':
+      return `<g transform="translate(128 148)">
+        <circle cx="112" cy="164" r="112" fill="rgba(255,153,0,0.1)" stroke="#ff9900" stroke-width="3"/>
+        <g transform="translate(50 92)">
+          <rect x="0" y="0" width="124" height="124" rx="20" fill="#ff9900"/>
+          <path d="M34 42 L62 26 L90 42 L62 58Z M34 46 L62 62 L90 46 L90 78 L62 94 L34 78Z" fill="none" stroke="#ffffff" stroke-width="6" stroke-linejoin="round"/>
+          <path d="M62 62 V94" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+        </g>
+        ${smallLabel(38, 316, 'AWS BEDROCK KB', '#ffb84d')}
+
+        ${conceptArrow(224, 164, 286, 164, '#ff9900', 4)}
+
+        <g transform="translate(286 18)">
+          ${conceptBox(0, 0, 224, 66, 'Approved docs', 'bounded source set', '#94a3b8')}
+          ${conceptBox(0, 88, 224, 66, 'Amazon S3', 'private source files', '#ff9900', 'rgba(255,153,0,0.1)')}
+          ${conceptBox(0, 176, 224, 66, 'Bedrock KB', 'ingest + retrieve', '#ff9900', 'rgba(255,153,0,0.1)')}
+          ${conceptBox(0, 264, 224, 66, 'AgentCore', 'controlled MCP tool', '#94a3b8')}
+        </g>
+
+        ${conceptArrow(510, 164, 594, 164, '#ff9900', 4)}
+
+        <g transform="translate(594 46)">
+          <rect x="0" y="0" width="320" height="236" rx="18" fill="rgba(255,153,0,0.09)" stroke="#ff9900" stroke-width="3"/>
+          ${label(28, 48, 'Grounded Answer', 25, '#f8fafc')}
+          <path d="M28 72 H292" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+          ${smallLabel(28, 108, 'RETRIEVED PASSAGES', '#ffb84d')}
+          ${label(28, 140, 'answer supported', 17, 'rgba(255,255,255,0.72)', 600)}
+          ${smallLabel(28, 180, 'SOURCE REFERENCES', '#ffb84d')}
+          ${label(28, 212, 'filename + evidence', 16, 'rgba(255,255,255,0.72)', 600)}
+        </g>
+        ${smallLabel(642, 316, 'ANSWER + SOURCES', '#ffb84d')}
       </g>`;
     case 'building-production-ready-ai-agent-skills':
       return `<g transform="translate(165 164)">

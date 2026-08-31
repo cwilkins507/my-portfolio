@@ -1,5 +1,5 @@
 ---
-title: "Your GitHub Repository Is Already an AI Knowledge Base"
+title: "Start Your Company Brain in a GitHub Repository"
 date: "2026-08-20"
 tags: ["GitHub", "AI Agents", "Context Engineering", "Knowledge Bases", "Developer Productivity"]
 excerpt: "Before adding embeddings or a vector database, put the material your agent needs in a repository it can inspect. Then test whether direct search is already enough."
@@ -18,19 +18,21 @@ faqs:
     a: "Use three questions: one with a known answer, one that requires more than one source file, and one the repository cannot support. The agent should cite repository-relative paths and say when the source does not document the answer."
 ---
 
-**This is part one of a series about building knowledge bases for AI.** I’ll cover the options in order: GitHub paired with an agent, OneNote with Microsoft 365 Copilot, an Obsidian vault, and finally a managed AWS knowledge base using vectors and RAG. I’ll add links as each article is published. At the bare minimum, a knowledge base only needs two things: a file system the assistant can access and an LLM that can read what it finds.
+A company brain doesn't need to be complicated. At the minimum, you need a file system your AI can access and an LLM that can read what it finds. This is Part 1 of a four-part series covering [GitHub](/articles/github-repository-ai-knowledge-base), [Microsoft 365 Copilot with OneNote](/articles/onenote-microsoft-365-copilot-knowledge-base), [Obsidian](/articles/markdown-vault-ai-context-layer), and a [managed RAG system on AWS](/articles/managed-rag-aws-bedrock-knowledge-base).
 
-I spent a lot of time building a managed knowledge base on AWS before returning to an embarrassingly simple conclusion - for many projects, the repository is already the knowledge base.
+Your team may already have the first version. Every correction, architecture decision, runbook, glossary entry, and approved answer stored in a repository is context an agent can reuse. The problem is usually not that the company has no knowledge. It's that the knowledge is scattered, poorly marked, or trapped in the session where someone explained it.
 
-The files are there. They are versioned. An agent can search them, read only what it needs, and point back to the source. No embeddings, ingestion job, or vector database required.
+I spent a lot of time building a managed knowledge base on AWS before returning to an embarrassingly simple conclusion: for many projects, the repository is already enough.
 
-GitHub may sound like a developer-only option. It is not. At this level, a repository is just a file system with version history, permissions, and a way for an agent to read it. You can keep the entire knowledge base in Markdown, plain-text files, or a few simple HTML pages. GitLab, Bitbucket, or another version control system can serve the same purpose.
+The files are there. They're versioned. An agent can search them, read only what it needs, and point back to the source. No embeddings, ingestion job, or vector database required.
 
-## Why Give an Agent a Knowledge Base?
+GitHub may sound like a developer-only option, but it isn't. At this level, a repository is a file system with version history, permissions, and a way for an agent to read it. You can keep the entire knowledge base in Markdown, plain-text files, or a few simple HTML pages. GitLab, Bitbucket, or another version control system can do the same job.
+
+## Turn Project Knowledge Into a Shared Starting Point
 
 Most general purpose models were trained largely on public information. If the answer already lives on a public website, an agent with a search tool can probably find it. You *do not* need to copy the public web into your own repository.
 
-A knowledge base becomes useful when the answer is private, specific to your organization, or written in language the model would not know (and the same language you DO know - this is important to domain driven design). Internal runbooks, product terminology, database descriptions, policies, client notes, and architecture decisions are good candidates. The point is to stop explaining the same background every time a new session starts.
+A knowledge base earns its place when the answer is private, specific to your organization, or written in language the model would not know (and the same language you DO know - this is important to domain driven design). Internal runbooks, product terminology, database descriptions, policies, client notes, and architecture decisions are good candidates. Recording them means you don't have to explain the same background every time a new session starts.
 
 Imagine an internal database called `reports`. That name tells an agent almost nothing (other than it is probably used for report generation). A data dictionary can explain what the database contains, what each table represents, and which table should be used for a particular type of report:
 
@@ -47,10 +49,12 @@ runtime, and failure investigation. Do not use it for financial totals.
 
 Now I can ask, “Which table shows failed report deliveries?” The agent can retrieve the description, add it to the current context, and start from `report_generation_log` without requiring me to teach it the schema again. The knowledge base supplies the domain language that the public model is missing.
 
-That does not make GitHub a semantic retrieval system. It makes a well-structured repository the smallest useful version of the same pattern:
+Once that explanation lives in the repository, the next developer and the next agent start with the same definition. The lesson no longer belongs to the person who happened to explain it first.
+
+That does not make GitHub a semantic retrieval system. It makes a well-structured repository the simplest working version of the same pattern:
 
 ```text
-Useful project files
+Relevant project files
       ↓ repository search
 Relevant passages
       ↓ session context
@@ -79,7 +83,7 @@ The answer should live in a file that a person would also know how to find. Agen
 
 In the example, a fictional project called Harbor has five short files. One explains its architecture, another covers releases, and a decision record explains why a storage choice was made. The corpus is intentionally small because the retrieval behavior is easier to inspect.
 
-## What Belongs in the Repository
+## Give the Brain a Small, Trusted Structure
 
 I would start with durable material that changes at roughly the same pace as the project:
 
@@ -105,7 +109,7 @@ Each file has a different job.
 
 `docs/` holds current explanations and runbooks. `decisions/` preserves why a choice was made instead of only documenting the resulting state.
 
-An HTML artifact is useful when the visual relationship is part of the knowledge. A rendered system map, annotated report, or interactive prototype can communicate something that a paragraph cannot. Keep the underlying text or structured data available when possible so the agent does not have to infer every fact from presentation markup.
+Use an HTML artifact when the visual relationship is part of the knowledge. A rendered system map, annotated report, or interactive prototype can communicate something that a paragraph cannot. Keep the underlying text or structured data available when possible so the agent does not have to infer every fact from presentation markup.
 
 ## A Small `AGENTS.md` Is Better Than a Grand Constitution
 
@@ -125,7 +129,48 @@ The example uses rules like these:
 
 That is enough to establish a search order, source hierarchy, citation requirement, missing-answer behavior, and a basic defense against instructions embedded in content.
 
+This file is the agent's map. It explains where current guidance lives, which files contain historical rationale, and what to do when the repository can't support an answer.
+
 Longer files can be useful, but length is not the goal. Every rule occupies attention. If an instruction does not prevent a repeated failure or capture repeated work, it probably does not belong there yet.
+
+## Connect One Agent and Run the First Test
+
+For one concrete path, clone or create the repository locally and open it with [OpenAI Codex CLI](https://developers.openai.com/codex/cli). Codex reads a root `AGENTS.md` when it starts, so the rules above travel with the repository.
+
+```bash
+cd harbor-kb
+codex
+```
+
+If Codex is not installed yet, the linked setup guide covers installation and sign-in. Start it from the repository root, choose read-only permissions for this test, and ask:
+
+```text
+Answer from this repository only. Search before reading, cite every factual
+claim with a repository-relative path, and say when the files do not support
+an answer.
+
+Question: How long can a failed Harbor release remain open before rollback begins?
+```
+
+The test needs source material you can check. Put this in `docs/architecture.md`:
+
+```markdown
+# Harbor architecture
+
+Harbor receives signed webhook events, validates the signature, writes an immutable
+envelope, then dispatches normalized events to the workflow queue.
+```
+
+Put this in `docs/release-runbook.md`:
+
+```markdown
+# Harbor release runbook
+
+Before release, verify queue depth, webhook signature tests, and the migration dry
+run. A failed release can remain open for 15 minutes before rollback begins.
+```
+
+The expected answer is **15 minutes**, supported by `docs/release-runbook.md`. The multi-source question later in this article should describe the signed-webhook-to-workflow-queue flow from `docs/architecture.md` and the three release checks from `docs/release-runbook.md`.
 
 ## Do Not Load the Whole Repository Into Context
 
@@ -153,13 +198,13 @@ I use the same three tests at every level of a knowledge system.
 
 > How long can a failed Harbor release remain open before rollback begins?
 
-The repository should find `docs/release-runbook.md` and return the documented threshold.
+The repository should find `docs/release-runbook.md` and answer **15 minutes**.
 
 ### 2. A multi-source question
 
 > Explain Harbor's event flow and the first release checks.
 
-A useful answer needs both `docs/architecture.md` and `docs/release-runbook.md`. This catches systems that locate one plausible file and stop too early.
+A complete answer needs both files. It should describe signed webhook validation, the immutable envelope, and dispatch to the workflow queue from `docs/architecture.md`, then name the queue-depth, webhook-signature, and migration-dry-run checks from `docs/release-runbook.md`.
 
 ### 3. An unsupported question
 
@@ -175,7 +220,7 @@ Don't skip the third test. A model can make an unsupported answer sound more com
 
 I have started keeping some outputs as standalone HTML artifacts. They work well for architecture maps, review reports, interactive explanations, and small tools that should remain inspectable after the original session ends.
 
-An HTML artifact becomes more useful to an agent when it has:
+An agent can inspect an HTML artifact more reliably when it has:
 
 - a descriptive `<title>` and clear headings
 - real text rather than labels baked into an image
@@ -224,10 +269,12 @@ This turns documentation quality into something more concrete. A changed runbook
 
 ## When to Stop Here
 
-Use the repository approach when the material is already project-shaped, the audience shares repository access, direct search finds the right files, and version history is useful.
+Use the repository approach when the material is already project-shaped, the audience shares repository access, direct search finds the right files, and the team benefits from version history.
 
 Use a Markdown vault when the material is personal, cross-project, and writing-heavy. Use Microsoft 365 when the organization already works there and its permission model should remain the center. Consider managed RAG when the corpus, access model, or evaluation requirements have outgrown file search.
 
-The repository version is not a toy stage you have to graduate from. It may be the best architecture for years.
+The repository version isn't a toy stage you have to graduate from. It may be the best architecture for years.
 
-The goal is not to build the most advanced knowledge base. It is to give the agent enough controlled context to answer from your work, show its sources, and admit when the answer is missing.
+This is the smallest useful company brain: a set of trusted files, a map that tells the agent where to look, and a test that catches unsupported answers. Start here. If direct search finds the right evidence, stop here.
+
+[Part two moves the same pattern into OneNote](/articles/onenote-microsoft-365-copilot-knowledge-base) for teams whose decisions and handoffs already live in Microsoft 365.

@@ -1,8 +1,8 @@
 ---
-title: "Your OneNote Is Already a Knowledge Base for Microsoft 365 Copilot"
+title: "Use OneNote and Microsoft 365 Copilot as a Company Brain"
 date: "2026-08-21"
 tags: ["OneNote", "Microsoft 365 Copilot", "Knowledge Bases", "Knowledge Work", "AI Productivity"]
-excerpt: "If years of useful work already live in OneNote, start there. A small, well-structured notebook can give Microsoft 365 Copilot enough context to find decisions, identify owners, and admit when an answer is missing."
+excerpt: "If years of decisions, meeting notes, and project history already live in OneNote, start there. A small, well-structured notebook can give Microsoft 365 Copilot enough context to find decisions, identify owners, and admit when an answer is missing."
 image: "/images/articles/onenote-microsoft-365-copilot-knowledge-base.png"
 image_alt: "An illustrated OneNote source flowing through three meeting-note records into a Microsoft 365 Copilot answer with its source."
 seo_title: "Use OneNote as a Microsoft 365 Copilot Knowledge Base"
@@ -11,18 +11,20 @@ target_keywords: "OneNote Copilot knowledge base, Microsoft 365 Copilot OneNote,
 related_articles: ["github-repository-ai-knowledge-base", "context-engineering-ai-coding-tools", "mcp"]
 faqs:
   - q: "Can OneNote work as a Microsoft 365 Copilot knowledge base?"
-    a: "Yes, when people already keep useful notes in OneNote, the notebook is shared with the intended audience, and the account and client support Copilot. Keep access rules intact and test the pages your team will rely on. The demonstration in this article checks pasted note content in Copilot Chat; it does not validate live OneNote or Microsoft Graph grounding."
+    a: "Yes, when people already record decisions, owners, and project history in OneNote, the notebook is shared with the intended audience, and the account and client support Copilot. Keep access rules intact and test the pages your team will rely on. The demonstration in this article checks pasted note content in Copilot Chat; it does not validate live OneNote or Microsoft Graph grounding."
   - q: "What should OneNote meeting notes include for Copilot?"
-    a: "Use a project-and-date title, list attendees, record decisions, assign each action item to one owner with a due date, label open questions, and link related material when useful. Repeating full names and dates prevents ambiguity when someone reads the page later."
+    a: "Use a project-and-date title, list attendees, record decisions, assign each action item to one owner with a due date, label open questions, and link related material when it helps explain the decision. Repeating full names and dates prevents ambiguity when someone reads the page later."
   - q: "How should I test Microsoft 365 Copilot against meeting notes?"
     a: "Ask one question with a known answer, one that connects an assignment to a later update, and one the notes cannot answer. Check that the response keeps owners and dates straight, points to the right meeting pages, and declines to invent unsupported details."
 ---
 
-**Part two of a series on AI knowledge bases.** [Part one uses a GitHub repository](/articles/github-repository-ai-knowledge-base). This installment is for teams whose working notes already live in Microsoft 365.
+A company brain doesn't need to be complicated. At the minimum, you need a file system your AI can access and an LLM that can read what it finds. This is Part 2 of a four-part series covering [GitHub](/articles/github-repository-ai-knowledge-base), [Microsoft 365 Copilot with OneNote](/articles/onenote-microsoft-365-copilot-knowledge-base), [Obsidian](/articles/markdown-vault-ai-context-layer), and a [managed RAG system on AWS](/articles/managed-rag-aws-bedrock-knowledge-base).
 
-A shared OneNote often contains meeting notes, project decisions, handoffs, and the details people assume someone else remembers. That is a workable knowledge base if people can find the source behind an answer.
+For many companies, that file system isn't GitHub. It's a shared OneNote full of meeting notes, project handoffs, owners, deadlines, and details everyone assumes someone else remembers.
 
-You do not need to export the notebook, choose an embedding model, or build a vector database. Start with what you already have.
+Those notes can become shared AI context without exporting the notebook or building a vector database. The first job is simpler: organize the pages so a person or Copilot can find the decision, identify its owner, and admit when the answer was never recorded.
+
+[Part one started with direct search in a GitHub repository](/articles/github-repository-ai-knowledge-base). This part applies the same idea inside Microsoft 365.
 
 ```text
 OneNote pages
@@ -44,7 +46,7 @@ This article starts with an ordinary OneNote notebook because that is where many
 
 Copilot in OneNote varies by license, client, platform, and tenant configuration. Check [Microsoft’s current OneNote Copilot requirements](https://support.microsoft.com/en-us/onenote/welcome-to-copilot-in-onenote) in the environment your team uses.
 
-## Use This When
+## Start Where the Team Already Works
 
 OneNote is a good starting point when:
 
@@ -75,6 +77,17 @@ Project Atlas
 
 Consistency beats elaborate categories. Give project decisions one obvious home.
 
+That is how a meeting notebook becomes company memory instead of a pile of personal notes.
+
+## Build the Smallest Shared Version
+
+1. Create a notebook in the OneDrive or SharePoint location your team already controls.
+2. Add the four sections above and the three Project Atlas pages below.
+3. Share the notebook with the people who need the answers. Give edit access only to maintainers; every reader still needs permission to open the notebook.
+4. Sign in as a normal team member and open the notebook before testing Copilot. If that person cannot read a page directly, Copilot should not be your workaround.
+
+That is enough for the file-system side of the company brain. The next connection is Copilot inside OneNote.
+
 ## Write Notes for Someone Who Missed the Meeting
 
 Copilot cannot retrieve details that were never recorded. Generic page titles and action items such as “follow up” make the source harder to use later.
@@ -86,7 +99,7 @@ Include:
 - decisions
 - action items with one owner and a due date
 - unresolved questions
-- links to related material when useful
+- links to supporting documents
 
 Here is the format used for this demonstration:
 
@@ -107,6 +120,8 @@ The customer migration checklist must be approved by September 18, 2026.
 ```
 
 The repeated names and dates are intentional. “September 18, 2026” is clearer than “the 18th,” and “Maya Chen” is clearer than “Maya.” That small amount of repetition prevents ambiguity later.
+
+When Copilot gets an owner or deadline wrong, don't only fix the answer. Check the source page. A vague title, missing full name, or relative date is a defect in the shared memory, and fixing it helps the next person too.
 
 ## A Three-Meeting Notebook We Can Test
 
@@ -154,13 +169,15 @@ These pages are short enough to check by hand. When an answer looks wrong, compa
 
 *The `02 Meetings` section holds the three synthetic Project Atlas pages used for the test.*
 
-## What We Could Test in This Environment
+## Connect Copilot to the Notebook
 
-Microsoft documents the Copilot entry point in supported versions of OneNote under **Home > Copilot**. But availability varies by license, client, platform, and tenant configuration.
+Microsoft currently documents Copilot in OneNote for customers with a **Microsoft Copilot (Work)** license in OneNote for Microsoft 365 on Windows, Mac, iPad, and the web. An eligible Microsoft 365 subscription can also provide it in OneNote for Windows. Check the [current OneNote Copilot requirements](https://support.microsoft.com/en-us/onenote/welcome-to-copilot-in-onenote) in your tenant before building around it.
 
-In this test, the OneNote web client did not expose a Copilot pane in its ribbon or Tell Me search. The available Copilot surface was the separate Microsoft 365 Copilot Chat application, where the account was labeled **Copilot Chat (Basic)**. The chat could not open the newly created OneNote notebook from a pasted SharePoint link, and its cloud-file picker did not accept an attachment during the session.
+Open the shared notebook, select `02 Meetings`, then choose **Home > Copilot**. Microsoft says Copilot can summarize an entire section by default, so keeping the three test pages in one section gives it a bounded source set. Run the prompts below and require the response to name the meeting pages it used. Open those pages yourself and compare the owners, dates, and decisions before treating the answer as grounded.
 
-The three meeting pages were pasted into Copilot Chat verbatim rather than browsing unrelated files exposed by the picker or implying that the chat had searched OneNote. The results below check answer accuracy and whether the assistant stays within the supplied notes. They do **not** validate live OneNote or Microsoft Graph grounding. To test that behavior, use a supported Copilot license after the notebook has indexed.
+My account could not complete that live path. The OneNote web client did not expose a Copilot pane, and the available Microsoft 365 Copilot Chat surface was labeled **Copilot Chat (Basic)**. It could not open the notebook from its SharePoint link or accept it through the cloud-file picker.
+
+The screenshots below therefore show the three meeting pages pasted into Copilot Chat verbatim. They test answer accuracy and unsupported-answer behavior, not live OneNote or Microsoft Graph retrieval. The setup above is the path Microsoft documents; a live tenant test still needs to confirm it in the environment where the notebook will be used.
 
 ## Test the Evidence
 
@@ -206,6 +223,8 @@ The prompt deliberately limits the evidence to these meeting notes. A vendor nam
 
 Microsoft 365 provides the permission boundary, provided the notebook is shared deliberately.
 
+One company brain doesn't mean one permission bucket. Shared memory still needs structural access boundaries.
+
 Copilot should stay within the signed-in user’s permissions. Do not mix HR notes, customer records, legal discussions, or personal working notes into a team notebook for the sake of easier search.
 
 Before using a notebook as shared AI context:
@@ -221,14 +240,16 @@ Use separate notebooks when groups need different access. A prompt cannot enforc
 
 OneNote works well when people within the organization already use it. For teams in Outlook, Teams, SharePoint, and OneDrive, it avoids moving their work into a repository.
 
-The trade-off is control. You do not choose how retrieval works, and product behavior, licensing, and interface labels change. Free-form pages can suit the people writing them while remaining ambiguous to a retrieval system. Exports and version history are also less flexible than Markdown in Git.
+The trade-off is control. You don't choose how retrieval works, and product behavior, licensing, and interface labels change. Free-form pages can suit the people writing them while remaining ambiguous to a retrieval system. Exports and version history are also less flexible than Markdown in Git.
 
-Microsoft documents Copilot in OneNote as a tool for summarizing sections or selected text and creating task lists. That does not prove a notebook will answer your team’s questions. Test the pages, account type, client, and prompts you plan to rely on.
+Microsoft documents Copilot in OneNote as a tool for summarizing sections or selected text and creating task lists. That doesn't prove a notebook will answer your team's questions. Test the pages, account type, client, and prompts you plan to rely on.
 
 ## When to Use Something Else
 
-Stay with OneNote when people maintain it, the audience has the right access, and the three-query test produces reliable results. Do not overengineer the solution.
+Stay with OneNote when people maintain it, the audience has the right access, and the three-query test produces reliable results. Don't overengineer the solution.
 
-Choose a Markdown vault when portability and direct file access matter more than Microsoft 365 integration. Use managed RAG when you need repeatable ingestion across many sources, retrieval evaluation, separate access tiers, or an API for several applications.
+Choose a Markdown vault when you need direct file access and portability more than Microsoft 365 integration. Use managed RAG when you need repeatable ingestion across many sources, retrieval evaluation, separate access tiers, or an API for several applications.
 
-The practical benefit is less time hunting through meeting pages and fewer messages asking who owns a follow-up. A missing decision should still produce “we did not document that.”
+OneNote can hold the first shared memory layer for a team that already works in Microsoft 365. The test isn't whether Copilot can summarize a page. It's whether the team can retrieve a documented decision, connect it to later work, and recognize when the decision was never recorded.
+
+[Part three moves the pattern into a Markdown vault](/articles/markdown-vault-ai-context-layer), where maps, source rules, recaps, and reusable workflows carry learning from one session into the next.
