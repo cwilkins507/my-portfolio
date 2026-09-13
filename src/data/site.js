@@ -6,6 +6,7 @@ export const PUBLIC_CONTACT_PROFILE = Object.freeze({
   familyName: 'Wilkins',
   email: 'collin@collinwilkins.com',
   website: SITE_URL,
+  github: 'https://github.com/cwilkins507',
   x: 'https://x.com/CollinWilkins7',
   location: 'Detroit, MI',
   locality: 'Detroit',
