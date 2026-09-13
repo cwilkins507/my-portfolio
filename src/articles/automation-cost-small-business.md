@@ -97,7 +97,7 @@ That $18,200/year number from earlier doesn't shrink because you're busy — it 
 
 ---
 
-Not sure where to start? The [$99 AI Workflow Opportunity Assessment](/services/ai-workflow-assessment) helps choose the first recurring workflow worth improving and produces a Workflow Opportunity Map within 48 hours.
+Not sure where to start? [Browse the archive](/articles) — the automation write-ups there walk through how I picked the first workflow worth improving in each case.
 
 ---
 

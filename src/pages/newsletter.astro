@@ -1,31 +1,222 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import NewsletterSignup from '../components/NewsletterSignup.astro';
-import { NEWSLETTER } from '../data/site.js';
+import { NEWSLETTER, ANALYTICS_EVENTS } from '../data/site.js';
+
+const pageDescription = `${NEWSLETTER.name} — ${NEWSLETTER.promise}`;
 ---
 
-<Layout title={`${NEWSLETTER.name} | Collin Wilkins`} description={NEWSLETTER.promise} hideFooterNewsletter={true}>
-	<section class="max-w-[960px] mx-auto px-6 pt-32 pb-20">
-		<div class="max-w-2xl mx-auto text-center mb-12">
-			<h1 class="text-4xl md:text-5xl font-serif font-bold text-[var(--color-text-primary)] mb-4">{NEWSLETTER.name}</h1>
-			<p class="text-lg text-moonlight-text-secondary leading-relaxed">
-				{NEWSLETTER.promise}
-			</p>
-		</div>
+<Layout
+  title={`${NEWSLETTER.name} — A letter on building software | Collin Wilkins`}
+  description={pageDescription}
+  hideFooterNewsletter={true}
+>
+  <div class="letter">
+    <div class="wrap">
+      <header class="letter-head">
+        <p class="letter-eyebrow">The Newsletter</p>
+        <h1>{NEWSLETTER.name}</h1>
+        <p class="letter-lede">{NEWSLETTER.promise}</p>
+        <p class="letter-cadence">{NEWSLETTER.cadence} · One email · Unsubscribe anytime</p>
+      </header>
 
-		<div class="max-w-xl mx-auto">
-			<NewsletterSignup variant="inline" title="Get the next issue" description="Enter your email and I will send it when it is published." location="newsletter-page" />
-		</div>
+      <section class="subscribe" aria-labelledby="subscribe-title">
+        <h2 id="subscribe-title">Get the next issue</h2>
+        <form
+          action={NEWSLETTER.subscribeAction}
+          method="post"
+          target="popupwindow"
+          rel="noopener noreferrer"
+          data-newsletter-event={ANALYTICS_EVENTS.newsletterSubscribe}
+          data-location="newsletter-page"
+        >
+          <label>
+            <span>Email address</span>
+            <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+          </label>
+          <button type="submit" class="btn btn-solid">Subscribe</button>
+        </form>
+        <p class="subscribe-note">No spam, no pitches, no tracking pixels dressed up as insight.</p>
+      </section>
 
-		<div class="text-center mt-12">
-			<a
-				href="https://buttondown.com/collinwilkins/archive/"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="text-sm text-moonlight-text-muted hover:text-[var(--color-accent)] underline underline-offset-4 decoration-transparent hover:decoration-[var(--color-accent)] transition-all duration-300"
-			>
-				Read past issues →
-			</a>
-		</div>
-	</section>
+      <section class="whats-inside" aria-labelledby="whats-inside-title">
+        <h2 id="whats-inside-title">What's inside</h2>
+        <dl>
+          <div>
+            <dt>What I've been building</dt>
+            <dd>The systems, the tooling, the dead ends. Written while the details are still fresh.</dd>
+          </div>
+          <div>
+            <dt>What I learned along the way</dt>
+            <dd>The part that usually gets left out of the writeup: what I got wrong first, and what changed my mind.</dd>
+          </div>
+          <div>
+            <dt>A few things worth your time</dt>
+            <dd>Articles, papers, and findings I actually read, with a sentence on why they stuck.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <footer class="letter-foot">
+        <a href={NEWSLETTER.archiveHref} target="_blank" rel="noopener noreferrer">Read past issues →</a>
+        <a href="/articles">Browse the article archive →</a>
+      </footer>
+    </div>
+  </div>
 </Layout>
+
+<style>
+  .letter {
+    padding: clamp(52px, 7vw, 84px) 0 clamp(60px, 8vw, 96px);
+  }
+  .letter .wrap {
+    max-width: calc(var(--measure) + 120px);
+  }
+  .letter-head {
+    border-top: 1px solid var(--ink);
+    padding-top: clamp(20px, 3vw, 32px);
+  }
+  .letter-eyebrow {
+    margin: 0 0 14px;
+    color: var(--accent-text);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+  }
+  .letter-head h1 {
+    max-width: 18ch;
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 500;
+    letter-spacing: -.02em;
+    line-height: 1.04;
+  }
+  .letter-lede {
+    max-width: 56ch;
+    margin-top: 18px;
+    color: var(--ink-soft);
+    font-size: 21px;
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+  .letter-cadence {
+    margin-top: 18px;
+    color: var(--ink-faint);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .subscribe {
+    margin-top: clamp(36px, 5vw, 56px);
+    padding: clamp(26px, 4vw, 42px);
+    border: 1px solid var(--rule);
+    background: var(--paper-2);
+  }
+  .subscribe h2 {
+    font-size: clamp(24px, 3.2vw, 32px);
+    font-weight: 500;
+    line-height: 1.1;
+  }
+  .subscribe form {
+    display: flex;
+    gap: 10px;
+    align-items: end;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  .subscribe label {
+    display: grid;
+    gap: 6px;
+    flex: 1;
+    min-width: 230px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .06em;
+    color: var(--ink-soft);
+  }
+  .subscribe input {
+    width: 100%;
+    min-height: 44px;
+    padding: 12px 15px;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+  }
+  .subscribe input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .subscribe .btn {
+    min-height: 44px;
+  }
+  .subscribe-note {
+    margin-top: 12px;
+    color: var(--ink-faint);
+    font-family: var(--mono);
+    font-size: 11px;
+  }
+
+  .whats-inside {
+    margin-top: clamp(44px, 6vw, 72px);
+  }
+  .whats-inside h2 {
+    font-size: clamp(20px, 2.4vw, 26px);
+    font-weight: 500;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--ink);
+  }
+  .whats-inside dl {
+    margin: 0;
+  }
+  .whats-inside dl > div {
+    display: grid;
+    grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+    gap: clamp(12px, 3vw, 32px);
+    padding: clamp(18px, 2.4vw, 26px) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .whats-inside dt {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .whats-inside dd {
+    margin: 0;
+    max-width: 58ch;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  .letter-foot {
+    display: flex;
+    gap: clamp(18px, 3vw, 36px);
+    flex-wrap: wrap;
+    margin-top: clamp(36px, 5vw, 52px);
+  }
+  .letter-foot a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: color .15s, border-color .15s;
+  }
+  .letter-foot a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  @media (max-width: 640px) {
+    .whats-inside dl > div {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+  }
+</style>

@@ -1,0 +1,609 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {
+  ANALYTICS_EVENTS,
+  CONNECT_CARD,
+  PUBLIC_CONTACT_PROFILE,
+} from '../data/site.js';
+
+const pageTitle = 'Connect with Collin Wilkins';
+const pageDescription = 'Save Collin Wilkins as a contact, copy a ready-made introduction, or read the writing.';
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: PUBLIC_CONTACT_PROFILE.name,
+  url: PUBLIC_CONTACT_PROFILE.website,
+  jobTitle: PUBLIC_CONTACT_PROFILE.title,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: PUBLIC_CONTACT_PROFILE.locality,
+    addressRegion: PUBLIC_CONTACT_PROFILE.region,
+  },
+  sameAs: [PUBLIC_CONTACT_PROFILE.github, PUBLIC_CONTACT_PROFILE.x],
+  description: CONNECT_CARD.lead,
+};
+
+const iconProps = {
+  width: 20,
+  height: 20,
+  viewBox: '0 0 24 24',
+  fill: 'none',
+  stroke: 'currentColor',
+  'stroke-width': 1.7,
+  'stroke-linecap': 'round',
+  'stroke-linejoin': 'round',
+  'aria-hidden': 'true',
+};
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  schema={personSchema}
+  hideFooterNewsletter={true}
+  robots="noindex, follow"
+>
+  <article class="connect wrap">
+    <header class="identity">
+      <div class="identity__statement">
+        <p class="eyebrow">{CONNECT_CARD.eyebrow}</p>
+        <h1>{PUBLIC_CONTACT_PROFILE.name}</h1>
+        <p class="descriptor">{CONNECT_CARD.descriptor}</p>
+        <p class="lead">{CONNECT_CARD.lead}</p>
+        <div class="identity__meta" aria-label="Public profile details">
+          <a href={PUBLIC_CONTACT_PROFILE.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href={PUBLIC_CONTACT_PROFILE.website}>collinwilkins.com</a>
+        </div>
+      </div>
+
+      <aside class="quick-actions" aria-label="Primary contact actions">
+        <div class="quick-actions__heading">
+          <p class="ledger-label">Digital card</p>
+          <p>Keep the useful parts close.</p>
+        </div>
+        <a
+          class="card-action card-action--primary"
+          href={`mailto:${PUBLIC_CONTACT_PROFILE.email}`}
+        >
+          <svg {...iconProps}><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 7 9 6 9-6"/></svg>
+          <span>{PUBLIC_CONTACT_PROFILE.email}</span>
+          <span class="action-arrow" aria-hidden="true">→</span>
+        </a>
+        <a
+          class="card-action card-action--secondary"
+          href={PUBLIC_CONTACT_PROFILE.vCardHref}
+          download="Collin-Wilkins.vcf"
+          data-connect-event={ANALYTICS_EVENTS.connectVCardDownload}
+          data-connect-location="connect-hero-vcard"
+        >
+          <svg {...iconProps}><path d="M6 3h12a2 2 0 0 1 2 2v16l-8-4-8 4V5a2 2 0 0 1 2-2Z"/></svg>
+          <span>Save contact</span>
+          <span class="action-arrow" aria-hidden="true">↓</span>
+        </a>
+      </aside>
+    </header>
+
+    <section class="contact" aria-labelledby="contact-title">
+      <div class="contact__note">
+        <p class="ledger-label">Preferred contact</p>
+        <h2 id="contact-title">{CONNECT_CARD.closing}</h2>
+        <a
+          class="card-action card-action--paper contact__writing"
+          href="/articles"
+          data-connect-event={ANALYTICS_EVENTS.connectWritingClick}
+          data-connect-location="connect-writing"
+        >
+          <svg {...iconProps}><path d="M4 4h11l5 5v11H4z"/><path d="M8 12h8M8 16h5"/></svg>
+          <span>Read the writing</span>
+          <span class="action-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="introduction" aria-labelledby="introduction-title">
+        <div class="introduction__heading">
+          <p class="ledger-label">Ready to send</p>
+          <h2 id="introduction-title">Make the introduction.</h2>
+        </div>
+        <blockquote>{CONNECT_CARD.introductionMessage}</blockquote>
+        <div class="introduction__actions">
+          <button
+            class="card-action card-action--ink"
+            type="button"
+            data-copy-introduction
+          >
+            <svg {...iconProps}><rect x="9" y="9" width="12" height="12" rx="1"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>
+            <span>Copy an introduction</span>
+            <span class="action-arrow" aria-hidden="true">→</span>
+          </button>
+          <button
+            class="card-action card-action--paper"
+            type="button"
+            data-share-card
+          >
+            <svg {...iconProps}><path d="M12 16V3m0 0L7 8m5-5 5 5"/><path d="M5 13v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"/></svg>
+            <span>Share this card</span>
+            <span class="action-arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+        <p class="status" role="status" aria-live="polite" aria-atomic="true" data-action-status></p>
+        <noscript>
+          <p class="noscript-note">Copy and share need JavaScript. Email and the contact download still work.</p>
+        </noscript>
+      </div>
+    </section>
+  </article>
+
+  <script define:vars={{
+    allowedSources: CONNECT_CARD.allowedSources,
+    introductionMessage: CONNECT_CARD.introductionMessage,
+    shareData: { ...CONNECT_CARD.share, url: CONNECT_CARD.canonicalUrl },
+    introductionCopyEvent: ANALYTICS_EVENTS.connectIntroductionCopy,
+    shareEvent: ANALYTICS_EVENTS.connectShare,
+  }}>
+    const statusElement = document.querySelector('[data-action-status]');
+    const rawSource = new URLSearchParams(window.location.search).get('source');
+    const source = allowedSources.includes(rawSource) ? rawSource : (rawSource ? 'other' : 'direct');
+
+    function trackConnectEvent(name, props = {}) {
+      if (typeof window.plausible === 'function') {
+        window.plausible(name, { props: { ...props, source } });
+      }
+    }
+
+    function setStatus(message, isError = false) {
+      if (!statusElement) return;
+      statusElement.textContent = message;
+      statusElement.dataset.state = isError ? 'error' : 'success';
+    }
+
+    function fallbackCopy(text) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.left = '-9999px';
+      textarea.style.top = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      textarea.setSelectionRange(0, textarea.value.length);
+
+      let copied = false;
+      try {
+        copied = document.execCommand('copy');
+      } catch {
+        copied = false;
+      }
+
+      textarea.remove();
+      return copied;
+    }
+
+    async function copyText(text) {
+      if (navigator.clipboard?.writeText && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(text);
+          return { copied: true, method: 'clipboard-api' };
+        } catch {
+          // Fall through to the selection-based copy path.
+        }
+      }
+
+      return { copied: fallbackCopy(text), method: 'exec-command' };
+    }
+
+    document.addEventListener('click', async (event) => {
+      const trackedLink = event.target.closest('[data-connect-event][data-connect-location]');
+      if (trackedLink) {
+        trackConnectEvent(trackedLink.dataset.connectEvent, {
+          location: trackedLink.dataset.connectLocation,
+        });
+      }
+
+      const copyButton = event.target.closest('[data-copy-introduction]');
+      if (copyButton) {
+        const result = await copyText(introductionMessage);
+        trackConnectEvent(introductionCopyEvent, {
+          method: result.method,
+          outcome: result.copied ? 'success' : 'failure',
+        });
+        setStatus(
+          result.copied
+            ? 'Introduction copied. It is ready to paste.'
+            : 'The introduction could not be copied. Select the message above and copy it manually.',
+          !result.copied,
+        );
+        return;
+      }
+
+      const shareButton = event.target.closest('[data-share-card]');
+      if (!shareButton) return;
+
+      if (typeof navigator.share === 'function') {
+        try {
+          await navigator.share(shareData);
+          trackConnectEvent(shareEvent, { method: 'native', outcome: 'success' });
+          setStatus('Card shared.');
+        } catch (error) {
+          if (error?.name === 'AbortError') {
+            setStatus('Sharing canceled.');
+          } else {
+            const result = await copyText(shareData.url);
+            trackConnectEvent(shareEvent, {
+              method: 'fallback-copy',
+              outcome: result.copied ? 'success' : 'failure',
+            });
+            setStatus(
+              result.copied
+                ? 'Native sharing was unavailable, so the card link was copied instead.'
+                : 'The card could not be shared or copied. Select and copy collinwilkins.com/connect manually.',
+              !result.copied,
+            );
+          }
+        }
+        return;
+      }
+
+      const result = await copyText(shareData.url);
+      trackConnectEvent(shareEvent, {
+        method: 'fallback-copy',
+        outcome: result.copied ? 'success' : 'failure',
+      });
+      setStatus(
+        result.copied
+          ? 'Native sharing is unavailable, so the card link was copied instead.'
+          : 'The card link could not be copied. Select and copy collinwilkins.com/connect manually.',
+        !result.copied,
+      );
+    });
+  </script>
+</Layout>
+
+<style>
+  .connect {
+    max-width: 1180px;
+    padding-top: clamp(32px, 5vw, 72px);
+    padding-bottom: clamp(72px, 9vw, 120px);
+  }
+
+  .identity,
+  .contact {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(310px, .65fr);
+  }
+
+  .identity {
+    border-block: 1px solid var(--ink);
+  }
+
+  .identity__statement {
+    min-width: 0;
+    padding: clamp(34px, 6vw, 72px) clamp(28px, 6vw, 76px) clamp(36px, 6vw, 68px) 0;
+  }
+
+  .eyebrow,
+  .ledger-label,
+  .descriptor,
+  .identity__meta,
+  .status,
+  .noscript-note {
+    font-family: var(--mono);
+  }
+
+  .eyebrow,
+  .ledger-label {
+    margin: 0;
+    color: var(--accent-text);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    max-width: 9ch;
+    margin: 18px 0 14px;
+    font-size: clamp(50px, 7.6vw, 88px);
+    font-weight: 500;
+    letter-spacing: -.04em;
+    line-height: .88;
+    text-wrap: balance;
+  }
+
+  .descriptor {
+    margin: 0;
+    color: var(--ink);
+    font-size: clamp(11px, 1.2vw, 13px);
+    letter-spacing: .08em;
+    line-height: 1.6;
+    text-transform: uppercase;
+  }
+
+  .lead {
+    max-width: 31ch;
+    margin: 24px 0 0;
+    color: var(--ink-soft);
+    font-size: clamp(21px, 2.25vw, 28px);
+    line-height: 1.38;
+  }
+
+  .identity__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    margin-top: 28px;
+    color: var(--ink-faint);
+    font-size: 11px;
+    letter-spacing: .03em;
+  }
+
+  .identity__meta a {
+    color: inherit;
+    text-underline-offset: 4px;
+  }
+
+  .quick-actions {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    padding: clamp(26px, 4vw, 44px);
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .quick-actions__heading {
+    margin-bottom: 14px;
+  }
+  .quick-actions__heading .ledger-label {
+    color: var(--accent-btn);
+  }
+
+  .quick-actions__heading p:last-child {
+    margin: 8px 0 0;
+    color: var(--paper-3);
+    font-size: 18px;
+    line-height: 1.4;
+  }
+
+  .card-action {
+    display: grid;
+    width: 100%;
+    min-height: 58px;
+    grid-template-columns: 22px minmax(0, 1fr) auto;
+    gap: 13px;
+    align-items: center;
+    border: 1px solid var(--rule);
+    border-radius: 0;
+    padding: 13px 16px;
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .02em;
+    line-height: 1.4;
+    text-align: left;
+    text-decoration: none;
+    transition: background-color .15s, border-color .15s, color .15s;
+  }
+  .quick-actions .card-action {
+    font-size: 11px;
+  }
+
+  button.card-action {
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .card-action svg {
+    flex: 0 0 auto;
+  }
+
+  .action-arrow {
+    font-size: 16px;
+  }
+
+  .card-action--primary {
+    border-color: var(--accent-btn);
+    background: var(--accent-btn);
+    color: var(--on-accent);
+  }
+
+  .card-action--primary:hover {
+    border-color: var(--paper);
+    background: var(--paper);
+  }
+
+  .card-action--secondary {
+    border-color: oklch(0.987 0.005 95 / .55);
+    color: var(--paper);
+  }
+
+  .card-action--secondary:hover {
+    border-color: var(--paper);
+    background: oklch(0.987 0.005 95 / .08);
+  }
+
+  .contact {
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .contact__note,
+  .introduction {
+    min-width: 0;
+    padding: clamp(46px, 7vw, 82px) clamp(28px, 5vw, 60px);
+  }
+
+  .contact__note {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 0;
+  }
+
+  .contact h2 {
+    max-width: 26ch;
+    margin: 13px 0 0;
+    font-size: clamp(30px, 3.8vw, 46px);
+    font-weight: 500;
+    letter-spacing: -.03em;
+    line-height: 1.06;
+    text-wrap: balance;
+  }
+
+  .contact__writing {
+    width: auto;
+    min-width: min(24rem, 100%);
+    margin-top: 34px;
+  }
+
+  .introduction {
+    border-left: 1px solid var(--ink);
+    background: var(--paper-2);
+  }
+
+  .introduction h2 {
+    font-size: clamp(30px, 3vw, 40px);
+  }
+
+  blockquote {
+    margin: 30px 0 0;
+    border-block: 1px solid var(--rule);
+    padding: 25px 0;
+    color: var(--ink-soft);
+    font-size: 17px;
+    line-height: 1.58;
+    overflow-wrap: anywhere;
+  }
+
+  .introduction__actions {
+    display: grid;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .card-action--ink {
+    border-color: var(--ink);
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .card-action--ink:hover {
+    background: var(--accent-deep);
+    color: var(--paper);
+  }
+
+  .card-action--paper {
+    background: var(--paper);
+  }
+
+  .card-action--paper:hover {
+    border-color: var(--ink);
+  }
+
+  .status,
+  .noscript-note {
+    min-height: 1.5em;
+    margin: 15px 0 0;
+    color: var(--ink-soft);
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .status[data-state='success']::before {
+    content: 'Status / ';
+    color: var(--accent-text);
+  }
+
+  .status[data-state='error'] {
+    color: var(--ink);
+  }
+
+  @media (max-width: 860px) {
+    .identity,
+    .contact {
+      grid-template-columns: 1fr;
+    }
+
+    .identity__statement,
+    .contact__note {
+      padding-right: 0;
+    }
+
+    .quick-actions {
+      padding: 28px clamp(20px, 5vw, 38px);
+    }
+
+    .introduction {
+      border-top: 1px solid var(--ink);
+      border-left: 0;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .connect {
+      padding-top: 20px;
+      padding-inline: 20px;
+    }
+
+    .identity__statement {
+      padding-block: 30px 27px;
+    }
+
+    h1 {
+      margin-top: 13px;
+      font-size: clamp(48px, 15vw, 64px);
+      line-height: .9;
+    }
+
+    .descriptor {
+      max-width: 30ch;
+      font-size: 10px;
+    }
+
+    .lead {
+      margin-top: 18px;
+      font-size: 20px;
+      line-height: 1.35;
+    }
+
+    .identity__meta {
+      margin-top: 20px;
+    }
+
+    .quick-actions {
+      margin-inline: -20px;
+      padding: 24px 20px 28px;
+    }
+
+    .quick-actions__heading {
+      display: none;
+    }
+
+    .card-action {
+      min-height: 55px;
+      padding: 12px 14px;
+      font-size: 11px;
+    }
+
+    .contact__note,
+    .introduction {
+      padding-block: 48px;
+      padding-inline: 0;
+    }
+
+    .introduction {
+      margin-inline: -20px;
+      padding-inline: 20px;
+    }
+
+    .contact h2 {
+      font-size: 34px;
+    }
+
+    .contact__writing {
+      width: 100%;
+      margin-top: 28px;
+    }
+  }
+</style>

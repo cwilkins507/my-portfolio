@@ -25,9 +25,11 @@ export default function AskBlog({ compact = false, documents = [], articleCount 
       />
       {shortQuery && <p className="label" aria-live="polite" style={{ color: 'var(--ink-faint)', marginTop: 10 }}>Type one more character to search.</p>}
       {active && (
-        <div style={{ marginTop: 24 }}>
-          <p className="label" aria-live="polite" style={{ color: 'var(--ink-faint)' }}>
-            {results.length ? `${results.length} distinct destinations` : `No close matches for “${query.trim()}”`}
+        <div style={{ marginTop: 24, minWidth: 0 }}>
+          <p className="label" aria-live="polite" style={{ color: 'var(--ink-faint)', overflowWrap: 'anywhere' }}>
+            {results.length
+              ? `${results.length} distinct destinations`
+              : `No close matches for “${query.trim().length > 60 ? `${query.trim().slice(0, 60)}…` : query.trim()}”`}
           </p>
           {results.length > 0 ? (
             <div style={{ borderTop: '1px solid var(--rule)', marginTop: 10 }}>

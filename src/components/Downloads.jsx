@@ -11,7 +11,7 @@ const Downloads = () => {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Resources & Case Studies | Collin Wilkins";
+    document.title = "Free Resources & Guides | Collin Wilkins";
   }, []);
 
   return (
@@ -99,42 +99,35 @@ const Downloads = () => {
                 access_type: 'read_free',
               });
             }}
-            className="block bg-[var(--color-surface)] p-8 md:p-12 rounded-2xl border border-[var(--color-border)] hover:border-[var(--color-border-hover)] transition-all duration-500 group shadow-2xl relative overflow-hidden"
+            className="group relative block border border-[var(--color-border)] bg-[var(--color-surface)] p-8 transition-colors duration-200 hover:border-[var(--color-text-faint)] md:p-12"
           >
-            {/* Subtle Gradient Glow */}
-            <div className="absolute -inset-x-20 -top-20 h-40 bg-[var(--color-blur-primary)] blur-[100px] pointer-events-none transition-all duration-500" />
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
+            <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
               <div className="order-2 md:order-1">
-                <div className="inline-block text-xs font-mono uppercase tracking-[0.2em] text-[var(--color-accent)] mb-4 border border-[var(--color-accent-border)] bg-[var(--color-accent-muted)] px-3 py-1 rounded-full">
-                  Free Guide
+                <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-accent)]">
+                  Free guide
                 </div>
-                <h3 className="text-2xl md:text-3xl font-serif font-bold text-[var(--color-text-primary)] leading-tight mb-3">
+                <h3 className="mt-4 font-serif text-2xl font-medium leading-tight tracking-[-0.02em] text-[var(--color-text-primary)] md:text-3xl">
                   The AI Adoption Playbook
                 </h3>
-                <p className="italic text-[var(--color-text-secondary)] text-lg mb-6 font-light">
+                <p className="mt-3 font-serif text-lg italic text-[var(--color-text-secondary)]">
                   For engineering teams adopting AI coding tools
                 </p>
 
-                <p className="text-[var(--color-text-secondary)] text-base md:text-lg leading-relaxed mb-8 font-light">
-                  Five chapters on readiness, context engineering, tool selection, failure patterns, and ROI math. The frameworks I use when I help teams roll out AI coding tools — with a downloadable toolkit for diagnostic scoring, convention files, safety stops, memory, and stack lock-in.
+                <p className="mb-8 mt-6 text-base leading-relaxed text-[var(--color-text-secondary)] md:text-[17px]">
+                  Five chapters on readiness, context engineering, tool selection, failure patterns, and ROI math. The frameworks I reach for when rolling out AI coding tools on a real team — with a downloadable toolkit for diagnostic scoring, convention files, safety stops, memory, and stack lock-in.
                 </p>
 
-                <div className="inline-flex items-center gap-3 px-6 py-3 bg-[var(--color-accent)] text-white rounded-full font-bold group-hover:bg-[var(--color-accent-hover)] transition-all duration-300">
-                  <span>Read the Playbook →</span>
-                </div>
+                <span className="btn btn-solid">Read the playbook →</span>
 
-                <p className="text-sm text-[var(--color-text-muted)] mt-4 font-light">
+                <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)]">
                   5 chapters · Read free · Downloads free
                 </p>
               </div>
 
               {/* Visual: chapter list card */}
               <div className="order-1 md:order-2">
-                <div className="relative group/visual">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[var(--color-accent-muted)] to-transparent rounded-xl blur opacity-25 group-hover/visual:opacity-40 transition duration-1000"></div>
-                  <div className="relative bg-[var(--color-bg)] rounded-lg border border-[var(--color-border)] shadow-2xl p-8 md:p-10 transform transition duration-500 group-hover:scale-[1.02]">
-                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-[var(--color-border)]">
+                <div className="border border-[var(--color-border)] bg-[var(--color-bg)] p-8 md:p-10">
+                    <div className="mb-6 flex items-center gap-3 border-b border-[var(--color-border)] pb-4">
                       <BookOpen className="w-6 h-6 text-[var(--color-accent)]" />
                       <span className="text-xs font-mono uppercase tracking-[0.15em] text-[var(--color-text-muted)]">
                         Contents
@@ -162,7 +155,6 @@ const Downloads = () => {
                     </div>
                   </div>
                 </div>
-              </div>
             </div>
           </a>
         </div>

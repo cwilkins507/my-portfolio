@@ -292,9 +292,8 @@ Add field normalization and required fields next.
 This reduces duplicates and supports future reporting.
 4) Turn it on for a limited segment first. 
 Use one team, one region, or one lead source.
-If you’re exploring automating manual processes and you’re not sure where to start, [contact me](https://collinwilkins.com/?modal=contact). 
 
-Share your CRM, your top three tools, and one broken workflow. You’ll get a clearer path in one conversation.
+Start there rather than mapping the whole system. One reliable flow teaches you more about your data than a full audit does.
 
 ## Conclusion
 

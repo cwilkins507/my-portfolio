@@ -1,8 +1,7 @@
 ---
 import Navigation from '../components/Navigation.jsx';
-import ContactModalWrapper from '../components/ContactModalWrapper';
 import '../index.css';
-import { SMB_ASSESSMENT, NEWSLETTER, ANALYTICS_EVENTS } from '../data/site.js';
+import { NEWSLETTER, ANALYTICS_EVENTS, PUBLIC_CONTACT_PROFILE } from '../data/site.js';
 
 interface Props {
 	title: string;
@@ -17,7 +16,7 @@ interface Props {
 
 const {
 	title,
-	description = "Lead Software Engineer specializing in AI engineering, automation architecture, and production AI systems.",
+	description = "Software engineer and technical leader writing about distributed systems, infrastructure, developer tooling, and AI-native software development.",
 	image,
 	type = 'website',
 	publishedTime,
@@ -29,12 +28,7 @@ const {
 const canonicalURL = new URL(Astro.url.pathname.toLowerCase().replace(/\.html$/, ''), Astro.site);
 const imageURL = new URL(image || '/images/og-default.png', Astro.site);
 
-const portfolioData = {
-  name: "Collin Wilkins",
-  email: "collin@collinwilkins.com",
-  linkedin: "https://www.linkedin.com/in/collin-wilkins-1020215a/",
-  github: "https://github.com/cwilkins507"
-};
+const portfolioData = { ...PUBLIC_CONTACT_PROFILE };
 
 const currentYear = new Date().getFullYear();
 ---
@@ -147,32 +141,31 @@ const currentYear = new Date().getFullYear();
 				<div>
 					<div style="font-size:18px;font-weight:600;letter-spacing:-.01em;">{portfolioData.name}</div>
 					<p style="font-size:13.5px;line-height:1.5;color:var(--ink-soft);max-width:32ch;margin-top:10px;">
-						Practical workflow automation for owner-operated teams, grounded in engineering evidence.
+						Essays and field notes on software engineering, systems, infrastructure, and AI-native development.
 					</p>
-				</div>
-				<div>
-					<h2 style="font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:15px;">Work</h2>
-					<ul style="list-style:none;">
-						<li><a class="footer-link" href={SMB_ASSESSMENT.slug} data-analytics-event={ANALYTICS_EVENTS.smbAssessmentOpen} data-analytics-location="footer-work-assessment">Workflow assessment</a></li>
-						<li><a class="footer-link" href="/services">All services</a></li>
-						<li><a class="footer-link" href="/contact">Contact form</a></li>
-					</ul>
 				</div>
 				<div>
 					<h2 style="font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:15px;">Writing</h2>
 					<ul style="list-style:none;">
 						<li><a class="footer-link" href="/articles">Articles</a></li>
+						<li><a class="footer-link" href="/newsletter">{NEWSLETTER.name}</a></li>
+						<li><a class="footer-link" href={NEWSLETTER.archiveHref} target="_blank" rel="noopener noreferrer">Past issues</a></li>
 						<li><a class="footer-link" href="/faq">FAQ</a></li>
-						<li><a class="footer-link" href="/resources">Free resources</a></li>
-						<li><a class="footer-link" href={NEWSLETTER.archiveHref} target="_blank" rel="noopener noreferrer">{NEWSLETTER.name}</a></li>
+					</ul>
+				</div>
+				<div>
+					<h2 style="font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:15px;">More</h2>
+					<ul style="list-style:none;">
+						<li><a class="footer-link" href="/resources">Resources</a></li>
+						<li><a class="footer-link" href="/about">About</a></li>
+						<li><a class="footer-link" href="/case-studies">Selected work</a></li>
 					</ul>
 				</div>
 				<div>
 					<h2 style="font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:15px;">Elsewhere</h2>
 					<ul style="list-style:none;">
-						<li><a class="footer-link" href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
 						<li><a class="footer-link" href={portfolioData.github} target="_blank" rel="noopener noreferrer">GitHub</a></li>
-						<li><a class="footer-link" href="https://x.com/CollinWilkins7" target="_blank" rel="noopener noreferrer">Twitter / X</a></li>
+						<li><a class="footer-link" href={portfolioData.x} target="_blank" rel="noopener noreferrer">Twitter / X</a></li>
 					</ul>
 				</div>
 			</div>
@@ -182,8 +175,6 @@ const currentYear = new Date().getFullYear();
 			</div>
 		</footer>
 
-		<!-- Contact Modal -->
-		<ContactModalWrapper email={portfolioData.email} client:only="react" />
 		<script is:inline>document.addEventListener('submit',function(event){var form=event.target.closest('[data-newsletter-event]');if(form&&window.plausible)window.plausible(form.dataset.newsletterEvent,{props:{location:form.dataset.location,measurement:'intent'}});});</script>
 		<script is:inline>document.addEventListener('click',function(event){var link=event.target.closest('[data-analytics-event][data-analytics-location]');if(link&&window.plausible)window.plausible(link.dataset.analyticsEvent,{props:{location:link.dataset.analyticsLocation}});});</script>
 </body>

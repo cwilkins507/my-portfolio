@@ -2,12 +2,12 @@
 
 ## Repository purpose
 
-This Astro site has two jobs:
+This Astro site is a personal publication. The product is the writing.
 
-1. Establish Collin Wilkins as an engineering practitioner writing about production AI, automation, and agent systems.
-2. Convert a small number of qualified visitors into consulting conversations.
+1. Publish long-form practitioner writing on AI-assisted engineering, agent systems, automation, and distributed systems.
+2. Turn readers into newsletter subscribers, and give LLM crawlers accurate, citable source material.
 
-The prepared local funnel makes the AI-Assisted Delivery Pilot primary. The public AI Workflow Opportunity Assessment remains a separate SMB route. This branch is not authorization to deploy either change.
+There is nothing for sale here: no offers, prices, packages, booking links, delivery windows, or availability claims. `/services` is a quiet reference page describing the kinds of problems Collin has worked on, and every availability statement on it is gated by `ADVISORY.accepting` in `src/data/site.js`, which is `false`. Do not add an offer, a price, or a scheduling link unless an explicit instruction flips that flag in the same change.
 
 ## Stack and commands
 
@@ -32,47 +32,32 @@ npm run preview
 
 ## Source precedence
 
-For this implementation:
-
 1. Current user task
 2. This root contract
-3. `Founder Intelligence System/Current Bet.md` for commercial authority only
-4. `Personal/Strategy/AI Delivery Kit Pilot - Planning Package Index.md`
-5. `Personal/Strategy/Handoff - Implement AI Delivery Kit Pilot and Engineering Funnel.md`
-6. Current repository source
+3. `PRODUCT.md`
+4. `src/data/site.js` for site-wide copy, metadata, links, and analytics objects
+5. Current repository source
 
-The planning package is provisional site design. It does not replace the Current Bet, authorize deployment, or create market evidence. If the vault is unavailable, stop rather than inventing business decisions.
+No external strategy vault, planning package, or commercial authority is in play. If a task cites one, stop rather than inventing business decisions. Local working notes under `docs/`, `Session Recaps/`, `artifacts/`, and `.impeccable/critique/` are deliberately untracked: read them for context, never copy their positioning into public files, and never re-add them to git.
 
-## Offer and routing invariants
+## Positioning invariants
 
-- Umbrella message: help business owners and engineering leaders turn AI experiments and manual workflows into systems their teams can use and maintain.
-- The site exposes four service paths: AI readiness assessment, AI-Assisted Delivery Pilot, technical advisory, and hands-on backend/automation work.
-- Advisory and hands-on work are scoped through the free 30-minute intro; do not invent fixed prices, delivery windows, or guarantees for them.
-
-- Engineering offer: AI-Assisted Delivery Pilot.
-- Asset: AI Delivery Kit.
-- Scope: one team, one repository, one real backlog item.
-- Founding price: $1,500 for the first three clients whose written scope is accepted and $500 first installment is paid; accepted pilots keep that price.
-- Delivery: five business days after the full readiness gate passes, async-first.
-- Readiness requires written scope, one approved low-risk issue, least-privilege access, a passing agreed baseline, authenticated agent access, working CI/draft-PR/branch protection, a named technical owner and reviewer, the $500 first installment, and a confirmed start date.
-- Acceptance requires the agreed customer-owned assets, passing existing verification and five smoke cases, fail-closed protected paths, one approved issue at a verified draft PR with normalized usage evidence, retained human approval, and a customer engineer completing the documented non-production path without Collin driving.
-- Payment: $500 after written scope acceptance; $1,000 only after acceptance passes.
-- Risk reversal: if a ready environment misses acceptance by business day five, the final installment is not due and Collin corrects the agreed in-scope installation at no additional charge until acceptance passes. Customer delays pause the clock; scope changes and pre-existing failures are re-scoped.
-- General intro calls use `https://cal.com/collinwilkins/intro`; the call is free, 30 minutes, and optional. It may route to an assessment, pilot, advisory need, hands-on build, or no engagement.
-- Direct pilot intake is site-owned, collects no payment, and precedes written scope acceptance.
-- SMB assessment stays separate: $99, 60 minutes, Workflow Opportunity Map within 48 hours, booked at `/assessment`.
-- Never route an engineering CTA to the SMB assessment.
-- Preserve the financial-services exclusion.
-- Do not add service categories without evidence or explicit instruction.
+- Umbrella message: a working engineer writing about what actually holds up when teams build alongside AI.
+- The site sells nothing. Never add a service path, package, tier, price, founding rate, payment step, intake form, scope-acceptance flow, risk reversal, or delivery guarantee.
+- Never add a booking, scheduling, or calendar link, and never state or imply availability for client work. `/services` is reference material gated by `ADVISORY.accepting`.
+- `/connect` is the only contact surface: email and profile links, no lead capture and no qualification funnel.
+- The newsletter is the only conversion goal. Subscribing is free and never gates an article, guide, or download.
+- Never name a current or former employer anywhere in this repository, tracked or rendered. That includes copy, alt text, metadata, JSON-LD, `public/llms.txt`, filenames, and asset names. `finimbus.png` is Collin's own product and is the only logo that stays.
+- Prior accomplishments may appear only as explicitly-earlier, unattributed work, in past tense, with no company name attached to a metric. "Earlier work included large-scale connected-vehicle telemetry" is the acceptable shape.
 - Do not advertise voice-agent delivery experience.
-
-Centralized consulting overview, offer, newsletter, booking, and analytics objects in `src/data/site.js` are the implementation source of truth. Visible copy, metadata, JSON-LD, links, and analytics labels must agree.
+- Do not add service categories, audiences, or funnels without explicit instruction.
+- Centralized site, advisory, newsletter, and analytics objects in `src/data/site.js` are the implementation source of truth. Visible copy, metadata, JSON-LD, links, and analytics labels must agree with them.
 
 ## Claims and proof
 
 - Never invent clients, testimonials, statistics, quotes, prices, availability, or outcomes.
-- Use Ford and Morningstar outcomes only in their verified wording and employment context.
-- Label employment proof: `Outcomes from full-time engineering roles, not consulting clients.`
+- Describe earlier engineering work without naming the employer, in past tense, as prior work.
+- Never present prior full-time engineering outcomes as client or consulting results.
 - Treat examples as synthetic or redacted when applicable.
 - Never attribute combined defect or cycle-time outcomes to AI, `AGENTS.md`, or one model alone.
 - Do not imply public preview material is an installable starter.
@@ -80,7 +65,7 @@ Centralized consulting overview, offer, newsletter, booking, and analytics objec
 
 ## Public/private boundary
 
-Public pages may show a lifecycle map, file tree, synthetic issue, redacted usage summary, human-control table, and generic repository-instruction excerpt. Never publish a runnable ZIP, complete workflow, complete issue template, scripts, skills, adapter code, credentials, customer data, private paths, or private repository links.
+This repository is public, so every tracked file is as readable as the rendered site. Never track or publish Collin's working notes, employer names, employer logos, résumé or capability-brief files, the redirect paths that once served them, private paths, credentials, customer data, or private repository links. Public pages may show a lifecycle map, file tree, synthetic issue, redacted usage summary, human-control table, and generic repository-instruction excerpt; treat examples as synthetic or redacted. Before adding a file, ask whether it would be fine on the front page of the repo. Local-only material belongs in `.gitignore`, not in a commit.
 
 ## Editorial-print design
 
@@ -93,18 +78,17 @@ Public pages may show a lifecycle map, file tree, synthetic issue, redacted usag
 
 ## Conversion and analytics
 
-- A CTA click is not a booking, purchase, or confirmed subscriber.
+- A CTA click is not a confirmed subscriber.
 - Use the existing Plausible integration and stable centralized event names.
 - Every CTA event includes an explicit location.
 - Newsletter submit is intent because the cross-origin Buttondown result is not observable.
-- Cal.com and external payment systems remain authoritative for completed bookings and payments.
-- A price, destination, audience, or deliverable change must update visible copy, FAQ, metadata, schema, and analytics in the same change.
+- A destination, audience, or deliverable change must update visible copy, FAQ, metadata, schema, and analytics in the same change.
 
 ## Worktree safety
 
 - Inspect `git status --short --branch` before editing.
 - Existing changes and untracked files belong to the user.
-- Work only in this isolated worktree for this funnel.
+- Work only in the checkout you were given.
 - Do not reset, clean, stash, pull, merge, switch another checkout, or overwrite unrelated work.
 - Do not push, open a pull request, deploy, configure a remote, or change external accounts.
 - Local focused commits are authorized for the approved implementation only.
@@ -125,10 +109,8 @@ Public pages may show a lifecycle map, file tree, synthetic issue, redacted usag
 
 - Locked install and relevant test scripts pass.
 - Production build passes; changed routes render without console errors.
-- Engineering and SMB links remain distinct and accurate.
-- Intake success and failure states work without creating a production lead.
+- No offer, price, booking link, availability claim, or employer name entered the repository.
 - Desktop, tablet, mobile, keyboard, focus, headings, landmarks, overflow, and reduced motion are checked.
-- Capability brief exports as one readable US Letter page with production-absolute PDF links.
 - Plausible events and explicit locations are verified when touched.
 - Metadata and structured data match visible content.
-- No new public private-kit source or unauthorized external action exists.
+- No local note, private asset, or unsupported claim crossed the public boundary.

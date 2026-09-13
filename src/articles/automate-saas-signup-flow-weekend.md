@@ -209,6 +209,4 @@ If you want to build your own version:
 
 The full code is on GitHub: [leadsync-demo](https://github.com/cwilkins507/leadsync-demo). Fork it, swap in your own form fields and email templates, deploy with `modal deploy`. If you hit a snag, open an issue.
 
-If you'd rather have someone build this for your product, [that's what I do](https://collinwilkins.com).
-
 For more builds like this, [subscribe to the newsletter](https://buttondown.com/collinwilkins).

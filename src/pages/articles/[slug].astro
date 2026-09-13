@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import BookCTA from '../../components/BookCTA.astro';
 import { getCategoryForArticle } from '../../data/categories.js';
 import { faqAnchor } from '../../utils/contentSearch.js';
 import { articleFromModule } from '../../utils/articleData.js';
@@ -97,7 +96,6 @@ const articleEntity: Record<string, unknown> = {
     '@type': 'Person',
     name: 'Collin Wilkins',
     url: 'https://collinwilkins.com/about',
-    sameAs: ['https://www.linkedin.com/in/collin-wilkins-1020215a/'],
   },
   publisher: { '@type': 'Person', name: 'Collin Wilkins', url: 'https://collinwilkins.com' },
   mainEntityOfPage: { '@type': 'WebPage', '@id': `https://collinwilkins.com/articles/${slug}` },
@@ -236,26 +234,24 @@ const articleSchema = { '@context': 'https://schema.org', '@graph': graphItems }
       </div>
       <div>
         <div class="a-name">Collin Wilkins</div>
-        <div class="a-role">Lead Engineer · AI & Automation</div>
-        <div class="a-bio">Lead Software Engineer at Morningstar with 12 years across Ford and enterprise software. I write about what actually works when engineering teams adopt AI — and what breaks when they don't set up the context layer first.</div>
-        <p class="cta-context">Evaluating a low-risk AI delivery path for one engineering team and one real backlog item?</p>
-        <div class="cta-row">
-          <BookCTA location={`article-${slug}`} label="See if the engineering pilot fits" />
-          <a href="/services" class="btn btn-ghost">Compare service paths</a>
-        </div>
+        <div class="a-role">Software engineer · Writing on systems and AI-native engineering</div>
+        <div class="a-bio">I'm a software engineer and technical leader. I spent years building connected-vehicle telemetry and automation systems at Ford, and I now write about what actually works when engineering teams build alongside AI — and what breaks when the context layer comes last.</div>
+        <p class="a-more"><a href="/about">More about me →</a></p>
       </div>
     </div>
   </div>
 
-  <!-- ── Newsletter ── -->
+  <!-- ── End matter: subscribe + archive ── -->
   <div class="news" style="margin-top:clamp(48px,7vw,80px);">
-    <h3>{NEWSLETTER.name}.</h3>
+    <span class="label news-eyebrow">Keep reading</span>
+    <h3>{NEWSLETTER.name}</h3>
     <p>{NEWSLETTER.promise}</p>
     <form action={NEWSLETTER.subscribeAction} method="post" target="popupwindow" data-newsletter-event={ANALYTICS_EVENTS.newsletterSubscribe} data-location={`article-${slug}`}>
-      <input type="email" name="email" placeholder="you@company.com" aria-label="Email address" required />
+      <input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required />
       <button class="btn btn-solid" type="submit">Subscribe</button>
     </form>
-    <div class="fine">No spam. Unsubscribe anytime.</div>
+    <div class="fine">{NEWSLETTER.cadence}. No spam. Unsubscribe anytime.</div>
+    <p class="news-archive"><a href="/articles">Or read everything in the archive →</a></p>
   </div>
 
   <!-- ── Related articles ── -->
@@ -536,11 +532,20 @@ const articleSchema = { '@context': 'https://schema.org', '@graph': graphItems }
   margin-bottom: 14px;
   font-family: var(--serif);
 }
-.cta-context {
-  max-width: 54ch;
-  margin: 0 0 14px;
+.a-more {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.a-more a {
   color: var(--ink-soft);
-  line-height: 1.5;
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  transition: color .15s, border-color .15s;
+}
+.a-more a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
 }
 .tags span {
   border: 1px solid var(--rule);
@@ -552,12 +557,6 @@ const articleSchema = { '@context': 'https://schema.org', '@graph': graphItems }
   letter-spacing: .05em;
   text-transform: uppercase;
 }
-.cta-row {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  align-items: center;
-}
 
 /* ── Newsletter strip ── */
 .news {
@@ -567,6 +566,26 @@ const articleSchema = { '@context': 'https://schema.org', '@graph': graphItems }
   padding: clamp(40px, 6vw, 64px) clamp(20px, 5vw, 48px);
   text-align: center;
   margin-top: clamp(40px, 6vw, 64px);
+}
+.news-eyebrow {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--ink-faint);
+}
+.news-archive {
+  margin: 18px 0 0;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.news-archive a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  transition: color .15s, border-color .15s;
+}
+.news-archive a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
 }
 .news h3 {
   font-size: clamp(20px, 2.8vw, 26px);

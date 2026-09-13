@@ -1,9 +1,55 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { INTRO_CALL, SMB_ASSESSMENT, SMB_QUIZ, NEWSLETTER, ANALYTICS_EVENTS } from '../data/site.js';
+import { NEWSLETTER, ANALYTICS_EVENTS, PUBLIC_CONTACT_PROFILE } from '../data/site.js';
+import { CATEGORIES } from '../data/categories.js';
+import { articleFromModule } from '../utils/articleData.js';
 
-const pageTitle = 'AI Workflow Assessment for Small Teams | Collin Wilkins';
-const pageDescription = 'I help owner-operators choose the first recurring workflow worth improving, then leave with ranked opportunities and a practical 14-day plan.';
+const pageTitle = 'Collin Wilkins — Software Engineering, Systems, and AI-Native Development';
+const pageDescription = 'Essays and field notes on software engineering, distributed systems, infrastructure, developer tooling, and AI-native development.';
+
+const articleModules = import.meta.glob('../articles/*.md', { eager: true });
+const articles = Object.entries(articleModules)
+  .map(([file, article]) => articleFromModule(file, article))
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+const latest = articles.slice(0, 4);
+const [lead, ...rest] = latest;
+
+const topicCounts = Object.keys(CATEGORIES).map(name => ({
+  name,
+  href: `/articles?cat=${encodeURIComponent(name)}`,
+  count: articles.filter(article => article.category === name).length,
+})).filter(topic => topic.count > 0);
+
+const projects = [
+  {
+    name: 'Agent Harness Builder',
+    kind: 'Tool',
+    description: 'Generates the repository scaffolding a coding agent needs to be useful: conventions, protected paths, verification hooks, and a reviewable change path.',
+    href: '/resources/agent-harness-builder',
+  },
+  {
+    name: 'Ask the archive',
+    kind: 'Experiment',
+    description: 'Retrieval over every article on this site — a small Python RAG service with its own corpus, rate limiting, and evaluation harness.',
+    href: '/ask',
+  },
+  {
+    name: 'AI Prompt Toolkit',
+    kind: 'Resource',
+    description: 'The prompts I actually reuse for engineering work, written out in full rather than summarized.',
+    href: '/resources/ai-prompt-toolkit',
+  },
+  {
+    name: 'FiNimbus',
+    kind: 'Product',
+    description: 'A founder-owned financial software project, built and operated outside of any employer. Written up from the inside: automating its signup flow over a weekend.',
+    href: '/articles/automate-saas-signup-flow-weekend',
+  },
+];
+
+const formatDate = (value) =>
+  new Date(value).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' });
 
 const homepageSchema = [
   {
@@ -12,1006 +58,650 @@ const homepageSchema = [
     name: 'Collin Wilkins',
     url: 'https://collinwilkins.com',
     description: pageDescription,
+    author: {
+      '@type': 'Person',
+      name: 'Collin Wilkins',
+      jobTitle: 'Software Engineer',
+      url: 'https://collinwilkins.com/about',
+      sameAs: [PUBLIC_CONTACT_PROFILE.github, PUBLIC_CONTACT_PROFILE.x],
+    },
   },
   {
     '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: SMB_ASSESSMENT.name,
-    description: SMB_ASSESSMENT.description,
-    url: `https://collinwilkins.com${SMB_ASSESSMENT.slug}`,
-    provider: {
-      '@type': 'Person',
-      name: 'Collin Wilkins',
-      jobTitle: 'Lead Software Engineer',
-      url: 'https://collinwilkins.com/about',
-    },
-    offers: {
-      '@type': 'Offer',
-      price: SMB_ASSESSMENT.priceUsd,
-      priceCurrency: 'USD',
-      url: `https://collinwilkins.com${SMB_ASSESSMENT.slug}`,
-    },
-  },
-];
-
-const proofItems = [
-  {
-    value: '450K+ vehicles',
-    detail: 'Ford work associated with approximately $5M in annual savings.',
-  },
-  {
-    value: '600K+ events/day',
-    detail: 'Connected-vehicle systems operating at production scale.',
-  },
-  {
-    value: '42% fewer defects',
-    detail: 'A broader AI-adoption and delivery-hardening initiative also associated with approximately 20% shorter cycle time.',
-  },
-];
-
-
-
-const faqItems = [
-  {
-    question: 'Who is the assessment for?',
-    answer: 'Owner-operators of non-financial-services small teams with one recurring workflow that wastes time, delays customers, or depends too heavily on manual handoffs. Financial-services businesses are not eligible.',
-  },
-  {
-    question: 'What happens after the free introduction?',
-    answer: 'If the workflow is a good fit, we can book a separate 60-minute AI Workflow Opportunity Assessment for $99. The introduction is a no-pressure conversation, not a commitment to the assessment.',
-  },
-  {
-    question: 'What do I receive?',
-    answer: 'Within 48 hours, you receive a concise Workflow Opportunity Map with up to three ranked opportunities, one recommended first system, and a 14-day action plan.',
-  },
-  {
-    question: 'What if the workflow is not worth automating?',
-    answer: 'That is a useful outcome. The recommendation can be to implement, defer, simplify the process first, or stop—without forcing AI into work where it does not belong.',
+    '@type': 'Blog',
+    name: NEWSLETTER.name,
+    url: 'https://collinwilkins.com/articles',
+    description: pageDescription,
+    blogPost: latest.map(article => ({
+      '@type': 'BlogPosting',
+      headline: article.title,
+      url: `https://collinwilkins.com/articles/${article.slug}`,
+      datePublished: article.date,
+    })),
   },
 ];
 ---
 
 <Layout title={pageTitle} description={pageDescription} schema={homepageSchema} hideFooterNewsletter={true}>
-  <section class="hero" data-homepage-hero aria-labelledby="hero-title">
+  <section class="hero" aria-labelledby="hero-title">
     <div class="wrap hero-inner">
-      <p class="eyebrow">Workflow automation for owner-operated teams</p>
+      <p class="eyebrow">Essays &amp; field notes</p>
+      <h1 id="hero-title">Collin Wilkins</h1>
+      <p class="hero-lede">
+        Software engineer and technical leader. I write about distributed and event-driven systems,
+        infrastructure, developer tooling, and what AI-native development looks like once it has to
+        survive production, review, and the people who maintain it.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-solid" href="/articles">Read the latest <span aria-hidden="true">→</span></a>
+        <a class="btn btn-ghost" href="#subscribe">Subscribe to the newsletter</a>
+      </div>
+    </div>
+  </section>
 
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <h1 id="hero-title">Find the workflow worth fixing first.</h1>
-          <p class="hero-lede">
-            Bring one recurring workflow that wastes time or slows customers down. I’ll help you decide whether to automate it, improve the process first, or leave it alone.
-          </p>
+  <section class="band latest" aria-labelledby="latest-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="latest-title">Latest writing</h2>
+        <a class="section-link" href="/articles">All articles <span aria-hidden="true">→</span></a>
+      </div>
 
-          <div class="hero-actions">
-            <a class="btn btn-solid hero-primary" href={INTRO_CALL.href} data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen} data-analytics-location="homepage-hero-booking">Bring me the stuck workflow <span aria-hidden="true">→</span></a>
-            <a class="hero-secondary" href={SMB_ASSESSMENT.slug} data-analytics-event={ANALYTICS_EVENTS.smbAssessmentOpen} data-analytics-location="homepage-hero-assessment">See the $99 assessment</a>
-          </div>
-
-          <p class="hero-note">Start with a free 30-minute introduction. If the workflow is a fit, the assessment is the next step—not a required commitment.</p>
+      <a class="lead-article" href={`/articles/${lead.slug}`}>
+        <figure class="lead-figure">
+          {lead.image ? (
+            <img
+              src={lead.image}
+              alt={lead.image_alt || ''}
+              width="1600"
+              height="900"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
+          ) : (
+            <div class="ph"><span>{lead.category}</span></div>
+          )}
+        </figure>
+        <div class="lead-copy">
+          <span class="article-meta">
+            <span class="article-cat">{lead.category}</span>
+            <span class="article-date">{formatDate(lead.date)}</span>
+            <span class="article-flag">Newest</span>
+          </span>
+          <h3 class="lead-title">{lead.title}</h3>
+          <p class="lead-dek">{lead.excerpt}</p>
+          <span class="lead-cue">Read the essay <span aria-hidden="true">→</span></span>
         </div>
+      </a>
 
-        <aside class="offer-docket" aria-label="AI Workflow Opportunity Assessment">
-          <p class="docket-name">$99 AI Workflow Opportunity Assessment</p>
-          <h2>One workflow. A clear first move.</h2>
-          <p class="docket-summary">A focused 60-minute working session for eligible owner-operators, followed by a concise Workflow Opportunity Map within 48 hours.</p>
-          <dl class="docket-facts">
-            <div><dt>01</dt><dd>Rank up to three opportunities</dd></div>
-            <div><dt>02</dt><dd>Choose one first system</dd></div>
-            <div><dt>03</dt><dd>Leave with a 14-day plan</dd></div>
-          </dl>
-          <a class="docket-link" href={SMB_ASSESSMENT.slug} data-analytics-event={ANALYTICS_EVENTS.smbAssessmentOpen} data-analytics-location="homepage-docket-assessment">Review the assessment →</a>
-        </aside>
-      </div>
-    </div>
-  </section>
-
-  <section class="credibility-strip" aria-labelledby="credibility-title">
-    <div class="wrap credibility-inner">
-      <p id="credibility-title" class="credibility-label">Built &amp; shipped at</p>
-      <div class="credibility-logos" role="list" aria-label="Organizations and products">
-        <span class="credibility-mark" role="listitem">
-          <img src="/images/logos/morningstar.svg" alt="Morningstar" class="credibility-logo" />
-        </span>
-        <span class="credibility-mark" role="listitem">
-          <img src="/images/logos/ford.webp" alt="Ford Motor Company" class="credibility-logo credibility-ford" />
-        </span>
-        <span class="credibility-mark" role="listitem">
-          <img src="/images/logos/finimbus.png" alt="FiNimbus" class="credibility-logo credibility-finimbus" />
-        </span>
-        <span class="credibility-mark credibility-connected" role="listitem">
-          <span class="connected-icon" aria-hidden="true"></span>
-          Connected Vehicle
-        </span>
-      </div>
-      <p class="credibility-qualifier">Full-time employment and founder-owned product work, not consulting-client logos.</p>
-    </div>
-  </section>
-
-  <section class="overview-section" id="services-overview" aria-labelledby="overview-title">
-    <div class="wrap section-inner">
-      <div class="section-intro">
-        <p class="eyebrow">The recommended first step</p>
-        <h2 id="overview-title">Decide before you build.</h2>
-        <p>The assessment turns one recurring workflow into a bounded decision: implement, defer, simplify, or stop.</p>
-      </div>
-
-      <div class="assessment-ledger">
-        <article><p class="offer-label">Session</p><h3>60 focused minutes</h3><p>Map the current workflow, its cost, constraints, and the outcome that would make a change worthwhile.</p></article>
-        <article><p class="offer-label">Deliverable</p><h3>Within 48 hours</h3><p>Receive up to three ranked opportunities, one recommended first system, and a practical 14-day action plan.</p></article>
-        <article><p class="offer-label">Boundary</p><h3>No forced implementation</h3><p>The answer may be implement, defer, improve the process first, or stop. Financial-services businesses are not eligible.</p></article>
-      </div>
-      <div class="overview-actions">
-        <a class="btn btn-outline" href={SMB_ASSESSMENT.slug} data-analytics-event={ANALYTICS_EVENTS.smbAssessmentOpen} data-analytics-location="homepage-assessment-details">See assessment details →</a>
-        <a href="/services">Need a different kind of help? See all services</a>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="proof-band" aria-labelledby="proof-title">
-      <div class="wrap section-inner" style="padding-block: clamp(48px, 6vw, 72px);">
-          <div class="section-intro proof-intro" style="margin-bottom: 28px;">
-            <p class="eyebrow">Selected outcomes</p>
-            <h2 id="proof-title">Proof before promises.</h2>
-            <p>Production results from full-time roles—not claims about consulting clients.</p>
-          </div>
-        <div class="proof-ledger">
-          {proofItems.map(item => (
-            <article><strong>{item.value}</strong><p>{item.detail}</p></article>
-          ))}
-        </div>
-      </div>
-  </section>
-
-  <section class="faq-section" aria-labelledby="faq-title">
-    <div class="wrap section-inner faq-layout">
-      <div>
-        <p class="eyebrow">Before you book</p>
-        <h2 id="faq-title">The practical questions.</h2>
-        <p class="faq-intro">Eligibility, price, timing, and what you receive.</p>
-      </div>
-
-      <div class="faq-list">
-        {faqItems.map((item, index) => (
-          <details open={index === 0}>
-            <summary>{item.question}</summary>
-            <p>{item.answer}</p>
-          </details>
+      <ol class="article-list">
+        {rest.map((article, index) => (
+          <li>
+            <a href={`/articles/${article.slug}`}>
+              <span class="article-index" aria-hidden="true">{String(index + 2).padStart(2, '0')}</span>
+              <span class="article-body">
+                <span class="article-meta">
+                  <span class="article-cat">{article.category}</span>
+                  <span class="article-date">{formatDate(article.date)}</span>
+                </span>
+                <span class="article-title">{article.title}</span>
+                <span class="article-dek">{article.excerpt}</span>
+              </span>
+            </a>
+          </li>
         ))}
-      </div>
+      </ol>
     </div>
   </section>
 
-  <section class="close-section" aria-labelledby="close-title">
-    <div class="wrap close-inner close-inner--ledger">
-      <div class="close-ledger-primary">
-        <div>
-          <p class="eyebrow">Next decision</p>
-          <h2 id="close-title">Bring one workflow. We’ll name the right next step.</h2>
-        </div>
-        <a
-          class="btn btn-solid close-ledger-button"
-          href={INTRO_CALL.href}
-          data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen}
-          data-analytics-location="homepage-final-booking"
-        >
-          {INTRO_CALL.bookingLabel} <span aria-hidden="true">→</span>
-        </a>
+  <section class="band topics" aria-labelledby="topics-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="topics-title">By topic</h2>
+        <p class="section-note">The archive, sorted by the part of the stack it argues about.</p>
       </div>
-      <div class="close-actions close-ledger-secondary">
-        <a
-          class="close-secondary"
-          href={SMB_ASSESSMENT.slug}
-          data-analytics-event={ANALYTICS_EVENTS.smbAssessmentOpen}
-          data-analytics-location="homepage-final-assessment"
-        >
-          See what the $99 assessment includes
-        </a>
-        <p class="close-note">One workflow, one grounded recommendation, and no pressure to implement.</p>
-      </div>
+      <ul class="topic-grid">
+        {topicCounts.map(topic => (
+          <li>
+            <a href={topic.href}>
+              <span class="topic-name">{topic.name}</span>
+              <span class="topic-count">{topic.count} {topic.count === 1 ? 'article' : 'articles'}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 
-  <section class="utility-section" aria-label="Secondary resources">
-    <div class="wrap utility-grid">
-      <article>
-        <p class="eyebrow">Writing and tools</p>
-        <a href="/articles">Practical guides for AI-assisted delivery →</a>
-        <p>Articles and the Agent Harness Builder remain available without interrupting the offer.</p>
-      </article>
-      <article>
+  <section id="subscribe" class="band subscribe" aria-labelledby="subscribe-title">
+    <div class="wrap subscribe-inner">
+      <div>
         <p class="eyebrow">{NEWSLETTER.name}</p>
-        <a href="/newsletter">Get the next issue →</a>
-        <p>{NEWSLETTER.promise}</p>
-      </article>
-      <article>
-        <p class="eyebrow">Small-business automation</p>
-        <a
-          href={SMB_QUIZ.slug}
-          data-analytics-event={ANALYTICS_EVENTS.smbQuizStart}
-          data-analytics-location="homepage-footer-smb-quiz"
+        <h2 id="subscribe-title">One letter, every other Tuesday.</h2>
+        <p class="subscribe-promise">{NEWSLETTER.promise}</p>
+      </div>
+      <div class="subscribe-form-col">
+        <form
+          action={NEWSLETTER.subscribeAction}
+          method="post"
+          target="popupwindow"
+          data-newsletter-event={ANALYTICS_EVENTS.newsletterSubscribe}
+          data-location="homepage"
+          class="subscribe-form"
         >
-          {SMB_QUIZ.ctaLabel} →
-        </a>
-        <p>Start here when the problem is operational drag rather than an engineering delivery path.</p>
-      </article>
+          <label class="sr-only" for="homepage-newsletter-email">Email address</label>
+          <input
+            id="homepage-newsletter-email"
+            type="email"
+            name="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required
+          />
+          <button type="submit" class="btn btn-solid">Subscribe</button>
+        </form>
+        <p class="subscribe-note">
+          <a href={NEWSLETTER.archiveHref} target="_blank" rel="noopener noreferrer">Read past issues</a> first. Unsubscribe whenever.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band projects" aria-labelledby="projects-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="projects-title">Projects &amp; experiments</h2>
+      </div>
+      <ul class="project-grid">
+        {projects.map(project => (
+          <li>
+            <a href={project.href}>
+              <span class="project-kind">{project.kind}</span>
+              <span class="project-name">{project.name}</span>
+              <span class="project-desc">{project.description}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="band background" aria-labelledby="background-title">
+    <div class="wrap background-inner">
+      <h2 id="background-title">Why I write about the unglamorous parts.</h2>
+      <div class="background-copy">
+        <p>
+          My work centers on distributed and event-driven systems, cloud infrastructure, and the
+          developer tooling that decides whether a team can change its own software safely. Most of
+          what I publish starts as something I had to figure out anyway — a system that behaved
+          strangely under load, a workflow that only worked because one person remembered the trick,
+          an agent that looked productive until someone reviewed the diff.
+        </p>
+        <p>
+          I came to engineering by way of finance, pricing, and operations, which is why I still start
+          with the boring numbers before the architecture diagram. <a href="/about">More about me →</a>
+        </p>
+      </div>
     </div>
   </section>
 </Layout>
 
 <style>
-  .eyebrow {
-    margin: 0;
-    color: var(--accent-text);
-    font-family: var(--mono);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: .14em;
-    line-height: 1.5;
-    text-transform: uppercase;
-  }
-
-  .hero,
-  .credibility-strip,
-  .overview-section,
-
-  .proof-band,
-  .faq-section,
-  .utility-section {
+  .hero {
     border-bottom: 1px solid var(--rule);
   }
 
-  .hero-inner > .eyebrow {
-    max-width: 72ch;
-    margin-bottom: clamp(22px, 3vw, 34px);
+  .hero-inner {
+    padding-top: clamp(64px, 9vw, 132px);
+    padding-bottom: clamp(52px, 7vw, 96px);
+    max-width: 62rem;
   }
 
-  .hero-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.18fr) minmax(340px, .82fr);
-    gap: clamp(46px, 7vw, 88px);
-    align-items: center;
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--accent-text);
   }
 
-  .hero h1 {
-    max-width: 13.5ch;
-    margin: 0;
-    font-size: clamp(48px, 5.4vw, 72px);
+  h1 {
+    margin-top: 20px;
+    font-size: clamp(40px, 7vw, 76px);
     font-weight: 500;
-    letter-spacing: -.04em;
-    line-height: .94;
+    line-height: 1.02;
+    letter-spacing: -.022em;
     text-wrap: balance;
   }
 
-  .hero h1 em {
-    color: var(--accent-text);
-    font-style: italic;
-    font-weight: 500;
-  }
   .hero-lede {
-    max-width: 32rem;
-    margin-top: 24px;
+    margin-top: 22px;
+    max-width: 46ch;
+    font-size: clamp(18px, 2.1vw, 22px);
+    line-height: 1.55;
     color: var(--ink-soft);
-    font-size: clamp(20px, 2vw, 25px);
-    line-height: 1.38;
     text-wrap: pretty;
   }
-
-  .hero-lede strong {
-    color: var(--ink);
-    font-weight: 500;
-  }
-
 
   .hero-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 14px 24px;
-    align-items: center;
-    margin-top: 28px;
+    gap: 12px;
+    margin-top: 34px;
   }
 
-  .hero-primary {
-    min-height: 46px;
-    padding-inline: 20px;
-    font-weight: 500;
+  .band {
+    border-bottom: 1px solid var(--rule);
+    padding-block: clamp(48px, 6.5vw, 84px);
   }
 
-  .hero-secondary,
-
-  .close-secondary {
-    font-family: var(--mono);
-    font-size: 11px;
-    text-underline-offset: 5px;
-  }
-
-  .hero-secondary {
-    display: inline-flex;
-    min-height: 44px;
-    align-items: center;
-    color: var(--ink);
-  }
-
-  .hero-secondary:hover {
-    color: var(--accent-text);
-  }
-
-  .hero-note {
-    max-width: 48ch;
-    margin-top: 18px;
-    color: var(--ink-faint);
-    font-family: var(--mono);
-    font-size: 11px;
-    line-height: 1.55;
-  }
-
-  .offer-docket {
-    position: relative;
-    padding: clamp(26px, 3vw, 38px);
-    border: 1px solid var(--ink);
-    background: var(--paper-2);
-    box-shadow: 12px 12px 0 var(--paper-3);
-  }
-
-  .offer-docket::before {
-    position: absolute;
-    top: -1px;
-    left: -1px;
-    width: 62px;
-    height: 4px;
-    background: var(--accent);
-    content: '';
-  }
-
-
-  .docket-name {
-    margin: 0;
-    color: var(--accent-text);
-    font-family: var(--mono);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: .09em;
-    text-transform: uppercase;
-  }
-
-  .offer-docket h2 {
-    max-width: 13ch;
-    margin-top: 6px;
-    font-size: clamp(27px, 2.5vw, 36px);
-    font-weight: 500;
-    letter-spacing: -.025em;
-    line-height: 1;
-  }
-
-  .docket-summary {
-    margin-top: 20px;
-    color: var(--ink-soft);
-    font-size: 15px;
-    line-height: 1.5;
-  }
-
-  .docket-facts {
-    margin-top: 23px;
-    border-top: 1px solid var(--rule);
-  }
-
-  .docket-facts > div {
-    display: grid;
-    grid-template-columns: 75px 1fr;
-    gap: 16px;
-    padding-block: 13px;
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding-bottom: 22px;
     border-bottom: 1px solid var(--rule);
   }
 
-  .docket-facts dt {
-    color: var(--ink-faint);
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: .09em;
-    text-transform: uppercase;
-  }
-
-  .docket-facts dd {
-    color: var(--ink);
-    font-size: 15px;
-    line-height: 1.3;
-  }
-
-  .docket-link {
-    display: inline-flex;
-    min-height: 44px;
-    align-items: center;
-    margin-top: 12px;
-    color: var(--ink);
-    font-family: var(--mono);
-    font-size: 11px;
-    text-underline-offset: 5px;
-  }
-
-  .docket-link:hover {
-    color: var(--accent-text);
-  }
-
-  .credibility-inner {
-    padding-block: 27px 24px;
-  }
-
-  .credibility-label,
-  .credibility-qualifier {
-    margin: 0;
-    text-align: center;
-    font-family: var(--mono);
-  }
-
-  .credibility-label {
-    margin-bottom: 18px;
-    color: var(--accent-text);
-    font-size: 11px;
+  .section-head h2 {
+    font-size: clamp(26px, 3.4vw, 38px);
     font-weight: 500;
-    letter-spacing: .15em;
-    text-transform: uppercase;
+    line-height: 1.1;
+    letter-spacing: -.018em;
   }
 
-  .credibility-logos {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: clamp(22px, 4vw, 58px);
-    align-items: center;
+  .section-link,
+  .section-note {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: .06em;
+    color: var(--ink-faint);
+    text-decoration: none;
+    max-width: 40ch;
   }
 
-  .credibility-mark {
-    display: flex;
-    min-width: 0;
-    min-height: 42px;
-    align-items: center;
-    justify-content: center;
-    filter: grayscale(1) contrast(1.15);
-    opacity: .82;
-  }
-
-  .credibility-logo {
-    width: auto;
-    max-width: 145px;
-    height: 28px;
-    object-fit: contain;
-  }
-
-  .credibility-ford {
-    height: 34px;
-  }
-
-  .credibility-finimbus {
-    height: 54px;
-    mix-blend-mode: multiply;
-  }
-
-  .credibility-connected {
-    gap: 8px;
+  .section-link {
     color: var(--ink);
-    font-size: 16px;
-    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .1em;
   }
 
-  .connected-icon {
-    width: 14px;
-    height: 14px;
-    border: 1px dashed var(--accent-text);
-    border-radius: 50%;
+  .section-link:hover {
+    color: var(--accent-text);
   }
 
-  .credibility-qualifier {
+  /* ── Lead article ── */
+  .lead-article {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: clamp(24px, 3.4vw, 48px);
+    align-items: center;
+    padding: clamp(28px, 3.6vw, 44px) 0;
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    color: var(--ink);
+  }
+
+  .lead-figure {
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+    background: var(--paper-2);
+  }
+
+  .lead-figure img,
+  .lead-figure .ph {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    transition: transform .4s cubic-bezier(.2, .7, .3, 1);
+  }
+
+  .lead-article:hover .lead-figure img {
+    transform: scale(1.02);
+  }
+
+  .article-flag {
+    color: var(--ink);
+    border-bottom: 1px solid var(--accent);
+  }
+
+  .lead-title {
     margin-top: 14px;
-    color: var(--ink-faint);
-    font-size: 11px;
-    letter-spacing: .04em;
-  }
-
-  .section-inner {
-    padding-block: clamp(66px, 9vw, 108px);
-  }
-
-  .section-intro {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(260px, .78fr);
-    gap: 24px clamp(42px, 7vw, 90px);
-    align-items: end;
-    margin-bottom: 42px;
-  }
-
-  .section-intro .eyebrow {
-    grid-column: 1 / -1;
-  }
-
-  .section-intro h2 {
-    max-width: 16ch;
-    margin: 0;
-    font-size: clamp(39px, 5vw, 64px);
+    font-size: clamp(28px, 3.6vw, 42px);
     font-weight: 500;
-    letter-spacing: -.035em;
-    line-height: .96;
+    line-height: 1.08;
+    letter-spacing: -.02em;
     text-wrap: balance;
   }
 
-  .section-intro > p:last-child {
-    margin: 0 0 4px;
-    color: var(--ink-soft);
-    font-size: 18px;
-    line-height: 1.5;
-    text-wrap: pretty;
+  .lead-article:hover .lead-title {
+    color: var(--accent-text);
   }
 
+  .lead-dek {
+    margin-top: 14px;
+    max-width: 46ch;
+    font-size: 17.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
 
+  .lead-cue {
+    display: inline-flex;
+    gap: 7px;
+    min-height: 44px;
+    align-items: center;
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
 
-  .offer-label {
-    color: var(--accent-text);
+  @media (prefers-reduced-motion: reduce) {
+    .lead-figure img { transition: none; }
+    .lead-article:hover .lead-figure img { transform: none; }
+  }
+
+  @media (max-width: 860px) {
+    .lead-article {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+  }
+
+  /* ── Latest writing ── */
+  .article-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .article-list li + li {
+    border-top: 1px solid var(--rule);
+  }
+
+  .article-list a {
+    display: grid;
+    grid-template-columns: 4rem minmax(0, 1fr);
+    gap: 8px;
+    padding: clamp(22px, 3vw, 32px) 0;
+    text-decoration: none;
+    color: var(--ink);
+    transition: background .15s;
+  }
+
+  .article-list a:hover {
+    background: var(--paper-2);
+  }
+
+  .article-index {
     font-family: var(--mono);
     font-size: 11px;
-    font-weight: 500;
+    letter-spacing: .1em;
+    color: var(--ink-faint);
+    padding-top: 6px;
+  }
+
+  .article-body {
+    display: block;
+    max-width: 64ch;
+  }
+
+  .article-meta {
+    display: flex;
+    gap: 14px;
+    font-family: var(--mono);
+    font-size: 10px;
     letter-spacing: .12em;
     text-transform: uppercase;
   }
 
-  .assessment-ledger {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    border-block: 1px solid var(--ink);
-  }
+  .article-cat { color: var(--accent-text); }
+  .article-date { color: var(--ink-faint); }
 
-  .assessment-ledger article {
-    padding: clamp(24px, 3vw, 36px);
-  }
-
-  .assessment-ledger article + article {
-    border-left: 1px solid var(--rule);
-  }
-
-  .assessment-ledger h3 {
-    margin-top: 26px;
-    font-size: clamp(24px, 2.2vw, 31px);
+  .article-title {
+    display: block;
+    margin-top: 12px;
+    font-size: clamp(22px, 2.6vw, 29px);
     font-weight: 500;
-    line-height: 1.1;
+    line-height: 1.18;
+    letter-spacing: -.015em;
+    text-wrap: balance;
   }
 
-  .assessment-ledger article > p:last-child {
-    margin-top: 20px;
-    color: var(--ink-soft);
-    font-size: 15px;
+  .article-list a:hover .article-title { color: var(--accent-text); }
+
+  .article-dek {
+    display: block;
+    margin-top: 10px;
+    font-size: 16.5px;
     line-height: 1.55;
-  }
-
-  .overview-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 18px 28px;
-    align-items: center;
-    margin-top: 28px;
-  }
-
-  .overview-actions > a:last-child {
-    min-height: 44px;
-    padding-block: 12px;
     color: var(--ink-soft);
-    font-family: var(--mono);
-    font-size: 11px;
-    text-underline-offset: 5px;
   }
 
-  .proof-ledger {
+  /* ── Topics ── */
+  .topic-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
 
-
-  .proof-ledger article + article {
-    border-left: 1px solid var(--rule);
+  .topic-grid li {
+    border-bottom: 1px solid var(--rule);
+    border-right: 1px solid var(--rule);
   }
 
-
-  .proof-ledger p {
-    color: var(--ink-soft);
-    font-size: 15px;
-    line-height: 1.45;
+  .topic-grid a {
+    display: flex;
+    min-height: 96px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    padding: 24px clamp(16px, 2vw, 26px);
+    text-decoration: none;
+    color: var(--ink);
+    transition: background .15s;
   }
 
+  .topic-grid a:hover { background: var(--paper-2); }
 
-  .faq-section {
+  .topic-name {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -.01em;
+  }
+
+  .topic-count {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  /* ── Subscribe ── */
+  .subscribe {
     background: var(--paper-2);
   }
 
-
-
-  .proof-ledger {
-    border-block: 1px solid var(--ink);
-  }
-
-  .proof-ledger article {
-    min-height: 180px;
-    padding: 26px clamp(22px, 3vw, 34px);
-  }
-
-  .proof-ledger strong {
-    display: block;
-    color: var(--ink);
-    font-size: clamp(27px, 3vw, 37px);
-    font-weight: 500;
-    letter-spacing: -.025em;
-    line-height: 1;
-  }
-
-  .proof-ledger p {
-    margin-top: 16px;
-  }
-
-  .proof-qualifier {
-    margin-top: 20px;
-    color: var(--ink-faint);
-    font-family: var(--mono);
-    font-size: 11px;
-  }
-
-  .faq-layout {
+  .subscribe-inner {
     display: grid;
-    grid-template-columns: minmax(250px, .7fr) minmax(0, 1.3fr);
-    gap: clamp(48px, 8vw, 110px);
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+    gap: clamp(28px, 4vw, 56px);
+    align-items: start;
   }
 
-  .faq-section h2 {
-    max-width: 11ch;
-    margin-top: 12px;
-    font-size: clamp(42px, 5vw, 64px);
-    font-weight: 500;
-    letter-spacing: -.035em;
-    line-height: .96;
-    text-wrap: balance;
-  }
-
-  .faq-intro {
+  .subscribe h2 {
     margin-top: 16px;
-    color: var(--ink-soft);
-    font-size: 17px;
-  }
-
-  .faq-list {
-    border-top: 1px solid var(--ink);
-  }
-
-  .faq-list details {
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .faq-list summary {
-    position: relative;
-    padding: 22px 42px 22px 0;
-    cursor: pointer;
-    font-size: 21px;
+    font-size: clamp(26px, 3.4vw, 38px);
     font-weight: 500;
-    list-style: none;
+    line-height: 1.12;
+    letter-spacing: -.018em;
   }
 
-  .faq-list summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .faq-list summary::after {
-    position: absolute;
-    right: 2px;
-    font-family: var(--mono);
-    content: '+';
-  }
-
-  .faq-list details[open] summary::after {
-    content: '−';
-  }
-
-  .faq-list details p {
-    max-width: 60ch;
-    margin: -5px 0 23px;
-    color: var(--ink-soft);
-    font-size: 16px;
-  }
-
-  .close-section {
-    border-bottom: 1px solid color-mix(in oklch, var(--paper) 20%, transparent);
-    background: var(--ink);
-    color: var(--paper);
-  }
-
-  .close-inner {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 40px 80px;
-    align-items: end;
-    padding-block: clamp(48px, 6vw, 72px);
-  }
-
-  .close-section .eyebrow {
-    color: color-mix(in oklch, var(--accent-btn) 86%, white);
-  }
-
-  .close-section h2 {
-    max-width: 18ch;
+  .subscribe-promise {
     margin-top: 14px;
-    font-size: clamp(28px, 3.5vw, 46px);
-    font-weight: 500;
-    letter-spacing: -.03em;
-    line-height: 1.05;
-    text-wrap: balance;
-  }
-
-  .close-actions {
-    min-width: 310px;
-  }
-
-  .close-actions .btn {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .close-secondary {
-    display: block;
-    margin-top: 18px;
-    color: var(--paper);
-    text-align: center;
-  }
-
-  .close-note {
-    margin-top: 16px;
-    color: color-mix(in oklch, var(--paper) 70%, transparent);
-    font-family: var(--mono);
-    font-size: 11px;
-    line-height: 1.5;
-    text-align: center;
-  }
-
-  .close-inner--ledger {
-    grid-template-columns: 1fr;
-  }
-
-  .close-ledger-primary {
-    display: flex;
-    justify-content: space-between;
-    gap: 40px;
-    align-items: end;
-    padding-bottom: 28px;
-    border-bottom: 1px solid color-mix(in srgb, var(--paper) 28%, transparent);
-  }
-
-  .close-ledger-button {
-    width: auto !important;
-    flex: 0 0 auto;
-    white-space: nowrap;
-  }
-
-  .close-ledger-secondary {
-    display: flex;
-    min-width: 0;
-    max-width: none;
-    justify-content: space-between;
-    gap: 28px;
-    align-items: center;
-  }
-
-  .close-ledger-secondary .close-secondary,
-  .close-ledger-secondary .close-note {
-    margin-top: 0;
-  }
-
-  .close-ledger-secondary .close-secondary {
-    display: inline-flex;
-    min-height: 44px;
-    align-items: center;
-    text-align: left;
-  }
-
-  .close-ledger-secondary .close-note {
     max-width: 52ch;
-    text-align: right;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-soft);
   }
-  .utility-grid {
+
+  .subscribe-form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .subscribe-form input {
+    flex: 1 1 200px;
+    min-width: 0;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 12px 18px;
+    background: var(--paper);
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink);
+  }
+
+  .subscribe-form input:focus-visible {
+    border-color: var(--ink);
+  }
+
+  .subscribe-note {
+    margin-top: 14px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    line-height: 1.7;
+    color: var(--ink-faint);
+  }
+
+  .subscribe-note a {
+    color: var(--accent-text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* ── Projects ── */
+  .project-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    padding-block: 34px;
-  }
-
-  .utility-grid article {
-    padding-inline: clamp(0px, 3vw, 34px);
-  }
-
-  .utility-grid article:first-child {
-    padding-left: 0;
-  }
-
-  .utility-grid article + article {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     border-left: 1px solid var(--rule);
   }
 
-  .utility-grid article > a {
-    display: inline-flex;
-    min-height: 44px;
-    align-items: center;
-  }
-  .utility-grid .eyebrow {
-    margin-bottom: 10px;
+  .project-grid li {
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
   }
 
-  .utility-grid a {
+  .project-grid a {
+    display: block;
+    height: 100%;
+    padding: clamp(20px, 2.4vw, 28px);
+    text-decoration: none;
     color: var(--ink);
-    font-size: 18px;
-    line-height: 1.25;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 5px;
+    transition: background .15s;
   }
 
-  .utility-grid a:hover {
+  .project-grid a:hover { background: var(--paper-2); }
+
+  .project-kind {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
     color: var(--accent-text);
   }
 
-  .utility-grid article > p:last-child {
-    margin-top: 8px;
+  .project-name {
+    display: block;
+    margin-top: 12px;
+    font-size: 21px;
+    font-weight: 500;
+    letter-spacing: -.012em;
+  }
+
+  .project-desc {
+    display: block;
+    margin-top: 10px;
+    font-size: 15.5px;
+    line-height: 1.55;
     color: var(--ink-soft);
+  }
+
+  /* ── Background ── */
+  .background {
+    border-bottom: none;
+  }
+
+  .background-inner {
+    display: grid;
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+    gap: clamp(28px, 4vw, 56px);
+    align-items: start;
+  }
+
+  .background h2 {
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 500;
+    line-height: 1.14;
+    letter-spacing: -.018em;
+    text-wrap: balance;
+  }
+
+  .background-copy p {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 60ch;
+  }
+
+  .background-copy p + p { margin-top: 18px; }
+
+  .background-copy a {
+    color: var(--accent-text);
+    font-family: var(--mono);
     font-size: 13px;
-    line-height: 1.45;
+    letter-spacing: .04em;
+    white-space: nowrap;
   }
 
-  @media (max-width: 980px) {
-    .hero-grid,
-    .section-intro,
-    .faq-layout,
-    .close-inner {
+  @media (max-width: 860px) {
+    .subscribe-inner,
+    .background-inner {
       grid-template-columns: 1fr;
-    }
-
-    .hero h1 {
-      max-width: 13ch;
-    }
-
-    .offer-docket {
-      max-width: 660px;
-    }
-
-    .section-intro .eyebrow {
-      grid-column: 1;
-    }
-
-    .close-actions {
-      min-width: 0;
-      max-width: 420px;
-    }
-  }
-
-  @media (max-width: 760px) {
-    .close-ledger-primary,
-    .close-ledger-secondary {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .close-ledger-primary {
-      gap: 28px;
-    }
-
-    .close-ledger-button {
-      width: 100% !important;
-      white-space: normal;
-    }
-
-    .close-ledger-secondary .close-note {
-      text-align: left;
-    }
-  }
-
-  @media (max-width: 760px) {
-    .credibility-logos {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px 24px;
-    }
-
-    .credibility-logo {
-      max-width: 122px;
-    }
-
-
-    .proof-ledger,
-    .utility-grid {
-      grid-template-columns: 1fr;
-    }
-
-
-    .proof-ledger article {
-      min-height: 0;
-    }
-
-
-    .proof-ledger article + article,
-    .utility-grid article + article {
-      border-top: 1px solid var(--rule);
-      border-left: 0;
-    }
-
-
-
-    .utility-grid article {
-      padding: 22px 0;
     }
   }
 
   @media (max-width: 620px) {
-    .hero-inner {
-      padding-block: 48px 62px;
-    }
-
-    .hero-inner > .eyebrow {
-      margin-bottom: 20px;
-    }
-
-    .hero-grid {
-      gap: 38px;
-    }
-
-    .hero h1 {
-      max-width: none;
-      font-size: clamp(48px, 14vw, 66px);
-      line-height: .9;
-    }
-
-    .hero-lede {
-      margin-top: 20px;
-      font-size: 20px;
-    }
-
-
-    .hero-actions {
-      gap: 13px 18px;
-      margin-top: 24px;
-    }
-
-    .hero-primary {
-      width: 100%;
-      justify-content: center;
-    }
-
-    .hero-secondary {
-      margin-inline: auto;
-    }
-
-    .offer-docket {
-      margin-right: 8px;
-      padding: 23px 20px;
-      box-shadow: 8px 8px 0 var(--paper-3);
-    }
-
-    .offer-docket h2 {
-      font-size: 32px;
-    }
-
-    .assessment-ledger {
+    .article-list a {
       grid-template-columns: 1fr;
     }
 
-    .assessment-ledger article + article {
-      border-top: 1px solid var(--rule);
-      border-left: 0;
-    }
-    .section-inner {
-      padding-block: 62px;
-    }
-
-    .section-intro {
-      margin-bottom: 30px;
-    }
-
-    .section-intro h2,
-    .faq-section h2 {
-      font-size: 43px;
-    }
-
-    .close-inner {
-      padding-block: 48px;
-    }
-
-    .close-section h2 {
-      font-size: 30px;
-    }
+    .article-index { display: none; }
   }
 </style>

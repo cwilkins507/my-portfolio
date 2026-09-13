@@ -14,7 +14,7 @@ Your team just started using Claude Code, ChatGPT, or Gemini for a few months no
 
 That's the question nobody wants to ask out loud: are we actually ready for this, or did we skip a step?
 
-After a decade inside engineering orgs at Ford and Morningstar, the pattern is consistent. What matters is whether your team has the foundation: convention files, shared patterns, ownership, measurement.
+After a decade inside enterprise engineering orgs, the pattern is consistent. What matters is whether your team has the foundation: convention files, shared patterns, ownership, measurement.
 
 Here's a 2-minute quiz to find out where you actually sit, and what to do next.
 
@@ -151,10 +151,8 @@ Figure out your level. Do the one thing that matches. The worst move right now i
 
 ---
 
-**Not ready to book yet? Start here.** The [AI Prompt Toolkit](/resources/ai-prompt-toolkit) is 32 prompts I use across two businesses - code review, documentation, market research, competitor analysis, SEO, automation, and AI employees. Copy what fits your team.
+**Want something to use today?** The [AI Prompt Toolkit](/resources/ai-prompt-toolkit) is 32 prompts I use across my own work - code review, documentation, market research, competitor analysis, SEO, automation, and AI employees. Copy what fits your team.
 
 ---
 
-Want to turn one approved issue into a governed, reviewable change? The [AI-Assisted Delivery Pilot](/services/ai-delivery-kit) installs a bounded path through your repository, existing checks, and human review.
-
-Or read the public framework: **[AI Adoption Playbook →](/guides/ai-adoption-playbook)** — this post is Chapter 1. The playbook walks through the other four.
+Read the public framework: **[AI Adoption Playbook →](/guides/ai-adoption-playbook)** — this post is Chapter 1. The playbook walks through the other four.

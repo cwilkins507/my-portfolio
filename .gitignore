@@ -28,3 +28,14 @@ __pycache__/
 *.njsproj
 *.sln
 *.sw?
+
+# Local working notes and agent artifacts — keep on disk, never publish
+docs/
+Session Recaps/
+artifacts/
+.impeccable/critique/
+.claude/settings.local.json
+
+# Agent scratch
+.claire/
+.claude/

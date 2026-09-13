@@ -1,12 +1,12 @@
 import React from 'react';
-import { ENGINEERING_PILOT, INTRO_CALL } from '../data/site.js';
 
 const caseStudies = [
   {
     id: 'ford-inventory',
+    label: 'Vehicle inventory audit',
     headline: "Eliminating a 30-Day Manual Process",
     company: "Ford Motor Company",
-    role: "Lead Engineer",
+    role: "Lead Engineer · prior role",
     metric: "$5M",
     metricLabel: "Annual Savings",
     evidence: "Full-time Ford role · production platform · internal operational and finance measures · public implementation unavailable",
@@ -17,13 +17,14 @@ const caseStudies = [
     takeaway: "Whether your team is 5 or 500, the pattern is the same — find the manual bottleneck, automate it, measure the savings."
   },
   {
-    id: 'morningstar-compliance',
+    id: 'compliance-automation',
+    label: 'Compliance automation',
     headline: "Cutting 20% of Weekly Engineering Bandwidth",
-    company: "Morningstar",
-    role: "Lead Engineer",
+    company: "Financial data & compliance software",
+    role: "Lead Engineer · prior role",
     metric: "10h",
     metricLabel: "Weekly Engineering Time Reclaimed",
-    evidence: "Full-time Morningstar role · production compliance system · internal delivery and performance measures · public implementation unavailable",
+    evidence: "Full-time engineering role · production compliance system · internal delivery and performance measures · public implementation unavailable",
     problem: `Every morning started the same way. An engineer clicking through 80 Postman requests to trigger compliance checks. One by one, like a human cron job. This ate up 20% of our team's weekly bandwidth. When someone got sick for a week, compliance checks just... stopped. That's when we knew we had to automate.`,
     solution: `I transformed the architecture to fully event-driven, freeing up 10 engineering hours every week. This let us onboard 7 new enterprise recordkeepers with zero added overhead while improving throughput and reducing latency by 35%.`,
     technical: `I implemented load-aware scheduling that monitors database capacity before kicking off new jobs via AWS SQS and ephemeral Fargate tasks. Instead of blindly running all checks daily, the system uses database diffing to detect meaningful changes and only publishes events when there's actually a delta. Smart resource utilization that scales.`,
@@ -32,9 +33,10 @@ const caseStudies = [
   },
   {
     id: 'f150-stolen-vehicle',
+    label: 'Theft recovery telemetry',
     headline: "Protecting America's Most Stolen Vehicle",
     company: "Ford Motor Company",
-    role: "Lead Engineer",
+    role: "Lead Engineer · prior role",
     metric: "2024",
     metricLabel: "Production Launch",
     evidence: "Full-time Ford role · production vehicle program · internal launch record · public implementation unavailable",
@@ -52,18 +54,18 @@ const CaseStudies = () => {
     <div className="min-h-screen bg-[var(--color-bg)] py-16 md:py-20">
       <div className="container mx-auto max-w-5xl px-4 md:px-8">
         <header className="mb-12 border-b-2 border-[var(--color-text-primary)] pb-10 md:mb-16">
-          <p className="mb-4 font-mono text-xs uppercase tracking-wider text-[var(--color-accent)]">Engineering work ledger</p>
-          <h1 className="max-w-3xl font-serif text-4xl font-bold text-[var(--color-text-primary)] md:text-5xl">Case studies</h1>
+          <p className="mb-4 font-mono text-xs uppercase tracking-wider text-[var(--color-accent)]">Work record</p>
+          <h1 className="max-w-3xl font-serif text-4xl font-bold text-[var(--color-text-primary)] md:text-5xl">Selected work</h1>
           <p className="mt-5 max-w-3xl text-lg leading-relaxed text-[var(--color-text-secondary)] md:text-xl">
             Three production systems, recorded as problem, intervention, operating evidence, and outcome.
           </p>
-          <p className="mt-4 font-mono text-xs uppercase tracking-wide text-[var(--color-accent)]">
-            Outcomes from full-time engineering roles, not consulting clients.
+          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-[var(--color-text-muted)]">
+            Prior professional engineering work, kept as a record. Not current client services. Personal projects and experiments live on the <a className="underline decoration-1 underline-offset-4 hover:text-[var(--color-accent)]" href="/">homepage</a> and in the <a className="underline decoration-1 underline-offset-4 hover:text-[var(--color-accent)]" href="/articles">articles</a>.
           </p>
-          <nav aria-label="Case study index" className="mt-7 grid gap-px border border-[var(--color-border)] bg-[var(--color-border)] md:grid-cols-3">
+          <nav aria-label="Selected work index" className="mt-7 grid gap-px border border-[var(--color-border)] bg-[var(--color-border)] md:grid-cols-3">
             {caseStudies.map((cs, idx) => (
-              <a className="flex min-h-11 items-center bg-[var(--color-surface)] px-4 py-3 text-sm font-semibold text-[var(--color-text-primary)] hover:text-[var(--color-accent)]" href={`#${cs.id}`}>
-                <span className="mr-3 font-mono text-xs text-[var(--color-accent)]">0{idx + 1}</span>{cs.company}
+              <a key={cs.id} className="flex min-h-11 items-center bg-[var(--color-surface)] px-4 py-3 text-sm font-semibold text-[var(--color-text-primary)] hover:text-[var(--color-accent)]" href={`#${cs.id}`}>
+                <span className="mr-3 font-mono text-xs text-[var(--color-accent)]">0{idx + 1}</span>{cs.label}
               </a>
             ))}
           </nav>
@@ -131,13 +133,10 @@ const CaseStudies = () => {
 
         <section className="grid gap-6 border-t-2 border-[var(--color-text-primary)] py-12 md:grid-cols-[1fr_auto] md:items-center">
           <div>
-            <p className="font-mono text-xs uppercase tracking-wide text-[var(--color-accent)]">Apply the pattern</p>
-            <h2 className="mt-3 font-serif text-3xl font-bold text-[var(--color-text-primary)]">Choose the route that matches your team.</h2>
+            <p className="font-mono text-xs uppercase tracking-wide text-[var(--color-accent)]">Keep reading</p>
+            <h2 className="mt-3 font-serif text-3xl font-bold text-[var(--color-text-primary)]">The reasoning behind these systems lives in the writing.</h2>
           </div>
-          <div className="flex flex-col gap-3">
-            <a className="inline-flex min-h-11 items-center justify-center bg-[var(--color-accent)] px-5 text-sm font-bold text-white" href={ENGINEERING_PILOT.capabilityBriefHref}>Engineering teams: review the pilot brief</a>
-            <a className="inline-flex min-h-11 items-center justify-center border border-[var(--color-border)] px-5 text-sm font-bold text-[var(--color-text-primary)]" href={INTRO_CALL.href}>Owners, operators, or unsure: book a free intro</a>
-          </div>
+          <a className="inline-flex min-h-11 items-center justify-center border border-[var(--color-border)] px-5 text-sm font-bold text-[var(--color-text-primary)] hover:text-[var(--color-accent)]" href="/articles">Read the writing &rarr;</a>
         </section>
 
       </div>

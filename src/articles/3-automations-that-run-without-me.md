@@ -186,5 +186,3 @@ That's not always the right call. Platforms win for non-technical users and comp
 Each of these could be rebuilt in Make.com or Zapier in a few hours. PandaDoc has native Zapier integrations. ClickUp connects to everything. The trend scanner is the most custom piece, but an RSS-to-email tool with good filters gets you 80% there. (If you're curious about the no-code route, I broke down [the full stack here](/articles/no-code-automation-stack).)
 
 Pick the one that annoys you the most. Build the ugliest version that works. Let it run for a month.
-
-If you'd rather have someone build it, that's what I do. [Get in touch →](https://collinwilkins.com/?modal=contact)

@@ -13,9 +13,7 @@
     "test:rag": "python -m pytest rag/tests",
     "test:content-search": "node scripts/validate-faq-search.js",
     "test:built-faqs": "node scripts/verify-built-faqs.js",
-    "export:capability-brief": "node scripts/export-capability-brief.js",
-    "verify:ai-delivery": "node scripts/verify-ai-delivery-regression.js",
-    "verify:capability-brief": "node scripts/verify-capability-brief.js"
+    "generate:connect-assets": "node scripts/generate-connect-assets.js"
   },
   "dependencies": {
     "@astrojs/react": "^4.4.2",
@@ -50,8 +48,11 @@
     "eslint-plugin-react-refresh": "^0.4.22",
     "gh-pages": "^6.3.0",
     "globals": "^16.4.0",
+    "jsqr": "^1.4.0",
     "playwright": "^1.58.2",
+    "pngjs": "^7.0.0",
     "postcss": "^8.4.35",
+    "qrcode": "^1.5.4",
     "tailwindcss": "^3.4.19",
     "vite": "^7.1.7"
   }

@@ -5,13 +5,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2026-09-12] - Repositioning: personal publication
+
+This entry supersedes every consulting-related item below it. Offers, prices, pilots,
+assessments, booking links, and employer references described in earlier entries are
+historical record only. They are not current product truth and must not be restored
+from this file.
+
+### Removed
+- Consulting funnel in full: the service paths, all pricing, the scope-acceptance and intake flows, the capability-brief export, and every booking or intro-call CTA.
+- Routes and components that existed only to serve that funnel, including the pilot intake form, the assessment and delivery-kit pages, and their downloadable PDFs. Old paths now redirect to surviving pages.
+- Employer identification across the repository: employer names in copy, metadata, and `public/llms.txt`, employer logos under `public/images/logos/`, and the résumé redirect in `public/_redirects`.
 
 ### Changed
-- Reframed consulting services around bounded, human-controlled AI systems while preserving two distinct entry points.
-- Presented the $1,500 AI-Assisted Delivery Pilot for engineering leaders alongside the $99 AI Workflow Opportunity Assessment for owners, with separate scope-review and booking paths.
-- Added above-the-fold, audience-specific starting actions for engineering leaders and small-team owners, with distinct routes and analytics locations.
-- Added a noindex five-layout homepage reduction study with Editorial Gold, Rosé Pine Dawn, Rosé Pine, Rosé Pine Moon, and Everforest palettes; the studies move detailed pilot and referral content off the landing-page concept.
+- The site is an editorial and newsletter hub. The writing is the product, and the newsletter is the only conversion goal.
+- `/services` is a quiet reference page with no offer. Every availability statement is gated by `ADVISORY.accepting` in `src/data/site.js`, which is `false`.
+- Prior engineering accomplishments appear only as explicitly-earlier, unattributed work in past tense, with no company name attached to a metric.
+- `AGENTS.md` rewritten to match the publication framing. Local working notes (`docs/`, `Session Recaps/`, `artifacts/`) are untracked and stay on disk only.
+
+## [Unreleased]
+
+> Historical. The items below predate the 2026-09 repositioning and describe state
+> that no longer ships. Read them as a record of what was tried, not as commitments.
+
+### Changed
+- Reframed consulting services around bounded, human-controlled AI systems while preserving two distinct entry points. (Superseded 2026-09: consulting services were removed entirely.)
+- Presented a $1,500 AI-Assisted Delivery Pilot for engineering leaders alongside a $99 AI Workflow Opportunity Assessment for owners, with separate scope-review and booking paths. (Superseded 2026-09: both offers, their prices, and their booking paths were removed. These are not current prices and nothing on the site is for sale.)
+- Added above-the-fold, audience-specific starting actions for engineering leaders and small-team owners, with distinct routes and analytics locations. (Superseded 2026-09: those routes and analytics locations were deleted.)
+- Added a noindex five-layout homepage reduction study with Editorial Gold, Rosé Pine Dawn, Rosé Pine, Rosé Pine Moon, and Everforest palettes. (Superseded 2026-09: the studies and the pilot and referral content they carried were removed.)
 - Prepared “Stop Calling AI Subscriptions Subsidized” with source-backed revisions, a new editorial cover, and four polished evidence images.
 
 ## [1.0.0] - 2026-01-20
@@ -39,8 +60,8 @@ This marks the first stable release of the portfolio with production-ready featu
 - Three contact service options: AI & Automation, Python Scripting, AWS Serverless
 - Loading states and error handling for improved UX
 
-#### Services Showcase
-- **Three Core Service Offerings** fully documented:
+#### Services Showcase (removed 2026-09)
+- **Three Core Service Offerings** documented at the time, none of which are offered now:
   1. **AI & Automation Consulting** - Bot frameworks, workflow automation, LLM integration
   2. **Python Scripting & API Integration** - Custom scripts, API development, data processing
   3. **AWS & Serverless Architecture** - Lambda functions, API Gateway, cost optimization

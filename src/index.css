@@ -121,6 +121,8 @@ body {
   transition: background .15s, border-color .15s, color .15s;
   display: inline-flex;
   align-items: center;
+  /* Interaction floor: 11px padding + 12px mono line box lands at 43.4px. */
+  min-height: 44px;
   gap: 8px;
   cursor: pointer;
 }

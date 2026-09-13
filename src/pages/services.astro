@@ -1,216 +1,66 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { ANALYTICS_EVENTS, CONSULTING_OVERVIEW, ENGINEERING_PILOT, INTRO_CALL, SMB_ASSESSMENT, SMB_QUIZ } from '../data/site.js';
+import { ADVISORY } from '../data/site.js';
 
-const servicesSchema = {
-	"@context": "https://schema.org",
-	"@type": "WebPage",
-	"name": "AI Workflow Assessment & Engineering Pilot | Collin Wilkins",
-	"description": "Two fixed-scope AI consulting paths: a $99 workflow assessment for owners and a $1,500 AI-Assisted Delivery Pilot for engineering teams.",
-	"url": "https://collinwilkins.com/services",
-	"provider": {
-		"@type": "Person",
-		"name": "Collin Wilkins",
-		"url": "https://collinwilkins.com/about"
+const advisorySchema = {
+	'@context': 'https://schema.org',
+	'@type': 'WebPage',
+	name: 'Advisory & Consulting',
+	description: ADVISORY.statusLine,
+	url: 'https://collinwilkins.com/services',
+	author: {
+		'@type': 'Person',
+		name: 'Collin Wilkins',
+		url: 'https://collinwilkins.com/about',
 	},
-	"hasOfferCatalog": {
-		"@type": "OfferCatalog",
-		"name": "AI workflow consulting",
-		"itemListElement": [
-			{
-				"@type": "Offer",
-				"price": String(SMB_ASSESSMENT.priceUsd),
-				"priceCurrency": "USD",
-				"url": SMB_ASSESSMENT.bookingHref,
-				"itemOffered": {
-					"@type": "Service",
-					"name": SMB_ASSESSMENT.name,
-					"description": SMB_ASSESSMENT.description
-				}
-			},
-			{
-				"@type": "Offer",
-				"price": String(ENGINEERING_PILOT.priceUsd),
-				"priceCurrency": "USD",
-				"url": `https://collinwilkins.com${ENGINEERING_PILOT.slug}`,
-				"itemOffered": {
-					"@type": "Service",
-					"name": ENGINEERING_PILOT.name,
-					"description": ENGINEERING_PILOT.description
-				}
-			}
-		]
-	}
 };
-
-
-const audiencePaths = [
-  {
-    ...CONSULTING_OVERVIEW.paths.find(path => path.id === 'assessment'),
-    priceLabel: `$${SMB_ASSESSMENT.priceUsd} fixed scope`,
-  },
-  {
-    ...CONSULTING_OVERVIEW.paths.find(path => path.id === 'pilot'),
-    priceLabel: `$${ENGINEERING_PILOT.priceUsd.toLocaleString('en-US')} fixed scope`,
-  },
-];
-
 ---
 
 <Layout
-	title="AI Workflow Assessment & Engineering Pilot | Collin Wilkins"
-	description="Two fixed-scope AI consulting paths: a $99 workflow assessment for owners and a $1,500 AI-Assisted Delivery Pilot for engineering teams."
-	schema={servicesSchema}
+	title="Advisory & Consulting | Collin Wilkins"
+	description="Notes on the kinds of engineering problems I've worked on. Not currently accepting new client engagements."
+	schema={advisorySchema}
+	hideFooterNewsletter={true}
 >
-  <article class="wrap services">
+  <article class="wrap advisory">
     <header>
-      <p class="eyebrow">AI systems, backend automation, and technical advisory</p>
-      <h1>Turn one real workflow problem into a system your team can use.</h1>
-      <p class="lede">{CONSULTING_OVERVIEW.lead}</p>
-      <div class="actions">
-        <a
-          class="btn btn-primary"
-          href={INTRO_CALL.href}
-          data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen}
-          data-analytics-location="services-hero-booking"
-        >
-          {INTRO_CALL.bookingLabel}
-        </a>
-        <a
-          class="btn btn-ghost"
-          href={SMB_QUIZ.slug}
-          data-analytics-event={ANALYTICS_EVENTS.smbQuizStart}
-          data-analytics-location="services-hero-smb-quiz"
-        >
-          Owners/operators: take the free workflow quiz
-        </a>
-      </div>
-      <p class="note">Bring one workflow, delivery bottleneck, or AI-adoption problem. We will choose the right next step—or decide there is not one.</p>
-      <p class="background">{CONSULTING_OVERVIEW.background}</p>
+      <p class="eyebrow">Reference</p>
+      <h1>Advisory &amp; Consulting</h1>
+      <p class="lede">{ADVISORY.lead}</p>
     </header>
 
-    <section class="recognition-signals" aria-labelledby="recognition-title">
-      <div class="recognition-signals__head">
-        <p class="eyebrow">Start with recognition</p>
-        <h2 id="recognition-title">Does one of these sound familiar?</h2>
-      </div>
-      <div>
-        {CONSULTING_OVERVIEW.referralSignals.map(signal => (
-          <article class="recognition-signals__item">
-            <span class="recognition-signals__dot" aria-hidden="true"></span>
-            <div class="recognition-signals__copy">
-              <p class="audience-label">{signal.label}</p>
-              <h3>{signal.title}</h3>
-              <p class="recognition-signals__response">{signal.detail}</p>
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
+    <aside class="status" aria-labelledby="status-title">
+      <p class="status__line" id="status-title">{ADVISORY.statusLine}</p>
+      <p class="status__note">{ADVISORY.note}</p>
+    </aside>
 
-    <section class="service-paths" aria-labelledby="service-paths-title">
-      <div class="section-heading">
-        <p class="eyebrow">Choose by audience</p>
-        <h2 id="service-paths-title">Two fixed-scope starting points.</h2>
-        <p class="route-intro">Start with the path built for your team. If neither fits, use the conversation option below rather than forcing the problem into an offer.</p>
-      </div>
-      <div class="service-grid">
-        {audiencePaths.map(path => (
-          <article>
-            <p class="audience-label">{path.audience}</p>
-            <p class="path-label">{path.priceLabel}</p>
-            <h3>{path.name}</h3>
-            <p class="path-description">{path.description}</p>
-            <a
-              class="action-link"
-              href={path.href}
-              data-analytics-event={path.analyticsEvent}
-              data-analytics-location={`services-path-${path.id}`}
-            >
-              {path.cta} →
-            </a>
-          </article>
+    <section aria-labelledby="topics-title">
+      <h2 id="topics-title">The kinds of problems</h2>
+      <ul class="topics">
+        {ADVISORY.topics.map(topic => (
+          <li>
+            <h3>{topic.name}</h3>
+            <p>{topic.description}</p>
+          </li>
         ))}
-      </div>
-      <aside class="conversation-path" aria-labelledby="conversation-path-title">
-        <div>
-          <p class="eyebrow">Advisory or implementation</p>
-          <h3 id="conversation-path-title">Already know the decision or workflow you need help with?</h3>
-        </div>
-        <p>Bring the decision, bottleneck, or defined workflow. We’ll determine whether advisory, a build, or no project is the useful next step.</p>
-        <a
-          class="action-link"
-          href={INTRO_CALL.href}
-          data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen}
-          data-analytics-location="services-path-conversation"
-        >
-          Discuss the problem →
-        </a>
-      </aside>
-      <aside class="proof-ledger" aria-label="Inspect the work before booking">
-        <p><strong>Inspect before you book.</strong> Review the public engineering capability brief or read the article archive.</p>
-        <div>
-          <a class="action-link" href={ENGINEERING_PILOT.capabilityBriefHref}>Engineering capability brief →</a>
-          <a class="action-link" href="/articles">Public article archive →</a>
-        </div>
-      </aside>
-    </section>
-
-    <section class="outcomes" aria-labelledby="backend-title">
-      <div class="section-heading">
-        <p class="eyebrow">What the work changes</p>
-        <h2 id="backend-title">Better outcomes from the workflows your team already depends on.</h2>
-      </div>
-      <ul class="example-grid">
-        <li><strong>Speed to Lead.</strong><span>Respond while the lead is still interested—minutes, not hours.</span></li>
-        <li><strong>Speed to Quote.</strong><span>Turn pricing rules and history into review-ready quotes without removing human approval.</span></li>
-        <li><strong>Knowledge Base.</strong><span>Keep operating knowledge current as procedures, decisions, and recurring questions change.</span></li>
-        <li><strong>System Integration.</strong><span>Move information once, not five times, across forms, CRM, spreadsheets, and reporting.</span></li>
-        <li><strong>Bounded Internal Agents.</strong><span>Delegate one repeatable job without giving up control over decisions and verification.</span></li>
       </ul>
     </section>
 
-
-    <section class="close" aria-labelledby="services-close-title">
-      <div>
-        <p class="eyebrow">Not sure which path fits?</p>
-        <h2 id="services-close-title">Start with a free 30-minute conversation.</h2>
-        <p>No hard sell. We will name the problem, the next useful decision, and whether I am the right person to help.</p>
-      </div>
-      <div class="actions">
-        <a
-          class="btn btn-primary"
-          href={INTRO_CALL.href}
-          data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen}
-          data-analytics-location="services-final-booking"
-        >
-          {INTRO_CALL.bookingLabel}
-        </a>
-        <a class="action-link" href={SMB_ASSESSMENT.slug}>Owners: $99 assessment →</a>
-        <a class="action-link" href={ENGINEERING_PILOT.intakeHref}>Engineering: $1,500 pilot →</a>
-      </div>
-      <aside class="referral-close" aria-labelledby="referral-title">
-        <p class="eyebrow">A useful referral</p>
-        <div class="referral-close__body">
-          <h3 id="referral-title">Know an owner or engineering leader saying one of those things?</h3>
-          <p>Send them this page or introduce us directly. I’ll help them name the problem and decide whether there is a useful next step—without forcing a project.</p>
-          <a class="action-link" href="/contact">Introduce us →</a>
-        </div>
-      </aside>
-    </section>
+    <footer class="close">
+      <a class="action-link" href="/articles">Read the writing →</a>
+      <p class="close__note">For writing, technical discussions, collaborations, or other inquiries, <a href="/connect">email is the fastest path</a>.</p>
+    </footer>
   </article>
 </Layout>
 
 <style>
-  .services {
-    max-width: 1040px;
+  .advisory {
+    max-width: 840px;
     padding-top: clamp(58px, 8vw, 96px);
     padding-bottom: 100px;
   }
 
-  .eyebrow,
-  .path-label,
-  .audience-label {
+  .eyebrow {
     color: var(--accent-text);
     font-family: var(--mono);
     font-size: 11px;
@@ -218,133 +68,94 @@ const audiencePaths = [
     text-transform: uppercase;
   }
 
-  header {
-    max-width: 880px;
-  }
-
   h1 {
-    max-width: 13.5ch;
+    max-width: 20ch;
     margin: 16px 0;
-    font-size: clamp(48px, 5.4vw, 72px);
+    font-size: clamp(42px, 5.4vw, 64px);
     font-weight: 500;
     letter-spacing: -.04em;
-    line-height: .94;
+    line-height: .96;
   }
 
   .lede {
-    max-width: 36ch;
+    max-width: var(--measure);
     color: var(--ink-soft);
-    font-size: clamp(21px, 2.5vw, 29px);
-    line-height: 1.4;
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.45;
   }
 
-  .background {
-    max-width: 68ch;
-    margin-top: 22px;
-    line-height: 1.6;
-  }
-
-  .actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    align-items: center;
-    margin-top: 28px;
-  }
-  .actions a {
-    display: inline-flex;
-    min-height: 44px;
-    align-items: center;
-  }
-
-  .note {
-    max-width: 70ch;
-    margin-top: 16px;
-    color: var(--ink-faint);
-    font-family: var(--mono);
-    font-size: 11px;
-    line-height: 1.5;
-  }
-
-  section {
-    padding-block: clamp(62px, 9vw, 96px);
-    border-top: 1px solid var(--rule);
-  }
-
-  header + section {
-    margin-top: clamp(70px, 10vw, 120px);
-  }
-
-  .section-heading {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(280px, .8fr);
-    gap: 18px 60px;
-    align-items: end;
-    margin-bottom: 34px;
-  }
-
-  .route-intro {
-    max-width: 42ch;
-    margin: 0;
-    color: var(--ink-soft);
-    font-size: 18px;
-    line-height: 1.55;
-  }
-
-  .section-heading .eyebrow {
-    grid-column: 1 / -1;
-    margin: 0;
-  }
-
-  h2 {
-    max-width: 16ch;
-    margin: 0;
-    font-size: clamp(34px, 4.5vw, 54px);
-    line-height: 1;
-  }
-
-  .service-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
-  }
-
-  .service-grid article {
-    display: flex;
-    min-height: 300px;
-    flex-direction: column;
-    padding: clamp(26px, 4vw, 38px);
+  .status {
+    margin-top: clamp(40px, 6vw, 60px);
+    padding: clamp(22px, 3.5vw, 32px);
     border: 1px solid var(--rule);
     background: var(--paper-2);
   }
-  .audience-label {
+
+  .status__line {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.4;
+  }
+
+  .status__note {
+    max-width: 60ch;
+    margin: 10px 0 0;
+    color: var(--ink-soft);
+    font-size: 17px;
+    line-height: 1.55;
+  }
+
+  section {
+    margin-top: clamp(56px, 8vw, 88px);
+    padding-top: clamp(34px, 5vw, 48px);
+    border-top: 1px solid var(--rule);
+  }
+
+  h2 {
+    max-width: 24ch;
     margin: 0 0 8px;
-    color: var(--ink);
-  }
-
-  .path-label {
-    color: var(--ink);
-    font-size: 13px;
-  }
-
-  .service-grid h3 {
-    max-width: 18ch;
-    margin-top: 24px;
-    font-size: clamp(27px, 3vw, 36px);
+    font-size: clamp(28px, 3.4vw, 40px);
     line-height: 1.05;
   }
 
-  .service-grid .path-description {
-    margin-top: 16px;
+  .topics {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .topics li {
+    padding-block: 24px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .topics h3 {
+    max-width: 28ch;
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .topics p {
+    max-width: 66ch;
+    margin: 8px 0 0;
     color: var(--ink-soft);
     font-size: 18px;
     line-height: 1.55;
+  }
+
+  .close {
+    display: grid;
+    gap: 8px;
+    margin-top: clamp(40px, 6vw, 60px);
   }
 
   .action-link {
     display: inline-flex;
     min-height: 44px;
     align-items: center;
+    justify-self: start;
     color: var(--accent-text);
     font-family: var(--mono);
     font-size: 13px;
@@ -359,291 +170,23 @@ const audiencePaths = [
     text-decoration-thickness: 2px;
   }
 
-  .service-grid .action-link {
-    margin-top: auto;
-    padding-top: 24px;
-  }
-
-  .service-paths {
-    padding-bottom: 0;
-  }
-
-  .conversation-path {
-    display: grid;
-    grid-template-columns: minmax(220px, .85fr) minmax(280px, 1fr) auto;
-    gap: 18px 36px;
-    align-items: end;
-    margin-top: 18px;
-    padding: 24px 0;
-    border-top: 1px solid var(--rule);
-  }
-
-  .conversation-path .eyebrow,
-  .conversation-path h3,
-  .conversation-path > p {
+  .close__note {
+    max-width: 62ch;
     margin: 0;
+    color: var(--ink-faint);
+    font-size: 16px;
+    line-height: 1.6;
   }
 
-  .conversation-path h3 {
-    max-width: 27ch;
-    margin-top: 10px;
-    font-size: 21px;
-    font-weight: 500;
-    line-height: 1.3;
-  }
-
-  .conversation-path > p {
-    color: var(--ink-soft);
-    font-size: 18px;
-    line-height: 1.5;
-  }
-  .proof-ledger {
-    display: flex;
-    justify-content: space-between;
-    gap: 24px;
-    margin-top: 18px;
-    padding: 20px 0;
-    border-block: 1px solid var(--rule);
-    font-size: 17px;
-    color: var(--ink-soft);
-  }
-
-  .proof-ledger div {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 22px;
-  }
-
-  .example-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0;
-    margin: 0;
-    padding: 0;
-    border-top: 1px solid var(--rule);
-    list-style: none;
-  }
-
-  .example-grid li {
-    display: grid;
-    gap: 8px;
-    padding: 22px 20px 22px 0;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .example-grid li:nth-child(even) {
-    padding-right: 0;
-    padding-left: 20px;
-    border-left: 1px solid var(--rule);
-  }
-
-  .example-grid li:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-    padding-right: 0;
-  }
-
-  .example-grid strong {
-    font-size: 20px;
-  }
-
-  .example-grid span {
-    color: var(--ink-soft);
-    font-size: 18px;
-    line-height: 1.5;
-  }
-
-  .recognition-signals {
-    padding: clamp(32px, 5vw, 54px);
-    border: 1px solid var(--ink);
-    background: var(--paper-2);
-  }
-
-  .recognition-signals__head {
-    display: grid;
-    gap: 12px;
-    margin-bottom: 32px;
-  }
-
-  .recognition-signals__head .eyebrow,
-  .recognition-signals__head h2 {
-    margin: 0;
-  }
-
-  .recognition-signals__head h2 {
-    max-width: 16ch;
-  }
-
-  .recognition-signals__item {
-    display: grid;
-    grid-template-columns: 12px minmax(0, 1fr);
-    gap: 18px;
-    align-items: baseline;
-    padding-block: 24px;
-    border-top: 1px solid var(--rule);
-  }
-
-  .recognition-signals__dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--accent);
-    opacity: .65;
-  }
-
-  .recognition-signals__copy,
-  .recognition-signals__copy p,
-  .recognition-signals__copy h3 {
-    margin: 0;
-  }
-
-  .recognition-signals__copy {
-    display: grid;
-    grid-template-columns: 145px minmax(0, 1fr);
-    gap: 10px 18px;
-    align-items: baseline;
-  }
-
-  .recognition-signals__copy h3 {
-    max-width: 39ch;
-    font-size: 21px;
-    font-weight: 500;
-    line-height: 1.3;
-  }
-
-  .recognition-signals__response {
-    grid-column: 2;
-    max-width: 58ch;
-    color: var(--ink-soft);
-    font-size: 18px;
-    line-height: 1.5;
-  }
-
-  .close {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(300px, .7fr);
-    gap: 50px;
-    padding: clamp(34px, 5vw, 52px);
-    border: 1px solid var(--rule);
-    background: var(--paper-2);
-  }
-
-  .close h2 {
-    margin-top: 12px;
-  }
-
-  .close > div > p:last-child {
-    max-width: 60ch;
-    margin-top: 16px;
-    color: var(--ink-soft);
-    font-size: 18px;
-    line-height: 1.55;
-  }
-
-  .close .actions {
-    align-content: start;
-    margin-top: 0;
-  }
-
-
-  .referral-close {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 140px minmax(0, 1fr);
-    gap: 28px;
-    align-items: start;
-    padding-top: 28px;
-    border-top: 1px solid var(--rule);
-  }
-
-  .referral-close .eyebrow,
-  .referral-close h3,
-  .referral-close p {
-    margin: 0;
-  }
-
-  .referral-close__body {
-    display: grid;
-    grid-template-columns: minmax(220px, .75fr) minmax(300px, 1.25fr);
-    gap: 14px 32px;
-  }
-
-  .referral-close h3 {
-    max-width: 27ch;
-    font-size: 21px;
-    font-weight: 500;
-    line-height: 1.3;
-  }
-
-  .referral-close__body > p {
-    max-width: 58ch;
-    color: var(--ink-soft);
-    font-size: 18px;
-    line-height: 1.5;
-  }
-
-  .referral-close__body > .action-link {
-    white-space: nowrap;
+  .close__note a {
+    color: var(--accent-text);
+    text-decoration: underline;
+    text-underline-offset: 4px;
   }
 
   @media (max-width: 900px) {
-    .section-heading,
-    .service-grid,
-    .example-grid,
-    .close,
-    .referral-close {
-      grid-template-columns: 1fr;
-    }
-
-    .conversation-path {
-      grid-template-columns: 1fr;
-      align-items: start;
-    }
-    .proof-ledger {
-      align-items: flex-start;
-      flex-direction: column;
-    }
-
-    .recognition-signals__copy {
-      grid-template-columns: 1fr;
-    }
-
-    .recognition-signals__response {
-      grid-column: 1;
-    }
-    section {
-      padding-block: 48px;
-    }
-
-    .section-heading .eyebrow {
-      grid-column: 1;
-    }
-
-    .service-grid article {
-      min-height: 0;
-    }
-
-    .example-grid li:last-child:nth-child(odd) {
-      grid-column: auto;
-    }
-
-    .example-grid li,
-    .example-grid li:nth-child(even) {
-      padding: 20px 0;
-      border-left: 0;
-    }
-
-    .recognition-signals__item,
-    .referral-close {
-      gap: 12px;
-    }
-
-    .recognition-signals__head {
-      align-items: start;
-      flex-direction: column;
-    }
-
-    .referral-close__body {
-      grid-template-columns: 1fr;
+    .topics li {
+      padding-block: 20px;
     }
   }
 </style>

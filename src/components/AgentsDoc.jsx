@@ -37,13 +37,13 @@ const AgentsDoc = () => {
             className="inline-flex items-center text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Downloads
+            Back to resources
           </a>
 
           <a
             href="/example-AGENTS.md"
             download="example-AGENTS.md"
-            className="inline-flex items-center bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white font-bold py-2 px-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl"
+            className="btn btn-solid inline-flex items-center"
           >
             <Download className="w-4 h-4 mr-2" />
             Download File
@@ -56,12 +56,12 @@ const AgentsDoc = () => {
         </h1>
 
         {/* Content */}
-        <div className="bg-[var(--color-surface)] p-8 rounded-xl shadow-xl border border-[var(--color-border)]">
+        <div className="border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
           <article className="prose prose-invert max-w-none
             prose-headings:text-[var(--color-text-primary)]
-            prose-h1:text-3xl prose-h1:font-bold prose-h1:mb-4
             prose-h2:text-2xl prose-h2:font-bold prose-h2:mb-3 prose-h2:mt-8
             prose-h3:text-xl prose-h3:font-semibold prose-h3:mb-2 prose-h3:mt-6
+            prose-h4:text-lg prose-h4:font-semibold prose-h4:mb-2 prose-h4:mt-5
             prose-p:text-[var(--color-text-secondary)] prose-p:leading-relaxed prose-p:mb-4
             prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:text-[var(--color-accent-hover)] hover:prose-a:underline
             prose-strong:text-[var(--color-text-primary)] prose-strong:font-semibold
@@ -71,8 +71,18 @@ const AgentsDoc = () => {
             prose-ol:text-[var(--color-text-secondary)] prose-ol:mb-4
             prose-li:mb-2
             prose-blockquote:border-l-[var(--color-accent)] prose-blockquote:text-[var(--color-text-muted)] prose-blockquote:italic
-            prose-img:rounded-lg prose-img:shadow-lg">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            prose-img:rounded-lg">
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                // The fetched AGENTS.md opens with its own `# Agent Instructions`.
+                // Demote one level so the page keeps a single h1.
+                h1: 'h2',
+                h2: 'h3',
+                h3: 'h4',
+                h4: 'h5',
+              }}
+            >
               {content}
             </ReactMarkdown>
           </article>

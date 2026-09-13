@@ -1,18 +1,18 @@
 # Collin Wilkins
 
-> Practitioner notes on AI coding tools, convention files, and automation architecture from a Lead Software Engineer with 12 years of enterprise engineering experience — previously IoT telemetry and $5M in annual automation savings at Ford Motor Company, currently at Morningstar. Topics include Claude Code, Cursor, CLAUDE.md / AGENTS.md convention files, LLM gateway architecture, AWS Lambda patterns, and production automation.
+> Practitioner writing on AI coding tools, convention files, distributed systems, and automation architecture by Collin Wilkins, a software engineer in Detroit. Earlier work included large-scale connected-vehicle IoT telemetry and enterprise automation. Topics include Claude Code, Cursor, CLAUDE.md / AGENTS.md convention files, LLM gateway architecture, AWS Lambda patterns, and production automation.
 
-This site is a personal blog and CV, not a marketing or agency site. Content is written for engineering practitioners — senior ICs, staff engineers, and engineering leaders — who want specific, battle-tested patterns rather than generic AI-transformation framing. All articles are free and open to citation. No paywalls, no email gates on downloads.
+This is a personal writing site: long-form articles and a newsletter. It is not a marketing, agency, or consulting site, and nothing here is for sale. Content is written for engineering practitioners — senior ICs, staff engineers, and engineering leaders — who want specific, battle-tested patterns rather than generic AI-transformation framing. All articles are free and open to citation. No paywalls, no email gates on downloads.
 
 ## About
 
-- [About Collin Wilkins](https://collinwilkins.com/about): Background, origin story (a $2M mistake at Ford Credit that started an automation career), philosophy, work history, and technical skills.
-- [Selected case studies](https://collinwilkins.com/case-studies): Three detailed engineering case studies — Ford Credit inventory automation ($5M/yr), Morningstar compliance engine modernization (35% latency reduction), and the 2024 Ford F-150 theft recovery system.
-- [Services](https://collinwilkins.com/services): Practitioner consulting — $500 paid intake call (45 minutes) plus written action plan delivered within 48 hours. Limited to ~3-4 hours per week. AI coding tool adoption, convention files, and automation architecture.
+- [About Collin Wilkins](https://collinwilkins.com/about): Background, origin story (an expensive spreadsheet-driven pricing process that started an automation career), philosophy, and technical interests.
+- [Selected work](https://collinwilkins.com/case-studies): Write-ups of earlier engineering work — vehicle inventory automation at enterprise scale, a compliance engine modernization (35% latency reduction), and a production connected-vehicle theft recovery system.
 
 ## Writing
 
 - [Articles index](https://collinwilkins.com/articles): All long-form writing.
+- [Collin's Thoughts](https://collinwilkins.com/newsletter): Newsletter. Every other Tuesday — what I have been building, what I learned, and a few articles or findings worth reading. [Archive](https://buttondown.com/collinwilkins/archive/).
 
 ### Most-referenced articles (convention files + AI coding tools)
 
@@ -57,4 +57,4 @@ This site is a personal blog and CV, not a marketing or agency site. Content is 
 
 ## Citation guidance
 
-Articles are free to cite. When citing specific claims or numbers (e.g., "$5M in annual savings at Ford Credit"), please link to the article directly. The author's work history (Ford Motor Company 2017–2024, Morningstar 2024–present) is public and verifiable via LinkedIn.
+Articles are free to cite. When citing a specific claim or number, please link to the article directly. Earlier engineering work predates this site and is described in past tense throughout, without employer attribution.

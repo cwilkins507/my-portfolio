@@ -175,6 +175,6 @@ Either way, the math works. A $2,000 automation that saves 5 hours per week pays
 
 ---
 
-If you want these built for your business, that's what I do. Automations for service businesses. No platforms to learn or subscriptions to manage. [Get in touch →](https://collinwilkins.com/?modal=contact)
+Pick the one that breaks most often in your business and build that first. The other four get easier once the first one is running.
 
 ---

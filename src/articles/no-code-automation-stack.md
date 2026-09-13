@@ -161,4 +161,4 @@ You'll know when you see these signs:
 
 That's the upgrade point. n8n self-hosted, custom scripts, purpose-built integrations. But the no-code stack doesn't disappear — you keep the simple automations on Make.com and move the complex ones to custom infrastructure. I wrote about that side in [3 Automations I Built That Run Without Me](/articles/3-automations-that-run-without-me).
 
-If you're at that point (or getting close), that's what I help founders with. I take working no-code stacks and build the custom version that handles the complexity, the volume, and the edge cases. [Let's talk →](https://collinwilkins.com/?modal=contact)
+If you're at that point (or getting close), the hard part isn't the rewrite — it's deciding which workflows earn custom code and which ones are fine staying boring. Start with the ones where a silent failure costs you money.

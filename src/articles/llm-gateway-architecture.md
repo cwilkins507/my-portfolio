@@ -152,10 +152,6 @@ This section matters more than the implementation playbook, because the mistakes
 
 **Treating the gateway as a one-time cost savings project.** Teams deploy the gateway, save 30% through routing, and call it done. They never build the cost dashboard or set up ongoing tagging for new services. Cost savings are great, but the bigger win is permanent visibility into what you're spending, where, and why. That requires treating the gateway as infrastructure, not a project.
 
----
-
-If you're running a multi-model setup and want help designing the routing strategy or deploying the gateway, that's the kind of engagement I do — audit current usage, design the architecture, get it into production. Usually 2-4 weeks. [Reach out here](https://collinwilkins.com/?modal=contact) if you want to scope it.
-
 *Related: [Context Engineering for AI Coding Tools](https://collinwilkins.com/articles/context-engineering) covers the upstream discipline that makes model routing effective. [Intentional AI Integration](https://collinwilkins.com/articles/intentional-ai-integration) covers the governance layer that sits above the gateway.*
 
 *I write about AI infrastructure and engineering every couple weeks. [Subscribe to the newsletter](https://buttondown.com/collinwilkins) if this was useful.*

@@ -21,7 +21,6 @@ const URLS = [
     `https://${HOST}/agents`,
     `https://${HOST}/case-studies`,
     `https://${HOST}/newsletter`,
-    `https://${HOST}/quiz`,
     `https://${HOST}/resources`,
     `https://${HOST}/guides/agentic-workflows`,
     `https://${HOST}/resources/ai-prompt-toolkit`,

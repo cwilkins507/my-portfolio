@@ -136,7 +136,7 @@ Vector database-backed memory isn't part of it either. The retrieval pattern I u
 
 For observability, I read session outputs and session recaps. That's it. A team running agents across hundreds of users would need something more structured — Langfuse or similar. As a solo operator, session recaps are sufficient.
 
-This architecture runs two domains of content production, a code project, a SaaS beta, and automation consulting work simultaneously. That's the scope it's built for. Scaling to a team or a product would require different decisions at each layer — different memory strategy, structured observability, probably MCP. But the core pattern holds: file-backed context, specialized agents, a knowledge base your tools can actually read.
+This architecture runs two domains of content production, a code project, a SaaS beta, and a pile of automation work simultaneously. That's the scope it's built for. Scaling to a team or a product would require different decisions at each layer — different memory strategy, structured observability, probably MCP. But the core pattern holds: file-backed context, specialized agents, a knowledge base your tools can actually read.
 
 ## The Real Work
 

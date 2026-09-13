@@ -3,6 +3,16 @@
 /articles/architecture-as-code.html /articles/architecture-as-code 301
 /articles/ai-code-review-best-practices-approaches-tools.html /articles/ai-code-review-best-practices-approaches-tools 301
 /articles/AI-Assisted-Coding/ /articles/ai-assisted-coding 301
-/contact /?modal=contact 301
+/contact /connect 301
 /downloads /resources 301
 /articles/best-practices-for-ai-agent-development /articles/ai-agent-harness 301
+/quiz /articles 301
+/services/ai-workflow-assessment /services 301
+/services/ai-delivery-kit /services 301
+/services/ai-delivery-kit/intake /services 301
+/services/ai-delivery-kit/capability-brief /services 301
+/AI-Delivery-Kit-Capability-Brief.pdf /services 301
+/preview / 301
+/preview/all / 301
+/preview/about-record /about 301
+/preview/* / 301

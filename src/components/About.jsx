@@ -1,7 +1,4 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
-import { ANALYTICS_EVENTS, INTRO_CALL } from '../data/site.js';
-import BackgroundRecord from './BackgroundRecord';
 
 const standards = [
   {
@@ -45,35 +42,8 @@ const About = () => {
               Most engineers start with "Hello World." Mine starts with a $2 million pricing problem.
             </h1>
             <p className="mt-7 max-w-[min(100%,37rem)] text-lg leading-[1.62] text-[var(--color-text-secondary)] md:text-xl">
-              I help companies turn AI and automation experiments into systems their teams can use and maintain. My path through Ford finance, sales, operations, connected vehicles, and software engineering means I look at both how to build the system and whether it solves a real business problem.
+              I am a software engineer. Most of my work lives in distributed and event-driven systems, the infrastructure and developer tooling underneath them, technical leadership on teams building that kind of thing, and lately the AI-native side of engineering — how software actually gets written now. I arrived by way of finance, sales, and field operations, so I tend to ask what a system is for before I ask how to build it.
             </p>
-            <div className="mt-9 max-w-3xl">
-              <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
-                Owners, operators, or unsure where to start
-              </p>
-              <a
-                href={INTRO_CALL.href}
-                data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen}
-                data-analytics-location="about-booking"
-                className="group inline-flex min-h-11 items-center justify-center rounded-full bg-[var(--color-accent)] px-5 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-white transition-colors hover:bg-[var(--color-accent-hover)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]"
-              >
-                {INTRO_CALL.bookingLabel}
-                <ArrowRight
-                  className="ml-2 h-4 w-4 shrink-0 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0 motion-reduce:group-focus-visible:translate-x-0"
-                  aria-hidden="true"
-                />
-              </a>
-              <p className="mt-4 text-[15px] leading-[1.55] text-[var(--color-text-secondary)]">
-                Engineering leader with a ready repository?{' '}
-                <a
-                  href="/services/ai-delivery-kit/capability-brief"
-                  className="font-bold text-[var(--color-accent)] underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]"
-                >
-                  Review the AI Delivery Pilot brief
-                </a>
-                .
-              </p>
-            </div>
           </div>
 
           <aside className="col-start-2 flex items-center gap-4 pt-2 text-[var(--color-text-secondary)] lg:col-start-auto lg:block lg:border-l lg:border-[var(--color-accent-border)] lg:pl-6">
@@ -88,7 +58,7 @@ const About = () => {
               />
             </picture>
             <p className="text-sm leading-relaxed">
-              Lead Software Engineer at Morningstar. Previously Ford. Comfortable somewhere between finance, field ops, Python, and the system everyone is annoyed by but nobody has had time to fix.
+              Software engineer and technical lead. Distributed systems, platform and infrastructure work, developer tooling, AI-native engineering. Comfortable somewhere between finance, field ops, Python, and the system everyone is annoyed by but nobody has had time to fix.
             </p>
           </aside>
         </header>
@@ -118,19 +88,8 @@ const About = () => {
               That was the point where software stopped feeling like another department and started feeling like another tool I needed to be useful.
             </p>
             <aside className="mt-10 border-t border-[var(--color-accent-border)] bg-[var(--color-surface)] px-5 py-5 text-sm leading-[1.6]">
-              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-accent)]">Employment context</p>
-              <p className="mt-3">This pricing story comes from a full-time Ford finance role, not a consulting engagement. The cost is a directional estimate from that workflow; no public client artifact is available.</p>
-              <a
-                className="group mt-3 inline-flex min-h-11 items-center font-bold text-[var(--color-accent)] underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]"
-                href="/Collin-Wilkins-Resume.pdf"
-                download="collin-wilkins-resume.pdf"
-              >
-                Download the resume for role history
-                <ArrowRight
-                  className="ml-2 h-4 w-4 shrink-0 no-underline transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0 motion-reduce:group-focus-visible:translate-x-0"
-                  aria-hidden="true"
-                />
-              </a>
+              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-accent)]">Context</p>
+              <p className="mt-3">This pricing story comes from a full-time Ford finance role earlier in my career. The cost is a directional estimate from that workflow, not a published figure.</p>
             </aside>
           </div>
         </section>
@@ -180,26 +139,13 @@ const About = () => {
         </section>
 
 
-        <section className="grid gap-10 border-b border-[var(--color-border)] py-14 md:grid-cols-[clamp(120px,18vw,280px)_minmax(0,1fr)] md:py-20">
-          <div>
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-accent)]">
-              Selected background
-            </p>
-            <h2 className="mt-4 text-balance font-serif text-3xl font-medium leading-[1.05] tracking-[-0.03em] text-[var(--color-text-primary)] md:text-4xl">
-              The formal record, minus the resume wall.
-            </h2>
-          </div>
-
-          <BackgroundRecord variant="table" />
-        </section>
-
         <section className="grid gap-10 py-14 md:grid-cols-[clamp(120px,18vw,280px)_minmax(0,1fr)] md:py-20">
           <div>
             <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-accent)]">
               A little more human
             </p>
             <h2 className="mt-4 text-balance font-serif text-3xl font-medium leading-[1.05] tracking-[-0.03em] text-[var(--color-text-primary)] md:text-4xl">
-              The page behind the portfolio.
+              The page behind the writing.
             </h2>
           </div>
 
@@ -215,57 +161,30 @@ const About = () => {
           </div>
         </section>
 
-        <section className="grid gap-10 border-b border-[var(--color-border)] py-14 md:grid-cols-[clamp(120px,18vw,280px)_minmax(0,1fr)] md:py-20">
-          <div>
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-accent)]">
-              Working together
-            </p>
-            <h2 className="mt-4 text-balance font-serif text-3xl font-medium leading-[1.05] tracking-[-0.03em] text-[var(--color-text-primary)] md:text-4xl">
-              If your team needs help.
-            </h2>
-          </div>
-
-          <div className="max-w-[38rem] space-y-5 text-base leading-relaxed text-[var(--color-text-secondary)] md:text-lg">
-            <p>
-              I take on a small amount of independent work each week: AI coding tool adoption, convention files, automation architecture, and the system decisions that keep getting deferred because every option has consequences.
-            </p>
-            <p>
-              No hard sell. We will name the problem, the next useful decision, and whether I am the right person to help.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-4 border-t border-[var(--color-border)] pt-6">
-              <a
-                href={INTRO_CALL.href}
-                data-analytics-event={ANALYTICS_EVENTS.bookingPageOpen}
-                data-analytics-location="about-close"
-                className="group inline-flex min-h-11 items-center justify-center rounded-full bg-[var(--color-accent)] px-6 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-white transition-colors hover:bg-[var(--color-accent-hover)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]"
-              >
-                {INTRO_CALL.bookingLabel}
-                <ArrowRight
-                  className="ml-2 h-4 w-4 shrink-0 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0 motion-reduce:group-focus-visible:translate-x-0"
-                  aria-hidden="true"
-                />
-              </a>
-              <a
-                href="/services"
-                className="inline-flex min-h-11 items-center font-bold text-[var(--color-accent)] underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]"
-              >
-                Or read how I work
-              </a>
-            </div>
-          </div>
-        </section>
-
         <footer className="grid gap-8 border-t border-[var(--color-border)] pt-10 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
           <p className="max-w-3xl text-lg leading-relaxed text-[var(--color-text-secondary)]">
-            That's the backstory. The case studies are the receipts.
+            That's the backstory. The rest of the thinking is in the writing.
           </p>
-          <a
-            href="/case-studies"
-            className="inline-flex min-h-11 items-center justify-center rounded-lg bg-[var(--color-accent)] px-5 text-sm font-bold text-white transition-colors hover:bg-[var(--color-accent-hover)]"
-          >
-            Read case studies
-            <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-          </a>
+          <div className="flex flex-wrap items-center gap-x-7 gap-y-3">
+            <a
+              href="/articles"
+              className="inline-flex min-h-11 items-center font-bold text-[var(--color-accent)] underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]"
+            >
+              Read the writing &rarr;
+            </a>
+            <a
+              href="/connect"
+              className="inline-flex min-h-11 items-center font-bold text-[var(--color-text-primary)] underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]"
+            >
+              Get in touch &rarr;
+            </a>
+            <a
+              href="/services"
+              className="inline-flex min-h-11 items-center text-[var(--color-text-muted)] underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]"
+            >
+              Advisory &rarr;
+            </a>
+          </div>
         </footer>
       </article>
     </div>

@@ -3,6 +3,29 @@ import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
+// Permanent redirects. Every key is also excluded from the sitemap below.
+const redirects = {
+    // Consolidate /consulting → /services (Writer Site Refresh, 2026-04-10)
+    '/consulting': '/services',
+    // Retired consulting funnel routes (Editorial refresh, 2026-09-11)
+    '/quiz': '/articles',
+    '/services/ai-workflow-assessment': '/services',
+    '/services/ai-delivery-kit': '/services',
+    '/services/ai-delivery-kit/intake': '/services',
+    '/services/ai-delivery-kit/capability-brief': '/services',
+    // Retired internal preview routes
+    '/preview': '/',
+    '/preview/all': '/',
+    '/preview/about-record': '/about',
+    // Index hygiene redirects for legacy public URLs
+    '/contact': '/connect',
+    '/downloads': '/resources',
+    '/articles/best-practices-for-ai-agent-development': '/articles/ai-agent-harness',
+    // Old article URLs -> current slugs
+    '/articles/lessons-learned': '/articles/lessons-learned-2025',
+    '/writing': '/articles',
+};
+
 // https://astro.build/config
 export default defineConfig({
     site: 'https://collinwilkins.com',
@@ -11,17 +34,7 @@ export default defineConfig({
     build: {
         format: 'file',
     },
-    redirects: {
-        // Consolidate /consulting → /services (Writer Site Refresh, 2026-04-10)
-        '/consulting': '/services',
-        // Index hygiene redirects for legacy public URLs
-        '/contact': '/?modal=contact',
-        '/downloads': '/resources',
-        '/articles/best-practices-for-ai-agent-development': '/articles/ai-agent-harness',
-        // Old article URLs -> current slugs
-        '/articles/lessons-learned': '/articles/lessons-learned-2025',
-        '/writing': '/',
-    },
+    redirects,
     integrations: [
         react(),
         tailwind({
@@ -29,13 +42,11 @@ export default defineConfig({
         }),
         sitemap({
             filter(page) {
-                // Exclude redirect targets and internal pages from the sitemap
+                // Exclude redirect sources and internal pages from the sitemap
                 const path = new URL(page).pathname;
-                return ![
-                    '/writing',
-                    '/consulting',
-                    '/guides/ai-adoption-playbook/thanks',
-                ].includes(path) && !path.startsWith('/preview');
+                return !Object.hasOwn(redirects, path)
+                    && path !== '/guides/ai-adoption-playbook/thanks'
+                    && !path.startsWith('/preview');
             },
             serialize(item) {
                 // Use actual content dates for articles, fallback to build date for static pages
@@ -99,7 +110,9 @@ export default defineConfig({
     ],
     markdown: {
         shikiConfig: {
-            theme: 'dracula',
+            // github-dark-high-contrast keeps every token >= 4.5:1 on its own background;
+            // dracula's comment/punctuation tokens measured 3.02:1.
+            theme: 'github-dark-high-contrast',
             wrap: true,
         },
     },

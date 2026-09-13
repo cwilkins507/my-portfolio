@@ -1,15 +1,13 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useReducedMotion } from '../hooks/useReducedMotion';
-import { INTRO_CALL, ANALYTICS_EVENTS } from '../data/site.js';
-import { trackEvent } from '../utils/analytics.js';
+import { NEWSLETTER } from '../data/site.js';
 
 const NAV_LINKS = [
   { href: '/articles', label: 'Articles' },
+  { href: '/newsletter', label: 'Newsletter' },
   { href: '/resources', label: 'Resources' },
-  { href: '/services', label: 'Services' },
   { href: '/about', label: 'About' },
-  { href: '/contact', label: 'Contact' },
 ];
 
 const Navigation = ({ portfolioData }) => {
@@ -54,17 +52,26 @@ const Navigation = ({ portfolioData }) => {
     };
     window.addEventListener('keydown', onKey);
 
-    // Inert background content
-    document.getElementById('page-content')?.setAttribute('inert', '');
+    // Inert background content. The nav itself stays focusable: at mobile widths it
+    // holds only the wordmark and the hamburger that owns this overlay, and inerting
+    // it would block restoring focus to the toggle on close.
+    const background = [
+      document.getElementById('page-content'),
+      document.querySelector('body > footer'),
+    ].filter(Boolean);
+    background.forEach(el => el.setAttribute('inert', ''));
 
     return () => {
       clearTimeout(timer);
       window.removeEventListener('keydown', onKey);
-      document.getElementById('page-content')?.removeAttribute('inert');
+      background.forEach(el => el.removeAttribute('inert'));
     };
   }, [mobileOpen]);
 
-  const close = useCallback(() => setMobileOpen(false), []);
+  const close = useCallback(() => {
+    setMobileOpen(false);
+    hamburgerRef.current?.focus();
+  }, []);
   const dur = prefersReducedMotion ? 0 : 0.25;
 
   return (
@@ -138,12 +145,12 @@ const Navigation = ({ portfolioData }) => {
                 );
               })}
               <a
-                href={INTRO_CALL.href}
-                onClick={() => trackEvent(ANALYTICS_EVENTS.bookingPageOpen, { location: 'navigation' })}
-                className="btn btn-solid"
+                href="/newsletter"
+                className="btn btn-ghost"
                 style={{ minHeight: '44px', padding: '8px 16px', whiteSpace: 'nowrap' }}
+                title={NEWSLETTER.name}
               >
-                {INTRO_CALL.navigationLabel}
+                Subscribe
               </a>
             </div>
 
@@ -256,12 +263,12 @@ const Navigation = ({ portfolioData }) => {
               );
             })}
             <a
-              href={INTRO_CALL.href}
-              onClick={() => { trackEvent(ANALYTICS_EVENTS.bookingPageOpen, { location: 'navigation-mobile' }); close(); }}
-              className="btn btn-solid"
+              href="/newsletter"
+              onClick={close}
+              className="btn btn-ghost"
               style={{ minHeight: '44px', marginTop: '8px' }}
             >
-              {INTRO_CALL.navigationLabel}
+              Subscribe
             </a>
           </motion.div>
         )}

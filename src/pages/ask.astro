@@ -10,6 +10,13 @@ const searchDocuments = buildSearchDocuments(articles);
 ---
 <Layout title="Ask My Blog | Collin Wilkins" description="Ask questions across Collin Wilkins's public articles and get citation-grounded answers.">
   <div class="wrap" style="padding-top:clamp(64px,9vw,110px);padding-bottom:clamp(64px,9vw,110px);">
-    <AskBlog documents={searchDocuments} articleCount={articles.length} client:load />
+    <header style="max-width:900px;margin:0 auto clamp(32px,4vw,48px);">
+      <p class="label" style="color:var(--accent-text);">Ask the archive</p>
+      <h1 style="margin-top:12px;font-size:clamp(36px,5vw,54px);font-weight:500;line-height:1.04;letter-spacing:-.02em;">Ask my writing a question.</h1>
+      <p style="margin-top:16px;max-width:56ch;font-size:clamp(17px,2vw,20px);line-height:1.55;color:var(--ink-soft);">
+        Every answer points back at the article, section, or FAQ it came from, so you can read the reasoning rather than trust a summary.
+      </p>
+    </header>
+    <AskBlog compact documents={searchDocuments} articleCount={articles.length} client:load />
   </div>
 </Layout>
