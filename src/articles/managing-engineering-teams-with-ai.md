@@ -72,4 +72,4 @@ The job didn't get easier. The ceiling got higher. Managers who get the infrastr
 
 ---
 
-Subscribe to [Collin's Thoughts](/newsletter) for what I am building, lessons from the work, and a few worthwhile articles and findings every other Tuesday.
+Subscribe to [Collin's Thoughts](/newsletter) for what I am building, lessons from the work, and a few worthwhile articles and findings whenever there is something worth sending.

@@ -12,8 +12,18 @@ const articles = Object.entries(articleModules)
   .map(([file, article]) => articleFromModule(file, article))
   .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-const latest = articles.slice(0, 4);
-const [lead, ...rest] = latest;
+const bySlug = new Map(articles.map(article => [article.slug, article]));
+
+// Curated entry points; these stay put regardless of how often new posts land.
+const startHere = [
+  'ai-agent-harness',
+  'context-engineering-ai-coding-tools',
+  'system-design-best-practices',
+].map(slug => bySlug.get(slug)).filter(Boolean);
+const [lead, ...starters] = startHere;
+
+const startSlugs = new Set(startHere.map(article => article.slug));
+const latest = articles.filter(article => !startSlugs.has(article.slug)).slice(0, 4);
 
 const topicCounts = Object.keys(CATEGORIES).map(name => ({
   name,
@@ -85,68 +95,114 @@ const homepageSchema = [
 <Layout title={pageTitle} description={pageDescription} schema={homepageSchema} hideFooterNewsletter={true}>
   <section class="hero" aria-labelledby="hero-title">
     <div class="wrap hero-inner">
-      <p class="eyebrow">Essays &amp; field notes</p>
-      <h1 id="hero-title">Collin Wilkins</h1>
-      <p class="hero-lede">
-        Software engineer and technical leader. I write about distributed and event-driven systems,
-        infrastructure, developer tooling, and what AI-native development looks like once it has to
-        survive production, review, and the people who maintain it.
-      </p>
-      <div class="hero-actions">
-        <a class="btn btn-solid" href="/articles">Read the latest <span aria-hidden="true">→</span></a>
-        <a class="btn btn-ghost" href="#subscribe">Subscribe to the newsletter</a>
+      <img
+        class="hero-portrait"
+        src="/images/profile_photo.webp"
+        alt="Collin Wilkins"
+        width="176"
+        height="176"
+        loading="eager"
+        decoding="async"
+      />
+      <div class="hero-copy">
+        <h1 id="hero-title">Collin Wilkins</h1>
+        <p class="hero-lede">
+          A working engineer's notebook. I write about distributed systems, infrastructure,
+          developer tooling, and what AI-native development looks like once it has to survive
+          production, review, and the people who maintain it.
+        </p>
+        <form
+          action={NEWSLETTER.subscribeAction}
+          method="post"
+          target="popupwindow"
+          data-newsletter-event={ANALYTICS_EVENTS.newsletterSubscribe}
+          data-location="homepage-hero"
+          class="subscribe-form hero-form"
+        >
+          <label class="sr-only" for="hero-newsletter-email">Email address</label>
+          <input
+            id="hero-newsletter-email"
+            type="email"
+            name="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required
+          />
+          <button type="submit" class="btn btn-solid">Subscribe</button>
+        </form>
+        <p class="hero-note">
+          {NEWSLETTER.name}: {NEWSLETTER.cadence.toLowerCase()}. No spam, unsubscribe anytime.
+          <a href={NEWSLETTER.archiveHref} target="_blank" rel="noopener noreferrer">Read past issues</a>
+        </p>
       </div>
     </div>
   </section>
 
+  {lead && (
+    <section class="band start" aria-labelledby="start-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="start-title">Start here</h2>
+          <p class="section-note">Three essays that explain most of what this site argues.</p>
+        </div>
+
+        <a class="lead-article" href={`/articles/${lead.slug}`}>
+          <figure class="lead-figure">
+            {lead.image ? (
+              <img
+                src={lead.image}
+                alt={lead.image_alt || ''}
+                width="1600"
+                height="900"
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              <div class="ph"><span>{lead.category}</span></div>
+            )}
+          </figure>
+          <div class="lead-copy">
+            <span class="article-meta">
+              <span class="article-cat">{lead.category}</span>
+            </span>
+            <h3 class="lead-title">{lead.title}</h3>
+            <p class="lead-dek">{lead.excerpt}</p>
+            <span class="lead-cue">Read the essay <span aria-hidden="true">→</span></span>
+          </div>
+        </a>
+
+        <ul class="article-list">
+          {starters.map(article => (
+            <li>
+              <a href={`/articles/${article.slug}`}>
+                <span class="article-body">
+                  <span class="article-meta">
+                    <span class="article-cat">{article.category}</span>
+                  </span>
+                  <span class="article-title">{article.title}</span>
+                  <span class="article-dek">{article.excerpt}</span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
   <section class="band latest" aria-labelledby="latest-title">
     <div class="wrap">
       <div class="section-head">
-        <h2 id="latest-title">Latest writing</h2>
-        <a class="section-link" href="/articles">All articles <span aria-hidden="true">→</span></a>
+        <h2 id="latest-title">Recently published</h2>
+        <a class="section-link" href="/articles">All {articles.length} articles <span aria-hidden="true">→</span></a>
       </div>
-
-      <a class="lead-article" href={`/articles/${lead.slug}`}>
-        <figure class="lead-figure">
-          {lead.image ? (
-            <img
-              src={lead.image}
-              alt={lead.image_alt || ''}
-              width="1600"
-              height="900"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-            />
-          ) : (
-            <div class="ph"><span>{lead.category}</span></div>
-          )}
-        </figure>
-        <div class="lead-copy">
-          <span class="article-meta">
-            <span class="article-cat">{lead.category}</span>
-            <span class="article-date">{formatDate(lead.date)}</span>
-            <span class="article-flag">Newest</span>
-          </span>
-          <h3 class="lead-title">{lead.title}</h3>
-          <p class="lead-dek">{lead.excerpt}</p>
-          <span class="lead-cue">Read the essay <span aria-hidden="true">→</span></span>
-        </div>
-      </a>
-
-      <ol class="article-list">
-        {rest.map((article, index) => (
+      <ol class="recent-list">
+        {latest.map(article => (
           <li>
             <a href={`/articles/${article.slug}`}>
-              <span class="article-index" aria-hidden="true">{String(index + 2).padStart(2, '0')}</span>
-              <span class="article-body">
-                <span class="article-meta">
-                  <span class="article-cat">{article.category}</span>
-                  <span class="article-date">{formatDate(article.date)}</span>
-                </span>
-                <span class="article-title">{article.title}</span>
-                <span class="article-dek">{article.excerpt}</span>
-              </span>
+              <time datetime={article.date}>{formatDate(article.date)}</time>
+              <span class="recent-title">{article.title}</span>
+              <span class="article-cat">{article.category}</span>
             </a>
           </li>
         ))}
@@ -176,8 +232,7 @@ const homepageSchema = [
   <section id="subscribe" class="band subscribe" aria-labelledby="subscribe-title">
     <div class="wrap subscribe-inner">
       <div>
-        <p class="eyebrow">{NEWSLETTER.name}</p>
-        <h2 id="subscribe-title">One letter, every other Tuesday.</h2>
+        <h2 id="subscribe-title">{NEWSLETTER.name}</h2>
         <p class="subscribe-promise">{NEWSLETTER.promise}</p>
       </div>
       <div class="subscribe-form-col">
@@ -252,21 +307,27 @@ const homepageSchema = [
   }
 
   .hero-inner {
-    padding-top: clamp(64px, 9vw, 132px);
-    padding-bottom: clamp(52px, 7vw, 96px);
-    max-width: 62rem;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: clamp(24px, 4vw, 56px);
+    align-items: start;
+    padding-top: clamp(56px, 8vw, 116px);
+    padding-bottom: clamp(48px, 6.5vw, 88px);
+    max-width: 66rem;
   }
 
-  .eyebrow {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-    color: var(--accent-text);
+  .hero-portrait {
+    width: clamp(96px, 13vw, 176px);
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid var(--rule);
+    background: var(--paper-2);
+    margin-top: 10px;
   }
 
   h1 {
-    margin-top: 20px;
     font-size: clamp(40px, 7vw, 76px);
     font-weight: 500;
     line-height: 1.02;
@@ -275,7 +336,7 @@ const homepageSchema = [
   }
 
   .hero-lede {
-    margin-top: 22px;
+    margin-top: 20px;
     max-width: 46ch;
     font-size: clamp(18px, 2.1vw, 22px);
     line-height: 1.55;
@@ -283,11 +344,28 @@ const homepageSchema = [
     text-wrap: pretty;
   }
 
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 34px;
+  .hero-form {
+    margin-top: 30px;
+    max-width: 34rem;
+  }
+
+  .hero-note {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    line-height: 1.7;
+    color: var(--ink-faint);
+  }
+
+  .hero-note a {
+    color: var(--accent-text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  @media (max-width: 620px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-portrait { margin-top: 0; }
   }
 
   .band {
@@ -364,11 +442,6 @@ const homepageSchema = [
     transform: scale(1.02);
   }
 
-  .article-flag {
-    color: var(--ink);
-    border-bottom: 1px solid var(--accent);
-  }
-
   .lead-title {
     margin-top: 14px;
     font-size: clamp(28px, 3.6vw, 42px);
@@ -427,7 +500,7 @@ const homepageSchema = [
 
   .article-list a {
     display: grid;
-    grid-template-columns: 4rem minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     gap: 8px;
     padding: clamp(22px, 3vw, 32px) 0;
     text-decoration: none;
@@ -437,14 +510,6 @@ const homepageSchema = [
 
   .article-list a:hover {
     background: var(--paper-2);
-  }
-
-  .article-index {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: .1em;
-    color: var(--ink-faint);
-    padding-top: 6px;
   }
 
   .article-body {
@@ -482,6 +547,48 @@ const homepageSchema = [
     font-size: 16.5px;
     line-height: 1.55;
     color: var(--ink-soft);
+  }
+
+  /* ── Recently published ── */
+  .recent-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .recent-list li + li { border-top: 1px solid var(--rule); }
+
+  .recent-list a {
+    display: grid;
+    grid-template-columns: 8rem minmax(0, 1fr) auto;
+    gap: 8px 24px;
+    align-items: baseline;
+    min-height: 44px;
+    padding: 18px 0;
+    text-decoration: none;
+    color: var(--ink);
+    transition: background .15s;
+  }
+
+  .recent-list a:hover { background: var(--paper-2); }
+  .recent-list a:hover .recent-title { color: var(--accent-text); }
+
+  .recent-list time,
+  .recent-list .article-cat {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  .recent-list time { color: var(--ink-faint); }
+
+  .recent-title {
+    font-size: clamp(19px, 2vw, 22px);
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -.01em;
+    text-wrap: balance;
   }
 
   /* ── Topics ── */
@@ -698,10 +805,6 @@ const homepageSchema = [
   }
 
   @media (max-width: 620px) {
-    .article-list a {
-      grid-template-columns: 1fr;
-    }
-
-    .article-index { display: none; }
+    .recent-list a { grid-template-columns: 1fr; gap: 6px; }
   }
 </style>

@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2026-10-03] - Newsletter-first homepage refresh
+
+### Changed
+- Homepage: hero now leads with a portrait and an inline newsletter signup; "Latest writing" lead replaced by a curated "Start here" trio; compact dated "Recently published" list.
+- `/newsletter`: portrait byline and a "Recently written" list.
+- Newsletter cadence changed from "every other Tuesday" to "when there is something worth sending" across site data, `llms.txt`, and inline copy.
+
 ## [2026-09-12] - Repositioning: personal publication
 
 This entry supersedes every consulting-related item below it. Offers, prices, pilots,

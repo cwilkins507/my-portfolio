@@ -12,7 +12,7 @@ This is a personal writing site: long-form articles and a newsletter. It is not 
 ## Writing
 
 - [Articles index](https://collinwilkins.com/articles): All long-form writing.
-- [Collin's Thoughts](https://collinwilkins.com/newsletter): Newsletter. Every other Tuesday — what I have been building, what I learned, and a few articles or findings worth reading. [Archive](https://buttondown.com/collinwilkins/archive/).
+- [Collin's Thoughts](https://collinwilkins.com/newsletter): Newsletter, sent when there is something worth sending — what I have been building, what I learned, and a few articles or findings worth reading. [Archive](https://buttondown.com/collinwilkins/archive/).
 
 ### Most-referenced articles (convention files + AI coding tools)
 

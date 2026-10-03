@@ -28,7 +28,7 @@ Visitors land on the homepage or deep-link into a single article from search. Th
 - Provides client-side search across public article content and FAQs, and a topic filter on the archive that is shareable via `?cat=`.
 - Provides Ask My Blog, a retrieval-grounded question-answering experience over `src/articles` only. The question-answering API runs separately on Modal.
 - Ask My Blog must cite public articles, refuse unsupported questions, and never expand its corpus to the private Obsidian vault.
-- The newsletter is "Collin's Thoughts", every other Tuesday, delivered through Buttondown.
+- The newsletter is "Collin's Thoughts", sent when there is something worth sending (no fixed cadence), delivered through Buttondown.
 - **The site is not selling anything.** There are no offers, prices, booking links, intake forms, lead magnets gated behind email, availability claims, or calls to hire. `/services` exists only as a quiet reference and must state that new client engagements are not being accepted; `ADVISORY.accepting` in `src/data/site.js` gates every availability statement and flipping it is a deliberate, reviewed change.
 - **The site is not an employment record.** Do not name a current employer, publish a resume or CV, or present a dated role chronology. Prior technical accomplishments may appear framed explicitly as earlier work; the reader should learn what was built, not where Collin currently works.
 - Personal projects (FiNimbus, the Agent Harness Builder, the prompt toolkit, the retrieval service behind Ask) must read as personal work, never as commercial offerings.

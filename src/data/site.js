@@ -34,8 +34,8 @@ export const CONNECT_CARD = Object.freeze({
 
 export const NEWSLETTER = Object.freeze({
   name: "Collin's Thoughts",
-  promise: 'Every other Tuesday, I share what I have been building, what I learned along the way, and a few articles or findings worth your time.',
-  cadence: 'Every other Tuesday',
+  promise: 'When I have something worth sending, I write up what I have been building, what I learned along the way, and a few articles or findings worth your time.',
+  cadence: 'When there is something worth sending',
   archiveHref: 'https://buttondown.com/collinwilkins/archive/',
   subscribeAction: 'https://buttondown.com/api/emails/embed-subscribe/collinwilkins',
 });
