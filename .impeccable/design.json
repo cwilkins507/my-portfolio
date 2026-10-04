@@ -249,7 +249,7 @@
       "refersTo": "button-primary",
       "description": "The principal action on a surface; gold remains scarce.",
       "html": "<button class=\"ds-btn-primary\">SUBSCRIBE</button>",
-      "css": ".ds-btn-primary{font-family:var(--mono);font-size:12px;letter-spacing:.05em;padding:11px 19px;border:1px solid var(--accent-btn);border-radius:999px;background:var(--accent-btn);color:var(--on-accent);cursor:pointer;transition:background .15s,border-color .15s}.ds-btn-primary:hover{background:var(--accent-deep);border-color:var(--accent-deep)}.ds-btn-primary:focus-visible{outline:2px solid oklch(0.475 0.118 80);outline-offset:4px}"
+      "css": ".ds-btn-primary{font-family:var(--mono);font-size:12px;letter-spacing:.05em;padding:11px 19px;border:1px solid var(--accent-btn);border-radius:3px;background:var(--accent-btn);color:var(--on-accent);cursor:pointer;transition:background .15s,border-color .15s}.ds-btn-primary:hover{background:var(--accent-deep);border-color:var(--accent-deep)}.ds-btn-primary:focus-visible{outline:2px solid oklch(0.475 0.118 80);outline-offset:4px}"
     },
     {
       "name": "Ghost Button",
@@ -257,7 +257,7 @@
       "refersTo": "button-ghost",
       "description": "A secondary action that remains on the paper surface.",
       "html": "<button class=\"ds-btn-ghost\">READ PAST ISSUES</button>",
-      "css": ".ds-btn-ghost{font-family:var(--mono);font-size:12px;letter-spacing:.05em;padding:11px 19px;border:1px solid var(--rule);border-radius:999px;background:transparent;color:var(--ink);cursor:pointer;transition:border-color .15s}.ds-btn-ghost:hover{border-color:var(--ink)}.ds-btn-ghost:focus-visible{outline:2px solid oklch(0.475 0.118 80);outline-offset:4px}"
+      "css": ".ds-btn-ghost{font-family:var(--mono);font-size:12px;letter-spacing:.05em;padding:11px 19px;border:1px solid var(--rule);border-radius:3px;background:transparent;color:var(--ink);cursor:pointer;transition:border-color .15s}.ds-btn-ghost:hover{border-color:var(--ink)}.ds-btn-ghost:focus-visible{outline:2px solid oklch(0.475 0.118 80);outline-offset:4px}"
     },
     {
       "name": "Search Field",
@@ -265,14 +265,14 @@
       "refersTo": "input",
       "description": "A ruled paper field for search and compact form entry.",
       "html": "<input class=\"ds-input\" type=\"search\" placeholder=\"Search articles by topic…\">",
-      "css": ".ds-input{width:100%;padding:13px 19px;border:1px solid var(--rule);border-radius:999px;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:15px}.ds-input:focus-visible{outline:2px solid oklch(0.475 0.118 80);outline-offset:4px}"
+      "css": ".ds-input{width:100%;padding:13px 19px;border:1px solid var(--rule);border-radius:3px;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:15px}.ds-input:focus-visible{outline:2px solid oklch(0.475 0.118 80);outline-offset:4px}"
     },
     {
       "name": "Topic Tag",
       "kind": "chip",
       "description": "Compact categorization and filtering metadata.",
       "html": "<a class=\"ds-tag\" href=\"#\">AGENT SYSTEMS</a>",
-      "css": ".ds-tag{display:inline-block;padding:6px 13px;border:1px solid var(--rule);border-radius:999px;color:var(--ink-soft);font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;transition:border-color .15s,color .15s}.ds-tag:hover{border-color:var(--accent);color:var(--accent-text)}.ds-tag:focus-visible{outline:2px solid oklch(0.475 0.118 80);outline-offset:4px}"
+      "css": ".ds-tag{display:inline-block;padding:6px 13px;border:1px solid var(--rule);border-radius:3px;color:var(--ink-soft);font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;transition:border-color .15s,color .15s}.ds-tag:hover{border-color:var(--accent);color:var(--accent-text)}.ds-tag:focus-visible{outline:2px solid oklch(0.475 0.118 80);outline-offset:4px}"
     },
     {
       "name": "Ledger Route",
@@ -286,14 +286,7 @@
       "kind": "input",
       "description": "Inline email field plus primary button; the site's one quiet ask.",
       "html": "<form class=\"ds-signup\" onsubmit=\"return false\"><input type=\"email\" placeholder=\"you@example.com\" aria-label=\"Email address\"><button>Subscribe</button></form><p class=\"ds-signup-note\">When there is something worth sending. No spam.</p>",
-      "css": ".ds-signup{display:flex;gap:10px;flex-wrap:wrap;max-width:34rem}.ds-signup input{flex:1 1 200px;min-width:0;padding:12px 18px;border:1px solid var(--rule);border-radius:999px;background:var(--paper);color:var(--ink);font-family:var(--mono);font-size:13px}.ds-signup input:focus-visible{border-color:var(--ink);outline:2px solid oklch(0.475 0.118 80);outline-offset:4px}.ds-signup button{font-family:var(--mono);font-size:12px;letter-spacing:.05em;padding:11px 19px;border:1px solid var(--accent-btn);border-radius:999px;background:var(--accent-btn);color:var(--on-accent);cursor:pointer;transition:background .15s}.ds-signup button:hover{background:var(--accent-deep)}.ds-signup-note{margin-top:12px;font-family:var(--mono);font-size:11.5px;color:var(--ink-faint)}"
-    },
-    {
-      "name": "Dated Record List",
-      "kind": "custom",
-      "description": "Date, title, and topic on one ruled row; used for recent writing.",
-      "html": "<ol class=\"ds-records\"><li><a href=\"#\"><time>AUG 24, 2026</time><span>How My Markdown Vault Became a Company Brain</span><em>AI &amp; AGENTS</em></a></li><li><a href=\"#\"><time>AUG 20, 2026</time><span>Start Your Company Brain in a GitHub Repository</span><em>AI &amp; AGENTS</em></a></li></ol>",
-      "css": ".ds-records{list-style:none;margin:0;padding:0}.ds-records li+li{border-top:1px solid var(--rule)}.ds-records a{display:grid;grid-template-columns:8rem minmax(0,1fr) auto;gap:8px 24px;align-items:baseline;padding:18px 0;color:var(--ink);text-decoration:none;transition:background .15s}.ds-records a:hover{background:var(--paper-2)}.ds-records a:hover span{color:var(--accent-text)}.ds-records time,.ds-records em{font-family:var(--mono);font-size:10.5px;font-style:normal;letter-spacing:.1em}.ds-records time{color:var(--ink-faint)}.ds-records em{color:var(--accent-text)}.ds-records span{font-family:var(--serif);font-size:21px;font-weight:500;line-height:1.3}.ds-records a:focus-visible{outline:2px solid oklch(0.475 0.118 80);outline-offset:4px}"
+      "css": ".ds-signup{display:flex;gap:10px;flex-wrap:wrap;max-width:34rem}.ds-signup input{flex:1 1 200px;min-width:0;padding:12px 18px;border:1px solid var(--rule);border-radius:3px;background:var(--paper);color:var(--ink);font-family:var(--mono);font-size:13px}.ds-signup input:focus-visible{border-color:var(--ink);outline:2px solid oklch(0.475 0.118 80);outline-offset:4px}.ds-signup button{font-family:var(--mono);font-size:12px;letter-spacing:.05em;padding:11px 19px;border:1px solid var(--accent-btn);border-radius:3px;background:var(--accent-btn);color:var(--on-accent);cursor:pointer;transition:background .15s}.ds-signup button:hover{background:var(--accent-deep)}.ds-signup-note{margin-top:12px;font-family:var(--mono);font-size:11.5px;color:var(--ink-faint)}"
     }
   ],
   "narrative": {
@@ -343,7 +336,7 @@
     "donts": [
       "Don't introduce generic SaaS gradients, glossy dashboards, or interchangeable icon-card grids.",
       "Don't use IBM Plex Mono for ordinary explanatory prose.",
-      "Don't round every container; pills are a control pattern, not the page skeleton.",
+      "Don't round containers or use pill shapes; controls get 3px corners and nothing more.",
       "Don't use shadows when spacing, paper tone, or a one-pixel rule can express the hierarchy.",
       "Don't let visual theater outrun the evidence available on the page."
     ]

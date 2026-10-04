@@ -48,7 +48,7 @@ const collectionSchema = {
       <p class="archive-eyebrow">The Archive</p>
       <h1>Articles</h1>
       <p class="archive-lede">
-        This is where I think out loud. {totalArticles} pieces on distributed systems, infrastructure, developer tooling, and what actually happens when engineers build alongside AI — written as I work through the problem, revised when I turn out to be wrong, and kept here permanently.
+        This is where I think out loud. {totalArticles} pieces on distributed systems, infrastructure, developer tooling, and what happens when engineers build alongside AI — written as I work through the problem, revised when I turn out to be wrong, and kept here permanently.
       </p>
     </header>
 
@@ -59,7 +59,7 @@ const collectionSchema = {
           class="filter-chip"
           data-cat={cat}
           aria-pressed="false"
-          style="min-height:44px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:10px 16px;border-radius:999px;border:1px solid var(--rule);background:none;color:var(--ink-soft);cursor:pointer;transition:.15s;"
+          style="min-height:44px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:10px 16px;border-radius:var(--radius);border:1px solid var(--rule);background:none;color:var(--ink-soft);cursor:pointer;transition:.15s;"
         >
           {cat}
         </button>
@@ -226,7 +226,7 @@ const collectionSchema = {
   min-height: 44px;
   margin-top: 12px;
   border: 1px solid var(--rule);
-  border-radius: 999px;
+  border-radius: var(--radius);
   padding: 10px 16px;
   background: transparent;
   color: var(--ink);
@@ -265,7 +265,7 @@ const collectionSchema = {
   color: var(--accent-text);
   background: var(--paper-2);
   border: 1px solid var(--rule);
-  border-radius: 999px;
+  border-radius: var(--radius);
   padding: 4px 10px;
   white-space: nowrap;
   justify-self: start;

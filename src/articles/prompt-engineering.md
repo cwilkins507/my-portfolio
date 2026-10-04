@@ -1,5 +1,5 @@
 ---
-title: "Prompt Engineering Tips for Tech Leaders"
+title: "Prompt Engineering Tips"
 date: "2025-10-30"
 tags: ["Software Engineering", "Developer Tools", "Prompt engineering", "LLM prompts", "Few-shot prompting"]
 excerpt: "A pragmatic guide to prompt engineering for tech leaders and engineers. Learn durable patterns, ROI-focused choices, and a full before/after example."

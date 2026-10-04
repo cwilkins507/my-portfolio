@@ -37,6 +37,7 @@ export const NEWSLETTER = Object.freeze({
   promise: 'When I have something worth sending, I write up what I have been building, what I learned along the way, and a few articles or findings worth your time.',
   cadence: 'When there is something worth sending',
   archiveHref: 'https://buttondown.com/collinwilkins/archive/',
+  rssHref: 'https://buttondown.com/collinwilkins/rss',
   subscribeAction: 'https://buttondown.com/api/emails/embed-subscribe/collinwilkins',
 });
 
@@ -70,7 +71,7 @@ export const ADVISORY = Object.freeze({
     }),
     Object.freeze({
       name: 'Infrastructure and platform work',
-      description: 'Serverless and cloud architecture, infrastructure as code, and the operational instrumentation that tells you what actually happened.',
+      description: 'Serverless and cloud architecture, infrastructure as code, and the operational instrumentation that tells you what happened.',
     }),
     Object.freeze({
       name: 'Workflow automation',

@@ -5,12 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2026-10-03] - Newsletter-first homepage refresh
+## [2026-10-03] - Small styling refresh and looser newsletter cadence
 
 ### Changed
-- Homepage: hero now leads with a portrait and an inline newsletter signup; "Latest writing" lead replaced by a curated "Start here" trio; compact dated "Recently published" list.
-- `/newsletter`: portrait byline and a "Recently written" list.
+- Pill shapes replaced by 3px corners (`--radius` in `src/index.css`) on buttons, inputs, tags, and archive filters.
+- Homepage restructured newsletter-first (after justinwelsh.me / thedankoe.com): signup hero with "Latest letter" → AI Prompt Toolkit → "Start here" (agent-harness explainer leads; most-read rows from Plausible below, set in `MOST_READ_SLUGS`) → Recent (compact dated rows; Company Brain series collapsed to one row) → By topic → Projects → "Hey, I'm Collin." with portrait → closing signup beside the three most recent letters.
+- Newsletter issues are read from the Buttondown RSS feed at build time (`src/utils/newsletterIssues.js`); the letter rows render nothing if the feed is unreachable.
+- Homepage polish from an Impeccable critique: hero copy now leads with AI-assisted engineering; category/project labels moved off gold to 11px faint ink; inline links meet 44px; `scroll-padding-top` keeps jump targets clear of the sticky header; FiNimbus labelled "Personal project".
+- Homepage layout unified on one left rail (`--rail` in `src/index.css`): hero, section headings, Most read (now dated), Recent, By topic and Projects (now rows, not card grids), About, and the closing letters all share the same label column and content edge. Primary button hover now inverts to ink/paper (the old gold-on-gold hover failed contrast).
 - Newsletter cadence changed from "every other Tuesday" to "when there is something worth sending" across site data, `llms.txt`, and inline copy.
+- Article titles and excerpts: removed AI-pattern phrasing ("Definitive", "…and Beyond", "for Builders and Leaders", filler "actually", "Here's…" excerpt openers) across 20 articles. Slugs unchanged; matching `seo_title`, `llms.txt`, and in-article link labels updated where they repeated the old wording.
+- Removed filler "actually" from all site copy outside article bodies (pages, guides, resources, components, site data) and from the remaining article title ("What Automation Costs (and Saves) a Small Business"). "32 AI Prompts I Actually Use" is now "32 AI Prompts I Use".
 
 ## [2026-09-12] - Repositioning: personal publication
 

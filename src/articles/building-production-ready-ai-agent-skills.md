@@ -1,5 +1,5 @@
 ---
-title: "How to Build AI Agent Skills That Actually Hold Up in Production"
+title: "Building AI Agent Skills That Hold Up in Production"
 date: "2026-06-09T12:00:00Z"
 tags: ["AI Agents", "Claude Code", "Agent Skills", "Developer Productivity", "AI Engineering"]
 excerpt: "A skill should earn its place by capturing repeated behavior or preventing a repeated failure. How to build useful skills and remove the ones creating context bloat."
@@ -159,4 +159,4 @@ My audit did both. It promoted `wrapup` from a recurring chore into a dependable
 
 YAGNI was right again.
 
-*Related: [Context Engineering for AI Coding Tools](/articles/context-engineering-ai-coding-tools) covers where skills fit in the broader context layer. [How I Actually Use AI Agents Every Day](/articles/ai-agent-workflow-claude-code) shows the full workflow around them.*
+*Related: [Context Engineering for AI Coding Tools](/articles/context-engineering-ai-coding-tools) covers where skills fit in the broader context layer. [How I Use AI Agents Every Day](/articles/ai-agent-workflow-claude-code) shows the full workflow around them.*

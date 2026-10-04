@@ -27,7 +27,7 @@ const caseStudies = [
     evidence: "Full-time engineering role · production compliance system · internal delivery and performance measures · public implementation unavailable",
     problem: `Every morning started the same way. An engineer clicking through 80 Postman requests to trigger compliance checks. One by one, like a human cron job. This ate up 20% of our team's weekly bandwidth. When someone got sick for a week, compliance checks just... stopped. That's when we knew we had to automate.`,
     solution: `I transformed the architecture to fully event-driven, freeing up 10 engineering hours every week. This let us onboard 7 new enterprise recordkeepers with zero added overhead while improving throughput and reducing latency by 35%.`,
-    technical: `I implemented load-aware scheduling that monitors database capacity before kicking off new jobs via AWS SQS and ephemeral Fargate tasks. Instead of blindly running all checks daily, the system uses database diffing to detect meaningful changes and only publishes events when there's actually a delta. Smart resource utilization that scales.`,
+    technical: `I implemented load-aware scheduling that monitors database capacity before kicking off new jobs via AWS SQS and ephemeral Fargate tasks. Instead of blindly running all checks daily, the system uses database diffing to detect meaningful changes and only publishes events when there's a delta. Smart resource utilization that scales.`,
     technologies: ["AWS SQS", "AWS Fargate", "AWS Lambda", "Event-Driven Architecture", "Database Optimization"],
     takeaway: "Manual processes that 'only take 20% of someone's time' add up fast. Automate them, and suddenly your team can innovate instead of maintain."
   },

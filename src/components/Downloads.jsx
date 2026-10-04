@@ -27,7 +27,7 @@ const Downloads = () => {
               Resources
             </p>
             <h1 className="max-w-3xl font-serif text-3xl font-bold leading-[1.1] text-[var(--color-text-primary)] md:text-4xl lg:text-5xl">
-              Tools, frameworks, and guides I actually use.
+              Tools, frameworks, and guides I use.
             </h1>
             <p className="mt-6 max-w-3xl text-base leading-relaxed text-[var(--color-text-secondary)] md:text-lg">
               Read free, download free, or subscribe for future notes. Downloadable resources do not require an email.
@@ -137,7 +137,7 @@ const Downloads = () => {
                       {[
                         'Figuring Out If You’re Ready',
                         'Why Your AI Tools Produce Bad Output',
-                        'Which AI Tools Actually Matter',
+                        'Which AI Tools Matter',
                         'The 5 Ways AI Pilots Die',
                         'The Math That Makes the Decision',
                       ].map((title, i) => (

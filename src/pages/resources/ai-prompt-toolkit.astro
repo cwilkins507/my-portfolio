@@ -7,7 +7,7 @@ const toolkitSchema = {
   "@graph": [
     {
       "@type": "Article",
-      "headline": "32 AI Prompts I Actually Use",
+      "headline": "32 AI Prompts I Use",
       "description": "The 32 Claude and ChatGPT prompts I use daily as a software engineer with 12 years of enterprise experience. Engineering, research, automation, AI agents, and more. Free, no signup.",
       "author": {
         "@type": "Person",
@@ -71,7 +71,7 @@ const categories = [
 ---
 
 <Layout
-  title="32 AI Prompts I Actually Use | Collin Wilkins"
+  title="32 AI Prompts I Use | Collin Wilkins"
   description="The 32 Claude and ChatGPT prompts I use daily as a software engineer with 12 years of enterprise experience. Engineering, research, automation, AI agents, and more. Free, no signup."
   type="article"
   publishedTime="2026-02-18"
@@ -93,7 +93,7 @@ const categories = [
 
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-extrabold leading-tight mb-6 text-center">
           <span class="text-[var(--color-text-primary)]">32 AI Prompts</span><br />
-          <span class="italic text-[var(--color-text-secondary)]">I Actually Use</span>
+          <span class="italic text-[var(--color-text-secondary)]">I Use</span>
         </h1>
 
         <p class="text-xl text-[var(--color-text-secondary)] leading-relaxed mb-8 text-center max-w-3xl mx-auto">
@@ -302,7 +302,7 @@ If excluded files dominate the codebase or you needed to skip large areas, note 
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">README Generator (Anti-Duplication)</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
-              Your repo has a README from 2022 that no one trusts and a CODEBASE_MAP.md that's actually accurate. This prompt writes a developer-focused README that links to the deep architecture docs instead of duplicating them — keeping the README under 300 lines and actually maintainable.
+              Your repo has a README from 2022 that no one trusts and a CODEBASE_MAP.md that's accurate. This prompt writes a developer-focused README that links to the deep architecture docs instead of duplicating them — keeping the README under 300 lines and maintainable.
             </p>
             <div class="relative group">
               <pre class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are a senior project documenter. Write a developer-friendly README.md that gets a new contributor productive in under 5 minutes — without duplicating content that lives in deeper architecture docs.
@@ -356,7 +356,7 @@ Output the full README.md.</code></pre>
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Prompt Contract (Define Done Before AI Implements)</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
-              You're about to send Claude or Cursor a non-trivial task. The first attempt always misses what you actually wanted because "done" was never defined. This prompt forces a structured contract first, so the agent surfaces its assumptions before writing a single line of code.
+              You're about to send Claude or Cursor a non-trivial task. The first attempt always misses what you wanted because "done" was never defined. This prompt forces a structured contract first, so the agent surfaces its assumptions before writing a single line of code.
             </p>
             <div class="relative group">
               <pre class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>Before you implement anything, generate a structured contract that defines what "done" looks like. I will review and approve it before you start work. Do not write any code until I approve the contract.
@@ -800,7 +800,7 @@ Write the persona in second person ("You wake up at...") so it reads like a char
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Generate Target Audience Fit Analysis</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
-              Before you commit to a go-to-market strategy, run this sanity check. Does the thing you're building actually match the people you're building it for?
+              Before you commit to a go-to-market strategy, run this sanity check. Does the thing you're building match the people you're building it for?
             </p>
             <div class="relative group">
               <pre class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are a product-market fit analyst. Evaluate how well my product matches my target audience. Be critical — I'd rather find gaps now than after launch.
@@ -1044,7 +1044,7 @@ Note: Estimates are directional. I'll validate top picks with Ahrefs/Semrush.</c
               <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)]">Generate Long-Tail Keywords</h3>
             </div>
             <p class="text-[var(--color-text-secondary)] mb-6">
-              Long-tail keywords are where solo founders actually compete. This prompt surfaces the specific, low-competition variations of your core keywords.
+              Long-tail keywords are where solo founders can compete. This prompt surfaces the specific, low-competition variations of your core keywords.
             </p>
             <div class="relative group">
               <pre class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are an SEO specialist focused on long-tail keyword strategy for small businesses competing against larger players.
@@ -1209,7 +1209,7 @@ Rate the page overall (1-10) and list the top 3 highest-impact changes.</code></
               The planning prompt before you build (or rebuild) a website. Covers structure, pages, content requirements, and UX flow.
             </p>
             <div class="relative group">
-              <pre class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are a web strategist planning a website for a small business. Focus on what actually converts — not what looks impressive in a portfolio.
+              <pre class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-xl p-6 overflow-x-auto text-sm text-[var(--color-text-secondary)] leading-relaxed font-mono whitespace-pre-wrap"><code>You are a web strategist planning a website for a small business. Focus on what converts — not what looks impressive in a portfolio.
 
 **My business:** [WHAT YOU DO, WHO YOU SERVE, WHAT YOU SELL]
 **Website goal:** [PRIMARY GOAL]
@@ -1448,7 +1448,7 @@ Do this analysis:
    - [AI ASSIST] — AI does the first 80%, I review and refine
    - [HUMAN ONLY] — Requires judgment or real-world action AI can't replicate
 
-2. **AI Employee Scope:** Focusing only on [AI NOW] and [AI ASSIST] tasks, define what I'm actually building.
+2. **AI Employee Scope:** Focusing only on [AI NOW] and [AI ASSIST] tasks, define what I'm building.
 
 3. **System Prompt:** Write the full instruction set — role, step-by-step process, output format per task type, what never to do.
 
@@ -1683,7 +1683,7 @@ Design this workflow:
         <div class="max-w-4xl mx-auto text-center">
           <h3 class="text-2xl font-serif font-bold text-[var(--color-text-primary)] mb-4">About the Author</h3>
           <p class="text-lg text-[var(--color-text-secondary)] leading-relaxed mb-6">
-            By <strong class="text-[var(--color-text-primary)]">Collin Wilkins</strong>. Software engineer and technical leader with 12 years of enterprise engineering experience, including IoT telemetry and $5M in automation savings earlier in my career at Ford Motor Company. I build an AI CFO product called <a href="https://finimbus.com" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">FiNimbus</a> and write at <a href="/articles" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">/articles</a>. These 32 prompts are the ones I actually use.
+            By <strong class="text-[var(--color-text-primary)]">Collin Wilkins</strong>. Software engineer and technical leader with 12 years of enterprise engineering experience, including IoT telemetry and $5M in automation savings earlier in my career at Ford Motor Company. I build an AI CFO product called <a href="https://finimbus.com" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">FiNimbus</a> and write at <a href="/articles" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">/articles</a>. These 32 prompts are the ones I use.
           </p>
           <a href="/about" class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] font-semibold">
             Learn more about my work &rarr;

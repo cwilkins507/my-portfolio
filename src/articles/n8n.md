@@ -1,5 +1,5 @@
 ---
-title: "n8n: Automation Patterns "
+title: "n8n: Automation Patterns"
 date: "2025-11-04"
 tags: ["Software Engineering", "n8n", "Workflow Automation", "Open Source", "Low-code", "Integrations", "Marketing Automation", "Engineering Productivity"]
 excerpt: "Learn n8n: what it is, why it matters, and how to ship secure, observable automations with a free RSS-to-Slack example. Start building value fast."

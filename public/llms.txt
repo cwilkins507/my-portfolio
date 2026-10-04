@@ -16,7 +16,7 @@ This is a personal writing site: long-form articles and a newsletter. It is not 
 
 ### Most-referenced articles (convention files + AI coding tools)
 
-- [Context Engineering: The Skill That Makes AI Coding Tools Actually Work](https://collinwilkins.com/articles/context-engineering-ai-coding-tools): Why output quality varies between developers isn't the model — it's the context. Covers CLAUDE.md, plan mode, repeatable skills, and subagent delegation.
+- [Context Engineering: Why AI Coding Tools Fail Without It](https://collinwilkins.com/articles/context-engineering-ai-coding-tools): Why output quality varies between developers isn't the model — it's the context. Covers CLAUDE.md, plan mode, repeatable skills, and subagent delegation.
 - [Claude Code Productivity Paradox](https://collinwilkins.com/articles/claude-code-productivity-paradox): Why adopting Claude Code sometimes makes teams slower before it makes them faster, and what to do about it.
 - [AI Coding Model Wars 2026](https://collinwilkins.com/articles/ai-coding-model-wars-2026): Comparison of Claude, GPT, and Gemini models for coding workflows as of early 2026.
 - [From Vibe Coding to Agentic Engineering](https://collinwilkins.com/articles/from-vibe-coding-to-agentic-engineering): The shift from autocomplete-style assistants to agents operating inside your environment.

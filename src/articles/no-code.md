@@ -2,7 +2,7 @@
 title: "No-code development in enterprise software"
 date: "2025-10-17"
 tags: ["Software Engineering", "Developer Tools", "No-Code"]
-excerpt: "How low-code and no-code tools actually work in enterprise environments, based on what I've seen."
+excerpt: "How low-code and no-code tools hold up in enterprise environments, based on what I've seen."
 image: "/images/articles/no-code.png"
 image_alt: "No-code development visual showing reusable blocks connected into a governed business workflow."
 seo_title: "No-Code and Low-Code in Enterprise Software: Practical Guide"

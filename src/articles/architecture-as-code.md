@@ -1,8 +1,8 @@
 ---
-title: "Architecture as Code: Why Tech Leaders and Engineers Should Adopt Diagrams‑as‑Code Now"
+title: "Architecture as Code: Keep Your Diagrams in the Repo"
 date: "2025-10-23"
 tags: ["Architecture as Code", "Software Engineering", "Developer Tools", "Diagrams", "System Design"]
-excerpt: "AI now writes a large share of new code. Stand out with Architecture as Code—pros, cons, tools, and a simple adoption plan for leaders, engineers, and recruiters."
+excerpt: "Keep architecture diagrams in the repo, versioned and reviewed like code. Tools, tradeoffs, and how to start."
 image: "/images/articles/architecture-as-code.png"
 image_alt: "Architecture-as-code visual showing diagrams, source control, review, and system documentation."
 seo_title: "Architecture as Code: Diagrams-as-Code Adoption Guide"

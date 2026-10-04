@@ -1,5 +1,5 @@
 ---
-title: "What Automation Actually Costs (And Saves) a Small Business"
+title: "What Automation Costs (and Saves) a Small Business"
 date: "2026-03-26"
 tags: ["Automation", "Small Business", "ROI", "Cost Analysis"]
 excerpt: "Real automation costs for small businesses: $0-10K. Three tiers and the ROI math that makes the decision obvious."

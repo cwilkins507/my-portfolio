@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { NEWSLETTER, ANALYTICS_EVENTS, PUBLIC_CONTACT_PROFILE } from '../data/site.js';
 import { CATEGORIES } from '../data/categories.js';
 import { articleFromModule } from '../utils/articleData.js';
+import { getLatestIssues } from '../utils/newsletterIssues.js';
 
 const pageTitle = 'Collin Wilkins — Software Engineering, Systems, and AI-Native Development';
 const pageDescription = 'Essays and field notes on software engineering, distributed systems, infrastructure, developer tooling, and AI-native development.';
@@ -12,18 +13,59 @@ const articles = Object.entries(articleModules)
   .map(([file, article]) => articleFromModule(file, article))
   .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-const bySlug = new Map(articles.map(article => [article.slug, article]));
+const bySlug = (slug) => articles.find(article => article.slug === slug);
 
-// Curated entry points; these stay put regardless of how often new posts land.
-const startHere = [
-  'ai-agent-harness',
-  'context-engineering-ai-coding-tools',
-  'system-design-best-practices',
-].map(slug => bySlug.get(slug)).filter(Boolean);
-const [lead, ...starters] = startHere;
+// "Start here": the explainer leads, then the most-read pieces (Plausible top pages).
+// Re-rank MOST_READ_SLUGS from analytics now and then; list order is display order.
+const FEATURED_SLUG = 'ai-agent-harness';
+const MOST_READ_SLUGS = [
+  'best-ai-coding-harness-omp',
+  'ai-code-review-best-practices-approaches-tools',
+  'structured-output',
+];
+const featured = bySlug(FEATURED_SLUG);
+const mostRead = MOST_READ_SLUGS.map(bySlug).filter(Boolean);
 
-const startSlugs = new Set(startHere.map(article => article.slug));
-const latest = articles.filter(article => !startSlugs.has(article.slug)).slice(0, 4);
+// Multi-part series collapse to one row in "Recent"; href points at the first part.
+const SERIES = [
+  {
+    name: 'Company Brain',
+    href: '/articles/github-repository-ai-knowledge-base',
+    slugs: [
+      'github-repository-ai-knowledge-base',
+      'managed-rag-aws-bedrock-knowledge-base',
+      'onenote-microsoft-365-copilot-knowledge-base',
+      'markdown-vault-ai-context-layer',
+    ],
+  },
+];
+
+const shownSlugs = new Set([FEATURED_SLUG, ...MOST_READ_SLUGS]);
+const recentRows = [];
+const seenSeries = new Set();
+for (const article of articles) {
+  if (recentRows.length === 5) break;
+  if (shownSlugs.has(article.slug)) continue;
+  const series = SERIES.find(entry => entry.slugs.includes(article.slug));
+  if (series) {
+    if (seenSeries.has(series.name)) continue;
+    seenSeries.add(series.name);
+    recentRows.push({ title: `${series.name} series`, note: `${series.slugs.length} parts`, href: series.href, date: article.date });
+  } else {
+    recentRows.push({ title: article.title, note: article.category, href: `/articles/${article.slug}`, date: article.date });
+  }
+}
+
+const issues = await getLatestIssues(3);
+const latestIssue = issues[0];
+
+const freeResource = {
+  name: 'AI Prompt Toolkit',
+  pitch: '32 AI prompts I use for engineering work',
+  description: 'Code review, debugging, architecture, documentation, and planning prompts, written out in full rather than summarized. Free, no email required.',
+  href: '/resources/ai-prompt-toolkit',
+  cta: 'Open the toolkit',
+};
 
 const topicCounts = Object.keys(CATEGORIES).map(name => ({
   name,
@@ -45,14 +87,8 @@ const projects = [
     href: '/ask',
   },
   {
-    name: 'AI Prompt Toolkit',
-    kind: 'Resource',
-    description: 'The prompts I actually reuse for engineering work, written out in full rather than summarized.',
-    href: '/resources/ai-prompt-toolkit',
-  },
-  {
     name: 'FiNimbus',
-    kind: 'Product',
+    kind: 'Personal project',
     description: 'A founder-owned financial software project, built and operated outside of any employer. Written up from the inside: automating its signup flow over a weekend.',
     href: '/articles/automate-saas-signup-flow-weekend',
   },
@@ -82,7 +118,7 @@ const homepageSchema = [
     name: NEWSLETTER.name,
     url: 'https://collinwilkins.com/articles',
     description: pageDescription,
-    blogPost: latest.map(article => ({
+    blogPost: articles.slice(0, 4).map(article => ({
       '@type': 'BlogPosting',
       headline: article.title,
       url: `https://collinwilkins.com/articles/${article.slug}`,
@@ -93,135 +129,124 @@ const homepageSchema = [
 ---
 
 <Layout title={pageTitle} description={pageDescription} schema={homepageSchema} hideFooterNewsletter={true}>
+  <!-- 1. Newsletter first -->
   <section class="hero" aria-labelledby="hero-title">
     <div class="wrap hero-inner">
-      <img
-        class="hero-portrait"
-        src="/images/profile_photo.webp"
-        alt="Collin Wilkins"
-        width="176"
-        height="176"
-        loading="eager"
-        decoding="async"
-      />
-      <div class="hero-copy">
-        <h1 id="hero-title">Collin Wilkins</h1>
-        <p class="hero-lede">
-          A working engineer's notebook. I write about distributed systems, infrastructure,
-          developer tooling, and what AI-native development looks like once it has to survive
-          production, review, and the people who maintain it.
-        </p>
-        <form
-          action={NEWSLETTER.subscribeAction}
-          method="post"
-          target="popupwindow"
-          data-newsletter-event={ANALYTICS_EVENTS.newsletterSubscribe}
-          data-location="homepage-hero"
-          class="subscribe-form hero-form"
-        >
-          <label class="sr-only" for="hero-newsletter-email">Email address</label>
-          <input
-            id="hero-newsletter-email"
-            type="email"
-            name="email"
-            placeholder="you@example.com"
-            autocomplete="email"
-            required
-          />
-          <button type="submit" class="btn btn-solid">Subscribe</button>
-        </form>
-        <p class="hero-note">
-          {NEWSLETTER.name}: {NEWSLETTER.cadence.toLowerCase()}. No spam, unsubscribe anytime.
-          <a href={NEWSLETTER.archiveHref} target="_blank" rel="noopener noreferrer">Read past issues</a>
-        </p>
-      </div>
+      <h1 id="hero-title">Notes on building software that has to survive production.</h1>
+      <p class="hero-lede">
+        {NEWSLETTER.name}: what AI-assisted engineering looks like once it meets production —
+        agent harnesses, code review, the context layer — from an engineer who still thinks in
+        distributed systems. Sent when there's something worth sending.
+      </p>
+      <form
+        action={NEWSLETTER.subscribeAction}
+        method="post"
+        target="popupwindow"
+        data-newsletter-event={ANALYTICS_EVENTS.newsletterSubscribe}
+        data-location="homepage-hero"
+        class="subscribe-form hero-form"
+      >
+        <label class="sr-only" for="hero-newsletter-email">Email address</label>
+        <input
+          id="hero-newsletter-email"
+          type="email"
+          name="email"
+          placeholder="you@example.com"
+          autocomplete="email"
+          required
+        />
+        <button type="submit" class="btn btn-solid">Subscribe free</button>
+      </form>
+      <p class="form-note">Sent through Buttondown. Every past letter is public.</p>
+      {latestIssue && (
+        <a class="latest-letter" href={latestIssue.href}>
+          <span class="latest-label">Latest letter</span>
+          <span class="latest-title">{latestIssue.title}</span>
+          <time datetime={latestIssue.date}>{formatDate(latestIssue.date)}</time>
+        </a>
+      )}
     </div>
   </section>
 
-  {lead && (
-    <section class="band start" aria-labelledby="start-title">
+  <!-- 2. Free resource -->
+  <section class="band resource" aria-labelledby="resource-title">
+    <div class="wrap resource-inner">
+      <p class="resource-kind">{freeResource.name}</p>
+      <div>
+        <h2 id="resource-title">{freeResource.pitch}</h2>
+        <p class="resource-desc">{freeResource.description}</p>
+      </div>
+      <a class="btn btn-ghost resource-cta" href={freeResource.href}>{freeResource.cta} <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <!-- 3. Start here: explainer first, then most read -->
+  {featured && (
+    <section id="start" class="band" aria-labelledby="start-title">
       <div class="wrap">
-        <div class="section-head">
+        <div class="section-head ruled">
           <h2 id="start-title">Start here</h2>
-          <p class="section-note">Three essays that explain most of what this site argues.</p>
         </div>
-
-        <a class="lead-article" href={`/articles/${lead.slug}`}>
-          <figure class="lead-figure">
-            {lead.image ? (
-              <img
-                src={lead.image}
-                alt={lead.image_alt || ''}
-                width="1600"
-                height="900"
-                loading="lazy"
-                decoding="async"
-              />
-            ) : (
-              <div class="ph"><span>{lead.category}</span></div>
-            )}
-          </figure>
-          <div class="lead-copy">
-            <span class="article-meta">
-              <span class="article-cat">{lead.category}</span>
-            </span>
-            <h3 class="lead-title">{lead.title}</h3>
-            <p class="lead-dek">{lead.excerpt}</p>
-            <span class="lead-cue">Read the essay <span aria-hidden="true">→</span></span>
-          </div>
+        <a class="start-lead" href={`/articles/${featured.slug}`}>
+          <span class="essay-cat">The explainer</span>
+          <span class="start-lead-body">
+            <span class="start-lead-title">{featured.title}</span>
+            <span class="essay-dek">{featured.excerpt}</span>
+          </span>
         </a>
-
-        <ul class="article-list">
-          {starters.map(article => (
-            <li>
-              <a href={`/articles/${article.slug}`}>
-                <span class="article-body">
-                  <span class="article-meta">
-                    <span class="article-cat">{article.category}</span>
-                  </span>
-                  <span class="article-title">{article.title}</span>
-                  <span class="article-dek">{article.excerpt}</span>
-                </span>
-              </a>
-            </li>
-          ))}
-        </ul>
+        {mostRead.length > 0 && (
+          <>
+            <p class="list-label">Most read</p>
+            <ul class="row-list dated">
+              {mostRead.map(article => (
+                <li>
+                  <a href={`/articles/${article.slug}`}>
+                    <time datetime={article.date}>{formatDate(article.date)}</time>
+                    <span class="row-title">{article.title}</span>
+                    <span class="row-meta">{article.category}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
       </div>
     </section>
   )}
 
-  <section class="band latest" aria-labelledby="latest-title">
+  <!-- 4. Recent -->
+  <section class="band" aria-labelledby="recent-title">
     <div class="wrap">
-      <div class="section-head">
-        <h2 id="latest-title">Recently published</h2>
-        <a class="section-link" href="/articles">All {articles.length} articles <span aria-hidden="true">→</span></a>
+      <div class="section-head ruled">
+        <h2 id="recent-title">Recent</h2>
       </div>
-      <ol class="recent-list">
-        {latest.map(article => (
+      <ul class="row-list dated">
+        {recentRows.map(row => (
           <li>
-            <a href={`/articles/${article.slug}`}>
-              <time datetime={article.date}>{formatDate(article.date)}</time>
-              <span class="recent-title">{article.title}</span>
-              <span class="article-cat">{article.category}</span>
+            <a href={row.href}>
+              <time datetime={row.date}>{formatDate(row.date)}</time>
+              <span class="row-title">{row.title}</span>
+              <span class="row-meta">{row.note}</span>
             </a>
           </li>
         ))}
-      </ol>
+      </ul>
+      <a class="archive-link" href="/articles">View all {articles.length} articles <span aria-hidden="true">→</span></a>
     </div>
   </section>
 
-  <section class="band topics" aria-labelledby="topics-title">
+  <section class="band" aria-labelledby="topics-title">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head ruled">
         <h2 id="topics-title">By topic</h2>
-        <p class="section-note">The archive, sorted by the part of the stack it argues about.</p>
       </div>
-      <ul class="topic-grid">
+      <ul class="row-list dated">
         {topicCounts.map(topic => (
           <li>
             <a href={topic.href}>
-              <span class="topic-name">{topic.name}</span>
-              <span class="topic-count">{topic.count} {topic.count === 1 ? 'article' : 'articles'}</span>
+              <span class="row-meta">{topic.count} {topic.count === 1 ? 'article' : 'articles'}</span>
+              <span class="row-title">{topic.name}</span>
+              <span class="row-meta" aria-hidden="true">→</span>
             </a>
           </li>
         ))}
@@ -229,13 +254,63 @@ const homepageSchema = [
     </div>
   </section>
 
+  <section class="band" aria-labelledby="projects-title">
+    <div class="wrap">
+      <div class="section-head ruled">
+        <h2 id="projects-title">Projects &amp; experiments</h2>
+      </div>
+      <ul class="row-list dated">
+        {projects.map(project => (
+          <li>
+            <a href={project.href}>
+              <span class="row-meta">{project.kind}</span>
+              <span class="row-body">
+                <span class="row-title">{project.name}</span>
+                <span class="row-desc">{project.description}</span>
+              </span>
+              <span class="row-meta" aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5. About -->
+  <section class="band about" aria-labelledby="about-title">
+    <div class="wrap about-inner">
+      <img
+        class="about-portrait"
+        src="/images/profile_photo.webp"
+        alt="Collin Wilkins"
+        width="128"
+        height="128"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="about-copy">
+        <h2 id="about-title">Hey, I'm Collin.</h2>
+        <p>
+          I'm a software engineer. My work centers on distributed and event-driven systems, cloud
+          infrastructure, and the developer tooling that decides whether a team can change its own
+          software safely. Most of what I publish starts as something I had to figure out anyway — a
+          system that behaved strangely under load, a workflow that only worked because one person
+          remembered the trick, an agent that looked productive until someone reviewed the diff.
+        </p>
+        <p>
+          I came to engineering by way of finance, pricing, and operations, which is why I still start
+          with the boring numbers before the architecture diagram. <a href="/about">More about me →</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Newsletter again, with the letters themselves -->
   <section id="subscribe" class="band subscribe" aria-labelledby="subscribe-title">
     <div class="wrap subscribe-inner">
       <div>
-        <h2 id="subscribe-title">{NEWSLETTER.name}</h2>
+        <h2 id="subscribe-title">One letter, no fixed schedule.</h2>
         <p class="subscribe-promise">{NEWSLETTER.promise}</p>
-      </div>
-      <div class="subscribe-form-col">
         <form
           action={NEWSLETTER.subscribeAction}
           method="post"
@@ -253,50 +328,26 @@ const homepageSchema = [
             autocomplete="email"
             required
           />
-          <button type="submit" class="btn btn-solid">Subscribe</button>
+          <button type="submit" class="btn btn-solid">Subscribe free</button>
         </form>
-        <p class="subscribe-note">
-          <a href={NEWSLETTER.archiveHref} target="_blank" rel="noopener noreferrer">Read past issues</a> first. Unsubscribe whenever.
-        </p>
+        <p class="form-note">Sent through Buttondown. Every past letter is public.</p>
       </div>
-    </div>
-  </section>
-
-  <section class="band projects" aria-labelledby="projects-title">
-    <div class="wrap">
-      <div class="section-head">
-        <h2 id="projects-title">Projects &amp; experiments</h2>
-      </div>
-      <ul class="project-grid">
-        {projects.map(project => (
-          <li>
-            <a href={project.href}>
-              <span class="project-kind">{project.kind}</span>
-              <span class="project-name">{project.name}</span>
-              <span class="project-desc">{project.description}</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <section class="band background" aria-labelledby="background-title">
-    <div class="wrap background-inner">
-      <h2 id="background-title">Why I write about the unglamorous parts.</h2>
-      <div class="background-copy">
-        <p>
-          My work centers on distributed and event-driven systems, cloud infrastructure, and the
-          developer tooling that decides whether a team can change its own software safely. Most of
-          what I publish starts as something I had to figure out anyway — a system that behaved
-          strangely under load, a workflow that only worked because one person remembered the trick,
-          an agent that looked productive until someone reviewed the diff.
-        </p>
-        <p>
-          I came to engineering by way of finance, pricing, and operations, which is why I still start
-          with the boring numbers before the architecture diagram. <a href="/about">More about me →</a>
-        </p>
-      </div>
+      {issues.length > 0 && (
+        <div class="letters">
+          <p class="list-label">Recent letters</p>
+          <ul class="row-list dated">
+            {issues.map(issue => (
+              <li>
+                <a href={issue.href}>
+                  <time datetime={issue.date}>{formatDate(issue.date)}</time>
+                  <span class="row-title">{issue.title}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a class="archive-link" href={NEWSLETTER.archiveHref}>All past letters <span aria-hidden="true">→</span></a>
+        </div>
+      )}
     </div>
   </section>
 </Layout>
@@ -307,65 +358,86 @@ const homepageSchema = [
   }
 
   .hero-inner {
+    padding-top: clamp(64px, 9vw, 128px);
+    padding-bottom: clamp(52px, 7vw, 96px);
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: clamp(24px, 4vw, 56px);
-    align-items: start;
-    padding-top: clamp(56px, 8vw, 116px);
-    padding-bottom: clamp(48px, 6.5vw, 88px);
-    max-width: 66rem;
+    grid-template-columns: var(--rail) minmax(0, 52rem);
+    column-gap: 24px;
   }
 
-  .hero-portrait {
-    width: clamp(96px, 13vw, 176px);
-    height: auto;
-    aspect-ratio: 1;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 1px solid var(--rule);
-    background: var(--paper-2);
-    margin-top: 10px;
+  .hero-inner > *,
+  .section-head > *,
+  .subscribe-inner > :first-child {
+    grid-column: 2;
   }
 
   h1 {
-    font-size: clamp(40px, 7vw, 76px);
+    font-size: clamp(38px, 6vw, 68px);
     font-weight: 500;
-    line-height: 1.02;
+    line-height: 1.04;
     letter-spacing: -.022em;
     text-wrap: balance;
+    max-width: 18ch;
   }
 
   .hero-lede {
-    margin-top: 20px;
-    max-width: 46ch;
-    font-size: clamp(18px, 2.1vw, 22px);
+    margin-top: 22px;
+    max-width: 50ch;
+    font-size: clamp(18px, 2.1vw, 21px);
     line-height: 1.55;
     color: var(--ink-soft);
     text-wrap: pretty;
   }
 
   .hero-form {
-    margin-top: 30px;
-    max-width: 34rem;
+    margin-top: 32px;
+    max-width: 32rem;
   }
 
-  .hero-note {
+  .form-note {
     margin-top: 12px;
-    font-family: var(--mono);
-    font-size: 11.5px;
-    line-height: 1.7;
+    font-size: 15px;
+    line-height: 1.55;
     color: var(--ink-faint);
   }
 
-  .hero-note a {
-    color: var(--accent-text);
+  .latest-letter {
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+    align-items: baseline;
+    gap: 4px 14px;
+    justify-self: start;
+    min-height: 44px;
+    margin-top: 22px;
+    padding: 12px 0;
+    border-top: 1px solid var(--rule);
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .latest-label,
+  .latest-letter time {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .latest-title {
+    font-size: 19px;
+    font-weight: 500;
     text-decoration: underline;
-    text-underline-offset: 3px;
+    text-decoration-color: var(--rule);
+    text-underline-offset: 5px;
+  }
+
+  .latest-letter:hover .latest-title {
+    text-decoration-color: var(--ink);
   }
 
   @media (max-width: 620px) {
-    .hero-inner { grid-template-columns: 1fr; }
-    .hero-portrait { margin-top: 0; }
+    .latest-letter { grid-template-columns: 1fr; }
   }
 
   .band {
@@ -374,13 +446,15 @@ const homepageSchema = [
   }
 
   .section-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: var(--rail) minmax(0, 1fr);
+    column-gap: 24px;
     padding-bottom: 22px;
     border-bottom: 1px solid var(--rule);
+  }
+
+  .section-head.ruled {
+    border-bottom-color: var(--ink);
   }
 
   .section-head h2 {
@@ -390,200 +464,143 @@ const homepageSchema = [
     letter-spacing: -.018em;
   }
 
-  .section-link,
-  .section-note {
-    font-family: var(--mono);
-    font-size: 11.5px;
-    letter-spacing: .06em;
-    color: var(--ink-faint);
-    text-decoration: none;
-    max-width: 40ch;
-  }
 
-  .section-link {
-    color: var(--ink);
-    text-transform: uppercase;
-    letter-spacing: .1em;
-  }
-
-  .section-link:hover {
-    color: var(--accent-text);
-  }
-
-  /* ── Lead article ── */
-  .lead-article {
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-    gap: clamp(24px, 3.4vw, 48px);
-    align-items: center;
-    padding: clamp(28px, 3.6vw, 44px) 0;
-    border-bottom: 1px solid var(--rule);
-    text-decoration: none;
-    color: var(--ink);
-  }
-
-  .lead-figure {
-    margin: 0;
-    overflow: hidden;
-    border: 1px solid var(--rule);
+  /* ── Free resource ── */
+  .resource {
     background: var(--paper-2);
   }
 
-  .lead-figure img,
-  .lead-figure .ph {
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    transition: transform .4s cubic-bezier(.2, .7, .3, 1);
+  .resource-inner {
+    display: grid;
+    grid-template-columns: var(--rail) minmax(0, 1fr) auto;
+    gap: 16px 24px;
+    align-items: center;
   }
 
-  .lead-article:hover .lead-figure img {
-    transform: scale(1.02);
+  .resource-kind {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink);
   }
 
-  .lead-title {
-    margin-top: 14px;
-    font-size: clamp(28px, 3.6vw, 42px);
+  .resource h2 {
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -.015em;
+  }
+
+  .resource-desc {
+    margin-top: 8px;
+    max-width: 58ch;
+    font-size: 16.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 620px) {
+    .resource-inner { grid-template-columns: 1fr; }
+    .resource-cta { justify-self: start; }
+  }
+
+  /* ── Start here + Recent ── */
+  .start-lead {
+    display: grid;
+    gap: 10px 24px;
+    align-items: baseline;
+    padding: clamp(24px, 3vw, 34px) 0;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .essay-cat,
+  .list-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .list-label {
+    margin-top: clamp(28px, 3.4vw, 40px);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .start-lead-title {
+    max-width: 24ch;
+    font-size: clamp(30px, 4vw, 44px);
     font-weight: 500;
     line-height: 1.08;
     letter-spacing: -.02em;
     text-wrap: balance;
   }
 
-  .lead-article:hover .lead-title {
+  .start-lead:hover .start-lead-title {
     color: var(--accent-text);
   }
 
-  .lead-dek {
-    margin-top: 14px;
-    max-width: 46ch;
-    font-size: 17.5px;
-    line-height: 1.55;
+  .essay-dek {
+    max-width: 62ch;
+    font-size: 17px;
+    line-height: 1.6;
     color: var(--ink-soft);
   }
 
-  .lead-cue {
-    display: inline-flex;
-    gap: 7px;
-    min-height: 44px;
-    align-items: center;
-    margin-top: 12px;
-    font-family: var(--mono);
-    font-size: 11.5px;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .lead-figure img { transition: none; }
-    .lead-article:hover .lead-figure img { transform: none; }
-  }
-
-  @media (max-width: 860px) {
-    .lead-article {
-      grid-template-columns: 1fr;
-      align-items: start;
-    }
-  }
-
-  /* ── Latest writing ── */
-  .article-list {
+  .row-list {
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
-  .article-list li + li {
+  .row-list li + li {
     border-top: 1px solid var(--rule);
   }
 
-  .article-list a {
+  .row-list a {
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 8px;
-    padding: clamp(22px, 3vw, 32px) 0;
-    text-decoration: none;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 6px 24px;
+    align-items: baseline;
+    min-height: 44px;
+    padding: 16px 0;
     color: var(--ink);
-    transition: background .15s;
+    text-decoration: none;
   }
 
-  .article-list a:hover {
-    background: var(--paper-2);
+  .row-list.dated a,
+  .start-lead {
+    grid-template-columns: var(--rail) minmax(0, 1fr) auto;
   }
 
-  .article-body {
-    display: block;
-    max-width: 64ch;
+  .row-body,
+  .start-lead-body {
+    display: grid;
+    gap: 6px;
   }
 
-  .article-meta {
-    display: flex;
-    gap: 14px;
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-  }
-
-  .article-cat { color: var(--accent-text); }
-  .article-date { color: var(--ink-faint); }
-
-  .article-title {
-    display: block;
-    margin-top: 12px;
-    font-size: clamp(22px, 2.6vw, 29px);
-    font-weight: 500;
-    line-height: 1.18;
-    letter-spacing: -.015em;
-    text-wrap: balance;
-  }
-
-  .article-list a:hover .article-title { color: var(--accent-text); }
-
-  .article-dek {
-    display: block;
-    margin-top: 10px;
-    font-size: 16.5px;
+  .row-desc {
+    max-width: 62ch;
+    font-size: 16px;
     line-height: 1.55;
     color: var(--ink-soft);
   }
 
-  /* ── Recently published ── */
-  .recent-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .recent-list li + li { border-top: 1px solid var(--rule); }
-
-  .recent-list a {
-    display: grid;
-    grid-template-columns: 8rem minmax(0, 1fr) auto;
-    gap: 8px 24px;
-    align-items: baseline;
-    min-height: 44px;
-    padding: 18px 0;
-    text-decoration: none;
-    color: var(--ink);
-    transition: background .15s;
-  }
-
-  .recent-list a:hover { background: var(--paper-2); }
-  .recent-list a:hover .recent-title { color: var(--accent-text); }
-
-  .recent-list time,
-  .recent-list .article-cat {
+  .row-list time,
+  .row-meta {
     font-family: var(--mono);
-    font-size: 10.5px;
+    font-size: 11px;
     letter-spacing: .1em;
     text-transform: uppercase;
+    color: var(--ink-faint);
+    white-space: nowrap;
   }
 
-  .recent-list time { color: var(--ink-faint); }
-
-  .recent-title {
+  .row-title {
     font-size: clamp(19px, 2vw, 22px);
     font-weight: 500;
     line-height: 1.3;
@@ -591,62 +608,111 @@ const homepageSchema = [
     text-wrap: balance;
   }
 
-  /* ── Topics ── */
-  .topic-grid {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  .row-list a:hover .row-title {
+    color: var(--accent-text);
   }
 
-  .topic-grid li {
-    border-bottom: 1px solid var(--rule);
-    border-right: 1px solid var(--rule);
-  }
-
-  .topic-grid a {
-    display: flex;
-    min-height: 96px;
-    flex-direction: column;
-    justify-content: center;
-    gap: 8px;
-    padding: 24px clamp(16px, 2vw, 26px);
-    text-decoration: none;
-    color: var(--ink);
-    transition: background .15s;
-  }
-
-  .topic-grid a:hover { background: var(--paper-2); }
-
-  .topic-name {
-    font-size: 20px;
-    font-weight: 500;
-    letter-spacing: -.01em;
-  }
-
-  .topic-count {
+  .archive-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 44px;
+    margin-top: 18px;
     font-family: var(--mono);
-    font-size: 10.5px;
+    font-size: 11.5px;
     letter-spacing: .1em;
     text-transform: uppercase;
-    color: var(--ink-faint);
+    color: var(--ink);
+    text-decoration: none;
   }
 
-  /* ── Subscribe ── */
+  .archive-link:hover {
+    color: var(--accent-text);
+  }
+
+  @media (max-width: 620px) {
+    .row-list a,
+    .row-list.dated a,
+    .start-lead { grid-template-columns: 1fr; gap: 4px; }
+    .row-list a > [aria-hidden="true"] { display: none; }
+    .hero-inner,
+    .section-head,
+    .subscribe-inner { grid-template-columns: 1fr; }
+    .hero-inner > *,
+    .section-head > *,
+    .subscribe-inner > * { grid-column: 1; }
+  }
+
+  /* ── About ── */
+  .about-inner {
+    display: grid;
+    grid-template-columns: var(--rail) minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+  }
+
+  .about-portrait {
+    width: clamp(96px, 11vw, 128px);
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid var(--rule);
+    background: var(--paper-2);
+  }
+
+  .about h2 {
+    font-size: clamp(26px, 3.4vw, 38px);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -.018em;
+  }
+
+  .about-copy p {
+    margin-top: 16px;
+    max-width: 62ch;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+
+  .about-copy a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--accent-text);
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: .04em;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 620px) {
+    .about-inner { grid-template-columns: 1fr; }
+  }
+
+  /* ── Closing subscribe ── */
   .subscribe {
     background: var(--paper-2);
+    border-bottom: none;
   }
 
   .subscribe-inner {
     display: grid;
-    grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
-    gap: clamp(28px, 4vw, 56px);
-    align-items: start;
+    grid-template-columns: var(--rail) minmax(0, 1fr);
+    gap: clamp(40px, 5vw, 64px) 24px;
   }
 
+  .subscribe-inner > .letters {
+    grid-column: 1 / -1;
+  }
+
+  .letters .list-label {
+    margin-top: 0;
+  }
+
+
   .subscribe h2 {
-    margin-top: 16px;
     font-size: clamp(26px, 3.4vw, 38px);
     font-weight: 500;
     line-height: 1.12;
@@ -661,6 +727,12 @@ const homepageSchema = [
     color: var(--ink-soft);
   }
 
+  .subscribe .subscribe-form {
+    margin-top: 24px;
+    max-width: 32rem;
+  }
+
+  /* ── Shared form ── */
   .subscribe-form {
     display: flex;
     gap: 10px;
@@ -670,8 +742,9 @@ const homepageSchema = [
   .subscribe-form input {
     flex: 1 1 200px;
     min-width: 0;
+    min-height: 44px;
     border: 1px solid var(--rule);
-    border-radius: 999px;
+    border-radius: var(--radius);
     padding: 12px 18px;
     background: var(--paper);
     font-family: var(--mono);
@@ -681,20 +754,6 @@ const homepageSchema = [
 
   .subscribe-form input:focus-visible {
     border-color: var(--ink);
-  }
-
-  .subscribe-note {
-    margin-top: 14px;
-    font-family: var(--mono);
-    font-size: 11.5px;
-    line-height: 1.7;
-    color: var(--ink-faint);
-  }
-
-  .subscribe-note a {
-    color: var(--accent-text);
-    text-decoration: underline;
-    text-underline-offset: 3px;
   }
 
   .sr-only {
@@ -707,104 +766,5 @@ const homepageSchema = [
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
-  }
-
-  /* ── Projects ── */
-  .project-grid {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    border-left: 1px solid var(--rule);
-  }
-
-  .project-grid li {
-    border-right: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .project-grid a {
-    display: block;
-    height: 100%;
-    padding: clamp(20px, 2.4vw, 28px);
-    text-decoration: none;
-    color: var(--ink);
-    transition: background .15s;
-  }
-
-  .project-grid a:hover { background: var(--paper-2); }
-
-  .project-kind {
-    display: block;
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    color: var(--accent-text);
-  }
-
-  .project-name {
-    display: block;
-    margin-top: 12px;
-    font-size: 21px;
-    font-weight: 500;
-    letter-spacing: -.012em;
-  }
-
-  .project-desc {
-    display: block;
-    margin-top: 10px;
-    font-size: 15.5px;
-    line-height: 1.55;
-    color: var(--ink-soft);
-  }
-
-  /* ── Background ── */
-  .background {
-    border-bottom: none;
-  }
-
-  .background-inner {
-    display: grid;
-    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
-    gap: clamp(28px, 4vw, 56px);
-    align-items: start;
-  }
-
-  .background h2 {
-    font-size: clamp(24px, 3vw, 34px);
-    font-weight: 500;
-    line-height: 1.14;
-    letter-spacing: -.018em;
-    text-wrap: balance;
-  }
-
-  .background-copy p {
-    font-size: 17px;
-    line-height: 1.65;
-    color: var(--ink-soft);
-    max-width: 60ch;
-  }
-
-  .background-copy p + p { margin-top: 18px; }
-
-  .background-copy a {
-    color: var(--accent-text);
-    font-family: var(--mono);
-    font-size: 13px;
-    letter-spacing: .04em;
-    white-space: nowrap;
-  }
-
-  @media (max-width: 860px) {
-    .subscribe-inner,
-    .background-inner {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 620px) {
-    .recent-list a { grid-template-columns: 1fr; gap: 6px; }
   }
 </style>

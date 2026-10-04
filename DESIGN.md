@@ -61,7 +61,7 @@ typography:
     letterSpacing: "0.18em"
 rounded:
   square: "0"
-  pill: "999px"
+  control: "3px"
 spacing:
   xs: "8px"
   sm: "12px"
@@ -74,24 +74,24 @@ components:
     backgroundColor: "{colors.action-gold}"
     textColor: "{colors.on-gold}"
     typography: "{typography.label}"
-    rounded: "{rounded.pill}"
+    rounded: "{rounded.control}"
     padding: "11px 19px"
   button-primary-hover:
     backgroundColor: "{colors.gold-deep}"
     textColor: "{colors.on-gold}"
     typography: "{typography.label}"
-    rounded: "{rounded.pill}"
+    rounded: "{rounded.control}"
     padding: "11px 19px"
   button-ghost:
     backgroundColor: "transparent"
     textColor: "{colors.ink}"
     typography: "{typography.label}"
-    rounded: "{rounded.pill}"
+    rounded: "{rounded.control}"
     padding: "11px 19px"
   input:
     backgroundColor: "{colors.paper}"
     textColor: "{colors.ink}"
-    rounded: "{rounded.pill}"
+    rounded: "{rounded.control}"
     padding: "13px 19px"
 ---
 
@@ -176,18 +176,18 @@ The system is flat and ruled. One-pixel dividers, paper-tone changes, and ink in
 
 ## Shapes
 
-Editorial regions, ledgers, and evidence containers are square or minimally shaped. Pills are reserved for compact controls, tags, filters, and existing primary/ghost buttons. Mixing large rounded cards with square editorial structures weakens the system.
+Editorial regions, ledgers, and evidence containers are square. Compact controls (buttons, inputs, tags, filters) use a barely-softened 3px corner (`--radius`); there are no pill shapes. Mixing large rounded cards with square editorial structures weakens the system.
 
 ## Components
 
 ### Buttons
-- **Shape:** Existing shared actions use the pill radius; preview-study actions may use square editorial buttons when the surrounding surface is explicitly print-like.
+- **Shape:** Barely-softened corners (3px, `--radius`).
 - **Primary:** Action Gold with Near-Black Ink and compact mono typography.
 - **Hover / Focus:** Deep Gold on hover; the global two-pixel gold focus outline remains visible with a four-pixel offset.
 - **Ghost:** Transparent paper surface, one-pixel rule, and Near-Black Ink; the rule darkens on hover.
 
 ### Chips
-- **Style:** Mono uppercase text, pill shape, one-pixel rule, and transparent or Secondary Paper surface.
+- **Style:** Mono uppercase text, 3px corners, one-pixel rule, and transparent or Secondary Paper surface.
 - **State:** Selected state uses gold text or rule emphasis without introducing a new hue.
 
 ### Cards / Containers
@@ -198,7 +198,7 @@ Editorial regions, ledgers, and evidence containers are square or minimally shap
 - **Internal Padding:** Usually 20–38px, scaled to the content hierarchy.
 
 ### Inputs / Fields
-- **Style:** Warm Paper, one-pixel Ledger Rule, 13px by 19px padding; existing search fields use the pill radius.
+- **Style:** Warm Paper, one-pixel Ledger Rule, 13px by 19px padding, 3px corners.
 - **Focus:** Two-pixel gold outline with four-pixel offset.
 - **Error / Disabled:** Preserve the entered value, name the problem in plain language, and keep state distinguishable without color alone.
 
@@ -222,6 +222,6 @@ A ledger route pairs a mono audience or evidence label with a Newsreader action 
 ### Don't:
 - **Don't** introduce generic SaaS gradients, glossy dashboards, or interchangeable icon-card grids.
 - **Don't** use IBM Plex Mono for ordinary explanatory prose.
-- **Don't** round every container; pills are a control pattern, not the page skeleton.
+- **Don't** round containers or use pill shapes; controls get 3px corners and nothing more.
 - **Don't** use shadows when spacing, paper tone, or a one-pixel rule can express the hierarchy.
 - **Don't** let visual theater outrun the evidence available on the page.

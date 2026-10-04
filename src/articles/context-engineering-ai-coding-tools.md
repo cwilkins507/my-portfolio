@@ -1,13 +1,13 @@
 ---
 
-title: "Context Engineering: The Skill That Makes AI Coding Tools Actually Work"
+title: "Context Engineering: Why AI Coding Tools Fail Without It"
 date: "2026-02-05"
 slug: "context-engineering-ai-coding-tools"
 tags: ["Software Engineering", "AI Coding Assistant", "AI Tools", "Developer Productivity", "Agentic Development", "Context Engineering"]
 excerpt: "Most developers blame the model when AI coding tools produce bad output. The real problem is context. Here's the system I built to fix that."
 image: "/images/articles/context-engineering-ai-coding-tools.png"
 image_alt: "Context engineering cover showing layered project context feeding an AI coding assistant."
-seo_title: "Context Engineering: Make AI Coding Tools Actually Work"
+seo_title: "Context Engineering: Why AI Coding Tools Fail Without It"
 meta_description: "Context engineering transforms AI coding tools from novelty into compounding productivity. Practical patterns from daily use with Claude Code and Cursor."
 target_keywords: "context engineering, agentic coding, AI coding assistant, AI pair programming, Claude Code, Cursor agent mode, Codex CLI, vibe coding, CLAUDE.md, developer productivity, AI code review, agentic development"
 faqs:

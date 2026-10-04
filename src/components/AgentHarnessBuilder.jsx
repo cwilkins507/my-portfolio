@@ -497,7 +497,7 @@ function failureModeLines(answers) {
     'Ignores existing conventions': 'Read nearby code first and match naming, structure, styling, and test patterns.',
     'Produces generic code': 'Use project-specific commands, files, language, and constraints instead of generic boilerplate.',
     'Misses security constraints': 'Check auth, data exposure, input handling, permissions, secrets, and logging boundaries.',
-    'Writes stale documentation': 'Update docs only when behavior or workflow actually changes, and keep examples current.',
+    'Writes stale documentation': 'Update docs only when behavior or workflow changes, and keep examples current.',
     'Uses wrong tone or voice': 'Match the repo voice and product language. Avoid generic AI-sounding phrasing.',
   };
 

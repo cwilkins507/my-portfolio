@@ -4,6 +4,7 @@
    ═══════════════════════════════════════ */
 
 :root {
+  --rail: 8.5rem;
   /* Editorial tokens */
   --paper:    oklch(0.987 0.005 95);
   --paper-2:  oklch(0.966 0.008 92);
@@ -21,6 +22,7 @@
   --mono:     "IBM Plex Mono", ui-monospace, monospace;
   --measure:  38rem;
   --maxw:     74rem;
+  --radius:   3px;  /* controls, inputs, tags */
 
   /* Legacy aliases — keeps older components legible on light bg */
   --color-bg:              var(--paper);
@@ -58,6 +60,7 @@ html {
   background: var(--paper);
   -webkit-text-size-adjust: 100%;
 }
+html { scroll-padding-top: 96px; }
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
 }
@@ -117,7 +120,7 @@ body {
   letter-spacing: .05em;
   text-decoration: none;
   padding: 11px 19px;
-  border-radius: 999px;
+  border-radius: var(--radius);
   transition: background .15s, border-color .15s, color .15s;
   display: inline-flex;
   align-items: center;
@@ -135,8 +138,9 @@ body {
 }
 .btn-solid:hover,
 .btn-primary:hover {
-  background: var(--accent-deep);
-  border-color: var(--accent-deep);
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
 }
 
 .btn-ghost {
@@ -182,7 +186,7 @@ body {
   color: var(--ink-soft);
   text-decoration: none;
   border: 1px solid var(--rule);
-  border-radius: 999px;
+  border-radius: var(--radius);
   padding: 6px 13px;
   transition: .15s;
 }

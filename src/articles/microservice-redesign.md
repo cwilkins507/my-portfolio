@@ -1,5 +1,5 @@
 ---
-title: "Microservices Redesign for Builders and Leaders"
+title: "When to Pull Microservices Back Together"
 date: "2025-11-16"
 tags: ["Software Engineering", "Microservices", "Modular Monolith", "Universal Interface", "Service Contracts", "Distributed Systems", "Observability"]
 excerpt: "Microservices are not the default. Explore universal-interface architecture and the modular monolith, with concrete patterns, migration steps, and metrics."

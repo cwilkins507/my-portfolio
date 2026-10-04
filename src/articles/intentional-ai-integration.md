@@ -2,7 +2,7 @@
 title: "Intentional AI Integration: How to Adopt AI Coding Tools Without Wrecking Your Codebase"
 date: "2026-04-01"
 tags: ["AI", "Software Engineering", "AI Coding Tools", "Code Quality", "Engineering Leadership"]
-excerpt: "AI tools made your team faster. Then patterns started drifting. Here's how to keep architectural coherence without killing the productivity gains."
+excerpt: "AI tools made your team faster. Then patterns started drifting. Keeping architectural coherence without giving back the productivity gains."
 image: "/images/articles/intentional-ai-integration.png"
 image_alt: "AI coding integration guarded by conventions, review, and architecture boundaries."
 seo_title: "Intentional AI Integration: AI Coding Without Codebase Drift"

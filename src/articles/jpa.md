@@ -1,5 +1,5 @@
 ---
-title: "JPA/Hibernate: Pragmatic Data Access That Scales"
+title: "JPA/Hibernate Without the Surprises"
 date: "2025-11-22"
 tags: ["Software Engineering", "JPA", "Hibernate", "Data Access", "ORM", "SQL", "Performance"]
 excerpt: "A pragmatic guide to JPA/Hibernate for tech leaders and engineers. Learn hidden tradeoffs, when to use native SQL, and patterns to ship fast, safe data access."

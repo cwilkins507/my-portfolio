@@ -1,8 +1,8 @@
 ---
-title: "Best Practices for System Design: Lessons from Real-World Applications"
+title: "System Design Lessons from Real Applications"
 date: "2026-01-11"
 tags: ["Software Architecture", "System Design", "Cloud-Native", "Microservices", "Reliability Engineering", "Observability", "Scalability", "Data Consistency"]
-excerpt: "Cloud-native system design that scales and fails well. Learn durable patterns—consistency, resilience, observability—with lessons from Amazon, Google, Netflix, LinkedIn, and Stripe."
+excerpt: "Cloud-native system design that scales and fails well: consistency, resilience, and observability, with examples from companies that run it at scale."
 image: "/images/articles/system-design-best-practices.png"
 image_alt: "System design visual showing scalable components, boundaries, reliability paths, and data flow."
 seo_title: "Best Practices for System Design: Real-World Lessons"

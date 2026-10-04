@@ -42,7 +42,7 @@ const About = () => {
               Most engineers start with "Hello World." Mine starts with a $2 million pricing problem.
             </h1>
             <p className="mt-7 max-w-[min(100%,37rem)] text-lg leading-[1.62] text-[var(--color-text-secondary)] md:text-xl">
-              I am a software engineer. Most of my work lives in distributed and event-driven systems, the infrastructure and developer tooling underneath them, technical leadership on teams building that kind of thing, and lately the AI-native side of engineering — how software actually gets written now. I arrived by way of finance, sales, and field operations, so I tend to ask what a system is for before I ask how to build it.
+              I am a software engineer. Most of my work lives in distributed and event-driven systems, the infrastructure and developer tooling underneath them, technical leadership on teams building that kind of thing, and lately the AI-native side of engineering — how software gets written now. I arrived by way of finance, sales, and field operations, so I tend to ask what a system is for before I ask how to build it.
             </p>
           </div>
 

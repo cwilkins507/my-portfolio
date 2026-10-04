@@ -2,7 +2,7 @@
 title: "From Vibe Coding to Agentic Engineering: What Changed and What It Means"
 date: "2026-02-15"
 tags: ["AI", "Software Engineering", "Agentic Engineering", "AI Coding Agents", "Claude", "Multi-Agent Systems", "Developer Productivity"]
-excerpt: "Vibe coding was the prompt-first era. Agentic engineering is the orchestration-first era. Here's what changed, why it matters, and what you need to learn next."
+excerpt: "Vibe coding was the prompt-first era. Agentic engineering is the orchestration-first era. The skills that carry over, and the ones you have to learn."
 image: "/images/articles/from-vibe-coding-to-agentic-engineering.png"
 image_alt: "Shift from prompt-first coding to orchestrated agentic engineering workflows."
 seo_title: "From Vibe Coding to Agentic Engineering: What Changed"
@@ -130,7 +130,7 @@ That question is worth spending real time on.
 
 ---
 
-*This is the third installment in my AI-assisted coding series. Start from the beginning with [Part 1: How Workflows, Roles, and Teams Are Changing](/articles/ai-assisted-coding), read [Part 2: Trends, Limits, and What's Next](/articles/ai-assisted-coding-pt2) for guardrails and practical adoption, or jump to the [enterprise engineering practices](/articles/enterprise-best-practices) if your team is ready for governance at scale.*
+*This is the third installment in my AI-assisted coding series. Start from the beginning with [Part 1: How Workflows, Roles, and Teams Are Changing](/articles/ai-assisted-coding), read [Part 2: Where They Stop Helping](/articles/ai-assisted-coding-pt2) for guardrails and practical adoption, or jump to the [enterprise engineering practices](/articles/enterprise-best-practices) if your team is ready for governance at scale.*
 
 *Try agentic mode on one bounded task this week. Define the plan yourself, let the agent execute, review the output. You'll learn more from one real attempt than from reading ten articles about it. Including this one.*
 

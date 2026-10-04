@@ -1,5 +1,5 @@
 ---
-title: "Coding Wars 2.0: The Definitive Comparison of Kimi K2.6, GLM-5.1, and Claude Opus 4.7"
+title: "Kimi K2.6 vs GLM-5.1 vs Claude Opus 4.7 on Real Coding Work"
 date: "2026-04-23"
 slug: "kimi-k2-6-vs-glm-5-1-vs-claude-opus-4-7"
 tags: ["AI", "Software Engineering", "AI Coding Models", "Open Source", "Developer Tools", "Claude Code"]

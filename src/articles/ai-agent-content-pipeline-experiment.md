@@ -233,6 +233,6 @@ If you want to run this experiment yourself, start with the system, not the mode
 
 ---
 
-*Related: [How I Actually Use AI Agents Every Day](/articles/ai-agent-workflow-claude-code) covers the daily agent workflow this experiment extends. [Context Engineering](/articles/context-engineering) explains the four-layer framework that makes agent infrastructure work. [From Vibe Coding to Agentic Engineering](/articles/from-vibe-coding-to-agentic-engineering) covers the paradigm shift this post operates within.*
+*Related: [How I Use AI Agents Every Day](/articles/ai-agent-workflow-claude-code) covers the daily agent workflow this experiment extends. [Context Engineering](/articles/context-engineering) explains the four-layer framework that makes agent infrastructure work. [From Vibe Coding to Agentic Engineering](/articles/from-vibe-coding-to-agentic-engineering) covers the paradigm shift this post operates within.*
 
 *Subscribe to the newsletter for practical AI engineering breakdowns. No summaries of other people's summaries.*
