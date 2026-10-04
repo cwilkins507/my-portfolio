@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Coding Wars 3.0 hero now uses a generated cover (`scripts/generate-article-covers.js`, accent `#fb923c`) plotting the seven models by end-to-end speed and estimated cost, replacing the Theo screenshot that also appeared inline. Sources heading renamed to "Sources Checked" to match Coding Wars 2.0.
 - Coding Wars 3.0 verdict: added an output tok/s column; routine-work default moved from GPT-6.1 Sol to Opus 5.5 (fastest at near-equal quality), with GPT-6.1 Sol kept for batch and cost-sensitive work.
+- Coding Wars 3.0 title now "Opus 5.5 Changed My Default"; verdict added to the intro, excerpt, and meta description. Excerpt no longer says every model "fixed" the bug (Kimi's fix was partial; Gemini's diff wasn't mergeable).
 
 ## [2026-10-03] - Small styling refresh and looser newsletter cadence
 

@@ -1,13 +1,13 @@
 ---
-title: "Coding Wars 3.0: The Price War Changed My Default"
+title: "Coding Wars 3.0: Opus 5.5 Changed My Default"
 date: "2026-10-04"
 slug: "coding-wars-3-opus-5-5-vs-gpt-6-1-sol"
 tags: ["AI", "Software Engineering", "AI Coding Models", "Developer Tools", "Claude Code", "Codex"]
-excerpt: "Seven new models, one real bug from my repo. They all fixed it. The differences were in price, review burden, and one leak only Gemini caught."
+excerpt: "Seven models, one real repository bug. All passed the hidden test; Opus 5.5 was fastest at 46 seconds and became my routine-work default. GPT-6.1 Sol stays the cheap batch pick at about $0.09."
 image: "/images/articles/coding-wars-3-opus-5-5-vs-gpt-6-1-sol.png"
 image_alt: "Seven coding models plotted by run speed and estimated cost, with Opus 5.5 marked as the default."
 seo_title: "Best AI Coding Model 2026: Opus 5.5 vs GPT-6.1 Sol vs Sonnet 5.5 vs Astra"
-meta_description: "Opus 5.5, Sonnet 5.5, GPT-6.1 Sol, GPT-6 Astra, Kimi K3, and Gemini 3.8 Flash on one real repository bug: correctness, cost, and the review bill."
+meta_description: "Seven coding models on one real repository bug. All passed; Opus 5.5 was fastest at 46s and became my default. GPT-6.1 Sol stays the cheap pick at ~$0.09."
 target_keywords: "best ai coding model 2026, opus 5.5 vs gpt-6.1 sol, sonnet 5.5 coding, gpt-6 astra vs opus 5.5, gemini 4 argon coding, kimi k3 coding, gemini 3.8 flash coding"
 ---
 My most popular writeup returns: a review of the latest model releases.
@@ -17,6 +17,8 @@ For the last four or five releases, GPT won most of my coding work. I barely tou
 Almost every major lab put out a new version in the last month, and the pace isn't slowing down. So here's a look at each one and whether it lives up to the hype.
 
 I'll admit I'm skeptical going in. Every launch came with a chart showing it on top, but I'm not convinced these are meaningful improvements over what they replaced, whatever the benchmarks say. So I gave each model the same real bug from one of my repositories and compared what came back.
+
+One small bug isn't enough to crown a universal winner, but it did change my default. Opus 5.5 finished in 46 seconds; the Sols took about 100 for essentially the same fix. GPT-6.1 Sol is still the cheapest at about $0.09, so it keeps my batch work.
 
 ## What shipped since Coding Wars 2.0
 
