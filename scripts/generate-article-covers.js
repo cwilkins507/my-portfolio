@@ -54,6 +54,14 @@ const covers = [
     motif: 'matrix',
   },
   {
+    slug: 'coding-wars-3-opus-5-5-vs-gpt-6-1-sol',
+    pillar: 'AI-Powered Engineering Teams',
+    title: 'Coding Wars 3.0',
+    alt: 'Seven coding models plotted by estimated run cost and review time, with GPT-6.1 Sol marked as the default.',
+    accent: '#fb923c',
+    motif: 'matrix',
+  },
+  {
     slug: 'llm-gateway-architecture',
     pillar: 'System Design for Scale',
     title: 'LLM Gateway',
@@ -727,6 +735,32 @@ function concept(cover) {
         ${conceptBox(745, 112, 210, 112, 'Outer Loop', 'audits, memory, changelog', '#fbbf24', 'rgba(251,191,36,0.1)')}
         ${conceptArrow(670, 168, 745, 168, '#fbbf24', 4)}
       </g>`;
+    case 'coding-wars-3-opus-5-5-vs-gpt-6-1-sol': {
+      // Real values from the article: est. run cost ($) and judge's est. review minutes.
+      const x = (cost) => Math.round(85 + (cost / 0.6) * 620);
+      const y = (review) => Math.round(45 + ((review - 6) / 14) * 215);
+      const models = [
+        ['GPT-6.1 Sol', 0.09, 8, '#fb923c', -48, -40],
+        ['GPT-6 Sol', 0.15, 8, '#fdba74', -30, 40],
+        ['Sonnet 5.5', 0.22, 8, '#94a3b8', -10, -26],
+        ['Kimi K3', 0.14, 12, '#94a3b8', -30, 40],
+        ['Opus 5.5', 0.48, 10, '#94a3b8', -40, -26],
+        ['Astra', 0.51, 9, '#94a3b8', 26, 6],
+        ['Gemini 3.8 Flash', 0.41, 18, '#94a3b8', -60, -26],
+      ];
+      return `<g transform="translate(210 190)">
+        <rect x="0" y="0" width="800" height="320" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>
+        ${conceptLine(85, 280, 705, 280, 'rgba(255,255,255,0.24)', 3)}
+        ${conceptLine(85, 280, 85, 30, 'rgba(255,255,255,0.24)', 3)}
+        <rect x="${x(0.09) - 30}" y="${y(8) - 30}" width="60" height="60" rx="12" fill="rgba(251,146,60,0.12)" stroke="#fb923c" stroke-width="2"/>
+        ${models.map(([name, cost, review, color, dx, dy]) => `<circle cx="${x(cost)}" cy="${y(review)}" r="13" fill="${color}" opacity="0.95"/><text x="${x(cost) + dx}" y="${y(review) + dy}" fill="rgba(255,255,255,0.82)" font-size="17" font-weight="700">${name}</text>`).join('')}
+        <rect x="560" y="236" width="190" height="34" rx="10" fill="rgba(251,146,60,0.12)" stroke="#fb923c" stroke-width="2"/>
+        ${label(576, 259, 'all seven passed', 17, '#fed7aa')}
+        ${smallLabel(92, 306, 'cheaper run', '#94a3b8')}
+        ${smallLabel(610, 306, 'pricier run', '#94a3b8')}
+        ${smallLabel(18, 24, 'less review', '#94a3b8')}
+      </g>`;
+    }
     case 'kimi-k2-6-vs-glm-5-1-vs-claude-opus-4-7':
       return `<g transform="translate(210 190)">
         <rect x="0" y="0" width="800" height="320" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>

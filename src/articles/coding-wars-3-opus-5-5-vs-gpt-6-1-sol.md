@@ -4,8 +4,8 @@ date: "2026-10-04"
 slug: "coding-wars-3-opus-5-5-vs-gpt-6-1-sol"
 tags: ["AI", "Software Engineering", "AI Coding Models", "Developer Tools", "Claude Code", "Codex"]
 excerpt: "Seven new models, one real bug from my repo. They all fixed it. The differences were in price, review burden, and one leak only Gemini caught."
-image: "/images/coding-wars-3-0-theo-terminal-bench-cost.png"
-image_alt: "Terminal-Bench 4.0 score versus cost per task chart showing GPT-6.1 Sol above Claude Opus 5.5 and GPT-6 Astra at a fraction of the cost."
+image: "/images/articles/coding-wars-3-opus-5-5-vs-gpt-6-1-sol.png"
+image_alt: "Seven coding models plotted by estimated run cost and review time, with GPT-6.1 Sol marked as the default."
 seo_title: "Best AI Coding Model 2026: Opus 5.5 vs GPT-6.1 Sol vs Sonnet 5.5 vs Astra"
 meta_description: "Opus 5.5, Sonnet 5.5, GPT-6.1 Sol, GPT-6 Astra, Kimi K3, and Gemini 3.8 Flash on one real repository bug: correctness, cost, and the review bill."
 target_keywords: "best ai coding model 2026, opus 5.5 vs gpt-6.1 sol, sonnet 5.5 coding, gpt-6 astra vs opus 5.5, gemini 4 argon coding, kimi k3 coding, gemini 3.8 flash coding"
@@ -186,7 +186,7 @@ Argon, Haiku 5.5, and Sol Ultrafast will need fresh runs when they're available.
 
 For the harness I used to switch providers mid-test, read [The Best AI Coding Harness You Have Probably Never Heard Of](/articles/best-ai-coding-harness-omp).
 
-## Sources checked October 3, 2026
+## Sources Checked
 
 - Anthropic, [Claude Opus 5.5](https://www.anthropic.com/claude-opus-5-5)
 - Anthropic, [Claude Sonnet 5.5](https://www.anthropic.com/claude-sonnet-5-5)

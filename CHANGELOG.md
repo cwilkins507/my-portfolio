@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2026-10-04] - Coding Wars 3.0 cover
+
+### Changed
+- Coding Wars 3.0 hero now uses a generated cover (`scripts/generate-article-covers.js`, accent `#fb923c`) plotting the seven models by estimated run cost and review time, replacing the Theo screenshot that also appeared inline. Sources heading renamed to "Sources Checked" to match Coding Wars 2.0.
+
 ## [2026-10-03] - Small styling refresh and looser newsletter cadence
 
 ### Changed
