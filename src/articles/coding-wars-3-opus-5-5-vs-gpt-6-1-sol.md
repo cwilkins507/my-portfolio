@@ -5,7 +5,7 @@ slug: "coding-wars-3-opus-5-5-vs-gpt-6-1-sol"
 tags: ["AI", "Software Engineering", "AI Coding Models", "Developer Tools", "Claude Code", "Codex"]
 excerpt: "Seven new models, one real bug from my repo. They all fixed it. The differences were in price, review burden, and one leak only Gemini caught."
 image: "/images/articles/coding-wars-3-opus-5-5-vs-gpt-6-1-sol.png"
-image_alt: "Seven coding models plotted by estimated run cost and review time, with GPT-6.1 Sol marked as the default."
+image_alt: "Seven coding models plotted by run speed and estimated cost, with Opus 5.5 marked as the default."
 seo_title: "Best AI Coding Model 2026: Opus 5.5 vs GPT-6.1 Sol vs Sonnet 5.5 vs Astra"
 meta_description: "Opus 5.5, Sonnet 5.5, GPT-6.1 Sol, GPT-6 Astra, Kimi K3, and Gemini 3.8 Flash on one real repository bug: correctness, cost, and the review bill."
 target_keywords: "best ai coding model 2026, opus 5.5 vs gpt-6.1 sol, sonnet 5.5 coding, gpt-6 astra vs opus 5.5, gemini 4 argon coding, kimi k3 coding, gemini 3.8 flash coding"
@@ -89,17 +89,17 @@ Redacting `applicant.json` breaks three unrelated tests at the starting commit. 
 
 All seven models passed the hidden regression and left the suite's existing failures unchanged. The diffs exposed differences the grader didn't catch.
 
-| Model (route) | Hidden test | Suite | Files | Lines +/− | Wall clock | Est. cost |
-|---|---|---|---|---|---|---|
-| Claude Opus 5.5 (Anthropic) | Pass | 117 / 3 known | 2 | +47 / −10 | 46s | $0.48 |
-| Claude Sonnet 5.5 (Anthropic) | Pass | 117 / 3 known | 2 | +45 / −7 | 50s | $0.22 |
-| GPT-6 Sol (Codex) | Pass | 117 / 3 known | 2 | +49 / −7 | 99s | $0.15 |
-| GPT-6.1 Sol (Codex) | Pass | 117 / 3 known | 2 | +47 / −7 | 97s | $0.09 |
-| GPT-6 Astra (Codex) | Pass | 117 / 3 known | 3 | +47 / −7 | 155s | $0.51 |
-| Kimi K3 (Copilot) | Pass | 117 / 3 known | 2 | +44 / −5 | 113s | $0.14 |
-| Gemini 3.8 Flash (Copilot) | Pass | 117 / 3 known | 2 | +81 / −13 | 144s | $0.41 |
+| Model (route) | Hidden test | Suite | Files | Lines +/− | Wall clock | Output tok/s | Est. cost |
+|---|---|---|---|---|---|---|---|
+| Claude Opus 5.5 (Anthropic) | Pass | 117 / 3 known | 2 | +47 / −10 | 46s | 88 | $0.48 |
+| Claude Sonnet 5.5 (Anthropic) | Pass | 117 / 3 known | 2 | +45 / −7 | 50s | 75 | $0.22 |
+| GPT-6 Sol (Codex) | Pass | 117 / 3 known | 2 | +49 / −7 | 99s | 27 | $0.15 |
+| GPT-6.1 Sol (Codex) | Pass | 117 / 3 known | 2 | +47 / −7 | 97s | 19 | $0.09 |
+| GPT-6 Astra (Codex) | Pass | 117 / 3 known | 3 | +47 / −7 | 155s | 13 | $0.51 |
+| Kimi K3 (Copilot) | Pass | 117 / 3 known | 2 | +44 / −5 | 113s | 37 | $0.14 |
+| Gemini 3.8 Flash (Copilot) | Pass | 117 / 3 known | 2 | +81 / −13 | 144s | 33 | $0.41 |
 
-Cost is omp's estimate at each model's list API price. I ran on subscriptions, so these are estimated API costs. GPT-6.1 Sol ran later the same day after an omp update added it to the Codex route, with the same starting repo, prompt, and grader.
+Cost is omp's estimate at each model's list API price. I ran on subscriptions, so these are estimated API costs. Output tok/s is output tokens divided by wall clock, so it includes tool calls and test runs; read it as end-to-end speed on this task, not raw generation speed. GPT-6.1 Sol ran later the same day after an omp update added it to the Codex route, with the same starting repo, prompt, and grader.
 
 ### A second reviewer: GPT-6.1 Sol as judge
 
@@ -125,7 +125,7 @@ Sonnet took 50 seconds for about $0.22. Both Sols took about 100 seconds; 6.1 co
 
 ### Opus 5.5: an extra cleanup
 
-Opus produced the same fix, then extracted error construction into a helper shared with an existing telemetry path. Reasonable cleanup, but outside the task; the judge docked it one point for edit discipline. It was the fastest run at 46 seconds.
+Opus produced the same fix, then extracted error construction into a helper shared with an existing telemetry path. Reasonable cleanup, but outside the task; the judge docked it one point for edit discipline. It was the fastest run at 46 seconds, about 88 output tokens per second end to end, more than four times GPT-6.1 Sol's rate.
 
 Anthropic's cost pitch also showed up in early usage reports:
 
@@ -161,24 +161,25 @@ Google's table puts Argon ahead of Opus 5.5 on DeepSWE (77.9% vs 74.2%), but beh
 
 The judge estimated 8 minutes of review for Sonnet and both Sols, versus 18 minutes for Gemini. The page leak explains why review is still necessary after a passing test: a larger diff can contain a useful fix alongside changes I'd reject.
 
-At $2/$10 for both Sol and Sonnet, list token prices don't separate them. The run cost, speed, and review burden do. For the organizational cost of generation outrunning review, see [The Claude Code Productivity Paradox](/articles/claude-code-productivity-paradox).
+At $2/$10 for both Sol and Sonnet, list token prices don't separate them. The run cost, speed, and review burden do. When the review bill is a near-tie, speed is what I feel all day. For the organizational cost of generation outrunning review, see [The Claude Code Productivity Paradox](/articles/claude-code-productivity-paradox).
 
 ## My routing rule after the test
 
 | Work type | Default | Escalate when | Why |
 |---|---|---|---|
-| Routine reversible edit | GPT-6.1 Sol | Verification fails twice | Matched my shipped fix, ranked 2nd by the blind judge, cheapest run in the test (~$0.09) |
+| Routine reversible edit | Opus 5.5 | Verification fails twice | Fastest run (46s, ~88 tok/s), same core fix as the top-ranked diffs; Opus 5.5's price cut makes it affordable as a default |
+| Cost-sensitive or batch work | GPT-6.1 Sol | Speed matters more than spend | Matched my shipped fix, ranked 2nd by the blind judge, cheapest run in the test (~$0.09) |
 | Final review on a risky diff | GPT-6.1 Sol as a blind reviewer | Always paired with a human owner | Found the page leak and flagged Kimi's partial fix |
 | Open-weight / private deployment | Kimi K3, with review | Serving cost beats managed price | Cheap and fast, but its fix didn't fully meet the ticket |
-| Didn't earn a lane on this test | GPT-6 Astra | Hard science or big data migrations, per OpenAI | Same answer as 6.1 Sol at about 5x the cost |
+| Didn't earn a lane on this test | GPT-6 Astra | Hard science or big data migrations, per OpenAI | Same answer as 6.1 Sol at about 5x the cost, and the slowest run |
 
-This task was too small to establish an Opus advantage on difficult cross-file implementation. It doesn't support a routing recommendation there.
+This task was too small to establish an Opus advantage on difficult cross-file implementation. The case for Opus here is speed at equal correctness, not depth.
 
-Sonnet and the two Sols were equivalent on the core fix. Sonnet was twice as fast; GPT-6.1 Sol cost less than half as much. I already live in GPT, so Sonnet doesn't earn a second lane for me. Multi-model routing is infrastructure, and [you probably don't need a gateway yet](/articles/llm-gateway-architecture).
+Sonnet and the two Sols were equivalent on the core fix, and Opus matched them apart from its extra cleanup. Sonnet was nearly as fast as Opus at half the cost, so it's a reasonable pick if price matters more to you than it does to me. Multi-model routing is infrastructure, and [you probably don't need a gateway yet](/articles/llm-gateway-architecture).
 
 ## What I'd use tomorrow
 
-GPT-6 Sol ranked first, though the judge's top five were a near-tie. Opus was fastest at 46s, with Sonnet four seconds behind at half the cost. GPT-6.1 Sol gave me the lowest estimated cost and fits the workflow I already use. That's enough to keep it as my default for routine work.
+GPT-6 Sol ranked first, though the judge's top five were a near-tie. When the outputs are that close, I take the faster model. Opus finished in 46 seconds; the Sols took about 100. Across a day of small edits, that difference compounds, and waiting is what pulls me out of the work. GPT-6.1 Sol is still the cheapest run, and I'll keep it for batch and cost-sensitive jobs, but Opus 5.5 is my default for routine work. After four or five releases on GPT, the price cut is what brought me back to Claude.
 
 One thing this test made me think about: if a $2/$10 model writes the same fix as a $10/$50 one, the price is going to keep moving, and I don't think it settles anytime soon. That's why I still think local models are worth figuring out. The hardware isn't cheap. A 64GB M5 Max MacBook Pro runs about $5,400, and NVIDIA's DGX Spark went up to $4,699 this year. It's a bigger upfront bet, but a model you run yourself doesn't change its price, its safety rules, or its behavior on you after you've built around it. I'll dig into that in a separate piece.
 
