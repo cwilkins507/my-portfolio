@@ -171,7 +171,7 @@ const homepageSchema = [
   <!-- 2. Free resource -->
   <section class="band resource" aria-labelledby="resource-title">
     <div class="wrap resource-inner">
-      <p class="resource-kind">{freeResource.name}</p>
+      <p class="resource-kind">Free resource</p>
       <div>
         <h2 id="resource-title">{freeResource.pitch}</h2>
         <p class="resource-desc">{freeResource.description}</p>
@@ -495,7 +495,7 @@ const homepageSchema = [
   .resource-desc {
     margin-top: 8px;
     max-width: 58ch;
-    font-size: 16.5px;
+    font-size: 17px;
     line-height: 1.55;
     color: var(--ink-soft);
   }
@@ -533,7 +533,7 @@ const homepageSchema = [
 
   .start-lead-title {
     max-width: 24ch;
-    font-size: clamp(30px, 4vw, 44px);
+    font-size: clamp(24px, 3vw, 32px);
     font-weight: 500;
     line-height: 1.08;
     letter-spacing: -.02em;
@@ -585,7 +585,7 @@ const homepageSchema = [
 
   .row-desc {
     max-width: 62ch;
-    font-size: 16px;
+    font-size: 17px;
     line-height: 1.55;
     color: var(--ink-soft);
   }
@@ -601,7 +601,7 @@ const homepageSchema = [
   }
 
   .row-title {
-    font-size: clamp(19px, 2vw, 22px);
+    font-size: 19px;
     font-weight: 500;
     line-height: 1.3;
     letter-spacing: -.01em;
@@ -707,6 +707,11 @@ const homepageSchema = [
     grid-column: 1 / -1;
   }
 
+  @media (max-width: 620px) {
+    .subscribe-inner { grid-template-columns: 1fr; }
+    .subscribe-inner > :first-child { grid-column: 1; }
+  }
+
   .letters .list-label {
     margin-top: 0;
   }
@@ -743,13 +748,18 @@ const homepageSchema = [
     flex: 1 1 200px;
     min-width: 0;
     min-height: 44px;
-    border: 1px solid var(--rule);
+    border: 1px solid var(--ink-faint);
     border-radius: var(--radius);
     padding: 12px 18px;
     background: var(--paper);
     font-family: var(--mono);
     font-size: 13px;
     color: var(--ink);
+  }
+
+  .subscribe-form input::placeholder {
+    color: var(--ink-faint);
+    opacity: 1;
   }
 
   .subscribe-form input:focus-visible {

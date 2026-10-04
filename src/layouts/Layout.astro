@@ -175,7 +175,7 @@ const currentYear = new Date().getFullYear();
 			</div>
 		</footer>
 
-		<script is:inline>document.addEventListener('submit',function(event){var form=event.target.closest('[data-newsletter-event]');if(form&&window.plausible)window.plausible(form.dataset.newsletterEvent,{props:{location:form.dataset.location,measurement:'intent'}});});</script>
+		<script is:inline>document.addEventListener('submit',function(event){var form=event.target.closest('[data-newsletter-event]');if(!form)return;if(window.plausible)window.plausible(form.dataset.newsletterEvent,{props:{location:form.dataset.location,measurement:'intent'}});var note=form.parentNode.querySelector('[data-submit-status]');if(!note){note=document.createElement('p');note.setAttribute('role','status');note.setAttribute('data-submit-status','');note.className='form-note';note.style.color='var(--ink)';var anchor=form.nextElementSibling&&form.nextElementSibling.classList.contains('form-note')?form.nextElementSibling:form;anchor.after(note);}note.textContent='One more step: finish the check in the Buttondown window, then look for a confirmation email.';});</script>
 		<script is:inline>document.addEventListener('click',function(event){var link=event.target.closest('[data-analytics-event][data-analytics-location]');if(link&&window.plausible)window.plausible(link.dataset.analyticsEvent,{props:{location:link.dataset.analyticsLocation}});});</script>
 </body>
 </html>
