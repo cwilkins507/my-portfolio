@@ -41,7 +41,7 @@ None of these are scandals. Subscriptions and APIs are drifting toward the same 
 
 The obvious answer is "fine, I'll run it myself." That's gotten more expensive for one simple reason: AI data centers are eating the world's memory.
 
-DRAM contract prices rose about 90% in Q1 2026 compared with Q4 2025, [according to TrendForce](https://thenextweb.com/news/apple-mac-mini-price-dram-ai-shortage), the largest quarterly jump on record. Samsung, SK Hynix, and Micron shifted capacity toward high-bandwidth memory for AI servers, and everything with ordinary RAM got squeezed. TrendForce [expects another 10–15% in Q4](https://www.trendforce.com/presscenter/news/20260930-13258.html) and warns PC DRAM supply could shrink in 2027.
+DRAM contract prices rose about 90% in Q1 2026 compared with Q4 2025, [according to TrendForce](https://thenextweb.com/news/apple-mac-mini-price-dram-ai-shortage), the largest quarterly jump on record. Samsung, SK Hynix, and Micron shifted capacity toward high-bandwidth memory for AI servers, and everything with ordinary RAM got squeezed. TrendForce [expects another 10–15% in Q4](https://www.trendforce.com/presscenter/news/20260930-13258.html) and warns PC DRAM supply could shrink in 2027. Micron's CEO went further on the September 30 earnings call: he expects supply to be ["much tighter in fiscal 2027 and 2028"](https://www.techpowerup.com/353296/micron-ceo-says-memory-supply-will-be-much-tighter-in-2027-and-2028-than-in-2026) and said Micron does "not have line of sight to when supply and demand will return to balance."
 
 You can see it in the price tags:
 
@@ -87,6 +87,8 @@ llama-server -hf unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_M --port 8080 -c 32768 -ngl 99
 
 Start omp and the model shows up.
 
+Want your own model without buying the box? Rent the GPU by the hour. As of October, a 48GB L40S on [RunPod](https://www.runpod.io/pricing) is $1.09/hr, a 96GB RTX Pro 6000 is $2.49/hr, and [Modal](https://modal.com/pricing) bills by the second, so you pay nothing while it's idle. Same model, same `llama-server` command, same omp setup. The break-even rule: a ~$4,600 RTX 5090 is about 3,900 rented hours. If it runs all day, buy. If it runs during work hours, rent.
+
 ## Will your machine run it?
 
 Probably not the one you're on. My personal laptop is an M1 MacBook with 16GB of memory. It can't even hold 17GB of weights, never mind the context window and everything else I have open. That's the rule for local models: the whole model has to fit in memory, with room left over for context.
@@ -94,7 +96,7 @@ Probably not the one you're on. My personal laptop is an M1 MacBook with 16GB of
 For a 27B model, [Tom's Hardware's testing](https://www.tomshardware.com/tech-industry/artificial-intelligence/benchmarking-qwen-3-8-27b-on-rtx-5090-and-beyond-vram-capacity-alone-cant-overcome-severe-software-and-inference-engine-bottlenecks) is the best guide I've found:
 
 - **24GB GPU (RTX 3090 or 4090):** runs the four-bit model with about 112K of context, but it needs every byte of VRAM, so plan on a second card for your display.
-- **RTX 5090 (32GB):** fast, if you pick the runner carefully. llama.cpp hit a wall at long contexts, and vLLM and SGLang held only 32K–38K of context on one card.
+- **RTX 5090 (32GB):** fast, if you pick the runner carefully. llama.cpp hit a wall at long contexts, and vLLM and SGLang held only 32K–38K of context on one card. It may also get hard to find: a leaked factory notice says [Nvidia stopped making it](https://www.tomshardware.com/pc-components/gpus/nvidia-reportedly-halts-geforce-rtx-5090-production-in-favor-of-ai-data-center-and-professional-gpus-impending-supply-drought-expected-to-drive-up-prices-rtx-5080-24gb-rumored-as-new-gaming-flagship) on October 10. Nvidia hasn't confirmed it.
 - **DGX Spark:** about 20 tokens per second, and it held up out to the model's full 262K context. I'd skip this unless you are looking to stack them.
 - **Mac:** Tom's M4 Max Mac Studio generated tokens quickly but processed long prompts slowly, so long turns took longer than on the Spark.
 

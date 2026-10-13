@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Coding Wars 3.0's "separate piece" promise now links to the new article.
+- Price of the Brick: added a GPU-rental paragraph (RunPod/Modal prices as of October 2026, plus a rent-vs-buy break-even), Micron's CEO supply outlook, and the unconfirmed RTX 5090 production halt.
 
 ## [2026-10-04] - Coding Wars 3.0 cover
 
