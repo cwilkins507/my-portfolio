@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2026-10-13] - The Price of the Brick Is Going Up
+
+### Added
+- Article `/articles/price-of-the-brick-going-up-local-ai-models`: hosted AI prices keep moving while local hardware gets more expensive, with Qwen 3.8 27B install commands and hardware guidance. Generated cover (`scripts/generate-article-covers.js`, accent `#f87171`) charts the DGX Spark 128GB price ladder. Site's first inline GIF (`public/images/price-of-the-brick-wire-marlo.gif`, about 3MB).
+
+### Changed
+- Coding Wars 3.0's "separate piece" promise now links to the new article.
+
 ## [2026-10-04] - Coding Wars 3.0 cover
 
 ### Changed

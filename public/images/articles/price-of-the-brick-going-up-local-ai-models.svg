@@ -1,0 +1,35 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DGX Spark 128GB price ladder: $3,999 at launch in October 2025, $4,699 in February 2026, and $7,000 to $9,000 in stock by October 2026.">
+  <style>
+    :root { --accent: #f87171; --muted: rgba(255,255,255,0.28); }
+    svg { font-family: "DM Sans", Arial, sans-serif; }
+  </style>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="48%" r="58%">
+      <stop offset="0%" stop-color="#f87171" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#f87171" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#08111f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="rgba(255,255,255,0.16)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0.03)"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#08111f"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <path d="M0 540 C190 475 330 605 520 535 C720 460 850 520 1200 410 L1200 630 L0 630Z" fill="rgba(255,255,255,0.035)"/>
+  <path d="M110 110 H1090 V520" fill="none" stroke="url(#edge)" stroke-width="2"/>
+  <text x="110" y="86" fill="#f87171" font-size="24" font-weight="700" letter-spacing="0">AI-Powered Engineering Teams</text>
+  <text x="110" y="580" fill="rgba(255,255,255,0.82)" font-size="34" font-weight="700" letter-spacing="0">The Price of the Brick Is Going Up</text>
+  <g transform="translate(210 190)">
+        <rect x="0" y="0" width="800" height="320" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>
+        <line x1="85" y1="280" x2="735" y2="280" stroke="rgba(255,255,255,0.24)" stroke-width="3" stroke-linecap="round" opacity="0.78"/>
+        <rect x="90" y="173" width="120" height="107" rx="8" fill="rgba(248,113,113,0.22)" stroke="#f87171" stroke-width="2"/><text x="106" y="159" fill="rgba(255,255,255,0.88)" font-size="24" font-weight="700" letter-spacing="0">$3,999</text><text x="106" y="304" fill="#94a3b8" font-size="16" font-weight="700" letter-spacing="0">Oct 2025 · launch</text><rect x="340" y="155" width="120" height="125" rx="8" fill="rgba(248,113,113,0.22)" stroke="#f87171" stroke-width="2"/><text x="356" y="141" fill="rgba(255,255,255,0.88)" font-size="24" font-weight="700" letter-spacing="0">$4,699</text><text x="356" y="304" fill="#94a3b8" font-size="16" font-weight="700" letter-spacing="0">Feb 2026 · Nvidia MSRP</text>
+        <rect x="590" y="40" width="120" height="240" rx="8" fill="rgba(248,113,113,0.12)" stroke="#f87171" stroke-width="2" stroke-dasharray="8 6"/>
+        <rect x="590" y="93" width="120" height="187" rx="8" fill="#f87171" opacity="0.9"/>
+        <text x="596" y="26" fill="#fecaca" font-size="22" font-weight="700" letter-spacing="0">$7,000–$9,000</text>
+        <text x="600" y="304" fill="#94a3b8" font-size="16" font-weight="700" letter-spacing="0">Oct 2026 · in stock</text>
+        <line x1="228" y1="147" x2="322" y2="129" stroke="#f87171" stroke-width="3" stroke-linecap="round" opacity="0.78"/><polyline points="310.3442097022296,139.96095582211706 322,129 307.11943651564786,123.12047362552343" fill="none" stroke="#f87171" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/>
+        <line x1="478" y1="129" x2="574" y2="83" stroke="#f87171" stroke-width="3" stroke-linecap="round" opacity="0.78"/><polyline points="565.5218098337331,96.56909324548307 574,83 558.1124795513059,81.10614309085246" fill="none" stroke="#f87171" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.78"/>
+        <text x="18" y="24" fill="#fecaca" font-size="16" font-weight="700" letter-spacing="0">DGX Spark 128GB</text>
+      </g>
+</svg>

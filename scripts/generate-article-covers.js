@@ -62,6 +62,14 @@ const covers = [
     motif: 'matrix',
   },
   {
+    slug: 'price-of-the-brick-going-up-local-ai-models',
+    pillar: 'AI-Powered Engineering Teams',
+    title: 'The Price of the Brick Is Going Up',
+    alt: 'DGX Spark 128GB price ladder: $3,999 at launch in October 2025, $4,699 in February 2026, and $7,000 to $9,000 in stock by October 2026.',
+    accent: '#f87171',
+    motif: 'tiers',
+  },
+  {
     slug: 'llm-gateway-architecture',
     pillar: 'System Design for Scale',
     title: 'LLM Gateway',
@@ -759,6 +767,26 @@ function concept(cover) {
         ${smallLabel(92, 306, 'cheaper run', '#94a3b8')}
         ${smallLabel(610, 306, 'pricier run', '#94a3b8')}
         ${smallLabel(18, 24, 'faster', '#94a3b8')}
+      </g>`;
+    }
+    case 'price-of-the-brick-going-up-local-ai-models': {
+      // Real values from the article: DGX Spark 128GB price at launch, after Nvidia's Feb hike, and in stock per Tom's Hardware.
+      const y = (price) => Math.round(280 - (price / 9000) * 240);
+      const steps = [
+        ['Oct 2025', 'launch', 3999, '$3,999', 150],
+        ['Feb 2026', 'Nvidia MSRP', 4699, '$4,699', 400],
+      ];
+      return `<g transform="translate(210 190)">
+        <rect x="0" y="0" width="800" height="320" rx="18" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>
+        ${conceptLine(85, 280, 735, 280, 'rgba(255,255,255,0.24)', 3)}
+        ${steps.map(([when, note, price, text, x]) => `<rect x="${x - 60}" y="${y(price)}" width="120" height="${280 - y(price)}" rx="8" fill="rgba(248,113,113,0.22)" stroke="#f87171" stroke-width="2"/>${label(x - 44, y(price) - 14, text, 24, 'rgba(255,255,255,0.88)')}${smallLabel(x - 44, 304, `${when} · ${note}`, '#94a3b8')}`).join('')}
+        <rect x="590" y="${y(9000)}" width="120" height="${280 - y(9000)}" rx="8" fill="rgba(248,113,113,0.12)" stroke="#f87171" stroke-width="2" stroke-dasharray="8 6"/>
+        <rect x="590" y="${y(7000)}" width="120" height="${280 - y(7000)}" rx="8" fill="#f87171" opacity="0.9"/>
+        ${label(596, y(9000) - 14, '$7,000–$9,000', 22, '#fecaca')}
+        ${smallLabel(600, 304, 'Oct 2026 · in stock', '#94a3b8')}
+        ${conceptArrow(228, y(3999) - 26, 322, y(4699) - 26, '#f87171', 3)}
+        ${conceptArrow(478, y(4699) - 26, 574, y(7000) - 10, '#f87171', 3)}
+        ${smallLabel(18, 24, 'DGX Spark 128GB', '#fecaca')}
       </g>`;
     }
     case 'kimi-k2-6-vs-glm-5-1-vs-claude-opus-4-7':
