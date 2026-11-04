@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  # Manual rebuild (Actions tab or `gh workflow run deploy.yml`), e.g. to pick up a new
+  # newsletter issue: the homepage reads the Buttondown RSS feed at build time.
+  workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
